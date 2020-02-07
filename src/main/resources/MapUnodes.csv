@@ -1,0 +1,74 @@
+nodeID,xcoord,ycoord,floor,building,nodeType,longName,shortName,teamAssigned
+UDEPT00104,2410,1300,4,1153 Centre St,DEPT,Cardiology,DEPT U0104,Team U
+UDEPT00204,3342,2069,4,1153 Centre St,DEPT,Foot and Ankle Center,DEPT U0204,Team U
+UDEPT00304,2563,1140,4,1153 Centre St,DEPT,Gastroenterology Associates,DEPT U0304,Team U
+UDEPT00404,2485,1146,4,1153 Centre St,DEPT,HVMA Internal Medicine,DEPT U0404,Team U
+UDEPT00504,2617,1193,4,1153 Centre St,DEPT,HVMA Neurology,DEPT U0504,Team U
+UDEPT00604,2284,2071,4,1153 Centre St,DEPT,Medical Library,DEPT U0604,Team U
+UDEPT00704,2518,1856,4,1153 Centre St,DEPT,MOHS Clinic,DEPT U0704,Team U
+UDEPT00804,2518,1428,4,1153 Centre St,DEPT,Neurology,DEPT U0804,Team U
+UDEPT00904,2844,2070,4,1153 Centre St,DEPT,Primary Care Physicians,DEPT U0904,Team U
+UDEPT01004,2518,1500,4,1153 Centre St,DEPT,Pulmonary Services,DEPT U1004,Team U
+UDEPT01104,2617,1290,4,1153 Centre St,DEPT,Rhumetology Center,DEPT U1104,Team U
+UCONF00104,2367,2071,4,1153 Centre St,CONF,Sadowsky Conference Room,CONF U0104,Team U
+UDEPT01204,2008,2069,4,1153 Centre St,DEPT,Social Work,DEPT U1204,Team U
+UCONF00204,1712,2071,4,1153 Centre St,CONF,Tynan Conference Room,CONF U0204,Team U
+UDEPT01304,1649,2071,4,1153 Centre St,DEPT,Urology,DEPT U1304,Team U
+UREST00104,2176,2071,4,1153 Centre St,REST,Restroom 1 Level 4,REST U0104,Team U
+UREST00204,2518,1176,4,1153 Centre St,REST,Restroom 2 Level 4,REST U0204,Team U
+UELEV00104,2490,1263,4,1153 Centre St,ELEV,Elevator 1 Level 4,ELEV U0104,Team U
+UELEV00204,2457,2021,4,1153 Centre St,ELEV,Elevator 2 Level 4,ELEV U0204,Team U
+UELEV00304,2572,2021,4,1153 Centre St,ELEV,Elevator 3 Level 4,ELEV U0304,Team U
+USTAI00104,2536,1272,4,1153 Centre St,STAI,Staircase 1 Level 4,STAI U0104,Team U
+USTAI00204,2518,1894,4,1153 Centre St,STAI,Staircase 2 Level 4,STAI U0204,Team U
+USTAI00304,2071,1475,4,1153 Centre St,STAI,Staircase 3 Level 4,STAI U0304,Team U
+USTAI00404,2071,1986,4,1153 Centre St,STAI,Staircase 4 Level 4,STAI U0404,Team U
+USTAI00504,3046,2069,4,1153 Centre St,STAI,Staircase 5 Level 4,STAI U0504,Team U
+USTAI00604,3563,2069,4,1153 Centre St,STAI,Staircase 6 Level 4,STAI U0604,Team U
+UHALL00104,1621,2077,4,1153 Centre St,HALL,Hallway Intersection 1 Level 04 South Hall,Hallway U104,Team U
+UHALL00204,1649,2077,4,1153 Centre St,HALL,Hallway Intersection 2 Level 04 South Hall,Hallway U204,Team U
+UHALL00304,1806,2077,4,1153 Centre St,HALL,Hallway Intersection 3 Level 04 South Hall,Hallway U304,Team U
+UHALL00404,1852,2077,4,1153 Centre St,HALL,Hallway Intersection 4 Level 04 South Hall,Hallway U404,Team U
+UHALL00504,1936,2077,4,1153 Centre St,HALL,Hallway Intersection 5 Level 04 South Hall,Hallway U504,Team U
+UHALL00604,2176,2077,4,1153 Centre St,HALL,Hallway Intersection 6 Level 04 South Hall,Hallway U604,Team U
+UHALL00704,2251,2077,4,1153 Centre St,HALL,Hallway Intersection 7 Level 04 South Hall,Hallway U704,Team U
+UHALL00804,2380,2077,4,1153 Centre St,HALL,Hallway Intersection 8 Level 04 South Hall,Hallway U804,Team U
+UHALL00904,2479,2077,4,1153 Centre St,HALL,Hallway Intersection 9 Level 04 South Hall,Hallway U904,Team U
+UHALL01004,2515,2077,4,1153 Centre St,HALL,Hallway Intersection 10 Level 04 South Hall,Hallway U1004,Team U
+UHALL01104,2554,2077,4,1153 Centre St,HALL,Hallway Intersection 11 Level 04 South Hall,Hallway U1104,Team U
+UHALL01204,2635,2077,4,1153 Centre St,HALL,Hallway Intersection 12 Level 04 South Hall,Hallway U1204,Team U
+UHALL01304,2704,2077,4,1153 Centre St,HALL,Hallway Intersection 13 Level 04 South Hall,Hallway U1304,Team U
+UHALL01404,2728,2077,4,1153 Centre St,HALL,Hallway Intersection 14 Level 04 South Hall,Hallway U1404,Team U
+UHALL01504,2842,2077,4,1153 Centre St,HALL,Hallway Intersection 15 Level 04 South Hall,Hallway U1504,Team U
+UHALL01604,3049,2077,4,1153 Centre St,HALL,Hallway Intersection 16 Level 04 South Hall,Hallway U1604,Team U
+UHALL01704,3234,2077,4,1153 Centre St,HALL,Hallway Intersection 17 Level 04 South Hall,Hallway U1704,Team U
+UHALL01804,3581,2077,4,1153 Centre St,HALL,Hallway Intersection 18 Level 04 South Hall,Hallway U1804,Team U
+UHALL01904,2466,2009,4,1153 Centre St,HALL,Hallway Intersection 19 Level 04 Hillside Elevators,Hallway U1904,Team U
+UHALL02104,2449,1968,4,1153 Centre St,HALL,Hallway Intersection 21 Level 04 Hillside Elevators,Hallway U2104,Team U
+UHALL02204,2515,1968,4,1153 Centre St,HALL,Hallway Intersection 22 Level 04 Hillside Elevators,Hallway U2204,Team U
+UHALL02304,2515,1895,4,1153 Centre St,HALL,Hallway Intersection 23 Level 04 Main Hall,Hallway U2304,Team U
+UHALL02404,2515,1856,4,1153 Centre St,HALL,Hallway Intersection 24 Level 04 Main Hall,Hallway U2404,Team U
+UHALL02504,2515,1822,4,1153 Centre St,HALL,Hallway Intersection 25 Level 04 Main Hall,Hallway U2504,Team U
+UHALL02604,2515,1708,4,1153 Centre St,HALL,Hallway Intersection 26 Level 04 Main Hall,Hallway U2604,Team U
+UHALL02704,2515,1623,4,1153 Centre St,HALL,Hallway Intersection 27 Level 04 Main Hall,Hallway U2704,Team U
+UHALL02804,2515,1547,4,1153 Centre St,HALL,Hallway Intersection 28 Level 04 Main Hall,Hallway U2804,Team U
+UHALL02904,2515,1499,4,1153 Centre St,HALL,Hallway Intersection 29 Level 04 Main Hall,Hallway U2904,Team U
+UHALL03004,2515,1469,4,1153 Centre St,HALL,Hallway Intersection 30 Level 04 Main Hall,Hallway U3004,Team U
+UHALL03104,2515,1390,4,1153 Centre St,HALL,Hallway Intersection 31 Level 04 Main Hall,Hallway U3104,Team U
+UHALL03204,2515,1342,4,1153 Centre St,HALL,Hallway Intersection 32 Level 04 Main Hall,Hallway U3204,Team U
+UHALL03304,2515,1289,4,1153 Centre St,HALL,Hallway Intersection 33 Level 04 Main Hall,Hallway U3304,Team U
+UHALL03404,2515,1234,4,1153 Centre St,HALL,Hallway Intersection 34 Level 04 Main Hall,Hallway U3404,Team U
+UHALL03504,2515,1204,4,1153 Centre St,HALL,Hallway Intersection 35 Level 04 Main Hall,Hallway U3504,Team U
+UHALL03604,2515,1141,4,1153 Centre St,HALL,Hallway Intersection 36 Level 04 Main Hall,Hallway U3604,Team U
+UHALL03704,2489,1139,4,1153 Centre St,HALL,Hallway Intersection 37 Level 04 West Hall,Hallway U3704,Team U
+UHALL03804,2442,1150,4,1153 Centre St,HALL,Hallway Intersection 38 Level 04 West Hall,Hallway U3804,Team U
+UHALL03904,2411,1167,4,1153 Centre St,HALL,Hallway Intersection 39 Level 04 West Hall,Hallway U3904,Team U
+UHALL04004,2411,1214,4,1153 Centre St,HALL,Hallway Intersection 40 Level 04 West Hall,Hallway U4004,Team U
+UHALL04104,2411,1301,4,1153 Centre St,HALL,Hallway Intersection 41 Level 04 West Hall,Hallway U4104,Team U
+UHALL04204,2411,1342,4,1153 Centre St,HALL,Hallway Intersection 42 Level 04 West Hall,Hallway U4204,Team U
+UHALL04304,2622,1342,4,1153 Centre St,HALL,Hallway Intersection 43 Level 04 East Hall,Hallway U4304,Team U
+UHALL04404,2622,1291,4,1153 Centre St,HALL,Hallway Intersection 44 Level 04 East Hall,Hallway U4404,Team U
+UHALL04504,2622,1199,4,1153 Centre St,HALL,Hallway Intersection 45 Level 04 East Hall,Hallway U4504,Team U
+UHALL04604,2622,1164,4,1153 Centre St,HALL,Hallway Intersection 46 Level 04 East Hall,Hallway U4604,Team U
+UHALL04704,2592,1152,4,1153 Centre St,HALL,Hallway Intersection 47 Level 04 East Hall,Hallway U4704,Team U
+UHALL04804,2559,1140,4,1153 Centre St,HALL,Hallway Intersection 48 Level 04 East Hall,Hallway U4804,Team U
