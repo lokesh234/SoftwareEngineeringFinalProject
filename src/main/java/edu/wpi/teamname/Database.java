@@ -11,7 +11,6 @@ public class Database {
     public static void UDBInitializer(){
         Connection conn = null;
         Statement stmt = null;
-        String tableName = "PROTOTYPENODES";
 
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
