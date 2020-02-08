@@ -8,12 +8,16 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 mainClassName = 'edu.wpi.teamname.Main'
 
+
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     implementation(
+            [group: 'net.kurobako', name: 'gesturefx', version: '0.5.0'],
+
             [group: 'com.jfoenix', name: 'jfoenix', version: '8.0.9'],
 
             // You may comment out the database dependency you do not use
