@@ -4,6 +4,8 @@ import com.sun.java.accessibility.util.EventID;
 import lombok.NoArgsConstructor;
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
 @NoArgsConstructor
@@ -352,5 +354,46 @@ public class Database {
         }
     }
 
+    public static void getEdges(HashMap<String, Edge> eHM, HashMap<String, Node> nHM){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "MapEdgesU";
+        ArrayList<Edge> edges = new ArrayList<Edge>();
+        String destID;
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            String sql1 = "SELECT * FROM " + tableName;
+            ResultSet results = stmt.executeQuery(sql1);
+            ResultSetMetaData rsmd = results.getMetaData();
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            //for each line, create a node and add it to hash map
+            while (results.next()) {
+                String edgeID = results.getString(3);
+                Node node1 = nHM.get(results.getString(1));
+                Node node2 = nHM.get(results.getString(2));
+                int dis = Pathfinder.dist(node1, node2);
+                eHM.put(edgeID, new Edge(node1, node2, dis, edgeID));
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
 
 }
