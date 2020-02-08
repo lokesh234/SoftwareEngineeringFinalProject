@@ -358,8 +358,6 @@ public class Database {
         Connection connection = null;
         Statement stmt = null;
         String tableName = "MapEdgesU";
-        ArrayList<Edge> edges = new ArrayList<Edge>();
-        String destID;
 
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
@@ -396,4 +394,44 @@ public class Database {
         }
     }
 
+    public static boolean checkCred(String inputUsername, String inputPassword){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "loginDB";
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            String sql1 = "SELECT * FROM " + tableName + " WHERE username = '" + inputUsername + "'";
+            ResultSet results = stmt.executeQuery(sql1);
+            ResultSetMetaData rsmd = results.getMetaData();
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            //for each line, create a node and add it to hash map
+            while (results.next()) {
+                if (results.getString(2).equals(inputPassword)){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }
