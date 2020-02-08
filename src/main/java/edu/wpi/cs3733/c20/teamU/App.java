@@ -1,4 +1,4 @@
-package cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
