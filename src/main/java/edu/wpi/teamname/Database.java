@@ -1,5 +1,6 @@
 package edu.wpi.teamname;
 
+import com.sun.java.accessibility.util.EventID;
 import lombok.NoArgsConstructor;
 import java.io.*;
 import java.sql.*;
@@ -28,17 +29,26 @@ public class Database {
 
             dropTable(stmt, "MapEdgesU");
             dropTable(stmt, "MapNodesU");
+            dropTable(stmt, "ServiceFinished");
+            dropTable(stmt, "MedicalSR");
+            dropTable(stmt, "SecuritySR");
             //drops database tables if they currently exist
 
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
+            createServiceFinishedTable(stmt, "ServiceFinished");
+            createMedicalSRTable(stmt, "MedicalSR");
+            createSecuritySRTable(stmt, "SecuritySR");
             //Creates tables again or for the first time
 
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
+            printTable(stmt, "ServiceFinished");
+            printTable(stmt, "MedicalSR");
+            printTable(stmt, "SecuritySR");
             //print tables to test
 
-            System.out.println("== Apache Derby Database Established! ==");
+            System.out.println("== Apache Derby Databases Established! ==");
             stmt.close();
             conn.close();
 
@@ -144,6 +154,130 @@ public class Database {
         }
 
     }
+    private static void createServiceFinishedTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), info VARCHAR(255), "+
+                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR')))";
+
+            stmt.executeUpdate(slqCreate);
+
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            InputStream csvFile = Database.class.getResourceAsStream("/ServiceFinished.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String timeFinished = csvString[0];
+                        String reqType = csvString[1];
+                        String info = csvString[2];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + timeFinished + "', '" + reqType + "', '" + info + "')");
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
+    private static void createMedicalSRTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10), timeReq DATE, urgency VARCHAR(7), info VARCHAR(255), PRIMARY KEY (reqID), "+
+                    "CONSTRAINT MSR_UR CHECK (urgency in ('EXTREME','HIGH', 'MEDIUM', 'LOW')))";
+
+            stmt.executeUpdate(slqCreate);
+
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            InputStream csvFile = Database.class.getResourceAsStream("/SecuritySR.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String reqID = csvString[0];
+                        String timeReq = csvString[1];
+                        String urgency = csvString[2];
+                        String info = csvString[3];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + timeReq + "', '" + urgency +  "', '" + info + "')");
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
+    private static void createSecuritySRTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10), timeReq DATE, urgency VARCHAR(7), type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
+                    "CONSTRAINT SSR_UR CHECK (urgency in ('EXTREME','HIGH', 'MEDIUM', 'LOW')), CONSTRAINT SSR_TY CHECK (type in('EMERGENCY', 'GUARD')))";
+
+            stmt.executeUpdate(slqCreate);
+
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            InputStream csvFile = Database.class.getResourceAsStream("/SecuritySR.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String reqID = csvString[0];
+                        String timeReq = csvString[1];
+                        String urgency = csvString[2];
+                        String type = csvString[3];
+                        String info = csvString[4];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + timeReq + "', '" + urgency +  "', '" + type + "', '" + info + "')");
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
+
 
     public static boolean printTable(Statement stmt, String tableName){
         try {
