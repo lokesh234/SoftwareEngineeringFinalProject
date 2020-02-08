@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import net.kurobako.gesturefx.GesturePane;
+//import net.kurobako.gesturefx.GesturePane;
 
 public class App extends Application {
 
@@ -24,7 +24,7 @@ public class App extends Application {
     root.setRight(label);
     root.setLeft(button);
 
-    Scene scene = new Scene(root, 200, 100);`
+    Scene scene = new Scene(root, 200, 100);
     primaryStage.setScene(scene);
     primaryStage.show();
   }
