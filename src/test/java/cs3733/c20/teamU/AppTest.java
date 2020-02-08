@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package cs3733.c20.teamU;
 
 import static org.testfx.api.FxAssert.verifyThat;
 
