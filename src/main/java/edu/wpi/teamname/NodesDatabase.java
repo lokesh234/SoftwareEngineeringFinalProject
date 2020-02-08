@@ -11,8 +11,13 @@ public class NodesDatabase {
     private HashMap<String, Edge> edges;
 
     public NodesDatabase() { //TODO: add relevant database stuff
+        /*
+        Automatically constructs the nodes and edges from Database
+         */
         nodes = new HashMap<String, Node>();
         edges = new HashMap<String, Edge>();
+        Database.getNodes(nodes);
+        Database.getEdges(edges, nodes);
     }
 
     public void readCSV(String filename){} //TODO: stub
