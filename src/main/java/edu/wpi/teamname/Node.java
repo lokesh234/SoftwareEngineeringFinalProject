@@ -30,4 +30,9 @@ public class Node {
         if (obj instanceof Node) return this.ID.equals(((Node) obj).ID);
         return false;
     }
+
+    @Override
+    public String toString(){
+        return this.getID();
+    }
 }
