@@ -33,14 +33,16 @@ public class AppTest extends FxRobot {
   public static void cleanup() {}
 
   @Test
-  public void testButton() {
+  public void testButton(FxRobot robot) {
     verifyThat("#textLabel", (Label l) -> !l.isVisible());
     clickOn("#showTextButton");
     verifyThat(".label", Node::isVisible);
-  }
-
-  @Test
-  public void testClose(FxRobot robot) {
     robot.press(KeyCode.ALT, KeyCode.F4);
   }
+
+//  @Test
+//  public void testClose(FxRobot robot) {
+//    robot.press(KeyCode.ALT, KeyCode.F4);
+//  }
+
 }
