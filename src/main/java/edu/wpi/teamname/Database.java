@@ -358,8 +358,6 @@ public class Database {
         Connection connection = null;
         Statement stmt = null;
         String tableName = "MapEdgesU";
-        ArrayList<Edge> edges = new ArrayList<Edge>();
-        String destID;
 
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
@@ -396,4 +394,88 @@ public class Database {
         }
     }
 
+    public static void getNodes(HashMap<String,Node> nHM){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "MapNodesU";
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            String sql1 = "SELECT * FROM " + tableName;
+            ResultSet results = stmt.executeQuery(sql1);
+            ResultSetMetaData rsmd = results.getMetaData();
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            //for each line, create a node and add it to hash map
+            while (results.next()) {
+                String _nodeID = results.getString(1);
+                int _xcoord = results.getInt(2);
+                int _ycoord = results.getInt(3);
+                int _floor = results.getInt(4);
+                String _building = results.getString(5);
+                String _nodeType = results.getString(6);
+                String _longName = results.getString(7);
+                String _shortName = results.getString(8);
+                Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
+                nHM.put(node.getID(), node);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
+    public static boolean checkCred(String inputUsername, String inputPassword){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "loginDB";
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            String sql1 = "SELECT * FROM " + tableName + " WHERE username = '" + inputUsername + "'";
+            ResultSet results = stmt.executeQuery(sql1);
+            ResultSetMetaData rsmd = results.getMetaData();
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            //for each line, create a node and add it to hash map
+            while (results.next()) {
+                if (results.getString(2).equals(inputPassword)){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 }

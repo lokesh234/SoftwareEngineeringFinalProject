@@ -5,6 +5,11 @@ public class Node {
     private int y;
     private int weight;
     private String ID;
+    private int floor;
+    private String building;
+    private String nodeType;
+    private String longName;
+    private String shortName;
 
     public Node(int xPos, int yPos, String ID) {
         /*
@@ -14,6 +19,17 @@ public class Node {
         x = xPos;
         y = yPos;
         this.ID = ID;
+    }
+
+    public Node(String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName) {
+        this.ID = nodeID;
+        this.x = xcoord;
+        this.y = ycoord;
+        this.floor= floor;
+        this.building = building;
+        this.nodeType = nodeType;
+        this.longName = longName;
+        this.shortName = shortName;
     }
 
     protected void setWeight(int newWeight) {
