@@ -24,7 +24,7 @@ public class App extends Application {
     root.setRight(label);
     root.setLeft(button);
 
-    Scene scene = new Scene(root, 200, 100);
+    Scene scene = new Scene(root, 200, 100);`
     primaryStage.setScene(scene);
     primaryStage.show();
   }
