@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package cs3733.c20.teamU;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
