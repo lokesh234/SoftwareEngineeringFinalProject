@@ -24,4 +24,10 @@ public class Node {
     protected int getY(){ return y;}
     protected int getWeight(){ return weight;}
     protected String getID(){ return ID;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Node) return this.ID.equals(((Node) obj).ID);
+        return false;
+    }
 }

@@ -73,6 +73,18 @@ public class NodesDatabase {
         return neighbors;
     }
 
+    protected ArrayList<Node> getNeighborNodes(Node n) {
+        /*
+        Similar behavior to getNeighbors(), but returns list of nodes and not edges
+         */
+        if (!hasNode(n)) return null;
+        ArrayList<Node> neighbors = new ArrayList<Node>();
+        for (Edge e : edges) {
+            if (e.hasNode(n)) neighbors.add(e.getOther(n));
+        }
+        return neighbors;
+    }
+
     protected boolean hasNeighbors(Node n) {
         /*
         Checks if there is are edges associated with n
@@ -96,11 +108,19 @@ public class NodesDatabase {
         return 999999;
     }
 
-    public int dist(Node start, Node end) {
-        /*
-        Calculates pythagorean distance between two nodes, rounded to the nearest pixel
-        These nodes need not be in the graph, nor have an edge connecting them
+    protected int costNoWeight(Node start, Node end) {
+         /*
+        Gets the cost of travelling from start to end
+        NOTE - DOES NOT TAKE NODE WEIGHT INTO ACCOUNT
+        Assumes that there is a limit of one edge connecting two given nodes
+        Returns 999999 if no connection
          */
-        return (int) Math.sqrt(Math.pow((start.getX() - end.getX()), 2) + Math.pow((start.getY() - end.getY()), 2));
+        if (!hasNeighbors(start)) return 999999;
+        for (Edge e : getNeighbors(start)) {
+            if (e.getOther(start).equals(end)) return e.getDist();
+        }
+        return 999999;
     }
+
+
 }
