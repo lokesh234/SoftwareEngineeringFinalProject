@@ -28,14 +28,17 @@ public class Database {
 
             dropTable(stmt, "MapEdgesU");
             dropTable(stmt, "MapNodesU");
+            dropTable(stmt, "LoginDB");
             //drops database tables if they currently exist
 
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
+            createLoginTable(stmt, "LoginDB");
             //Creates tables again or for the first time
 
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
+            printTable(stmt, "LoginDB");
             //print tables to test
 
             System.out.println("== Apache Derby Database Established! ==");
@@ -143,6 +146,46 @@ public class Database {
 
         }
 
+    }
+
+    private static void createLoginTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), PRIMARY KEY (username))";
+
+            stmt.executeUpdate(slqCreate);
+
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            InputStream csvFile = Database.class.getResourceAsStream("/LoginDB.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String username = csvString[0];
+                        String password = csvString[1];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "')");
+                    }
+                }
+                //INSERT INTO TABLENAME VALUES ('STRING', '...
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
     }
 
     public static boolean printTable(Statement stmt, String tableName){
