@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
 
 public class LoginController {
