@@ -1,5 +1,4 @@
-package edu.wpi.teamname;
-
+package edu.wpi.cs3733.c20.teamU;
 
 import org.junit.jupiter.api.Test;
 import java.io.*;
@@ -9,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class DatabaseTest {
+    //please dont kill my tests :(
     @Test
     public void testDatabaseExists() {
         Database db = new Database();

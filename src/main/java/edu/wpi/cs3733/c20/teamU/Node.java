@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.c20.teamU;
 
 public class Node {
     private int x;
@@ -45,5 +45,10 @@ public class Node {
     public boolean equals(Object obj) {
         if (obj instanceof Node) return this.ID.equals(((Node) obj).ID);
         return false;
+    }
+
+    @Override
+    public String toString(){
+        return this.getID();
     }
 }

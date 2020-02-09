@@ -1,47 +1,75 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.c20.teamU;
 
 import java.util.ArrayList;
 
 import java.lang.Math;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NodesDatabase {
-    private ArrayList<Node> nodes;
-    private ArrayList<Edge> edges;
+    private HashMap<String, Node> nodes;
+    private HashMap<String, Edge> edges;
 
     public NodesDatabase() { //TODO: add relevant database stuff
-        nodes = new ArrayList<Node>();
-        edges = new ArrayList<Edge>();
+        /*
+        Automatically constructs the nodes and edges from Database
+         */
+        nodes = new HashMap<String, Node>();
+        edges = new HashMap<String, Edge>();
+        Database.getNodes(nodes);
+        Database.getEdges(edges, nodes);
     }
 
     public void readCSV(String filename){} //TODO: stub
     private void createCSV(String path){} //TODO: stub
 
     protected void addNode(Node n) {
-        nodes.add(n);
+        nodes.put(n.getID(), n);
     }
 
     protected void addEdge(Edge e) {
-        edges.add(e);
+        edges.put(e.getID(), e);
     }
+
+    protected void removeNode(String ID) { nodes.remove(ID);}
+
+    protected void removeEdge(String ID) { edges.remove(ID);}
+
+    protected void removeNode(Node n) { nodes.remove(n.getID());}
+
+    protected void removeEdge(Edge e) { edges.remove(e.getID());}
 
     protected Node getNode(String ID) {
         /*
         Returns the node with matching ID, or Null if not found
          */
-        for (Node node : nodes) {
-            if (node.getID().equals(ID)) return node;
-        }
-        return null;
+        if (!nodes.containsKey(ID)) return null;
+        return nodes.get(ID);
     }
 
     protected Edge getEdge(String ID) {
         /*
         Returns the edge with matching ID, or Null if not found
          */
-        for (Edge edge : edges) {
-            if (edge.getID().equals(ID)) return edge;
+        if (!edges.containsKey(ID)) return null;
+        return edges.get(ID);
+    }
+
+    protected Edge getEdge(Node start, Node end) {
+        /*
+        Returns the edge with endpoints start and end
+        order of start and end does not matter
+        Returns Null if not found
+         */
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
+            if (e.hasNode(start) && e.hasNode(end)) return e;
         }
         return null;
+    }
+
+    protected Edge getEdge(String startID, String endID) {
+        return getEdge(this.getNode(startID), this.getNode(endID));
     }
 
     protected Node getNode(int xPos, int yPos) {
@@ -49,7 +77,8 @@ public class NodesDatabase {
         Returns the node at given (x,y) coords, or Null if not found
         NOTE: undefined behavior if multiple nodes share the same x,y coords
          */
-        for (Node n : nodes) {
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
+            Node n = pair.getValue();
             if (n.getX() == xPos && n.getY() == yPos) return n;
         }
         return null;
@@ -67,7 +96,8 @@ public class NodesDatabase {
          */
         if (!hasNode(n)) return null;
         ArrayList<Edge> neighbors = new ArrayList<Edge>();
-        for (Edge e : edges) {
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
             if (e.hasNode(n)) neighbors.add(e);
         }
         return neighbors;
@@ -79,7 +109,8 @@ public class NodesDatabase {
          */
         if (!hasNode(n)) return null;
         ArrayList<Node> neighbors = new ArrayList<Node>();
-        for (Edge e : edges) {
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
             if (e.hasNode(n)) neighbors.add(e.getOther(n));
         }
         return neighbors;

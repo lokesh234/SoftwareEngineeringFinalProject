@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.c20.teamU;
 
 import static org.testfx.api.FxAssert.verifyThat;
 
@@ -16,22 +16,22 @@ import org.testfx.framework.junit5.ApplicationExtension;
 @ExtendWith(ApplicationExtension.class)
 public class AppTest extends FxRobot {
 
-  /** Setup test suite. */
-  @BeforeAll
-  public static void setup() throws Exception {
-    if (Boolean.getBoolean("headless")) {
-      System.setProperty("testfx.robot", "glass");
-      System.setProperty("testfx.headless", "true");
-      System.setProperty("prism.order", "sw");
-      System.setProperty("prism.text", "t2k");
-    }
-    FxToolkit.registerPrimaryStage();
-    FxToolkit.setupApplication(App.class);
-  }
-
-  @AfterAll
-  public static void cleanup() {}
-
+//  /** Setup test suite. */
+//  @BeforeAll
+//  public static void setup() throws Exception {
+//    if (Boolean.getBoolean("headless")) {
+//      System.setProperty("testfx.robot", "glass");
+//      System.setProperty("testfx.headless", "true");
+//      System.setProperty("prism.order", "sw");
+//      System.setProperty("prism.text", "t2k");
+//    }
+//    FxToolkit.registerPrimaryStage();
+//    FxToolkit.setupApplication(App.class);
+//  }
+//
+//  @AfterAll
+//  public static void cleanup() {}
+//
 //  @Test
 //  public void testButton(FxRobot robot) {
 //    verifyThat("#textLabel", (Label l) -> !l.isVisible());
@@ -40,9 +40,9 @@ public class AppTest extends FxRobot {
 //    robot.press(KeyCode.ALT, KeyCode.F4);
 //  }
 
-  @Test
-  public void testClose(FxRobot robot) {
-    robot.press(KeyCode.ALT, KeyCode.F4);
-  }
+//  @Test
+//  public void testClose(FxRobot robot) {
+//    robot.press(KeyCode.ALT, KeyCode.F4);
+//  }
 
 }

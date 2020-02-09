@@ -1,4 +1,4 @@
-package edu.wpi.teamname;
+package edu.wpi.cs3733.c20.teamU;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +54,14 @@ public class Pathfinder {
              */
             return this.priority - o.priority;
         }
+    }
+
+    public void starSingular(String startID, String endID, NodesDatabase graph) {
+        starSingular(graph.getNode(startID), graph.getNode(endID), graph);
+    }
+
+    public void starSingularNoWeight(String startID, String endID, NodesDatabase graph) {
+        starSingularNoWeight(graph.getNode(startID), graph.getNode(endID), graph);
     }
 
     public void starSingular(Node start, Node end, NodesDatabase graph){
