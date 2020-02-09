@@ -1,31 +1,24 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-//import net.kurobako.gesturefx.GesturePane;
 
 public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Label label = new Label("Text");
-    label.setId("textLabel");
-    label.setVisible(false);
 
-    Button button = new Button("My Button");
-    button.setId("showTextButton");
-    button.setOnAction((e) -> label.setVisible(true));
-
-    BorderPane root = new BorderPane();
-    root.setRight(label);
-    root.setLeft(button);
-
-    Scene scene = new Scene(root, 200, 100);
+//    FXMLLoader loader = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
+    Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
+
   }
 }
