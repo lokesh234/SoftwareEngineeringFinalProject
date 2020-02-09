@@ -5,7 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DatabaseService {
+public class ServiceDatabase {
 
 //    DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 //    Date dateobj = new Date();
