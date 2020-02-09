@@ -205,7 +205,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/SecuritySR.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/MedicalSR.csv");
             String line = "";
             String csvSplit = ",";
 
