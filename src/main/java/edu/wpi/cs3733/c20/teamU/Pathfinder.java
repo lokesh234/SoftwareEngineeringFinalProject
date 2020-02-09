@@ -56,6 +56,14 @@ public class Pathfinder {
         }
     }
 
+    public void starSingular(String startID, String endID, NodesDatabase graph) {
+        starSingular(graph.getNode(startID), graph.getNode(endID), graph);
+    }
+
+    public void starSingularNoWeight(String startID, String endID, NodesDatabase graph) {
+        starSingularNoWeight(graph.getNode(startID), graph.getNode(endID), graph);
+    }
+
     public void starSingular(Node start, Node end, NodesDatabase graph){
         /*
         Finds a path from start to end using A*. To retrieve your results, use getLatestCost() or getLatestPath() *after* calling this function
