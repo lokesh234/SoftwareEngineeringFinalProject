@@ -23,9 +23,14 @@ public class homeController {
   private void openLoginScene(ActionEvent e) {
     if (!popup.isShowing()) {
       root.setOpacity(.5);
-      //      root.setDisable(true); TODO: set appropriate disable system
+      root.setDisable(true);
       popup.show(App.getPrimaryStage());
     } else popup.hide();
     //    App.getPrimaryStage().getScene().setRoot(parent);
+  }
+
+  @FXML
+  private void initialize() {
+
   }
 }
