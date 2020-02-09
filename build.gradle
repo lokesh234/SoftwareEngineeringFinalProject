@@ -6,7 +6,7 @@ plugins {
 }
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-mainClassName = 'edu.wpi.cs3733.c20.teamU'
+mainClassName = 'edu.wpi.cs3733.c20.teamU.Main'
 
 
 repositories {
