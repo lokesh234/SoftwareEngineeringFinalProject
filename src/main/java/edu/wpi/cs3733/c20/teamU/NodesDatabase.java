@@ -153,5 +153,38 @@ public class NodesDatabase {
         return 999999;
     }
 
+    protected boolean hasNode(int xPos, int yPos) {
+        /*
+        Checks whether a node exists with the given coordinates
+         */
+        return getNode(xPos, yPos) != null;
+    }
 
+    protected boolean hasNodeInRange(int xPos, int yPos, int rad) {
+        /*
+        Checks whether a node exists within a given distance of the given coordinates.
+        Useful for checking whether a mouseclick happened on a node, if rad is given as the radius of a node graphical object in pixels
+         */
+        return getNodeInRange(xPos, yPos, rad) != null;
+    }
+
+    protected Node getNodeInRange(int xPos, int yPos, int rad) {
+        /*
+        Returns the node within a given distance of the given coordinates.
+        Useful for determining the result of a mouseclick, if rad is given as the radius of a node graphical object in pixels
+        Returns null if no node found
+         */
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
+            Node n = pair.getValue();
+            if (dist(xPos, yPos, n.getX(), n.getY()) <= rad) return n;
+        }
+        return null;
+    }
+
+    public static int dist(int x1, int y1, int x2, int y2) {
+        /*
+        Returns Pythagorean distance between two points
+         */
+        return (int) Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1- y2), 2));
+    }
 }
