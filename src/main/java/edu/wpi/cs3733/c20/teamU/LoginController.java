@@ -1,9 +1,13 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.stage.Popup;;
 
 
 public class LoginController {
@@ -11,6 +15,8 @@ public class LoginController {
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
     @FXML private Button loginEnter;
+    private Popup popup;
+    private Parent parent;
 
 //    private String userCheck;
 //    private String passCheck;
@@ -24,6 +30,15 @@ public class LoginController {
 
     }
 
+    public void setPopup(Popup popup, Parent parent) {
+        this.popup = popup;
+        this.parent = parent;
+    }
+
+//    @FXML
+//    private void advanceScene(ActionEvent e) {
+//        App.getPrimaryStage().getScene().setRoot(parent);
+//    }
 
     /**
      * checks whether is the user entered the correct credentials
@@ -36,6 +51,7 @@ public class LoginController {
 //        String pass = passwordField.getText();
         boolean haveAccess = Database.checkCred(usernameField.getText(), passwordField.getText());
         if(!haveAccess) {
+            System.out.println("yoloswag");
             usernameField.setPromptText("");
             passwordField.setPromptText("");
             usernameField.setStyle("-fx-border-color: red");
