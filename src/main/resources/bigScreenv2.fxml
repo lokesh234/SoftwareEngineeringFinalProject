@@ -54,7 +54,7 @@
               <children>
                 <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="64.0"
                   prefWidth="233.0" style="-fx-background-color: #729EBF;" text="Admin Login"
-                  textAlignment="RIGHT" textFill="WHITE" fx:id="test" onAction="#advanceScene">
+                  textAlignment="RIGHT" textFill="WHITE" fx:id="test" onAction="#openLoginScene">
                   <VBox.margin>
                     <Insets bottom="5.0" right="5.0"/>
                   </VBox.margin>

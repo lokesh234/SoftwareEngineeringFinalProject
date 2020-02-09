@@ -37,7 +37,7 @@ public class App extends Application {
       LoginController loginController = loader.getController();
       homeController homeController = loader2.getController();
 
-      homeController.setParent(login, home, popup);
+      homeController.setAttributes(login, home, popup);
 //      loginController.setPopup(popup, home);
 
       popup.getContent().addAll(login);
