@@ -13,7 +13,6 @@ public class homeController {
   private Parent root;
   private Popup popup;
 
-
   public void setAttributes(Parent parent, Parent root, Popup popup) {
     this.parent = parent;
     this.popup = popup;
@@ -22,15 +21,11 @@ public class homeController {
 
   @FXML
   private void openLoginScene(ActionEvent e) {
-    if(!popup.isShowing()) {
+    if (!popup.isShowing()) {
       root.setOpacity(.5);
-//      root.setDisable(true); TODO: set appropriate disable system
+      //      root.setDisable(true); TODO: set appropriate disable system
       popup.show(App.getPrimaryStage());
-    }
-    else popup.hide();
-//    App.getPrimaryStage().getScene().setRoot(parent);
+    } else popup.hide();
+    //    App.getPrimaryStage().getScene().setRoot(parent);
   }
-
-
-
 }
