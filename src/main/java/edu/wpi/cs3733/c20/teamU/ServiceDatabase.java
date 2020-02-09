@@ -12,7 +12,7 @@ public class ServiceDatabase {
 //    System.out.println(df.format(dateobj));
     //how to import a date for SQL table
 
-    public static boolean serviceFinishedAdd(String timeFinished, String reqType, String info){
+    public static boolean serviceFinishedAdd(String timeFinished, String reqType, String completedBy, String info){
         String tableName = "ServiceFinished";
         Connection conn = null;
         Statement stmt = null;
@@ -20,7 +20,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + timeFinished + "', '" + reqType + "', '" + info + "')");
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + timeFinished + "', '" + reqType + "', '" + completedBy + "', '" + info + "')");
 
             stmt.close();
             conn.close();

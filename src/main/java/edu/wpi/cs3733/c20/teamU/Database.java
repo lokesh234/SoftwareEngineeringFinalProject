@@ -64,6 +64,19 @@ public class Database {
         }
     }
 
+    public static String getFileDir(){
+        boolean result = true;
+        String csv = "CSVfiles";
+        File file = new File("CSVfiles\test.txt");
+        try{
+        result = file.createNewFile();
+        }catch  (IOException e){
+        System.out.println("Failed");
+        }
+        System.out.println(result);
+        return "CSVfiles";
+    }
+
     private static void dropTable(Statement stmt, String tableName) {
         try{
             String sqldel = "DROP TABLE " + tableName;
@@ -161,7 +174,7 @@ public class Database {
     }
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), info VARCHAR(255), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
                     "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
@@ -184,8 +197,9 @@ public class Database {
                     else{
                         String timeFinished = csvString[0];
                         String reqType = csvString[1];
-                        String info = csvString[2];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + timeFinished + "', '" + reqType + "', '" + info + "')");
+                        String complete = csvString[2];
+                        String info = csvString[3];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + timeFinished + "', '" + reqType + "', '" + complete + "', '" + info + "')");
                     }
                 }
             }
