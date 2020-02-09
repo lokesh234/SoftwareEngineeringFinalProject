@@ -15,51 +15,54 @@ public class LoginController {
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
     @FXML private Button loginEnter;
+
     private Popup popup;
     private Parent parent;
+    private Parent home;
+    private int trackLoginCount;
+    private boolean didFail;
 
-//    private String userCheck;
-//    private String passCheck;
-
-    /**
-     *
-     * @param user
-     * @param pass
-     */
-    private void sendLogin(String user, String pass) {
-
-    }
-
-    public void setPopup(Popup popup, Parent parent) {
+    public void setAttributes(Parent parent, Parent home, Popup popup) {
         this.popup = popup;
         this.parent = parent;
+        this.home = home;
     }
-
-//    @FXML
-//    private void advanceScene(ActionEvent e) {
-//        App.getPrimaryStage().getScene().setRoot(parent);
-//    }
 
     /**
      * checks whether is the user entered the correct credentials
      * @return false if incorrect, true if correct
      */
     @FXML
-    private boolean isAuthorized() {
-        // call some database function to check if password is correct
-//        String user = usernameField.getText();
-//        String pass = passwordField.getText();
+    private void isAuthorized() {
+
         boolean haveAccess = Database.checkCred(usernameField.getText(), passwordField.getText());
         if(!haveAccess) {
-            System.out.println("yoloswag");
+      //            System.out.println("yoloswag");
+            if (trackLoginCount == 3) {
+//                System.out.println("fail");
+                trackLoginCount = 0;
+                changeScene();
+            }
+            didFail = true;
+            trackLoginCount++;
             usernameField.setPromptText("");
             passwordField.setPromptText("");
             usernameField.setStyle("-fx-border-color: red");
             passwordField.setStyle("-fx-border-color: red");
-            return false;
-        } else return true;
-//        System.out.println("yolo swag");
-//        return Database.checkCred(user, pass);
+        } else {
+            trackLoginCount = 0;
+            didFail = false;
+            changeScene();
+        }
+    }
+
+    private void changeScene() {
+        if(didFail) {
+            this.home.setOpacity(1);
+            this.popup.hide();
+        } else {
+            // go to admin stuff scene
+        }
     }
 
     @FXML
