@@ -1,31 +1,54 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
-import net.kurobako.gesturefx.GesturePane;
 
 public class App extends Application {
 
+  private static Stage primaryStage;
+  private static Popup popup;
+
+  public static Stage getPrimaryStage() {
+    return primaryStage;
+  }
+
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Label label = new Label("Text");
-    label.setId("textLabel");
-    label.setVisible(false);
 
-    Button button = new Button("My Button");
-    button.setId("showTextButton");
-    button.setOnAction((e) -> label.setVisible(true));
+    App.primaryStage = primaryStage;
+    App.popup = new Popup();
 
-    BorderPane root = new BorderPane();
-    root.setRight(label);
-    root.setLeft(button);
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+      FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
+//    Pane login = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
 
-    Scene scene = new Scene(root, 200, 100);
-    primaryStage.setScene(scene);
-    primaryStage.show();
+      Parent home = (Parent) loader2.load();
+      Parent login = (Parent) loader.load();
+      LoginController loginController = loader.getController();
+      homeController homeController = loader2.getController();
+
+      homeController.setAttributes(login, home, popup);
+//      loginController.setPopup(popup, home);
+
+      popup.getContent().addAll(login);
+
+      Scene scene = new Scene(home);
+      primaryStage.setScene(scene);
+      primaryStage.show();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+
   }
 }

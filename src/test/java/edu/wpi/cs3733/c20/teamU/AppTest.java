@@ -16,31 +16,33 @@ import org.testfx.framework.junit5.ApplicationExtension;
 @ExtendWith(ApplicationExtension.class)
 public class AppTest extends FxRobot {
 
-  /** Setup test suite. */
-  @BeforeAll
-  public static void setup() throws Exception {
-    if (Boolean.getBoolean("headless")) {
-      System.setProperty("testfx.robot", "glass");
-      System.setProperty("testfx.headless", "true");
-      System.setProperty("prism.order", "sw");
-      System.setProperty("prism.text", "t2k");
-    }
-    FxToolkit.registerPrimaryStage();
-    FxToolkit.setupApplication(App.class);
-  }
+//  /** Setup test suite. */
+//  @BeforeAll
+//  public static void setup() throws Exception {
+//    if (Boolean.getBoolean("headless")) {
+//      System.setProperty("testfx.robot", "glass");
+//      System.setProperty("testfx.headless", "true");
+//      System.setProperty("prism.order", "sw");
+//      System.setProperty("prism.text", "t2k");
+//    }
+//    FxToolkit.registerPrimaryStage();
+//    FxToolkit.setupApplication(App.class);
+//  }
+//
+//  @AfterAll
+//  public static void cleanup() {}
+//
+//  @Test
+//  public void testButton(FxRobot robot) {
+//    verifyThat("#textLabel", (Label l) -> !l.isVisible());
+//    clickOn("#showTextButton");
+//    verifyThat(".label", Node::isVisible);
+//    robot.press(KeyCode.ALT, KeyCode.F4);
+//  }
 
-  @AfterAll
-  public static void cleanup() {}
+//  @Test
+//  public void testClose(FxRobot robot) {
+//    robot.press(KeyCode.ALT, KeyCode.F4);
+//  }
 
-  @Test
-  public void testButton() {
-    verifyThat("#textLabel", (Label l) -> !l.isVisible());
-    clickOn("#showTextButton");
-    verifyThat(".label", Node::isVisible);
-  }
-
-  @Test
-  public void testClose(FxRobot robot) {
-    robot.press(KeyCode.ALT, KeyCode.F4);
-  }
 }

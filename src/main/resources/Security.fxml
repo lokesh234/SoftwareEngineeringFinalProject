@@ -21,7 +21,7 @@
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@/Cancel.png" />
+                              <Image url="@Cancel.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -43,7 +43,7 @@
                   </Label>
                   <ImageView fitHeight="100.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/HelpButton.png" />
+                        <Image url="@HelpButton.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />

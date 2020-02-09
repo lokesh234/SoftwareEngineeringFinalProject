@@ -16,6 +16,9 @@ derby.log
 .idea/**/dictionaries
 .idea/**/shelf
 
+# UDB Folder
+/UDB
+
 # Generated files
 .idea/**/contentModel.xml
 

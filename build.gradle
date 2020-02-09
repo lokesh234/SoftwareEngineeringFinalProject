@@ -6,7 +6,7 @@ plugins {
 }
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-mainClassName = 'edu.wpi.teamname.Main'
+mainClassName = 'edu.wpi.cs3733.c20.teamU.Main'
 
 
 repositories {
@@ -70,8 +70,8 @@ jacocoTestCoverageVerification {
                 minimum = 1.0
             }
             excludes = [
-              'edu.wpi.teamname.App',
-              'edu.wpi.teamname.Main'
+              'edu.wpi.cas3733.c20.teamU.App',
+              'edu.wpi.cas3733.c20.teamU.Main'
             ]
         }
 
@@ -83,8 +83,8 @@ jacocoTestCoverageVerification {
                 minimum = 0.25
             }
             excludes = [
-                    'edu.wpi.teamname.App',
-                    'edu.wpi.teamname.Main'
+                    'edu.wpi.cas3733.c20.teamU.App',
+                    'edu.wpi.cas3733.c20.teamU.Main'
             ]
         }
 
@@ -96,8 +96,8 @@ jacocoTestCoverageVerification {
                 minimum = 0.25
             }
             excludes = [
-                    'edu.wpi.teamname.App',
-                    'edu.wpi.teamname.Main'
+                    'edu.wpi.cas3733.c20.teamU.App',
+                    'edu.wpi.cas3733.c20.teamU.Main'
             ]
         }
     }
