@@ -96,15 +96,15 @@ public class ServiceDatabase {
     }
 
 
-    public static boolean medicalSRAdd(String reqID, String timeReq, String urgency, String info){
-        String tableName = "MedicalSR";
+    public static boolean medicineSRAdd(String reqID, String timeReq, String patentFirstName, String patentLastName, String drugName, String frequency, String deliveryMethod, String comment){
+        String tableName = "MedicineSR";
         Connection conn = null;
         Statement stmt = null;
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "','" + timeReq + "', '" + urgency +"', '" + info + "')");
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "','" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + drugName + "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
 
             stmt.close();
             conn.close();

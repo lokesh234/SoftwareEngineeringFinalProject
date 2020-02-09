@@ -1,10 +1,8 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import com.sun.java.accessibility.util.EventID;
 import lombok.NoArgsConstructor;
 import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -33,15 +31,17 @@ public class Database {
             dropTable(stmt, "MapNodesU");
             dropTable(stmt, "LoginDB");
             dropTable(stmt, "ServiceFinished");
-            dropTable(stmt, "MedicalSR");
             dropTable(stmt, "SecuritySR");
+            dropTable(stmt, "MedicineSR");
+            dropTable(stmt, "ServiceRequest");
             //drops database tables if they currently exist
 
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
             createLoginTable(stmt, "LoginDB");
+            createServiceRequestTable(stmt, "ServiceRequest");
             createServiceFinishedTable(stmt, "ServiceFinished");
-            createMedicalSRTable(stmt, "MedicalSR");
+            createMedicineSRTable(stmt, "MedicineSR");
             createSecuritySRTable(stmt, "SecuritySR");
             //Creates tables again or for the first time
 
@@ -49,8 +49,9 @@ public class Database {
             printTable(stmt, "MapEdgesU");
             printTable(stmt, "LoginDB");
             printTable(stmt, "ServiceFinished");
-            printTable(stmt, "MedicalSR");
+            printTable(stmt, "MedicineSR");
             printTable(stmt, "SecuritySR");
+            printTable(stmt, "ServiceRequest");
             //print tables to test
 
             System.out.println("== Apache Derby Databases Established! ==");
@@ -172,6 +173,47 @@ public class Database {
         }
 
     }
+    private static void createServiceRequestTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10), dateReq DATE, type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
+                    "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR')))";
+
+            stmt.executeUpdate(slqCreate);
+
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            InputStream csvFile = Database.class.getResourceAsStream("/ServiceRequest.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String reqID = csvString[0];
+                        String reqDate = csvString[1];
+                        String type = csvString[2];
+                        String info = csvString[3];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + reqDate + "', '" + type + "', '" + info + "')");
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
@@ -213,15 +255,15 @@ public class Database {
 
         }
     }
-    private static void createMedicalSRTable(Statement stmt, String tableName){
+    private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10), timeReq DATE, urgency VARCHAR(7), info VARCHAR(255), PRIMARY KEY (reqID), "+
-                    "CONSTRAINT MSR_UR CHECK (urgency in ('EXTREME','HIGH', 'MEDIUM', 'LOW')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10) REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
+                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(255), CONSTRAINT MSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
 
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/MedicalSR.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/MedicineSR.csv");
             String line = "";
             String csvSplit = ",";
 
@@ -238,9 +280,13 @@ public class Database {
                     else{
                         String reqID = csvString[0];
                         String timeReq = csvString[1];
-                        String urgency = csvString[2];
-                        String info = csvString[3];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + timeReq + "', '" + urgency +  "', '" + info + "')");
+                        String patentFirstName = csvString[2];
+                        String patentLastName = csvString[3];
+                        String drugName = csvString[4];
+                        String frequency = csvString[5];
+                        String deliveryMethod = csvString[6];
+                        String comment = csvString[7];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + timeReq + "', '" + patentFirstName +  "', '" + patentLastName + "', '" + drugName +  "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
                     }
                 }
             }
@@ -256,7 +302,7 @@ public class Database {
     }
     private static void createSecuritySRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10), timeReq DATE, urgency VARCHAR(7), type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10) REFERENCES ServiceRequest (reqID), timeReq DATE, urgency VARCHAR(7), type VARCHAR(10), info VARCHAR(255), "+
                     "CONSTRAINT SSR_UR CHECK (urgency in ('EXTREME','HIGH', 'MEDIUM', 'LOW')), CONSTRAINT SSR_TY CHECK (type in('EMERGENCY', 'GUARD')))";
 
             stmt.executeUpdate(slqCreate);
