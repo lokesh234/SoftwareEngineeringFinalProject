@@ -81,7 +81,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/MapUnodes.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MapUnodes.csv");
             String line = "";
             String csvSplit = ",";
 
@@ -126,7 +126,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/MapUedges.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MapUedges.csv");
             String line = "";
             String csvSplit = ",";
 
@@ -167,7 +167,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/ServiceFinished.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceFinished.csv");
             String line = "";
             String csvSplit = ",";
 
@@ -207,7 +207,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/SecuritySR.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
             String line = "";
             String csvSplit = ",";
 
@@ -248,7 +248,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/SecuritySR.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
             String line = "";
             String csvSplit = ",";
 
@@ -291,7 +291,7 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/LoginDB.csv");
+            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
             String line = "";
             String csvSplit = ",";
 

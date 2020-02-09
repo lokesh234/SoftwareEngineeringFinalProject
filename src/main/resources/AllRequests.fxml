@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AllRequests">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
    <children>
       <VBox layoutX="14.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,7 +26,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Documents/Designs/UI/Mockup1/Cancel.png" />
+                              <Image url="@png_files/Cancel.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -59,7 +59,7 @@
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../Documents/Designs/UI/Mockup1/Meal%20Icon.png" />
+                                          <Image url="@png_files/MealIcon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
@@ -76,7 +76,7 @@
                                  <graphic>
                                     <ImageView fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../Documents/Designs/UI/Mockup1/cleanup%20icon.png" />
+                                          <Image url="@png_files/cleanupicon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
@@ -93,7 +93,7 @@
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../Documents/Designs/UI/Mockup1/Flowers%20Button.png" />
+                                          <Image url="@png_files/FlowersButton.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
@@ -110,7 +110,7 @@
                                  <graphic>
                                     <ImageView fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../Documents/Designs/UI/Mockup1/Religion%20Icon.png" />
+                                          <Image url="@png_files/ReligionIcon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
