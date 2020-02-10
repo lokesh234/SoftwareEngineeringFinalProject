@@ -24,25 +24,25 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="NAVIGATE" />
+                        <Label text="NAVIGATE" fx:id="statusLabel"/>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="startButton" mnemonicParsing="false" text="Start" />
+                        <Button fx:id="startButton" mnemonicParsing="false" text="Start" onAction="#selectStart" />
                         <Label fx:id="startLabel" text="X, Y" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="endButton" mnemonicParsing="false" text="End" />
+                        <Button fx:id="endButton" mnemonicParsing="false" text="End" onAction="#selectEnd"/>
                         <Label fx:id="endLabel" text="X, Y" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="goButton" mnemonicParsing="false" text="Go!" />
-                        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear" />
+                        <Button fx:id="goButton" mnemonicParsing="false" text="Go!" onAction="#pathfind"/>
+                        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear" onAction="#clearPath"/>
                      </children>
                   </HBox>
                </children>
@@ -65,7 +65,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
                      <children>
-                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Back" />
+                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Back" onAction="#backHome"/>
                      </children>
                   </HBox>
                </children>

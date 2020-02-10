@@ -1,9 +1,13 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -18,21 +23,38 @@ public class App extends Application {
 
   private static Stage primaryStage;
   private static Popup popup;
-  private static Parent home;
-  private static Parent login;
-  private static Parent start;
-  private static Parent path;
-  private static Parent admin;
+  private static Pane home;
+  private static Pane login;
+  private static Pane start;
+  private static Pane path;
+  private static Pane admin;
+
+  private static Scene homeScene;
+  private static Scene loginScene;
+  private static Scene startScene;
+  private static Scene pathScene;
+  private static Scene adminScene;
+
+  private static NodesDatabase graph = new NodesDatabase();
+  private static int nodeSize = 5; //Radius in pixels of clickable node object
+
 //  private static StackPane
 
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
-  public static Parent getHome() {return home; }
-  public static Parent getLogin() {return login;}
-  public static Parent getStart() { return start;}
-  public static Parent getPath() { return path;}
-  public static Parent getAdmin() { return admin;}
+  public static Pane getHome() {return home; }
+  public static Pane getLogin() {return login;}
+  public static Pane getStart() { return start;}
+  public static Pane getPath() { return path;}
+  public static Pane getAdmin() { return admin;}
+  public static Scene getHomeScene() {return homeScene;}
+  public static Scene getLoginScene() {return loginScene;}
+  public static Scene getStartScene() { return startScene;}
+  public static Scene getPathScene() {return pathScene;}
+  public static Scene getAdminScene() {return adminScene;}
+  public static NodesDatabase getGraph() { return graph;}
+  public static int getNodeSize(){ return nodeSize;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -47,24 +69,35 @@ public class App extends Application {
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
       FXMLLoader pathfindLoader = new FXMLLoader((getClass().getResource("/pathfind.fxml")));
 
-      home = (Parent) homeLoader.load();
-      login = (Parent) loginLoader.load();
-      start = (Parent) startLoader.load();
-      path = (Parent) pathfindLoader.load();
+      home = homeLoader.load();
+      login = loginLoader.load();
+      start = startLoader.load();
+      path = pathfindLoader.load();
 
       LoginController loginController = loginLoader.getController();
       homeController homeController = homeLoader.getController();
+      PathfindController pathfindController = pathfindLoader.getController();
 
       homeController.setAttributes(login, home, popup);
       loginController.setAttributes(login, home, popup);
+      pathfindController.setAttributes(path);
 
       popup.getContent().addAll(login);
 
-      Scene scene = new Scene(home);
-      primaryStage.setScene(scene);
+      homeScene = new Scene(home);
+      pathScene = new Scene(path);
+
+      primaryStage.setScene(homeScene);
       primaryStage.show();
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+  protected static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
+    path.getChildren().add(e);
+  }
+
+  protected static void removeFromPath(Node e) { //Removes a javaFX node from the pathfinding pane
+    path.getChildren().remove(e);
   }
 }
