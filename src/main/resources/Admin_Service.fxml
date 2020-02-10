@@ -45,7 +45,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #FFFFFF;" HBox.hgrow="ALWAYS">
                      <children>
 <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
 <!--                           <children>-->
