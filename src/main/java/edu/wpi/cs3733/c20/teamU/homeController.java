@@ -9,6 +9,7 @@ import javafx.stage.Popup;
 public class homeController {
 
   @FXML private Button test;
+  @FXML private Button test1;
   private Parent parent;
   private Parent root;
   private Popup popup;
@@ -38,6 +39,7 @@ public class homeController {
 
   @FXML
   private void openHelpScene(ActionEvent e){
+    System.out.println("hello");
     if(!secuirtyPop.isShowing()){
       root.setOpacity(.5);
       root.setDisable(true);
