@@ -9,7 +9,7 @@ public class Main {
 
 
       Database.UDBInitializer();
-    //App.launch(App.class, args);
+      App.launch(App.class, args);
 
 
   }
