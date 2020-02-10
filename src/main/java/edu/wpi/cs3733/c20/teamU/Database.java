@@ -441,7 +441,8 @@ public class Database {
     public static ArrayList<Service> getServices(){
         ArrayList<Service> finalResult = null;
         Connection connection = null;
-        Statement stmt = null;
+        Statement stmt1 = null;
+        Statement stmt2 = null;
         String tableName1 = "MedicalSR";
         String tableName2 = "SecuritySR";
         //printTable(stmt, "MedicalSR");
@@ -449,12 +450,15 @@ public class Database {
 
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
-            stmt = connection.createStatement();
+            stmt1 = connection.createStatement();
+            stmt2 = connection.createStatement();
 
             String sql1 = "SELECT * FROM " + tableName1;
             String sql2 = "SELECT * FROM " + tableName2;
-            ResultSet results1 = stmt.executeQuery(sql1);
-            ResultSet results2 = stmt.executeQuery(sql2);
+            ResultSet results1 = stmt1.executeQuery(sql1);
+            ResultSetMetaData rsmd1 = results1.getMetaData();
+            ResultSet results2 = stmt2.executeQuery(sql2);
+            ResultSetMetaData rsmd2 = results2.getMetaData();
             //for each line, create a node and add it to hash map
             while (results1.next()) {
                 String date = results1.getString(1);
@@ -476,7 +480,9 @@ public class Database {
             }
 
             results1.close();
+            stmt1.close();
             results2.close();
+            stmt2.close();
             connection.close();
 
         } catch (SQLException e) {
