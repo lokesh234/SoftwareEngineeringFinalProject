@@ -16,20 +16,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MedicineRequestForm">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.MedicineContoller" style="-fx-background-color: #ffffff">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #729EBF;">
+                  <Button mnemonicParsing="false" style="-fx-background-color: #729EBF;" onAction="#closeMedicineForm">
                      <HBox.margin>
                         <Insets right="10.0" top="5.0" />
                      </HBox.margin>
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Documents/Designs/UI/Mockup1/Cancel.png" />
+                              <Image url="@png_files/Cancel.png" />
                            </image>
                         </ImageView>
                      </graphic>

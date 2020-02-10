@@ -16,6 +16,9 @@ public class RequestController {
     public void openMedicineForm(ActionEvent e){
         App.getHome().setOpacity(.5);
         App.getHome().setDisable(true);
+        App.getRequestPop().getContent().remove(0);
         App.getMedicinePop().getContent().add(App.getMedicine());
+        App.getMedicinePop().show(App.getPrimaryStage());
     }
+
 }

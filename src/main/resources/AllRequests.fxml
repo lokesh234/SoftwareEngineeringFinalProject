@@ -82,7 +82,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;">
+                              <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#openMedicineForm">
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

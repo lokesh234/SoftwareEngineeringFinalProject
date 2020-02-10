@@ -91,7 +91,7 @@ public class App extends Application {
       security = securityLoader.load();
       admin = adminLoader.load();
       request = requestLoader.load();
-      medicine = requestLoader.load();
+      medicine = medicineLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();

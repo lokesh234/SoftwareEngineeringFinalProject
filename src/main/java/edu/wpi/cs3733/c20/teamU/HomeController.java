@@ -46,6 +46,5 @@ public class HomeController {
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getRequestPop().show(App.getPrimaryStage());
-
   }
 }
