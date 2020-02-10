@@ -86,6 +86,7 @@ public class App extends Application {
       start = startLoader.load();
       path = pathfindLoader.load();
       security = securityLoader.load();
+      admin = adminLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
@@ -95,22 +96,9 @@ public class App extends Application {
 //      loginController.setAttributes(login, home, popup);
       pathfindController.setAttributes(path);
 
+      //TODO: find a better way to do popups...
       popup.getContent().addAll();
       securityPop.getContent().addAll(security);
-
-//      home = (Parent) homeLoader.load();
-//      login = (Parent) loginLoader.load();
-//      start = (Parent) startLoader.load();
-//      path = (Parent) pathfindLoader.load();
-//      admin = (Parent) adminLoader.load();
-
-//      LoginController loginController = loginLoader.getController();
-//      HomeController homeController = homeLoader.getController();
-//      AdminController adminController = adminLoader.getController();
-
-//      adminController.setAttributes(admin, home, popup);
-//      homeController.setAttributes(login, home, popup);
-//      loginController.setAttributes(admin, home, popup);
 
       homeScene = new Scene(home);
       pathScene = new Scene(path);

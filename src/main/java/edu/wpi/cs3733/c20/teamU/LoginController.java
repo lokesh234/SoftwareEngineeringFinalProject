@@ -12,7 +12,7 @@ public class LoginController {
   @FXML private TextField passwordField;
   @FXML private Button loginEnter;
 
-  private Popup popup = App.getPopup();
+//  private Popup popup = App.getPopup();
   private int trackLoginCount;
   private boolean didFail;
 
@@ -46,18 +46,31 @@ public class LoginController {
   private void changeScene() {
     usernameField.setStyle("-fx-border-color: black");
     passwordField.setStyle("-fx-border-color: black");
-    popup.getContent().remove(0);
+    App.getPopup().getContent().remove(0);
     if (didFail) {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
-      popup.getContent().add(App.getAdmin());
-      popup.show(App.getPrimaryStage());
+      App.getHome().setOpacity(1);
+      App.getHome().setDisable(false);
+
+
+      // uncomment this to move onto admin screen....
+//      App.getPopup().getContent().add(App.getAdmin());
+//      App.getPopup().show(App.getPrimaryStage());
     }
   }
 
-  @FXML
-  private void initialize() {
+    @FXML
+    private void exitPopup() {
+        didFail = false;
+        App.getHome().setOpacity(1);
+        App.getHome().setDisable(false);
+        App.getPopup().getContent().remove(0);
+    }
+
+    @FXML
+    private void initialize() {
 //        loginEnter.setDisable(true);
   }
 

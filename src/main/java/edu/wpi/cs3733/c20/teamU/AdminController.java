@@ -19,15 +19,7 @@ public class AdminController {
     @FXML private Button edit;
     @FXML private Button backButton;
 
-//    private Parent parent;
-//    private Parent home;
-    private Popup popup = App.getPopup();
-
-//    public void setAttributes(Parent parent, Parent home, Popup popup) {
-//        this.popup = popup;
-//        this.parent = parent;
-//        this.home = home;
-//    }
+//    private Popup popup = App.getPopup();
 
     @FXML
     private void detectClick() {
