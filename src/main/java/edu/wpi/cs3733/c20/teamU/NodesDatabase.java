@@ -47,6 +47,18 @@ public class NodesDatabase {
         return nodes.get(ID);
     }
 
+    protected ArrayList<Node> getNodes() {
+        /*
+        Returns an ArrayList of all nodes
+         */
+        ArrayList<Node> l = new ArrayList<>();
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
+            Node n = pair.getValue();
+            l.add(n);
+        }
+        return l;
+    }
+
     protected Edge getEdge(String ID) {
         /*
         Returns the edge with matching ID, or Null if not found
