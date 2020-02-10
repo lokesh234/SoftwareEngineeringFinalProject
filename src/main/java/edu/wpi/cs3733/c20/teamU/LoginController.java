@@ -56,13 +56,24 @@ public class LoginController {
         }
     }
 
+    @FXML
     private void changeScene() {
         if(didFail) {
+            didFail = false;
             this.home.setOpacity(1);
+            this.home.setDisable(false);
             this.popup.hide();
         } else {
             // go to admin stuff scene
         }
+    }
+
+    @FXML
+    private void exitPopup() {
+        didFail = false;
+        this.home.setOpacity(1);
+        this.home.setDisable(false);
+        this.popup.hide();
     }
 
     @FXML
