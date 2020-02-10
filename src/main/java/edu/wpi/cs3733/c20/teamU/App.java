@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,14 +31,17 @@ public class App extends Application {
     App.popup = new Popup();
 
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
-//    Pane login = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
+      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
+      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
 
-      Parent home = (Parent) loader2.load();
-      Parent login = (Parent) loader.load();
-      LoginController loginController = loader.getController();
-      homeController homeController = loader2.getController();
+      Parent home = (Parent) homeLoader.load();
+      Parent login = (Parent) loginLoader.load();
+      Parent start = (Parent) startLoader.load();
+
+      LoginController loginController = loginLoader.getController();
+      homeController homeController = homeLoader.getController();
 
       homeController.setAttributes(login, home, popup);
       loginController.setAttributes(login, home, popup);
@@ -50,7 +54,5 @@ public class App extends Application {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
-
   }
 }
