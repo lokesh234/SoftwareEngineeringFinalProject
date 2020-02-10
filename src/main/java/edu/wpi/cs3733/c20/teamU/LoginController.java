@@ -49,12 +49,12 @@ public class LoginController {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
-      App.getHome().setOpacity(1);
-      App.getHome().setDisable(false);
+      //      App.getHome().setOpacity(1);
+      //      App.getHome().setDisable(false);
 
       // uncomment this to move onto admin screen....
-      //      App.getPopup().getContent().add(App.getAdmin());
-      //      App.getPopup().show(App.getPrimaryStage());
+      App.getPopup().getContent().add(App.getAdmin());
+      App.getPopup().show(App.getPrimaryStage());
     }
   }
 

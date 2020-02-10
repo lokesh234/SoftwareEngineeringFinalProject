@@ -606,7 +606,7 @@ public class Database {
         Connection connection = null;
         Statement stmt1 = null;
         Statement stmt2 = null;
-        String tableName1 = "MedicalSR";
+        String tableName1 = "MedicineSR";
         String tableName2 = "SecuritySR";
         //printTable(stmt, "MedicalSR");
         //printTable(stmt, "SecuritySR");
