@@ -21,7 +21,7 @@
             <children>
                 <HBox alignment="TOP_RIGHT" prefHeight="78.0" prefWidth="600.0">
                     <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#exitPopup">
                             <graphic>
                                 <ImageView fx:id="loginCancel" fitHeight="42.0" fitWidth="40.0" pickOnBounds="true"
                                            preserveRatio="true">

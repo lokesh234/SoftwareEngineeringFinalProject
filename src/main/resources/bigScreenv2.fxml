@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.homeController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
         <VBox>
             <children>
@@ -105,7 +105,7 @@
                 </Button>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
                         prefHeight="160.0" prefWidth="180.0" style="-fx-background-color: #729EBF;"
-                        text="Navigation" textFill="WHITE">
+                        text="Navigation" textFill="WHITE" fx:id="navButton" onAction="#openNavScene">
                     <VBox.margin>
                         <Insets left="2.0" right="2.0"/>
                     </VBox.margin>
@@ -200,7 +200,7 @@
                 </MenuButton>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
                         prefHeight="160.0" prefWidth="180.0" style="-fx-background-color: #729EBF;" text="Help"
-                        textFill="WHITE">
+                        textFill="WHITE" onAction="#openHelpScene">
                     <VBox.margin>
                         <Insets bottom="3.0" left="2.0" right="2.0"/>
                     </VBox.margin>
