@@ -22,6 +22,7 @@ public class App extends Application {
   private static Pane path;
   private static Pane admin;
   private static Pane security;
+  private static Pane request;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -29,12 +30,14 @@ public class App extends Application {
   private static Scene pathScene;
   private static Scene adminScene;
   private static Scene securityScene;
+  private static Scene requestScene;
 
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
   private static Popup securityPop = new Popup();
+  private static Popup requestPop = new Popup();
 
   public static Stage getPrimaryStage() {
     return primaryStage;
@@ -45,18 +48,21 @@ public class App extends Application {
   public static Pane getPath() { return path;}
   public static Pane getAdmin() { return admin;}
   public static Pane getSecurity() { return security;}
+  public static Pane getRequest() {return request;}
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
   public static Scene getStartScene() { return startScene;}
   public static Scene getPathScene() {return pathScene;}
   public static Scene getAdminScene() {return adminScene;}
   public static Scene getSecurityScene() {return securityScene;}
+  public static Scene getRequestScene() {return requestScene;}
   public static NodesDatabase getGraph() { return graph;}
   public static int getNodeSize(){ return nodeSize;}
   public static Popup getPopup() {
     return popup;
   }
   public static Popup getSecurityPop() {return securityPop;}
+  public static Popup getRequestPop() {return requestPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -68,8 +74,9 @@ public class App extends Application {
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml"));
-      FXMLLoader pathfindLoader = new FXMLLoader((getClass().getResource("/pathfind.fxml")));
-      FXMLLoader securityLoader = new FXMLLoader((getClass().getResource("/Security.fxml")));
+      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
+      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
+      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -77,11 +84,13 @@ public class App extends Application {
       path = pathfindLoader.load();
       security = securityLoader.load();
       admin = adminLoader.load();
+      request = requestLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
       PathfindController pathfindController = pathfindLoader.getController();
       SecurityController securityController = securityLoader.getController();
+      RequestController requestController = requestLoader.getController();
 
 //      homeController.setAttributes(login, home, popup, securityPop);
 //      loginController.setAttributes(login, home, popup);
@@ -90,6 +99,7 @@ public class App extends Application {
       //TODO: find a better way to do popups...
       popup.getContent().addAll();
       securityPop.getContent().addAll();
+      requestPop.getContent().addAll();
 
       homeScene = new Scene(home);
       pathScene = new Scene(path);
