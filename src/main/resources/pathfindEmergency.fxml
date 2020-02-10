@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,9 +11,9 @@
 
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.PathfindController">
    <children>
-      <BorderPane layoutX="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
+      <BorderPane layoutX="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <ImageView fitWidth="900.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@png_files/Final-Floor_4_map_1.png" />
                </image>
@@ -30,7 +29,7 @@
             </VBox>
          </left>
          <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="200.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
                </children>
@@ -41,42 +40,39 @@
                <children>
                   <Label text="FIRE EMERGENCY" textFill="WHITE">
                      <font>
-                        <Font name="Segoe UI Bold" size="36.0" />
+                        <Font name="Segoe UI Bold" size="72.0" />
                      </font>
                   </Label>
-                  <Label text="FIRE EMERGENCY" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label text="FIRE EMERGENCY" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label text="FIRE EMERGENCY" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label text="FIRE EMERGENCY" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="36.0" />
-                     </font>
-                  </Label>
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
                </children>
             </HBox>
          </top>
          <bottom>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="43.0" prefWidth="1001.0" text="KIOSK DISABLED, PLEASE GO TO EXIT ON DISPLAY" textFill="WHITE">
+                  <Label text="PLEASE PROCEED TO NEAREST EXIT" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>
-                     <padding>
-                        <Insets left="286.0" />
-                     </padding>
                   </Label>
                </children>
             </HBox>
