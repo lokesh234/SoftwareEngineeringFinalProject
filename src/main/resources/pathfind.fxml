@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -24,25 +25,25 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="NAVIGATE" fx:id="statusLabel"/>
+                        <Label fx:id="statusLabel" text="NAVIGATE" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="startButton" mnemonicParsing="false" text="Start" onAction="#selectStart" />
+                        <Button fx:id="startButton" mnemonicParsing="false" onAction="#selectStart" text="Start" />
                         <Label fx:id="startLabel" text="X, Y" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="endButton" mnemonicParsing="false" text="End" onAction="#selectEnd"/>
+                        <Button fx:id="endButton" mnemonicParsing="false" onAction="#selectEnd" text="End" />
                         <Label fx:id="endLabel" text="X, Y" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button fx:id="goButton" mnemonicParsing="false" text="Go!" onAction="#pathfind"/>
-                        <Button fx:id="clearButton" mnemonicParsing="false" text="Clear" onAction="#clearPath"/>
+                        <Button fx:id="goButton" mnemonicParsing="false" onAction="#pathfind" text="Go!" />
+                        <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearPath" text="Clear" />
                      </children>
                   </HBox>
                </children>
@@ -56,7 +57,7 @@
             </VBox>
          </right>
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox prefHeight="100.0" style="-fx-background-color: #729EBF;" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <children>
@@ -65,10 +66,13 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
                      <children>
-                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Back" onAction="#backHome"/>
+                      <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backHome" text="Back" />
                      </children>
                   </HBox>
                </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </HBox>
          </top>
       </BorderPane>
