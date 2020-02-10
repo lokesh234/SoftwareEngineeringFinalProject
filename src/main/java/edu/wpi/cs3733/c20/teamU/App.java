@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Stage primaryStage;
-  private static Popup popup;
   private static Popup securityPop;
 
   private static Pane home;
@@ -37,13 +36,7 @@ public class App extends Application {
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
-//  private static Popup popup = new Popup();
-//
-//  private static Parent home;
-//  private static Parent login;
-//  private static Parent start;
-//  private static Parent path;
-//  private static Parent admin;
+  private static Popup popup = new Popup();
 
   public static Stage getPrimaryStage() {
     return primaryStage;
@@ -70,7 +63,6 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
-    App.popup = new Popup();
     App.securityPop = new Popup();
 
     try {
