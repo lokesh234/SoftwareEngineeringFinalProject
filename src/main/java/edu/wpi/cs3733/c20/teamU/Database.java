@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 @NoArgsConstructor
 public class Database {
-
     public static void UDBInitializer(){
         Connection conn = null;
         Statement stmt = null;
@@ -161,7 +160,7 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
     private static void createEdgesTable(Statement stmt, String tableName){
         try{
@@ -202,7 +201,7 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
@@ -245,7 +244,7 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
@@ -287,7 +286,7 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
@@ -334,7 +333,7 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
     private static void createSecuritySRTable(Statement stmt, String tableName){
         try{
@@ -377,7 +376,7 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
     private static void createLoginTable(Statement stmt, String tableName){
         try{
@@ -417,16 +416,23 @@ public class Database {
             return;
 
         }
-        CreateCSV(stmt, tableName);
+        CreateCSV(stmt, tableName, null);
     }
 
     //input currently running statment and table name to update CSV in DatabaseBackup
-    public static boolean CreateCSV(Statement stmt, String tableName){
+    public static boolean CreateCSV(Statement stmt, String tableName, String path){
         //creates csv file that contains data with given query
         try {
+            String CSVPath;
             //PrintWriter pw = new PrintWriter(new File("src\\main\\java\\CreateCSV.csv"));
-            String APath = System.getProperty("user.dir");
-            String CSVPath = APath + "/DatabaseBackup/" + tableName + ".csv";
+            if(path == null) {
+                String APath = System.getProperty("user.dir");
+                CSVPath = APath + "/DatabaseBackup/" + tableName + ".csv";
+            }
+            else {
+                CSVPath = path;
+            }
+
       System.out.println(CSVPath);
             PrintWriter pw = new PrintWriter(new File(CSVPath));
             StringBuilder sb = new StringBuilder();
@@ -630,5 +636,28 @@ public class Database {
             return false;
         }
         return false;
+    }
+
+    public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "PROTOTYPENODES";
+
+        //prints out the whole table
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "UPDATE " + tableName + " SET xcoord = " + xcoordN + ", ycoord = " + ycoordN + ", floor = " + floorN + ", building = '" + buildingN + "', nodeType = '" + nodeTypeN + "', longName = '" + longNameN + "', shortName = '" + shortNameN + "' WHERE nodeID = '" + nodeIDN + "'";
+
+            int result = stmt.executeUpdate(sql1);
+            System.out.println(result);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return false;
+        }
     }
 }
