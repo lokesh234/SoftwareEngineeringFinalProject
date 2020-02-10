@@ -59,7 +59,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
                            <children>
 <!--                              <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Upload" />-->
-                              <Button fx:id="edit" defaultButton="true" mnemonicParsing="false" onAction="" text="Edit Request" />
+                              <Button fx:id="edit" defaultButton="true" mnemonicParsing="false" text="Edit Request" />
                            </children>
                         </HBox>
 <!--                        <HBox prefHeight="100.0" prefWidth="200.0">-->
@@ -69,10 +69,10 @@
 <!--                        </HBox>-->
                      </children>
                   </VBox>
-                  <TableView fx:id="serviceTable" onMouseClicked="" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="serviceTable" onMouseClicked="#detectClick" HBox.hgrow="ALWAYS">
                     <columns>
                        <TableColumn fx:id="date" prefWidth="101.6666259765625" text="Date" />
-                       <TableColumn fx:id="requestId" prefWidth="128.33331298828125" text="RequestID" />
+                       <TableColumn fx:id="requestID" prefWidth="128.33331298828125" text="RequestID" />
                        <TableColumn fx:id="name" prefWidth="121.66668701171875" text="Name" />
                        <TableColumn fx:id="requestType" prefWidth="95.66668701171875" text="Type" />
                     </columns>

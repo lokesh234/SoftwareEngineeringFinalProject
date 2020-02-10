@@ -5,16 +5,17 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Popup;
+import javafx.stage.Window;
 
-public class homeController {
+public class HomeController {
 
   @FXML private Button test;
-  private Parent parent;
+  private Parent toScene;
   private Parent root;
   private Popup popup;
 
-  public void setAttributes(Parent parent, Parent root, Popup popup) {
-    this.parent = parent;
+  public void setAttributes(Parent toScene, Parent root, Popup popup) {
+    this.toScene = toScene;
     this.popup = popup;
     this.root = root;
   }
@@ -26,7 +27,6 @@ public class homeController {
       root.setDisable(true);
       popup.show(App.getPrimaryStage());
     } else popup.hide();
-    //    App.getPrimaryStage().getScene().setRoot(parent);
   }
 
   @FXML

@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -58,8 +59,9 @@ public class LoginController {
 
     private void changeScene() {
         if(didFail) {
-            this.home.setOpacity(1);
-            this.popup.hide();
+            home.setOpacity(1);
+            popup.hide();
+            home.setDisable(false);
         } else {
             // go to admin stuff scene
         }
