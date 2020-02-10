@@ -95,8 +95,9 @@ public class App extends Application {
 
       homeScene = new Scene(home);
       pathScene = new Scene(path);
+      startScene = new Scene(start);
 
-      primaryStage.setScene(homeScene);
+      primaryStage.setScene(startScene);
       primaryStage.show();
     } catch (IOException e) {
       e.printStackTrace();
