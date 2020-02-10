@@ -32,7 +32,7 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" scaleShape="false">
                             <children>
-                                <Label prefHeight="55.0" prefWidth="310.0" text="Home Screen" textFill="WHITE">
+                                <Label prefHeight="55.0" prefWidth="310.0" text="Home Screen" textFill="WHITE" style="-fx-background-color: #416785">
                                     <font>
                                         <Font size="38.0"/>
                                     </font>
@@ -106,7 +106,7 @@
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0"
-                        prefWidth="1920.0" style="-fx-background-color: #729EBF;" text="Tap To Start"/>
+                        prefWidth="1920.0" style="-fx-background-color: #729EBF;" text="Tap To Start" onAction="#openHomeScreen" />
             </children>
         </HBox>
     </children>
