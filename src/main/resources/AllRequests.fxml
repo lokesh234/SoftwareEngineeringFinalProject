@@ -12,7 +12,7 @@
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #729EBF;">
+                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #729EBF;" onAction="#closeRequestScreen">
                      <HBox.margin>
                         <Insets right="5.0" top="5.0" />
                      </HBox.margin>

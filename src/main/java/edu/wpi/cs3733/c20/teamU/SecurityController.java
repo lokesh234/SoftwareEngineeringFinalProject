@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 
 
 public class SecurityController {
-    @FXML private Button cancelRequest;
 
     @FXML
     public void closeHelpScreen(ActionEvent e){
