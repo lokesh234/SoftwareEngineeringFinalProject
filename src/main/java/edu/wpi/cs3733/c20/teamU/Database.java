@@ -451,14 +451,10 @@ public class Database {
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt1 = connection.createStatement();
-            stmt2 = connection.createStatement();
 
             String sql1 = "SELECT * FROM " + tableName1;
-            String sql2 = "SELECT * FROM " + tableName2;
             ResultSet results1 = stmt1.executeQuery(sql1);
             ResultSetMetaData rsmd1 = results1.getMetaData();
-            ResultSet results2 = stmt2.executeQuery(sql2);
-            ResultSetMetaData rsmd2 = results2.getMetaData();
             //for each line, create a node and add it to hash map
             while (results1.next()) {
                 String date = results1.getString(1);
@@ -469,6 +465,13 @@ public class Database {
                 finalResult.add(s);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
+            results1.close();
+            stmt1.close();
+
+            stmt2 = connection.createStatement();
+            String sql2 = "SELECT * FROM " + tableName2;
+            ResultSet results2 = stmt2.executeQuery(sql2);
+            ResultSetMetaData rsmd2 = results2.getMetaData();
             while (results2.next()) {
                 String date = results2.getString(1);
                 String requestID = results2.getString(2);
@@ -478,11 +481,9 @@ public class Database {
                 finalResult.add(s);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
-
-            results1.close();
-            stmt1.close();
             results2.close();
             stmt2.close();
+
             connection.close();
 
         } catch (SQLException e) {
