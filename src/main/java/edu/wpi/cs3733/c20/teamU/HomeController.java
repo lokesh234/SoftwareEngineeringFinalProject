@@ -20,13 +20,19 @@ public class HomeController {
     this.root = root;
   }
 
+//  public void setAttributes(Parent toScene, Parent root) {
+//    this.toScene = toScene;
+//    this.root = root;
+//  }
+
   @FXML
   private void openLoginScene(ActionEvent e) {
+    popup.getContent().add(toScene);
     if (!popup.isShowing()) {
       root.setOpacity(.5);
       root.setDisable(true);
       popup.show(App.getPrimaryStage());
-    } else popup.hide();
+    }
   }
 
   @FXML

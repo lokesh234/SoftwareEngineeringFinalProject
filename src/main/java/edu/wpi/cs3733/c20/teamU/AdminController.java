@@ -55,10 +55,10 @@ public class AdminController {
 
     @FXML
     private void initialize() {
-        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
-        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        serviceTable.setItems(arrayToOBList());
+//        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+//        requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
+//        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+//        requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
+//        serviceTable.setItems(arrayToOBList());
     }
 }

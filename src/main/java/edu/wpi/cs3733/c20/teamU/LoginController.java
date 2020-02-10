@@ -19,14 +19,14 @@ public class LoginController {
 
     private Popup popup;
     private Parent parent;
-    private Parent home;
+    private Parent toScene;
     private int trackLoginCount;
     private boolean didFail;
 
-    public void setAttributes(Parent parent, Parent home, Popup popup) {
+    public void setAttributes(Parent parent, Parent toScene, Popup popup) {
         this.popup = popup;
         this.parent = parent;
-        this.home = home;
+        this.toScene = toScene;
     }
 
     /**
@@ -58,11 +58,12 @@ public class LoginController {
     }
 
     private void changeScene() {
+        popup.getContent().remove(0);
         if(didFail) {
             home.setOpacity(1);
-            popup.hide();
             home.setDisable(false);
         } else {
+//            popup.getContent().add()
             // go to admin stuff scene
         }
     }

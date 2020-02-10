@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -12,11 +13,13 @@ public class App extends Application {
 
   private static Stage primaryStage;
   private static Popup popup;
-//  private static StackPane
+//  private static StackPane stack;
 
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
+  public static double getHeight() { return primaryStage.getMaxHeight(); }
+  public static double getWidth() { return primaryStage.getMaxWidth(); }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -25,14 +28,14 @@ public class App extends Application {
     App.popup = new Popup();
 
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
+//      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml"));
 
       Parent home = (Parent) homeLoader.load();
       Parent login = (Parent) loginLoader.load();
-      Parent start = (Parent) startLoader.load();
+//      Parent start = (Parent) startLoader.load();
       Parent admin = (Parent) adminLoader.load();
 
       LoginController loginController = loginLoader.getController();
@@ -41,9 +44,10 @@ public class App extends Application {
 
       adminController.setAttributes(admin, home, popup);
       homeController.setAttributes(login, home, popup);
-      loginController.setAttributes(login, home, popup);
+      loginController.setAttributes(admin, home, popup);
 
-      popup.getContent().addAll(login);
+//      login.setDisable(true);
+//      admin.setDisable(true);W
 
       Scene scene = new Scene(home);
       primaryStage.setScene(scene);
@@ -52,4 +56,12 @@ public class App extends Application {
       e.printStackTrace();
     }
   }
+//
+//  public void scene(String scene) {
+//    switch (scene) {
+//      case "login":
+//
+//    }
+//  }
+
 }
