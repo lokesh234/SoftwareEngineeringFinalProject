@@ -60,7 +60,7 @@ public class exportModeController {
       conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
       stmt = conn.createStatement();
       //getting UBDatabase
-      Database.CreateCSV(stmt,"MapNodesU");
+      Database.CreateCSV(stmt,"MapNodesU", file.toString());
       stmt.close();
       conn.close();
     }

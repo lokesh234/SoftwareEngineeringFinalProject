@@ -22,7 +22,7 @@ public class ServiceDatabase {
             //getting UBDatabase
             stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + timeFinished + "', '" + reqType + "', '" + completedBy + "', '" + info + "')");
 
-            Database.CreateCSV(stmt, tableName);
+            Database.CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
             return true;
@@ -86,7 +86,7 @@ public class ServiceDatabase {
             //getting UBDatabase
             stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "','" + timeReq + "', '" + urgency +"','" + type + "', '" + info + "')");
 
-            Database.CreateCSV(stmt, tableName);
+            Database.CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
             return true;
@@ -108,7 +108,7 @@ public class ServiceDatabase {
             //getting UBDatabase
             stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "','" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + drugName + "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
 
-            Database.CreateCSV(stmt, tableName);
+            Database.CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
             return true;
