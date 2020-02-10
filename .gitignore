@@ -19,6 +19,9 @@ derby.log
 # UDB Folder
 /UDB
 
+# DatabaseBackup Folder
+/DatabaseBackup
+
 # Generated files
 .idea/**/contentModel.xml
 

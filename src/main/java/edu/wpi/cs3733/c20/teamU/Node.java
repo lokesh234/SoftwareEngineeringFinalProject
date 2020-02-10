@@ -1,5 +1,8 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import lombok.Getter;
+
+@Getter
 public class Node {
     private int x;
     private int y;
@@ -50,5 +53,9 @@ public class Node {
     @Override
     public String toString(){
         return this.getID();
+    }
+
+    public String getNodeID(){
+        return  this.ID;
     }
 }
