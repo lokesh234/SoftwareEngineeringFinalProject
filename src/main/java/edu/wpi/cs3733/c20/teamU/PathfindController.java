@@ -136,6 +136,7 @@ public class PathfindController {
     @FXML
     private void pathfind() {
         if (startReady && endReady) {
+            clearPath();
             path.clear();
             lines.clear();
             engine.starSingular(start, end, App.getGraph());

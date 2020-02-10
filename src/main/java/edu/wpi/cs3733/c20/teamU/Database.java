@@ -602,7 +602,7 @@ public class Database {
     }
 
     public static ArrayList<Service> getServices(){
-        ArrayList<Service> finalResult = null;
+        ArrayList<Service> finalResult = new ArrayList<>();
         Connection connection = null;
         Statement stmt1 = null;
         Statement stmt2 = null;
