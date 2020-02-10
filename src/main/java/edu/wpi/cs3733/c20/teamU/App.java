@@ -1,12 +1,10 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
@@ -66,7 +64,7 @@ public class App extends Application {
     App.primaryStage = primaryStage;
 
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml"));
