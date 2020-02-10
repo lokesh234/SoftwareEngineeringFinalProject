@@ -11,4 +11,11 @@ public class RequestController {
         App.getHome().setDisable(false);
         App.getRequestPop().getContent().remove(0);
     }
+
+    @FXML
+    public void openMedicineForm(ActionEvent e){
+        App.getHome().setOpacity(.5);
+        App.getHome().setDisable(true);
+        App.getMedicinePop().getContent().add(App.getMedicine());
+    }
 }
