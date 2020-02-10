@@ -200,7 +200,7 @@
                 </MenuButton>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
                         prefHeight="160.0" prefWidth="180.0" style="-fx-background-color: #729EBF;" text="Help"
-                        textFill="WHITE">
+                        textFill="WHITE" onAction="#openHelpScene">
                     <VBox.margin>
                         <Insets bottom="3.0" left="2.0" right="2.0"/>
                     </VBox.margin>

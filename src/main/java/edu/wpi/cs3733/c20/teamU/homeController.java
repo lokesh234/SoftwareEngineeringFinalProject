@@ -12,10 +12,12 @@ public class homeController {
   private Parent parent;
   private Parent root;
   private Popup popup;
+  private Popup secuirtyPop;
 
-  public void setAttributes(Parent parent, Parent root, Popup popup) {
+  public void setAttributes(Parent parent, Parent root, Popup popup, Popup secuirtyPop) {
     this.parent = parent;
     this.popup = popup;
+    this.secuirtyPop = secuirtyPop;
     this.root = root;
   }
 
@@ -32,5 +34,15 @@ public class homeController {
   @FXML
   private void initialize() {
 
+  }
+
+  @FXML
+  private void openHelpScene(ActionEvent e){
+    if(!secuirtyPop.isShowing()){
+      root.setOpacity(.5);
+      root.setDisable(true);
+      secuirtyPop.show(App.getPrimaryStage());
+    }
+    else popup.hide();
   }
 }

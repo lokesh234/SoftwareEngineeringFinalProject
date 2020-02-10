@@ -17,6 +17,7 @@ public class App extends Application {
 
   private static Stage primaryStage;
   private static Popup popup;
+  private static Popup securityPop;
 //  private static StackPane
 
   public static Stage getPrimaryStage() {
@@ -28,21 +29,25 @@ public class App extends Application {
 
     App.primaryStage = primaryStage;
     App.popup = new Popup();
+    App.securityPop = new Popup();
 
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
       FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
+      FXMLLoader loader3 = new FXMLLoader(getClass().getResource("/Security.fxml"));
 //    Pane login = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
 
       Parent home = (Parent) loader2.load();
       Parent login = (Parent) loader.load();
+      Parent security = (Parent) loader3.load();
       LoginController loginController = loader.getController();
       homeController homeController = loader2.getController();
 
-      homeController.setAttributes(login, home, popup);
+      homeController.setAttributes(login, home, popup, securityPop);
       loginController.setAttributes(login, home, popup);
 
       popup.getContent().addAll(login);
+      securityPop.getContent().addAll(security);
 
       Scene scene = new Scene(home);
       primaryStage.setScene(scene);
