@@ -119,7 +119,7 @@
                 </Button>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
                         prefHeight="160.0" prefWidth="180.0" style="-fx-background-color: #729EBF;"
-                        text="Services" textFill="WHITE">
+                        text="Services" textFill="WHITE" onAction="#openRequestScene">
                     <VBox.margin>
                         <Insets left="2.0" right="2.0"/>
                     </VBox.margin>
@@ -135,7 +135,7 @@
                             prefWidth="180.0" style="-fx-background-color: #729EBF;" text="Info" textFill="WHITE">
                     <items>
                         <MenuItem mnemonicParsing="false" style="-fx-background-color: #729EBF;"
-                                  text="Request Assistance">
+                                  text="Request Assistance" >
                             <graphic>
                                 <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true"
                                            preserveRatio="true">
@@ -154,9 +154,9 @@
                         </ImageView>
                     </graphic>
                 </MenuButton>
-                <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                <MenuButton alignment="CENTER" mnemonicParsing="false"
                             popupSide="RIGHT" prefHeight="160.0" prefWidth="180.0"
-                            style="-fx-background-color: #729EBF;" text="Settings" textAlignment="CENTER"
+                            style="-fx-background-color: #729EBF;" text="Settings"
                             textFill="WHITE">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Change Language">
