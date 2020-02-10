@@ -34,7 +34,8 @@ public class Database {
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
             dropTable(stmt, "ServiceRequest");
-            //drops database tables if they currently exist
+            // drops database tables if they currently exist
+            System.out.println("Dropped tables");
 
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
@@ -43,7 +44,8 @@ public class Database {
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
             createSecuritySRTable(stmt, "SecuritySR");
-            //Creates tables again or for the first time
+            // Creates tables again or for the first time
+            System.out.println("Created Tables");
 
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
@@ -65,17 +67,38 @@ public class Database {
         }
     }
 
-    public static String getFileDir(){
-        boolean result = true;
-        String csv = "CSVfiles";
-        File file = new File("CSVfiles\test.txt");
-        try{
-        result = file.createNewFile();
-        }catch  (IOException e){
-        System.out.println("Failed");
+    private static boolean getFileDir(String csvName){
+        String directoryName = "DatabaseBackup";
+
+        File directory = new File(directoryName);
+        File file = new File(directoryName + "/" + csvName);
+        if (! directory.exists()){
+            directory.mkdir();
+            // if there isn't a dir create one and then return false
+            return false;
+        } else if(! file.exists()){
+                return false;
+        } else{
+            return true;
         }
-        System.out.println(result);
-        return "CSVfiles";
+    }
+    //csvName ex: "MapNodes.csv" returns true if folder and csv exist
+    private static BufferedReader getBR(String tableName){
+        BufferedReader br;
+        try{
+        if (getFileDir(tableName + ".csv")){
+            String APath = System.getProperty("user.dir");
+            String csvFile = APath + "/DatabaseBackup/" + tableName + ".csv";
+            //String csvFile = "DatabaseBackup/" + tableName + ".csv";
+            br = new BufferedReader(new FileReader(csvFile));
+        }else{
+            InputStream csvStream = Database.class.getResourceAsStream("/csv_files/" + tableName + ".csv");
+            br = new BufferedReader(new InputStreamReader(csvStream));
+        }
+        return br;
+        }catch (Exception e){
+        }
+        return null;
     }
 
     private static void dropTable(Statement stmt, String tableName) {
@@ -95,12 +118,18 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MapUnodes.csv");
+           // InputStream csvFile = databaseLocation(getFileDir("MapNodesU.csv"),"MapNodesU.csv");
+
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MapNodesU.csv");
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+
+            try {
+                BufferedReader br = getBR(tableName);
+
+            //try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
 
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
@@ -132,6 +161,7 @@ public class Database {
             return;
 
         }
+        CreateCSV(stmt, tableName);
     }
     private static void createEdgesTable(Statement stmt, String tableName){
         try{
@@ -140,13 +170,14 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MapUedges.csv");
+
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MapEdgesU.csv");
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-
+            try {
+                BufferedReader br = getBR(tableName);
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
 
@@ -171,7 +202,7 @@ public class Database {
             return;
 
         }
-
+        CreateCSV(stmt, tableName);
     }
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
@@ -181,13 +212,14 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceRequest.csv");
+
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceRequest.csv");
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-
+            try {
+                BufferedReader br = getBR(tableName);
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
 
@@ -213,6 +245,7 @@ public class Database {
             return;
 
         }
+        CreateCSV(stmt, tableName);
     }
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
@@ -222,13 +255,13 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceFinished.csv");
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceFinished.csv");
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-
+            try {
+                BufferedReader br = getBR(tableName);
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
 
@@ -254,6 +287,7 @@ public class Database {
             return;
 
         }
+        CreateCSV(stmt, tableName);
     }
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
@@ -263,15 +297,14 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MedicineSR.csv");
+           // InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MedicineSR.csv");
 
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-
+            try {
+                BufferedReader br = getBR(tableName);
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
 
@@ -301,6 +334,7 @@ public class Database {
             return;
 
         }
+        CreateCSV(stmt, tableName);
     }
     private static void createSecuritySRTable(Statement stmt, String tableName){
         try{
@@ -310,13 +344,13 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-
+            try {
+                BufferedReader br = getBR(tableName);
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
 
@@ -343,9 +377,8 @@ public class Database {
             return;
 
         }
+        CreateCSV(stmt, tableName);
     }
-
-
     private static void createLoginTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), PRIMARY KEY (username))";
@@ -353,13 +386,13 @@ public class Database {
             stmt.executeUpdate(slqCreate);
 
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
             String line = "";
             String csvSplit = ",";
 
             //parses through csv file and creates a new row in the database for each row
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-
+            try {
+                BufferedReader br = getBR(tableName);
                 int starter = 0;
                 while ((line = br.readLine()) != null) {
 
@@ -384,9 +417,67 @@ public class Database {
             return;
 
         }
+        CreateCSV(stmt, tableName);
     }
 
-    public static boolean printTable(Statement stmt, String tableName){
+    //input currently running statment and table name to update CSV in DatabaseBackup
+    public static boolean CreateCSV(Statement stmt, String tableName){
+        //creates csv file that contains data with given query
+        try {
+            //PrintWriter pw = new PrintWriter(new File("src\\main\\java\\CreateCSV.csv"));
+            String APath = System.getProperty("user.dir");
+            String CSVPath = APath + "/DatabaseBackup/" + tableName + ".csv";
+      System.out.println(CSVPath);
+            PrintWriter pw = new PrintWriter(new File(CSVPath));
+            StringBuilder sb = new StringBuilder();
+
+            try {
+                String sql1 = "SELECT * FROM " + tableName;
+                ResultSet results = stmt.executeQuery(sql1);
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columns = rsmd.getColumnCount();
+                for (int i = 1; i <= columns; i++) {
+                    //add columns to csv file
+                    if (i < columns) {
+                        sb.append(rsmd.getColumnLabel(i) + ",");
+                    }
+                    else {
+                        sb.append(rsmd.getColumnLabel(i) + "\n");
+                    }
+                }
+
+                while (results.next()) {
+                    //add data to each column
+
+                    for (int i = 1; i <= columns; i++) {
+                        if (i < columns) {
+                            sb.append(results.getString(i) + ",");
+                        }
+                        else {
+                            sb.append(results.getString(i) + "\n");
+                        }
+
+                    }
+
+                }
+
+                pw.write(sb.toString());
+                pw.close();
+                results.close();
+                return true;
+
+            } catch (SQLException e) {
+                System.out.println("Connection failed. Check output console.");
+                e.printStackTrace();
+                return false;
+            }
+        } catch (Exception e){
+            System.out.println("Print Writer did not work");
+            return false;
+        }
+    }
+
+    public static boolean printTable(Statement stmt, String tableName) {
         try {
             String sql1 = "SELECT * FROM " + tableName;
 

@@ -7,9 +7,9 @@ public class Main {
 
   public static void main(String[] args) {
 
-    //Database.getFileDir();
-    Database.UDBInitializer();
-    App.launch(App.class, args);
+
+      Database.UDBInitializer();
+    //App.launch(App.class, args);
 
 
   }
