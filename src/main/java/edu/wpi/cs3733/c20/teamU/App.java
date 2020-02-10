@@ -4,18 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
+
+
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -42,7 +37,13 @@ public class App extends Application {
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
-//  private static StackPane
+//  private static Popup popup = new Popup();
+//
+//  private static Parent home;
+//  private static Parent login;
+//  private static Parent start;
+//  private static Parent path;
+//  private static Parent admin;
 
   public static Stage getPrimaryStage() {
     return primaryStage;
@@ -61,6 +62,9 @@ public class App extends Application {
   public static Scene getSecurityScene() {return securityScene;}
   public static NodesDatabase getGraph() { return graph;}
   public static int getNodeSize(){ return nodeSize;}
+  public static Popup getPopup() {
+    return popup;
+  }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -73,7 +77,7 @@ public class App extends Application {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml"));
       FXMLLoader pathfindLoader = new FXMLLoader((getClass().getResource("/pathfind.fxml")));
       FXMLLoader securityLoader = new FXMLLoader((getClass().getResource("/Security.fxml")));
 
@@ -84,15 +88,29 @@ public class App extends Application {
       security = securityLoader.load();
 
       LoginController loginController = loginLoader.getController();
-      homeController homeController = homeLoader.getController();
+      HomeController homeController = homeLoader.getController();
       PathfindController pathfindController = pathfindLoader.getController();
 
-      homeController.setAttributes(login, home, popup, securityPop);
-      loginController.setAttributes(login, home, popup);
+//      homeController.setAttributes(login, home, popup, securityPop);
+//      loginController.setAttributes(login, home, popup);
       pathfindController.setAttributes(path);
 
-      popup.getContent().addAll(login);
+      popup.getContent().addAll();
       securityPop.getContent().addAll(security);
+
+//      home = (Parent) homeLoader.load();
+//      login = (Parent) loginLoader.load();
+//      start = (Parent) startLoader.load();
+//      path = (Parent) pathfindLoader.load();
+//      admin = (Parent) adminLoader.load();
+
+//      LoginController loginController = loginLoader.getController();
+//      HomeController homeController = homeLoader.getController();
+//      AdminController adminController = adminLoader.getController();
+
+//      adminController.setAttributes(admin, home, popup);
+//      homeController.setAttributes(login, home, popup);
+//      loginController.setAttributes(admin, home, popup);
 
       homeScene = new Scene(home);
       pathScene = new Scene(path);

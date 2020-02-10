@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import com.sun.java.accessibility.util.EventID;
 import lombok.NoArgsConstructor;
 import java.io.*;
 import java.sql.*;
@@ -440,6 +439,63 @@ public class Database {
             return;
         }
     }
+
+    public static ArrayList<Service> getServices(){
+        ArrayList<Service> finalResult = null;
+        Connection connection = null;
+        Statement stmt1 = null;
+        Statement stmt2 = null;
+        String tableName1 = "MedicalSR";
+        String tableName2 = "SecuritySR";
+        //printTable(stmt, "MedicalSR");
+        //printTable(stmt, "SecuritySR");
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt1 = connection.createStatement();
+
+            String sql1 = "SELECT * FROM " + tableName1;
+            ResultSet results1 = stmt1.executeQuery(sql1);
+            ResultSetMetaData rsmd1 = results1.getMetaData();
+            //for each line, create a node and add it to hash map
+            while (results1.next()) {
+                String date = results1.getString(1);
+                String requestID = results1.getString(2);
+                String name = results1.getString(3);
+                String requestType = results1.getString(4);
+                Service s = new Service(date, requestID, name, requestType);
+                finalResult.add(s);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results1.close();
+            stmt1.close();
+
+            stmt2 = connection.createStatement();
+            String sql2 = "SELECT * FROM " + tableName2;
+            ResultSet results2 = stmt2.executeQuery(sql2);
+            ResultSetMetaData rsmd2 = results2.getMetaData();
+            while (results2.next()) {
+                String date = results2.getString(1);
+                String requestID = results2.getString(2);
+                String name = results2.getString(3);
+                String requestType = results2.getString(4);
+                Service s = new Service(date, requestID, name, requestType);
+                finalResult.add(s);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results2.close();
+            stmt2.close();
+
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+        return finalResult;
+    }
+
     public static boolean checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
