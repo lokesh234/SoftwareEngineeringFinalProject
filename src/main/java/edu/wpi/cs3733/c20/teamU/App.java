@@ -18,21 +18,21 @@ public class App extends Application {
 
   private static Stage primaryStage;
   private static Popup popup;
-  private static FXMLLoader startLoader;
-  private static FXMLLoader homeLoader;
-  private static FXMLLoader loginLoader;
-  private static FXMLLoader adminLoader;
-  private static FXMLLoader pathfindLoader;
+  private static Parent home;
+  private static Parent login;
+  private static Parent start;
+  private static Parent path;
+  private static Parent admin;
 //  private static StackPane
 
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
-  public static FXMLLoader getStartLoader() { return startLoader;}
-  public static FXMLLoader getHomeLoader() { return homeLoader;}
-  public static FXMLLoader getLoginLoader() { return loginLoader;}
-  public static FXMLLoader getAdminLoader() { return adminLoader;}
-  public static FXMLLoader getPathfindLoader() { return pathfindLoader;}
+  public static Parent getHome() {return home; }
+  public static Parent getLogin() {return login;}
+  public static Parent getStart() { return start;}
+  public static Parent getPath() { return path;}
+  public static Parent getAdmin() { return admin;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -41,15 +41,16 @@ public class App extends Application {
     App.popup = new Popup();
 
     try {
-      startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
-      homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
-      loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
-      pathfindLoader = new FXMLLoader((getClass().getResource("/pathfind.fxml")));
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
+      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
+      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
+      FXMLLoader pathfindLoader = new FXMLLoader((getClass().getResource("/pathfind.fxml")));
 
-      Parent home = (Parent) homeLoader.load();
-      Parent login = (Parent) loginLoader.load();
-      Parent start = (Parent) startLoader.load();
+      home = (Parent) homeLoader.load();
+      login = (Parent) loginLoader.load();
+      start = (Parent) startLoader.load();
+      path = (Parent) pathfindLoader.load();
 
       LoginController loginController = loginLoader.getController();
       homeController homeController = homeLoader.getController();

@@ -36,7 +36,7 @@ public class homeController {
 
   @FXML
   private void openNavScene(ActionEvent e) throws IOException {
-    App.getPrimaryStage().setScene(new Scene((Parent) App.getPathfindLoader().load()));
+    App.getPrimaryStage().setScene(new Scene(App.getPath()));
   }
 
   @FXML
