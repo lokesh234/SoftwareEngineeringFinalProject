@@ -3,13 +3,18 @@ package edu.wpi.cs3733.c20.teamU;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Popup;
 import javafx.stage.Window;
 
+import javax.swing.*;
+import java.io.IOException;
+
 public class HomeController {
 
   @FXML private Button test;
+  @FXML private Button navButton;
   private Parent toScene;
   private Parent root;
   private Popup popup;
@@ -33,6 +38,11 @@ public class HomeController {
       root.setDisable(true);
       popup.show(App.getPrimaryStage());
     }
+  }
+
+  @FXML
+  private void openNavScene(ActionEvent e) throws IOException {
+    App.getPrimaryStage().setScene(new Scene(App.getPath()));
   }
 
   @FXML
