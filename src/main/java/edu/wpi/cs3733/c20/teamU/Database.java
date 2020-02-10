@@ -454,16 +454,7 @@ public class Database {
             String sql1 = "SELECT * FROM " + tableName1;
             String sql2 = "SELECT * FROM " + tableName2;
             ResultSet results1 = stmt.executeQuery(sql1);
-            ResultSetMetaData rsmd1 = results1.getMetaData();
             ResultSet results2 = stmt.executeQuery(sql2);
-            ResultSetMetaData rsmd2 = results2.getMetaData();
-            int columns1 = rsmd1.getColumnCount();
-            for (int i = 1; i <= columns1; i++) {
-                //no need to print Column Names
-                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
-            }
-            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
             //for each line, create a node and add it to hash map
             while (results1.next()) {
                 String date = results1.getString(1);
@@ -486,7 +477,6 @@ public class Database {
 
             results1.close();
             results2.close();
-            stmt.close();
             connection.close();
 
         } catch (SQLException e) {
