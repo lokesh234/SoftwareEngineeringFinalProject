@@ -3,18 +3,11 @@ package edu.wpi.cs3733.c20.teamU;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.stage.Popup;
 
 public class AdminController {
@@ -26,15 +19,15 @@ public class AdminController {
     @FXML private Button edit;
     @FXML private Button backButton;
 
-    private Parent parent;
-    private Parent home;
-    private Popup popup;
+//    private Parent parent;
+//    private Parent home;
+    private Popup popup = App.getPopup();
 
-    public void setAttributes(Parent parent, Parent home, Popup popup) {
-        this.popup = popup;
-        this.parent = parent;
-        this.home = home;
-    }
+//    public void setAttributes(Parent parent, Parent home, Popup popup) {
+//        this.popup = popup;
+//        this.parent = parent;
+//        this.home = home;
+//    }
 
     @FXML
     private void detectClick() {
@@ -48,6 +41,7 @@ public class AdminController {
         ObservableList<Service> services = FXCollections.observableArrayList();
         ArrayList<Service> temp = Database.getServices();
         for(Service s : temp){
+            if(temp.size() == 0) break;
             services.add(s);
         }
         return services;

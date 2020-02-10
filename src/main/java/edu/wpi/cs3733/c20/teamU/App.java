@@ -5,37 +5,53 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
   private static Stage primaryStage;
-  private static Popup popup;
+  private static Popup popup = new Popup();
 
   private static Parent home;
   private static Parent login;
   private static Parent start;
   private static Parent path;
   private static Parent admin;
-//  private static StackPane
 
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
 
-  public static Parent getHome() {return home; }
-  public static Parent getLogin() {return login;}
-  public static Parent getStart() { return start;}
-  public static Parent getPath() { return path;}
-  public static Parent getAdmin() { return admin;}
+  public static Parent getHome() {
+    return home;
+  }
+
+  public static Parent getLogin() {
+    return login;
+  }
+
+  public static Parent getStart() {
+    return start;
+  }
+
+  public static Parent getPath() {
+    return path;
+  }
+
+  public static Parent getAdmin() {
+    return admin;
+  }
+
+  public static Popup getPopup() {
+    return popup;
+  }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
-    App.popup = new Popup();
+//    App.popup = new Popup();
 
     try {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
@@ -48,17 +64,15 @@ public class App extends Application {
       login = (Parent) loginLoader.load();
       start = (Parent) startLoader.load();
       path = (Parent) pathfindLoader.load();
+      admin = (Parent) adminLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
       AdminController adminController = adminLoader.getController();
 
-      adminController.setAttributes(admin, home, popup);
+//      adminController.setAttributes(admin, home, popup);
 //      homeController.setAttributes(login, home, popup);
-      loginController.setAttributes(admin, home, popup);
-
-//      login.setDisable(true);
-//      admin.setDisable(true);W
+//      loginController.setAttributes(admin, home, popup);
 
       Scene scene = new Scene(home);
       primaryStage.setScene(scene);
@@ -67,12 +81,4 @@ public class App extends Application {
       e.printStackTrace();
     }
   }
-//
-//  public void scene(String scene) {
-//    switch (scene) {
-//      case "login":
-//
-//    }
-//  }
-
 }
