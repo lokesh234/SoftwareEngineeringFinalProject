@@ -375,9 +375,10 @@ public class Database {
 
             //for each line, create a node and add it to hash map
             while (results.next()) {
-                String edgeID = results.getString(3);
-                Node node1 = nHM.get(results.getString(1));
-                Node node2 = nHM.get(results.getString(2));
+                String edgeID = results.getString(1);
+                Node node1 = nHM.get(results.getString(2));
+                Node node2 = nHM.get(results.getString(3));
+                //System.out.println("Looking for nodes with IDs " + results.getString(1) + " and " + results.getString(2));
                 int dis = Pathfinder.dist(node1, node2);
                 eHM.put(edgeID, new Edge(node1, node2, dis, edgeID));
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
@@ -425,6 +426,7 @@ public class Database {
                 String _shortName = results.getString(8);
                 Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
                 nHM.put(node.getID(), node);
+                //System.out.println("Created a node with ID " + node.getID());
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
 

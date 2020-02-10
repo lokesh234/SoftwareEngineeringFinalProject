@@ -18,11 +18,21 @@ public class App extends Application {
 
   private static Stage primaryStage;
   private static Popup popup;
+  private static FXMLLoader startLoader;
+  private static FXMLLoader homeLoader;
+  private static FXMLLoader loginLoader;
+  private static FXMLLoader adminLoader;
+  private static FXMLLoader pathfindLoader;
 //  private static StackPane
 
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
+  public static FXMLLoader getStartLoader() { return startLoader;}
+  public static FXMLLoader getHomeLoader() { return homeLoader;}
+  public static FXMLLoader getLoginLoader() { return loginLoader;}
+  public static FXMLLoader getAdminLoader() { return adminLoader;}
+  public static FXMLLoader getPathfindLoader() { return pathfindLoader;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -31,10 +41,11 @@ public class App extends Application {
     App.popup = new Popup();
 
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
-      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
-      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
+      startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
+      homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
+      loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
+      adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml")); // not integrated
+      pathfindLoader = new FXMLLoader((getClass().getResource("/pathfind.fxml")));
 
       Parent home = (Parent) homeLoader.load();
       Parent login = (Parent) loginLoader.load();
