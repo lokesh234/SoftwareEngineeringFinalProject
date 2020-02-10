@@ -11,6 +11,7 @@ public class HomeController {
 
   @FXML private Button test;
   @FXML private Button navButton;
+  SecurityController securityController;
 
   @FXML
   private void openLoginScene(ActionEvent e) {
@@ -28,14 +29,12 @@ public class HomeController {
 
   @FXML
   private void openHelpScene(ActionEvent e){
-    System.out.println("hello");
-//    if(!secuirtyPop.isShowing()){
-//      root.setOpacity(.5);
-//      root.setDisable(true);
-//      secuirtyPop.show(App.getPrimaryStage());
-//    }
-//    else popup.hide();
+    App.getSecurityPop().getContent().add(App.getSecurity());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getSecurityPop().show(App.getPrimaryStage());
   }
+
   @FXML
   private void initialize() {
 

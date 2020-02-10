@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Stage primaryStage;
-  private static Popup securityPop;
 
   private static Pane home;
   private static Pane login;
@@ -37,6 +36,7 @@ public class App extends Application {
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
+  private static Popup securityPop = new Popup();
 
   public static Stage getPrimaryStage() {
     return primaryStage;
@@ -58,12 +58,12 @@ public class App extends Application {
   public static Popup getPopup() {
     return popup;
   }
+  public static Popup getSecurityPop() {return securityPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
-    App.securityPop = new Popup();
 
     try {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap to start.fxml"));
@@ -83,6 +83,7 @@ public class App extends Application {
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
       PathfindController pathfindController = pathfindLoader.getController();
+      SecurityController securityController = securityLoader.getController();
 
 //      homeController.setAttributes(login, home, popup, securityPop);
 //      loginController.setAttributes(login, home, popup);
@@ -90,7 +91,7 @@ public class App extends Application {
 
       //TODO: find a better way to do popups...
       popup.getContent().addAll();
-      securityPop.getContent().addAll(security);
+      securityPop.getContent().addAll();
 
       homeScene = new Scene(home);
       pathScene = new Scene(path);
