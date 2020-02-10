@@ -98,7 +98,7 @@ public class App extends Application {
       PathfindController pathfindController = pathfindLoader.getController();
       SecurityController securityController = securityLoader.getController();
       RequestController requestController = requestLoader.getController();
-      MedicineContoller medicineContoller = medicineLoader.getController();
+      MedicineController medicineController = medicineLoader.getController();
 
 //      homeController.setAttributes(login, home, popup, securityPop);
 //      loginController.setAttributes(login, home, popup);
