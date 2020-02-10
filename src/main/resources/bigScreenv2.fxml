@@ -154,9 +154,9 @@
                         </ImageView>
                     </graphic>
                 </MenuButton>
-                <MenuButton alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                <MenuButton alignment="CENTER" mnemonicParsing="false"
                             popupSide="RIGHT" prefHeight="160.0" prefWidth="180.0"
-                            style="-fx-background-color: #729EBF;" text="Settings" textAlignment="CENTER"
+                            style="-fx-background-color: #729EBF;" text="Settings"
                             textFill="WHITE">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Change Language">
