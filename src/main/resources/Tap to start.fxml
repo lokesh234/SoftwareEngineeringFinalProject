@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0"
+<AnchorPane fx:controller="edu.wpi.cs3733.c20.teamU.startController"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0"
             prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox>
@@ -16,6 +16,8 @@
                     <children>
                         <VBox alignment="CENTER_LEFT">
                             <children>
+                                <Button fx:id="top" mnemonicParsing="false" style="-fx-background-color: #416785" onAction="#openHomeScreen">
+                                    <graphic>
                                 <ImageView fitHeight="57.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@png_files/brighamLogo.png"/>
@@ -24,11 +26,13 @@
                                         <Insets/>
                                     </VBox.margin>
                                 </ImageView>
+                                    </graphic>
+                                </Button>
                             </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" scaleShape="false">
                             <children>
-                                <Label prefHeight="55.0" prefWidth="310.0" text="Home Screen" textFill="WHITE">
+                                <Label prefHeight="55.0" prefWidth="310.0" text="Home Screen" textFill="WHITE" style="-fx-background-color: #416785">
                                     <font>
                                         <Font size="38.0"/>
                                     </font>
@@ -45,7 +49,7 @@
                             <children>
                                 <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="64.0" prefWidth="233.0"
                                         style="-fx-background-color: #729EBF;" text="Admin Login" textAlignment="RIGHT"
-                                        textFill="WHITE">
+                                        textFill="WHITE" fx:id="login" onAction="#openHomeScreen">
                                     <VBox.margin>
                                         <Insets bottom="5.0" right="5.0"/>
                                     </VBox.margin>
@@ -79,6 +83,8 @@
         <VBox alignment="CENTER" layoutX="-1.0" layoutY="84.0" prefHeight="996.0" prefWidth="1915.0"
               style="-fx-background-color: #D4D5D2;" AnchorPane.leftAnchor="0.0">
             <children>
+                <Button fx:id="Map" mnemonicParsing="false" style="-fx-background-color: #D4D5D2" onAction="#openHomeScreen">
+                    <graphic>
                 <ImageView fitHeight="965.0" fitWidth="1585.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@png_files/Final-Floor-4.png"/>
@@ -87,6 +93,8 @@
                         <Insets/>
                     </VBox.margin>
                 </ImageView>
+                    </graphic>
+                </Button>
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -98,7 +106,7 @@
               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="80.0"
-                        prefWidth="1920.0" style="-fx-background-color: #729EBF;" text="Tap To Start"/>
+                        prefWidth="1920.0" style="-fx-background-color: #729EBF;" text="Tap To Start" onAction="#openHomeScreen" />
             </children>
         </HBox>
     </children>

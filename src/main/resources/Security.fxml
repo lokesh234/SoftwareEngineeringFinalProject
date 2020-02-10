@@ -11,13 +11,13 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.SecurityController">
    <children>
       <VBox layoutX="-2.0" prefHeight="200.0" prefWidth="609.0" style="-fx-background-color: #416785;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox fx:id="cancelSecurity" alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="cancelRequest" mnemonicParsing="false" style="-fx-background-color: #416785;">
+                  <Button fx:id="cancelRequest" mnemonicParsing="false" style="-fx-background-color: #416785;" onAction="#closeHelpScreen">
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
