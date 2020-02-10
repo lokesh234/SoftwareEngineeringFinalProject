@@ -34,8 +34,6 @@ public class PathfindController {
         this.updateStatus();
     }
 
-
-
     private State state = State.NEUTRAL;
     private Node start;
     private Node end;
