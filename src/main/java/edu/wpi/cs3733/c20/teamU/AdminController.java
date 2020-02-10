@@ -8,6 +8,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.util.ArrayList;
+
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
 
 public class AdminController {
@@ -32,19 +34,22 @@ public class AdminController {
     private ObservableList<Service> arrayToOBList(){
         ObservableList<Service> services = FXCollections.observableArrayList();
         ArrayList<Service> temp = Database.getServices();
-        for(Service s : temp){
-            if(temp.size() == 0) break;
-            services.add(s);
+        if(temp != null) {
+            for (Service s : temp) {
+                services.add(s);
+            }
         }
         return services;
     }
 
     @FXML
     private void initialize() {
-//        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
-//        requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
-//        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//        requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
-//        serviceTable.setItems(arrayToOBList());
+        if(!arrayToOBList().isEmpty()) {
+            date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+            requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
+            name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+            requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            serviceTable.setItems(arrayToOBList());
+        }
     }
 }
