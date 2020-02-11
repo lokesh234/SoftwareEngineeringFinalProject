@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import sun.security.krb5.SCDynamicStoreConfig;
 
 public class App extends Application {
 
@@ -24,6 +25,8 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane export;
+  private static Pane edit;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -33,6 +36,8 @@ public class App extends Application {
   private static Scene securityScene;
   private static Scene requestScene;
   private static Scene medicineScene;
+  private static Scene editScene;
+  private static Scene exportScene;
 
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
@@ -46,34 +51,107 @@ public class App extends Application {
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
-  public static Pane getHome() {return home; }
-  public static Pane getLogin() {return login;}
-  public static Pane getStart() { return start;}
-  public static Pane getPath() { return path;}
-  public static Pane getAdmin() { return admin;}
-  public static Pane getSecurity() { return security;}
-  public static Pane getRequest() {return request;}
-  public static Pane getMedicine() {return medicine;}
-  public static Scene getHomeScene() {return homeScene;}
-  public static Scene getLoginScene() {return loginScene;}
-  public static Scene getStartScene() { return startScene;}
-  public static Scene getPathScene() {return pathScene;}
-  public static Scene getAdminScene() {return adminScene;}
-  public static Scene getSecurityScene() {return securityScene;}
-  public static Scene getRequestScene() {return requestScene;}
-  public static Scene getMedicineScene() {return medicineScene;}
-  public static NodesDatabase getGraph() { return graph;}
-  public static int getNodeSize(){ return nodeSize;}
-  public static Popup getPopup() { return popup;}
-  public static Popup getSecurityPop() {return securityPop;}
-  public static Popup getRequestPop() {return requestPop;}
-  public static Popup getMedicinePop() {return medicinePop;}
+
+  public static Pane getHome() {
+    return home;
+  }
+
+  public static Pane getLogin() {
+    return login;
+  }
+
+  public static Pane getStart() {
+    return start;
+  }
+
+  public static Pane getPath() {
+    return path;
+  }
+
+  public static Pane getAdmin() {
+    return admin;
+  }
+
+  public static Pane getSecurity() {
+    return security;
+  }
+
+  public static Pane getRequest() {
+    return request;
+  }
+
+  public static Pane getMedicine() {
+    return medicine;
+  }
+
+  public static Scene getHomeScene() {
+    return homeScene;
+  }
+
+  public static Scene getLoginScene() {
+    return loginScene;
+  }
+
+  public static Scene getStartScene() {
+    return startScene;
+  }
+
+  public static Scene getPathScene() {
+    return pathScene;
+  }
+
+  public static Scene getAdminScene() {
+    return adminScene;
+  }
+
+  public static Scene getSecurityScene() {
+    return securityScene;
+  }
+
+  public static Scene getRequestScene() {
+    return requestScene;
+  }
+
+  public static Scene getMedicineScene() {
+    return medicineScene;
+  }
+
+  public static Scene getEditScene() {
+    return editScene;
+  }
+
+  public static Scene getExportScene() {
+    return exportScene;
+  }
+
+  public static NodesDatabase getGraph() {
+    return graph;
+  }
+
+  public static int getNodeSize() {
+    return nodeSize;
+  }
+
+  public static Popup getPopup() {
+    return popup;
+  }
+
+  public static Popup getSecurityPop() {
+    return securityPop;
+  }
+
+  public static Popup getRequestPop() {
+    return requestPop;
+  }
+
+  public static Popup getMedicinePop() {
+    return medicinePop;
+  }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
-
     try {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
@@ -82,7 +160,10 @@ public class App extends Application {
       FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
-      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader medicineLoader = new FXMLLoader(
+          getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
+      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -92,6 +173,9 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      export = exportLoader.load();
+      edit = editLoader.load();
+
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
@@ -100,8 +184,6 @@ public class App extends Application {
       RequestController requestController = requestLoader.getController();
       MedicineController medicineController = medicineLoader.getController();
 
-//      homeController.setAttributes(login, home, popup, securityPop);
-//      loginController.setAttributes(login, home, popup);
       pathfindController.setAttributes(path);
 
       //TODO: find a better way to do popups...
@@ -120,6 +202,7 @@ public class App extends Application {
       e.printStackTrace();
     }
   }
+
   protected static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
     path.getChildren().add(e);
   }

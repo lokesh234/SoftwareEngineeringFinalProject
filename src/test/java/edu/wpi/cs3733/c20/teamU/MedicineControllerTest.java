@@ -35,10 +35,12 @@ public class MedicineControllerTest extends ApplicationTest {
         clickOn("#first").write("Ted");
         clickOn("#drug").write("Tylenol");
         clickOn("#comments").write("I need this right now");
+        clickOn("#comboBox");
     }
     @Test
-    public void testLoginCanClick() {
-
+    public void testSubmitCanClick() {
+        //waiting on database
+//        clickOn("#submit");
     }
 
 }
