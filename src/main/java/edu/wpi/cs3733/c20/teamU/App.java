@@ -24,6 +24,7 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane adminRequest;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -54,6 +55,8 @@ public class App extends Application {
   public static Pane getSecurity() { return security;}
   public static Pane getRequest() {return request;}
   public static Pane getMedicine() {return medicine;}
+  public static Pane getAdminRequest() { return adminRequest;}
+
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
   public static Scene getStartScene() { return startScene;}
@@ -62,8 +65,11 @@ public class App extends Application {
   public static Scene getSecurityScene() {return securityScene;}
   public static Scene getRequestScene() {return requestScene;}
   public static Scene getMedicineScene() {return medicineScene;}
+
   public static NodesDatabase getGraph() { return graph;}
+
   public static int getNodeSize(){ return nodeSize;}
+
   public static Popup getPopup() { return popup;}
   public static Popup getSecurityPop() {return securityPop;}
   public static Popup getRequestPop() {return requestPop;}
@@ -83,6 +89,7 @@ public class App extends Application {
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -92,6 +99,7 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      adminRequest = adminRequestLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
