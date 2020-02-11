@@ -29,7 +29,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" text="Logout">
+                        <Button mnemonicParsing="false" text="Logout" onAction= "#backToAdmin">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font></Button>

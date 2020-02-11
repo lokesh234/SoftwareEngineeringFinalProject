@@ -27,13 +27,9 @@ public class editModeController {
    * Change scene when this is called...
    */
   public void adminScreen(ActionEvent event) throws IOException {
-    Parent editMode = FXMLLoader.load(getClass().getResource("/Admin_Node.fxml"));
-    Scene editModeScene = new Scene(editMode);
-
-    Stage scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-    scene.setScene(editModeScene);
-    scene.show();
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAdminNode());
+    App.getPopup().show(App.getPrimaryStage());
   }
 
   @FXML
