@@ -29,11 +29,11 @@ public class MedicineController {
         String userDrug = drug.getText();
         String userDelivery = comboBox.getValue().toString();
 
-        System.out.println(userDelivery);
+//        System.out.println(userDelivery);
         if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty()) {
             // will print out some text eventually, right now nothing
         } else {
-            // add into database
+            ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
         }
         closeMedicineForm();
     }
@@ -43,7 +43,7 @@ public class MedicineController {
     public void closeMedicineForm(){
         App.getHome().setOpacity(1);
         App.getHome().setDisable(false);
-        App.getMedicinePop().getContent().remove(0);
+        App.getMedicinePop().getContent().clear();
     }
 
     @FXML

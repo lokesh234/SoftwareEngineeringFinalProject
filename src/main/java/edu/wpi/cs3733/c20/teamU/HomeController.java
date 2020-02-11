@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -19,7 +21,6 @@ public class HomeController {
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getPopup().show(App.getPrimaryStage());
-
   }
 
   @FXML

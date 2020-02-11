@@ -76,17 +76,31 @@ public class ServiceDatabase {
 
 
 
-    public static boolean securitySRAdd(String reqID, String timeReq,String urgency, String type, String info){
-        String tableName = "SecuritySR";
+    //securitySRAdd: adds a row to ServiceRequests and to securitySR. does't take in any parameters because its implied / generated?
+    //ServiceDatabase.securitySRAdd(); Example
+    public static boolean securitySRAdd(){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String location = "Terminal 1"; //place holder for when terminal is given
+
+
+        String SSRTableName = "SecuritySR";
+        String SRTableName = "ServiceRequest";
         Connection conn = null;
         Statement stmt = null;
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "','" + timeReq + "', '" + urgency +"','" + type + "', '" + info + "')");
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, type, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + SSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + location + "')");
 
-            Database.CreateCSV(stmt, tableName, null);
+            rs.close();
+            Database.CreateCSV(stmt, SSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
             stmt.close();
             conn.close();
             return true;
@@ -97,18 +111,39 @@ public class ServiceDatabase {
         }
     }
 
+    //gets current date
+    public static String getCurrentDate(){
+        String timeReq;
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        Date dateobj = new Date();
+        System.out.println(df.format(dateobj));
+        timeReq = df.format(dateobj);
+        return timeReq;
+    }
 
-    public static boolean medicineSRAdd(String reqID, String timeReq, String patentFirstName, String patentLastName, String drugName, String frequency, String deliveryMethod, String comment){
-        String tableName = "MedicineSR";
+    //ServiceDatabase.medicineSRAdd("Marcus", "Chalmers", "Sadness", "Everyday", "IV", "sad boi hours"); Example
+    public static boolean medicineSRAdd(String patentFirstName, String patentLastName, String drugName, String frequency, String deliveryMethod, String comment){
+        int reqID;
+        String timeReq = getCurrentDate();
+
+
+        String MSRTableName = "MedicineSR";
+        String SRTableName = "ServiceRequest";
         Connection conn = null;
         Statement stmt = null;
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "','" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + drugName + "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, type, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + MSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + drugName + "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
 
-            Database.CreateCSV(stmt, tableName, null);
+            rs.close();
+            Database.CreateCSV(stmt, MSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
             stmt.close();
             conn.close();
             return true;
