@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.Popup;
@@ -27,9 +28,12 @@ public class PathfindController {
 
     private Parent root;
 
+    @FXML
+    private AnchorPane NodesPane;
+
     public void setAttributes(Parent root) {
         this.root = root;
-        this.root.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+        NodesPane.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
         this.drawNodes();
         this.updateStatus();
     }
@@ -175,4 +179,5 @@ public class PathfindController {
     private void backHome() {
         App.getPrimaryStage().setScene(App.getHomeScene());
     }
+    
 }
