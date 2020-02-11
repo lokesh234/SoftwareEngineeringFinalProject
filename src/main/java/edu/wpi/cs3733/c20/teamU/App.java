@@ -25,7 +25,7 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
-  private static Pane firePane;
+  private static Pane fire;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -48,7 +48,7 @@ public class App extends Application {
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
-  public static Pane getHome() {return home;}
+  public static Pane getHome() {return home; }
   public static Pane getLogin() {return login;}
   public static Pane getStart() { return start;}
   public static Pane getPath() { return path;}
@@ -56,7 +56,7 @@ public class App extends Application {
   public static Pane getSecurity() { return security;}
   public static Pane getRequest() {return request;}
   public static Pane getMedicine() {return medicine;}
-  public static Pane getFire() {return firePane;}
+  public static Pane getFire() {return fire;}
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
   public static Scene getStartScene() {return startScene;}
@@ -97,7 +97,7 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
-      firePane = fireLoader.load();
+      fire = fireLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
@@ -121,7 +121,7 @@ public class App extends Application {
       homeScene = new Scene(home);
       pathScene = new Scene(path);
       startScene = new Scene(start);
-      fireScene = new Scene(firePane);
+      fireScene = new Scene(fire);
 
       primaryStage.setScene(startScene);
       primaryStage.show();

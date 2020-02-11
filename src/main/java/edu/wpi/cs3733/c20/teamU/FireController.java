@@ -13,56 +13,15 @@ import java.io.IOException;
 public class FireController {
 
     @FXML
-    private void initialize() {
-        App.getHome().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getLogin().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getStart().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getPath().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getSecurity().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
+    private void initialize(){
+        fireEvent(e);
+    }
 
-        App.getAdmin().setOnKeyPressed(new EventHandler<KeyEvent>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if (event.getCode() == KeyCode.F) {
+    @FXML
+    private void fireEvent(KeyEvent e){
+           if(e.getCode() == KeyCode.F){
+                System.out.println("Pressed F");
                 App.getPrimaryStage().setScene(App.getFireScene());
+                }
             }
         }
-    });
-        App.getFire().setDisable(true);
-  }
-}
