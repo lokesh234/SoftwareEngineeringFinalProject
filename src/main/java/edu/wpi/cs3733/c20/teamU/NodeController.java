@@ -62,15 +62,13 @@ public class NodeController {
    * @param event
    * @throws IOException
    */
+  @FXML
   public void exportScreen(ActionEvent event) throws IOException {
-    Parent editMode = FXMLLoader.load(getClass().getResource("/Export_CSV.fxml"));
-    Scene editModeScene = new Scene(editMode);
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getExport());
+    App.getPopup().show(App.getPrimaryStage());
+  } //Admin edit nodes interface
 
-    Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-    scene.setScene(editModeScene);
-    scene.show();
-  }
 
   @FXML
   private void detectClick() {
