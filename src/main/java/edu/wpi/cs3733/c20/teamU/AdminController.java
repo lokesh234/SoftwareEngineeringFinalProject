@@ -24,7 +24,7 @@ public class AdminController {
     }
 
     @FXML
-    private void editPowers() {
+    private void editNodes() {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getAdminNode());
         App.getPopup().show(App.getPrimaryStage());
@@ -34,6 +34,13 @@ public class AdminController {
     private void export() {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getExport());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    private void editEdges() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminEdge());
         App.getPopup().show(App.getPrimaryStage());
     }
 

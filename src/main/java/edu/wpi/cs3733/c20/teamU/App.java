@@ -26,8 +26,10 @@ public class App extends Application {
   private static Pane medicine;
   private static Pane export;
   private static Pane edit;
+  private static Pane editEdge;
   private static Pane adminRequest;
   private static Pane adminNode;
+  private static Pane adminEdge;
 
 
   private static Scene homeScene;
@@ -99,6 +101,14 @@ public class App extends Application {
 
   public static Pane getMedicine() {
     return medicine;
+  }
+
+  public static Pane getEditEdge() {
+    return editEdge;
+  }
+
+  public static Pane getAdminEdge() {
+    return adminEdge;
   }
 
   public static Pane getAdminRequest() {
@@ -225,6 +235,8 @@ public class App extends Application {
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/"));
+      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/")); //TODO: add correct fxml
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -238,6 +250,8 @@ public class App extends Application {
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
       adminNode = adminNodeLoader.load();
+      editEdge = editEdgeLoader.load();
+      adminEdge = adminEdgeLoader.load();
 
       loginController = loginLoader.getController();
       homeController = homeLoader.getController();
