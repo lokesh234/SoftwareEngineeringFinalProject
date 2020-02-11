@@ -25,7 +25,7 @@ public class AdminController {
     @FXML
     private void editPowers() {
         App.getPopup().getContent().clear();
-        App.getPopup().getContent().add(App.getAdminEdit());
+        App.getPopup().getContent().add(App.getAdminNode());
         App.getPopup().show(App.getPrimaryStage());
     } //Admin edit nodes interface
 

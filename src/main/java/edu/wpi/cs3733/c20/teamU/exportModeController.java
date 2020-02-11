@@ -31,7 +31,7 @@ public class exportModeController {
    * Change to scene to Admin_Screen...
    */
   public void adminScreen(ActionEvent event) throws IOException {
-    Parent editMode = FXMLLoader.load(getClass().getResource("/Admin_Screen.fxml"));
+    Parent editMode = FXMLLoader.load(getClass().getResource("/Admin_Node.fxml"));
     Scene editModeScene = new Scene(editMode);
 
     scene = (Stage) ((Node)event.getSource()).getScene().getWindow();

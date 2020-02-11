@@ -3,7 +3,6 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,7 +11,6 @@ import javafx.scene.layout.Pane;
 
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-import sun.security.krb5.SCDynamicStoreConfig;
 
 public class App extends Application {
 
@@ -29,6 +27,7 @@ public class App extends Application {
   private static Pane adminRequest;
   private static Pane adminEdit;
   private static Pane adminExport;
+  private static Pane adminNode;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -40,6 +39,7 @@ public class App extends Application {
   private static Scene medicineScene;
   private static Scene editScene;
   private static Scene exportScene;
+  private static Scene adminNodeScene;
 
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
@@ -65,12 +65,14 @@ public class App extends Application {
   public static Pane getAdminRequest() { return adminRequest;}
   public static Pane getAdminEdit() { return adminEdit;}
   public static Pane getAdminExport() { return adminExport;}
+  public static Pane getAdminNode() { return adminNode;}
 
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
   public static Scene getStartScene() { return startScene;}
   public static Scene getPathScene() {return pathScene;}
   public static Scene getAdminScene() {return adminScene;}
+  public static Scene getAdminNodeScene() {return adminNodeScene;}
   public static Scene getSecurityScene() {return securityScene;}
   public static Scene getRequestScene() {return requestScene;}
   public static Scene getMedicineScene() {return medicineScene;}
@@ -93,6 +95,7 @@ public class App extends Application {
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
+      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/Admin_Node.fxml"));
       FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
@@ -112,6 +115,7 @@ public class App extends Application {
       adminRequest = adminRequestLoader.load();
       adminEdit = adminEditLoader.load();
       adminExport = adminExportLoader.load();
+      adminNode = adminNodeLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
@@ -119,6 +123,7 @@ public class App extends Application {
       SecurityController securityController = securityLoader.getController();
       RequestController requestController = requestLoader.getController();
       MedicineController medicineController = medicineLoader.getController();
+      NodeController nodeController = adminNodeLoader.getController();
 
       pathfindController.setAttributes(path);
 
