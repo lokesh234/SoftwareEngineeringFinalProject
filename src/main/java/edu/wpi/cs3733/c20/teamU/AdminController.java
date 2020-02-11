@@ -14,6 +14,7 @@ import javafx.stage.Popup;
 
 public class AdminController {
 
+
     @FXML
     private void requestPowers() {
         App.getPopup().getContent().clear();
@@ -23,6 +24,7 @@ public class AdminController {
 
     @FXML
     private void editPowers() {} //Admin edit nodes interface
+
 
     @FXML
     private void backHome() {

@@ -1,9 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Popup;;
 
 public class LoginController {
 
@@ -49,9 +47,6 @@ public class LoginController {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
-//      App.getPrimaryStage().setScene(App.getAdminScene());
-//      App.getHome().setOpacity(1);
-//      App.getHome().setDisable(false);
 
       // uncomment this to move onto admin screen....
       App.getPopup().getContent().add(App.getAdmin());

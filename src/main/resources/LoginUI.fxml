@@ -24,7 +24,7 @@
                     <children>
                         <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#exitPopup">
                             <graphic>
-                                <ImageView fx:id="loginCancel" fitHeight="42.0" fitWidth="40.0" pickOnBounds="true"
+                                <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true"
                                            preserveRatio="true">
                                     <image>
                                         <Image url="@png_files/Cancel.png"/>
