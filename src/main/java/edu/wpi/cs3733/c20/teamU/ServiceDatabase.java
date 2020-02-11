@@ -154,6 +154,9 @@ public class ServiceDatabase {
         }
     }
 
-
+    //Deletes service object from tables
+    public static boolean servDelete(String reqType, int reqID){
+        return false;
+    }
 
 }

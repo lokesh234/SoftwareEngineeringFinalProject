@@ -19,6 +19,7 @@ public class AdminController {
     private void requestPowers() {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getAdminRequest());
+        App.getAdminRequestController().update();
         App.getPopup().show(App.getPrimaryStage());
     }
 
@@ -32,8 +33,13 @@ public class AdminController {
     @FXML
     private void export() {
         App.getPopup().getContent().clear();
-        App.getPopup().getContent().add(App.getAdminExport());
+        App.getPopup().getContent().add(App.getExport());
         App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    private void detectClick() {
+
     }
 
     @FXML
