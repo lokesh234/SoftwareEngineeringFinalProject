@@ -25,6 +25,7 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane fire;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -34,6 +35,7 @@ public class App extends Application {
   private static Scene securityScene;
   private static Scene requestScene;
   private static Scene medicineScene;
+  private static Scene fireScene;
 
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 10; //Radius in pixels of clickable node object
@@ -54,6 +56,7 @@ public class App extends Application {
   public static Pane getSecurity() { return security;}
   public static Pane getRequest() {return request;}
   public static Pane getMedicine() {return medicine;}
+  public static Pane getFire() {return fire;}
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
   public static Scene getStartScene() {return startScene;}
@@ -62,6 +65,7 @@ public class App extends Application {
   public static Scene getSecurityScene() {return securityScene;}
   public static Scene getRequestScene() {return requestScene;}
   public static Scene getMedicineScene() {return medicineScene;}
+  public static Scene getFireScene() {return fireScene; }
   public static NodesDatabase getGraph() { return graph;}
   public static int getNodeSize(){ return nodeSize;}
   public static Popup getPopup() { return popup;}
@@ -83,6 +87,7 @@ public class App extends Application {
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/pathfindEmergency.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -92,6 +97,7 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      fire = fireLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
@@ -100,6 +106,7 @@ public class App extends Application {
       RequestController requestController = requestLoader.getController();
       MedicineContoller medicineContoller = medicineLoader.getController();
       startController startControl = startLoader.getController();
+      FireController fireController = fireLoader.getController();
 
 //      homeController.setAttributes(login, home, popup, securityPop);
 //      loginController.setAttributes(login, home, popup);
@@ -114,6 +121,7 @@ public class App extends Application {
       homeScene = new Scene(home);
       pathScene = new Scene(path);
       startScene = new Scene(start);
+      fireScene = new Scene(fire);
 
       primaryStage.setScene(startScene);
       primaryStage.show();
