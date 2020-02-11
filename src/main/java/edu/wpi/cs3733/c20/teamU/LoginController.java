@@ -42,7 +42,9 @@ public class LoginController {
   private void changeScene() {
     usernameField.setStyle("-fx-border-color: black");
     passwordField.setStyle("-fx-border-color: black");
-    App.getPopup().getContent().remove(0);
+//    usernameField.clear();
+//    passwordField.clear();
+    App.getPopup().getContent().clear();
     if (didFail) {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
