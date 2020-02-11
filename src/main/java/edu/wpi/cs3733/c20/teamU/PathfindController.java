@@ -13,14 +13,8 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 public class PathfindController {
     private enum State {
-        /*
-        NEUTRAL is the position when the program is not selecting a start or end node
-        START is the position when the program is selecting a start node
-        END is the position when the program is selecting an end node
-         */
         NEUTRAL, START, END;
     }
 

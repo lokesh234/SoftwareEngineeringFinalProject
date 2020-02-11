@@ -35,7 +35,7 @@ public class AdminRequestController {
     private void closeRequest() {
         if (serviceTable.getSelectionModel().getSelectedItem() != null){
             //ServiceDatabase.servDelete(args)
-            //System.out.println(serviceTable.getSelectionModel().getSelectedItem().getDate());
+            System.out.println(serviceTable.getSelectionModel().getSelectedItem().getDate());
         }
     }
 

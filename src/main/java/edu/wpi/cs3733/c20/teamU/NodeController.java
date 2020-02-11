@@ -46,7 +46,7 @@ public class NodeController {
    */
   public void editScreen(ActionEvent event) throws IOException {
       App.getPopup().getContent().clear();
-      App.getPopup().getContent().add(App.getAdminEdit());
+      App.getPopup().getContent().add(App.getEdit());
       App.getPopup().show(App.getPrimaryStage());
     } //Admin edit nodes interface
 
