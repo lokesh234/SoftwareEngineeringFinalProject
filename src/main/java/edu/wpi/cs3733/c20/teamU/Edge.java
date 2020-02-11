@@ -20,8 +20,10 @@ public class Edge {
 
     protected Node getStart() { return start;}
     protected Node getEnd() { return end;}
-    protected int getDist() { return dist;}
-    protected String getID() {return ID;}
+    public String getStartID() { return start.getID();}
+    public String getEndID() { return end.getID();}
+    public int getDist() { return dist;}
+    public String getID() {return ID;}
 
     protected Node getOther(Node n) {
         /*
