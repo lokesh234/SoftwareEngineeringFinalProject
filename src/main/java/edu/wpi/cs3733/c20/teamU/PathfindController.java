@@ -1,11 +1,13 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -50,6 +52,7 @@ public class PathfindController {
     private boolean displayingPath = false;
     private HashMap<Node, Circle> circles = new HashMap<>();
     private ArrayList<Line> lines = new ArrayList<>();
+    final ToggleGroup group = new ToggleGroup();
 
 
     @FXML
@@ -63,6 +66,7 @@ public class PathfindController {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
+                System.out.println("Start Click");
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 start = getClickedNode(x, y);
@@ -113,7 +117,7 @@ public class PathfindController {
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
                 c.setRadius(App.getNodeSize());
-                App.addToPath(c);
+                addToPath(c);
                 circles.put(n, c);
             }
         }
@@ -140,18 +144,22 @@ public class PathfindController {
     @FXML
     private void pathfind() {
         if (startReady && endReady) {
+            clearPath();
+            System.out.println("PathfindPress");
             path.clear();
             lines.clear();
             engine.starSingular(start, end, App.getGraph());
             path = engine.getLatestPath();
+            System.out.println(path.size());
             drawPath();
         }
         updateStatus();
     }
     @FXML
     private void clearPath() {
+        if (lines.size() == 0) return;
         for (Line l : lines) {
-            App.removeFromPath(l);
+            removeFromPath(l);
         }
         displayingPath = false;
         updateStatus();
@@ -170,9 +178,10 @@ public class PathfindController {
             l.setEndX(n2.getX());
             l.setEndY(n2.getY());
             lines.add(l);
-            App.addToPath(l);
+            addToPath(l);
         }
         displayingPath = true;
+        updateStatus();
     }
 
     @FXML

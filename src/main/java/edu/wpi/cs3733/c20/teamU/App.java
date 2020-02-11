@@ -36,7 +36,7 @@ public class App extends Application {
   private static Scene medicineScene;
 
   private static NodesDatabase graph = new NodesDatabase();
-  private static int nodeSize = 5; //Radius in pixels of clickable node object
+  private static int nodeSize = 10; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
   private static Popup securityPop = new Popup();

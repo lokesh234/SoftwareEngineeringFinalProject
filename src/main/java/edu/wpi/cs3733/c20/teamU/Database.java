@@ -584,7 +584,7 @@ public class Database {
                 String _nodeType = results.getString(6);
                 String _longName = results.getString(7);
                 String _shortName = results.getString(8);
-                Node node = new Node(_nodeID, (int) ( _xcoord/3.45) + 640, (int) (_ycoord/3.45) + 395, _floor, _building, _nodeType, _longName, _shortName);
+                Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
                 nHM.put(node.getID(), node);
                 //System.out.println("Created a node with ID " + node.getID());
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
