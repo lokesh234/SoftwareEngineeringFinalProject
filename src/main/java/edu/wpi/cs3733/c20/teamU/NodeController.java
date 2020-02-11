@@ -45,24 +45,10 @@ public class NodeController {
    * @throws IOException
    */
   public void editScreen(ActionEvent event) throws IOException {
-    try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
-      Parent editMode = (Parent) loader.load();
-//    Parent editMode = FXMLLoader.load(getClass().getResource("/Export_CSV.fxml"));
-      Scene editModeScene = new Scene(editMode);
-
-      editModeController editController = loader.getController();
-      editController.setNode(selectedNode);                                                         // get selected node
-      editController.selectedNodeVal();                                                             // write in node values
-//      if(isClicked) editController.changeText1(isClicked);
-      Stage scene = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-      scene.setScene(editModeScene);
-      scene.show();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+      App.getPopup().getContent().clear();
+      App.getPopup().getContent().add(App.getAdminEdit());
+      App.getPopup().show(App.getPrimaryStage());
+    } //Admin edit nodes interface
 
   /**
    * function to change scene to Export_CSV
