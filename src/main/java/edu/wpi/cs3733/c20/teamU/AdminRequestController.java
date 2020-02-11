@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.management.StandardEmitterMBean;
 import java.util.ArrayList;
 
 public class AdminRequestController {
@@ -32,7 +33,8 @@ public class AdminRequestController {
 
     private ObservableList<Service> arrayToOBList(){
         ObservableList<Service> services = FXCollections.observableArrayList();
-        ArrayList<Service> temp = Database.getServices();
+        ArrayList<Service> temp = new ArrayList<>();
+        Database.getServices(temp);
         if(temp != null) {
             services.addAll(temp);
         }

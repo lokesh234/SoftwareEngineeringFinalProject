@@ -23,8 +23,18 @@ public class AdminController {
     }
 
     @FXML
-    private void editPowers() {} //Admin edit nodes interface
+    private void editPowers() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminEdit());
+        App.getPopup().show(App.getPrimaryStage());
+    } //Admin edit nodes interface
 
+    @FXML
+    private void export() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminExport());
+        App.getPopup().show(App.getPrimaryStage());
+    }
 
     @FXML
     private void backHome() {

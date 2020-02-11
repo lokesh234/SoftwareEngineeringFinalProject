@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -25,6 +26,8 @@ public class App extends Application {
   private static Pane request;
   private static Pane medicine;
   private static Pane adminRequest;
+  private static Pane adminEdit;
+  private static Pane adminExport;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -56,6 +59,8 @@ public class App extends Application {
   public static Pane getRequest() {return request;}
   public static Pane getMedicine() {return medicine;}
   public static Pane getAdminRequest() { return adminRequest;}
+  public static Pane getAdminEdit() { return adminEdit;}
+  public static Pane getAdminExport() { return adminExport;}
 
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
@@ -90,6 +95,8 @@ public class App extends Application {
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader adminEditLoader = new FXMLLoader((getClass().getResource("/Edit_Node.fxml")));
+      FXMLLoader adminExportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -100,6 +107,8 @@ public class App extends Application {
       request = requestLoader.load();
       medicine = medicineLoader.load();
       adminRequest = adminRequestLoader.load();
+      adminEdit = adminEditLoader.load();
+      adminExport = adminExportLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
