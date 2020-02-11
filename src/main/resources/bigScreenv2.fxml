@@ -216,12 +216,12 @@
             </children>
         </VBox>
         <VBox alignment="CENTER" layoutX="187.0" layoutY="84.0" prefHeight="996.0" prefWidth="1727.0"
-              style="-fx-background-color: #D4D5D2;" AnchorPane.leftAnchor="187.0"
+              style="-fx-background-color: #c7dbff;" AnchorPane.leftAnchor="187.0"
               AnchorPane.topAnchor="84.0">
             <children>
-                <AnchorPane>
-                    <GesturePane>
-                        <AnchorPane>
+                <AnchorPane prefHeight="1080" prefWidth="1920">
+                    <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="Map">
                 <ImageView fitHeight="965.0" fitWidth="1585.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@png_files/Hospital.png"/>
