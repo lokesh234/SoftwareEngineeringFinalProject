@@ -11,14 +11,17 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 public class FireController {
+
     @FXML
-    private void fireEvent(){
-        App.getPrimaryStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, e ->{
-            KeyCombination keyF = KeyCombination.keyCombination("F");
-           if(keyF.match(e)){
+    private void initialize(){
+        fireEvent(e);
+    }
+
+    @FXML
+    private void fireEvent(KeyEvent e){
+           if(e.getCode() == KeyCode.F){
                 System.out.println("Pressed F");
                 App.getPrimaryStage().setScene(App.getFireScene());
                 }
-            });
+            }
         }
-    }
