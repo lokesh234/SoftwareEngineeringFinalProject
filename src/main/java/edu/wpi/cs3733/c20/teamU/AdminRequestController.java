@@ -12,16 +12,13 @@ import javax.management.StandardEmitterMBean;
 import java.util.ArrayList;
 
 public class AdminRequestController {
-    @FXML
-    private TableView<Service> serviceTable;
+    @FXML private TableView<Service> serviceTable;
     @FXML private TableColumn<Service, String> date;
     @FXML private TableColumn<Service, String> requestID;
     @FXML private TableColumn<Service, String> type;
     @FXML private TableColumn<Service, String> info;
     @FXML private Button close;
     @FXML private Button backButton;
-
-//    private Popup popup = App.getPopup();
 
     @FXML
     private void detectClick() {
