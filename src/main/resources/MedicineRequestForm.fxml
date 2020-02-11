@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.MedicineContoller" style="-fx-background-color: #ffffff">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.MedicineController" style="-fx-background-color: #ffffff">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -60,7 +60,7 @@
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Last Name" />
-                              <TextField>
+                              <TextField fx:id="last">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -70,7 +70,7 @@
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
                               <Label text="First Name" />
-                              <TextField prefHeight="25.0" prefWidth="226.0">
+                              <TextField prefHeight="25.0" prefWidth="226.0" fx:id="first">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -80,7 +80,7 @@
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
                               <Label text="Drug Name" />
-                              <TextField>
+                              <TextField fx:id="drug">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -90,7 +90,7 @@
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Label text="Frequency " />
-                              <TextField>
+                              <TextField fx:id="frequency">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -100,13 +100,13 @@
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                            <children>
                               <Label text="Delivery Type" />
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox prefWidth="150.0" fx:id="comboBox"/>
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label text="Comments" />
-                              <TextArea prefHeight="56.0" prefWidth="260.0">
+                              <TextArea prefHeight="56.0" prefWidth="260.0" fx:id="comments">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -120,7 +120,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #729EBF;" text="Submit" textFill="WHITE">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #729EBF;" text="Submit" textFill="WHITE" fx:id="submit" onAction="#getSubmission">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></Button>
