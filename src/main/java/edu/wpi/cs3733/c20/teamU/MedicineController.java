@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import java.awt.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 public class MedicineController {
 
@@ -17,25 +17,38 @@ public class MedicineController {
     @FXML private TextField frequency;
     @FXML private TextField first;
     @FXML private TextField drug;
-    @FXML private Button submit; // check if user wants to submit stuff
+    @FXML private Button closeMedicineScreen;
     @FXML private ComboBox comboBox = new ComboBox();
 
-
     @FXML
-    public void getSubmission() {
+    private void getSubmission() {
         String userLast = last.getText();
         String userComment = comments.getText();
         String userFreq = frequency.getText();
         String userFirst = first.getText();
         String userDrug = drug.getText();
-        String userDelivery = comboBox.getValue().toString();
+        String userDelivery;
+        if(comboBox.getValue() == null) userDelivery = "";
+        else userDelivery = comboBox.getValue().toString();
 
-//        System.out.println(userDelivery);
+        //TODO: specify which textfield to write in if empty
         if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty()) {
             // will print out some text eventually, right now nothing
+            last.setStyle("-fx-border-color: red");
+//            comments.setStyle("-fx-border-color: red");
+            frequency.setStyle("-fx-border-color: red");
+            drug.setStyle("-fx-border-color: red");
+            comboBox.setStyle("-fx-border-color: red");
+            first.setStyle("-fx-border-color: red");
         } else {
+            last.setStyle("-fx-border-color: clear");
+            comments.setStyle("-fx-border-color: clear");
+            frequency.setStyle("-fx-border-color: clear");
+            drug.setStyle("-fx-border-color: clear");
+            comboBox.setStyle("-fx-border-color: clear");
+            first.setStyle("-fx-border-color: clear");
             ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
-            closeMedicineForm();
+            closeMedicineScreen.fire();
         }
 //
 //      if (userFreq.isEmpty()) {
@@ -60,9 +73,8 @@ public class MedicineController {
 //      }
     }
 
-
     @FXML
-    public void closeMedicineForm(){
+    private void closeMedicineForm(){
         App.getHome().setOpacity(1);
         App.getHome().setDisable(false);
         App.getMedicinePop().getContent().clear();
@@ -70,6 +82,7 @@ public class MedicineController {
 
     @FXML
     public void initialize() {
+//        submit.setDisable(false);
         ObservableList<String> deliveryOptions =
                 FXCollections.observableArrayList(
                         "Oral",

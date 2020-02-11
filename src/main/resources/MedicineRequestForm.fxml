@@ -22,7 +22,7 @@
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #729EBF;" onAction="#closeMedicineForm">
+                  <Button fx:id="closeMedicineScreen" mnemonicParsing="false" style="-fx-background-color: #729EBF;" onAction="#closeMedicineForm">
                      <HBox.margin>
                         <Insets right="10.0" top="5.0" />
                      </HBox.margin>
