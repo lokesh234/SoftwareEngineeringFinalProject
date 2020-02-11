@@ -53,6 +53,8 @@ public class App extends Application {
   private static NodeController nodeController;
   private static editModeController editController;
 
+  private static Edge edgeEdit;
+
   private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
@@ -169,6 +171,15 @@ public class App extends Application {
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Node userNode) {
     nodeEdit = userNode;
   }
+
+  public static void setEdgeEdit(Edge userEdge) {
+    edgeEdit = userEdge;
+  }
+
+  public static Edge getEdgeEdit() {
+    return edgeEdit;
+  }
+
     public static NodesDatabase getGraph() {
     return graph;
   }
