@@ -1,10 +1,14 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.util.Duration;
 
+import javax.print.DocFlavor;
 import java.io.IOException;
 
 public class HomeController {
@@ -19,7 +23,6 @@ public class HomeController {
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getPopup().show(App.getPrimaryStage());
-
   }
 
   @FXML
@@ -37,8 +40,27 @@ public class HomeController {
 
   @FXML
   private void initialize() {
-
+//    Duration timeout = new Duration(6000);
+//    if(timeout.toSeconds() > 5){
+//      App.getPrimaryStage().setScene(App.getStartScene());
+//    }
   }
+
+
+  /*
+  TimerTask task = new TimerTask() {
+    @Override
+    public void run() {
+      openstartScene();
+    }
+  };
+
+  @FXML
+  private void openstartScene(){
+    App.getPrimaryStage().setScene(App.getStartScene());
+  }
+
+  */
 
   @FXML
   private void openRequestScene(ActionEvent e){
@@ -47,4 +69,6 @@ public class HomeController {
     App.getHome().setDisable(true);
     App.getRequestPop().show(App.getPrimaryStage());
   }
+
+
 }

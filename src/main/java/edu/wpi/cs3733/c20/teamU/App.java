@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
@@ -42,7 +43,6 @@ public class App extends Application {
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
 
-
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
@@ -56,7 +56,7 @@ public class App extends Application {
   public static Pane getMedicine() {return medicine;}
   public static Scene getHomeScene() {return homeScene;}
   public static Scene getLoginScene() {return loginScene;}
-  public static Scene getStartScene() { return startScene;}
+  public static Scene getStartScene() {return startScene;}
   public static Scene getPathScene() {return pathScene;}
   public static Scene getAdminScene() {return adminScene;}
   public static Scene getSecurityScene() {return securityScene;}
@@ -99,6 +99,7 @@ public class App extends Application {
       SecurityController securityController = securityLoader.getController();
       RequestController requestController = requestLoader.getController();
       MedicineContoller medicineContoller = medicineLoader.getController();
+      startController startControl = startLoader.getController();
 
 //      homeController.setAttributes(login, home, popup, securityPop);
 //      loginController.setAttributes(login, home, popup);
@@ -120,6 +121,7 @@ public class App extends Application {
       e.printStackTrace();
     }
   }
+
   protected static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
     path.getChildren().add(e);
   }
