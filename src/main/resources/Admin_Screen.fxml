@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.AdminController">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -65,11 +65,11 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
                            <children>
 <!--                              <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Upload" />-->
-                              <Button fx:id="edit" defaultButton="true" mnemonicParsing="false" onAction="#editScreen" text="Edit">
+                              <Button fx:id="edit" defaultButton="true" mnemonicParsing="false" onAction="#editPowers" text="Edit">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font></Button>
-                             <Button fx:id="export" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export">
+                             <Button fx:id="export" defaultButton="true" mnemonicParsing="false" onAction="#export" text="Export">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font></Button>

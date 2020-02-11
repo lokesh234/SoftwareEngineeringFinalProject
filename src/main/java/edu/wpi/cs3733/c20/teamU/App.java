@@ -41,6 +41,15 @@ public class App extends Application {
   private static Scene editScene;
   private static Scene exportScene;
 
+  private static LoginController loginController;
+  private static HomeController homeController;
+  private static PathfindController pathfindController;
+  private static SecurityController securityController;
+  private static RequestController requestController;
+  private static MedicineController medicineController;
+  private static AdminController adminController;
+  private static AdminRequestController adminRequestController;
+
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
@@ -138,7 +147,14 @@ public class App extends Application {
     return exportScene;
   }
 
-
+  public static LoginController getLoginController() { return loginController;}
+  public static HomeController getHomeController() { return homeController;}
+  public static PathfindController getPathfindController() { return pathfindController;}
+  public static SecurityController getSecurityController() { return securityController;}
+  public static RequestController getRequestController() {return requestController;}
+  public static MedicineController getMedicineController() { return medicineController;}
+  public static AdminController getAdminController() { return adminController;}
+  public static AdminRequestController getAdminRequestController() { return adminRequestController;}
 
     public static NodesDatabase getGraph() {
     return graph;
@@ -193,12 +209,14 @@ public class App extends Application {
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
 
-      LoginController loginController = loginLoader.getController();
-      HomeController homeController = homeLoader.getController();
-      PathfindController pathfindController = pathfindLoader.getController();
-      SecurityController securityController = securityLoader.getController();
-      RequestController requestController = requestLoader.getController();
-      MedicineController medicineController = medicineLoader.getController();
+      loginController = loginLoader.getController();
+      homeController = homeLoader.getController();
+      pathfindController = pathfindLoader.getController();
+      securityController = securityLoader.getController();
+      requestController = requestLoader.getController();
+      medicineController = medicineLoader.getController();
+      adminController = adminLoader.getController();
+      adminRequestController = adminRequestLoader.getController();
 
       pathfindController.setAttributes(path);
 

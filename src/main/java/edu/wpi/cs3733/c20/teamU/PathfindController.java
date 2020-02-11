@@ -82,7 +82,8 @@ public class PathfindController {
 
     private void updateStatus() {
         if (state == State.NEUTRAL) {
-            if (displayingPath) statusLabel.setText("Click 'Clear' to Remove This Path");
+            if (displayingPath && path.size() == 0) statusLabel.setText("No path found :(");
+            else if (displayingPath) statusLabel.setText("Click 'Clear' to Remove This Path");
             else if (!startReady) statusLabel.setText("Click 'Start' to Set Start Position");
             else if (startReady && !endReady) statusLabel.setText("Click 'End' to Set Destination");
             else if (startReady && endReady) statusLabel.setText("Click 'Go!' to Display Path");
@@ -105,6 +106,7 @@ public class PathfindController {
     private void drawNodes() {
         ArrayList<Node> nodes = App.getGraph().getNodes();
         for (Node n : nodes) {
+            if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (isDrawableNode(n.getID())) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
@@ -158,7 +160,11 @@ public class PathfindController {
     }
     private void drawPath() {
         clearPath();
-        if (path.size() == 0) return; //No path to draw
+        if (path.size() == 0){
+            displayingPath = true;
+            updateStatus();
+            return; //No path to draw
+        }
         System.out.println("a");
         for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
