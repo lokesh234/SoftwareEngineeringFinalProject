@@ -9,15 +9,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import net.kurobako.gesturefx.GesturePane?>
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.PathfindController">
    <children>
       <BorderPane layoutX="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <ImageView fitWidth="800.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="1920" prefWidth="1080">
+                    <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                            <AnchorPane>
+            <ImageView  preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@png_files/Final-Floor_4_map_1.png" />
+                  <Image url="@png_files/Hospital.png" />
                </image>
             </ImageView>
+                       </AnchorPane>
+                    </GesturePane>
+            </AnchorPane>
          </center>
          <left>
             <VBox alignment="CENTER" minWidth="150.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
