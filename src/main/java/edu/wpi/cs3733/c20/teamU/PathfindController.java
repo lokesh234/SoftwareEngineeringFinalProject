@@ -122,6 +122,7 @@ public class PathfindController {
             }
         }
     }
+
     private boolean isDrawableNode(String nID) { //Which nodes do we want to draw?
         return !nID.substring(0, 5).equals("UHALL"); //Everything except hallway nodes
         //return true; //Everything!
