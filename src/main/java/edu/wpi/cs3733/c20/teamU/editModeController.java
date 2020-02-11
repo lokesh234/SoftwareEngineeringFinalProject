@@ -39,8 +39,8 @@ public class editModeController {
   @FXML
   private void confirmChange() {
     overWrite();
-    HashMap<String, edu.wpi.cs3733.c20.teamU.Node> nodes = new HashMap<String, edu.wpi.cs3733.c20.teamU.Node>();
-    Database.getNodes(nodes);
+    HashMap<String, Node> graph = new HashMap<String, Node>();
+    Database.getNodes(graph);
     nodeController.refreshTable();
     cancel.fire();
   }
