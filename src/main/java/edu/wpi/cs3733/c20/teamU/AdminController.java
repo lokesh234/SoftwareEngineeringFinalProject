@@ -20,6 +20,7 @@ public class AdminController {
     @FXML private TableColumn<Service, String> requestType;
     @FXML private Button edit;
     @FXML private Button backButton;
+    private ArrayList<Service> services;
 
 //    private Popup popup = App.getPopup();
 
@@ -32,14 +33,18 @@ public class AdminController {
     }
 
     private ObservableList<Service> arrayToOBList(){
-        ObservableList<Service> services = FXCollections.observableArrayList();
-        ArrayList<Service> temp = Database.getServices();
+        ArrayList<Service> temp = new ArrayList<Service>();
+        ObservableList<Service> resultServices = FXCollections.observableArrayList();
+   //     Database.getMedServices(temp);
+        Database.getServices(temp);
+
         if(temp != null) {
             for (Service s : temp) {
-                services.add(s);
+                resultServices.add(s);
             }
         }
-        return services;
+
+        return resultServices;
     }
 
     @FXML
