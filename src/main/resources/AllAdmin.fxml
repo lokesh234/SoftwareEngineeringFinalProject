@@ -57,13 +57,13 @@
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#editPowers" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="editNodesButton" fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@png_files/Edit Graph.png" />
+                                                        <Image url="@png_files/Edit%20Nodes.png" />
                                                     </image></ImageView>
                                             </graphic>
                                         </Button>
-                                        <Label text="Edit Graph">
+                                        <Label text="Edit Nodes">
                                             <font>
                                                 <Font name="Segoe UI" size="20.0" />
                                             </font>
@@ -74,9 +74,9 @@
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#requestPowers" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="viewRequestButton" fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@png_files/Edit Requests.png" />
+                                                        <Image url="@png_files/Edit%20Requests.png" />
                                                     </image></ImageView>
                                             </graphic>
                                         </Button>
@@ -91,10 +91,13 @@
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="editEdgesButton" fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@png_files/Edit%20Edges.png" />
+                                       </image></ImageView>
                                             </graphic>
                                         </Button>
-                                        <Label>
+                                        <Label text="Edit Edges">
                                             <font>
                                                 <Font name="Segoe UI" size="20.0" />
                                             </font>
@@ -105,10 +108,13 @@
                                     <children>
                                         <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="exportButton" fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@png_files/Export.png" />
+                                       </image></ImageView>
                                             </graphic>
                                         </Button>
-                                        <Label>
+                                        <Label text="Export">
                                             <font>
                                                 <Font size="20.0" />
                                             </font>
