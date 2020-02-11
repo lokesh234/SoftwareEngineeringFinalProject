@@ -16,9 +16,9 @@ public class AdminRequestController {
     private TableView<Service> serviceTable;
     @FXML private TableColumn<Service, String> date;
     @FXML private TableColumn<Service, String> requestID;
-    @FXML private TableColumn<Service, String> name;
-    @FXML private TableColumn<Service, String> requestType;
-    @FXML private Button edit;
+    @FXML private TableColumn<Service, String> type;
+    @FXML private TableColumn<Service, String> info;
+    @FXML private Button close;
     @FXML private Button backButton;
 
 //    private Popup popup = App.getPopup();
@@ -29,6 +29,19 @@ public class AdminRequestController {
 //            edit.setDisable(false);
 //            selectedNode = serviceTable.getSelectionModel().getSelectedItem();
         }
+    }
+
+    @FXML
+    private void closeRequest() {
+        if (serviceTable.getSelectionModel().getSelectedItem() != null){
+            //ServiceDatabase.servDelete(args)
+            //System.out.println(serviceTable.getSelectionModel().getSelectedItem().getDate());
+        }
+    }
+
+    protected void update() {
+        serviceTable.setItems(arrayToOBList());
+        serviceTable.setVisible(true);
     }
 
     private ObservableList<Service> arrayToOBList(){
@@ -44,10 +57,14 @@ public class AdminRequestController {
     @FXML
     private void initialize() {
         if(!arrayToOBList().isEmpty()) {
-            date.setCellValueFactory(new PropertyValueFactory<>("Date"));
-            requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
-            name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            requestID.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+            date.setCellValueFactory(new PropertyValueFactory<>("requestID"));
+
+            type.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+            info.setCellValueFactory(new PropertyValueFactory<>("requestType"));
+
             serviceTable.setItems(arrayToOBList());
         }
     }
