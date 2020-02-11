@@ -39,6 +39,13 @@ public class NodeController {
 
   public NodeController() {}
 
+  @FXML
+  private void backToAdmin() {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAdmin());
+    App.getPopup().show(App.getPrimaryStage());
+  }
+
   /**
    * Changes scene to Edit_node...
    * @param event
