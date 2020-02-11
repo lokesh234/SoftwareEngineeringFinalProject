@@ -18,7 +18,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="View and Edit Nodes" textFill="WHITE">
+                        <Label text="View Nodes" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="24.0" />
                            </font></Label>
@@ -29,7 +29,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" text="Logout" onAction= "#backToAdmin">
+                        <Button mnemonicParsing="false" onAction="#backToAdmin" text="Logout">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font></Button>
@@ -47,34 +47,47 @@
                <children>
                   <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #729EBF;" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="20.0" spacing="10.0">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                            <children>
-                              <Label text="Browse for file" textFill="WHITE">
+                              <HBox prefHeight="20.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Browse for file" textFill="WHITE">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button mnemonicParsing="false" text="...">
+                                       <font>
+                                          <Font name="Segoe UI" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button fx:id="addButton" defaultButton="true" mnemonicParsing="false" onAction="#editScreen" text="Add">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
-                                 </font></Label>
-                              <Button mnemonicParsing="false" text="...">
-                                 <font>
-                                    <Font name="Segoe UI" size="14.0" />
-                                 </font></Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
-                           <children>
+                                 </font>
+                              </Button>
 <!--                              <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Upload" />-->
                               <Button fx:id="edit" defaultButton="true" mnemonicParsing="false" onAction="#editScreen" text="Edit">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font></Button>
+                              <Button fx:id="removeButton" defaultButton="true" mnemonicParsing="false" onAction="#editScreen" style="-fx-background-color: #db6e6e;" text="Remove">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Button>
                              <Button fx:id="export" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font></Button>
                            </children>
-                        </HBox>
+                        </VBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
 <!--                             <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export"/>-->
