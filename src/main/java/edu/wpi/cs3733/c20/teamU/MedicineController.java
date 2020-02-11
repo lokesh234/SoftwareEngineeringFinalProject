@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 
 public class MedicineController {
 
@@ -34,8 +35,29 @@ public class MedicineController {
             // will print out some text eventually, right now nothing
         } else {
             ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            closeMedicineForm();
         }
-        closeMedicineForm();
+//
+//      if (userFreq.isEmpty()) {
+//        frequency.setStyle("-fx-border-color: red");
+//        emptyText = true;
+//      }
+//      if (userLast.isEmpty()) {
+//        last.setStyle("-fx-border-color: red");
+//        emptyText = true;
+//      }
+//      if (userFirst.isEmpty()) {
+//        first.setStyle("-fx-border-color: red");
+//        emptyText = true;
+//      }
+//      if (userDrug.isEmpty()) {
+//        drug.setStyle("-fx-border-color: red");
+//        emptyText = true;
+//      }
+//      if (userDelivery.isEmpty()) {
+//        comboBox.setStyle("-fx-border-color: red");
+//        emptyText = true;
+//      }
     }
 
 

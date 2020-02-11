@@ -13,48 +13,33 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
 
 public class AdminController {
-    @FXML private TableView<Service> serviceTable;
-    @FXML private TableColumn<Service, String> date;
-    @FXML private TableColumn<Service, String> requestID;
-    @FXML private TableColumn<Service, String> name;
-    @FXML private TableColumn<Service, String> requestType;
-    @FXML private Button edit;
-    @FXML private Button backButton;
-    private ArrayList<Service> services;
 
-//    private Popup popup = App.getPopup();
 
     @FXML
-    private void detectClick() {
-        if(serviceTable.getSelectionModel().getSelectedItem() != null) {
-//            edit.setDisable(false);
-//            selectedNode = serviceTable.getSelectionModel().getSelectedItem();
-        }
-    }
-
-    private ObservableList<Service> arrayToOBList(){
-        ArrayList<Service> temp = new ArrayList<Service>();
-        ObservableList<Service> resultServices = FXCollections.observableArrayList();
-   //     Database.getMedServices(temp);
-        Database.getServices(temp);
-
-        if(temp != null) {
-            for (Service s : temp) {
-                resultServices.add(s);
-            }
-        }
-
-        return resultServices;
+    private void requestPowers() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminRequest());
+        App.getPopup().show(App.getPrimaryStage());
     }
 
     @FXML
-    private void initialize() {
-        if(!arrayToOBList().isEmpty()) {
-            date.setCellValueFactory(new PropertyValueFactory<>("Date"));
-            requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
-            name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-            requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
-            serviceTable.setItems(arrayToOBList());
-        }
+    private void editPowers() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminEdit());
+        App.getPopup().show(App.getPrimaryStage());
+    } //Admin edit nodes interface
+
+    @FXML
+    private void export() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminExport());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    private void backHome() {
+        App.getHome().setOpacity(1);
+        App.getHome().setDisable(false);
+        App.getPopup().getContent().remove(0);
     }
 }

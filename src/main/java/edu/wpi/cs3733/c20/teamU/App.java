@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -25,8 +26,9 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
-  private static Pane export;
-  private static Pane edit;
+  private static Pane adminRequest;
+  private static Pane adminEdit;
+  private static Pane adminExport;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -52,101 +54,35 @@ public class App extends Application {
     return primaryStage;
   }
 
-  public static Pane getHome() {
-    return home;
-  }
+  public static Pane getHome() {return home; }
+  public static Pane getLogin() {return login;}
+  public static Pane getStart() { return start;}
+  public static Pane getPath() { return path;}
+  public static Pane getAdmin() { return admin;}
+  public static Pane getSecurity() { return security;}
+  public static Pane getRequest() {return request;}
+  public static Pane getMedicine() {return medicine;}
+  public static Pane getAdminRequest() { return adminRequest;}
+  public static Pane getAdminEdit() { return adminEdit;}
+  public static Pane getAdminExport() { return adminExport;}
 
-  public static Pane getLogin() {
-    return login;
-  }
+  public static Scene getHomeScene() {return homeScene;}
+  public static Scene getLoginScene() {return loginScene;}
+  public static Scene getStartScene() { return startScene;}
+  public static Scene getPathScene() {return pathScene;}
+  public static Scene getAdminScene() {return adminScene;}
+  public static Scene getSecurityScene() {return securityScene;}
+  public static Scene getRequestScene() {return requestScene;}
+  public static Scene getMedicineScene() {return medicineScene;}
 
-  public static Pane getStart() {
-    return start;
-  }
+  public static NodesDatabase getGraph() { return graph;}
 
-  public static Pane getPath() {
-    return path;
-  }
+  public static int getNodeSize(){ return nodeSize;}
 
-  public static Pane getAdmin() {
-    return admin;
-  }
-
-  public static Pane getSecurity() {
-    return security;
-  }
-
-  public static Pane getRequest() {
-    return request;
-  }
-
-  public static Pane getMedicine() {
-    return medicine;
-  }
-
-  public static Scene getHomeScene() {
-    return homeScene;
-  }
-
-  public static Scene getLoginScene() {
-    return loginScene;
-  }
-
-  public static Scene getStartScene() {
-    return startScene;
-  }
-
-  public static Scene getPathScene() {
-    return pathScene;
-  }
-
-  public static Scene getAdminScene() {
-    return adminScene;
-  }
-
-  public static Scene getSecurityScene() {
-    return securityScene;
-  }
-
-  public static Scene getRequestScene() {
-    return requestScene;
-  }
-
-  public static Scene getMedicineScene() {
-    return medicineScene;
-  }
-
-  public static Scene getEditScene() {
-    return editScene;
-  }
-
-  public static Scene getExportScene() {
-    return exportScene;
-  }
-
-  public static NodesDatabase getGraph() {
-    return graph;
-  }
-
-  public static int getNodeSize() {
-    return nodeSize;
-  }
-
-  public static Popup getPopup() {
-    return popup;
-  }
-
-  public static Popup getSecurityPop() {
-    return securityPop;
-  }
-
-  public static Popup getRequestPop() {
-    return requestPop;
-  }
-
-  public static Popup getMedicinePop() {
-    return medicinePop;
-  }
+  public static Popup getPopup() { return popup;}
+  public static Popup getSecurityPop() {return securityPop;}
+  public static Popup getRequestPop() {return requestPop;}
+  public static Popup getMedicinePop() {return medicinePop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -156,14 +92,14 @@ public class App extends Application {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
       FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
-      FXMLLoader medicineLoader = new FXMLLoader(
-          getClass().getResource("/MedicineRequestForm.fxml"));
-      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
-      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
+      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader adminEditLoader = new FXMLLoader((getClass().getResource("/Edit_Node.fxml")));
+      FXMLLoader adminExportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -173,9 +109,9 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
-      export = exportLoader.load();
-      edit = editLoader.load();
-
+      adminRequest = adminRequestLoader.load();
+      adminEdit = adminEditLoader.load();
+      adminExport = adminExportLoader.load();
 
       LoginController loginController = loginLoader.getController();
       HomeController homeController = homeLoader.getController();
@@ -195,6 +131,7 @@ public class App extends Application {
       homeScene = new Scene(home);
       pathScene = new Scene(path);
       startScene = new Scene(start);
+      adminScene = new Scene(admin);
 
       primaryStage.setScene(startScene);
       primaryStage.show();
