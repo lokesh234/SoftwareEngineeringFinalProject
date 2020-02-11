@@ -14,9 +14,9 @@
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #416785;">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-background-color: #729EBF;" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="View and Edit Requests" textFill="WHITE">
                            <font>
@@ -30,9 +30,9 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" style="-fx-background-color: #729EBF;" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="backButton" mnemonicParsing="false" text="Back" onAction="#backToAdmin"/>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backToAdmin" text="Back" />
                      </children>
                      <padding>
                         <Insets right="10.0" />
@@ -45,7 +45,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #FFFFFF;" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #729EBF;" HBox.hgrow="ALWAYS">
                      <children>
 <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
 <!--                           <children>-->
@@ -59,7 +59,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
                            <children>
 <!--                              <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Upload" />-->
-                              <Button fx:id="close" defaultButton="true" mnemonicParsing="false" text="Close Request" onAction="#closeRequest"/>
+                              <Button fx:id="close" defaultButton="true" mnemonicParsing="false" onAction="#closeRequest" text="Close Request" />
                            </children>
                         </HBox>
 <!--                        <HBox prefHeight="100.0" prefWidth="200.0">-->
@@ -68,6 +68,9 @@
 <!--                           </children>-->
 <!--                        </HBox>-->
                      </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </VBox>
                   <TableView fx:id="serviceTable" onMouseClicked="#detectClick" HBox.hgrow="ALWAYS">
                     <columns>
@@ -79,7 +82,7 @@
                   </TableView>
                </children>
                <VBox.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
          </children>
