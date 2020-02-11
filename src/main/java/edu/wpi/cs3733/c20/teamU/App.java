@@ -78,7 +78,7 @@ public class App extends Application {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/Admin_Service.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
       FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
@@ -113,6 +113,7 @@ public class App extends Application {
       homeScene = new Scene(home);
       pathScene = new Scene(path);
       startScene = new Scene(start);
+      adminScene = new Scene(admin);
 
       primaryStage.setScene(startScene);
       primaryStage.show();

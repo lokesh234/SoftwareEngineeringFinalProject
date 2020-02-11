@@ -52,4 +52,13 @@ public class AdminController {
             serviceTable.setItems(arrayToOBList());
         }
     }
+
+    @FXML
+    private void requestPowers() {}
+
+    @FXML
+    private void editPowers() {}
+
+    @FXML
+    private void backHome() {}
 }
