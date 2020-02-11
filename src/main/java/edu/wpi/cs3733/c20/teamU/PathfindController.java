@@ -180,4 +180,10 @@ public class PathfindController {
         App.getPrimaryStage().setScene(App.getHomeScene());
     }
     
+    private void addToPath(javafx.scene.Node e) {
+        NodesPane.getChildren().add(e);
+    }
+    private void removeFromPath(javafx.scene.Node e) {
+        NodesPane.getChildren().remove(e);
+    }
 }
