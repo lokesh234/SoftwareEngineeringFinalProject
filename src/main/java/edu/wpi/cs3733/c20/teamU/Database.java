@@ -633,7 +633,7 @@ public class Database {
         }
     }
 
-    /*
+
     public static ArrayList<Service> getServices(){
         ArrayList<Service> finalResult = null;
         Connection connection = null;
@@ -689,7 +689,7 @@ public class Database {
         }
         return finalResult;
     }
-    */
+
 
     public static boolean checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
@@ -732,6 +732,7 @@ public class Database {
         return false;
     }
 
+    //prototype:vvv
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;
