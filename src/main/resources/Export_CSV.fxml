@@ -7,17 +7,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.exportModeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.teamname.exportModeController">
    <children>
-      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Choose location to export to CSV" />
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: #729EBF;" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label text="Choose location to export to CSV" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="location1" alignment="CENTER"/>
-                  <Button mnemonicParsing="false" text="..." onAction="#browse"/>
+                  <TextField fx:id="location1" alignment="CENTER">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font></TextField>
+                  <Button mnemonicParsing="false" onAction="#browse" text="...">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font></Button>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -25,17 +42,20 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="cancel" onAction="#adminScreen" mnemonicParsing="false" text="Cancel"/>
-                  <Button fx:id="save" onAction="#save" mnemonicParsing="false" text="Save"/>
+                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#adminScreen" text="Cancel">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font></Button>
+                  <Button fx:id="save" mnemonicParsing="false" onAction="#save" text="Save">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font></Button>
                </children>
                <VBox.margin>
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
          </children>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
       </VBox>
    </children>
 </AnchorPane>
