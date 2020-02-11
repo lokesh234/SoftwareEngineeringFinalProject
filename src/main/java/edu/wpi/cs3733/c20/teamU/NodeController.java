@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,11 +33,17 @@ public class NodeController {
   @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> longName;
   @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> shortName;
   Database graph;
-//  boolean isClicked = false;
-  edu.wpi.cs3733.c20.teamU.Node selectedNode;
+  editModeController toEdit;
 
   public NodeController() {}
 
+  public void refreshTable() {
+    nodeTable.refresh();
+  }
+
+  public void setAttributes(editModeController editor) {
+    toEdit = editor;
+  }
   @FXML
   private void backToAdmin() {
     App.getPopup().getContent().clear();
@@ -74,10 +79,11 @@ public class NodeController {
   private void detectClick() {
     if(nodeTable.getSelectionModel().getSelectedItem() != null) {
       edit.setDisable(false);
-      selectedNode = nodeTable.getSelectionModel().getSelectedItem();
-//      isClicked = true;
-//      System.out.println(selectedNode.getX());
+      App.setNodeEdit(nodeTable.getSelectionModel().getSelectedItem());
+      toEdit.selectedNodeVal();
     }
+//    else edit.setDisable(true);
+//    else nodeTable.getSelectionModel().clearSelection();
   }
 
   /**
@@ -97,7 +103,6 @@ public class NodeController {
       String key = (String) i.next();
       nodes.add(graph.get(key));
     }
-
     return nodes;
   }
 
@@ -108,8 +113,8 @@ public class NodeController {
   private void initialize() {
     edit.setDisable(true);
     NodeID.setCellValueFactory(new PropertyValueFactory<>("nodeID"));
-    xCoord.setCellValueFactory(new PropertyValueFactory<>("x"));
-    yCoord.setCellValueFactory(new PropertyValueFactory<>("y"));
+    xCoord.setCellValueFactory(new PropertyValueFactory<>("xCoord"));
+    yCoord.setCellValueFactory(new PropertyValueFactory<>("yCoord"));
     floor.setCellValueFactory(new PropertyValueFactory<>("Floor"));
     building.setCellValueFactory(new PropertyValueFactory<>("Building"));
     nodeType.setCellValueFactory(new PropertyValueFactory<>("NodeType"));

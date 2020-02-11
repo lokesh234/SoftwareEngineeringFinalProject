@@ -64,4 +64,6 @@ public class Node {
     public String getNodeType() {return this.nodeType;}
     public String getLongName() { return this.longName;}
     public String getShortName() { return this.shortName;}
+    public int getXCoord() {return this.x;}
+    public int getYCoord() {return this.y;}
 }

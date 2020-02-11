@@ -50,7 +50,10 @@ public class App extends Application {
   private static MedicineController medicineController;
   private static AdminController adminController;
   private static AdminRequestController adminRequestController;
+  private static NodeController nodeController;
+  private static editModeController editController;
 
+  private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
@@ -150,10 +153,8 @@ public class App extends Application {
   public static Scene getExportScene() {
     return exportScene;
   }
-    public static Scene getAdminNodeScene() {return adminNodeScene;}
-
-
-    public static LoginController getLoginController() { return loginController;}
+  public static Scene getAdminNodeScene() {return adminNodeScene;}
+  public static LoginController getLoginController() { return loginController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
   public static SecurityController getSecurityController() { return securityController;}
@@ -162,6 +163,12 @@ public class App extends Application {
   public static AdminController getAdminController() { return adminController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
 
+  public static edu.wpi.cs3733.c20.teamU.Node getNodeEdit() {
+    return nodeEdit;
+  }
+  public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Node userNode) {
+    nodeEdit = userNode;
+  }
     public static NodesDatabase getGraph() {
     return graph;
   }
@@ -185,6 +192,10 @@ public class App extends Application {
   public static Popup getMedicinePop() {
     return medicinePop;
   }
+
+//  public static void reset() {
+//    nodeController.refreshTable();
+//  }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -225,9 +236,12 @@ public class App extends Application {
       medicineController = medicineLoader.getController();
       adminController = adminLoader.getController();
       adminRequestController = adminRequestLoader.getController();
-      NodeController nodeController = adminNodeLoader.getController();
+      nodeController = adminNodeLoader.getController();
+      editController = editLoader.getController();
 
       pathfindController.setAttributes(path);
+      nodeController.setAttributes(editController);
+      editController.setAttributes(nodeController);
 
       //TODO: find a better way to do popups...
       popup.getContent().addAll();
