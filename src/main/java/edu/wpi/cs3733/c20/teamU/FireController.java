@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.sun.javafx.css.StyleCache;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -11,7 +12,10 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 public class FireController {
-
+    @FXML
+    private void checkout() {
+        App.getPrimaryStage().setScene(App.getHomeScene());
+    }
     @FXML
     private void initialize(){
         App.getHome().setOnKeyPressed(new EventHandler<KeyEvent>() {
