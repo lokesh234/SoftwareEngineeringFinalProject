@@ -33,7 +33,7 @@ public class MedicineController {
         if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty()) {
             // will print out some text eventually, right now nothing
         } else {
-            // add into database
+            ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
         }
         closeMedicineForm();
     }
