@@ -19,17 +19,11 @@ import org.testfx.framework.junit5.ApplicationTest;
 public class RRControllerTest extends ApplicationTest {
 
   public void start(Stage stage) throws IOException {
-    Parent home = FXMLLoader.load(getClass().getResource("/bigScreenv2.fxml"));
     FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
     Pane sceneRoot = RRLoader.load();
     RRController rrController = RRLoader.getController();
-
-    Popup popup = new Popup();
-    popup.getContent().add(sceneRoot);
-    Scene scene1 = new Scene(home);
-    stage.setScene(scene1);
+    Scene scene = new Scene(sceneRoot);
     stage.show();
-    popup.show(stage);
   }
 
   @Test
