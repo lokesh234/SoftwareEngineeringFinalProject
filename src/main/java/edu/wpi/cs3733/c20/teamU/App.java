@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -336,6 +337,7 @@ public class App extends Application {
       adminNodeScene = new Scene(adminNode);
       addNodeScene = new Scene(addNode);
       deleteNodeScene = new Scene(deleteNode);
+
 
 
       primaryStage.setScene(startScene);
