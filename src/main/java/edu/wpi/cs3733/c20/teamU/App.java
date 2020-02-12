@@ -28,8 +28,11 @@ public class App extends Application {
   private static Pane fire;
   private static Pane export;
   private static Pane edit;
+  private static Pane editEdge;
   private static Pane adminRequest;
   private static Pane adminNode;
+  private static Pane adminEdge;
+
   private static Pane addNode;
   private static Pane resolveRequest;
 
@@ -58,6 +61,10 @@ public class App extends Application {
   private static AdminRequestController adminRequestController;
   private static NodeController nodeController;
   private static editModeController editController;
+  private static EdgeController viewEdgeController;
+  private static EdgeEditController editEdgeController;
+
+  private static Edge edgeEdit;
   private static RRController rrController;
   private static FireController fireController;
   private static AddNodeController addNodeController;
@@ -110,6 +117,14 @@ public class App extends Application {
 
   public static Pane getMedicine() {
     return medicine;
+  }
+
+  public static Pane getEditEdge() {
+    return editEdge;
+  }
+
+  public static Pane getAdminEdge() {
+    return adminEdge;
   }
 
   public static Pane getAdminRequest() {
@@ -201,6 +216,14 @@ public class App extends Application {
     nodeEdit = userNode;
   }
 
+  public static void setEdgeEdit(Edge userEdge) {
+    edgeEdit = userEdge;
+  }
+
+  public static Edge getEdgeEdit() {
+    return edgeEdit;
+  }
+
   public static void setServiceEdit(edu.wpi.cs3733.c20.teamU.Service serviceSel) {
     service = serviceSel;
   }
@@ -262,6 +285,8 @@ public class App extends Application {
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/Add_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/Edit_Edge.fxml"));
+      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
 
 
@@ -290,6 +315,8 @@ public class App extends Application {
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
       adminNode = adminNodeLoader.load();
+      editEdge = editEdgeLoader.load();
+      adminEdge = adminEdgeLoader.load();
       addNode = addNodeLoader.load();
       resolveRequest = RRLoader.load();
 
@@ -303,6 +330,8 @@ public class App extends Application {
       adminRequestController = adminRequestLoader.getController();
       nodeController = adminNodeLoader.getController();
       editController = editLoader.getController();
+      editEdgeController = editEdgeLoader.getController();
+      viewEdgeController = adminEdgeLoader.getController();
       addNodeController = addNodeLoader.getController();
       rrController = RRLoader.getController();
       fireController = fireLoader.getController();
@@ -311,6 +340,7 @@ public class App extends Application {
       fireController.setAttributes(fire);
       nodeController.setAttributes(editController);
       editController.setAttributes(nodeController);
+      viewEdgeController.setAttributes(editEdgeController);
       rrController.setAttributes(adminRequestController);
       adminRequestController.setAttributes(rrController);
       addNodeController.setAttributes(nodeController);

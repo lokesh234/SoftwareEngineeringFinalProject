@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ServiceDatabase {
@@ -201,7 +202,7 @@ public class ServiceDatabase {
     String SRTable = "ServiceRequest";
     String SFTable = "ServiceFinished";
     String curDate = getCurrentDate();
-    String info;
+    String info = "";
 
     Connection conn = null;
     Statement stmt = null;
@@ -209,10 +210,15 @@ public class ServiceDatabase {
       conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
       stmt = conn.createStatement();
 
-      ResultSet results = stmt.executeQuery("SELECT  * FROM " + MTable + " WHERE reqID = " + reqID);
-      results.next();
-      info = results.getString(3) + " " + results.getString(4) + " needed: " + results.getString(5);
-      results.close();
+      ArrayList<Service> services = new ArrayList<>();
+      Database.getServices(services);
+      for (Service s : services) {
+          if (Integer.parseInt(s.getDate()) == reqID) {
+              info = s.getName() + " needed: " + s.getRequestType();
+              break;
+          }
+      }
+
 
       // delete from table SecuritySR first (needs to be before servicereuest)
       stmt.executeUpdate("DELETE FROM " + MTable + " WHERE reqID = " + reqID);

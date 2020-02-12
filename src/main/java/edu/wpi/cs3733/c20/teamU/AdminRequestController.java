@@ -36,6 +36,7 @@ public class AdminRequestController {
     }
   }
 
+
   @FXML
   private void closeRequest() {
     App.getPopup().getContent().clear();

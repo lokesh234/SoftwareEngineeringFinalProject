@@ -317,7 +317,7 @@ public class Database {
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
-                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
+                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -813,6 +813,29 @@ public class Database {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             String sql1 = "UPDATE " + tableName + " SET xcoord = " + xcoordN + ", ycoord = " + ycoordN + ", floor = " + floorN + ", building = '" + buildingN + "', nodeType = '" + nodeTypeN + "', longName = '" + longNameN + "', shortName = '" + shortNameN + "' WHERE nodeID = '" + nodeIDN + "'";
+
+            int result = stmt.executeUpdate(sql1);
+            System.out.println(result);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean editEdge(String edgeIDN, String startNodeN, String endNodeN ) {
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "MapEdgesU";
+
+        //prints out the whole table
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "UPDATE "  + tableName + " SET edgeID = " + edgeIDN + ", startNode = " + startNodeN + ", endNode = " + endNodeN + "' WHERE edgeID = '" + edgeIDN + "'";
 
             int result = stmt.executeUpdate(sql1);
             System.out.println(result);

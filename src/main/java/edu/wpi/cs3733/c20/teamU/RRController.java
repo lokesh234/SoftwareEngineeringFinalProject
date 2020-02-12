@@ -53,7 +53,7 @@ public class RRController {
 //        System.out.println(name);
         switch (name) {
             case "MEDIC":
-                ServiceDatabase.medicineSRDel(Integer.parseInt(date), userName);
+                if (!ServiceDatabase.medicineSRDel(Integer.parseInt(date), userName)) System.out.println("oh no");
                 break;
             case "SECUR":
                 ServiceDatabase.securitySRDel(Integer.parseInt(date), userName);
