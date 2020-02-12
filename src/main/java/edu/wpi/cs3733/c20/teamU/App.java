@@ -338,8 +338,6 @@ public class App extends Application {
       addNodeScene = new Scene(addNode);
       deleteNodeScene = new Scene(deleteNode);
 
-
-
       primaryStage.setScene(startScene);
       primaryStage.show();
     } catch (IOException e) {
