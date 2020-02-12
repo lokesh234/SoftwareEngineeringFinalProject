@@ -24,11 +24,14 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane fire;
   private static Pane export;
   private static Pane edit;
   private static Pane adminRequest;
   private static Pane adminNode;
-
+  private static Pane addNode;
+  private static Pane deleteNode;
+  private static Pane resolveRequest;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -38,9 +41,13 @@ public class App extends Application {
   private static Scene securityScene;
   private static Scene requestScene;
   private static Scene medicineScene;
+  private static Scene fireScene;
   private static Scene editScene;
   private static Scene exportScene;
   private static Scene adminNodeScene;
+  private static Scene addNodeScene;
+  private static Scene deleteNodeScene;
+  private static Scene resolveRequestScene;
 
   private static LoginController loginController;
   private static HomeController homeController;
@@ -52,20 +59,29 @@ public class App extends Application {
   private static AdminRequestController adminRequestController;
   private static NodeController nodeController;
   private static editModeController editController;
+  private static RRController rrController;
+  private static FireController fireController;
+  private static AddNodeController addNodeController;
+  private static DeleteNodeController deleteNodeController;
 
   private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
+  private static edu.wpi.cs3733.c20.teamU.Node nodeAdd;
+  private static edu.wpi.cs3733.c20.teamU.Node nodeDelete;
+  private static edu.wpi.cs3733.c20.teamU.Service service;
+  private static String user;
   private static NodesDatabase graph = new NodesDatabase();
-  private static int nodeSize = 5; //Radius in pixels of clickable node object
+  private static int nodeSize = 10; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
   private static Popup securityPop = new Popup();
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
 
-
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
+
+  public static Pane getResolveRequest() {return resolveRequest;}
 
   public static Pane getHome() {
     return home;
@@ -110,8 +126,14 @@ public class App extends Application {
   public static Pane getEdit() {
       return edit;
   }
+  public static Pane getAddNode() { return addNode; }
+  public static Pane getDeleteNode() { return deleteNode; }
 
     public static Pane getAdminNode() { return adminNode;}
+
+    public static Pane getFire(){
+      return fire;
+    }
 
 
     public static Scene getHomeScene() {
@@ -153,7 +175,17 @@ public class App extends Application {
   public static Scene getExportScene() {
     return exportScene;
   }
+  public static Scene getaddNodeScene() { return addNodeScene; }
+  public static Scene getdeleteNodeScene() { return deleteNodeScene; }
+
+  public static Scene getFireScene(){
+      return fireScene;
+  }
+
   public static Scene getAdminNodeScene() {return adminNodeScene;}
+
+  public static Scene getResolveRequestScene() {return resolveRequestScene;}
+
   public static LoginController getLoginController() { return loginController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
@@ -161,13 +193,34 @@ public class App extends Application {
   public static RequestController getRequestController() {return requestController;}
   public static MedicineController getMedicineController() { return medicineController;}
   public static AdminController getAdminController() { return adminController;}
+  public static AddNodeController getAddNodeController() { return addNodeController;}
+  public static DeleteNodeController getDeleteNodeController() { return deleteNodeController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
+  public static FireController getFireController(){return fireController;}
 
   public static edu.wpi.cs3733.c20.teamU.Node getNodeEdit() {
     return nodeEdit;
   }
+  public static edu.wpi.cs3733.c20.teamU.Node getNodeAdd() { return nodeAdd; }
+  public static edu.wpi.cs3733.c20.teamU.Node getNodeDelete() { return nodeDelete; }
+
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Node userNode) {
     nodeEdit = userNode;
+  }
+
+  public static void setServiceEdit(edu.wpi.cs3733.c20.teamU.Service serviceSel) {
+    service = serviceSel;
+  }
+  public static edu.wpi.cs3733.c20.teamU.Service getService() {
+    return service;
+  }
+
+  public static void setUser(String user1) {
+    user = user1;
+  }
+
+  public static String getUser() {
+    return user;
   }
     public static NodesDatabase getGraph() {
     return graph;
@@ -211,9 +264,13 @@ public class App extends Application {
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/pathfindEmergency.fxml"));
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
+      FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/Add_Node.fxml"));
+      FXMLLoader deleteNodeLoader = new FXMLLoader(getClass().getResource("/Delete_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -223,10 +280,26 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      fire = fireLoader.load();
+
+      /*
+      LoginController loginController = loginLoader.getController();
+      HomeController homeController = homeLoader.getController();
+      PathfindController pathfindController = pathfindLoader.getController();
+      SecurityController securityController = securityLoader.getController();
+      RequestController requestController = requestLoader.getController();
+      MedicineContoller medicineContoller = medicineLoader.getController();
+      startController startControl = startLoader.getController();
+      FireController fireController = fireLoader.getController();
+       */
+
       export = exportLoader.load();
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
       adminNode = adminNodeLoader.load();
+      addNode = addNodeLoader.load();
+      deleteNode = deleteNodeLoader.load();
+      resolveRequest = RRLoader.load();
 
       loginController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -238,12 +311,18 @@ public class App extends Application {
       adminRequestController = adminRequestLoader.getController();
       nodeController = adminNodeLoader.getController();
       editController = editLoader.getController();
+      addNodeController = addNodeLoader.getController();
+      deleteNodeController = deleteNodeLoader.getController();
+      rrController = RRLoader.getController();
+      fireController = fireLoader.getController();
 
       pathfindController.setAttributes(path);
+      fireController.setAttributes(fire);
       nodeController.setAttributes(editController);
       editController.setAttributes(nodeController);
+      rrController.setAttributes(adminRequestController);
+      adminRequestController.setAttributes(rrController);
 
-      //TODO: find a better way to do popups...
       popup.getContent().addAll();
       securityPop.getContent().addAll();
       requestPop.getContent().addAll();
@@ -252,8 +331,12 @@ public class App extends Application {
       homeScene = new Scene(home);
       pathScene = new Scene(path);
       startScene = new Scene(start);
+      fireScene = new Scene(fire);
       adminScene = new Scene(admin);
       adminNodeScene = new Scene(adminNode);
+      addNodeScene = new Scene(addNode);
+      deleteNodeScene = new Scene(deleteNode);
+
 
       primaryStage.setScene(startScene);
       primaryStage.show();

@@ -32,7 +32,7 @@ public class MedicineController {
         else userDelivery = comboBox.getValue().toString();
 
         //TODO: specify which textfield to write in if empty
-        if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty()) {
+        if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
             // will print out some text eventually, right now nothing
             last.setStyle("-fx-border-color: red");
 //            comments.setStyle("-fx-border-color: red");
@@ -48,6 +48,7 @@ public class MedicineController {
             comboBox.setStyle("-fx-border-color: clear");
             first.setStyle("-fx-border-color: clear");
             ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            clearField();
             closeMedicineScreen.fire();
         }
 //
@@ -73,6 +74,14 @@ public class MedicineController {
 //      }
     }
 
+    public void clearField() {
+        last.clear();
+        comments.clear();
+        frequency.clear();
+        first.clear();
+        drug.clear();
+        comboBox.getSelectionModel().clearSelection();
+    }
     @FXML
     private void closeMedicineForm(){
         App.getHome().setOpacity(1);

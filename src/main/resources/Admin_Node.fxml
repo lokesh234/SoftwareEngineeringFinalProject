@@ -66,7 +66,7 @@
                                     <Insets />
                                  </VBox.margin>
                               </HBox>
-                              <Button fx:id="addButton" defaultButton="true" mnemonicParsing="false" onAction="#editScreen" text="Add">
+                              <Button fx:id="addButton" defaultButton="true" mnemonicParsing="false" onAction="#addNodeScreen" text="Add">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -76,7 +76,7 @@
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font></Button>
-                              <Button fx:id="removeButton" defaultButton="true" mnemonicParsing="false" onAction="#editScreen" style="-fx-background-color: #db6e6e;" text="Remove">
+                              <Button fx:id="removeButton" defaultButton="true" mnemonicParsing="false" onAction="#deleteNodeScreen" style="-fx-background-color: #db6e6e;" text="Remove">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
