@@ -59,6 +59,7 @@ public class App extends Application {
 
   private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Service service;
+  private static String user;
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
@@ -186,6 +187,14 @@ public class App extends Application {
   }
   public static edu.wpi.cs3733.c20.teamU.Service getService() {
     return service;
+  }
+
+  public static void setUser(String user1) {
+    user = user1;
+  }
+
+  public static String getUser() {
+    return user;
   }
     public static NodesDatabase getGraph() {
     return graph;

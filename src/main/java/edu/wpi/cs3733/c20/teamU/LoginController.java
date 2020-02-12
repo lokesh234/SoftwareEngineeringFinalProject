@@ -42,18 +42,18 @@ public class LoginController {
   private void changeScene() {
     usernameField.setStyle("-fx-border-color: black");
     passwordField.setStyle("-fx-border-color: black");
-    usernameField.clear();
-    passwordField.clear();
     App.getPopup().getContent().clear();
     if (didFail) {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
-
+      App.setUser(usernameField.getText());
       // uncomment this to move onto admin screen....
       App.getPopup().getContent().add(App.getAdmin());
       App.getPopup().show(App.getPrimaryStage());
     }
+    usernameField.clear();
+    passwordField.clear();
   }
 
   @FXML

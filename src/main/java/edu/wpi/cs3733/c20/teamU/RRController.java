@@ -4,9 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+import static com.oracle.jrockit.jfr.ContentType.Timestamp;
+
 public class RRController {
     @FXML private Button resolve;
     @FXML private Button cancel;
+    @FXML private Button back;
     @FXML private Label field1;
     @FXML private Label field2;
     @FXML private Label field3;
@@ -22,6 +28,7 @@ public class RRController {
     public RRController() {}
 
     public void setService() {
+        System.out.println(App.getUser());
         service = App.getService();
         field1.setText(service.getDate());
         field2.setText(service.getName());
@@ -29,6 +36,12 @@ public class RRController {
         field4.setText(service.getRequestType());
     }
 
+    @FXML
+    private void resolveRequest() {
+//        Date time = new Date();
+//        ServiceDatabase.serviceFinishedAdd(new Timestamp(time.getTime()).toString(), service.getRequestType(), App.getUser(), service.getRequestID());
+        back.fire();
+    }
 
     @FXML
     private void returnToResolve() {
@@ -40,8 +53,11 @@ public class RRController {
     @FXML
     private void returnToHome() {
         App.getPopup().getContent().clear();
-        App.getPopup().getContent().add(App.getHome());
-        App.getPopup().show(App.getPrimaryStage());
+//        App.getPopup().getContent().add(App.getHome());
+//        App.getPopup().show(App.getPrimaryStage());
+        App.getPrimaryStage().setScene(App.getHomeScene());
+        App.getHome().setDisable(false);
+        App.getHome().setOpacity(1);
     }
 
 
