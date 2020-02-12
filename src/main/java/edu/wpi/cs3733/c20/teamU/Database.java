@@ -70,6 +70,11 @@ public class Database {
         }
     }
 
+    /**
+     * @param csvName
+     * TODO：finish commenting
+     * @return
+     */
     private static boolean getFileDir(String csvName){
         String directoryName = "DatabaseBackup";
 
@@ -104,6 +109,12 @@ public class Database {
         return null;
     }
 
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void dropTable(Statement stmt, String tableName) {
         try{
             String sqldel = "DROP TABLE " + tableName;
@@ -113,6 +124,13 @@ public class Database {
 
         }
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createNodeTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (nodeID VARCHAR(10), xcoord INTEGER, ycoord INTEGER, floor INTEGER, building VARCHAR(20), nodeType VARCHAR(4), longName VARCHAR(80), shortName VARCHAR(30), teamAssigned VARCHAR(6), PRIMARY KEY (nodeID), " +
@@ -166,6 +184,13 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createEdgesTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (edgeID VARCHAR(21), startNode VARCHAR(10) REFERENCES MapNodesU (nodeID), endNode VARCHAR(10) REFERENCES MapNodesU (nodeID), PRIMARY KEY (edgeID))";
@@ -207,6 +232,13 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
@@ -220,6 +252,13 @@ public class Database {
             return;
         }
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void populateServiceRequestTable(Statement stmt, String tableName){
         //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
         //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceRequest.csv");
@@ -272,6 +311,13 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
@@ -314,6 +360,13 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
@@ -328,6 +381,13 @@ public class Database {
 
         }
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createSecuritySRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, location VARCHAR(20))";
@@ -342,6 +402,14 @@ public class Database {
 
         }
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     * @param Medic
+     */
     private static void populateMedicineSR(Statement stmt, String tableName, ArrayList<Integer> Medic){
         String line = "";
         String csvSplit = ",";
@@ -379,6 +447,14 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     * @param Secur
+     */
     private static void populateSecuritySR(Statement stmt, String tableName, ArrayList<Integer> Secur){
         //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
         //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
@@ -411,6 +487,13 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
+
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), PRIMARY KEY (username))";
@@ -452,12 +535,18 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
-    //input currently running statment and table name to update CSV in DatabaseBackup
+    /**
+     * Generate a csv file in a given path from the table
+     * @param stmt statement
+     * @param tableName the table to generate csv from
+     * @param path the path to store the csv (if null, store in /DatabaseBackup)
+     * @return true if it successfully generates the help
+     */
     public static boolean CreateCSV(Statement stmt, String tableName, String path){
         //creates csv file that contains data with given query
         try {
             String CSVPath;
-            //PrintWriter pw = new PrintWriter(new File("src\\main\\java\\CreateCSV.csv"));
+            //determine the destination path
             if(path == null) {
                 String APath = System.getProperty("user.dir");
                 CSVPath = APath + "/DatabaseBackup/" + tableName + ".csv";
@@ -466,7 +555,7 @@ public class Database {
                 CSVPath = path;
             }
 
-      System.out.println(CSVPath);
+            System.out.println(CSVPath);
             PrintWriter pw = new PrintWriter(new File(CSVPath));
             StringBuilder sb = new StringBuilder();
 
@@ -487,7 +576,6 @@ public class Database {
 
                 while (results.next()) {
                     //add data to each column
-
                     for (int i = 1; i <= columns; i++) {
                         if (i < columns) {
                             sb.append(results.getString(i) + ",");
@@ -516,6 +604,13 @@ public class Database {
         }
     }
 
+    /**
+     *
+     * TODO：finish commenting
+     * @param stmt
+     * @param tableName
+     * @return
+     */
     public static boolean printTable(Statement stmt, String tableName) {
         try {
             String sql1 = "SELECT * FROM " + tableName;
@@ -546,6 +641,11 @@ public class Database {
         }
     }
 
+    /**
+     * Creates the HashMap for edges from the table
+     * @param eHM the HashMap to store all the edge
+     * @param nHM the HashMap of nodes to get all the nodes object
+     */
     public static void getEdges(HashMap<String, Edge> eHM, HashMap<String, Node> nHM){
         Connection connection = null;
         Statement stmt = null;
@@ -567,14 +667,14 @@ public class Database {
 
             //for each line, create a node and add it to hash map
             while (results.next()) {
+                //get nodeId and edgeId from the table, and find the node objects from the HashMap
                 String edgeID = results.getString(1);
                 Node node1 = nHM.get(results.getString(2));
                 Node node2 = nHM.get(results.getString(3));
-                //System.out.println("Looking for nodes with IDs " + results.getString(1) + " and " + results.getString(2));
+                //calculate the distance, create a new Edge(), put it into the result HashMap
                 int dis = Pathfinder.dist(node1, node2);
                 eHM.put(edgeID, new Edge(node1, node2, dis, edgeID));
-                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
-            }
+           }
 
             results.close();
             stmt.close();
@@ -587,6 +687,10 @@ public class Database {
         }
     }
 
+    /**
+     * Fill in the HashMap with nodes from the table
+     * @param nHM the HashMap to store the nodes
+     */
     public static void getNodes(HashMap<String,Node> nHM){
         Connection connection = null;
         Statement stmt = null;
@@ -618,8 +722,6 @@ public class Database {
                 String _shortName = results.getString(8);
                 Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
                 nHM.put(node.getID(), node);
-                //System.out.println("Created a node with ID " + node.getID());
-                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
 
             results.close();
@@ -633,7 +735,13 @@ public class Database {
         }
     }
 
-
+    /**
+     *
+     * TODO：finish commenting
+     * @param startID
+     * @param endID
+     * @return
+     */
     public static boolean addEdge(String startID, String endID){
         Statement stmt;
         Connection conn;
@@ -652,6 +760,19 @@ public class Database {
         }
     }
 
+    /**
+     *
+     * TODO：finish commenting
+     * @param nodeID
+     * @param xcoord
+     * @param ycoord
+     * @param floor
+     * @param building
+     * @param nodeType
+     * @param longName
+     * @param shortName
+     * @return
+     */
     public static boolean addNode(String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName){
         String teamAssigned = "Team U";
         Statement stmt;
@@ -671,6 +792,12 @@ public class Database {
         }
     }
 
+    /**
+     *
+     * TODO：finish commenting
+     * @param edgeID
+     * @return
+     */
     public static boolean delEdge(String edgeID){
         Statement stmt;
         Connection conn;
@@ -689,6 +816,12 @@ public class Database {
 
     }
 
+    /**
+     *
+     * TODO：finish commenting
+     * @param nodeID
+     * @return
+     */
     public static boolean delNode(String nodeID){
         Statement stmt;
         Connection conn;
@@ -715,6 +848,10 @@ public class Database {
     }
 
 
+    /**
+     * Fill in the HashMap for all Services from the table
+     * @param servicesList the ArrayList to store the services
+     */
     public static void getServices(ArrayList<Service> servicesList){
         Connection connection = null;
         Statement stmt = null;
@@ -766,6 +903,12 @@ public class Database {
     }
 
 
+    /**
+     * Check the if the username and password are valid for login
+     * @param inputUsername username
+     * @param inputPassword password
+     * @return true if they match in the table
+     */
     public static boolean checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
@@ -780,13 +923,10 @@ public class Database {
             ResultSetMetaData rsmd = results.getMetaData();
             int columns = rsmd.getColumnCount();
             for (int i = 1; i <= columns; i++) {
-                //no need to print Column Names
-                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
             }
-            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
-            //for each line, create a node and add it to hash map
             while (results.next()) {
+                //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
                     return true;
                 }
@@ -794,8 +934,6 @@ public class Database {
                     return false;
                 }
             }
-
-
             results.close();
             stmt.close();
             connection.close();
@@ -808,7 +946,19 @@ public class Database {
         return false;
     }
 
-    //prototype:vvv
+    /**
+     *
+     * TODO：finish commenting
+     * @param nodeIDN
+     * @param xcoordN
+     * @param ycoordN
+     * @param floorN
+     * @param buildingN
+     * @param nodeTypeN
+     * @param longNameN
+     * @param shortNameN
+     * @return
+     */
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;
@@ -831,6 +981,14 @@ public class Database {
         }
     }
 
+    /**
+     *
+     * TODO：finish commenting
+     * @param edgeIDN
+     * @param startNodeN
+     * @param endNodeN
+     * @return
+     */
     public static boolean editEdge(String edgeIDN, String startNodeN, String endNodeN ) {
         Connection conn = null;
         Statement stmt = null;
