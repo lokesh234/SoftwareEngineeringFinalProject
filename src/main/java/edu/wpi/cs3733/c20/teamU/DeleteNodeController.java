@@ -45,23 +45,8 @@ public class DeleteNodeController {
    * function makes changes to node values
    */
   private void overWrite() { // does not count in for empty values
-    String userX = text2.getText();
-    String userY = text3.getText();
-    String userFloor = text4.getText();
-    String userBuild = text5.getText();
-    String userType = text6.getText();
-    String userLongName = text7.getText();
-    String userShortName = text8.getText();
-
-    if(userX.isEmpty()) userX = x;
-    if(userY.isEmpty()) userY = y;
-    if(userFloor.isEmpty()) userFloor = floor;
-    if(userBuild.isEmpty()) userBuild = build;
-    if(userType.isEmpty()) userType = type;
-    if(userLongName.isEmpty()) userLongName = build;
-    if(userShortName.isEmpty()) userShortName = shortName;
-
-    Database.editTuple(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
+    Database.delNode(ID);
+    text1.clear();
     text2.clear();
     text3.clear();
     text4.clear();
@@ -93,7 +78,6 @@ public class DeleteNodeController {
     text6.setPromptText(type);
     text7.setPromptText(longName);
     text8.setPromptText(shortName);
-
   }
 
 //  /**
@@ -105,6 +89,12 @@ public class DeleteNodeController {
   @FXML
   public void initialize() {
     text1.setDisable(true);
-
+    text2.setDisable(true);
+    text3.setDisable(true);
+    text4.setDisable(true);
+    text5.setDisable(true);
+    text6.setDisable(true);
+    text7.setDisable(true);
+    text8.setDisable(true);
   }
 }

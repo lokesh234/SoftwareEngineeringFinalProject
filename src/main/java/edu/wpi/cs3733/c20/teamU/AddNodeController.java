@@ -28,10 +28,6 @@ public class AddNodeController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  public void setAttributes(NodeController nodeController1) {
-    nodeController = nodeController1;
-  }
-
   @FXML
   private void confirmChange() {
     overWrite();
@@ -45,6 +41,7 @@ public class AddNodeController {
    * function makes changes to node values
    */
   private void overWrite() { // does not count in for empty values
+    String userID = text1.getText();
     String userX = text2.getText();
     String userY = text3.getText();
     String userFloor = text4.getText();
@@ -53,58 +50,10 @@ public class AddNodeController {
     String userLongName = text7.getText();
     String userShortName = text8.getText();
 
-    if(userX.isEmpty()) userX = x;
-    if(userY.isEmpty()) userY = y;
-    if(userFloor.isEmpty()) userFloor = floor;
-    if(userBuild.isEmpty()) userBuild = build;
-    if(userType.isEmpty()) userType = type;
-    if(userLongName.isEmpty()) userLongName = build;
-    if(userShortName.isEmpty()) userShortName = shortName;
-
-    Database.editTuple(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
-    text2.clear();
-    text3.clear();
-    text4.clear();
-    text5.clear();
-    text6.clear();
-    text7.clear();
-    text8.clear();
+    Database.addNode(userID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
   }
-
-  /**
-   * function sets prompt messages for edit mode scene
-   */
-  public void selectedNodeVal() {
-    selectedNode = App.getNodeEdit();
-    ID = selectedNode.getNodeID();
-    x = Integer.toString(selectedNode.getX());
-    y = Integer.toString(selectedNode.getY());
-    floor = Integer.toString(selectedNode.getFloor());
-    build = selectedNode.getBuilding();
-    type = selectedNode.getNodeType();
-    longName = selectedNode.getLongName();
-    shortName = selectedNode.getShortName();
-
-    text1.setPromptText(ID);
-    text2.setPromptText(x);
-    text3.setPromptText(y);
-    text4.setPromptText(floor);
-    text5.setPromptText(build);
-    text6.setPromptText(type);
-    text7.setPromptText(longName);
-    text8.setPromptText(shortName);
-
-  }
-
-//  /**
-//   * function is used from admin screen to set user designated Node
-//   * @param designatedNode
-//   */
-//  public void setNode(edu.wpi.cs3733.c20.teamU.Node designatedNode) {selectedNode = designatedNode;}
 
   @FXML
   public void initialize() {
-    text1.setDisable(true);
-
   }
 }
