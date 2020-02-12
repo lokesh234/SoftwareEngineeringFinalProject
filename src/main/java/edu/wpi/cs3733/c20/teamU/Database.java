@@ -209,7 +209,7 @@ public class Database {
     }
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
                     "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
@@ -634,6 +634,57 @@ public class Database {
     }
 
 
+
+    public static void addEdge(){
+
+    }
+    public static void addNode(){
+
+    }
+    public static boolean delEdge(String edgeID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapEdgesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE edgeID = '" + edgeID + "'");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+
+    }
+
+    public static boolean delNode(String nodeID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapNodesU";
+        String EdgeTable = "MapEdgesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            ResultSet results = stmt.executeQuery("SELECT * FROM " + EdgeTable + " WHERE startNode = '" + nodeID + "' OR endNode = '" + nodeID + "'");
+            while (results.next()) {
+                delEdge(results.getString(1));
+            }
+
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE nodeID = '" + nodeID + "'");
+            CreateCSV(stmt, tableName, null);
+            CreateCSV(stmt, EdgeTable, null);
+            results.close();
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+    }
+
+
     public static void getServices(ArrayList<Service> servicesList){
         Connection connection = null;
         Statement stmt = null;
@@ -680,6 +731,7 @@ public class Database {
         }
     }
 
+
     public static boolean checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
@@ -722,6 +774,7 @@ public class Database {
         return false;
     }
 
+    //prototype:vvv
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;

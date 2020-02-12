@@ -154,9 +154,89 @@ public class ServiceDatabase {
         }
     }
 
-    //Deletes service object from tables
-    public static boolean servDelete(String reqType, int reqID){
-        return false;
+  public static boolean securitySRDel(int reqID, String adminsName){
+    String STable = "SecuritySR";
+    String SRTable = "ServiceRequest";
+    String SFTable = "ServiceFinished";
+    String curDate = getCurrentDate();
+    String location;
+
+    Connection conn = null;
+    Statement stmt = null;
+        try {
+          conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+          stmt = conn.createStatement();
+
+            ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
+            results.next();
+            location = results.getString(3);
+            results.close();
+
+            //delete from table SecuritySR first (needs to be before servicereuest)
+            stmt.executeUpdate("DELETE FROM " + STable + " WHERE reqID = " + reqID);
+
+            //delete from table servicerequest
+            stmt.executeUpdate("DELETE FROM " + SRTable + " WHERE reqID = " + reqID);
+
+            stmt.executeUpdate("INSERT INTO " + SFTable + " VALUES ('" + curDate + "', 'SECUR', '" + adminsName + "', 'Location: " + location + "')");
+
+            Database.CreateCSV(stmt, STable, null);
+            Database.CreateCSV(stmt, SRTable, null);
+            Database.CreateCSV(stmt, SFTable, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+  public static boolean medicineSRDel(int reqID, String adminsName) {
+    String MTable = "MedicineSR";
+    String SRTable = "ServiceRequest";
+    String SFTable = "ServiceFinished";
+    String curDate = getCurrentDate();
+    String info;
+
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+      stmt = conn.createStatement();
+
+      ResultSet results = stmt.executeQuery("SELECT  * FROM " + MTable + " WHERE reqID = " + reqID);
+      results.next();
+      info = results.getString(3) + " " + results.getString(4) + " needed: " + results.getString(5);
+      results.close();
+
+      // delete from table SecuritySR first (needs to be before servicereuest)
+      stmt.executeUpdate("DELETE FROM " + MTable + " WHERE reqID = " + reqID);
+
+      // delete from table servicerequest
+      stmt.executeUpdate("DELETE FROM " + SRTable + " WHERE reqID = " + reqID);
+
+      stmt.executeUpdate(
+          "INSERT INTO "
+              + SFTable
+              + " VALUES ('"
+              + curDate
+              + "', 'MEDIC', '"
+              + adminsName
+              + "', '"
+              + info
+              + "')");
+
+      Database.CreateCSV(stmt, MTable, null);
+      Database.CreateCSV(stmt, SRTable, null);
+      Database.CreateCSV(stmt, SFTable, null);
+      stmt.close();
+      conn.close();
+      return true;
+        } catch (SQLException e) {
+          e.printStackTrace();
+          return false;
+        }
     }
 
 }
