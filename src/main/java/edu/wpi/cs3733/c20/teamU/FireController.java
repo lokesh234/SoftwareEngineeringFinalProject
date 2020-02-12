@@ -24,6 +24,7 @@ public class FireController {
     @FXML
     private AnchorPane fireNodes;
     private HashMap<Node, Circle> circles = new HashMap<>();
+    private Pathfinder firePath = new Pathfinder();
 
     @FXML
     private void checkout() {
@@ -121,6 +122,7 @@ public class FireController {
     public void setAttributes(Parent root) {
         this.root = root;
         this.drawNodes();
+        this.drawPath();
     }
 
     /*
@@ -145,5 +147,21 @@ public class FireController {
 
     */
 
+    private void drawPath() {
+            Line l = new Line();
+            l.setStartX(1250);
+            l.setStartY(997);
+            l.setEndX(1250);
+            l.setEndY(1035);
+            Line w = new Line();
+            w.setStartX(1250);
+            w.setStartY(1035);
+            w.setEndX(1225);
+            w.setEndY(1035);
+            addToPath(l);
+            addToPath(w);
+        }
 
 }
+
+
