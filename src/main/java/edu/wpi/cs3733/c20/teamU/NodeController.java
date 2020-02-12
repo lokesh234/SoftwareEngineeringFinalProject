@@ -38,6 +38,7 @@ public class NodeController {
   public NodeController() {}
 
   public void refreshTable() {
+    nodeTable.setItems(hashToOblist());
     nodeTable.refresh();
   }
 

@@ -725,7 +725,7 @@ public class Database {
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;
-        String tableName = "PROTOTYPENODES";
+        String tableName = "MapNodesU";
 
         //prints out the whole table
         try {
