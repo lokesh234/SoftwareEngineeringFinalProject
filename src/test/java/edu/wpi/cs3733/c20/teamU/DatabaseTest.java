@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.sql.*;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,4 +30,24 @@ public class DatabaseTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testGetEdgesAndNodes(){
+        HashMap<String, Node> nhm = new HashMap<String, Node>();
+        HashMap<String, Edge> ehm = new HashMap<String, Edge>();
+
+        Database.getNodes(nhm);
+        Database.getEdges(ehm, nhm);
+
+        assertTrue(!nhm.isEmpty());
+        assertTrue(!ehm.isEmpty());
+    }
+
+    @Test
+    public void testCheckCred(){
+        assertTrue(Database.checkCred("admin","password"));
+        assertTrue(!Database.checkCred("a","k"));
+    }
+
+
 }
