@@ -634,6 +634,57 @@ public class Database {
     }
 
 
+
+    public static void addEdge(){
+
+    }
+    public static void addNode(){
+
+    }
+    public static boolean delEdge(String edgeID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapEdgesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE edgeID = '" + edgeID + "'");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+
+    }
+
+    public static boolean delNode(String nodeID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapNodesU";
+        String EdgeTable = "MapEdgesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            ResultSet results = stmt.executeQuery("SELECT * FROM " + EdgeTable + " WHERE startNode = '" + nodeID + "' OR endNode = '" + nodeID + "'");
+            while (results.next()) {
+                delEdge(results.getString(1));
+            }
+
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE nodeID = '" + nodeID + "'");
+            CreateCSV(stmt, tableName, null);
+            CreateCSV(stmt, EdgeTable, null);
+            results.close();
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+    }
+
+
     public static void getServices(ArrayList<Service> servicesList){
         Connection connection = null;
         Statement stmt = null;
