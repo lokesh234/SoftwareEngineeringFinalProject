@@ -18,7 +18,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" style="-fx-background-color: #729EFB;" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Edit Nodes Menu" textFill="WHITE">
+                  <Label text="Add Nodes Menu" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font></Label>
@@ -46,7 +46,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="text1" alignment="CENTER" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="text1" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Segoe UI" size="14.0" />
                      </font></TextField>

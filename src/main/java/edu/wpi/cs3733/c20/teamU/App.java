@@ -273,6 +273,7 @@ public class App extends Application {
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
 
+
       home = homeLoader.load();
       login = loginLoader.load();
       start = startLoader.load();
@@ -323,6 +324,7 @@ public class App extends Application {
       editController.setAttributes(nodeController);
       rrController.setAttributes(adminRequestController);
       adminRequestController.setAttributes(rrController);
+      addNodeController.setAttributes(nodeController);
 
       popup.getContent().addAll();
       securityPop.getContent().addAll();
@@ -335,8 +337,8 @@ public class App extends Application {
       fireScene = new Scene(fire);
       adminScene = new Scene(admin);
       adminNodeScene = new Scene(adminNode);
-      addNodeScene = new Scene(addNode);
-      deleteNodeScene = new Scene(deleteNode);
+//      addNodeScene = new Scene(addNode);
+//      deleteNodeScene = new Scene(deleteNode);
 
       primaryStage.setScene(startScene);
       primaryStage.show();

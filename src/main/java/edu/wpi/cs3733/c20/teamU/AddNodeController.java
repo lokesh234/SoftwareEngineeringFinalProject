@@ -12,16 +12,21 @@ public class AddNodeController {
 
   @FXML private Button confirm;
   @FXML private Button cancel;
-  @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
+  @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;
   private String ID, x, y, floor, build, type, shortName, longName;
-  Node selectedNode;
+//  Node selectedNode;
   NodeController nodeController;
 
-  public AddNodeController() {}
+  public AddNodeController() {
+  }
 
+  public void setAttributes(NodeController nodeController1) {
+    nodeController = nodeController1;
+  }
   /**
    * Change scene when this is called...
    */
+  @FXML
   public void adminScreen(ActionEvent event) throws IOException {
     App.getPopup().getContent().clear();
     App.getPopup().getContent().add(App.getAdminNode());
@@ -50,10 +55,28 @@ public class AddNodeController {
     String userLongName = text7.getText();
     String userShortName = text8.getText();
 
-    Database.addNode(userID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
+    if (text1.getText().isEmpty() || text2.getText().isEmpty() || text3.getText().isEmpty() || text4
+        .getText().isEmpty() || text5.getText().isEmpty() || text6.getText().isEmpty() || text7
+        .getText().isEmpty() || text8.getText().isEmpty()) {
+      cancel.fire();
+    } else {
+      Database.addNode(userID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY),
+          (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
+      text1.clear();
+      text2.clear();
+      text3.clear();
+      text4.clear();
+      text5.clear();
+      text6.clear();
+      text7.clear();
+      text8.clear();
+
+    }
+
   }
 
   @FXML
   public void initialize() {
+
   }
 }
