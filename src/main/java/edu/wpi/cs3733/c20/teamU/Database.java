@@ -209,7 +209,7 @@ public class Database {
     }
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
                     "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
@@ -634,9 +634,87 @@ public class Database {
     }
 
 
-    public static void getServices(ArrayList<Service> servicesList){
-        ArrayList<Service> finalResult = null;
+    public static boolean addEdge(String startID, String endID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapEdgesU";
+        String edgeID = startID + "_" + endID;
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + edgeID + "', '" + startID + "', '" + endID + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+    }
 
+    public static boolean addNode(String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName){
+        String teamAssigned = "Team U";
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapNodesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + nodeID + "', " + xcoord + ", " + ycoord + ", " + floor + ", '" + building + "', '" + nodeType + "', '" + longName + "', '" + shortName + "', '" + teamAssigned + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+    }
+
+    public static boolean delEdge(String edgeID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapEdgesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE edgeID = '" + edgeID + "'");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+
+    }
+
+    public static boolean delNode(String nodeID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapNodesU";
+        String EdgeTable = "MapEdgesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            ResultSet results = stmt.executeQuery("SELECT * FROM " + EdgeTable + " WHERE startNode = '" + nodeID + "' OR endNode = '" + nodeID + "'");
+            while (results.next()) {
+                delEdge(results.getString(1));
+            }
+
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE nodeID = '" + nodeID + "'");
+            CreateCSV(stmt, tableName, null);
+            CreateCSV(stmt, EdgeTable, null);
+            results.close();
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+    }
+
+
+    public static void getServices(ArrayList<Service> servicesList){
         Connection connection = null;
         Statement stmt = null;
         String tableName = "ServiceRequest";
