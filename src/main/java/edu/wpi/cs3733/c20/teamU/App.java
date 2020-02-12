@@ -31,7 +31,6 @@ public class App extends Application {
   private static Pane adminRequest;
   private static Pane adminNode;
   private static Pane addNode;
-  private static Pane deleteNode;
   private static Pane resolveRequest;
 
   private static Scene homeScene;
@@ -47,7 +46,6 @@ public class App extends Application {
   private static Scene exportScene;
   private static Scene adminNodeScene;
   private static Scene addNodeScene;
-  private static Scene deleteNodeScene;
   private static Scene resolveRequestScene;
 
   private static LoginController loginController;
@@ -63,11 +61,9 @@ public class App extends Application {
   private static RRController rrController;
   private static FireController fireController;
   private static AddNodeController addNodeController;
-  private static DeleteNodeController deleteNodeController;
 
   private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Node nodeAdd;
-  private static edu.wpi.cs3733.c20.teamU.Node nodeDelete;
   private static edu.wpi.cs3733.c20.teamU.Service service;
   private static String user;
   private static NodesDatabase graph = new NodesDatabase();
@@ -128,7 +124,6 @@ public class App extends Application {
       return edit;
   }
   public static Pane getAddNode() { return addNode; }
-  public static Pane getDeleteNode() { return deleteNode; }
 
     public static Pane getAdminNode() { return adminNode;}
 
@@ -177,7 +172,6 @@ public class App extends Application {
     return exportScene;
   }
   public static Scene getaddNodeScene() { return addNodeScene; }
-  public static Scene getdeleteNodeScene() { return deleteNodeScene; }
 
   public static Scene getFireScene(){
       return fireScene;
@@ -195,7 +189,6 @@ public class App extends Application {
   public static MedicineController getMedicineController() { return medicineController;}
   public static AdminController getAdminController() { return adminController;}
   public static AddNodeController getAddNodeController() { return addNodeController;}
-  public static DeleteNodeController getDeleteNodeController() { return deleteNodeController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static FireController getFireController(){return fireController;}
 
@@ -203,7 +196,6 @@ public class App extends Application {
     return nodeEdit;
   }
   public static edu.wpi.cs3733.c20.teamU.Node getNodeAdd() { return nodeAdd; }
-  public static edu.wpi.cs3733.c20.teamU.Node getNodeDelete() { return nodeDelete; }
 
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Node userNode) {
     nodeEdit = userNode;
@@ -269,7 +261,6 @@ public class App extends Application {
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/Add_Node.fxml"));
-      FXMLLoader deleteNodeLoader = new FXMLLoader(getClass().getResource("/Delete_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
 
@@ -300,7 +291,6 @@ public class App extends Application {
       adminRequest = adminRequestLoader.load();
       adminNode = adminNodeLoader.load();
       addNode = addNodeLoader.load();
-      deleteNode = deleteNodeLoader.load();
       resolveRequest = RRLoader.load();
 
       loginController = loginLoader.getController();
@@ -314,7 +304,6 @@ public class App extends Application {
       nodeController = adminNodeLoader.getController();
       editController = editLoader.getController();
       addNodeController = addNodeLoader.getController();
-      deleteNodeController = deleteNodeLoader.getController();
       rrController = RRLoader.getController();
       fireController = fireLoader.getController();
 

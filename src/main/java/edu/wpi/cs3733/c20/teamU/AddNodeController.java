@@ -75,8 +75,8 @@ public class AddNodeController {
 
   }
 
+
   @FXML
   public void initialize() {
-
   }
 }
