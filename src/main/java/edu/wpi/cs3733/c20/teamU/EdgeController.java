@@ -16,32 +16,24 @@ import java.util.Set;
 
 public class EdgeController {
 
-  @FXML private Button edit;
-  @FXML private Button export;
-  //tableview & columns in fxml file
-  @FXML private TableView<Edge> edgeTable;
-  @FXML private TableColumn<Edge, String> EdgeID;
-  @FXML private TableColumn<Edge, String> StartID;
-  @FXML private TableColumn<Edge, String> EndID;
-  @FXML private TableColumn<Edge, Integer> dist;
+  @FXML private Button addButton, editButton, removeButton, backButton;
+  @FXML private TableView<Edge> edges;
+  @FXML private TableColumn<Edge, String> edgeIdColumn, startNodeColumn, endNodeColumn;
 
   Database graph;
-  editModeController toEdit;
+  EdgeEditController toEdit;
 
   public EdgeController() {}
 
-  public void refreshTable() {
-    edgeTable.refresh();
-  }
+  public void setAttributes(EdgeEditController c) { toEdit = c;}
 
-  public void setAttributes(editModeController editor) {
-    toEdit = editor;
-  }
+
   @FXML
   private void backToAdmin() {
     App.getPopup().getContent().clear();
     App.getPopup().getContent().add(App.getAdmin());
     App.getPopup().show(App.getPrimaryStage());
+    toEdit.update();
   }
 
   /**
@@ -49,33 +41,32 @@ public class EdgeController {
    * @param event
    * @throws IOException
    */
+  @FXML
   public void editScreen(ActionEvent event) throws IOException {
       App.getPopup().getContent().clear();
-      App.getPopup().getContent().add(App.getEdit());
+      App.getPopup().getContent().add(App.getEditEdge());
       App.getPopup().show(App.getPrimaryStage());
+      toEdit.update();
     } //Admin edit nodes interface
 
-  /**
-   * function to change scene to Export_CSV
-   * @param event
-   * @throws IOException
-   */
-  @FXML
-  public void exportScreen(ActionEvent event) throws IOException {
+  public void addScreen() {
+    App.setEdgeEdit(null);
+    toEdit.update();
     App.getPopup().getContent().clear();
-    App.getPopup().getContent().add(App.getExport());
+    App.getPopup().getContent().add(App.getEditEdge());
     App.getPopup().show(App.getPrimaryStage());
-  } //Admin edit nodes interface
+  }
+
 
 
   @FXML
   private void detectClick() {
-    if(edgeTable.getSelectionModel().getSelectedItem() != null) {
-      edit.setDisable(false);
-      App.setEdgeEdit(edgeTable.getSelectionModel().getSelectedItem());
-      toEdit.selectedNodeVal();
+    if(edges.getSelectionModel().getSelectedItem() != null) {
+      App.setEdgeEdit(edges.getSelectionModel().getSelectedItem());
+      toEdit.update();
+      editButton.setDisable(false);
     }
-//    else edit.setDisable(true);
+      else editButton.setDisable(true);
 //    else nodeTable.getSelectionModel().clearSelection();
   }
 
@@ -106,11 +97,10 @@ public class EdgeController {
    */
   @FXML
   private void initialize() {
-    edit.setDisable(true);
-    EdgeID.setCellValueFactory(new PropertyValueFactory<>("edgeID"));
-    StartID.setCellValueFactory(new PropertyValueFactory<>("startID"));
-    EndID.setCellValueFactory(new PropertyValueFactory<>("endID"));
-    dist.setCellValueFactory(new PropertyValueFactory<>("dist"));
-    edgeTable.setItems(hashToOblist());
+    editButton.setDisable(true);
+    edgeIdColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+    startNodeColumn.setCellValueFactory(new PropertyValueFactory<>("startID"));
+    endNodeColumn.setCellValueFactory(new PropertyValueFactory<>("endID"));
+    edges.setItems(hashToOblist());
   }
 }

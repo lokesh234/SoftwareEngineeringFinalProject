@@ -89,7 +89,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
+                                        <Button mnemonicParsing="false" onAction="#editEdges" style="-fx-background-color: #ffffff;">
                                             <graphic>
                                                 <ImageView fx:id="editEdgesButton" fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -106,7 +106,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#editEdges" style="-fx-background-color: #ffffff;">
+                                        <Button mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
                                             <graphic>
                                                 <ImageView fx:id="exportButton" fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

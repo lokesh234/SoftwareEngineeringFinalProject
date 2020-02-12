@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,82 +15,33 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class EdgeController {
+public class EdgeEditController {
+  @FXML private TableView<Node> table;
+  @FXML private TableColumn<Node, String> idColumn, buildingColumn, nodeTypeColumn, shortNameColumn, longNameColumn;
+  @FXML private TableColumn<Node, Integer> xColumn, yColumn, floorColumn;
+  @FXML private Button startNode, endNode, saveButton, cancelButton;
+  @FXML private Label startLabel, endLabel, idLabel;
+  private Edge selectedEdge;
+  private Node selectedStartNode, selectedEndNode;
+  private State state;
+  private String id;
 
-  @FXML private Button edit;
-  @FXML private Button export;
-  //tableview & columns in fxml file
-  @FXML private TableView<Edge> edgeTable;
-  @FXML private TableColumn<Edge, String> EdgeID;
-  @FXML private TableColumn<Edge, String> StartID;
-  @FXML private TableColumn<Edge, String> EndID;
-
-  Database graph;
-  editModeController toEdit;
-
-  public EdgeController() {}
-
-  public void refreshTable() {
-    edgeTable.refresh();
-  }
-
-  public void setAttributes(editModeController editor) {
-    toEdit = editor;
-  }
-  @FXML
-  private void backToAdmin() {
-    App.getPopup().getContent().clear();
-    App.getPopup().getContent().add(App.getAdmin());
-    App.getPopup().show(App.getPrimaryStage());
-  }
-
-  /**
-   * Changes scene to Edit_node...
-   * @param event
-   * @throws IOException
-   */
-  public void editScreen(ActionEvent event) throws IOException {
-      App.getPopup().getContent().clear();
-      App.getPopup().getContent().add(App.getEdit());
-      App.getPopup().show(App.getPrimaryStage());
-    } //Admin edit nodes interface
-
-  /**
-   * function to change scene to Export_CSV
-   * @param event
-   * @throws IOException
-   */
-  @FXML
-  public void exportScreen(ActionEvent event) throws IOException {
-    App.getPopup().getContent().clear();
-    App.getPopup().getContent().add(App.getExport());
-    App.getPopup().show(App.getPrimaryStage());
-  } //Admin edit nodes interface
-
-
-  @FXML
-  private void detectClick() {
-    if(edgeTable.getSelectionModel().getSelectedItem() != null) {
-      edit.setDisable(false);
-      App.setEdgeEdit(edgeTable.getSelectionModel().getSelectedItem());
-      toEdit.selectedNodeVal();
-    }
-//    else edit.setDisable(true);
-//    else nodeTable.getSelectionModel().clearSelection();
+  private enum State {
+    n, s, e;
   }
 
   /**
    * Function to create an ObservableList from nodes in Hashmap
    * @return ObservableList<edu.wpi.teamname.NOde> oblist of location nodes
    */
-  private ObservableList<Edge> hashToOblist(){
-    ObservableList<Edge> nodes = FXCollections.observableArrayList();
+  private ObservableList<Node> hashToOblist(){
+
+    ObservableList<Node> nodes = FXCollections.observableArrayList();
 
     //getting nodes created in Hashmap from database
-    HashMap<String, Edge> graph = new HashMap<String, Edge>();
-    HashMap<String, Node> nodent = new HashMap<String, Node>();
-    Database.getNodes(nodent);
-    Database.getEdges(graph, nodent);
+    HashMap<String, Node> graph = new HashMap<String, Node>();
+    Database.getNodes(graph);
+
 
     //add each node to the oblist
     Set keys = graph.keySet();
@@ -100,15 +52,78 @@ public class EdgeController {
     return nodes;
   }
 
-  /**
-   * Function to initialize all the columns in Tableview
-   */
+  public void update() {
+    table.getItems().clear();
+    startLabel.setText("No Selection");
+    endLabel.setText("No Selection");
+    idLabel.setText("");
+    table.setItems(hashToOblist());
+    if (App.getEdgeEdit() != null) { //We've editing a selected edge
+      selectedEdge = App.getEdgeEdit();
+      selectedStartNode = selectedEdge.getStart();
+      selectedEndNode = selectedEdge.getEnd();
+      startLabel.setText(selectedStartNode.getID());
+      endLabel.setText(selectedEndNode.getID());
+      id = selectedEdge.getID();
+      idLabel.setText(id);
+    }
+    else {
+      id = "";
+      selectedEdge = null;
+      selectedEndNode = null;
+      selectedStartNode = null;
+    }
+  }
+
   @FXML
-  private void initialize() {
-    edit.setDisable(true);
-    EdgeID.setCellValueFactory(new PropertyValueFactory<>("edgeID"));
-    StartID.setCellValueFactory(new PropertyValueFactory<>("startID"));
-    EndID.setCellValueFactory(new PropertyValueFactory<>("endID"));
-    edgeTable.setItems(hashToOblist());
+  public void selectStart() {
+    startLabel.setText("Select a node");
+    state = State.s;
+  }
+
+  @FXML
+  public void selectEnd() {
+    endLabel.setText("Select a node");
+    state = State.e;
+  }
+
+  @FXML
+  private void detectClick() {
+    if(table.getSelectionModel().getSelectedItem() != null) {
+      if (state == State.s) {
+        selectedStartNode = table.getSelectionModel().getSelectedItem();
+        startLabel.setText(selectedStartNode.getID());
+        state = State.n;
+      }
+      else if (state == state.e) {
+        selectedEndNode = table.getSelectionModel().getSelectedItem();
+        endLabel.setText(selectedEndNode.getID());
+        state = State.n;
+      }
+    }
+    if (state == State.n && selectedStartNode != null && selectedEndNode != null) {
+      id = selectedStartNode.getID() + "_" + selectedEndNode.getID();
+      idLabel.setText(id);
+    }
+//    else nodeTable.getSelectionModel().clearSelection();
+  }
+
+
+  public void back() {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAdminEdge());
+    App.getPopup().show(App.getPrimaryStage());
+  }
+
+  public void initialize() {
+    idColumn.setCellValueFactory(new PropertyValueFactory<>("nodeID"));
+    xColumn.setCellValueFactory(new PropertyValueFactory<>("xCoord"));
+    yColumn.setCellValueFactory(new PropertyValueFactory<>("yCoord"));
+    floorColumn.setCellValueFactory(new PropertyValueFactory<>("Floor"));
+    buildingColumn.setCellValueFactory(new PropertyValueFactory<>("Building"));
+    nodeTypeColumn.setCellValueFactory(new PropertyValueFactory<>("NodeType"));
+    longNameColumn.setCellValueFactory(new PropertyValueFactory<>("LongName"));
+    shortNameColumn.setCellValueFactory(new PropertyValueFactory<>("shortName"));
+    table.setItems(hashToOblist());
   }
 }

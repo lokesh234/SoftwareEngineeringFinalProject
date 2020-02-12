@@ -54,6 +54,8 @@ public class App extends Application {
   private static AdminRequestController adminRequestController;
   private static NodeController nodeController;
   private static editModeController editController;
+  private static EdgeController viewEdgeController;
+  private static EdgeEditController editEdgeController;
 
   private static Edge edgeEdit;
 
@@ -235,8 +237,8 @@ public class App extends Application {
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
-      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/"));
-      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/")); //TODO: add correct fxml
+      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/Edit_Edge.fxml"));
+      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -263,10 +265,13 @@ public class App extends Application {
       adminRequestController = adminRequestLoader.getController();
       nodeController = adminNodeLoader.getController();
       editController = editLoader.getController();
+      editEdgeController = editEdgeLoader.getController();
+      viewEdgeController = adminEdgeLoader.getController();
 
       pathfindController.setAttributes(path);
       nodeController.setAttributes(editController);
       editController.setAttributes(nodeController);
+      viewEdgeController.setAttributes(editEdgeController);
 
       //TODO: find a better way to do popups...
       popup.getContent().addAll();

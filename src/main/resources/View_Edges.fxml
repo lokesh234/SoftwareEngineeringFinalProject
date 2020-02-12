@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ViewEdges">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.EdgeController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -37,12 +37,12 @@
          <left>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #729EBF;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="addButton" mnemonicParsing="false" text="Add" VBox.vgrow="ALWAYS">
+                  <Button fx:id="addButton" mnemonicParsing="false" text="Add" VBox.vgrow="ALWAYS" onAction="#addScreen">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="editButton" mnemonicParsing="false" text="Edit" VBox.vgrow="ALWAYS">
+                  <Button fx:id="editButton" mnemonicParsing="false" text="Edit" VBox.vgrow="ALWAYS" onAction="#editScreen">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
@@ -52,15 +52,20 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Button>
+                  <Button fx:id="backButton" mnemonicParsing="false" text="Back" VBox.vgrow="ALWAYS" onAction="#backToAdmin">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </left>
          <center>
-            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" fx:id="edges" onMouseClicked="#detectClick">
               <columns>
-                <TableColumn fx:id="edgeIdColumn" prefWidth="75.0" text="Edge ID" />
-                <TableColumn fx:id="startNodeColumn" prefWidth="268.3333435058594" text="Start Node" />
-                  <TableColumn fx:id="endNodeColumn" prefWidth="355.6666564941406" text="End Node" />
+                <TableColumn fx:id="edgeIdColumn" prefWidth="180.0" text="Edge ID" />
+                <TableColumn fx:id="startNodeColumn" prefWidth="130" text="Start Node" />
+                  <TableColumn fx:id="endNodeColumn" prefWidth="130" text="End Node" />
               </columns>
             </TableView>
          </center>

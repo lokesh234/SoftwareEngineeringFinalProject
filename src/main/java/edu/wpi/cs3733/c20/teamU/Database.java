@@ -725,13 +725,36 @@ public class Database {
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;
-        String tableName = "PROTOTYPENODES";
+        String tableName = "MapNodesU";
 
         //prints out the whole table
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             String sql1 = "UPDATE " + tableName + " SET xcoord = " + xcoordN + ", ycoord = " + ycoordN + ", floor = " + floorN + ", building = '" + buildingN + "', nodeType = '" + nodeTypeN + "', longName = '" + longNameN + "', shortName = '" + shortNameN + "' WHERE nodeID = '" + nodeIDN + "'";
+
+            int result = stmt.executeUpdate(sql1);
+            System.out.println(result);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean editEdge(String edgeIDN, String startNodeN, String endNodeN ) {
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "MapEdgesU";
+
+        //prints out the whole table
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "UPDATE "  + tableName + " SET edgeID = " + edgeIDN + ", startNode = " + startNodeN + ", endNode = " + endNodeN + "' WHERE edgeID = '" + edgeIDN + "'";
 
             int result = stmt.executeUpdate(sql1);
             System.out.println(result);

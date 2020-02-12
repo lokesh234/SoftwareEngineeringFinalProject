@@ -38,7 +38,8 @@ public class NodeController {
   public NodeController() {}
 
   public void refreshTable() {
-    nodeTable.refresh();
+    nodeTable.getItems().clear();
+    nodeTable.setItems(hashToOblist());
   }
 
   public void setAttributes(editModeController editor) {
