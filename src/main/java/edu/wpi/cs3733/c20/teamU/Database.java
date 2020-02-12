@@ -317,7 +317,7 @@ public class Database {
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
-                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
+                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
 
             stmt.executeUpdate(slqCreate);
 
