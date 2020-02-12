@@ -1,10 +1,12 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import com.jfoenix.controls.JFXRadioButton;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -13,6 +15,7 @@ import javafx.scene.shape.Line;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 public class PathfindController {
     private enum State {
         NEUTRAL, START, END;
@@ -40,6 +43,7 @@ public class PathfindController {
     private boolean displayingPath = false;
     private HashMap<Node, Circle> circles = new HashMap<>();
     private ArrayList<Line> lines = new ArrayList<>();
+    final ToggleGroup group = new ToggleGroup();
 
 
     @FXML
@@ -53,7 +57,7 @@ public class PathfindController {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
-                System.out.println("Start click");
+                System.out.println("Start Click");
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 start = getClickedNode(x, y);
@@ -111,6 +115,7 @@ public class PathfindController {
             }
         }
     }
+
     private boolean isDrawableNode(String nID) { //Which nodes do we want to draw?
         return !nID.substring(0, 5).equals("UHALL"); //Everything except hallway nodes
         //return true; //Everything!
@@ -134,6 +139,7 @@ public class PathfindController {
     private void pathfind() {
         if (startReady && endReady) {
             clearPath();
+            System.out.println("PathfindPress");
             path.clear();
             lines.clear();
             engine.starSingular(start, end, App.getGraph());
@@ -180,7 +186,6 @@ public class PathfindController {
     private void backHome() {
         App.getPrimaryStage().setScene(App.getHomeScene());
     }
-
     private void addToPath(javafx.scene.Node e) {
         NodesPane.getChildren().add(e);
     }

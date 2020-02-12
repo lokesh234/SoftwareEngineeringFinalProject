@@ -634,7 +634,6 @@ public class Database {
     }
 
 
-
     public static boolean addEdge(String startID, String endID){
         Statement stmt;
         Connection conn;
@@ -809,7 +808,6 @@ public class Database {
         Connection conn = null;
         Statement stmt = null;
         String tableName = "MapNodesU";
-
         //prints out the whole table
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");

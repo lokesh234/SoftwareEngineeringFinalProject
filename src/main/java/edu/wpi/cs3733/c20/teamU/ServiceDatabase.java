@@ -154,6 +154,10 @@ public class ServiceDatabase {
         }
     }
 
+
+//    //Deletes service object from tables
+//    public static boolean servDelete(String reqType, int reqID){
+//        return false;
   public static boolean securitySRDel(int reqID, String adminsName){
     String STable = "SecuritySR";
     String SRTable = "ServiceRequest";
