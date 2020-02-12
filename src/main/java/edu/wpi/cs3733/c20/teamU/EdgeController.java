@@ -27,7 +27,10 @@ public class EdgeController {
 
   public EdgeController() {}
 
-  public void setAttributes(EdgeEditController c) { toEdit = c;}
+  public void setAttributes(EdgeEditController c) {
+    toEdit = c;
+    toEdit.setMaster(this);
+  }
 
 
   @FXML
@@ -95,7 +98,7 @@ public class EdgeController {
     return nodes;
   }
 
-  private void update() {
+  public void update() {
     edges.setItems(hashToOblist());
   }
 

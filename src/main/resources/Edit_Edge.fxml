@@ -81,7 +81,7 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="saveButton" mnemonicParsing="false" text="Save">
+                        <Button fx:id="saveButton" mnemonicParsing="false" text="Save" onAction="#save">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>

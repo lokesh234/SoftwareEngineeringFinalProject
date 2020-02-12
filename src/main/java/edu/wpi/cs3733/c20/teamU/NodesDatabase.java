@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 import java.lang.Math;
@@ -192,6 +193,7 @@ public class NodesDatabase {
         }
         return null;
     }
+
 
     public static int dist(int x1, int y1, int x2, int y2) {
         /*

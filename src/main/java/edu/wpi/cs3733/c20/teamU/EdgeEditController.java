@@ -26,6 +26,7 @@ public class EdgeEditController {
   private State state;
   private String id;
   private boolean editing = false;
+  private EdgeController master;
 
   private enum State {
     n, s, e;
@@ -78,6 +79,8 @@ public class EdgeEditController {
     }
   }
 
+  public void setMaster(EdgeController m) { master = m;}
+
   @FXML
   public void selectStart() {
     startLabel.setText("Select a node");
@@ -97,12 +100,13 @@ public class EdgeEditController {
       update();
     }
     else if (selectedEndNode != null && selectedStartNode != null) {
-      //Database.addEdge()
+      Database.addEdge(selectedStartNode.getID(), selectedEndNode.getID());
       update();
     }
     else { //Not ready to save, don't do anything
       return;
     }
+    master.update();
     back();
   }
 
