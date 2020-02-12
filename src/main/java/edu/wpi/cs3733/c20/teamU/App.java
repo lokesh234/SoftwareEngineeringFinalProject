@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -28,6 +29,7 @@ public class App extends Application {
   private static Pane edit;
   private static Pane adminRequest;
   private static Pane adminNode;
+  private static Pane resolveRequest;
 
 
   private static Scene homeScene;
@@ -41,6 +43,7 @@ public class App extends Application {
   private static Scene editScene;
   private static Scene exportScene;
   private static Scene adminNodeScene;
+  private static Scene resolveRequestScene;
 
   private static LoginController loginController;
   private static HomeController homeController;
@@ -52,8 +55,10 @@ public class App extends Application {
   private static AdminRequestController adminRequestController;
   private static NodeController nodeController;
   private static editModeController editController;
+  private static RRController rrController;
 
   private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
+  private static edu.wpi.cs3733.c20.teamU.Service service;
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 5; //Radius in pixels of clickable node object
 
@@ -66,6 +71,8 @@ public class App extends Application {
   public static Stage getPrimaryStage() {
     return primaryStage;
   }
+
+  public static Pane getResolveRequest() {return resolveRequest;}
 
   public static Pane getHome() {
     return home;
@@ -153,7 +160,11 @@ public class App extends Application {
   public static Scene getExportScene() {
     return exportScene;
   }
+
   public static Scene getAdminNodeScene() {return adminNodeScene;}
+
+  public static Scene getResolveRequestScene() {return resolveRequestScene;}
+
   public static LoginController getLoginController() { return loginController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
@@ -168,6 +179,13 @@ public class App extends Application {
   }
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Node userNode) {
     nodeEdit = userNode;
+  }
+
+  public static void setServiceEdit(edu.wpi.cs3733.c20.teamU.Service serviceSel) {
+    service = serviceSel;
+  }
+  public static edu.wpi.cs3733.c20.teamU.Service getService() {
+    return service;
   }
     public static NodesDatabase getGraph() {
     return graph;
@@ -214,6 +232,7 @@ public class App extends Application {
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -227,6 +246,7 @@ public class App extends Application {
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
       adminNode = adminNodeLoader.load();
+      resolveRequest = RRLoader.load();
 
       loginController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -238,12 +258,14 @@ public class App extends Application {
       adminRequestController = adminRequestLoader.getController();
       nodeController = adminNodeLoader.getController();
       editController = editLoader.getController();
+      rrController = RRLoader.getController();
 
       pathfindController.setAttributes(path);
       nodeController.setAttributes(editController);
       editController.setAttributes(nodeController);
+//      rrController.setAttributes(adminRequestController);
+      adminRequestController.setAttributes(rrController);
 
-      //TODO: find a better way to do popups...
       popup.getContent().addAll();
       securityPop.getContent().addAll();
       requestPop.getContent().addAll();

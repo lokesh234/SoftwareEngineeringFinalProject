@@ -13,8 +13,8 @@ public class Service {
         this.requestType = requestType;
     }
 
-    public String getDate() { return date;}
-    public String getRequestID() { return requestID;}
-    public String getName() {return name;}
-    public String  getRequestType() { return requestType;}
+    public String getDate() { return this.date;}
+    public String getRequestID() { return this.requestID;}
+    public String getName() {return this.name;}
+    public String  getRequestType() { return this.requestType;}
 }

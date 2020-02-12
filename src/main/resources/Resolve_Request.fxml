@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ResolveRequest">
+<AnchorPane minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.RRController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -29,7 +29,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #729EBF;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" text="Back">
+                        <Button fx:id="back" onAction="#returnToResolve" mnemonicParsing="false" text="Back">
                            <font>
                               <Font name="Segoe UI Bold" size="12.0" />
                            </font>
@@ -45,59 +45,59 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Cancel" />
-                  <Button mnemonicParsing="false" text="Resolve" />
+                  <Button fx:id="cancel" onAction="#returnToHome" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="resolve" mnemonicParsing="false" text="Resolve" />
                </children>
             </HBox>
          </bottom>
          <center>
-            <VBox fx:id="foo" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="foo" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="field1" text="Field1">
+                  <Label fx:id="field1">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font></Label>
-                  <Label fx:id="field2" text="Field2">
+                  <Label fx:id="field2" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field3" text="Field3">
+                  <Label fx:id="field3" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field4" text="Field4">
+                  <Label fx:id="field4" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field5" text="Field5">
+                  <Label fx:id="field5" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field6" text="Field6">
+                  <Label fx:id="field6" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field7" text="Field7">
+                  <Label fx:id="field7" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field8" text="Field8">
+                  <Label fx:id="field8" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field9" text="Field9">
+                  <Label fx:id="field9" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="field10" text="Field10">
+                  <Label fx:id="field10" text="">
                      <font>
                         <Font name="Segoe UI" size="24.0" />
                      </font>
