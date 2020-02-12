@@ -14,4 +14,8 @@ public class SecurityController {
         App.getSecurityPop().getContent().remove(0);
     }
 
+    public void addRequest() {
+        ServiceDatabase.securitySRAdd();
+    }
+
 }

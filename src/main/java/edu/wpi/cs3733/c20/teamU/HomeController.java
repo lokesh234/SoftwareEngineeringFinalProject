@@ -56,6 +56,7 @@ public class HomeController {
     App.getSecurityPop().getContent().add(App.getSecurity());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
+    App.getSecurityController().addRequest();
     App.getSecurityPop().show(App.getPrimaryStage());
   }
 

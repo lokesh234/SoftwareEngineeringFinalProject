@@ -745,6 +745,10 @@ public class Database {
                 String requestID = results.getString(2);
                 String name = results.getString(3);
                 String requestType = results.getString(4);
+//                System.out.println(date);
+//                System.out.println(requestID);
+//                System.out.println(name);
+//                System.out.println(requestType);
                 Service s = new Service(date, requestID, name, requestType);
                 servicesList.add(s);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
