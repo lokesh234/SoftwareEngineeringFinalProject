@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
@@ -25,12 +26,12 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane fire;
   private static Pane export;
   private static Pane edit;
   private static Pane adminRequest;
   private static Pane adminNode;
   private static Pane resolveRequest;
-
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -40,6 +41,7 @@ public class App extends Application {
   private static Scene securityScene;
   private static Scene requestScene;
   private static Scene medicineScene;
+  private static Scene fireScene;
   private static Scene editScene;
   private static Scene exportScene;
   private static Scene adminNodeScene;
@@ -56,18 +58,18 @@ public class App extends Application {
   private static NodeController nodeController;
   private static editModeController editController;
   private static RRController rrController;
+  private static FireController fireController;
 
   private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Service service;
   private static String user;
   private static NodesDatabase graph = new NodesDatabase();
-  private static int nodeSize = 5; //Radius in pixels of clickable node object
+  private static int nodeSize = 10; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
   private static Popup securityPop = new Popup();
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
-
 
   public static Stage getPrimaryStage() {
     return primaryStage;
@@ -121,6 +123,10 @@ public class App extends Application {
 
     public static Pane getAdminNode() { return adminNode;}
 
+    public static Pane getFire(){
+      return fire;
+    }
+
 
     public static Scene getHomeScene() {
     return homeScene;
@@ -162,6 +168,10 @@ public class App extends Application {
     return exportScene;
   }
 
+  public static Scene getFireScene(){
+      return fireScene;
+  }
+
   public static Scene getAdminNodeScene() {return adminNodeScene;}
 
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
@@ -174,6 +184,7 @@ public class App extends Application {
   public static MedicineController getMedicineController() { return medicineController;}
   public static AdminController getAdminController() { return adminController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
+  public static FireController getFireController(){return fireController;}
 
   public static edu.wpi.cs3733.c20.teamU.Node getNodeEdit() {
     return nodeEdit;
@@ -238,6 +249,7 @@ public class App extends Application {
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
+      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/pathfindEmergency.fxml"));
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
@@ -251,6 +263,19 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      fire = fireLoader.load();
+
+      /*
+      LoginController loginController = loginLoader.getController();
+      HomeController homeController = homeLoader.getController();
+      PathfindController pathfindController = pathfindLoader.getController();
+      SecurityController securityController = securityLoader.getController();
+      RequestController requestController = requestLoader.getController();
+      MedicineContoller medicineContoller = medicineLoader.getController();
+      startController startControl = startLoader.getController();
+      FireController fireController = fireLoader.getController();
+       */
+
       export = exportLoader.load();
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
@@ -268,8 +293,10 @@ public class App extends Application {
       nodeController = adminNodeLoader.getController();
       editController = editLoader.getController();
       rrController = RRLoader.getController();
+      fireController = fireLoader.getController();
 
       pathfindController.setAttributes(path);
+      fireController.setAttributes(fire);
       nodeController.setAttributes(editController);
       editController.setAttributes(nodeController);
       rrController.setAttributes(adminRequestController);
@@ -283,6 +310,7 @@ public class App extends Application {
       homeScene = new Scene(home);
       pathScene = new Scene(path);
       startScene = new Scene(start);
+      fireScene = new Scene(fire);
       adminScene = new Scene(admin);
       adminNodeScene = new Scene(adminNode);
 
