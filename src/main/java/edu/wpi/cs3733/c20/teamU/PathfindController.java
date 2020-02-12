@@ -65,7 +65,7 @@ public class PathfindController {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
-                System.out.println("Start Click");
+                //System.out.println("Start Click");
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 start = getClickedNode(x, y);
@@ -109,8 +109,21 @@ public class PathfindController {
         return null;
     }
 
-    private void drawNodes() {
+    protected void drawNodes() {
+        state = State.NEUTRAL;
+        start = null;
+        end = null;
+        startReady = false;
+        endReady = false;
         ArrayList<Node> nodes = App.getGraph().getNodes();
+        if (circles.size() > 0) {
+            for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
+                Node n = pair.getKey();
+                Circle c = pair.getValue();
+                App.removeFromPath(c);
+            }
+        }
+        circles.clear();
         for (Node n : nodes) {
             if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (isDrawableNode(n.getID())) {
@@ -157,12 +170,12 @@ public class PathfindController {
     private void pathfind() {
         if (startReady && endReady) {
             clearPath();
-            System.out.println("PathfindPress");
+            //System.out.println("PathfindPress");
             path.clear();
             lines.clear();
             engine.starSingular(start, end, App.getGraph());
             path = engine.getLatestPath();
-            System.out.println(path.size());
+            //System.out.println(path.size());
             drawPath();
         }
         updateStatus();
@@ -183,7 +196,7 @@ public class PathfindController {
             updateStatus();
             return; //No path to draw
         }
-        System.out.println("a");
+       // System.out.println("a");
         for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);

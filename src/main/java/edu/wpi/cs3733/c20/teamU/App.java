@@ -201,6 +201,7 @@ public class App extends Application {
   public static AddNodeController getAddNodeController() { return addNodeController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static FireController getFireController(){return fireController;}
+  public static NodeController getNodeController() { return nodeController;}
 
   public static edu.wpi.cs3733.c20.teamU.Node getNodeEdit() {
     return nodeEdit;
@@ -360,6 +361,8 @@ public class App extends Application {
       e.printStackTrace();
     }
   }
+
+
 
   protected static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
     path.getChildren().add(e);

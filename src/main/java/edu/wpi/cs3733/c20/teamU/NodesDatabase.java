@@ -194,6 +194,12 @@ public class NodesDatabase {
         return null;
     }
 
+    public void update() {
+        nodes.clear();
+        edges.clear();
+        Database.getNodes(nodes);
+        Database.getEdges(edges, nodes);
+    }
 
     public static int dist(int x1, int y1, int x2, int y2) {
         /*

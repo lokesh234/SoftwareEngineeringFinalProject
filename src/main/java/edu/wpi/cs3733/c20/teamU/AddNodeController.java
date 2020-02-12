@@ -33,6 +33,7 @@ public class AddNodeController {
   @FXML
   public void adminScreen(ActionEvent event) throws IOException {
     App.getPopup().getContent().clear();
+    App.getNodeController().refreshTable();
     App.getPopup().getContent().add(App.getAdminNode());
     App.getPopup().show(App.getPrimaryStage());
   }
@@ -62,14 +63,10 @@ public class AddNodeController {
     String userShortName = text8.getText();
 //    System.out.println(userID);
 
-    if (text1.getText().isEmpty() || text2.getText().isEmpty() || text3.getText().isEmpty() || text4
-        .getText().isEmpty() || text5.getText().isEmpty() || text6.getText().isEmpty() || text7
-        .getText().isEmpty() || text8.getText().isEmpty()) {
-    } else {
-      Database.addNode(userID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY),
+     if (!Database.addNode(userID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY),
           (int) Double.parseDouble(userFloor), userBuild, userType, userLongName,
-          userShortName); // THIS IS FAILING
-    }
+          userShortName)) System.out.println("oh no 2"); // THIS IS FAILING
+      System.out.println("something");
 
 //    if (boo) {
 //      System.out.println(1);

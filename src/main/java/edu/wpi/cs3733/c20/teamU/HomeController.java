@@ -48,6 +48,8 @@ public class HomeController {
 
   @FXML
   private void openNavScene(ActionEvent e) throws IOException {
+    App.getGraph().update();
+    App.getPathfindController().drawNodes();
     App.getPrimaryStage().setScene(App.getPathScene());
   }
 

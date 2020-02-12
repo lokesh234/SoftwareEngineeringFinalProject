@@ -666,6 +666,7 @@ public class Database {
             conn.close();
             return true;
         } catch (SQLException SQLExcept) {
+            SQLExcept.printStackTrace();
             return false;
         }
     }
