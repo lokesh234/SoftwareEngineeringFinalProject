@@ -1,16 +1,22 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXRadioButton;
+import javafx.animation.Interpolator;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Path;
+import javafx.util.Duration;
+import net.kurobako.gesturefx.GesturePane;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +31,8 @@ public class PathfindController {
 
     @FXML
     private AnchorPane NodesPane;
+    @FXML
+    private GesturePane PathGes;
 
     public void setAttributes(Parent root) {
         this.root = root;
@@ -123,6 +131,16 @@ public class PathfindController {
 
     @FXML
     private void initialize() {
+        PathGes.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+                Point2D pivotOnTarget = PathGes.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(PathGes.targetPointAtViewportCentre());
+                // increment of scale makes more sense exponentially instead of linearly
+                PathGes.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(PathGes.getCurrentScale(), pivotOnTarget);
+            }
+        });
     }
 
     @FXML
@@ -177,6 +195,8 @@ public class PathfindController {
             l.setEndY(n2.getY());
 
             lines.add(l);
+//            Path path = new Path();
+  //          path.getElements().add(l);
             addToPath(l);
         }
         displayingPath = true;

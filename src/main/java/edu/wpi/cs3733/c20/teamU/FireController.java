@@ -1,18 +1,19 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.sun.javafx.css.StyleCache;
+import javafx.animation.Interpolator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
+import net.kurobako.gesturefx.GesturePane;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,14 +26,27 @@ public class FireController {
     private AnchorPane fireNodes;
     private HashMap<Node, Circle> circles = new HashMap<>();
     private Pathfinder firePath = new Pathfinder();
-
     @FXML
-    private void checkout() {
-        App.getPrimaryStage().setScene(App.getHomeScene());
-    }
+    private static
+    GesturePane FireGesPane;
+
+    public static GesturePane getFireGesPane(){return FireGesPane;}
+
+    public void checkout(){App.getPrimaryStage().setScene(App.getHomeScene());}
 
     @FXML
     private void initialize(){
+        FireGesPane.centreOn(new Point2D(1250, 1500));
+        FireGesPane.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+                Point2D pivotOnTarget = FireGesPane.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(FireGesPane.targetPointAtViewportCentre());
+                // increment of scale makes more sense exponentially instead of linearly
+                FireGesPane.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(FireGesPane.getCurrentScale(), pivotOnTarget);
+            }
+        });
         App.getHome().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

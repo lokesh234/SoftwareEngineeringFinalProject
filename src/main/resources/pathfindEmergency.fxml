@@ -15,7 +15,7 @@
       <BorderPane layoutX="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <AnchorPane prefHeight="1920" prefWidth="1080">
-                    <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                    <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d" fx:id="FireGesPane">
                             <AnchorPane fx:id="fireNodes">
             <ImageView  preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
