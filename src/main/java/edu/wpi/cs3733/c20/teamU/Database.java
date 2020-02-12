@@ -635,6 +635,8 @@ public class Database {
 
 
     public static void getServices(ArrayList<Service> servicesList){
+        ArrayList<Service> finalResult = null;
+
         Connection connection = null;
         Statement stmt = null;
         String tableName = "ServiceRequest";
@@ -680,6 +682,7 @@ public class Database {
         }
     }
 
+
     public static boolean checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
@@ -722,6 +725,7 @@ public class Database {
         return false;
     }
 
+    //prototype:vvv
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;

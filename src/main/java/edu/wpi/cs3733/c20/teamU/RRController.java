@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import static com.oracle.jrockit.jfr.ContentType.Timestamp;
-
 public class RRController {
     @FXML private Button resolve;
     @FXML private Button cancel;
@@ -24,22 +22,44 @@ public class RRController {
     @FXML private Label field9;
     @FXML private Label field10;
     private edu.wpi.cs3733.c20.teamU.Service service;
+    AdminRequestController adminRequestController;
+
+    private String date, name, Id, reqType;
 
     public RRController() {}
 
+    public void setAttributes(AdminRequestController adminRequestController1) {
+        adminRequestController = adminRequestController1;
+    }
+
     public void setService() {
-        System.out.println(App.getUser());
+//        System.out.println(App.getUser());
         service = App.getService();
-        field1.setText(service.getDate());
-        field2.setText(service.getName());
-        field3.setText(service.getRequestID());
-        field4.setText(service.getRequestType());
+        date = service.getDate();
+        name = service.getName();
+        Id = service.getRequestID();
+        reqType = service.getRequestType();
+        field1.setText(date);
+        field2.setText(name);
+        field3.setText(Id);
+        field4.setText(reqType);
     }
 
     @FXML
     private void resolveRequest() {
-//        Date time = new Date();
-//        ServiceDatabase.serviceFinishedAdd(new Timestamp(time.getTime()).toString(), service.getRequestType(), App.getUser(), service.getRequestID());
+
+        String userName = App.getUser();
+//        System.out.println(Id + date + name + reqType + " jjjjjjjjjj");
+//        System.out.println(name);
+        switch (name) {
+            case "MEDIC":
+                ServiceDatabase.medicineSRDel(Integer.parseInt(date), userName);
+                break;
+            case "SECUR":
+                ServiceDatabase.securitySRDel(Integer.parseInt(date), userName);
+                break;
+        }
+        adminRequestController.update();
         back.fire();
     }
 
@@ -53,8 +73,6 @@ public class RRController {
     @FXML
     private void returnToHome() {
         App.getPopup().getContent().clear();
-//        App.getPopup().getContent().add(App.getHome());
-//        App.getPopup().show(App.getPrimaryStage());
         App.getPrimaryStage().setScene(App.getHomeScene());
         App.getHome().setDisable(false);
         App.getHome().setOpacity(1);

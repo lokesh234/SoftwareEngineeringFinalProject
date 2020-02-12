@@ -272,7 +272,7 @@ public class App extends Application {
       pathfindController.setAttributes(path);
       nodeController.setAttributes(editController);
       editController.setAttributes(nodeController);
-//      rrController.setAttributes(adminRequestController);
+      rrController.setAttributes(adminRequestController);
       adminRequestController.setAttributes(rrController);
 
       popup.getContent().addAll();
