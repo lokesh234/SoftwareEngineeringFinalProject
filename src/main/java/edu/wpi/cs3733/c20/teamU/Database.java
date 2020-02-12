@@ -730,7 +730,6 @@ public class Database {
         Connection conn = null;
         Statement stmt = null;
         String tableName = "MapNodesU";
-
         //prints out the whole table
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");

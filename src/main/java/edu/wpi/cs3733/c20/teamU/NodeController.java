@@ -74,7 +74,18 @@ public class NodeController {
     App.getPopup().getContent().add(App.getExport());
     App.getPopup().show(App.getPrimaryStage());
   } //Admin edit nodes interface
-
+@FXML
+  public void addNodeScreen(ActionEvent event) throws IOException {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAddNode());
+    App.getPopup().show(App.getPrimaryStage());
+  }
+  @FXML
+  public void deleteNodeScreen(ActionEvent event) throws IOException {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getDeleteNode());
+    App.getPopup().show(App.getPrimaryStage());
+  }
 
   @FXML
   private void detectClick() {
@@ -123,4 +134,5 @@ public class NodeController {
     shortName.setCellValueFactory(new PropertyValueFactory<>("shortName"));
     nodeTable.setItems(hashToOblist());
   }
+
 }
