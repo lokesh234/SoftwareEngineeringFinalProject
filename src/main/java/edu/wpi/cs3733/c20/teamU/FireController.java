@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.sun.javafx.css.StyleCache;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -24,7 +25,10 @@ public class FireController {
     private AnchorPane fireNodes;
     private HashMap<Node, Circle> circles = new HashMap<>();
 
-
+    @FXML
+    private void checkout() {
+        App.getPrimaryStage().setScene(App.getHomeScene());
+    }
 
     @FXML
     private void initialize(){
@@ -116,6 +120,8 @@ public class FireController {
         this.drawNodes();
     }
 
+    /*
+
     private void drawPath() {
         if (path.size() == 0) return; //No path to draw
         System.out.println("a");
@@ -133,6 +139,8 @@ public class FireController {
         }
         updateStatus();
     }
+
+    */
 
 
 }
