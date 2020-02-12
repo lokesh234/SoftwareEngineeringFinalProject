@@ -25,6 +25,7 @@ public class EdgeEditController {
   private Node selectedStartNode, selectedEndNode;
   private State state;
   private String id;
+  private boolean editing = false;
 
   private enum State {
     n, s, e;
@@ -58,7 +59,7 @@ public class EdgeEditController {
     endLabel.setText("No Selection");
     idLabel.setText("");
     table.setItems(hashToOblist());
-    if (App.getEdgeEdit() != null) { //We've editing a selected edge
+    if (App.getEdgeEdit() != null) { //We're editing a selected edge
       selectedEdge = App.getEdgeEdit();
       selectedStartNode = selectedEdge.getStart();
       selectedEndNode = selectedEdge.getEnd();
@@ -66,12 +67,14 @@ public class EdgeEditController {
       endLabel.setText(selectedEndNode.getID());
       id = selectedEdge.getID();
       idLabel.setText(id);
+      editing = true;
     }
     else {
       id = "";
       selectedEdge = null;
       selectedEndNode = null;
       selectedStartNode = null;
+      editing = false;
     }
   }
 
@@ -85,6 +88,22 @@ public class EdgeEditController {
   public void selectEnd() {
     endLabel.setText("Select a node");
     state = State.e;
+  }
+
+  @FXML
+  public void save() {
+    if (editing) {
+      Database.editEdge(selectedEdge.getID(), selectedStartNode.getNodeID(), selectedEndNode.getNodeID());
+      update();
+    }
+    else if (selectedEndNode != null && selectedStartNode != null) {
+      //Database.addEdge()
+      update();
+    }
+    else { //Not ready to save, don't do anything
+      return;
+    }
+    back();
   }
 
   @FXML
