@@ -3,6 +3,8 @@ package edu.wpi.cs3733.c20.teamU;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -47,29 +49,7 @@ public class HomeController {
     App.getSecurityPop().show(App.getPrimaryStage());
   }
 
-  @FXML
-  private void initialize() {
-//    Duration timeout = new Duration(6000);
-//    if(timeout.toSeconds() > 5){
-//      App.getPrimaryStage().setScene(App.getStartScene());
-//    }
-  }
 
-
-  /*
-  TimerTask task = new TimerTask() {
-    @Override
-    public void run() {
-      openstartScene();
-    }
-  };
-
-  @FXML
-  private void openstartScene(){
-    App.getPrimaryStage().setScene(App.getStartScene());
-  }
-
-  */
 
   @FXML
   private void openRequestScene(ActionEvent e){
@@ -79,5 +59,8 @@ public class HomeController {
     App.getRequestPop().show(App.getPrimaryStage());
   }
 
+  @FXML
+  private void initialize() {
 
+  }
 }

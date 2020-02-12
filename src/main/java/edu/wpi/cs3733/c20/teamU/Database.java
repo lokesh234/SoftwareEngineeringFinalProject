@@ -1,10 +1,12 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import lombok.NoArgsConstructor;
+
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 
 @NoArgsConstructor
@@ -40,20 +42,21 @@ public class Database {
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
             createLoginTable(stmt, "LoginDB");
-            createServiceRequestTable(stmt, "ServiceRequest");
+            createServiceRequestTable(stmt,"ServiceRequest");
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
             createSecuritySRTable(stmt, "SecuritySR");
+            populateServiceRequestTable(stmt, "ServiceRequest");
             // Creates tables again or for the first time
             System.out.println("Created Tables");
 
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
             printTable(stmt, "LoginDB");
+            printTable(stmt, "ServiceRequest");
             printTable(stmt, "ServiceFinished");
             printTable(stmt, "MedicineSR");
             printTable(stmt, "SecuritySR");
-            printTable(stmt, "ServiceRequest");
             //print tables to test
 
             System.out.println("== Apache Derby Databases Established! ==");
@@ -206,44 +209,66 @@ public class Database {
     }
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10), dateReq DATE, type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(10), info VARCHAR(255), PRIMARY KEY (reqID), "+
                     "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
 
-            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-
-            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceRequest.csv");
-            String line = "";
-            String csvSplit = ",";
-
-            //parses through csv file and creates a new row in the database for each row
-            try {
-                BufferedReader br = getBR(tableName);
-                int starter = 0;
-                while ((line = br.readLine()) != null) {
-
-                    String[] csvString = line.split(csvSplit);
-                    if (starter == 0){
-                        starter = 1;
-                    }
-                    else{
-                        String reqID = csvString[0];
-                        String reqDate = csvString[1];
-                        String type = csvString[2];
-                        String info = csvString[3];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + reqDate + "', '" + type + "', '" + info + "')");
-                    }
-                }
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
             return;
+        }
+    }
+    private static void populateServiceRequestTable(Statement stmt, String tableName){
+        //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+        //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceRequest.csv");
+        String line = "";
+        String csvSplit = ",";
 
+        //parses through csv file and creates a new row in the database for each row
+        try {
+            BufferedReader br = getBR(tableName);
+            int starter = 0;
+            while ((line = br.readLine()) != null) {
+
+                String[] csvString = line.split(csvSplit);
+                if (starter == 0){
+                    starter = 1;
+                }
+                else{
+                    // int reqID = Integer.parseInt(csvString[0]);
+                    String reqDate = csvString[1];
+                    String type = csvString[2];
+                    String info = csvString[3];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, type, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
+                }
+            }
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName);
+            ArrayList<Integer> Medic = new ArrayList<>();
+            ArrayList<Integer> Secur = new ArrayList<>();
+
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (rs.next()) {
+                if (rs.getString(3).equals("MEDIC")){
+                    Medic.add(rs.getInt(1));
+                }
+                else if (rs.getString(3).equals("SECUR")){
+                    Secur.add(rs.getInt(1));
+                }
+                //System.out.print(rs.getInt(1) + "\t");
+                //System.out.println(rs.getString(3));
+            }
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            rs.close();
+            populateMedicineSR(stmt, "MedicineSR", Medic);
+            populateSecuritySR(stmt, "SecuritySR", Secur);
+
+        }
+        catch (IOException | SQLException e){
+            e.printStackTrace();
         }
         CreateCSV(stmt, tableName, null);
     }
@@ -291,91 +316,98 @@ public class Database {
     }
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10) REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
-                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(255), CONSTRAINT MSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
+                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
 
             stmt.executeUpdate(slqCreate);
 
-            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-           // InputStream csvFile = Database.class.getResourceAsStream("/csv_files/MedicineSR.csv");
-
-            String line = "";
-            String csvSplit = ",";
-
-            //parses through csv file and creates a new row in the database for each row
-            try {
-                BufferedReader br = getBR(tableName);
-                int starter = 0;
-                while ((line = br.readLine()) != null) {
-
-                    String[] csvString = line.split(csvSplit);
-                    if (starter == 0){
-                        starter = 1;
-                    }
-                    else{
-                        String reqID = csvString[0];
-                        String timeReq = csvString[1];
-                        String patentFirstName = csvString[2];
-                        String patentLastName = csvString[3];
-                        String drugName = csvString[4];
-                        String frequency = csvString[5];
-                        String deliveryMethod = csvString[6];
-                        String comment = csvString[7];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + timeReq + "', '" + patentFirstName +  "', '" + patentLastName + "', '" + drugName +  "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
-                    }
-                }
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
             return;
 
         }
-        CreateCSV(stmt, tableName, null);
     }
     private static void createSecuritySRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID VARCHAR(10) REFERENCES ServiceRequest (reqID), timeReq DATE, urgency VARCHAR(7), type VARCHAR(10), info VARCHAR(255), "+
-                    "CONSTRAINT SSR_UR CHECK (urgency in ('EXTREME','HIGH', 'MEDIUM', 'LOW')), CONSTRAINT SSR_TY CHECK (type in('EMERGENCY', 'GUARD')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, location VARCHAR(20))";
 
             stmt.executeUpdate(slqCreate);
 
-            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
-            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
-            String line = "";
-            String csvSplit = ",";
 
-            //parses through csv file and creates a new row in the database for each row
-            try {
-                BufferedReader br = getBR(tableName);
-                int starter = 0;
-                while ((line = br.readLine()) != null) {
-
-                    String[] csvString = line.split(csvSplit);
-                    if (starter == 0){
-                        starter = 1;
-                    }
-                    else{
-                        String reqID = csvString[0];
-                        String timeReq = csvString[1];
-                        String urgency = csvString[2];
-                        String type = csvString[3];
-                        String info = csvString[4];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + reqID + "', '" + timeReq + "', '" + urgency +  "', '" + type + "', '" + info + "')");
-                    }
-                }
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
             return;
 
+        }
+    }
+    private static void populateMedicineSR(Statement stmt, String tableName, ArrayList<Integer> Medic){
+        String line = "";
+        String csvSplit = ",";
+
+        //parses through csv file and creates a new row in the database for each row
+        try {
+            BufferedReader br = getBR(tableName);
+            int starter = 0;
+            int i = -1;
+            while ((line = br.readLine()) != null) {
+
+                String[] csvString = line.split(csvSplit);
+                if (starter == 0){
+                    starter = 1;
+                }
+                else{
+                    //int reqID = Integer.parseInt(csvString[0]);
+                    int reqID;
+                    reqID = Medic.get(i);
+                    String timeReq = csvString[1];
+                    String patentFirstName = csvString[2];
+                    String patentLastName = csvString[3];
+                    String drugName = csvString[4];
+                    String frequency = csvString[5];
+                    String deliveryMethod = csvString[6];
+                    String comment = csvString[7];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + patentFirstName +  "', '" + patentLastName + "', '" + drugName +  "', '" + frequency + "', '" + deliveryMethod + "', '" + comment + "')");
+          System.out.println("reached update");
+                }
+                i++;
+            }
+        }
+        catch (SQLException | IOException e){
+            e.printStackTrace();
+        }
+        CreateCSV(stmt, tableName, null);
+    }
+    private static void populateSecuritySR(Statement stmt, String tableName, ArrayList<Integer> Secur){
+        //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+        //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/SecuritySR.csv");
+        String line = "";
+        String csvSplit = ",";
+        //parses through csv file and creates a new row in the database for each row
+        try {
+            BufferedReader br = getBR(tableName);
+            int starter = 0;
+            int i = -1;
+            while ((line = br.readLine()) != null) {
+
+                String[] csvString = line.split(csvSplit);
+                if (starter == 0){
+                    starter = 1;
+                }
+                else{
+                    //int reqID = Integer.parseInt(csvString[0]);
+                    int reqID = Secur.get(i);
+                    String timeReq = csvString[1];
+                    String location = csvString[2];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + location + "')");
+                    System.out.println("reached update");
+                }
+                i++;
+            }
+        }
+        catch (SQLException | IOException e){
+            e.printStackTrace();
         }
         CreateCSV(stmt, tableName, null);
     }
@@ -601,60 +633,51 @@ public class Database {
         }
     }
 
-    public static ArrayList<Service> getServices(){
-        ArrayList<Service> finalResult = null;
+
+    public static void getServices(ArrayList<Service> servicesList){
         Connection connection = null;
-        Statement stmt1 = null;
-        Statement stmt2 = null;
-        String tableName1 = "MedicalSR";
-        String tableName2 = "SecuritySR";
+        Statement stmt = null;
+        String tableName = "ServiceRequest";
         //printTable(stmt, "MedicalSR");
+//        Statement stmt1 = null;
+//        Statement stmt2 = null;
+//        String tableName1 = "MedicineSR";
+//        String tableName2 = "SecuritySR";
+//        //printTable(stmt, "MedicineSR");
         //printTable(stmt, "SecuritySR");
 
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
-            stmt1 = connection.createStatement();
+            stmt = connection.createStatement();
+            String sql = "SELECT * FROM " + tableName;
+            ResultSet results = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = results.getMetaData();
 
-            String sql1 = "SELECT * FROM " + tableName1;
-            ResultSet results1 = stmt1.executeQuery(sql1);
-            ResultSetMetaData rsmd1 = results1.getMetaData();
-            //for each line, create a node and add it to hash map
-            while (results1.next()) {
-                String date = results1.getString(1);
-                String requestID = results1.getString(2);
-                String name = results1.getString(3);
-                String requestType = results1.getString(4);
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (results.next()) {
+                String date = results.getString(1);
+                String requestID = results.getString(2);
+                String name = results.getString(3);
+                String requestType = results.getString(4);
                 Service s = new Service(date, requestID, name, requestType);
-                finalResult.add(s);
+                servicesList.add(s);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
-            results1.close();
-            stmt1.close();
-
-            stmt2 = connection.createStatement();
-            String sql2 = "SELECT * FROM " + tableName2;
-            ResultSet results2 = stmt2.executeQuery(sql2);
-            ResultSetMetaData rsmd2 = results2.getMetaData();
-            while (results2.next()) {
-                String date = results2.getString(1);
-                String requestID = results2.getString(2);
-                String name = results2.getString(3);
-                String requestType = results2.getString(4);
-                Service s = new Service(date, requestID, name, requestType);
-                finalResult.add(s);
-                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
-            }
-            results2.close();
-            stmt2.close();
-
+            results.close();
+            stmt.close();
             connection.close();
 
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return null;
+            return;
         }
-        return finalResult;
     }
 
     public static boolean checkCred(String inputUsername, String inputPassword){
@@ -686,6 +709,7 @@ public class Database {
                 }
             }
 
+
             results.close();
             stmt.close();
             connection.close();
@@ -701,7 +725,7 @@ public class Database {
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;
-        String tableName = "PROTOTYPENODES";
+        String tableName = "MapNodesU";
 
         //prints out the whole table
         try {

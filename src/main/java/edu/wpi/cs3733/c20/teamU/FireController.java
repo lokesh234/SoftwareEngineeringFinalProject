@@ -56,6 +56,7 @@ public class FireController {
                 }
             }
         });
+        /*
         App.getPath().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -63,7 +64,8 @@ public class FireController {
                     App.getPrimaryStage().setScene(App.getFireScene());
                 }
             }
-        });
+        })
+        ;
         App.getSecurity().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -81,6 +83,7 @@ public class FireController {
                 }
             }
         });
+         */
         /*
         App.getFire().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override

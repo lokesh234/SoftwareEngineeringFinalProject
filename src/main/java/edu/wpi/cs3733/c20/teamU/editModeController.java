@@ -3,7 +3,6 @@ package edu.wpi.cs3733.c20.teamU;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,6 +19,7 @@ public class editModeController {
   @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
   edu.wpi.cs3733.c20.teamU.Node selectedNode;
+  NodeController nodeController;
 
   public editModeController() {}
 
@@ -27,20 +27,21 @@ public class editModeController {
    * Change scene when this is called...
    */
   public void adminScreen(ActionEvent event) throws IOException {
-    Parent editMode = FXMLLoader.load(getClass().getResource("/Admin_Screen.fxml"));
-    Scene editModeScene = new Scene(editMode);
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAdminNode());
+    App.getPopup().show(App.getPrimaryStage());
+  }
 
-    Stage scene = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-    scene.setScene(editModeScene);
-    scene.show();
+  public void setAttributes(NodeController nodeController1) {
+    nodeController = nodeController1;
   }
 
   @FXML
   private void confirmChange() {
     overWrite();
-    HashMap<String, edu.wpi.cs3733.c20.teamU.Node> nodes = new HashMap<String, edu.wpi.cs3733.c20.teamU.Node>();
-    Database.getNodes(nodes);
+    HashMap<String, Node> graph = new HashMap<String, Node>();
+    Database.getNodes(graph);
+    nodeController.refreshTable();
     cancel.fire();
   }
 
@@ -65,26 +66,20 @@ public class editModeController {
     if(userShortName.isEmpty()) userShortName = shortName;
 
     Database.editTuple(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
-
-
-
-//    String ID = selectedNode.getNodeID();
-//    int x = (int) Double.parseDouble(text2.getText());
-//    int y = (int) Double.parseDouble(text3.getText());
-//    int floor = (int) Double.parseDouble(text4.getText());
-//    String build = text5.getText();
-//    String type = text6.getText();
-//    String longName = text7.getText();
-//    String shortName = text8.getText();
-
-//    Database.editTuple(ID, x, y, floor, build, type, longName, shortName);
+    text2.clear();
+    text3.clear();
+    text4.clear();
+    text5.clear();
+    text6.clear();
+    text7.clear();
+    text8.clear();
   }
 
   /**
    * function sets prompt messages for edit mode scene
    */
   public void selectedNodeVal() {
-
+    selectedNode = App.getNodeEdit();
     ID = selectedNode.getNodeID();
     x = Integer.toString(selectedNode.getX());
     y = Integer.toString(selectedNode.getY());
@@ -103,25 +98,13 @@ public class editModeController {
     text7.setPromptText(longName);
     text8.setPromptText(shortName);
 
-//    text1.setPromptText(selectedNode.getNodeID());
-//    text2.setPromptText(Integer.toString(selectedNode.getX()));
-//    text3.setPromptText(Integer.toString(selectedNode.getY()));
-//    text4.setPromptText(Integer.toString(selectedNode.getFloor()));
-//    text5.setPromptText(selectedNode.getBuilding());
-//    text6.setPromptText(selectedNode.getNodeType());
-//    text7.setPromptText(selectedNode.getLongName());
-//    text8.setPromptText(selectedNode.getShortName());
   }
 
-//  public void changeText1(boolean b) {
-//    if(b) text1.setDisable(false);
-//  }
-
-  /**
-   * function is used from admin screen to set user designated Node
-   * @param designatedNode
-   */
-  public void setNode(edu.wpi.cs3733.c20.teamU.Node designatedNode) {selectedNode = designatedNode;}
+//  /**
+//   * function is used from admin screen to set user designated Node
+//   * @param designatedNode
+//   */
+//  public void setNode(edu.wpi.cs3733.c20.teamU.Node designatedNode) {selectedNode = designatedNode;}
 
   @FXML
   public void initialize() {

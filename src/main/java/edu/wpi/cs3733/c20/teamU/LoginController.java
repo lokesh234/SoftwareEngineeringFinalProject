@@ -1,18 +1,13 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Popup;;
-
 
 public class LoginController {
 
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;
-  @FXML private Button loginEnter;
 
-//  private Popup popup = App.getPopup();
   private int trackLoginCount;
   private boolean didFail;
 
@@ -29,6 +24,7 @@ public class LoginController {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
         changeScene();
+        return;
       }
       didFail = true;
       trackLoginCount++;
@@ -51,27 +47,25 @@ public class LoginController {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
-      App.getHome().setOpacity(1);
-      App.getHome().setDisable(false);
-
 
       // uncomment this to move onto admin screen....
-//      App.getPopup().getContent().add(App.getAdmin());
-//      App.getPopup().show(App.getPrimaryStage());
+      App.getPopup().getContent().add(App.getAdmin());
+      App.getPopup().show(App.getPrimaryStage());
     }
   }
 
-    @FXML
-    private void exitPopup() {
-        didFail = false;
-        App.getHome().setOpacity(1);
-        App.getHome().setDisable(false);
-        App.getPopup().getContent().remove(0);
-    }
-
-    @FXML
-    private void initialize() {
-//        loginEnter.setDisable(true);
+  @FXML
+  private void exitPopup() {
+    didFail = false;
+    usernameField.setStyle("-fx-border-color: black");
+    passwordField.setStyle("-fx-border-color: black");
+    App.getHome().setOpacity(1);
+    App.getHome().setDisable(false);
+    App.getPopup().getContent().remove(0);
   }
 
+  @FXML
+  private void initialize() {
+    //        loginEnter.setDisable(true);
+  }
 }
