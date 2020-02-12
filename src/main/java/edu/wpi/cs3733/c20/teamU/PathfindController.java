@@ -126,7 +126,7 @@ public class PathfindController {
         circles.clear();
         for (Node n : nodes) {
             if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (isDrawableNode(n.getID())) {
+            if (isDrawableNode(n)) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
@@ -137,8 +137,8 @@ public class PathfindController {
         }
     }
 
-    private boolean isDrawableNode(String nID) { //Which nodes do we want to draw?
-        return !nID.substring(0, 5).equals("UHALL"); //Everything except hallway nodes
+    private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
+        return !n.getNodeType().equals("HALL"); //If ID is shorter than 6, it's not a hallway node
         //return true; //Everything!
     }
 
