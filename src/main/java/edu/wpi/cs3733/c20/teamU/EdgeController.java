@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -22,6 +23,7 @@ public class EdgeController {
 
   Database graph;
   EdgeEditController toEdit;
+  private Edge selected;
 
   public EdgeController() {}
 
@@ -65,6 +67,7 @@ public class EdgeController {
       App.setEdgeEdit(edges.getSelectionModel().getSelectedItem());
       toEdit.update();
       editButton.setDisable(false);
+      selected = edges.getSelectionModel().getSelectedItem();
     }
       else editButton.setDisable(true);
 //    else nodeTable.getSelectionModel().clearSelection();
@@ -90,6 +93,18 @@ public class EdgeController {
       nodes.add(graph.get(key));
     }
     return nodes;
+  }
+
+  private void update() {
+    edges.setItems(hashToOblist());
+  }
+
+  @FXML
+  public void remove() {
+    if (selected != null) {
+      Database.delEdge(selected.getID());
+      update();
+    }
   }
 
   /**

@@ -47,7 +47,7 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeButton" mnemonicParsing="false" style="-fx-background-color: #db6e6e;" text="Remove" VBox.vgrow="ALWAYS">
+                  <Button fx:id="removeButton" mnemonicParsing="false" style="-fx-background-color: #db6e6e;" text="Remove" VBox.vgrow="ALWAYS" onAction="#remove">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
