@@ -140,16 +140,11 @@ public class App extends Application {
   }
   public static Pane getAddNode() { return addNode; }
 
-    public static Pane getAdminNode() { return adminNode;}
+  public static Pane getAdminNode() { return adminNode;}
 
-    public static Pane getFire(){
-      return fire;
-    }
+  public static Pane getFire(){ return fire; }
 
-
-    public static Scene getHomeScene() {
-    return homeScene;
-  }
+  public static Scene getHomeScene() { return homeScene; }
 
   public static Scene getLoginScene() {
     return loginScene;

@@ -10,11 +10,14 @@ import java.util.HashMap;
 
 public class AddNodeController {
 
-  @FXML private Button confirm;
-  @FXML private Button cancel;
-  @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;
+  @FXML
+  private Button confirm;
+  @FXML
+  private Button cancel;
+  @FXML
+  private TextField text1, text2, text3, text4, text5, text6, text7, text8;
   private String ID, x, y, floor, build, type, shortName, longName;
-//  Node selectedNode;
+  //  Node selectedNode;
   NodeController nodeController;
 
   public AddNodeController() {
@@ -23,6 +26,7 @@ public class AddNodeController {
   public void setAttributes(NodeController nodeController1) {
     nodeController = nodeController1;
   }
+
   /**
    * Change scene when this is called...
    */
@@ -38,6 +42,7 @@ public class AddNodeController {
     overWrite();
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
+//    System.out.println(graph.get(userID).getFloor());
     nodeController.refreshTable();
     cancel.fire();
   }
@@ -46,6 +51,7 @@ public class AddNodeController {
    * function makes changes to node values
    */
   private void overWrite() { // does not count in for empty values
+//    boolean boo = false;
     String userID = text1.getText();
     String userX = text2.getText();
     String userY = text3.getText();
@@ -54,27 +60,33 @@ public class AddNodeController {
     String userType = text6.getText();
     String userLongName = text7.getText();
     String userShortName = text8.getText();
+//    System.out.println(userID);
 
     if (text1.getText().isEmpty() || text2.getText().isEmpty() || text3.getText().isEmpty() || text4
         .getText().isEmpty() || text5.getText().isEmpty() || text6.getText().isEmpty() || text7
         .getText().isEmpty() || text8.getText().isEmpty()) {
-      cancel.fire();
     } else {
       Database.addNode(userID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY),
-          (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
-      text1.clear();
-      text2.clear();
-      text3.clear();
-      text4.clear();
-      text5.clear();
-      text6.clear();
-      text7.clear();
-      text8.clear();
-
+          (int) Double.parseDouble(userFloor), userBuild, userType, userLongName,
+          userShortName); // THIS IS FAILING
     }
 
-  }
+//    if (boo) {
+//      System.out.println(1);
+//    } else {
+//      System.out.println(0);
+//    }
+    text1.clear();
+    text2.clear();
+    text3.clear();
+    text4.clear();
+    text5.clear();
+    text6.clear();
+    text7.clear();
+    text8.clear();
+    cancel.fire();
 
+  }
 
   @FXML
   public void initialize() {
