@@ -616,7 +616,7 @@ public class Database {
                 String _nodeType = results.getString(6);
                 String _longName = results.getString(7);
                 String _shortName = results.getString(8);
-                Node node = new Node(_nodeID, (int) ( _xcoord/3.45) + 640, (int) (_ycoord/3.45) + 395, _floor, _building, _nodeType, _longName, _shortName);
+                Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
                 nHM.put(node.getID(), node);
                 //System.out.println("Created a node with ID " + node.getID());
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
@@ -634,60 +634,50 @@ public class Database {
     }
 
 
-    public static ArrayList<Service> getServices(){
-        ArrayList<Service> finalResult = null;
+    public static void getServices(ArrayList<Service> servicesList){
         Connection connection = null;
-        Statement stmt1 = null;
-        Statement stmt2 = null;
-        String tableName1 = "MedicineSR";
-        String tableName2 = "SecuritySR";
-        //printTable(stmt, "MedicineSR");
+        Statement stmt = null;
+        String tableName = "ServiceRequest";
+        //printTable(stmt, "MedicalSR");
+//        Statement stmt1 = null;
+//        Statement stmt2 = null;
+//        String tableName1 = "MedicineSR";
+//        String tableName2 = "SecuritySR";
+//        //printTable(stmt, "MedicineSR");
         //printTable(stmt, "SecuritySR");
 
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
-            stmt1 = connection.createStatement();
+            stmt = connection.createStatement();
+            String sql = "SELECT * FROM " + tableName;
+            ResultSet results = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = results.getMetaData();
 
-            String sql1 = "SELECT * FROM " + tableName1;
-            ResultSet results1 = stmt1.executeQuery(sql1);
-            ResultSetMetaData rsmd1 = results1.getMetaData();
-            //for each line, create a node and add it to hash map
-            while (results1.next()) {
-                String date = results1.getString(1);
-                String requestID = results1.getString(2);
-                String name = results1.getString(3);
-                String requestType = results1.getString(4);
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (results.next()) {
+                String date = results.getString(1);
+                String requestID = results.getString(2);
+                String name = results.getString(3);
+                String requestType = results.getString(4);
                 Service s = new Service(date, requestID, name, requestType);
-                finalResult.add(s);
+                servicesList.add(s);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
-            results1.close();
-            stmt1.close();
-
-            stmt2 = connection.createStatement();
-            String sql2 = "SELECT * FROM " + tableName2;
-            ResultSet results2 = stmt2.executeQuery(sql2);
-            ResultSetMetaData rsmd2 = results2.getMetaData();
-            while (results2.next()) {
-                String date = results2.getString(1);
-                String requestID = results2.getString(2);
-                String name = results2.getString(3);
-                String requestType = results2.getString(4);
-                Service s = new Service(date, requestID, name, requestType);
-                finalResult.add(s);
-                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
-            }
-            results2.close();
-            stmt2.close();
-
+            results.close();
+            stmt.close();
             connection.close();
 
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return null;
+            return;
         }
-        return finalResult;
     }
 
 
@@ -720,6 +710,7 @@ public class Database {
                 }
             }
 
+
             results.close();
             stmt.close();
             connection.close();
@@ -736,7 +727,7 @@ public class Database {
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
         Statement stmt = null;
-        String tableName = "PROTOTYPENODES";
+        String tableName = "MapNodesU";
 
         //prints out the whole table
         try {

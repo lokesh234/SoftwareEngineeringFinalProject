@@ -16,13 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.MedicineController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MedicineRequestForm">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
+            <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="600.0" style="-fx-background-color: #250033;">
                <children>
-                  <Button fx:id="closeMedicineScreen" mnemonicParsing="false" onAction="#closeMedicineForm" style="-fx-background-color: #729EBF;">
+                  <Button mnemonicParsing="false" style="-fx-background-color: #3E2F4D;">
                      <HBox.margin>
                         <Insets right="10.0" top="5.0" />
                      </HBox.margin>
@@ -36,7 +36,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #250033;">
                <children>
                   <Label text="Medicine Request Form" textFill="WHITE">
                      <font>
@@ -46,7 +46,7 @@
             </HBox>
             <VBox prefHeight="306.0" prefWidth="600.0">
                <children>
-                  <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="600.0">
+                  <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="600.0" style="-fx-background-color: #3E2F4D;">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -59,8 +59,8 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Last Name" />
-                              <TextField fx:id="last">
+                              <Label text="Last Name" textFill="WHITE" />
+                              <TextField>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -69,8 +69,8 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="First Name" />
-                              <TextField fx:id="first" prefHeight="25.0" prefWidth="226.0">
+                              <Label text="First Name" textFill="WHITE" />
+                              <TextField prefHeight="25.0" prefWidth="226.0">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -79,8 +79,8 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Drug Name" />
-                              <TextField fx:id="drug">
+                              <Label text="Drug Name" textFill="WHITE" />
+                              <TextField>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -89,8 +89,8 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Frequency " />
-                              <TextField fx:id="frequency">
+                              <Label text="Frequency " textFill="WHITE" />
+                              <TextField>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -99,14 +99,14 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                            <children>
-                              <Label text="Delivery Type" />
-                              <ComboBox fx:id="comboBox" prefWidth="150.0" />
+                              <Label text="Delivery Type" textFill="WHITE" />
+                              <ComboBox prefWidth="150.0" />
                            </children>
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <Label text="Comments" />
-                              <TextArea fx:id="comments" prefHeight="56.0" prefWidth="260.0">
+                              <Label text="Comments" textFill="WHITE" />
+                              <TextArea prefHeight="56.0" prefWidth="260.0" style="-fx-background-color: #999999;">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
@@ -118,9 +118,9 @@
                         <Insets top="8.0" />
                      </padding>
                   </GridPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #3E2F4D;">
                      <children>
-                        <Button fx:id="submit" mnemonicParsing="false" onAction="#getSubmission" style="-fx-background-color: #729EBF;" text="Submit" textFill="WHITE">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #250033;" text="Submit" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></Button>

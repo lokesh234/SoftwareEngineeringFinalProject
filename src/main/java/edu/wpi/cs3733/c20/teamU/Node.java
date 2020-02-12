@@ -58,4 +58,12 @@ public class Node {
     public String getNodeID(){
         return  this.ID;
     }
+
+    public int getFloor() { return this.floor;}
+    public String getBuilding() {return this.building;}
+    public String getNodeType() {return this.nodeType;}
+    public String getLongName() { return this.longName;}
+    public String getShortName() { return this.shortName;}
+    public int getXCoord() {return this.x;}
+    public int getYCoord() {return this.y;}
 }

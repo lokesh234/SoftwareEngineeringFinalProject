@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,13 +13,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.LoginController">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #3E2F4D;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="TOP_RIGHT" prefHeight="78.0" prefWidth="600.0">
+                <HBox alignment="TOP_RIGHT" prefHeight="78.0" prefWidth="600.0" style="-fx-background-color: #3E2F4D;">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#exitPopup" style="-fx-background-color: #ffffff;">
+                        <Button mnemonicParsing="false" onAction="#exitPopup" style="-fx-background-color: #3E2F4D;">
                             <graphic>
-                                <ImageView fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="loginCancel" fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@png_files/Cancel.png" />
                                     </image>
@@ -32,11 +31,11 @@
                         <Insets right="18.0" top="7.0" />
                     </padding>
                 </HBox>
-                <VBox alignment="CENTER" prefHeight="288.0" prefWidth="600.0">
+                <VBox alignment="CENTER" prefHeight="288.0" prefWidth="600.0" style="-fx-background-color: #3E2F4D;">
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Label text="Username">
+                                <Label text="Username" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets right="38.0" />
                                     </HBox.margin>
@@ -44,7 +43,7 @@
                                         <Font name="Segoe UI" size="30.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="usernameField">
+                                <TextField fx:id="usernameField" style="-fx-background-color: #999999;">
                                     <font>
                                         <Font name="Segoe UI" size="30.0" />
                                     </font>
@@ -59,7 +58,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Label text="Password">
+                                <Label text="Password" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets right="50.0" />
                                     </HBox.margin>
@@ -67,11 +66,11 @@
                                         <Font name="Segoe UI" size="30.0" />
                                     </font>
                                 </Label>
-                                <PasswordField fx:id="passwordField">
+                                <TextField fx:id="passwordField" style="-fx-background-color: #999999;">
                                     <font>
                                         <Font name="Segoe UI" size="30.0" />
                                     </font>
-                                </PasswordField>
+                                </TextField>
                             </children>
                             <opaqueInsets>
                                 <Insets />
@@ -83,7 +82,7 @@
                                 <Insets top="14.0" />
                             </padding>
                         </HBox>
-                        <Button fx:id="loginEnter" mnemonicParsing="false" onAction="#isAuthorized" prefHeight="68.0" prefWidth="98.0" style="-fx-border-color: skyblue" text="Enter">
+                        <Button fx:id="loginEnter" mnemonicParsing="false" onAction="#isAuthorized" prefHeight="68.0" prefWidth="98.0" style="-fx-background-color: #250033;" text="Enter" textFill="WHITE">
                             <VBox.margin>
                                 <Insets top="34.0" />
                             </VBox.margin>

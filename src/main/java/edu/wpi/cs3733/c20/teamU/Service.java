@@ -12,4 +12,9 @@ public class Service {
         this.name = name;
         this.requestType = requestType;
     }
+
+    public String getDate() { return date;}
+    public String getRequestID() { return requestID;}
+    public String getName() {return name;}
+    public String  getRequestType() { return requestType;}
 }

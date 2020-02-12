@@ -8,43 +8,44 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.util.ArrayList;
+
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
 
 public class AdminController {
-    @FXML private TableView<Service> serviceTable;
-    @FXML private TableColumn<Service, String> date;
-    @FXML private TableColumn<Service, String> requestID;
-    @FXML private TableColumn<Service, String> name;
-    @FXML private TableColumn<Service, String> requestType;
-    @FXML private Button edit;
-    @FXML private Button backButton;
 
-//    private Popup popup = App.getPopup();
+
+    @FXML
+    private void requestPowers() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminRequest());
+        App.getAdminRequestController().update();
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    private void editPowers() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminNode());
+        App.getPopup().show(App.getPrimaryStage());
+    } //Admin edit nodes interface
+
+    @FXML
+    private void export() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getExport());
+        App.getPopup().show(App.getPrimaryStage());
+    }
 
     @FXML
     private void detectClick() {
-        if(serviceTable.getSelectionModel().getSelectedItem() != null) {
-//            edit.setDisable(false);
-//            selectedNode = serviceTable.getSelectionModel().getSelectedItem();
-        }
-    }
 
-    private ObservableList<Service> arrayToOBList(){
-        ObservableList<Service> services = FXCollections.observableArrayList();
-        ArrayList<Service> temp = Database.getServices();
-        for(Service s : temp){
-            if(temp.size() == 0) break;
-            services.add(s);
-        }
-        return services;
     }
 
     @FXML
-    private void initialize() {
-//        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
-//        requestID.setCellValueFactory(new PropertyValueFactory<>("RequestID"));
-//        name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//        requestType.setCellValueFactory(new PropertyValueFactory<>("Type"));
-//        serviceTable.setItems(arrayToOBList());
+    private void backHome() {
+        App.getHome().setOpacity(1);
+        App.getHome().setDisable(false);
+        App.getPopup().getContent().remove(0);
     }
 }
