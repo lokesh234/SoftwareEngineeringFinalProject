@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.util.Duration;
 
 import javax.print.DocFlavor;
 import java.io.IOException;
+import java.time.Instant;
+import java.util.Timer;
 
 public class HomeController {
 
@@ -27,6 +30,10 @@ public class HomeController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
+  @FXML
+  private void openStartScene() {
+    App.getPrimaryStage().setScene(App.getStartScene());
+  }
   @FXML
   private void openNavScene(ActionEvent e) throws IOException {
     App.getPrimaryStage().setScene(App.getPathScene());

@@ -111,6 +111,7 @@ public class App extends Application {
 //      homeController.setAttributes(login, home, popup, securityPop);
 //      loginController.setAttributes(login, home, popup);
       pathfindController.setAttributes(path);
+      fireController.setAttributes(fire);
 
       //TODO: find a better way to do popups...
       popup.getContent().addAll();

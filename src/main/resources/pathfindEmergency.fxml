@@ -16,7 +16,7 @@
          <center>
             <AnchorPane prefHeight="1920" prefWidth="1080">
                     <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
-                            <AnchorPane>
+                            <AnchorPane fx:id="fireNodes">
             <ImageView  preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@png_files/Hospital.png" />
