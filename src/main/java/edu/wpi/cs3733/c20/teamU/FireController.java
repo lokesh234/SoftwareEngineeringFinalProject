@@ -27,11 +27,9 @@ public class FireController {
     private HashMap<Node, Circle> circles = new HashMap<>();
     private Pathfinder firePath = new Pathfinder();
     @FXML
-    private static
-    GesturePane FireGesPane;
+    private GesturePane FireGesPane;
 
-    public static GesturePane getFireGesPane(){return FireGesPane;}
-
+    @FXML
     public void checkout(){App.getPrimaryStage().setScene(App.getHomeScene());}
 
     @FXML
