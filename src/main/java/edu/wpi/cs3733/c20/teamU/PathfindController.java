@@ -175,6 +175,7 @@ public class PathfindController {
             l.setStartY(n1.getY());
             l.setEndX(n2.getX());
             l.setEndY(n2.getY());
+
             lines.add(l);
             addToPath(l);
         }
