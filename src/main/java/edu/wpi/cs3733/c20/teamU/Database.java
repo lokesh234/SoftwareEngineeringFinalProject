@@ -635,12 +635,42 @@ public class Database {
 
 
 
-    public static void addEdge(){
-
+    public static boolean addEdge(String startID, String endID){
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapEdgesU";
+        String edgeID = startID + "_" + endID;
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + edgeID + "', '" + startID + "', '" + endID + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
     }
-    public static void addNode(){
 
+    public static boolean addNode(String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName){
+        String teamAssigned = "Team U";
+        Statement stmt;
+        Connection conn;
+        String tableName = "MapNodesU";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + nodeID + "', " + xcoord + ", " + ycoord + ", " + floor + ", '" + building + "', '" + nodeType + "', '" + longName + "', '" + shortName + "', '" + teamAssigned + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
     }
+
     public static boolean delEdge(String edgeID){
         Statement stmt;
         Connection conn;
