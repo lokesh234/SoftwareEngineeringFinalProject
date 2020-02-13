@@ -208,9 +208,8 @@ public class PathfindController {
             pathe.setStroke(Color.web("#39ff14"));
             pathe.setStrokeWidth(5.0);
             pathes.add(pathe);
-//            Path path = new Path();
-  //          path.getElements().add(l);
             addToPath(pathe);
+
         }
         displayingPath = true;
         updateStatus();
