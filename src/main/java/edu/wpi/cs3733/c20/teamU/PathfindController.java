@@ -12,9 +12,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Path;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -50,7 +49,7 @@ public class PathfindController {
     private boolean endReady = false;
     private boolean displayingPath = false;
     private HashMap<Node, Circle> circles = new HashMap<>();
-    private ArrayList<Line> lines = new ArrayList<>();
+    private ArrayList<Path> pathes = new ArrayList<>();
     final ToggleGroup group = new ToggleGroup();
 
 
@@ -172,7 +171,7 @@ public class PathfindController {
             clearPath();
             //System.out.println("PathfindPress");
             path.clear();
-            lines.clear();
+            pathes.clear();
             engine.starSingular(start, end, App.getGraph());
             path = engine.getLatestPath();
             //System.out.println(path.size());
@@ -182,9 +181,9 @@ public class PathfindController {
     }
     @FXML
     private void clearPath() {
-        if (lines.size() == 0) return;
-        for (Line l : lines) {
-            removeFromPath(l);
+        if (pathes.size() == 0) return;
+        for (Path p : pathes) {
+            removeFromPath(p);
         }
         displayingPath = false;
         updateStatus();
@@ -201,16 +200,17 @@ public class PathfindController {
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
 
-            Line l = new Line();
-            l.setStartX(n1.getX());
-            l.setStartY(n1.getY());
-            l.setEndX(n2.getX());
-            l.setEndY(n2.getY());
-
-            lines.add(l);
+            MoveTo move = new MoveTo(n1.getX(),n1.getY());
+            LineTo line = new LineTo(n2.getX(),n2.getY());
+            Path pathe = new Path();
+            pathe.getElements().add(move);
+            pathe.getElements().add(line);
+            pathe.setStroke(Color.web("#39ff14"));
+            pathe.setStrokeWidth(5.0);
+            pathes.add(pathe);
 //            Path path = new Path();
   //          path.getElements().add(l);
-            addToPath(l);
+            addToPath(pathe);
         }
         displayingPath = true;
         updateStatus();
