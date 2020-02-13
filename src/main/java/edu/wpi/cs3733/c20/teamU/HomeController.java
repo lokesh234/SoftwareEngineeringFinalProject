@@ -83,7 +83,6 @@ public class HomeController {
     { Long currentTime = System.currentTimeMillis();
         if ((currentTime - startTime) > (long) 5000) {
             Platform.runLater(this::openHomeScene);
-            System.out.println("Hello");
         }
     });
 
