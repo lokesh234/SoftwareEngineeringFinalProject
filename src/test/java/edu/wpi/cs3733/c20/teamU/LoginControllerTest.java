@@ -18,7 +18,7 @@ import java.io.IOException;
 @ExtendWith(ApplicationExtension.class)
 public class LoginControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
-        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
+        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/LoginForm.fxml"));
         Scene scene1 = new Scene(sceneRoot);
         stage.setScene(scene1);
         stage.show();

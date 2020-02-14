@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ public class AdminRequestController {
     @FXML private TableColumn<Service, String> requestID;
     @FXML private TableColumn<Service, String> type;
     @FXML private TableColumn<Service, String> info;
-    @FXML private Button close;
+    @FXML private JFXButton close;
     @FXML private Button backButton;
 
 //    private Popup popup = App.getPopup();

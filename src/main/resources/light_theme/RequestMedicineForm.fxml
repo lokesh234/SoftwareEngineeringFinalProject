@@ -29,7 +29,7 @@
                      <graphic>
                         <ImageView fitHeight="64.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@png_files/Cancel.png" />
+                              <Image url="@../png_files/Cancel.png" />
                            </image>
                         </ImageView>
                      </graphic>

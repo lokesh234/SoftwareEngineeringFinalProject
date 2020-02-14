@@ -20,7 +20,7 @@
                                     <graphic>
                                 <ImageView fitHeight="57.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/brighamLogo.png"/>
+                                        <Image url="@../png_files/brighamLogo.png"/>
                                     </image>
                                     <VBox.margin>
                                         <Insets/>
@@ -57,7 +57,7 @@
                                         <ImageView fitHeight="50.0" fitWidth="113.0" pickOnBounds="true"
                                                    preserveRatio="true">
                                             <image>
-                                                <Image url="@png_files/LogInButton.png"/>
+                                                <Image url="@../png_files/LogInButton.png"/>
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -87,7 +87,7 @@
                     <graphic>
                 <ImageView fitHeight="965.0" fitWidth="1585.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@png_files/Final-Floor-4.png"/>
+                        <Image url="@../png_files/Final-Floor-4.png"/>
                     </image>
                     <VBox.margin>
                         <Insets/>

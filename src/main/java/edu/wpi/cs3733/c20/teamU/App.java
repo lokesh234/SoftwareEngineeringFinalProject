@@ -202,18 +202,18 @@ public class App extends Application {
 
     App.primaryStage = primaryStage;
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
-      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
-      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
-      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/Admin_Node.fxml"));
-      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
-      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
-      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
-      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
-      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
-      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
-      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/Start.fxml"));
+      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/light_theme/Home.fxml"));
+      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/light_theme/LoginForm.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminMenu.fxml"));
+      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
+      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/light_theme/Pathfind.fxml"));
+      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
+      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
+      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
+      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
+      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
+      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
 
       home = homeLoader.load();
       login = loginLoader.load();

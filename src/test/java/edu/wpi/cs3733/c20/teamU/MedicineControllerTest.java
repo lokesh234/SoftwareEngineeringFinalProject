@@ -17,7 +17,7 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 @ExtendWith(ApplicationExtension.class)
 public class MedicineControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
-        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/MedicineRequestForm.fxml"));
+        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
         Scene scene1 = new Scene(sceneRoot);
         stage.setScene(scene1);
         stage.show();

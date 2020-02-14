@@ -26,7 +26,7 @@
                             <children>
                                 <ImageView fitHeight="57.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/brighamLogo.png" />
+                                        <Image url="@../png_files/brighamLogo.png" />
                                     </image>
                                     <VBox.margin>
                                         <Insets />
@@ -58,7 +58,7 @@
                                     <graphic>
                                         <ImageView fitHeight="50.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@png_files/LogInButton.png" />
+                                                <Image url="@../png_files/LogInButton.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -90,7 +90,7 @@
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@png_files/HomeButton.png" />
+                                <Image url="@../png_files/HomeButton.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -102,7 +102,7 @@
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@png_files/Navigate.png" />
+                                <Image url="@../png_files/Navigate.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -116,7 +116,7 @@
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@png_files/AssistanceButton.png" />
+                                <Image url="@../png_files/AssistanceButton.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -129,7 +129,7 @@
                             <graphic>
                                 <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/InfoFlyout.png" />
+                                        <Image url="@../png_files/InfoFlyout.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -138,7 +138,7 @@
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@png_files/Info.png" />
+                                <Image url="@../png_files/Info.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -151,7 +151,7 @@
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/Settings.png" />
+                                        <Image url="@../png_files/Settings.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -160,7 +160,7 @@
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/Settings.png" />
+                                        <Image url="@../png_files/Settings.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -169,7 +169,7 @@
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/Settings.png" />
+                                        <Image url="@../png_files/Settings.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -178,7 +178,7 @@
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@png_files/Settings.png" />
+                                <Image url="@../png_files/Settings.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -190,7 +190,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="png_files/Help Button - Copy.png" />
+                        <Image url="../png_files/Help Button - Copy.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -204,7 +204,7 @@
                         <AnchorPane fx:id="NodesPane" >
                 <ImageView pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@png_files/Final-Floor-4.png" />
+                        <Image url="@../png_files/Final-Floor-4.png" />
                     </image>
                     <VBox.margin>
                         <Insets />

@@ -15,7 +15,7 @@
          <center>
             <ImageView fitWidth="900.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@png_files/Final-Floor_4_map_1.png" />
+                  <Image url="@../png_files/Final-Floor_4_map_1.png" />
                </image>
             </ImageView>
          </center>

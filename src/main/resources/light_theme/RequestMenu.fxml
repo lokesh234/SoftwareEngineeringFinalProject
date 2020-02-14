@@ -19,7 +19,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@png_files/Cancel.png" />
+                              <Image url="@../png_files/Cancel.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -52,7 +52,7 @@
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/MealIcon.png" />
+                                          <Image url="@../png_files/MealIcon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
@@ -69,7 +69,7 @@
                                  <graphic>
                                     <ImageView fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/cleanupicon.png" />
+                                          <Image url="@../png_files/cleanupicon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
@@ -86,7 +86,7 @@
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/Med.png"/>
+                                          <Image url="@../png_files/Med.png"/>
                                        </image></ImageView>
                                  </graphic>
                               </Button>
@@ -103,7 +103,7 @@
                                  <graphic>
                                     <ImageView fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/ReligionIcon.png" />
+                                          <Image url="@../png_files/ReligionIcon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>

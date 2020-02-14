@@ -14,7 +14,7 @@
             <AnchorPane fx:id="NodesPane">
             <ImageView >
                <image>
-                  <Image url="@png_files/Final-Floor-4.png" />
+                  <Image url="@../png_files/Final-Floor-4.png" />
                </image>
             </ImageView>
             </AnchorPane>
