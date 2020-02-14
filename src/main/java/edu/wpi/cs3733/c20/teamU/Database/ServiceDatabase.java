@@ -1,4 +1,6 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Database;
+
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 
 import java.sql.*;
 import java.text.DateFormat;

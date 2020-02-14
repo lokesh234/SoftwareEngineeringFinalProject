@@ -1,5 +1,8 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import edu.wpi.cs3733.c20.teamU.Database.Edge;
+import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

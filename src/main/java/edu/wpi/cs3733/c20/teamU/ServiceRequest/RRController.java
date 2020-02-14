@@ -1,11 +1,11 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
+import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
+import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
-import java.sql.Timestamp;
-import java.util.Date;
 
 public class RRController {
     @FXML private Button resolve;
@@ -21,7 +21,7 @@ public class RRController {
     @FXML private Label field8;
     @FXML private Label field9;
     @FXML private Label field10;
-    private edu.wpi.cs3733.c20.teamU.Service service;
+    private Service service;
     AdminRequestController adminRequestController;
 
     private String date, name, Id, reqType;

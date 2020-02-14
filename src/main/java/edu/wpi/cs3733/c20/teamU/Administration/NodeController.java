@@ -1,17 +1,17 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Administration;
 
+import edu.wpi.cs3733.c20.teamU.Administration.editModeController;
+import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,15 +23,15 @@ public class NodeController {
   @FXML private Button edit;
   @FXML private Button export;
   //tableview & columns in fxml file
-  @FXML private TableView<edu.wpi.cs3733.c20.teamU.Node> nodeTable;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> NodeID;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, Integer> xCoord;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, Integer> yCoord;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, Integer> floor;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> building;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> nodeType;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> longName;
-  @FXML private TableColumn<edu.wpi.cs3733.c20.teamU.Node, String> shortName;
+  @FXML private TableView<Node> nodeTable;
+  @FXML private TableColumn<Node, String> NodeID;
+  @FXML private TableColumn<Node, Integer> xCoord;
+  @FXML private TableColumn<Node, Integer> yCoord;
+  @FXML private TableColumn<Node, Integer> floor;
+  @FXML private TableColumn<Node, String> building;
+  @FXML private TableColumn<Node, String> nodeType;
+  @FXML private TableColumn<Node, String> longName;
+  @FXML private TableColumn<Node, String> shortName;
   Database graph;
   editModeController toEdit;
 
@@ -102,11 +102,11 @@ public class NodeController {
    * Function to create an ObservableList from nodes in Hashmap
    * @return ObservableList<edu.wpi.teamname.NOde> oblist of location nodes
    */
-  private ObservableList<edu.wpi.cs3733.c20.teamU.Node> hashToOblist(){
-    ObservableList<edu.wpi.cs3733.c20.teamU.Node> nodes = FXCollections.observableArrayList();
+  private ObservableList<Node> hashToOblist(){
+    ObservableList<Node> nodes = FXCollections.observableArrayList();
 
     //getting nodes created in Hashmap from database
-    HashMap<String, edu.wpi.cs3733.c20.teamU.Node> graph = new HashMap<String, edu.wpi.cs3733.c20.teamU.Node>();
+    HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
 
     //add each node to the oblist

@@ -1,5 +1,8 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Administration;
 
+import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class DeleteNodeController {
+public class editModeController {
 
   @FXML private Button confirm;
   @FXML private Button cancel;
@@ -17,7 +20,7 @@ public class DeleteNodeController {
   Node selectedNode;
   NodeController nodeController;
 
-  public DeleteNodeController() {}
+  public editModeController() {}
 
   /**
    * Change scene when this is called...
@@ -45,8 +48,23 @@ public class DeleteNodeController {
    * function makes changes to node values
    */
   private void overWrite() { // does not count in for empty values
-    Database.delNode(ID);
-    text1.clear();
+    String userX = text2.getText();
+    String userY = text3.getText();
+    String userFloor = text4.getText();
+    String userBuild = text5.getText();
+    String userType = text6.getText();
+    String userLongName = text7.getText();
+    String userShortName = text8.getText();
+
+    if(userX.isEmpty()) userX = x;
+    if(userY.isEmpty()) userY = y;
+    if(userFloor.isEmpty()) userFloor = floor;
+    if(userBuild.isEmpty()) userBuild = build;
+    if(userType.isEmpty()) userType = type;
+    if(userLongName.isEmpty()) userLongName = build;
+    if(userShortName.isEmpty()) userShortName = shortName;
+
+    Database.editTuple(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
     text2.clear();
     text3.clear();
     text4.clear();
@@ -78,23 +96,18 @@ public class DeleteNodeController {
     text6.setPromptText(type);
     text7.setPromptText(longName);
     text8.setPromptText(shortName);
+
   }
 
 //  /**
 //   * function is used from admin screen to set user designated Node
 //   * @param designatedNode
 //   */
-//  public void setNode(edu.wpi.cs3733.c20.teamU.Node designatedNode) {selectedNode = designatedNode;}
+//  public void setNode(edu.wpi.cs3733.c20.teamU.Database.Node designatedNode) {selectedNode = designatedNode;}
 
   @FXML
   public void initialize() {
     text1.setDisable(true);
-    text2.setDisable(true);
-    text3.setDisable(true);
-    text4.setDisable(true);
-    text5.setDisable(true);
-    text6.setDisable(true);
-    text7.setDisable(true);
-    text8.setDisable(true);
+
   }
 }

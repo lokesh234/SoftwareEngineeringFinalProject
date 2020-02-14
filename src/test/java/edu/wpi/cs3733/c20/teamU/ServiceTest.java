@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

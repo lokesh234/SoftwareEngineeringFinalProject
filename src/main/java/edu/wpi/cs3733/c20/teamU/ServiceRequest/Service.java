@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 public class Service {
     private String date;

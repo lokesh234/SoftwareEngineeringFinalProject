@@ -1,10 +1,10 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Administration;
 
-import com.sun.javafx.css.StyleCache;
+import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import javafx.animation.Interpolator;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
@@ -15,7 +15,6 @@ import javafx.scene.shape.Line;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,7 +29,8 @@ public class FireController {
     private GesturePane FireGesPane;
 
     @FXML
-    public void checkout(){App.getPrimaryStage().setScene(App.getHomeScene());}
+    public void checkout(){
+        App.getPrimaryStage().setScene(App.getHomeScene());}
 
     @FXML
     private void initialize(){

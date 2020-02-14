@@ -2,8 +2,12 @@ package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
 
+import edu.wpi.cs3733.c20.teamU.Administration.*;
+import edu.wpi.cs3733.c20.teamU.Database.Edge;
+import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -72,9 +76,9 @@ public class App extends Application {
   private static FireController fireController;
   private static AddNodeController addNodeController;
 
-  private static edu.wpi.cs3733.c20.teamU.Node nodeEdit;
-  private static edu.wpi.cs3733.c20.teamU.Node nodeAdd;
-  private static edu.wpi.cs3733.c20.teamU.Service service;
+  private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
+  private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
+  private static Service service;
   private static String user;
   private static NodesDatabase graph = new NodesDatabase();
   private static int nodeSize = 10; //Radius in pixels of clickable node object
@@ -206,12 +210,12 @@ public class App extends Application {
   public static FireController getFireController(){return fireController;}
   public static NodeController getNodeController() { return nodeController;}
 
-  public static edu.wpi.cs3733.c20.teamU.Node getNodeEdit() {
+  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() {
     return nodeEdit;
   }
-  public static edu.wpi.cs3733.c20.teamU.Node getNodeAdd() { return nodeAdd; }
+  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
 
-  public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Node userNode) {
+  public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Database.Node userNode) {
     nodeEdit = userNode;
   }
 
@@ -223,10 +227,10 @@ public class App extends Application {
     return edgeEdit;
   }
 
-  public static void setServiceEdit(edu.wpi.cs3733.c20.teamU.Service serviceSel) {
+  public static void setServiceEdit(Service serviceSel) {
     service = serviceSel;
   }
-  public static edu.wpi.cs3733.c20.teamU.Service getService() {
+  public static Service getService() {
     return service;
   }
 

@@ -1,4 +1,7 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Navigation;
+
+import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
