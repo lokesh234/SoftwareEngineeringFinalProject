@@ -202,7 +202,7 @@ public class App extends Application {
 
     App.primaryStage = primaryStage;
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/Start.fxml"));
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/HomeStart.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/light_theme/Home.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/light_theme/LoginForm.fxml"));
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminMenu.fxml"));
