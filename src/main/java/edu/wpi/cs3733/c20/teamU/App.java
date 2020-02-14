@@ -359,7 +359,7 @@ public class App extends Application {
 //      deleteNodeScene = new Scene(deleteNode);
 
       primaryStage.setScene(startScene);
-      primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/pharmacy.png")));
+      primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/Icons/pharmacy.png")));
       primaryStage.show();
     } catch (IOException e) {
       e.printStackTrace();

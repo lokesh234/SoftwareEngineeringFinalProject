@@ -37,7 +37,7 @@ public class HomeController {
     SecurityController securityController;
     @FXML
     private GesturePane MapGes;
-    Long startTime = System.currentTimeMillis();
+//    Long startTime = System.currentTimeMillis();
 
     @FXML
     private void openLoginScene(ActionEvent e) {
@@ -71,20 +71,20 @@ public class HomeController {
 
     @FXML
     private void openHomeScene() {
-        App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-                    startTime = System.currentTimeMillis();
-        });
+//        App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
+//                    startTime = System.currentTimeMillis();
+//        });
         App.getPrimaryStage().setScene(App.getStartScene());
         System.out.println("Hello");
     }
 
-    Thread startT = new Thread(
-            () ->
-    { Long currentTime = System.currentTimeMillis();
-        if ((currentTime - startTime) > (long) 5000) {
-            Platform.runLater(this::openHomeScene);
-        }
-    });
+//    Thread startT = new Thread(
+//            () ->
+//    { Long currentTime = System.currentTimeMillis();
+//        if ((currentTime - startTime) > (long) 5000) {
+//            Platform.runLater(this::openHomeScene);
+//        }
+//    });
 
     @FXML
     private void openRequestScene(ActionEvent e) {
@@ -106,6 +106,6 @@ public class HomeController {
                         .zoomBy(MapGes.getCurrentScale(), pivotOnTarget);
             }
         });
-        startT.start();
+//        startT.start();
     }
 }
