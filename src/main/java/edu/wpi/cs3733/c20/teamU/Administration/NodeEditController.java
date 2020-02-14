@@ -11,16 +11,16 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class editModeController {
+public class NodeEditController {
 
   @FXML private Button confirm;
   @FXML private Button cancel;
   @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
   Node selectedNode;
-  NodeController nodeController;
+  NodeViewScreenController nodeViewScreenController;
 
-  public editModeController() {}
+  public NodeEditController() {}
 
   /**
    * Change scene when this is called...
@@ -31,8 +31,8 @@ public class editModeController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  public void setAttributes(NodeController nodeController1) {
-    nodeController = nodeController1;
+  public void setAttributes(NodeViewScreenController nodeViewScreenController1) {
+    nodeViewScreenController = nodeViewScreenController1;
   }
 
   @FXML
@@ -40,7 +40,7 @@ public class editModeController {
     overWrite();
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
-    nodeController.refreshTable();
+    nodeViewScreenController.refreshTable();
     cancel.fire();
   }
 

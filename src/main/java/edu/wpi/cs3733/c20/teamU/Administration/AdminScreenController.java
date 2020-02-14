@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Popup;
 
-public class AdminController {
+public class AdminScreenController {
 
 
     @FXML

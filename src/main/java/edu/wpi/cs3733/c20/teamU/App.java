@@ -58,23 +58,23 @@ public class App extends Application {
   private static Scene addNodeScene;
   private static Scene resolveRequestScene;
 
-  private static LoginController loginController;
+  private static LoginScreenController loginScreenController;
   private static HomeController homeController;
   private static PathfindController pathfindController;
   private static SecurityController securityController;
   private static RequestController requestController;
   private static MedicineController medicineController;
-  private static AdminController adminController;
+  private static AdminScreenController adminScreenController;
   private static AdminRequestController adminRequestController;
-  private static NodeController nodeController;
-  private static editModeController editController;
-  private static EdgeController viewEdgeController;
+  private static NodeViewScreenController nodeViewScreenController;
+  private static NodeEditController editController;
+  private static EdgeViewScreenController viewEdgeViewScreenController;
   private static EdgeEditController editEdgeController;
 
   private static Edge edgeEdit;
   private static RRController rrController;
   private static FireController fireController;
-  private static AddNodeController addNodeController;
+  private static AddNodeScreenController addNodeScreenController;
 
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
@@ -198,17 +198,17 @@ public class App extends Application {
 
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
 
-  public static LoginController getLoginController() { return loginController;}
+  public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
   public static SecurityController getSecurityController() { return securityController;}
   public static RequestController getRequestController() {return requestController;}
   public static MedicineController getMedicineController() { return medicineController;}
-  public static AdminController getAdminController() { return adminController;}
-  public static AddNodeController getAddNodeController() { return addNodeController;}
+  public static AdminScreenController getAdminScreenController() { return adminScreenController;}
+  public static AddNodeScreenController getAddNodeScreenController() { return addNodeScreenController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static FireController getFireController(){return fireController;}
-  public static NodeController getNodeController() { return nodeController;}
+  public static NodeViewScreenController getNodeViewScreenController() { return nodeViewScreenController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() {
     return nodeEdit;
@@ -323,30 +323,30 @@ public class App extends Application {
       addNode = addNodeLoader.load();
       resolveRequest = RRLoader.load();
 
-      loginController = loginLoader.getController();
+      loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
       pathfindController = pathfindLoader.getController();
       securityController = securityLoader.getController();
       requestController = requestLoader.getController();
       medicineController = medicineLoader.getController();
-      adminController = adminLoader.getController();
+      adminScreenController = adminLoader.getController();
       adminRequestController = adminRequestLoader.getController();
-      nodeController = adminNodeLoader.getController();
+      nodeViewScreenController = adminNodeLoader.getController();
       editController = editLoader.getController();
       editEdgeController = editEdgeLoader.getController();
-      viewEdgeController = adminEdgeLoader.getController();
-      addNodeController = addNodeLoader.getController();
+      viewEdgeViewScreenController = adminEdgeLoader.getController();
+      addNodeScreenController = addNodeLoader.getController();
       rrController = RRLoader.getController();
       fireController = fireLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
-      nodeController.setAttributes(editController);
-      editController.setAttributes(nodeController);
-      viewEdgeController.setAttributes(editEdgeController);
+      nodeViewScreenController.setAttributes(editController);
+      editController.setAttributes(nodeViewScreenController);
+      viewEdgeViewScreenController.setAttributes(editEdgeController);
       rrController.setAttributes(adminRequestController);
       adminRequestController.setAttributes(rrController);
-      addNodeController.setAttributes(nodeController);
+      addNodeScreenController.setAttributes(nodeViewScreenController);
 
       popup.getContent().addAll();
       securityPop.getContent().addAll();

@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class AddNodeController {
+public class AddNodeScreenController {
 
   @FXML
   private Button confirm;
@@ -21,13 +21,13 @@ public class AddNodeController {
   private TextField text1, text2, text3, text4, text5, text6, text7, text8;
   private String ID, x, y, floor, build, type, shortName, longName;
   //  Node selectedNode;
-  NodeController nodeController;
+  NodeViewScreenController nodeViewScreenController;
 
-  public AddNodeController() {
+  public AddNodeScreenController() {
   }
 
-  public void setAttributes(NodeController nodeController1) {
-    nodeController = nodeController1;
+  public void setAttributes(NodeViewScreenController nodeViewScreenController1) {
+    nodeViewScreenController = nodeViewScreenController1;
   }
 
   /**
@@ -36,7 +36,7 @@ public class AddNodeController {
   @FXML
   public void adminScreen(ActionEvent event) throws IOException {
     App.getPopup().getContent().clear();
-    App.getNodeController().refreshTable();
+    App.getNodeViewScreenController().refreshTable();
     App.getPopup().getContent().add(App.getAdminNode());
     App.getPopup().show(App.getPrimaryStage());
   }
@@ -47,7 +47,7 @@ public class AddNodeController {
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
 //    System.out.println(graph.get(userID).getFloor());
-    nodeController.refreshTable();
+    nodeViewScreenController.refreshTable();
     cancel.fire();
   }
 
