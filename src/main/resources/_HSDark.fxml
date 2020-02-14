@@ -22,7 +22,7 @@
                      <children>
                         <ImageView fitHeight="57.0" fitWidth="234.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Image%20-1%20-%20Copy.png" />
+                              <Image url="@png_files/Dark_Mode_Icons/HelpButtonDM.png" />
                            </image>
                            <VBox.margin>
                               <Insets />
@@ -54,7 +54,7 @@
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Log%20In%20Button.png" />
+                                    <Image url="@png_files/Dark_Mode_Icons/LogInButtonDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -86,7 +86,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Home%20Button.png" />
+                        <Image url="@png_files/Dark_Mode_Icons/HomeButtonDM.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -98,7 +98,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Navigate.png" />
+                        <Image url="@png_files/Icons/Navigate.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -110,7 +110,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Assistance%20Button%20-%20Copy.png" />
+                        <Image url="@png_files/Dark_Mode_Icons/AssistanceButtonDM.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -121,7 +121,7 @@
                      <graphic>
                         <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Info%20Flyout.png" />
+                              <Image url="@png_files/InfoFlyout.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -130,7 +130,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Info%20-%20Copy.png" />
+                        <Image url="@png_files/Dark_Mode_Icons/InfoDM.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -141,7 +141,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Settings.png" />
+                              <Image url="@png_files/Icons/Settings.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -150,7 +150,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Settings.png" />
+                              <Image url="@png_files/Icons/Settings.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -159,7 +159,7 @@
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Settings.png" />
+                              <Image url="@png_files/Icons/Settings.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -168,7 +168,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Settings.png" />
+                        <Image url="@png_files/Icons/Settings.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -180,7 +180,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Help%20Button%20-%20Copy.png" />
+                        <Image url="@png_files/Dark_Mode_Icons/HelpButtonDM.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -194,7 +194,7 @@
          <children>
             <ImageView fitHeight="966.0" fitWidth="1560.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Final-Floor%20-4%20-%20dark%20mode.png" />
+                  <Image url="@png_files/Final-Floor_4_map_1.png" />
                </image>
             </ImageView>
          </children>

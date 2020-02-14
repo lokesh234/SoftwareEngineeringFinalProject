@@ -20,7 +20,7 @@
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@png_files/Cancel.png" />
+                              <Image url="@png_files/Icons/Cancel.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -42,7 +42,7 @@
                   </Label>
                   <ImageView fitHeight="100.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@png_files/HelpButtonDM.png" />
+                        <Image url="@png_files/Dark_Mode_Icons/HelpButtonDM.png" />
                      </image>
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />

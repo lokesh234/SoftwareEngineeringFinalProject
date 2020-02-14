@@ -61,14 +61,15 @@ public class AdminRequestController {
 
   @FXML
   private void initialize() {
+    requestID.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+    date.setCellValueFactory(new PropertyValueFactory<>("requestID"));
+
+    type.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+    info.setCellValueFactory(new PropertyValueFactory<>("requestType"));
     if (!arrayToOBList().isEmpty()) {
-      requestID.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-      date.setCellValueFactory(new PropertyValueFactory<>("requestID"));
-
-      type.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-      info.setCellValueFactory(new PropertyValueFactory<>("requestType"));
 
       serviceTable.setItems(arrayToOBList());
     }

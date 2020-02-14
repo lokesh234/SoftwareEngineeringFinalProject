@@ -21,7 +21,7 @@
                             <graphic>
                                 <ImageView fx:id="loginCancel" fitHeight="42.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/Cancel.png" />
+                                        <Image url="@png_files/Icons/Cancel.png" />
                                     </image>
                                 </ImageView>
                             </graphic>

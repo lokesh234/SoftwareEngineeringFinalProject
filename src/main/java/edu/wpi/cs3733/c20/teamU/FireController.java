@@ -112,7 +112,7 @@ public class FireController {
     private void drawNodes() {
         ArrayList<Node> nodes = App.getGraph().getNodes();
         for (Node n : nodes) {
-            if (isDrawableNode(n.getID())) {
+            if (isDrawableNode(n)) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
@@ -126,8 +126,8 @@ public class FireController {
     private void addToPath(javafx.scene.Node e) { fireNodes.getChildren().add(e);
     }
 
-    private boolean isDrawableNode(String nID) { //Which nodes do we want to draw?
-        return !nID.substring(0, 5).equals("UHALL"); //Everything except hallway nodes
+    private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
+        return !n.getNodeType().equals("HALL"); //Everything except hallway nodes
         //return true; //Everything!
     }
 

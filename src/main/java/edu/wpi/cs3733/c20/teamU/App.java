@@ -7,11 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 
 public class App extends Application {
 
@@ -356,6 +359,7 @@ public class App extends Application {
 //      deleteNodeScene = new Scene(deleteNode);
 
       primaryStage.setScene(startScene);
+      primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/Icons/pharmacy.png")));
       primaryStage.show();
     } catch (IOException e) {
       e.printStackTrace();
