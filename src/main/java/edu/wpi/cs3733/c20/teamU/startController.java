@@ -20,35 +20,35 @@ public class startController {
 
   @FXML
   Button start;
-  long startTime;
-  long currentTime = 0;
-  boolean didEscape = false;
-
-  Thread startT = new Thread(new Runnable() {
-    @Override
-    public void run() {
-      Runnable runTask = new Runnable() {
-        @Override
-        public void run() {
-          currentTime = System.currentTimeMillis();
-          if ((currentTime - startTime) > 5000) {
-//            didEscape = false;
-//            setDaemon(false);
-            openHomeScreen1();
-          }
-        }
-      };
-        while (true) {
-          try {
-            Thread.sleep(1);
-          } catch (InterruptedException ex) {
-          }
-          Platform.runLater(runTask);
-
-        }
-    }
-
-  });
+//  long startTime;
+//  long currentTime = 0;
+//  boolean didEscape = false;
+//
+//  Thread startT = new Thread(new Runnable() {
+//    @Override
+//    public void run() {
+//      Runnable runTask = new Runnable() {
+//        @Override
+//        public void run() {
+//          currentTime = System.currentTimeMillis();
+//          if ((currentTime - startTime) > 5000) {
+////            didEscape = false;
+////            setDaemon(false);
+//            openHomeScreen1();
+//          }
+//        }
+//      };
+//        while (true) {
+//          try {
+//            Thread.sleep(1);
+//          } catch (InterruptedException ex) {
+//          }
+//          Platform.runLater(runTask);
+//
+//        }
+//    }
+//
+//  });
 //    Thread startT = new Thread(
 //        () ->
 //        {
@@ -65,19 +65,19 @@ public class startController {
 
   @FXML
   private void openHomeScreen(ActionEvent event) {
-    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-//      startT.interrupt();
-    });
+//    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
+////      startT.interrupt();
+//    });
     App.getPrimaryStage().setScene(App.getHomeScene());
-    startTime = System.currentTimeMillis();
-    System.out.println(startTime);
-    didEscape = true;
+//    startTime = System.currentTimeMillis();
+//    System.out.println(startTime);
+//    didEscape = true;
 
   }
 
-  private void openHomeScreen1() {
-    App.getPrimaryStage().setScene(App.getStartScene());
-  }
+//  private void openHomeScreen1() {
+//    App.getPrimaryStage().setScene(App.getStartScene());
+//  }
 
   @FXML
   private void initialize() {
@@ -91,8 +91,8 @@ public class startController {
 //                    .zoomBy(MapGes.getCurrentScale(), pivotOnTarget);
 //            }
 //        });
-    startT.setDaemon(true);
-    startT.start();
+//    startT.setDaemon(true);
+//    startT.start();
   }
 
 }
