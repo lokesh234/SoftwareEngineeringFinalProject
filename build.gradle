@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     implementation(
+            [group: 'com.github.prominence', name: 'openweathermap-api', version: '1.0'],
             [group: 'net.kurobako', name: 'gesturefx', version: '0.5.0'],
 
             [group: 'com.jfoenix', name: 'jfoenix', version: '8.0.9'],

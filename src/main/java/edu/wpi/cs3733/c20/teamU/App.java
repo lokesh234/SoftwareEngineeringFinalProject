@@ -40,9 +40,9 @@ public class App extends Application {
   private static Pane adminRequest;
   private static Pane adminNode;
   private static Pane adminEdge;
-
   private static Pane addNode;
   private static Pane resolveRequest;
+  private static Pane weather;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -58,6 +58,7 @@ public class App extends Application {
   private static Scene adminNodeScene;
   private static Scene addNodeScene;
   private static Scene resolveRequestScene;
+  private static Scene weatherScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -71,6 +72,7 @@ public class App extends Application {
   private static NodeEditController editController;
   private static EdgeViewScreenController viewEdgeViewScreenController;
   private static EdgeEditController editEdgeController;
+  private static WeatherController weatherController;
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -107,6 +109,7 @@ public class App extends Application {
   public static Pane getAddNode() { return addNode; }
   public static Pane getAdminNode() { return adminNode;}
   public static Pane getFire(){ return fire; }
+  public static Pane getWeather() {return weather;}
 
   public static Scene getHomeScene() { return homeScene; }
   public static Scene getLoginScene() { return loginScene; }
@@ -122,6 +125,7 @@ public class App extends Application {
   public static Scene getFireScene(){ return fireScene; }
   public static Scene getAdminNodeScene() {return adminNodeScene;}
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
+  public static Scene getWeatherScene() {return weatherScene; }
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -134,6 +138,7 @@ public class App extends Application {
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static FireController getFireController(){return fireController;}
   public static NodeViewScreenController getNodeViewScreenController() { return nodeViewScreenController;}
+  public static WeatherController weatherController() {return weatherController; }
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -176,6 +181,7 @@ public class App extends Application {
       FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/Edit_Edge.fxml"));
       FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
+      FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/WeatherWindow.fxml"));
 
 
       home = homeLoader.load();
@@ -187,6 +193,7 @@ public class App extends Application {
       request = requestLoader.load();
       medicine = medicineLoader.load();
       fire = fireLoader.load();
+      weather = weatherLoader.load();
 
       /*
       LoginController loginController = loginLoader.getController();
@@ -223,6 +230,7 @@ public class App extends Application {
       addNodeScreenController = addNodeLoader.getController();
       requestScreenController = RRLoader.getController();
       fireController = fireLoader.getController();
+      weatherController = weatherLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
