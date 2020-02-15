@@ -47,7 +47,7 @@ public class PathfindController {
     private Node start;
     private Node end;
     private ArrayList<Node> path = new ArrayList<>();
-    private Pathfinder engine = new Pathfinder();
+    private Pathfinder engine = Pathfinder.getPathfinder();
     private boolean startReady = false;
     private boolean endReady = false;
     private boolean displayingPath = false;
