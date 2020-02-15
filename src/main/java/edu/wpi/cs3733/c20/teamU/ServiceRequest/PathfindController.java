@@ -111,7 +111,7 @@ public class PathfindController {
         return null;
     }
 
-    protected void drawNodes() {
+    public void drawNodes() {
         state = State.NEUTRAL;
         start = null;
         end = null;

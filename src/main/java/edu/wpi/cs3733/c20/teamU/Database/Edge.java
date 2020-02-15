@@ -18,8 +18,8 @@ public class Edge {
         this.ID = ID;
     }
 
-    protected Node getStart() { return start;}
-    protected Node getEnd() { return end;}
+    public Node getStart() { return start;}
+    public Node getEnd() { return end;}
     public String getStartID() { return start.getID();}
     public String getEndID() { return end.getID();}
     public int getDist() { return dist;}

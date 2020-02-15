@@ -27,23 +27,23 @@ public class NodesDatabase {
     public void readCSV(String filename){} //TODO: stub
     private void createCSV(String path){} //TODO: stub
 
-    protected void addNode(Node n) {
+    public void addNode(Node n) {
         nodes.put(n.getID(), n);
     }
 
-    protected void addEdge(Edge e) {
+    public void addEdge(Edge e) {
         edges.put(e.getID(), e);
     }
 
-    protected void removeNode(String ID) { nodes.remove(ID);}
+    public void removeNode(String ID) { nodes.remove(ID);}
 
-    protected void removeEdge(String ID) { edges.remove(ID);}
+    public void removeEdge(String ID) { edges.remove(ID);}
 
-    protected void removeNode(Node n) { nodes.remove(n.getID());}
+    public void removeNode(Node n) { nodes.remove(n.getID());}
 
-    protected void removeEdge(Edge e) { edges.remove(e.getID());}
+    public void removeEdge(Edge e) { edges.remove(e.getID());}
 
-    protected Node getNode(String ID) {
+    public Node getNode(String ID) {
         /*
         Returns the node with matching ID, or Null if not found
          */
@@ -51,7 +51,7 @@ public class NodesDatabase {
         return nodes.get(ID);
     }
 
-    protected ArrayList<Node> getNodes() {
+    public ArrayList<Node> getNodes() {
         /*
         Returns an ArrayList of all nodes
          */
@@ -63,7 +63,7 @@ public class NodesDatabase {
         return l;
     }
 
-    protected Edge getEdge(String ID) {
+    public Edge getEdge(String ID) {
         /*
         Returns the edge with matching ID, or Null if not found
          */
@@ -71,7 +71,7 @@ public class NodesDatabase {
         return edges.get(ID);
     }
 
-    protected Edge getEdge(Node start, Node end) {
+    public Edge getEdge(Node start, Node end) {
         /*
         Returns the edge with endpoints start and end
         order of start and end does not matter
@@ -84,11 +84,11 @@ public class NodesDatabase {
         return null;
     }
 
-    protected Edge getEdge(String startID, String endID) {
+    public Edge getEdge(String startID, String endID) {
         return getEdge(this.getNode(startID), this.getNode(endID));
     }
 
-    protected Node getNode(int xPos, int yPos) {
+    public Node getNode(int xPos, int yPos) {
         /*
         Returns the node at given (x,y) coords, or Null if not found
         NOTE: undefined behavior if multiple nodes share the same x,y coords
@@ -100,11 +100,11 @@ public class NodesDatabase {
         return null;
     }
 
-    protected boolean hasNode(Node n) {
+    public boolean hasNode(Node n) {
         return (getNode(n.getID()) != null);
     }
 
-    protected ArrayList<Edge> getNeighbors(Node n) {
+    public ArrayList<Edge> getNeighbors(Node n) {
         /*
         Returns list of all edges connecting to the given node
         Returns Null if n not in graph
@@ -119,7 +119,7 @@ public class NodesDatabase {
         return neighbors;
     }
 
-    protected ArrayList<Node> getNeighborNodes(Node n) {
+    public ArrayList<Node> getNeighborNodes(Node n) {
         /*
         Similar behavior to getNeighbors(), but returns list of nodes and not edges
          */
@@ -132,7 +132,7 @@ public class NodesDatabase {
         return neighbors;
     }
 
-    protected boolean hasNeighbors(Node n) {
+    public boolean hasNeighbors(Node n) {
         /*
         Checks if there is are edges associated with n
         Returns false if n not in graph
@@ -141,7 +141,7 @@ public class NodesDatabase {
         return getNeighbors(n).size() > 0;
     }
 
-    protected int cost(Node start, Node end) {
+    public int cost(Node start, Node end) {
         /*
         Gets the cost of travelling from start to end
         NOTE - ONLY END'S WEIGHT ATTRIBUTE COUNTS TOWARDS THIS MEASURE
@@ -155,7 +155,7 @@ public class NodesDatabase {
         return 999999;
     }
 
-    protected int costNoWeight(Node start, Node end) {
+    public int costNoWeight(Node start, Node end) {
          /*
         Gets the cost of travelling from start to end
         NOTE - DOES NOT TAKE NODE WEIGHT INTO ACCOUNT
@@ -169,14 +169,14 @@ public class NodesDatabase {
         return 999999;
     }
 
-    protected boolean hasNode(int xPos, int yPos) {
+    public boolean hasNode(int xPos, int yPos) {
         /*
         Checks whether a node exists with the given coordinates
          */
         return getNode(xPos, yPos) != null;
     }
 
-    protected boolean hasNodeInRange(int xPos, int yPos, int rad) {
+    public boolean hasNodeInRange(int xPos, int yPos, int rad) {
         /*
         Checks whether a node exists within a given distance of the given coordinates.
         Useful for checking whether a mouseclick happened on a node, if rad is given as the radius of a node graphical object in pixels
@@ -184,7 +184,7 @@ public class NodesDatabase {
         return getNodeInRange(xPos, yPos, rad) != null;
     }
 
-    protected Node getNodeInRange(int xPos, int yPos, int rad) {
+    public Node getNodeInRange(int xPos, int yPos, int rad) {
         /*
         Returns the node within a given distance of the given coordinates.
         Useful for determining the result of a mouseclick, if rad is given as the radius of a node graphical object in pixels

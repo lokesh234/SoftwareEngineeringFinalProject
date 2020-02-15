@@ -372,11 +372,11 @@ public class App extends Application {
 
 
 
-  protected static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
+  public static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
     path.getChildren().add(e);
   }
 
-  protected static void removeFromPath(Node e) { //Removes a javaFX node from the pathfinding pane
+  public static void removeFromPath(Node e) { //Removes a javaFX node from the pathfinding pane
     path.getChildren().remove(e);
   }
 }

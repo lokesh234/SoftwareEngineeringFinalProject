@@ -47,7 +47,7 @@ public class AdminRequestController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  protected void update() {
+  public void update() {
     serviceTable.setItems(arrayToOBList());
     serviceTable.setVisible(true);
   }
