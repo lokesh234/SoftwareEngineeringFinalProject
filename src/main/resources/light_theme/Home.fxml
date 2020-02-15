@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -14,136 +15,129 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
-        <VBox>
-            <children>
-                <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="1916.0" prefHeight="82.0" prefWidth="1916.0" style="-fx-background-color: #000000;">
-                    <children>
-                        <VBox alignment="CENTER_LEFT" />
-                        <VBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="80.0" scaleShape="false">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="55.0" prefWidth="310.0" text="Home Screen" textFill="WHITE">
-                                    <font>
-                                        <Font size="38.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets right="700.0" />
-                                    </VBox.margin>
-                                </Label>
-                            </children>
-                            <HBox.margin>
-                                <Insets left="20.0" right="100.0" />
-                            </HBox.margin>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="82.0" prefWidth="263.0">
-                            <HBox.margin>
-                                <Insets left="350.0" />
-                            </HBox.margin>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+              <VBox BorderPane.alignment="CENTER">
+                  <children>
+                      <HBox alignment="CENTER_LEFT" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
+                          <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                                      <Label alignment="CENTER" text="BWH Faulkner Hospital Map" textFill="WHITE">
+                                          <font>
+                                              <Font name="System Bold" size="38.0" />
+                                          </font>
+                                      </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton buttonType="RAISED" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login ">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="20.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/LogInButtonDM.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </HBox>
+                          </children>
+                          <VBox.margin>
+                              <Insets />
+                          </VBox.margin>
+                      </HBox>
+                  </children>
+              </VBox>
+         </top>
+         <left>
+              <VBox alignment="CENTER" prefHeight="998.0" prefWidth="140.0" spacing="5.5" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton buttonType="RAISED" prefHeight="52.0" prefWidth="141.0" style="-fx-background-color: #807765;" text="Login ">
-                           <font>
-                              <Font name="Segoe UI Bold" size="20.0" />
-                           </font>
+                        <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../Downloads/iconfinder_user_3935309.png" />
+                                    <Image url="@../png_files/HomeButtonDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </JFXButton>
                      </children>
-                        </VBox>
-                    </children>
-                    <VBox.margin>
-                        <Insets left="2.0" right="2.0" top="2.0" />
-                    </VBox.margin>
-                </HBox>
-            </children>
-        </VBox>
-        <VBox alignment="CENTER" layoutY="84.0" prefHeight="996.0" prefWidth="154.0" spacing="5.5" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="84.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="228.0">
-               <children>
-                  <JFXButton alignment="CENTER" prefHeight="74.0" prefWidth="85.0" text="Button">
-                     <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/HomeButtonDM.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton contentDisplay="TOP" text="Navigate" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/NavigateDM.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Segoe UI" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton contentDisplay="TOP" text="Services" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/AssistanceButtonDM.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton contentDisplay="TOP" text="Information" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/InfoDM.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton contentDisplay="TOP" text="Help" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/HelpButtonDM.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <JFXButton>
-                     <graphic>
-                        <ImageView fitHeight="57.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/NavigateDM.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <JFXButton>
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/AssistanceButtonDM.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <JFXButton>
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/InfoDM.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <JFXButton>
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/HelpButtonDM.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <JFXButton>
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </HBox>
-         </children>
-        </VBox>
-        <VBox alignment="CENTER" layoutX="187.0" layoutY="84.0" prefHeight="996.0" prefWidth="1727.0" style="-fx-background-color: #D4D5D2;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="84.0">
-            <children>
-                <AnchorPane prefHeight="986.0" prefWidth="1693.0">
+              </VBox>
+         </left>
+         <center>
+              <VBox alignment="CENTER" style="-fx-background-color: #D4D5D2;" BorderPane.alignment="CENTER">
+                  <children>
+                      <AnchorPane prefHeight="900.0" prefWidth="1600.0">
 <!--                    <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">-->
 <!--                        <AnchorPane fx:id="NodesPane" >-->
 <!--                <ImageView pickOnBounds="true" preserveRatio="true">-->
@@ -157,11 +151,12 @@
 <!--                        </AnchorPane>-->
 <!--                    </GesturePane>-->
                 </AnchorPane>
-            </children>
-            <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-            </padding>
-        </VBox>
-        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  </children>
+                  <padding>
+                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  </padding>
+              </VBox>
+         </center>
+      </BorderPane>
     </children>
 </AnchorPane>
