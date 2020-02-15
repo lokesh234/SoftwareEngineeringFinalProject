@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <!--<?import net.kurobako.gesturefx.GesturePane?>-->
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.PathfindController">
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.PathfindController">
    <children>
-      <AnchorPane prefHeight="1080" prefWidth="1920">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
 <!--         <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">-->
 <!--            <AnchorPane fx:id="NodesPane">-->
 <!--            <ImageView >-->
@@ -20,88 +26,94 @@
 <!--            </AnchorPane>-->
 <!--         </GesturePane>-->
       </AnchorPane>
-      <HBox prefHeight="100.0" style="-fx-background-color: #416785;">
-         <children>
-            <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+         </center>
+         <top>
+            <HBox prefHeight="100.0" style="-fx-background-color: #302D26;" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Get Directions" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="36.0" />
-                     </font>
-                  </Label>
+                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Get Directions" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="backButton" onAction="#backHome" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
                <padding>
-                  <Insets left="10.0" />
+                  <Insets right="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
+         </top>
+         <left>
+            <VBox alignment="CENTER" minWidth="150.0" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
                <children>
-                <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#backHome" text="Back">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Button>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="statusLabel" text="NAVIGATE" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <JFXButton fx:id="startButton" onAction="#selectStart" style="-fx-background-color: #474338;" text="Select Start" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="startLabel" text="X, Y" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <JFXButton fx:id="endButton" onAction="#selectEnd" style="-fx-background-color: #474338;" text="Select End" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="endLabel" text="X, Y" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <JFXButton fx:id="goButton" onAction="#pathfind" style="-fx-background-color: #474338;" text="Go!" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="clearButton" onAction="#clearPath" style="-fx-background-color: #474338;" text="Clear" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets right="10.0" />
-         </padding>
-      </HBox>
-      <VBox alignment="CENTER" minWidth="150.0" style="-fx-background-color: #729EBF;">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="statusLabel" text="NAVIGATE" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI Bold" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <Button fx:id="startButton" mnemonicParsing="false" onAction="#selectStart" text="Start">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="startLabel" text="X, Y">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <Button fx:id="endButton" mnemonicParsing="false" onAction="#selectEnd" text="End">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="endLabel" text="X, Y">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <Button fx:id="goButton" mnemonicParsing="false" onAction="#pathfind" text="Go!">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearPath" text="Clear">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
+            </VBox>
+         </left>
+      </BorderPane>
    </children>
 </AnchorPane>
