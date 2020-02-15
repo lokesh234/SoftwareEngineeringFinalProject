@@ -32,7 +32,7 @@ public class DatabaseFacade {
     }
 
     public void addRequest(Service service){
-        return;;
+        return;
     }
 
     public void resolveRequest(Service service){
