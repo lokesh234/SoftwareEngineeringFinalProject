@@ -5,6 +5,7 @@ import java.io.IOException;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
@@ -72,7 +73,7 @@ public class App extends Application {
   private static EdgeEditController editEdgeController;
 
   private static Edge edgeEdit;
-  private static RRController rrController;
+  private static RequestScreenController requestScreenController;
   private static FireController fireController;
   private static AddNodeScreenController addNodeScreenController;
 
@@ -336,7 +337,7 @@ public class App extends Application {
       editEdgeController = editEdgeLoader.getController();
       viewEdgeViewScreenController = adminEdgeLoader.getController();
       addNodeScreenController = addNodeLoader.getController();
-      rrController = RRLoader.getController();
+      requestScreenController = RRLoader.getController();
       fireController = fireLoader.getController();
 
       pathfindController.setAttributes(path);
@@ -344,8 +345,8 @@ public class App extends Application {
       nodeViewScreenController.setAttributes(editController);
       editController.setAttributes(nodeViewScreenController);
       viewEdgeViewScreenController.setAttributes(editEdgeController);
-      rrController.setAttributes(adminRequestController);
-      adminRequestController.setAttributes(rrController);
+      requestScreenController.setAttributes(adminRequestController);
+      adminRequestController.setAttributes(requestScreenController);
       addNodeScreenController.setAttributes(nodeViewScreenController);
 
       popup.getContent().addAll();

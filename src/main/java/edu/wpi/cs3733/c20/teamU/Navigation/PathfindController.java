@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.c20.teamU.ServiceRequest;
+package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Node;

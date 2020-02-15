@@ -3,7 +3,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.RRController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,10 +22,10 @@ public class AdminRequestController {
   @FXML private TableColumn<Service, String> info;
   @FXML private Button close;
   @FXML private Button backButton;
-  RRController rrController;
+  RequestScreenController requestScreenController;
 
-  public void setAttributes(RRController rrController1) {
-    rrController = rrController1;
+  public void setAttributes(RequestScreenController requestScreenController1) {
+    requestScreenController = requestScreenController1;
   }
 
   @FXML
@@ -34,7 +34,7 @@ public class AdminRequestController {
       close.setDisable(false);
       App.setServiceEdit(serviceTable.getSelectionModel().getSelectedItem());
 //      System.out.println(App.getService().getName());
-      rrController.setService();
+      requestScreenController.setService();
       //            selectedNode = serviceTable.getSelectionModel().getSelectedItem();
     }
   }

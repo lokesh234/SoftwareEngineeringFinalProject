@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class RRController {
+public class RequestScreenController {
     @FXML private Button resolve;
     @FXML private Button cancel;
     @FXML private Button back;
@@ -26,7 +26,7 @@ public class RRController {
 
     private String date, name, Id, reqType;
 
-    public RRController() {}
+    public RequestScreenController() {}
 
     public void setAttributes(AdminRequestController adminRequestController1) {
         adminRequestController = adminRequestController1;
