@@ -35,14 +35,11 @@ public class Node {
         this.shortName = shortName;
     }
 
-    protected void setWeight(int newWeight) {
-        weight = newWeight;
-    }
-
-    protected int getX(){ return x;}
-    protected int getY(){ return y;}
-    protected int getWeight(){ return weight;}
-    protected String getID(){ return ID;}
+    protected void setWeight(Node node, int newWeight) { node.weight = newWeight; }
+    protected int getX(Node node){ return node.x; }
+    protected int getY(Node node){ return node.y;}
+    protected int getWeight(Node node){ return node.weight;}
+    protected String getID(Node node){ return node.ID;}
 
     @Override
     public boolean equals(Object obj) {
@@ -50,20 +47,13 @@ public class Node {
         return false;
     }
 
-    @Override
-    public String toString(){
-        return this.getID();
+    protected String toString(Node node){
+        return node.getID();
     }
 
-    public String getNodeID(){
-        return  this.ID;
-    }
-
-    public int getFloor() { return this.floor;}
-    public String getBuilding() {return this.building;}
-    public String getNodeType() {return this.nodeType;}
-    public String getLongName() { return this.longName;}
-    public String getShortName() { return this.shortName;}
-    public int getXCoord() {return this.x;}
-    public int getYCoord() {return this.y;}
+    protected int getFloor(Node node) { return node.floor;}
+    protected String getBuilding(Node node) {return node.building;}
+    protected String getNodeType(Node node) {return node.nodeType;}
+    protected String getLongName(Node node) { return node.longName;}
+    protected String getShortName(Node node) { return node.shortName;}
 }
