@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Database;
 
 import edu.wpi.cs3733.c20.teamU.Database.*;
 
@@ -230,5 +230,17 @@ public class DatabaseWrapper {
     }
 
 
+    //Node Class
+    public void setWeight(Node node, int newWeight) { setWeight(node, newWeight);}
+    public int getX(Node node){ return getX(node); }
+    public int getY(Node node){ return getY(node);}
+    public int getWeight(Node node){ return getWeight(node);}
+    public String getID(Node node){ return getID(node);}
+    public String toString(Node node){ return node.getID(); }
+    public int getFloor(Node node) { return getFloor(node);}
+    public String getBuilding(Node node) {return getBuilding(node);}
+    public String getNodeType(Node node) {return getNodeType(node);}
+    public String getLongName(Node node) { return getLongName(node);}
+    public String getShortName(Node node) { return getShortName(node);}
 
 }

@@ -40,20 +40,16 @@ public class Node {
     protected int getY(Node node){ return node.y;}
     protected int getWeight(Node node){ return node.weight;}
     protected String getID(Node node){ return node.ID;}
+    protected String toString(Node node){ return node.getID(); }
+    protected int getFloor(Node node) { return node.floor;}
+    protected String getBuilding(Node node) {return node.building;}
+    protected String getNodeType(Node node) {return node.nodeType;}
+    protected String getLongName(Node node) { return node.longName;}
+    protected String getShortName(Node node) { return node.shortName;}
 
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Node) return this.ID.equals(((Node) obj).ID);
         return false;
     }
-
-    protected String toString(Node node){
-        return node.getID();
-    }
-
-    protected int getFloor(Node node) { return node.floor;}
-    protected String getBuilding(Node node) {return node.building;}
-    protected String getNodeType(Node node) {return node.nodeType;}
-    protected String getLongName(Node node) { return node.longName;}
-    protected String getShortName(Node node) { return node.shortName;}
 }
