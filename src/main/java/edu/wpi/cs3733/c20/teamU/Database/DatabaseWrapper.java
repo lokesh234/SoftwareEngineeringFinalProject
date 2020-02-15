@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
+import java.util.Map;
 
 public class DatabaseWrapper {
 //  private Database database;
@@ -249,5 +250,41 @@ public class DatabaseWrapper {
     }
 
 
+    //Node Class
+    public void setWeight(Node node, int newWeight) { setWeight(node, newWeight);}
+    public int getX(Node node){ return getX(node); }
+    public int getY(Node node){ return getY(node);}
+    public int getWeight(Node node){ return getWeight(node);}
+    public static String getID(Node node){ return getID(node);}
+    public String toString(Node node){ return node.getID(); }
+    public int getFloor(Node node) { return getFloor(node);}
+    public String getBuilding(Node node) {return getBuilding(node);}
+    public String getNodeType(Node node) {return getNodeType(node);}
+    public String getLongName(Node node) { return getLongName(node);}
+    public String getShortName(Node node) { return getShortName(node);}
 
+    //NodesDatabase Class
+    public void addNode(Node n, NodesDatabase ndb) { addNode(n, ndb);}
+    public void addEdge(Edge e, NodesDatabase ndb) {addEdge(e,ndb);}
+    public void removeNode(String ID, NodesDatabase ndb) { removeNode(ID, ndb);}
+    public void removeEdge(String ID, NodesDatabase ndb) { removeEdge(ID, ndb);}
+    public void removeNode(Node n, NodesDatabase ndb) { removeNode(n, ndb);}
+    public void removeEdge(Edge e, NodesDatabase ndb) { removeEdge(e,ndb);}
+    public Node getNode(String ID, NodesDatabase ndb) { return getNode(ID, ndb);}
+    public ArrayList<Node> getNodes(NodesDatabase ndb) { return getNodes(ndb);}
+    public Edge getEdge(String ID, NodesDatabase ndb) { return getEdge(ID, ndb);}
+    public Edge getEdge(Node start, Node end, NodesDatabase ndb) {return getEdge(start, end, ndb);}
+    public Edge getEdge(String startID, String endID, NodesDatabase ndb) {return getEdge(startID, endID, ndb);}
+    public Node getNode(int xPos, int yPos, NodesDatabase ndb) { return getNode(xPos,yPos,ndb);}
+    public boolean hasNode(Node n, NodesDatabase ndb) {return hasNode(n,ndb);}
+    public ArrayList<Edge> getNeighbors(Node n, NodesDatabase ndb) {return getNeighbors(n, ndb);}
+    public ArrayList<Node> getNeighborNodes(Node n, NodesDatabase ndb) { return getNeighborNodes(n,ndb);}
+    public boolean hasNeighbors(Node n, NodesDatabase ndb) {return hasNeighbors(n,ndb);}
+    public int cost(Node start, Node end, NodesDatabase ndb) { return cost(start, end, ndb);}
+    public int costNoWeight(Node start, Node end, NodesDatabase ndb) { return costNoWeight(start, end,ndb); }
+    public boolean hasNode(int xPos, int yPos, NodesDatabase ndb) { return hasNode(xPos, yPos, ndb); }
+    public boolean hasNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) {return hasNodeInRange(xPos, yPos, rad, ndb); }
+    public Node getNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) { return getNodeInRange(xPos, yPos, rad, ndb);}
+    public void update(NodesDatabase ndb) {update(ndb); }
+    public static int dist(int x1, int y1, int x2, int y2) {return dist(x1, y1, x2, y2);}
 }
