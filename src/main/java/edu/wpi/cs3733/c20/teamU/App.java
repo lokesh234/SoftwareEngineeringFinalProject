@@ -6,7 +6,7 @@ import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+//import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -89,114 +89,38 @@ public class App extends Application {
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
 
-  public static Stage getPrimaryStage() {
-    return primaryStage;
-  }
-
+  public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
-
-  public static Pane getHome() {
-    return home;
-  }
-
-  public static Pane getLogin() {
-    return login;
-  }
-
-  public static Pane getStart() {
-    return start;
-  }
-
-  public static Pane getPath() {
-    return path;
-  }
-
-  public static Pane getAdmin() {
-    return admin;
-  }
-
-  public static Pane getSecurity() {
-    return security;
-  }
-
-  public static Pane getRequest() {
-    return request;
-  }
-
-  public static Pane getMedicine() {
-    return medicine;
-  }
-
-  public static Pane getEditEdge() {
-    return editEdge;
-  }
-
-  public static Pane getAdminEdge() {
-    return adminEdge;
-  }
-
-  public static Pane getAdminRequest() {
-      return adminRequest;
-  }
-
-  public static Pane getExport() {
-      return export;
-  }
-
-  public static Pane getEdit() {
-      return edit;
-  }
+  public static Pane getHome() { return home; }
+  public static Pane getLogin() { return login; }
+  public static Pane getStart() { return start;}
+  public static Pane getPath() { return path;}
+  public static Pane getAdmin() { return admin; }
+  public static Pane getSecurity() { return security; }
+  public static Pane getRequest() { return request;}
+  public static Pane getMedicine() { return medicine; }
+  public static Pane getEditEdge() { return editEdge;}
+  public static Pane getAdminEdge() { return adminEdge; }
+  public static Pane getAdminRequest() { return adminRequest; }
+  public static Pane getExport() { return export; }
+  public static Pane getEdit() { return edit;}
   public static Pane getAddNode() { return addNode; }
-
   public static Pane getAdminNode() { return adminNode;}
-
   public static Pane getFire(){ return fire; }
 
   public static Scene getHomeScene() { return homeScene; }
-
-  public static Scene getLoginScene() {
-    return loginScene;
-  }
-
-  public static Scene getStartScene() {
-    return startScene;
-  }
-
-  public static Scene getPathScene() {
-    return pathScene;
-  }
-
-  public static Scene getAdminScene() {
-    return adminScene;
-  }
-
-  public static Scene getSecurityScene() {
-    return securityScene;
-  }
-
-  public static Scene getRequestScene() {
-    return requestScene;
-  }
-
-  public static Scene getMedicineScene() {
-    return medicineScene;
-  }
-
-  public static Scene getEditScene() {
-    return editScene;
-  }
-
-  public static Scene getExportScene() {
-    return exportScene;
-  }
+  public static Scene getLoginScene() { return loginScene; }
+  public static Scene getStartScene() { return startScene; }
+  public static Scene getPathScene() { return pathScene; }
+  public static Scene getAdminScene() { return adminScene; }
+  public static Scene getSecurityScene() { return securityScene; }
+  public static Scene getRequestScene() { return requestScene; }
+  public static Scene getMedicineScene() { return medicineScene; }
+  public static Scene getEditScene() { return editScene; }
+  public static Scene getExportScene() { return exportScene; }
   public static Scene getaddNodeScene() { return addNodeScene; }
-
-  public static Scene getFireScene(){
-      return fireScene;
-  }
-
+  public static Scene getFireScene(){ return fireScene; }
   public static Scene getAdminNodeScene() {return adminNodeScene;}
-
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
@@ -211,64 +135,24 @@ public class App extends Application {
   public static FireController getFireController(){return fireController;}
   public static NodeViewScreenController getNodeViewScreenController() { return nodeViewScreenController;}
 
-  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() {
-    return nodeEdit;
-  }
+  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
 
-  public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Database.Node userNode) {
-    nodeEdit = userNode;
-  }
+  public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Database.Node userNode) { nodeEdit = userNode; }
+  public static void setEdgeEdit(Edge userEdge) { edgeEdit = userEdge; }
+  public static Edge getEdgeEdit() { return edgeEdit; }
+  public static void setServiceEdit(Service serviceSel) { service = serviceSel; }
+  public static Service getService() { return service; }
 
-  public static void setEdgeEdit(Edge userEdge) {
-    edgeEdit = userEdge;
-  }
+  public static void setUser(String user1) { user = user1; }
+  public static String getUser() { return user; }
+  public static NodesDatabase getGraph() { return graph; }
+  public static int getNodeSize() { return nodeSize; }
 
-  public static Edge getEdgeEdit() {
-    return edgeEdit;
-  }
-
-  public static void setServiceEdit(Service serviceSel) {
-    service = serviceSel;
-  }
-  public static Service getService() {
-    return service;
-  }
-
-  public static void setUser(String user1) {
-    user = user1;
-  }
-
-  public static String getUser() {
-    return user;
-  }
-    public static NodesDatabase getGraph() {
-    return graph;
-  }
-
-  public static int getNodeSize() {
-    return nodeSize;
-  }
-
-  public static Popup getPopup() {
-    return popup;
-  }
-
-  public static Popup getSecurityPop() {
-    return securityPop;
-  }
-
-  public static Popup getRequestPop() {
-    return requestPop;
-  }
-
-  public static Popup getMedicinePop() {
-    return medicinePop;
-  }
-
-//  public static void reset() {
-//    nodeController.refreshTable();
-//  }
+  public static Popup getPopup() { return popup; }
+  public static Popup getSecurityPop() { return securityPop; }
+  public static Popup getRequestPop() { return requestPop; }
+  public static Popup getMedicinePop() { return medicinePop; }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
