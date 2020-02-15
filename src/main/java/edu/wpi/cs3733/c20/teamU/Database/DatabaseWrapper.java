@@ -26,6 +26,7 @@ public class DatabaseWrapper {
 //    serviceDB = new ServiceDatabase();
 //  }
 
+  //EDGE CLASS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static Edge createEdge(Node startNode, Node endNode, int dist, String ID){
       Edge ed = new Edge(startNode, endNode, dist, ID);
       return ed;
@@ -39,10 +40,11 @@ public class DatabaseWrapper {
   //public static Node getStart(Edge edge) { return edge.getStart();}
   //public static Node getEnd(Edge edge) { return end;}
 
-    public static String getEndID(Edge edge) { return edge.getEndID();}
-    public static int getDist(Edge edge) { return edge.getDist();}
-    public static String getID(Edge edge) {return edge.getID();}
+    public static String edgeGetEndID(Edge edge) { return edge.getEndID();}
+    public static int edgeGetDist(Edge edge) { return edge.getDist();}
+    public static String edgeGetID(Edge edge) {return edge.getID();}
 
+    //NODE CLASS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     public static  Node createNode(int xPos, int yPos, String ID) {
       Node node = new Node(xPos, yPos, ID);
       return node;
@@ -57,22 +59,25 @@ public class DatabaseWrapper {
       return node.equals(obj);
     }
 
-  public static String nodeToString(Node node){
-    return node.getID();
-  }
+    public static String nodeToString(Node node){
+      return node.getID();
+    }
 
-  public static String getNodeID(Node node){
-    return  node.getNodeID();
-  }
+    public static String getNodeID(Node node){
+      return  node.getID();
+    }
 
-  public static int nodeGetFloor(Node node) { return node.getFloor();}
-  public static String nodeGetBuilding(Node node) {return node.getBuilding();}
-  public static String nodeGetNodeType(Node node) {return node.getNodeType();}
-  public static String nodeGetLongName(Node node) { return node.getLongName();}
-  public static String nodeGetShortName(Node node) { return node.getShortName();}
-  public static int nodeGetXCoord(Node node) {return node.getXCoord();}
-  public static int nodeGetYCoord(Node node) {return node.getYCoord();}
+    //Nodes class:
+    public static int nodeGetFloor(Node node) { return node.getFloor();}
+    public static String nodeGetBuilding(Node node) {return node.getBuilding();}
+    public static String nodeGetNodeType(Node node) {return node.getNodeType();}
+    public static String nodeGetLongName(Node node) { return node.getLongName();}
+    public static String nodeGetShortName(Node node) { return node.getShortName();}
+    public static int nodeGetXCoord(Node node) {return node.getX();}
+    public static int nodeGetYCoord(Node node) {return node.getY();}
 
+
+//DATABASE CLASS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   /**
    * Initializes every database table according to the CSV's either found in the jar file or
    * externally in DatabaseBackup
@@ -148,17 +153,8 @@ public class DatabaseWrapper {
    * @param shortName short abv. name of location
    * @return true if the tuple was able to be created
    */
-  public static boolean addNode(
-      String nodeID,
-      int xcoord,
-      int ycoord,
-      int floor,
-      String building,
-      String nodeType,
-      String longName,
-      String shortName) {
-    return (Database.addNode(
-        nodeID, xcoord, ycoord, floor, building, nodeType, longName, shortName));
+  public static boolean addNode( String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName) {
+    return (Database.addNode(nodeID, xcoord, ycoord, floor, building, nodeType, longName, shortName));
   }
 
   /**
@@ -229,62 +225,108 @@ public class DatabaseWrapper {
         return (Database.editEdge(edgeIDN, startNodeN, endNodeN));
     }
 
+  //SERVICE DATABASE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  /**
+   * Add a value to the Servie Finished DatabaseTable
+   * @param timeFinished String of DATE
+   * @param reqType String of type (ie MEDIC)
+   * @param completedBy string cof DATE
+   * @param info String of any information
+   * @return returns true if value was added
+   */
     public static boolean serviceFinishedAdd(String timeFinished, String reqType, String completedBy, String info){
         return (ServiceDatabase.serviceFinishedAdd(timeFinished, reqType, completedBy, info));
     }
 
+  /**
+   * add a value to the security table (for current time)
+   * @return returns true if value was added
+   */
     public static boolean securitySRAdd(){
         return (ServiceDatabase.securitySRAdd());
     }
 
+  /**
+   * add a value to the Medical request table
+   * @param patentFirstName String of first name
+   * @param patentLastName String of last name
+   * @param drugName String of Drug
+   * @param frequency String of reqency
+   * @param deliveryMethod String of delm (ie: IV )
+   * @param comment String of any comment made by requester
+   * @return returns true if added correctly
+   */
     public static boolean medicineSRAdd(String patentFirstName, String patentLastName, String drugName, String frequency, String deliveryMethod, String comment){
         return (ServiceDatabase.medicineSRAdd(patentFirstName, patentLastName, drugName,frequency, deliveryMethod, comment));
     }
 
+  /**
+   * Delete a value from the Security table
+   * @param reqID ID value from the table (primary key)
+   * @param adminsName String of the name of the admin user that completed the task
+   * @return returns true if value was deleted
+   */
     public static boolean securitySRDel(int reqID, String adminsName){
         return (ServiceDatabase.securitySRDel(reqID, adminsName));
     }
 
+  /**
+   * Delete a value from the medical table
+   * @param reqID ID value from table (PK)
+   * @param adminsName String of admin user that competed task
+   * @return returns true if it was deleted
+   */
     public static boolean medicineSRDel(int reqID, String adminsName) {
         return (ServiceDatabase.medicineSRDel(reqID, adminsName));
     }
 
 
-    //Node Class
-    public void setWeight(Node node, int newWeight) { setWeight(node, newWeight);}
-    public int getX(Node node){ return getX(node); }
-    public int getY(Node node){ return getY(node);}
-    public int getWeight(Node node){ return getWeight(node);}
-    public static String getID(Node node){ return getID(node);}
-    public String toString(Node node){ return node.getID(); }
-    public int getFloor(Node node) { return getFloor(node);}
-    public String getBuilding(Node node) {return getBuilding(node);}
-    public String getNodeType(Node node) {return getNodeType(node);}
-    public String getLongName(Node node) { return getLongName(node);}
-    public String getShortName(Node node) { return getShortName(node);}
-
-    //NodesDatabase Class
-    public void addNode(Node n, NodesDatabase ndb) { addNode(n, ndb);}
-    public void addEdge(Edge e, NodesDatabase ndb) {addEdge(e,ndb);}
-    public void removeNode(String ID, NodesDatabase ndb) { removeNode(ID, ndb);}
-    public void removeEdge(String ID, NodesDatabase ndb) { removeEdge(ID, ndb);}
-    public void removeNode(Node n, NodesDatabase ndb) { removeNode(n, ndb);}
-    public void removeEdge(Edge e, NodesDatabase ndb) { removeEdge(e,ndb);}
-    public Node getNode(String ID, NodesDatabase ndb) { return getNode(ID, ndb);}
-    public ArrayList<Node> getNodes(NodesDatabase ndb) { return getNodes(ndb);}
-    public Edge getEdge(String ID, NodesDatabase ndb) { return getEdge(ID, ndb);}
-    public Edge getEdge(Node start, Node end, NodesDatabase ndb) {return getEdge(start, end, ndb);}
-    public Edge getEdge(String startID, String endID, NodesDatabase ndb) {return getEdge(startID, endID, ndb);}
-    public Node getNode(int xPos, int yPos, NodesDatabase ndb) { return getNode(xPos,yPos,ndb);}
-    public boolean hasNode(Node n, NodesDatabase ndb) {return hasNode(n,ndb);}
-    public ArrayList<Edge> getNeighbors(Node n, NodesDatabase ndb) {return getNeighbors(n, ndb);}
-    public ArrayList<Node> getNeighborNodes(Node n, NodesDatabase ndb) { return getNeighborNodes(n,ndb);}
-    public boolean hasNeighbors(Node n, NodesDatabase ndb) {return hasNeighbors(n,ndb);}
-    public int cost(Node start, Node end, NodesDatabase ndb) { return cost(start, end, ndb);}
-    public int costNoWeight(Node start, Node end, NodesDatabase ndb) { return costNoWeight(start, end,ndb); }
-    public boolean hasNode(int xPos, int yPos, NodesDatabase ndb) { return hasNode(xPos, yPos, ndb); }
-    public boolean hasNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) {return hasNodeInRange(xPos, yPos, rad, ndb); }
-    public Node getNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) { return getNodeInRange(xPos, yPos, rad, ndb);}
-    public void update(NodesDatabase ndb) {update(ndb); }
-    public static int dist(int x1, int y1, int x2, int y2) {return dist(x1, y1, x2, y2);}
+  //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  //add node
+    public static void nodeDatabaseAddNode(Node n, NodesDatabase ndb) { ndb.addNode(n,ndb);}
+  //add edge
+    public static void nodeDatabaseAddEdge(Edge e, NodesDatabase ndb) {ndb.addEdge(e, ndb);}
+  //remove node
+    public static void nodeDatabaseRemoveNode(String ID, NodesDatabase ndb) { ndb.removeNode(ID, ndb);}
+  //remove edge
+    public static void nodeDatabaseRemoveEdge(String ID, NodesDatabase ndb) { ndb.removeEdge(ID, ndb);}
+  // ""
+    public static void nodeDatabaseRemoveNode(Node n, NodesDatabase ndb) { ndb.removeNode(n, ndb);}
+  //  ""
+    public static void nodeDatabaseRemoveEdge(Edge e, NodesDatabase ndb) { ndb.removeEdge(e,ndb);}
+  //get node id
+    public static Node nodeDatabaseGetNode(String ID, NodesDatabase ndb) { return ndb.getNode(ID, ndb);}
+  //get nodes
+    public static ArrayList<Node> nodeDatabaseGetNodes(NodesDatabase ndb) { return ndb.getNodes(ndb);}
+  //get edge id
+    public static Edge nodeDatabaseGetEdge(String ID, NodesDatabase ndb) { return ndb.getEdge(ID, ndb);}
+  //get edge value type
+    public static Edge nodeDatabaseGetEdge(Node start, Node end, NodesDatabase ndb) {return ndb.getEdge(start, end, ndb);}
+  //get edge start and end it?
+    public static Edge nodeDatabaseGetEdge(String startID, String endID, NodesDatabase ndb) {return ndb.getEdge(startID, endID, ndb);}
+  //get node pos
+    public static Node nodeDatabaseGetNode(int xPos, int yPos, NodesDatabase ndb) { return ndb.getNode(xPos,yPos,ndb);}
+  //check if node is there
+    public static boolean nodeDatabaseHasNode(Node n, NodesDatabase ndb) {return ndb.hasNode(n,ndb);}
+  //get neighbors Edge
+    public static ArrayList<Edge> nodeDatabaseGetNeighbors(Node n, NodesDatabase ndb) {return ndb.getNeighbors(n, ndb);}
+  //get nodes (neighbors)
+    public static ArrayList<Node> nodeDatabaseGetNeighborNodes(Node n, NodesDatabase ndb) { return ndb.getNeighborNodes(n,ndb);}
+  //check if there are neighbors
+    public static boolean nodeDatabaseHasNeighbors(Node n, NodesDatabase ndb) {return ndb.hasNeighbors(n,ndb);}
+  //show weight start??
+    public static int nodeDatabaseCost(Node start, Node end, NodesDatabase ndb) { return ndb.cost(start, end, ndb);}
+  //no weight start ??
+    public static int nodeDatabaseCostNoWeight(Node start, Node end, NodesDatabase ndb) { return ndb.costNoWeight(start, end,ndb); }
+  //if db has node
+    public static boolean nodeDatabaseHasNode(int xPos, int yPos, NodesDatabase ndb) { return ndb.hasNode(xPos, yPos, ndb); }
+  //has a node in range x.y
+    public static boolean nodeDatabaseHasNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) {return ndb.hasNodeInRange(xPos, yPos, rad, ndb); }
+  //get that node in range
+    public static Node nodeDatabaseGetNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) { return ndb.getNodeInRange(xPos, yPos, rad, ndb);}
+  //update DB
+    public static void nodeDatabaseUpdate(NodesDatabase ndb) { ndb.update(ndb); }
+  //get distance between two points
+    public static int nodeDatabaseDist(int x1, int y1, int x2, int y2) {return NodesDatabase.dist(x1, y1, x2, y2);}
 }

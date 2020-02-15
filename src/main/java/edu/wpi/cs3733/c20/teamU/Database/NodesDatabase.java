@@ -31,7 +31,7 @@ public class NodesDatabase {
         ndb.nodes.put(n.getID(), n);
     }
 
-    protected void addEdge(Edge e, Node n, NodesDatabase ndb) {
+    protected void addEdge(Edge e, NodesDatabase ndb) {
         ndb.edges.put(e.getID(), e);
     }
 
@@ -101,7 +101,7 @@ public class NodesDatabase {
     }
 
     protected boolean hasNode(Node n, NodesDatabase ndb) {
-        return (getNode(DatabaseWrapper.getID(n),ndb) != null);
+        return (getNode(DatabaseWrapper.getNodeID(n),ndb) != null);
     }
 
 
@@ -142,7 +142,7 @@ public class NodesDatabase {
         return getNeighbors(n,ndb).size() > 0;
     }
 
-    protected int cost(Node start, Node end, NodesDatabase ndb {
+    protected int cost(Node start, Node end, NodesDatabase ndb) {
         /*
         Gets the cost of travelling from start to end
         NOTE - ONLY END'S WEIGHT ATTRIBUTE COUNTS TOWARDS THIS MEASURE
