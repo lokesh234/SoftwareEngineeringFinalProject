@@ -23,7 +23,7 @@
                           <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                                      <Label alignment="CENTER" text="BWH Faulkner Hospital Map" textFill="WHITE">
+                                      <Label alignment="CENTER" prefHeight="55.0" prefWidth="635.0" text="BWH Faulkner Hospital Map" textFill="WHITE">
                                           <font>
                                               <Font name="System Bold" size="38.0" />
                                           </font>
@@ -42,7 +42,7 @@
                                  <graphic>
                                     <ImageView fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../png_files/LogInButtonDM.png" />
+                                          <Image url="@/png_files/LogInButtonDM.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -69,7 +69,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../png_files/HomeButtonDM.png" />
+                                    <Image url="@/png_files/HomeButtonDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -82,7 +82,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../png_files/NavigateDM.png" />
+                                    <Image url="@/png_files/NavigateDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -98,7 +98,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../png_files/AssistanceButtonDM.png" />
+                                    <Image url="@/png_files/AssistanceButtonDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -111,7 +111,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../png_files/InfoDM.png" />
+                                    <Image url="@/png_files/InfoDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -124,7 +124,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../png_files/HelpButtonDM.png" />
+                                    <Image url="@/png_files/HelpButtonDM.png" />
                                  </image>
                               </ImageView>
                            </graphic>
