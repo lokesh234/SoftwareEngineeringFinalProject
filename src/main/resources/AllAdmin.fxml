@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.AdminController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminScreenController">
     <children>
         <VBox layoutX="14.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -26,7 +26,7 @@
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@png_files/Cancel.png" />
+                                        <Image url="@png_files/Icons/Cancel.png" />
                                     </image></ImageView>
                             </graphic>
                         </Button>
@@ -55,15 +55,15 @@
                             <children>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#editPowers" style="-fx-background-color: #ffffff;">
+                                        <Button mnemonicParsing="false" onAction="#editNodes" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="editNodesButton" fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@png_files/Edit Graph.png" />
+                                                        <Image url="@png_files/Icons/Edit Nodes.png" />
                                                     </image></ImageView>
                                             </graphic>
                                         </Button>
-                                        <Label text="Edit Graph">
+                                        <Label text="Edit Nodes">
                                             <font>
                                                 <Font name="Segoe UI" size="20.0" />
                                             </font>
@@ -74,9 +74,9 @@
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#requestPowers" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="viewRequestButton" fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@png_files/Edit Requests.png" />
+                                                        <Image url="@png_files/Icons/Edit Requests.png" />
                                                     </image></ImageView>
                                             </graphic>
                                         </Button>
@@ -89,12 +89,15 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
+                                        <Button mnemonicParsing="false" onAction="#editEdges" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="editEdgesButton" fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@png_files/Icons/Edit Edges.png" />
+                                       </image></ImageView>
                                             </graphic>
                                         </Button>
-                                        <Label>
+                                        <Label text="Edit Edges">
                                             <font>
                                                 <Font name="Segoe UI" size="20.0" />
                                             </font>
@@ -103,12 +106,15 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;">
+                                        <Button mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" />
+                                                <ImageView fx:id="exportButton" fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@png_files/Icons/Export.png" />
+                                       </image></ImageView>
                                             </graphic>
                                         </Button>
-                                        <Label>
+                                        <Label text="Export">
                                             <font>
                                                 <Font size="20.0" />
                                             </font>

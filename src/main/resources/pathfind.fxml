@@ -7,12 +7,12 @@
 <?import javafx.scene.text.*?>
 <?import net.kurobako.gesturefx.*?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.PathfindController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
     <children>
         <BorderPane layoutX="165.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
                 <AnchorPane prefHeight="1920" prefWidth="1080">
-                    <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                    <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="PathGes">
                         <AnchorPane fx:id="NodesPane">
                             <ImageView preserveRatio="true" BorderPane.alignment="CENTER">
                                 <image>
@@ -78,7 +78,7 @@
                     <children>
                         <ImageView fitHeight="993.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@png_files/Floor_indicator.png" />
+                                <Image url="@png_files/Icons/Floor_indicator.png" />
                             </image>
                         </ImageView>
                     </children>

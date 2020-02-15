@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.RequestController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestController">
    <children>
       <VBox layoutX="14.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #729EBF;" onAction="#closeRequestScreen">
+                  <Button fx:id="close" mnemonicParsing="false" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #729EBF;" onAction="#closeRequestScreen">
                      <HBox.margin>
                         <Insets right="5.0" top="5.0" />
                      </HBox.margin>
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@png_files/Cancel.png" />
+                              <Image url="@png_files/Icons/Cancel.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -52,11 +52,11 @@
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/MealIcon.png" />
+                                          <Image url="@png_files/Icons/MealIcon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
-                              <Label text="Meal Service">
+                              <Label fx:id="mealService" text="Meal Service">
                                  <font>
                                     <Font name="Segoe UI" size="20.0" />
                                  </font>
@@ -69,11 +69,11 @@
                                  <graphic>
                                     <ImageView fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/cleanupicon.png" />
+                                          <Image url="@png_files/Icons/cleanupicon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
-                              <Label text="Cleanup">
+                              <Label fx:id="clean" text="Cleanup">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -82,15 +82,15 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#openMedicineForm">
+                              <Button fx:id="medicine" mnemonicParsing="false" style="-fx-background-color: #ffffff;" onAction="#openMedicineForm">
                                  <graphic>
                                     <ImageView fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/Med.png"/>
+                                          <Image url="@png_files/Icons/Med.png"/>
                                        </image></ImageView>
                                  </graphic>
                               </Button>
-                              <Label text="Medicine Delivery">
+                              <Label fx:id="medicineSign" text="Medicine Delivery">
                                  <font>
                                     <Font name="Segoe UI" size="20.0" />
                                  </font>
@@ -103,11 +103,11 @@
                                  <graphic>
                                     <ImageView fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@png_files/ReligionIcon.png" />
+                                          <Image url="@png_files/Icons/ReligionIcon.png" />
                                        </image></ImageView>
                                  </graphic>
                               </Button>
-                              <Label text="Religious Services">
+                              <Label fx:id="religion" text="Religious Services">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
