@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<?import net.kurobako.gesturefx.GesturePane?>
+<!--<?import net.kurobako.gesturefx.GesturePane?>-->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
@@ -200,18 +200,18 @@
         <VBox alignment="CENTER" layoutX="187.0" layoutY="84.0" prefHeight="996.0" prefWidth="1727.0" style="-fx-background-color: #D4D5D2;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="84.0">
             <children>
                 <AnchorPane prefWidth="1920" prefHeight="1080">
-                    <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">
-                        <AnchorPane fx:id="NodesPane" >
-                <ImageView pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../png_files/Final-Floor-4.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </ImageView>
-                        </AnchorPane>
-                    </GesturePane>
+<!--                    <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">-->
+<!--                        <AnchorPane fx:id="NodesPane" >-->
+<!--                <ImageView pickOnBounds="true" preserveRatio="true">-->
+<!--                    <image>-->
+<!--                        <Image url="@../png_files/Final-Floor-4.png" />-->
+<!--                    </image>-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets />-->
+<!--                    </VBox.margin>-->
+<!--                </ImageView>-->
+<!--                        </AnchorPane>-->
+<!--                    </GesturePane>-->
                 </AnchorPane>
             </children>
             <padding>
