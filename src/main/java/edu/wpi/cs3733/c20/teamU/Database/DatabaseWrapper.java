@@ -1,6 +1,8 @@
-package edu.wpi.cs3733.c20.teamU;
+package edu.wpi.cs3733.c20.teamU.Database;
 
-import edu.wpi.cs3733.c20.teamU.Database.*;
+
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 
 import java.sql.*;
 import java.io.*;
@@ -9,19 +11,19 @@ import java.util.HashMap;
 import java.util.Date;
 
 public class DatabaseWrapper {
-  private Database database;
-  private Edge edge;
-  private Node node;
-  private NodesDatabase nodeDB;
-  private ServiceDatabase serviceDB;
+//  private Database database;
+//  private Edge edge;
+//  private Node node;
+//  private NodesDatabase nodeDB;
+//  private ServiceDatabase serviceDB;
 
-  public DatabaseWrapper() {
-    database = new Database();
-    // edge = new Edge();
-    // node = new Node();
-    nodeDB = new NodesDatabase();
-    serviceDB = new ServiceDatabase();
-  }
+//  public DatabaseWrapper() {
+//    database = new Database();
+//    // edge = new Edge();
+//    // node = new Node();
+//    nodeDB = new NodesDatabase();
+//    serviceDB = new ServiceDatabase();
+//  }
 
   public static Edge createEdge(Node startNode, Node endNode, int dist, String ID){
       Edge ed = new Edge(startNode, endNode, dist, ID);
@@ -50,9 +52,26 @@ public class DatabaseWrapper {
       return node;
     }
 
-    public static boolean equalsNode(Object obj) {
-
+    public static boolean nodeEqualsNode(Object obj, Node node) {
+      return node.equals(obj);
     }
+
+  public static String nodeToString(Node node){
+    return node.getID();
+  }
+
+  public static String getNodeID(Node node){
+    return  node.getNodeID();
+  }
+
+  public static int nodeGetFloor(Node node) { return node.getFloor();}
+  public static String nodeGetBuilding(Node node) {return node.getBuilding();}
+  public static String nodeGetNodeType(Node node) {return node.getNodeType();}
+  public static String nodeGetLongName(Node node) { return node.getLongName();}
+  public static String nodeGetShortName(Node node) { return node.getShortName();}
+  public static int nodeGetXCoord(Node node) {return node.getXCoord();}
+  public static int nodeGetYCoord(Node node) {return node.getYCoord();}
+
   /**
    * Initializes every database table according to the CSV's either found in the jar file or
    * externally in DatabaseBackup
