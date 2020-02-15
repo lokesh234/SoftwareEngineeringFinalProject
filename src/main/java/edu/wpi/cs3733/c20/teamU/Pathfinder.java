@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Pathfinder {
     /*
@@ -105,6 +103,59 @@ public class Pathfinder {
         latestPath.clear();
         return;
     }
+
+    public void starSingularBFS(Node start, Node end, NodesDatabase graph) {
+        /*
+        Finds a path from start to end using A*. To retrieve your results, use getLatestCost() or getLatestPath() *after* calling this function
+         *
+         */
+        ArrayList<Node> shortestPathList  = new ArrayList<Node>();
+        HashMap<Node, Boolean> visited =  new HashMap<Node, Boolean>();
+        if (start == end){
+            return;
+        }
+        Queue<Node> queue = new LinkedList<Node>();
+        Stack<Node> pathStack = new Stack<Node>();
+
+        queue.add(start);
+        pathStack.add(start);
+
+        while(!queue.isEmpty()){
+            Node current = queue.poll();
+            ArrayList<Node> adjacentNodes = graph.getNeighborNodes(current);
+            for (Node n: adjacentNodes){
+                if(!visited.containsKey(n)){
+                    queue.add(n);
+                    visited.put(n, true);
+                    pathStack.add(n);
+                    if(current == end){
+                        break;
+                    }
+                }
+            }
+        }
+        Node noode, currentSrc = end;
+        shortestPathList.add(end);
+        while (!pathStack.isEmpty()){
+            noode = pathStack.pop();
+            if(graph.getNeighborNodes(end).contains(currentSrc)){
+                shortestPathList.add(noode);
+                currentSrc = noode;
+                if(noode == start)
+                    break;
+            }
+        }
+        latestPath = shortestPathList;
+    }
+
+
+
+//        HashMap<Node, Node> cameFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
+//        HashMap<Node, Integer> costSoFar = new HashMap<Node, Integer>(); //All nodes we've seen, and how expensive it was to get there
+
+  //      cameFrom.put(start, null);
+   //     costSoFar.put(start, 0);
+
 
     public void starSingularNoWeight(Node start, Node end, NodesDatabase graph){
         /*

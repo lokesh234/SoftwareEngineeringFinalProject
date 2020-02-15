@@ -20,11 +20,10 @@ public class startController {
 
   @FXML
   Button start;
-  long startTime;
-  long currentTime = 0;
   boolean didEscape = false;
+  HomeController homeController = new HomeController();
 
-  Thread startT = new Thread(new Runnable() {
+  /*Thread startT = new Thread(new Runnable() {
     @Override
     public void run() {
       Runnable runTask = new Runnable() {
@@ -47,8 +46,9 @@ public class startController {
 
         }
     }
-
-  });
+  })
+  ;
+   */
 //    Thread startT = new Thread(
 //        () ->
 //        {
@@ -66,14 +66,20 @@ public class startController {
   @FXML
   private void openHomeScreen(ActionEvent event) {
     App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-//      startT.interrupt();
+//      startTime = System.currentTimeMillis();
     });
+    //homeController.startTime = System.currentTimeMillis();
     App.getPrimaryStage().setScene(App.getHomeScene());
-    startTime = System.currentTimeMillis();
-    System.out.println(startTime);
+    //System.out.println(startTime);
     didEscape = true;
 
   }
+/*
+  public long getStartTime(){
+    return startTime;
+  }
+
+ */
 
   private void openHomeScreen1() {
     App.getPrimaryStage().setScene(App.getStartScene());
@@ -91,8 +97,8 @@ public class startController {
 //                    .zoomBy(MapGes.getCurrentScale(), pivotOnTarget);
 //            }
 //        });
-    startT.setDaemon(true);
-    startT.start();
+    //startT.setDaemon(true);
+    //startT.start();
   }
 
 }

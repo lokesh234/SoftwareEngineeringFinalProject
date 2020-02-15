@@ -34,7 +34,10 @@ public class HomeController {
     private Button test;
     @FXML
     private Button navButton;
+    public long startTime;
+    long currentTime = 0;
     SecurityController securityController;
+    startController tartController;
     @FXML
     private GesturePane MapGes;
 //    Long startTime = System.currentTimeMillis();
@@ -49,6 +52,11 @@ public class HomeController {
 
     @FXML
     private void openStartScene() {
+        /* App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
+            startTime = System.currentTimeMillis();
+            System.out.println(startTime);
+        });
+         */
         App.getPrimaryStage().setScene(App.getStartScene());
     }
 
@@ -57,6 +65,12 @@ public class HomeController {
         App.getGraph().update();
         App.getPathfindController().drawNodes();
         App.getPrimaryStage().setScene(App.getPathScene());
+    }
+
+    private void checkTime(){
+        App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
+            startTime = System.currentTimeMillis();
+        });
     }
 
     @FXML
@@ -78,13 +92,31 @@ public class HomeController {
         System.out.println("Hello");
     }
 
-//    Thread startT = new Thread(
-//            () ->
-//    { Long currentTime = System.currentTimeMillis();
-//        if ((currentTime - startTime) > (long) 5000) {
-//            Platform.runLater(this::openHomeScene);
-//        }
-//    });
+
+Thread startT = new Thread(new Runnable() {
+    @Override
+    public void run() {
+        Runnable runTask = new Runnable() {
+            @Override
+            public void run() {
+                checkTime();
+                currentTime = System.currentTimeMillis();
+                if ((currentTime - startTime) > 5000) {
+//            didEscape = false;
+//            setDaemon(false);
+                    openStartScene();
+                }
+            }
+        };
+        while (true) {
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ex) {
+            }
+            Platform.runLater(runTask);
+        }
+    }
+});
 
     @FXML
     private void openRequestScene(ActionEvent e) {
@@ -106,6 +138,9 @@ public class HomeController {
                         .zoomBy(MapGes.getCurrentScale(), pivotOnTarget);
             }
         });
+        startTime = System.currentTimeMillis();
+        startT.setDaemon(true);
+        startT.start();
 //        startT.start();
     }
 }
