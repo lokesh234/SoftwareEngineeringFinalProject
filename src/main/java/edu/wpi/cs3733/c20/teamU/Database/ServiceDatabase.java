@@ -39,6 +39,7 @@ public class ServiceDatabase {
     //serviceDisplay method currently prints values, will be edited later to save values
     // to some kind of list or map
 
+    //displays map (not necessary?)
     public static boolean serviceDisplay(String tableName){
 
         Connection conn = null;
@@ -115,7 +116,7 @@ public class ServiceDatabase {
     }
 
     //gets current date
-    public static String getCurrentDate(){
+    static String getCurrentDate(){
         String timeReq;
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         Date dateobj = new Date();
@@ -229,15 +230,7 @@ public class ServiceDatabase {
       stmt.executeUpdate("DELETE FROM " + SRTable + " WHERE reqID = " + reqID);
 
       stmt.executeUpdate(
-          "INSERT INTO "
-              + SFTable
-              + " VALUES ('"
-              + curDate
-              + "', 'MEDIC', '"
-              + adminsName
-              + "', '"
-              + info
-              + "')");
+          "INSERT INTO " + SFTable + " VALUES ('" + curDate + "', 'MEDIC', '" + adminsName + "', '" + info + "')");
 
       Database.CreateCSV(stmt, MTable, null);
       Database.CreateCSV(stmt, SRTable, null);

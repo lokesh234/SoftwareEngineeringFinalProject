@@ -12,6 +12,11 @@ import java.util.HashMap;
 
 @NoArgsConstructor
 public class Database {
+    /**
+     * Initializes every database table according to the CSV's either found in the jar file or
+     * externally in DatabaseBackup
+     *
+     */
     public static void UDBInitializer(){
         Connection conn = null;
         Statement stmt = null;
@@ -606,11 +611,11 @@ public class Database {
     }
 
     /**
+     * Print a given database table
      *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     * @return
+     * @param stmt Statement (sql)
+     * @param tableName the name of the table you wish to print
+     * @return true if method was able to successfully print table
      */
     public static boolean printTable(Statement stmt, String tableName) {
         try {
@@ -737,11 +742,11 @@ public class Database {
     }
 
     /**
+     * Creates a new tuple in the edges database for the given information
      *
-     * TODO：finish commenting
-     * @param startID
-     * @param endID
-     * @return
+     * @param startID first nodeID for the table
+     * @param endID second nodeID for the table
+     * @return true if the tuple was able to be created
      */
     public static boolean addEdge(String startID, String endID){
         Statement stmt;
@@ -762,17 +767,17 @@ public class Database {
     }
 
     /**
+     * Creates a new tuple in the nodes database using the given info
      *
-     * TODO：finish commenting
-     * @param nodeID
-     * @param xcoord
-     * @param ycoord
-     * @param floor
-     * @param building
-     * @param nodeType
-     * @param longName
-     * @param shortName
-     * @return
+     * @param nodeID Primary Key nodeID
+     * @param xcoord x coordinate of the graph
+     * @param ycoord y coordinate of the graph
+     * @param floor floor number
+     * @param building string of building name
+     * @param nodeType type of area ("HALL, DEPT, STAI...)
+     * @param longName full name of the location
+     * @param shortName short abv. name of location
+     * @return true if the tuple was able to be created
      */
     public static boolean addNode(String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName){
         String teamAssigned = "Team U";
@@ -794,10 +799,10 @@ public class Database {
     }
 
     /**
+     * Deletes the given edge tuple using edgeID
      *
-     * TODO：finish commenting
-     * @param edgeID
-     * @return
+     * @param edgeID Primary Key of the edges table
+     * @return true if tuple was deleted
      */
     public static boolean delEdge(String edgeID){
         Statement stmt;
@@ -818,10 +823,10 @@ public class Database {
     }
 
     /**
+     * Deletes the given node tuple given the nodeID
      *
-     * TODO：finish commenting
-     * @param nodeID
-     * @return
+     * @param nodeID the Primary key of the nodes table
+     * @return true if tuple was deleted
      */
     public static boolean delNode(String nodeID){
         Statement stmt;
@@ -949,16 +954,16 @@ public class Database {
 
     /**
      *
-     * TODO：finish commenting
-     * @param nodeIDN
-     * @param xcoordN
-     * @param ycoordN
-     * @param floorN
-     * @param buildingN
-     * @param nodeTypeN
-     * @param longNameN
-     * @param shortNameN
-     * @return
+     * Edits an existing Node tuple
+     * @param nodeIDN Primary Key
+     * @param xcoordN x coordinate
+     * @param ycoordN y coordinate
+     * @param floorN floor number
+     * @param buildingN building name
+     * @param nodeTypeN type of area ('HALL' 'STAI' ...)
+     * @param longNameN long string name
+     * @param shortNameN short string name
+     * @return true if tuple was able to be edited
      */
     public static boolean editTuple(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
         Connection conn = null;
@@ -984,11 +989,11 @@ public class Database {
 
     /**
      *
-     * TODO：finish commenting
-     * @param edgeIDN
-     * @param startNodeN
-     * @param endNodeN
-     * @return
+     * Edits an existing Edge tuple
+     * @param edgeIDN Primary Key
+     * @param startNodeN Foreign key
+     * @param endNodeN Foreign key
+     * @return true if tuple was able to be edited
      */
     public static boolean editEdge(String edgeIDN, String startNodeN, String endNodeN ) {
         Connection conn = null;
