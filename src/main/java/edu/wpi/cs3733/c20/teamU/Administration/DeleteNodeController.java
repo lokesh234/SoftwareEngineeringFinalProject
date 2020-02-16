@@ -12,16 +12,16 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class NodeEditController {
+public class DeleteNodeController {
 
   @FXML private Button confirm;
   @FXML private Button cancel;
   @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
   Node selectedNode;
-  NodeViewScreenController nodeViewScreenController;
+  NodeViewScreenController nodeController;
 
-  public NodeEditController() {}
+  public DeleteNodeController() {}
 
   /**
    * Change scene when this is called...
@@ -32,8 +32,8 @@ public class NodeEditController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  public void setAttributes(NodeViewScreenController nodeViewScreenController1) {
-    nodeViewScreenController = nodeViewScreenController1;
+  public void setAttributes(NodeViewScreenController nodeController1) {
+    nodeController = nodeController1;
   }
 
   @FXML
@@ -41,7 +41,7 @@ public class NodeEditController {
     overWrite();
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
-    nodeViewScreenController.refreshTable();
+    nodeController.refreshTable();
     cancel.fire();
   }
 
@@ -49,23 +49,8 @@ public class NodeEditController {
    * function makes changes to node values
    */
   private void overWrite() { // does not count in for empty values
-    String userX = text2.getText();
-    String userY = text3.getText();
-    String userFloor = text4.getText();
-    String userBuild = text5.getText();
-    String userType = text6.getText();
-    String userLongName = text7.getText();
-    String userShortName = text8.getText();
-
-    if(userX.isEmpty()) userX = x;
-    if(userY.isEmpty()) userY = y;
-    if(userFloor.isEmpty()) userFloor = floor;
-    if(userBuild.isEmpty()) userBuild = build;
-    if(userType.isEmpty()) userType = type;
-    if(userLongName.isEmpty()) userLongName = build;
-    if(userShortName.isEmpty()) userShortName = shortName;
-
-    Database.editTuple(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
+    Database.delNode(ID);
+    text1.clear();
     text2.clear();
     text3.clear();
     text4.clear();
@@ -98,7 +83,6 @@ public class NodeEditController {
     text6.setPromptText(type);
     text7.setPromptText(longName);
     text8.setPromptText(shortName);
-
   }
 
 //  /**
@@ -110,6 +94,12 @@ public class NodeEditController {
   @FXML
   public void initialize() {
     text1.setDisable(true);
-
+    text2.setDisable(true);
+    text3.setDisable(true);
+    text4.setDisable(true);
+    text5.setDisable(true);
+    text6.setDisable(true);
+    text7.setDisable(true);
+    text8.setDisable(true);
   }
 }

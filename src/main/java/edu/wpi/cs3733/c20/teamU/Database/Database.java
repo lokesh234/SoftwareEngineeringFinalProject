@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Database;
 
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import lombok.NoArgsConstructor;
 
 import java.io.*;
@@ -895,6 +896,7 @@ public class Database {
 //                System.out.println(requestType);
                 Service s = new Service(date, requestID, name, requestType);
                 servicesList.add(s);
+                System.out.println("service list: " + servicesList);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
             results.close();

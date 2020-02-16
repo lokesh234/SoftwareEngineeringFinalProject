@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.collections.FXCollections;
@@ -64,8 +65,10 @@ public class EdgeEditController {
     table.setItems(hashToOblist());
     if (App.getEdgeEdit() != null) { //We're editing a selected edge
       selectedEdge = App.getEdgeEdit();
-      selectedStartNode = selectedEdge.getStart();
-      selectedEndNode = selectedEdge.getEnd();
+      //selectedStartNode = selectedEdge.getStart();
+      //selectedEndNode = selectedEdge.getEnd();
+      selectedStartNode = DatabaseWrapper.edgeGetStart(selectedEdge);
+      selectedEndNode = DatabaseWrapper.edgeGetEnd(selectedEdge);
       startLabel.setText(selectedStartNode.getID());
       endLabel.setText(selectedEndNode.getID());
       id = selectedEdge.getID();
@@ -98,7 +101,8 @@ public class EdgeEditController {
   @FXML
   public void save() {
     if (editing) {
-      Database.editEdge(selectedEdge.getID(), selectedStartNode.getNodeID(), selectedEndNode.getNodeID());
+      //Database.editEdge(selectedEdge.getID(), selectedStartNode.getNodeID(), selectedEndNode.getNodeID());
+      Database.editEdge(selectedEdge.getID(), DatabaseWrapper.getNodeID(selectedStartNode), DatabaseWrapper.getNodeID(selectedEndNode));
       update();
     }
     else if (selectedEndNode != null && selectedStartNode != null) {
