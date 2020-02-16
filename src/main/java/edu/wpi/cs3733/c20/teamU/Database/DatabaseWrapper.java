@@ -32,14 +32,12 @@ public class DatabaseWrapper {
       return ed;
   }
 
-  public static String getStartID(Edge edge) {
-      return edge.getStartID();
-  }
-
   //assuming that the protected methods will still work outside of this wrapper if not add them.
-  //public static Node getStart(Edge edge) { return edge.getStart();}
-  //public static Node getEnd(Edge edge) { return end;}
-
+    public static Node edgeGetStart(Edge edge) { return edge.getStart();}
+    public static Node edgeGetEnd(Edge edge) { return edge.getEnd();}
+    public static String edgeGetStartID(Edge edge) {
+    return edge.getStartID();
+  }
     public static String edgeGetEndID(Edge edge) { return edge.getEndID();}
     public static int edgeGetDist(Edge edge) { return edge.getDist();}
     public static String edgeGetID(Edge edge) {return edge.getID();}

@@ -7,4 +7,6 @@ public class ServiceRequestWrapper {
     public static String serviceGetName(Service service) {return service.getName();}
     public static String serviceGetRequestType(Service service) { return service.getRequestType();}
 
+    public static void pathfindDrawNodes(PathfindController pathfind){pathfind.drawNodes();}
+
 }

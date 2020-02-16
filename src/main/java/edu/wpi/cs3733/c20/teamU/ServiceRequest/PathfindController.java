@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
@@ -20,6 +21,7 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -106,7 +108,8 @@ public class PathfindController {
          */
         for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
             Node n = pair.getKey();
-            if (NodesDatabase.dist(x, y, n.getX(), n.getY()) <= App.getNodeSize()) return n;
+            //if (NodesDatabase.dist(x, y, n.getX(), n.getY()) <= App.getNodeSize()) return n;
+            if (DatabaseWrapper.nodeDatabaseDist(x,y,n.getX(),n.getY()) <= App.getNodeSize()) return n;
         }
         return null;
     }
@@ -117,7 +120,8 @@ public class PathfindController {
         end = null;
         startReady = false;
         endReady = false;
-        ArrayList<Node> nodes = App.getGraph().getNodes();
+        //ArrayList<Node> nodes = App.getGraph().getNodes();
+        ArrayList<Node> nodes = DatabaseWrapper.nodeDatabaseGetNodes(App.getGraph());
         if (circles.size() > 0) {
             for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
                 Node n = pair.getKey();
@@ -127,7 +131,8 @@ public class PathfindController {
         }
         circles.clear();
         for (Node n : nodes) {
-            if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+            //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+            if (!DatabaseWrapper.nodeDatabaseHasNeighbors(n, App.getGraph())) System.out.println(n.getID() + " has no neighbors!");
             if (isDrawableNode(n)) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());

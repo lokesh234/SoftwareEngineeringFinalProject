@@ -2,8 +2,8 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.Administration.editModeController;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +32,6 @@ public class NodeController {
   @FXML private TableColumn<Node, String> nodeType;
   @FXML private TableColumn<Node, String> longName;
   @FXML private TableColumn<Node, String> shortName;
-  Database graph;
   editModeController toEdit;
 
   public NodeController() {}
@@ -83,7 +82,9 @@ public class NodeController {
 
   @FXML
   public void deleteNodeScreen(ActionEvent event) throws IOException {
-    Database.delNode(nodeTable.getSelectionModel().getSelectedItem().getNodeID());
+    DatabaseWrapper.delNode(nodeTable.getSelectionModel().getSelectedItem().getID());
+    //Database.delNode(nodeTable.getSelectionModel().getSelectedItem().getID());
+    //Database.delNode(nodeTable.getSelectionModel().getSelectedItem().getNodeID());
     refreshTable();
   }
 
@@ -107,7 +108,7 @@ public class NodeController {
 
     //getting nodes created in Hashmap from database
     HashMap<String, Node> graph = new HashMap<String, Node>();
-    Database.getNodes(graph);
+    DatabaseWrapper.getNodes(graph);
 
     //add each node to the oblist
     Set keys = graph.keySet();

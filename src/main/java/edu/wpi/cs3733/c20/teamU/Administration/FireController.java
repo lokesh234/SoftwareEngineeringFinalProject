@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import javafx.animation.Interpolator;
@@ -110,7 +111,8 @@ public class FireController {
     }
 
     private void drawNodes() {
-        ArrayList<Node> nodes = App.getGraph().getNodes();
+        //ArrayList<Node> nodes = App.getGraph().getNodes();
+        ArrayList<Node> nodes = DatabaseWrapper.nodeDatabaseGetNodes(App.getGraph());
         for (Node n : nodes) {
             if (isDrawableNode(n)) {
                 Circle c = new Circle();

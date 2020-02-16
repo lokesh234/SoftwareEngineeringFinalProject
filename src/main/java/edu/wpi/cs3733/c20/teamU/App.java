@@ -376,7 +376,7 @@ public class App extends Application {
     path.getChildren().add(e);
   }
 
-  protected static void removeFromPath(Node e) { //Removes a javaFX node from the pathfinding pane
+  public static void removeFromPath(Node e) { //Removes a javaFX node from the pathfinding pane
     path.getChildren().remove(e);
   }
 }

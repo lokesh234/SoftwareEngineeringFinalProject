@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
+import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 
@@ -60,11 +62,13 @@ public class Pathfinder {
     }
 
     public void starSingular(String startID, String endID, NodesDatabase graph) {
-        starSingular(graph.getNode(startID), graph.getNode(endID), graph);
+        //starSingular(graph.getNode(startID), graph.getNode(endID), graph);
+        starSingular(DatabaseWrapper.nodeDatabaseGetNode(startID, graph), DatabaseWrapper.nodeDatabaseGetNode(endID, graph), graph);
     }
 
     public void starSingularNoWeight(String startID, String endID, NodesDatabase graph) {
-        starSingularNoWeight(graph.getNode(startID), graph.getNode(endID), graph);
+        //starSingularNoWeight(graph.getNode(startID), graph.getNode(endID), graph);
+        starSingularNoWeight(DatabaseWrapper.nodeDatabaseGetNode(startID, graph), DatabaseWrapper.nodeDatabaseGetNode(endID, graph), graph);
     }
 
     public void starSingular(Node start, Node end, NodesDatabase graph){
@@ -94,8 +98,10 @@ public class Pathfinder {
                 return; //That's everything!
             }
             //Most likely, we have to go through the search process before we reach the goal
-            for (Node n : graph.getNeighborNodes(current)) {
-                int newCost = costSoFar.get(current) + graph.cost(current, n);
+            //graph.getNeighborNodes(current))
+            for (Node n : DatabaseWrapper.nodeDatabaseGetNeighborNodes(current, graph)) {
+                //int newCost = costSoFar.get(current) + graph.cost(current, n);
+                int newCost = costSoFar.get(current) + DatabaseWrapper.nodeDatabaseCost(current, n, graph);
                 if (!costSoFar.containsKey(n) || newCost < costSoFar.get(n)) { //Either we've been here before, but this time we got here cheaper, or this is new
                     costSoFar.put(n, newCost);
                     cameFrom.put(n, current);
@@ -137,8 +143,10 @@ public class Pathfinder {
                 return; //That's everything!
             }
             //Most likely, we have to go through the search process before we reach the goal
-            for (Node n : graph.getNeighborNodes(current)) {
-                int newCost = costSoFar.get(current) + graph.costNoWeight(current, n);
+            //for (Node n : graph.getNeighborNodes(current)) {
+            for (Node n :  DatabaseWrapper.nodeDatabaseGetNeighborNodes(current, graph)) {
+                //int newCost = costSoFar.get(current) + graph.costNoWeight(current, n);
+                int newCost = costSoFar.get(current) + DatabaseWrapper.nodeDatabaseCostNoWeight(current, n, graph);
                 if (!costSoFar.containsKey(n) || newCost < costSoFar.get(n)) { //Either we've been here before, but this time we got here cheaper, or this is new
                     costSoFar.put(n, newCost);
                     cameFrom.put(n, current);

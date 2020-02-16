@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
+import edu.wpi.cs3733.c20.teamU.Administration.AdministrationWrapper;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.fxml.FXML;
@@ -59,7 +60,8 @@ public class RRController {
                 ServiceDatabase.securitySRDel(Integer.parseInt(date), userName);
                 break;
         }
-        adminRequestController.update();
+        //adminRequestController.update();
+        AdministrationWrapper.adminRequestControllerUpdate(adminRequestController);
         back.fire();
     }
 

@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.SecurityController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.animation.Interpolator;
 
 import javafx.event.ActionEvent;
@@ -39,8 +41,10 @@ public class HomeController {
 
     @FXML
     private void openNavScene(ActionEvent e) throws IOException {
-        App.getGraph().update();
-        App.getPathfindController().drawNodes();
+        //App.getGraph().update();
+        DatabaseWrapper.nodeDatabaseUpdate(App.getGraph());
+        //App.getPathfindController().drawNodes();
+        ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
         App.getPrimaryStage().setScene(App.getPathScene());
     }
 

@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -64,7 +65,8 @@ public class DeleteNodeController {
    */
   public void selectedNodeVal() {
     selectedNode = App.getNodeEdit();
-    ID = selectedNode.getNodeID();
+    //ID = selectedNode.getNodeID();
+    ID = DatabaseWrapper.getNodeID(selectedNode);
     x = Integer.toString(selectedNode.getX());
     y = Integer.toString(selectedNode.getY());
     floor = Integer.toString(selectedNode.getFloor());
