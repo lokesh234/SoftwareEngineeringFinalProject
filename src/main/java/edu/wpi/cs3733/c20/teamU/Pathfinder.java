@@ -104,48 +104,51 @@ public class Pathfinder {
         return;
     }
 
-    public void starSingularBFS(Node start, Node end, NodesDatabase graph) {
+    public void breadthFirst(String startID, String endID, NodesDatabase graph) {
+        breadthFirst(graph.getNode(startID), graph.getNode(endID), graph);
+    }
+
+    public void breadthFirst(Node start, Node end, NodesDatabase graph) {
         /*
-        Finds a path from start to end using A*. To retrieve your results, use getLatestCost() or getLatestPath() *after* calling this function
+        Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
          *
          */
         ArrayList<Node> shortestPathList  = new ArrayList<Node>();
-        HashMap<Node, Boolean> visited =  new HashMap<Node, Boolean>();
+        ArrayList<Node> visited =  new ArrayList<Node>();
         if (start == end){
             return;
         }
         Queue<Node> queue = new LinkedList<Node>();
-        Stack<Node> pathStack = new Stack<Node>();
-
+        HashMap<Node, Node> cameFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
         queue.add(start);
-        pathStack.add(start);
+        cameFrom.put(start, null);
 
         while(!queue.isEmpty()){
             Node current = queue.poll();
+            if (current.equals(end)) { //This Is The End ,Ed-Boy
+                latestPath.clear();
+                latestPath.add(end);
+                Node next = cameFrom.get(end);
+                while (!latestPath.contains(start)) {
+                    latestPath.add(next);
+                    next = cameFrom.get(next);
+                }
+                return; //That's everything!
+            }
             ArrayList<Node> adjacentNodes = graph.getNeighborNodes(current);
             for (Node n: adjacentNodes){
-                if(!visited.containsKey(n)){
+                if(!visited.contains(n)){
                     queue.add(n);
-                    visited.put(n, true);
-                    pathStack.add(n);
+                    visited.add(n);
+                    cameFrom.put(n, current);
                     if(current == end){
                         break;
                     }
                 }
             }
         }
-        Node noode, currentSrc = end;
-        shortestPathList.add(end);
-        while (!pathStack.isEmpty()){
-            noode = pathStack.pop();
-            if(graph.getNeighborNodes(end).contains(currentSrc)){
-                shortestPathList.add(noode);
-                currentSrc = noode;
-                if(noode == start)
-                    break;
-            }
-        }
-        latestPath = shortestPathList;
+        latestCost = -999999; //No path found
+        latestPath.clear();
     }
 
 
