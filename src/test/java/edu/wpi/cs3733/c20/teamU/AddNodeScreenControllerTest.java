@@ -14,7 +14,7 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
 
 @ExtendWith(ApplicationExtension.class)
-public class AddNodeControllerTest extends ApplicationTest {
+public class AddNodeScreenControllerTest extends ApplicationTest {
   public void start(Stage stage) throws IOException {
     Parent sceneRoot = FXMLLoader.load(getClass().getResource("/Add_Node.fxml"));
     Scene scene1 = new Scene(sceneRoot);

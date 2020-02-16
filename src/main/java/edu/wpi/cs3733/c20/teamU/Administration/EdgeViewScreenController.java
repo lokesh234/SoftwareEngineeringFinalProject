@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class EdgeController {
+public class EdgeViewScreenController {
 
   @FXML private Button addButton, editButton, removeButton, backButton;
   @FXML private TableView<Edge> edges;
@@ -29,7 +29,7 @@ public class EdgeController {
   EdgeEditController toEdit;
   private Edge selected;
 
-  public EdgeController() {}
+  public EdgeViewScreenController() {}
 
   public void setAttributes(EdgeEditController c) {
     toEdit = c;

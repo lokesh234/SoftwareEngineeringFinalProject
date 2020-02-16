@@ -16,7 +16,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import java.io.IOException;
 
 @ExtendWith(ApplicationExtension.class)
-public class LoginControllerTest extends ApplicationTest {
+public class LoginScreenControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
         Parent sceneRoot = FXMLLoader.load(getClass().getResource("/LoginUI.fxml"));
         Scene scene1 = new Scene(sceneRoot);

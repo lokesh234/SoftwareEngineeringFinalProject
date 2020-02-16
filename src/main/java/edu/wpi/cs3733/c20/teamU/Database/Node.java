@@ -39,10 +39,10 @@ public class Node {
         weight = newWeight;
     }
 
-    protected int getX(){ return x;}
-    protected int getY(){ return y;}
+    public int getX(){ return x;}
+    public int getY(){ return y;}
     protected int getWeight(){ return weight;}
-    protected String getID(){ return ID;}
+    public String getID(){ return ID;}
 
     @Override
     public boolean equals(Object obj) {

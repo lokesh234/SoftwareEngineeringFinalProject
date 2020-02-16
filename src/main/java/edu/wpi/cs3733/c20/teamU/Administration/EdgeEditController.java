@@ -28,7 +28,7 @@ public class EdgeEditController {
   private State state;
   private String id;
   private boolean editing = false;
-  private EdgeController master;
+  private EdgeViewScreenController master;
 
   private enum State {
     n, s, e;
@@ -81,7 +81,7 @@ public class EdgeEditController {
     }
   }
 
-  public void setMaster(EdgeController m) { master = m;}
+  public void setMaster(EdgeViewScreenController m) { master = m;}
 
   @FXML
   public void selectStart() {
