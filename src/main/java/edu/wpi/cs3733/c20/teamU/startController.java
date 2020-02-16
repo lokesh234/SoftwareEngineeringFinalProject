@@ -65,7 +65,7 @@ public class startController {
 
   @FXML
   private void openHomeScreen(ActionEvent event) {
-    App.getHomeScene().addEventHandler(MOUSE_MOVED, e -> {
+    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
       App.change(false);
     });
     App.setTime(System.currentTimeMillis());
