@@ -19,7 +19,7 @@ public class DeleteNodeController {
   @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
   Node selectedNode;
-  NodeController nodeController;
+  NodeViewScreenController nodeController;
 
   public DeleteNodeController() {}
 
@@ -32,7 +32,7 @@ public class DeleteNodeController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  public void setAttributes(NodeController nodeController1) {
+  public void setAttributes(NodeViewScreenController nodeController1) {
     nodeController = nodeController1;
   }
 

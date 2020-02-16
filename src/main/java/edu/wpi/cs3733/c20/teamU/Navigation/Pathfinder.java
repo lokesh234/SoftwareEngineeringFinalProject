@@ -4,6 +4,7 @@ import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
+import javafx.scene.shape.Path;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,10 +16,15 @@ public class Pathfinder {
      */
     private int latestCost;
     private ArrayList<Node> latestPath;
+    private static Pathfinder _pathfinder = new Pathfinder();
 
-    public Pathfinder() {
+    private Pathfinder() {
         latestCost = -999999;
         latestPath = new ArrayList<Node>();
+    }
+
+    public static Pathfinder getPathfinder() {
+        return _pathfinder;
     }
 
     public int getLatestCost() {

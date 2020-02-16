@@ -15,7 +15,7 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class NodeControllerTest extends ApplicationTest {
+public class NodeViewScreenControllerTest extends ApplicationTest {
   public void start(Stage stage) throws IOException {
     Parent sceneRoot = FXMLLoader.load(getClass().getResource("/Admin_Node.fxml"));
     Scene scene1 = new Scene(sceneRoot);

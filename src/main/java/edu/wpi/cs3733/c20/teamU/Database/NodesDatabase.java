@@ -52,6 +52,7 @@ public class NodesDatabase {
     }
 
     protected ArrayList<Node> getNodes(NodesDatabase ndb) {
+
         /*
         Returns an ArrayList of all nodes
          */
@@ -62,6 +63,7 @@ public class NodesDatabase {
         }
         return l;
     }
+
 
     protected Edge getEdge(String ID, NodesDatabase ndb) {
         /*

@@ -5,7 +5,7 @@ import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 import java.io.IOException;
 
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.RRController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -16,12 +16,12 @@ import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
 
 @ExtendWith(ApplicationExtension.class)
-public class RRControllerTest extends ApplicationTest {
+public class RequestScreenControllerTest extends ApplicationTest {
 
   public void start(Stage stage) throws IOException {
     FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
     Pane sceneRoot = RRLoader.load();
-    RRController rrController = RRLoader.getController();
+    RequestScreenController requestScreenController = RRLoader.getController();
     Scene scene = new Scene(sceneRoot);
     stage.show();
   }

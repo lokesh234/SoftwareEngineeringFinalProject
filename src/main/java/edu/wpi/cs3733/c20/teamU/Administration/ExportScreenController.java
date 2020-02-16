@@ -16,14 +16,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class exportModeController {
+public class ExportScreenController {
 
   @FXML private Button cancel;
   @FXML private Button save;
   @FXML private TextField location1;
   @FXML private Button browse;
   private Stage scene;
-  public exportModeController() {}
+  public ExportScreenController() {}
 
   /**
    * Change to scene to Admin_Screen...

@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
+
 public class ServiceRequestWrapper {
 
     public static String serviceGetDate(Service service) { return service.getDate();}

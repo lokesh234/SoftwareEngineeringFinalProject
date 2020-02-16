@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import edu.wpi.cs3733.c20.teamU.Administration.editModeController;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
@@ -18,7 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-public class NodeController {
+public class NodeViewScreenController {
 
   @FXML private Button edit;
   @FXML private Button export;
@@ -32,16 +31,17 @@ public class NodeController {
   @FXML private TableColumn<Node, String> nodeType;
   @FXML private TableColumn<Node, String> longName;
   @FXML private TableColumn<Node, String> shortName;
-  editModeController toEdit;
+  //Database graph;
+  NodeEditController toEdit;
 
-  public NodeController() {}
+  public NodeViewScreenController() {}
 
   public void refreshTable() {
     nodeTable.getItems().clear();
     nodeTable.setItems(hashToOblist());
   }
 
-  public void setAttributes(editModeController editor) {
+  public void setAttributes(NodeEditController editor) {
     toEdit = editor;
   }
   @FXML

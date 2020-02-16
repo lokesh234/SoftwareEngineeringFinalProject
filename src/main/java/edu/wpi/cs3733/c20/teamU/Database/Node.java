@@ -46,6 +46,14 @@ public class Node {
     protected String getNodeType(Node node) {return node.nodeType;}
     protected String getLongName(Node node) { return node.longName;}
     protected String getShortName(Node node) { return node.shortName;}
+//    protected void setWeight(int newWeight) {
+//        weight = newWeight;
+//    }
+//
+//    public int getX(){ return x;}
+//    public int getY(){ return y;}
+//    protected int getWeight(){ return weight;}
+//    public String getID(){ return ID;}
 
     @Override
     public boolean equals(Object obj) {

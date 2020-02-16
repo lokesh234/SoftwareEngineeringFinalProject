@@ -5,7 +5,7 @@ import edu.wpi.cs3733.c20.teamU.Database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class LoginController {
+public class LoginScreenController {
 
   @FXML private TextField usernameField;
   @FXML private TextField passwordField;

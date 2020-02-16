@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.c20.teamU.ServiceRequest;
+package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
@@ -49,7 +49,7 @@ public class PathfindController {
     private Node start;
     private Node end;
     private ArrayList<Node> path = new ArrayList<>();
-    private Pathfinder engine = new Pathfinder();
+    private Pathfinder engine = Pathfinder.getPathfinder();
     private boolean startReady = false;
     private boolean endReady = false;
     private boolean displayingPath = false;
@@ -67,26 +67,41 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             updateStatus();
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+            Node temp = getClickedNode(x, y);
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
                 //System.out.println("Start Click");
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                start = getClickedNode(x, y);
+                start = temp;
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getID());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                end = getClickedNode(x, y);
+                end = temp;
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getID());
                 state = State.NEUTRAL;
                 updateStatus();
             }
+        }
+    };
+
+    EventHandler<MouseEvent> circleClickHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            Circle source = (Circle) event.getSource();
+            source.setFill(Color.YELLOW);
+        }
+    };
+
+    EventHandler<MouseEvent> circleMouseReleaseHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            Circle source = (Circle) event.getSource();
+            source.setFill(Color.BLACK);
         }
     };
 
@@ -114,7 +129,7 @@ public class PathfindController {
         return null;
     }
 
-    protected void drawNodes() {
+    public void drawNodes() {
         state = State.NEUTRAL;
         start = null;
         end = null;
@@ -139,6 +154,8 @@ public class PathfindController {
                 c.setCenterY(n.getY());
                 c.setRadius(App.getNodeSize());
                 addToPath(c);
+                c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+                c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 circles.put(n, c);
             }
         }
