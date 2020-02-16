@@ -21,7 +21,7 @@ public class startController {
   @FXML
   Button start;
   boolean didEscape = false;
-  HomeController homeController = new HomeController();
+//  HomeController homeController = new HomeController();
 
   /*Thread startT = new Thread(new Runnable() {
     @Override
@@ -65,21 +65,13 @@ public class startController {
 
   @FXML
   private void openHomeScreen(ActionEvent event) {
-    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-//      startTime = System.currentTimeMillis();
+    App.getHomeScene().addEventHandler(MOUSE_MOVED, e -> {
+      App.change(false);
     });
-    //homeController.startTime = System.currentTimeMillis();
+    App.setTime(System.currentTimeMillis());
+    App.change(true);
     App.getPrimaryStage().setScene(App.getHomeScene());
-    //System.out.println(startTime);
-    didEscape = true;
-
   }
-/*
-  public long getStartTime(){
-    return startTime;
-  }
-
- */
 
   private void openHomeScreen1() {
     App.getPrimaryStage().setScene(App.getStartScene());
