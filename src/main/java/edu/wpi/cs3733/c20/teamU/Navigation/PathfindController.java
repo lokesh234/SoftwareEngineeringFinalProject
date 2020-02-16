@@ -124,7 +124,7 @@ public class PathfindController {
         for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
             Node n = pair.getKey();
             //if (NodesDatabase.dist(x, y, n.getX(), n.getY()) <= App.getNodeSize()) return n;
-            if (DatabaseWrapper.nodeDatabaseDist(x,y,n.getX(),n.getY()) <= App.getNodeSize()) return n;
+            if (DatabaseWrapper.getGraph().dist(x,y,n.getX(),n.getY()) <= App.getNodeSize()) return n;
         }
         return null;
     }
@@ -136,7 +136,7 @@ public class PathfindController {
         startReady = false;
         endReady = false;
         //ArrayList<Node> nodes = App.getGraph().getNodes();
-        ArrayList<Node> nodes = DatabaseWrapper.nodeDatabaseGetNodes(App.getGraph());
+        ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         if (circles.size() > 0) {
             for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
                 Node n = pair.getKey();
@@ -147,7 +147,7 @@ public class PathfindController {
         circles.clear();
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (!DatabaseWrapper.nodeDatabaseHasNeighbors(n, App.getGraph())) System.out.println(n.getID() + " has no neighbors!");
+            if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (isDrawableNode(n)) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
@@ -197,7 +197,7 @@ public class PathfindController {
             //System.out.println("PathfindPress");
             path.clear();
             pathes.clear();
-            engine.starSingular(start, end, App.getGraph());
+            engine.starSingular(start, end);
             path = engine.getLatestPath();
             //System.out.println(path.size());
             drawPath();

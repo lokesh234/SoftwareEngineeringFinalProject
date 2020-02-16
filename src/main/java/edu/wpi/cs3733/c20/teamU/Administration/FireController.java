@@ -112,7 +112,7 @@ public class FireController {
 
     private void drawNodes() {
         //ArrayList<Node> nodes = App.getGraph().getNodes();
-        ArrayList<Node> nodes = DatabaseWrapper.nodeDatabaseGetNodes(App.getGraph());
+        ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         for (Node n : nodes) {
             if (isDrawableNode(n)) {
                 Circle c = new Circle();

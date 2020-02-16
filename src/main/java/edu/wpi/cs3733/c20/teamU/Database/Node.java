@@ -35,17 +35,17 @@ public class Node {
         this.shortName = shortName;
     }
 
-    protected void setWeight(Node node, int newWeight) { node.weight = newWeight; }
-    protected int getX(Node node){ return node.x; }
-    protected int getY(Node node){ return node.y;}
-    protected int getWeight(Node node){ return node.weight;}
-    protected String getID(Node node){ return node.ID;}
-    protected String toString(Node node){ return node.getID(); }
-    protected int getFloor(Node node) { return node.floor;}
-    protected String getBuilding(Node node) {return node.building;}
-    protected String getNodeType(Node node) {return node.nodeType;}
-    protected String getLongName(Node node) { return node.longName;}
-    protected String getShortName(Node node) { return node.shortName;}
+    public void setWeight(int newWeight) { this.weight = newWeight; }
+    public int getX(){ return x; }
+    public int getY(){ return y;}
+    public int getWeight(){ return weight;}
+    public String getID(){ return ID;}
+    public String toString(){ return getID(); }
+    public int getFloor() { return floor;}
+    public String getBuilding() {return building;}
+    public String getNodeType() {return nodeType;}
+    public String getLongName() { return longName;}
+    public String getShortName() { return shortName;}
 //    protected void setWeight(int newWeight) {
 //        weight = newWeight;
 //    }

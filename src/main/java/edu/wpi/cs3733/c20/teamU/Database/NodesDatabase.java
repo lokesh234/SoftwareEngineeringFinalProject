@@ -14,7 +14,10 @@ public class NodesDatabase {
     private HashMap<String, Node> nodes;
     private HashMap<String, Edge> edges;
 
-    public NodesDatabase() { //TODO: add relevant database stuff
+    private static NodesDatabase _graph = new NodesDatabase();
+    protected static NodesDatabase getGraph() { return _graph;}
+
+    private NodesDatabase() { //TODO: add relevant database stuff
         /*
         Automatically constructs the nodes and edges from Database
          */
@@ -27,93 +30,102 @@ public class NodesDatabase {
     public void readCSV(String filename){} //TODO: stub
     private void createCSV(String path){} //TODO: stub
 
-    protected void addNode(Node n, NodesDatabase ndb) {
-        ndb.nodes.put(n.getID(), n);
+    public void addNode(Node n) {
+        nodes.put(n.getID(), n);
     }
 
-    protected void addEdge(Edge e, NodesDatabase ndb) {
-        ndb.edges.put(e.getID(), e);
+    public void addEdge(Edge e) {
+        edges.put(e.getID(), e);
     }
 
-    protected void removeNode(String ID, NodesDatabase ndb) { ndb.nodes.remove(ID);}
+    public void removeNode(String ID) { nodes.remove(ID);}
 
-    protected void removeEdge(String ID, NodesDatabase ndb) { ndb.edges.remove(ID);}
+    public void removeEdge(String ID) { edges.remove(ID);}
 
-    protected void removeNode(Node n, NodesDatabase ndb) { ndb.nodes.remove(n.getID());}
+    public void removeNode(Node n) { nodes.remove(n.getID());}
 
-    protected void removeEdge(Edge e,NodesDatabase ndb) { ndb.edges.remove(e.getID());}
+    public void removeEdge(Edge e) { edges.remove(e.getID());}
 
-    protected Node getNode(String ID, NodesDatabase ndb) {
+    public Node getNode(String ID) {
         /*
         Returns the node with matching ID, or Null if not found
          */
-        if (!ndb.nodes.containsKey(ID)) return null;
-        return ndb.nodes.get(ID);
+        if (!nodes.containsKey(ID)) return null;
+        return nodes.get(ID);
     }
 
-    protected ArrayList<Node> getNodes(NodesDatabase ndb) {
+    public ArrayList<Node> getNodes() {
 
         /*
         Returns an ArrayList of all nodes
          */
         ArrayList<Node> l = new ArrayList<>();
-        for (Map.Entry<String, Node> pair : ndb.nodes.entrySet()) {
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
             Node n = pair.getValue();
             l.add(n);
         }
         return l;
     }
 
+    public ArrayList<Edge> getEdges() {
+        ArrayList<Edge> l = new ArrayList<>();
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge n = pair.getValue();
+            l.add(n);
+        }
+        return l;
+    }
 
-    protected Edge getEdge(String ID, NodesDatabase ndb) {
+
+    public Edge getEdge(String ID) {
         /*
         Returns the edge with matching ID, or Null if not found
          */
-        if (!ndb.edges.containsKey(ID)) return null;
-        return ndb.edges.get(ID);
+        if (!edges.containsKey(ID)) return null;
+        return edges.get(ID);
     }
 
-    protected Edge getEdge(Node start, Node end, NodesDatabase ndb) {
+    public Edge getEdge(Node start, Node end) {
         /*
         Returns the edge with endpoints start and end
         order of start and end does not matter
         Returns Null if not found
          */
-        for (Map.Entry<String, Edge> pair : ndb.edges.entrySet()) {
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
             if (e.hasNode(start) && e.hasNode(end)) return e;
         }
         return null;
     }
 
-    protected Edge getEdge(String startID, String endID, NodesDatabase ndb) {
-        return getEdge(getNode(startID,ndb), getNode(endID,ndb), ndb);
+    public Edge getEdge(String startID, String endID) {
+        return getEdge(getNode(startID), getNode(endID));
     }
 
-    protected Node getNode(int xPos, int yPos, NodesDatabase ndb) {
+    public Node getNode(int xPos, int yPos) {
         /*
         Returns the node at given (x,y) coords, or Null if not found
         NOTE: undefined behavior if multiple nodes share the same x,y coords
          */
-        for (Map.Entry<String, Node> pair : ndb.nodes.entrySet()) {
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
             Node n = pair.getValue();
             if (n.getX() == xPos && n.getY() == yPos) return n;
         }
         return null;
     }
 
-    protected boolean hasNode(Node n, NodesDatabase ndb) {
-        return (getNode(DatabaseWrapper.getNodeID(n),ndb) != null);
+    public boolean hasNode(Node n) {
+        return (getNode(DatabaseWrapper.getNodeID(n)) != null);
     }
 
 
-    protected ArrayList<Edge> getNeighbors(Node n, NodesDatabase ndb) {
+    public ArrayList<Edge> getNeighbors(Node n) {
         /*
         Returns list of all edges connecting to the given node
         Returns Null if n not in graph
         Returns empty ArrayList if n has no edges connected
          */
-        if (!hasNode(n, ndb)) return null;
+        if (!hasNode(n)) return null;
         ArrayList<Edge> neighbors = new ArrayList<Edge>();
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
@@ -122,11 +134,11 @@ public class NodesDatabase {
         return neighbors;
     }
 
-    protected ArrayList<Node> getNeighborNodes(Node n, NodesDatabase ndb) {
+    public ArrayList<Node> getNeighborNodes(Node n) {
         /*
         Similar behavior to getNeighbors(), but returns list of nodes and not edges
          */
-        if (!hasNode(n, ndb)) return null;
+        if (!hasNode(n)) return null;
         ArrayList<Node> neighbors = new ArrayList<Node>();
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
@@ -135,79 +147,79 @@ public class NodesDatabase {
         return neighbors;
     }
 
-    protected boolean hasNeighbors(Node n, NodesDatabase ndb) {
+    public boolean hasNeighbors(Node n) {
         /*
         Checks if there is are edges associated with n
         Returns false if n not in graph
          */
-        if (!hasNode(n, ndb)) return false;
-        return getNeighbors(n,ndb).size() > 0;
+        if (!hasNode(n)) return false;
+        return getNeighbors(n).size() > 0;
     }
 
-    protected int cost(Node start, Node end, NodesDatabase ndb) {
+    public int cost(Node start, Node end) {
         /*
         Gets the cost of travelling from start to end
         NOTE - ONLY END'S WEIGHT ATTRIBUTE COUNTS TOWARDS THIS MEASURE
         Assumes that there is a limit of one edge connecting two given nodes
         Returns 999999 if no connection
          */
-        if (!hasNeighbors(start, ndb)) return 999999;
-        for (Edge e : getNeighbors(start,ndb)) {
+        if (!hasNeighbors(start)) return 999999;
+        for (Edge e : getNeighbors(start)) {
             if (e.getOther(start).equals(end)) return e.getDist() + end.getWeight();
         }
         return 999999;
     }
 
-    protected int costNoWeight(Node start, Node end, NodesDatabase ndb) {
+    public int costNoWeight(Node start, Node end) {
          /*
         Gets the cost of travelling from start to end
         NOTE - DOES NOT TAKE NODE WEIGHT INTO ACCOUNT
         Assumes that there is a limit of one edge connecting two given nodes
         Returns 999999 if no connection
          */
-        if (!hasNeighbors(start, ndb)) return 999999;
-        for (Edge e : getNeighbors(start,ndb)) {
+        if (!hasNeighbors(start)) return 999999;
+        for (Edge e : getNeighbors(start)) {
             if (e.getOther(start).equals(end)) return e.getDist();
         }
         return 999999;
     }
 
-    protected boolean hasNode(int xPos, int yPos, NodesDatabase ndb) {
+    public boolean hasNode(int xPos, int yPos) {
         /*
         Checks whether a node exists with the given coordinates
          */
-        return getNode(xPos, yPos, ndb) != null;
+        return getNode(xPos, yPos) != null;
     }
 
-    protected boolean hasNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) {
+    public boolean hasNodeInRange(int xPos, int yPos, int rad) {
         /*
         Checks whether a node exists within a given distance of the given coordinates.
         Useful for checking whether a mouseclick happened on a node, if rad is given as the radius of a node graphical object in pixels
          */
-        return getNodeInRange(xPos, yPos, rad, ndb) != null;
+        return getNodeInRange(xPos, yPos, rad) != null;
     }
 
-    protected Node getNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) {
+    public Node getNodeInRange(int xPos, int yPos, int rad) {
         /*
         Returns the node within a given distance of the given coordinates.
         Useful for determining the result of a mouseclick, if rad is given as the radius of a node graphical object in pixels
         Returns null if no node found
          */
-        for (Map.Entry<String, Node> pair : ndb.nodes.entrySet()) {
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
             Node n = pair.getValue();
             if (dist(xPos, yPos, n.getX(), n.getY()) <= rad) return n;
         }
         return null;
     }
 
-    protected void update(NodesDatabase ndb) {
-        ndb.nodes.clear();
-        ndb.edges.clear();
-        Database.getNodes(ndb.nodes);
-        Database.getEdges(ndb.edges, ndb.nodes);
+    public void update() {
+        nodes.clear();
+        edges.clear();
+        Database.getNodes(nodes);
+        Database.getEdges(edges, nodes);
     }
 
-    protected static int dist(int x1, int y1, int x2, int y2) {
+    public static int dist(int x1, int y1, int x2, int y2) {
         /*
         Returns Pythagorean distance between two points
          */

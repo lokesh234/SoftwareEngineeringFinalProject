@@ -67,17 +67,17 @@ public class Pathfinder {
         }
     }
 
-    public void starSingular(String startID, String endID, NodesDatabase graph) {
+    public void starSingular(String startID, String endID) {
         //starSingular(graph.getNode(startID), graph.getNode(endID), graph);
-        starSingular(DatabaseWrapper.nodeDatabaseGetNode(startID, graph), DatabaseWrapper.nodeDatabaseGetNode(endID, graph), graph);
+        starSingular(DatabaseWrapper.getGraph().getNode(startID), DatabaseWrapper.getGraph().getNode(endID));
     }
 
-    public void starSingularNoWeight(String startID, String endID, NodesDatabase graph) {
+    public void starSingularNoWeight(String startID, String endID) {
         //starSingularNoWeight(graph.getNode(startID), graph.getNode(endID), graph);
-        starSingularNoWeight(DatabaseWrapper.nodeDatabaseGetNode(startID, graph), DatabaseWrapper.nodeDatabaseGetNode(endID, graph), graph);
+        starSingularNoWeight(DatabaseWrapper.getGraph().getNode(startID), DatabaseWrapper.getGraph().getNode(endID));
     }
 
-    public void starSingular(Node start, Node end, NodesDatabase graph){
+    public void starSingular(Node start, Node end){
         /*
         Finds a path from start to end using A*. To retrieve your results, use getLatestCost() or getLatestPath() *after* calling this function
          */
@@ -105,9 +105,9 @@ public class Pathfinder {
             }
             //Most likely, we have to go through the search process before we reach the goal
             //graph.getNeighborNodes(current))
-            for (Node n : DatabaseWrapper.nodeDatabaseGetNeighborNodes(current, graph)) {
+            for (Node n : DatabaseWrapper.getGraph().getNeighborNodes(current)) {
                 //int newCost = costSoFar.get(current) + graph.cost(current, n);
-                int newCost = costSoFar.get(current) + DatabaseWrapper.nodeDatabaseCost(current, n, graph);
+                int newCost = costSoFar.get(current) + DatabaseWrapper.getGraph().cost(current, n);
                 if (!costSoFar.containsKey(n) || newCost < costSoFar.get(n)) { //Either we've been here before, but this time we got here cheaper, or this is new
                     costSoFar.put(n, newCost);
                     cameFrom.put(n, current);
@@ -121,7 +121,7 @@ public class Pathfinder {
         return;
     }
 
-    public void starSingularNoWeight(Node start, Node end, NodesDatabase graph){
+    public void starSingularNoWeight(Node start, Node end){
         /*
         Finds a path from start to end using A*. To retrieve your results, use getLatestCost() or getLatestPath() *after* calling this function
         This function does not take node weight into consideration, which allows for pathfinding through otherwise closed nodes
@@ -150,9 +150,9 @@ public class Pathfinder {
             }
             //Most likely, we have to go through the search process before we reach the goal
             //for (Node n : graph.getNeighborNodes(current)) {
-            for (Node n :  DatabaseWrapper.nodeDatabaseGetNeighborNodes(current, graph)) {
+            for (Node n :  DatabaseWrapper.getGraph().getNeighborNodes(current)) {
                 //int newCost = costSoFar.get(current) + graph.costNoWeight(current, n);
-                int newCost = costSoFar.get(current) + DatabaseWrapper.nodeDatabaseCostNoWeight(current, n, graph);
+                int newCost = costSoFar.get(current) + DatabaseWrapper.getGraph().cost(current, n);
                 if (!costSoFar.containsKey(n) || newCost < costSoFar.get(n)) { //Either we've been here before, but this time we got here cheaper, or this is new
                     costSoFar.put(n, newCost);
                     cameFrom.put(n, current);

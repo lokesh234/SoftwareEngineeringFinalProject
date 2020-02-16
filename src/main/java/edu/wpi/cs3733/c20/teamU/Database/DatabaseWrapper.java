@@ -32,6 +32,8 @@ public class DatabaseWrapper {
       return ed;
   }
 
+  private static NodesDatabase graph = NodesDatabase.getGraph();
+
   //assuming that the protected methods will still work outside of this wrapper if not add them.
     public static Node edgeGetStart(Edge edge) { return edge.getStart();}
     public static Node edgeGetEnd(Edge edge) { return edge.getEnd();}
@@ -65,14 +67,7 @@ public class DatabaseWrapper {
       return  node.getID();
     }
 
-    //Nodes class:
-    public static int nodeGetFloor(Node node) { return node.getFloor();}
-    public static String nodeGetBuilding(Node node) {return node.getBuilding();}
-    public static String nodeGetNodeType(Node node) {return node.getNodeType();}
-    public static String nodeGetLongName(Node node) { return node.getLongName();}
-    public static String nodeGetShortName(Node node) { return node.getShortName();}
-    public static int nodeGetXCoord(Node node) {return node.getX();}
-    public static int nodeGetYCoord(Node node) {return node.getY();}
+
 
 
 //DATABASE CLASS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -281,50 +276,7 @@ public class DatabaseWrapper {
 
 
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  //add node
-    public static void nodeDatabaseAddNode(Node n, NodesDatabase ndb) { ndb.addNode(n,ndb);}
-  //add edge
-    public static void nodeDatabaseAddEdge(Edge e, NodesDatabase ndb) {ndb.addEdge(e, ndb);}
-  //remove node
-    public static void nodeDatabaseRemoveNode(String ID, NodesDatabase ndb) { ndb.removeNode(ID, ndb);}
-  //remove edge
-    public static void nodeDatabaseRemoveEdge(String ID, NodesDatabase ndb) { ndb.removeEdge(ID, ndb);}
-  // ""
-    public static void nodeDatabaseRemoveNode(Node n, NodesDatabase ndb) { ndb.removeNode(n, ndb);}
-  //  ""
-    public static void nodeDatabaseRemoveEdge(Edge e, NodesDatabase ndb) { ndb.removeEdge(e,ndb);}
-  //get node id
-    public static Node nodeDatabaseGetNode(String ID, NodesDatabase ndb) { return ndb.getNode(ID, ndb);}
-  //get nodes
-    public static ArrayList<Node> nodeDatabaseGetNodes(NodesDatabase ndb) { return ndb.getNodes(ndb);}
-  //get edge id
-    public static Edge nodeDatabaseGetEdge(String ID, NodesDatabase ndb) { return ndb.getEdge(ID, ndb);}
-  //get edge value type
-    public static Edge nodeDatabaseGetEdge(Node start, Node end, NodesDatabase ndb) {return ndb.getEdge(start, end, ndb);}
-  //get edge start and end it?
-    public static Edge nodeDatabaseGetEdge(String startID, String endID, NodesDatabase ndb) {return ndb.getEdge(startID, endID, ndb);}
-  //get node pos
-    public static Node nodeDatabaseGetNode(int xPos, int yPos, NodesDatabase ndb) { return ndb.getNode(xPos,yPos,ndb);}
-  //check if node is there
-    public static boolean nodeDatabaseHasNode(Node n, NodesDatabase ndb) {return ndb.hasNode(n,ndb);}
-  //get neighbors Edge
-    public static ArrayList<Edge> nodeDatabaseGetNeighbors(Node n, NodesDatabase ndb) {return ndb.getNeighbors(n, ndb);}
-  //get nodes (neighbors)
-    public static ArrayList<Node> nodeDatabaseGetNeighborNodes(Node n, NodesDatabase ndb) { return ndb.getNeighborNodes(n,ndb);}
-  //check if there are neighbors
-    public static boolean nodeDatabaseHasNeighbors(Node n, NodesDatabase ndb) {return ndb.hasNeighbors(n,ndb);}
-  //show weight start??
-    public static int nodeDatabaseCost(Node start, Node end, NodesDatabase ndb) { return ndb.cost(start, end, ndb);}
-  //no weight start ??
-    public static int nodeDatabaseCostNoWeight(Node start, Node end, NodesDatabase ndb) { return ndb.costNoWeight(start, end,ndb); }
-  //if db has node
-    public static boolean nodeDatabaseHasNode(int xPos, int yPos, NodesDatabase ndb) { return ndb.hasNode(xPos, yPos, ndb); }
-  //has a node in range x.y
-    public static boolean nodeDatabaseHasNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) {return ndb.hasNodeInRange(xPos, yPos, rad, ndb); }
-  //get that node in range
-    public static Node nodeDatabaseGetNodeInRange(int xPos, int yPos, int rad, NodesDatabase ndb) { return ndb.getNodeInRange(xPos, yPos, rad, ndb);}
-  //update DB
-    public static void nodeDatabaseUpdate(NodesDatabase ndb) { ndb.update(ndb); }
-  //get distance between two points
-    public static int nodeDatabaseDist(int x1, int y1, int x2, int y2) {return NodesDatabase.dist(x1, y1, x2, y2);}
+  public static NodesDatabase getGraph() {
+      return graph; //Other nodesDatabase functions should be accessed through DatabaseWrapper.getGraph().x();
+  }
 }

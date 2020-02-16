@@ -42,7 +42,7 @@ public class HomeController {
     @FXML
     private void openNavScene(ActionEvent e) throws IOException {
         //App.getGraph().update();
-        DatabaseWrapper.nodeDatabaseUpdate(App.getGraph());
+        DatabaseWrapper.getGraph().update();
         //App.getPathfindController().drawNodes();
         ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
         App.getPrimaryStage().setScene(App.getPathScene());
