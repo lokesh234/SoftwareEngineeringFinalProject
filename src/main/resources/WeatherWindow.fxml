@@ -17,7 +17,7 @@
          <top>
             <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <Label text="4:20 PM" HBox.hgrow="ALWAYS">
+                  <Label fx:id="time" text="4:20 PM" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>
@@ -55,7 +55,7 @@
          <right>
             <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="69*F" VBox.vgrow="ALWAYS">
+                  <Label fx:id="temp" text="69*F" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI Bold" size="72.0" />
                      </font>

@@ -8,15 +8,10 @@ import java.net.ProtocolException;
 
 public class Main {
 
-  static WeatherBoi boi = new WeatherBoi();
-  public static void main(String[] args) throws ProtocolException {
+  public static void main(String[] args)
+      throws InvalidAuthTokenException, DataNotFoundException {
+//    WeatherBoi boi = new WeatherBoi(); // will be unblocked once the UI is up
     Database.UDBInitializer();
-    try {
-      boi.getRequest();
-
-    } catch (InvalidAuthTokenException | DataNotFoundException e) {
-      e.printStackTrace();
-    }
     App.launch(App.class, args);
   }
 }

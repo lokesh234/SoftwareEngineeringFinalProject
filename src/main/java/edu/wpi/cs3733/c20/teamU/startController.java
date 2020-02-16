@@ -49,15 +49,6 @@ public class startController {
 //    }
 //
 //  });
-//    Thread startT = new Thread(
-//        () ->
-//        {
-//            System.out.println(System.currentTimeMillis());
-////            long currentTime = System.currentTimeMillis();
-////            if ((currentTime - startTime) > 5000) {
-////                Platform.runLater(this::openHomeScreen1);
-////            }
-//        });
 
 //  public void time(long currentTimetime) throws InterruptedException {
 //    startT.sleep(currentTimetime);
