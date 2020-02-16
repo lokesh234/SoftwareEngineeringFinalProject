@@ -146,10 +146,11 @@ public class PathfindController {
             }
         }
         circles.clear();
+        int drawnFloor = 4;
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (true) {
+            if (n.getFloor() == drawnFloor) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
@@ -161,12 +162,14 @@ public class PathfindController {
             }
         }
         for (Edge e : DatabaseWrapper.getGraph().getEdges()) {
-            Line l = new Line();
-            l.setStartY(e.getStart().getY());
-            l.setStartX(e.getStart().getX());
-            l.setEndY(e.getEnd().getY());
-            l.setEndX(e.getEnd().getX());
-            addToPath(l);
+            if (e.getStart().getFloor() == e.getEnd().getFloor() && e.getEnd().getFloor() == drawnFloor) {
+                Line l = new Line();
+                l.setStartY(e.getStart().getY());
+                l.setStartX(e.getStart().getX());
+                l.setEndY(e.getEnd().getY());
+                l.setEndX(e.getEnd().getX());
+                addToPath(l);
+            }
         }
     }
 
