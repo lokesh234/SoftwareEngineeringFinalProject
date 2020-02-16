@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
@@ -148,16 +149,24 @@ public class PathfindController {
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (isDrawableNode(n)) {
+            if (true) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
-                c.setRadius(App.getNodeSize());
+                c.setRadius(5);
                 addToPath(c);
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 circles.put(n, c);
             }
+        }
+        for (Edge e : DatabaseWrapper.getGraph().getEdges()) {
+            Line l = new Line();
+            l.setStartY(e.getStart().getY());
+            l.setStartX(e.getStart().getX());
+            l.setEndY(e.getEnd().getY());
+            l.setEndX(e.getEnd().getX());
+            addToPath(l);
         }
     }
 
