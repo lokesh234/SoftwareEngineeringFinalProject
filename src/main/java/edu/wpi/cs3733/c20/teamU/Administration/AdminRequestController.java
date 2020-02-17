@@ -82,7 +82,14 @@ public class AdminRequestController {
   @FXML
   private void backToAdmin() {
     App.getPopup().getContent().clear();
-    App.getPopup().getContent().add(App.getAdmin());
-    App.getPopup().show(App.getPrimaryStage());
+    if (App.getUser() == "ADMIN") {
+      App.getPopup().getContent().add(App.getAdmin());
+      App.getPopup().show(App.getPrimaryStage());
+    }
+    else {
+      App.getHome().setDisable(false);
+      App.getHome().setOpacity(1);
+      App.getPrimaryStage().setScene(App.getHomeScene());
+    }
   }
 }

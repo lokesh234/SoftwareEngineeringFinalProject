@@ -128,6 +128,7 @@ public class Pathfinder {
         Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
          *
          */
+        ArrayList<Node> shortestPathList  = new ArrayList<Node>();
         ArrayList<Node> visited =  new ArrayList<Node>();
         if (start == end){
             return;

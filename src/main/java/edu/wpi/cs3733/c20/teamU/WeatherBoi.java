@@ -10,9 +10,6 @@ import com.github.prominence.openweathermap.api.model.response.HourlyForecast.Fo
 import com.github.prominence.openweathermap.api.model.response.Weather;
 import com.github.prominence.openweathermap.api.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class WeatherBoi {
@@ -32,7 +29,7 @@ public class WeatherBoi {
    * @throws InvalidAuthTokenException
    * @throws DataNotFoundException
    */
-  public void getRequestAgain() throws InvalidAuthTokenException, DataNotFoundException {
+  public void getRequestAgain() {
     try {
       this.openWeatherMapManager = new OpenWeatherMapManager(apiKey);
       this.weatherRequester = openWeatherMapManager.getWeatherRequester();
@@ -54,5 +51,19 @@ public class WeatherBoi {
     HourlyForecast forecast = forecastRequester.setLanguage(Language.ENGLISH).setUnitSystem(Unit.METRIC_SYSTEM).setAccuracy(Accuracy.ACCURATE).getByCityId("4956184");
     return forecast.getForecasts();
   }
+
+  /**
+   * getter function to get the temperature
+   * @return string of temperature
+   */
+  public String getTemp() {
+    return Float.toString(response.getTemperature()) + " " + response.getTemperatureUnit();
+  }
+
+  /**
+   * getter function to return weather
+   * @return Weather response
+   */
+  public Weather getWeather() { return this.response; }
 
 }

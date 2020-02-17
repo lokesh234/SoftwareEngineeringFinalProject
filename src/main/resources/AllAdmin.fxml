@@ -13,18 +13,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminScreenController">
+<AnchorPane fx:id="adminScreen" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminScreenController">
     <children>
         <VBox layoutX="14.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #729EBF;">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#backHome" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #729EBF;">
+                        <Button fx:id="home" mnemonicParsing="false" onAction="#backHome" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #729EBF;">
                             <HBox.margin>
                                 <Insets right="5.0" top="5.0" />
                             </HBox.margin>
                             <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fx:id="returnHome" fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@png_files/Icons/Cancel.png" />
                                     </image></ImageView>
@@ -55,9 +55,9 @@
                             <children>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#editNodes" style="-fx-background-color: #ffffff;">
+                                        <Button fx:id="editnodes" defaultButton="false" mnemonicParsing="false" onAction="#editNodes" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fx:id="editNodesButton" fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="94.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@png_files/Icons/Edit Nodes.png" />
                                                     </image></ImageView>
@@ -72,7 +72,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.columnIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#requestPowers" style="-fx-background-color: #ffffff;">
+                                        <Button fx:id="reqPow" defaultButton="false" mnemonicParsing="false" onAction="#requestPowers" style="-fx-background-color: #ffffff;">
                                             <graphic>
                                                 <ImageView fx:id="viewRequestButton" fitHeight="83.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -89,7 +89,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#editEdges" style="-fx-background-color: #ffffff;">
+                                        <Button fx:id="editedges" defaultButton="false" mnemonicParsing="false" onAction="#editEdges" style="-fx-background-color: #ffffff;">
                                             <graphic>
                                                 <ImageView fx:id="editEdgesButton" fitHeight="94.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -106,9 +106,9 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #729EBF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
+                                        <Button fx:id="exportButton" defaultButton="false" mnemonicParsing="false" onAction="#export" style="-fx-background-color: #ffffff;">
                                             <graphic>
-                                                <ImageView fx:id="exportButton" fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="86.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@png_files/Icons/Export.png" />
                                        </image></ImageView>
