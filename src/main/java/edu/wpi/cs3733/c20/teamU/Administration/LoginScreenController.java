@@ -12,6 +12,13 @@ public class LoginScreenController {
 
   private int trackLoginCount;
   private boolean didFail;
+  private String whoTried;
+  private AdminScreenController adminScreenController;
+
+  public void setAttributes(AdminScreenController attributes) {
+    adminScreenController = attributes;
+  }
+
 
   /**
    * checks whether the user entered the correct credentials
@@ -20,8 +27,8 @@ public class LoginScreenController {
   @FXML
   private void isAuthorized() {
 
-    String  haveAccess = Database.checkCred(usernameField.getText(), passwordField.getText());
-    if (haveAccess.equals("FALSE")) {
+    whoTried = Database.checkCred(usernameField.getText(), passwordField.getText());
+    if (whoTried.equals("FALSE")) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
         changeScene();
@@ -44,6 +51,7 @@ public class LoginScreenController {
    * function will change to home screen if user failed
    * or change to admin screen
    */
+
   private void changeScene() {
     usernameField.setStyle("-fx-border-color: skyblue");
     passwordField.setStyle("-fx-border-color: skyblue");
@@ -52,7 +60,8 @@ public class LoginScreenController {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
-      App.setUser(usernameField.getText());
+      App.setUser(whoTried);
+      adminScreenController.enableBasedOnCred(whoTried);
       App.getPopup().getContent().add(App.getAdmin());
       App.getPopup().show(App.getPrimaryStage());
     }

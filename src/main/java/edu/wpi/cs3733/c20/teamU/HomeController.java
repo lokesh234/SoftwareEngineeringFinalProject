@@ -70,7 +70,7 @@ public class HomeController {
         public void run() {
           if (App.getChange()) {
             currentTime = System.currentTimeMillis();
-            System.out.println(currentTime - startTime);
+//            System.out.println(currentTime - startTime);
             if ((currentTime - startTime) > 60000) { // will go to openStartScene if the screen has not been touched within 60 secs
               openStartScene();
             }
