@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
@@ -68,7 +69,7 @@ public class App extends Application {
   private static MedicineController medicineController;
   private static AdminScreenController adminScreenController;
   private static AdminRequestController adminRequestController;
-  private static NodeViewScreenController nodeViewScreenController;
+  private static GraphEditController graphEditController;
   private static NodeEditController editController;
   private static EdgeViewScreenController viewEdgeViewScreenController;
   private static EdgeEditController editEdgeController;
@@ -136,8 +137,9 @@ public class App extends Application {
   public static AddNodeScreenController getAddNodeScreenController() { return addNodeScreenController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static FireController getFireController(){return fireController;}
-  public static NodeViewScreenController getNodeViewScreenController() { return nodeViewScreenController;}
+  public static GraphEditController getGraphEditController() { return graphEditController;}
   public static WeatherController weatherController() {return weatherController; }
+  public static NodeEditController getEditController() { return editController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -161,12 +163,13 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
+    DatabaseWrapper.updateGraph();
     try {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
       FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
-      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/Admin_Node.fxml"));
+      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/AdminGraph.fxml"));
       FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
@@ -207,7 +210,7 @@ public class App extends Application {
       export = exportLoader.load();
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();
-      adminNode = adminNodeLoader.load();
+      adminNode = adminGraphLoader.load();
       editEdge = editEdgeLoader.load();
       adminEdge = adminEdgeLoader.load();
       addNode = addNodeLoader.load();
@@ -221,7 +224,7 @@ public class App extends Application {
       medicineController = medicineLoader.getController();
       adminScreenController = adminLoader.getController();
       adminRequestController = adminRequestLoader.getController();
-      nodeViewScreenController = adminNodeLoader.getController();
+      graphEditController = adminGraphLoader.getController();
       editController = editLoader.getController();
       editEdgeController = editEdgeLoader.getController();
       viewEdgeViewScreenController = adminEdgeLoader.getController();
@@ -232,12 +235,12 @@ public class App extends Application {
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
-      nodeViewScreenController.setAttributes(editController);
-      editController.setAttributes(nodeViewScreenController);
+      graphEditController.setAttributes(editController);
+      editController.setAttributes(graphEditController);
       viewEdgeViewScreenController.setAttributes(editEdgeController);
       requestScreenController.setAttributes(adminRequestController);
       adminRequestController.setAttributes(requestScreenController);
-      addNodeScreenController.setAttributes(nodeViewScreenController);
+      addNodeScreenController.setAttributes(graphEditController);
 
       popup.getContent().addAll();
       securityPop.getContent().addAll();

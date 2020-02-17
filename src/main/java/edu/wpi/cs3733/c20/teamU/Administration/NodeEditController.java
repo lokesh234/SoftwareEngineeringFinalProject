@@ -18,8 +18,7 @@ public class NodeEditController {
   @FXML private Button cancel;
   @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
-  Node selectedNode;
-  NodeViewScreenController nodeViewScreenController;
+  GraphEditController nodeViewScreenController;
 
   public NodeEditController() {}
 
@@ -28,11 +27,13 @@ public class NodeEditController {
    */
   public void adminScreen(ActionEvent event) throws IOException {
     App.getPopup().getContent().clear();
-    App.getPopup().getContent().add(App.getAdminNode());
-    App.getPopup().show(App.getPrimaryStage());
+    App.getAdminNode().setOpacity(1);
+    App.getAdminNode().setDisable(false);
+    App.getPopup().hide();
+    nodeViewScreenController.update();
   }
 
-  public void setAttributes(NodeViewScreenController nodeViewScreenController1) {
+  public void setAttributes(GraphEditController nodeViewScreenController1) {
     nodeViewScreenController = nodeViewScreenController1;
   }
 
@@ -41,7 +42,6 @@ public class NodeEditController {
     overWrite();
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
-    nodeViewScreenController.refreshTable();
     cancel.fire();
   }
 
@@ -65,7 +65,7 @@ public class NodeEditController {
     if(userLongName.isEmpty()) userLongName = build;
     if(userShortName.isEmpty()) userShortName = shortName;
 
-    Database.editTuple(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
+    DatabaseWrapper.editNode(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
     text2.clear();
     text3.clear();
     text4.clear();
@@ -78,17 +78,38 @@ public class NodeEditController {
   /**
    * function sets prompt messages for edit mode scene
    */
-  public void selectedNodeVal() {
-    selectedNode = App.getNodeEdit();
+  public void selectedNodeVal(Node n) {
     //ID = selectedNode.getNodeID();
-    ID = DatabaseWrapper.getNodeID(selectedNode);
-    x = Integer.toString(selectedNode.getX());
-    y = Integer.toString(selectedNode.getY());
-    floor = Integer.toString(selectedNode.getFloor());
-    build = selectedNode.getBuilding();
-    type = selectedNode.getNodeType();
-    longName = selectedNode.getLongName();
-    shortName = selectedNode.getShortName();
+    ID = n.getID();
+    x = Integer.toString(n.getX());
+    y = Integer.toString(n.getY());
+    floor = Integer.toString(n.getFloor());
+    build = n.getBuilding();
+    type = n.getNodeType();
+    longName = n.getLongName();
+    shortName = n.getShortName();
+
+    text1.setPromptText(ID);
+    text2.setPromptText(x);
+    text3.setPromptText(y);
+    text4.setPromptText(floor);
+    text5.setPromptText(build);
+    text6.setPromptText(type);
+    text7.setPromptText(longName);
+    text8.setPromptText(shortName);
+
+  }
+
+  public void selectedNodeVal(Node n, int ex, int why) { //Set parameters with selected node and position
+    //ID = selectedNode.getNodeID();
+    ID = n.getID();
+    x = Integer.toString(ex);
+    y = Integer.toString(why);
+    floor = Integer.toString(n.getFloor());
+    build = n.getBuilding();
+    type = n.getNodeType();
+    longName = n.getLongName();
+    shortName = n.getShortName();
 
     text1.setPromptText(ID);
     text2.setPromptText(x);

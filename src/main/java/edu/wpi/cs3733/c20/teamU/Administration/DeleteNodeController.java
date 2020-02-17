@@ -19,7 +19,7 @@ public class DeleteNodeController {
   @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
   Node selectedNode;
-  NodeViewScreenController nodeController;
+  GraphEditController nodeController;
 
   public DeleteNodeController() {}
 
@@ -32,7 +32,7 @@ public class DeleteNodeController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  public void setAttributes(NodeViewScreenController nodeController1) {
+  public void setAttributes(GraphEditController nodeController1) {
     nodeController = nodeController1;
   }
 
@@ -41,7 +41,6 @@ public class DeleteNodeController {
     overWrite();
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
-    nodeController.refreshTable();
     cancel.fire();
   }
 

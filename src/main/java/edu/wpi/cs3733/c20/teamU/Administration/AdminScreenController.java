@@ -27,8 +27,11 @@ public class AdminScreenController {
     @FXML
     private void editNodes() {
         App.getPopup().getContent().clear();
-        App.getPopup().getContent().add(App.getAdminNode());
-        App.getPopup().show(App.getPrimaryStage());
+        App.getPrimaryStage().setScene(App.getAdminNodeScene());
+        App.getPrimaryStage().setOpacity(1);
+        App.getGraphEditController().enterNodeMode();
+        App.getHome().setDisable(false);
+        App.getPopup().hide();
     } //Admin edit nodes interface
 
     @FXML
@@ -41,8 +44,11 @@ public class AdminScreenController {
     @FXML
     private void editEdges() {
         App.getPopup().getContent().clear();
-        App.getPopup().getContent().add(App.getAdminEdge());
-        App.getPopup().show(App.getPrimaryStage());
+        App.getPrimaryStage().setScene(App.getAdminNodeScene());
+        App.getPrimaryStage().setOpacity(1);
+        App.getGraphEditController().exitNodeMode();
+        App.getHome().setDisable(false);
+        App.getPopup().hide();
     }
 
     @FXML
