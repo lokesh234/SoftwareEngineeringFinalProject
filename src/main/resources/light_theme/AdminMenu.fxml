@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,18 +19,14 @@
             <children>
                 <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #474338;">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#backHome" prefHeight="34.0" prefWidth="44.0" style="-fx-background-color: #474338;">
-                            <HBox.margin>
-                                <Insets right="5.0" top="5.0" />
-                            </HBox.margin>
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../png_files/Cancel.png" />
-                                    </image></ImageView>
-                            </graphic>
-                        </Button>
+                  <JFXButton onAction="#backHome" style="-fx-background-color: #eb4034;" text="X" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="12.0" />
+                     </font></JFXButton>
                     </children>
+               <padding>
+                  <Insets right="10.0" top="10.0" />
+               </padding>
                 </HBox>
                 <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #474338;">
                     <children>
@@ -56,14 +51,14 @@
                             <children>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" text="Edit Nodes">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Export" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
                                  <graphic>
                                     <ImageView fitHeight="126.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../png_files/Edit%20Graph.png" />
+                                          <Image url="@../png_files/Export.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -72,14 +67,14 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" text="Edit Nodes">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Edit Graph" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
                                  <graphic>
                                     <ImageView fitHeight="126.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../png_files/Edit%20Graph.png" />
+                                          <Image url="@../png_files/graph.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -88,14 +83,14 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="110.0" text="Edit Requests">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="110.0" style="-fx-background-color: #474338;" text="Edit Requests" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
                                  <graphic>
                                     <ImageView fitHeight="116.0" fitWidth="121.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../png_files/Edit%20Requests.png" />
+                                          <Image url="@../png_files/Edit_Requests.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -104,11 +99,11 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.rowIndex="1">
                                     <children>
-                              <JFXButton contentDisplay="TOP" text="Button">
+                              <JFXButton contentDisplay="TOP" style="-fx-background-color: #474338;" text="Edit Employees" textFill="WHITE">
                                  <graphic>
                                                 <ImageView fitHeight="116.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../png_files/Edit%20Graph.png" />
+                                          <Image url="@../png_files/address-card-solid.png" />
                                        </image></ImageView>
                                  </graphic>
                                  <font>
