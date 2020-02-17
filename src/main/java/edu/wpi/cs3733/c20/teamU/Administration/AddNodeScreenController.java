@@ -21,12 +21,12 @@ public class AddNodeScreenController {
   private TextField text1, text2, text3, text4, text5, text6, text7, text8;
   private String ID, x, y, floor, build, type, shortName, longName;
   //  Node selectedNode;
-  NodeViewScreenController nodeViewScreenController;
+  GraphEditController nodeViewScreenController;
 
   public AddNodeScreenController() {
   }
 
-  public void setAttributes(NodeViewScreenController nodeViewScreenController1) {
+  public void setAttributes(GraphEditController nodeViewScreenController1) {
     nodeViewScreenController = nodeViewScreenController1;
   }
 
@@ -36,7 +36,6 @@ public class AddNodeScreenController {
   @FXML
   public void adminScreen(ActionEvent event) throws IOException {
     App.getPopup().getContent().clear();
-    App.getNodeViewScreenController().refreshTable();
     App.getPopup().getContent().add(App.getAdminNode());
     App.getPopup().show(App.getPrimaryStage());
   }
@@ -47,7 +46,6 @@ public class AddNodeScreenController {
     HashMap<String, Node> graph = new HashMap<String, Node>();
     Database.getNodes(graph);
 //    System.out.println(graph.get(userID).getFloor());
-    nodeViewScreenController.refreshTable();
     cancel.fire();
   }
 
