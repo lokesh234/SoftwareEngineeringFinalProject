@@ -131,7 +131,7 @@
                         </Label>
                         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <JFXButton fx:id="startButton" style="-fx-background-color: #474338;" text="Select Start" textFill="WHITE">
+                              <JFXButton fx:id="startButton" style="-fx-background-color: #474338;" text="Select Start" textFill="WHITE" onAction="#startState">
                                  <font>
                                     <Font name="Segoe UI" size="18.0" />
                                  </font>
@@ -145,26 +145,12 @@
                         </VBox>
                         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                            <children>
-                              <JFXButton fx:id="endButton" style="-fx-background-color: #474338;" text="Select End" textFill="WHITE">
+                              <JFXButton fx:id="endButton" style="-fx-background-color: #474338;" text="Select End" textFill="WHITE" onAction="#endState">
                                  <font>
                                     <Font name="Segoe UI" size="18.0" />
                                  </font>
                               </JFXButton>
                               <Label fx:id="endLabel" text="Node LongName" textFill="WHITE">
-                                 <font>
-                                    <Font name="Segoe UI" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
-                           <children>
-                              <JFXButton fx:id="posButton" style="-fx-background-color: #474338;" text="Select Posn" textFill="WHITE">
-                                 <font>
-                                    <Font name="Segoe UI" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label fx:id="posLabel" text="X, Y" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI" size="18.0" />
                                  </font>
