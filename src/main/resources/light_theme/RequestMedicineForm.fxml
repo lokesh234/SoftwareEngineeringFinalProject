@@ -19,7 +19,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox BorderPane.alignment="CENTER">
+            <VBox style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
                <children>
                   <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                     <columnConstraints>
