@@ -41,6 +41,14 @@ public class AddNodeScreenController {
     App.getAdminNode().setDisable(false);
     App.getPopup().hide();
     nodeViewScreenController.update();
+    text1.clear();
+    text2.clear();
+    text3.clear();
+    text4.clear();
+    text5.clear();
+    text6.clear();
+    text7.clear();
+    text8.clear();
   }
 
   @FXML
@@ -97,8 +105,8 @@ public class AddNodeScreenController {
     x = Integer.toString(ex);
     y = Integer.toString(why);
 
-    text2.setPromptText(x);
-    text3.setPromptText(y);
+    text2.setText(x);
+    text3.setText(y);
 
   }
 

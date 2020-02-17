@@ -31,6 +31,13 @@ public class NodeEditController {
     App.getAdminNode().setDisable(false);
     App.getPopup().hide();
     nodeViewScreenController.update();
+    text2.clear();
+    text3.clear();
+    text4.clear();
+    text5.clear();
+    text6.clear();
+    text7.clear();
+    text8.clear();
   }
 
   public void setAttributes(GraphEditController nodeViewScreenController1) {
@@ -89,14 +96,14 @@ public class NodeEditController {
     longName = n.getLongName();
     shortName = n.getShortName();
 
-    text1.setPromptText(ID);
-    text2.setPromptText(x);
-    text3.setPromptText(y);
-    text4.setPromptText(floor);
-    text5.setPromptText(build);
-    text6.setPromptText(type);
-    text7.setPromptText(longName);
-    text8.setPromptText(shortName);
+    text1.setText(ID);
+    text2.setText(x);
+    text3.setText(y);
+    text4.setText(floor);
+    text5.setText(build);
+    text6.setText(type);
+    text7.setText(longName);
+    text8.setText(shortName);
 
   }
 
@@ -111,14 +118,14 @@ public class NodeEditController {
     longName = n.getLongName();
     shortName = n.getShortName();
 
-    text1.setPromptText(ID);
-    text2.setPromptText(x);
-    text3.setPromptText(y);
-    text4.setPromptText(floor);
-    text5.setPromptText(build);
-    text6.setPromptText(type);
-    text7.setPromptText(longName);
-    text8.setPromptText(shortName);
+    text1.setText(ID);
+    text2.setText(x);
+    text3.setText(y);
+    text4.setText(floor);
+    text5.setText(build);
+    text6.setText(type);
+    text7.setText(longName);
+    text8.setText(shortName);
 
   }
 
