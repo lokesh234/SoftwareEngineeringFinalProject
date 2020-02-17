@@ -168,7 +168,7 @@ public class Pathfinder {
 
     public void depthFirst(Node start, Node end) {
         /*
-        Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
+        Finds a path from start to end using DFS. To retrieve your results, use getLatestPath() *after* calling this function
          *
          */
         if (start == end){
