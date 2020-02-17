@@ -61,8 +61,9 @@ public class LoginScreenController {
       App.getHome().setDisable(false);
     } else {
       App.setUser(whoTried);
-      adminScreenController.enableBasedOnCred(whoTried);
-      App.getPopup().getContent().add(App.getAdmin());
+//      adminScreenController.enableBasedOnCred(whoTried);
+      if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
+      else App.getPopup().getContent().add(App.getAdminRequest());
       App.getPopup().show(App.getPrimaryStage());
     }
     usernameField.clear();
