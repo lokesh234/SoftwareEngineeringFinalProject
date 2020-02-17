@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import javax.print.DocFlavor.STRING;
 
 public class WeatherBoi {
   private String apiKey = "a697a406b377b5a3c6c25ac287a60bde";
@@ -54,5 +55,19 @@ public class WeatherBoi {
     HourlyForecast forecast = forecastRequester.setLanguage(Language.ENGLISH).setUnitSystem(Unit.METRIC_SYSTEM).setAccuracy(Accuracy.ACCURATE).getByCityId("4956184");
     return forecast.getForecasts();
   }
+
+  /**
+   * getter function to get the temperature
+   * @return string of temperature
+   */
+  public String getTemp() {
+    return Float.toString(response.getTemperature()) + " " + response.getTemperatureUnit();
+  }
+
+  /**
+   * getter function to return weather
+   * @return Weather response
+   */
+  public Weather getWeather() { return this.response; }
 
 }

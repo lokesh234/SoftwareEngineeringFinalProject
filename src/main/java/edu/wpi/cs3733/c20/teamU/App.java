@@ -157,6 +157,22 @@ public class App extends Application {
   public static Popup getRequestPop() { return requestPop; }
   public static Popup getMedicinePop() { return medicinePop; }
 
+  private static boolean didChange = false;
+  public static void change(boolean hey) {
+    didChange = hey;
+  }
+  public static boolean getChange() {
+    return didChange;
+  }
+
+  private static long time;
+  public static void setTime(long sys) {
+    time = sys;
+  }
+
+  public static long getTime() {
+    return time;
+  }
   @Override
   public void start(Stage primaryStage) throws Exception {
 
@@ -180,7 +196,6 @@ public class App extends Application {
       FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
       FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/WeatherWindow.fxml"));
-
 
       home = homeLoader.load();
       login = loginLoader.load();

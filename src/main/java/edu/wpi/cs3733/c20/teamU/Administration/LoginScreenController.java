@@ -14,8 +14,7 @@ public class LoginScreenController {
   private boolean didFail;
 
   /**
-   * checks whether is the user entered the correct credentials
-   *
+   * checks whether the user entered the correct credentials
    * @return false if incorrect, true if correct
    */
   @FXML
@@ -30,8 +29,8 @@ public class LoginScreenController {
       }
       didFail = true;
       trackLoginCount++;
-      usernameField.setPromptText("");
-      passwordField.setPromptText("");
+      usernameField.clear();
+      passwordField.clear();
       usernameField.setStyle("-fx-border-color: red");
       passwordField.setStyle("-fx-border-color: red");
     } else {
@@ -41,16 +40,19 @@ public class LoginScreenController {
     }
   }
 
+  /**
+   * function will change to home screen if user failed
+   * or change to admin screen
+   */
   private void changeScene() {
-    usernameField.setStyle("-fx-border-color: black");
-    passwordField.setStyle("-fx-border-color: black");
+    usernameField.setStyle("-fx-border-color: skyblue");
+    passwordField.setStyle("-fx-border-color: skyblue");
     App.getPopup().getContent().clear();
     if (didFail) {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
       App.setUser(usernameField.getText());
-      // uncomment this to move onto admin screen....
       App.getPopup().getContent().add(App.getAdmin());
       App.getPopup().show(App.getPrimaryStage());
     }
@@ -58,14 +60,17 @@ public class LoginScreenController {
     passwordField.clear();
   }
 
+  /**
+   * remove login screen from front page
+   */
   @FXML
   private void exitPopup() {
     didFail = false;
-    usernameField.setStyle("-fx-border-color: black");
-    passwordField.setStyle("-fx-border-color: black");
+    usernameField.setStyle("-fx-border-color: skyblue");
+    passwordField.setStyle("-fx-border-color: skyblue");
     App.getHome().setOpacity(1);
     App.getHome().setDisable(false);
-    App.getPopup().getContent().remove(0);
+    App.getPopup().getContent().clear();
   }
 
   @FXML
