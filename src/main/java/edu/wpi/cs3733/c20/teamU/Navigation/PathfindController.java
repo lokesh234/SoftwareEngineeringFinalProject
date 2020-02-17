@@ -56,6 +56,7 @@ public class PathfindController {
     private boolean displayingPath = false;
     private HashMap<Node, Circle> circles = new HashMap<>();
     private ArrayList<Path> pathes = new ArrayList<>();
+    private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
 
 
@@ -74,14 +75,14 @@ public class PathfindController {
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
                 //System.out.println("Start Click");
-                start = temp;
+                if (temp != null) start = temp;
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getID());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
-                end = temp;
+                if (temp != null) end = temp;
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getID());
                 state = State.NEUTRAL;
@@ -136,45 +137,38 @@ public class PathfindController {
         end = null;
         startReady = false;
         endReady = false;
+        startLabel.setText("None Selected");
+        endLabel.setText("None Selected");
+        clearPath();
         //ArrayList<Node> nodes = App.getGraph().getNodes();
+        DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         if (circles.size() > 0) {
             for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
                 Node n = pair.getKey();
                 Circle c = pair.getValue();
-                App.removeFromPath(c);
+                removeFromPath(c);
             }
         }
         circles.clear();
-        int drawnFloor = 4;
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (n.getFloor() == drawnFloor) {
+            if (isDrawableNode(n)) {
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
-                c.setRadius(5);
+                c.setRadius(App.getNodeSize());
                 addToPath(c);
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 circles.put(n, c);
             }
         }
-        for (Edge e : DatabaseWrapper.getGraph().getEdges()) {
-            if (e.getStart().getFloor() == e.getEnd().getFloor() && e.getEnd().getFloor() == drawnFloor) {
-                Line l = new Line();
-                l.setStartY(e.getStart().getY());
-                l.setStartX(e.getStart().getX());
-                l.setEndY(e.getEnd().getY());
-                l.setEndX(e.getEnd().getX());
-                addToPath(l);
-            }
-        }
     }
 
     private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
-        return !n.getNodeType().equals("HALL"); //If ID is shorter than 6, it's not a hallway node
+        return !n.getNodeType().equals("HALL") && n.getFloor() == drawnFloor; //If ID is shorter than 6, it's not a hallway node
         //return true; //Everything!
     }
 

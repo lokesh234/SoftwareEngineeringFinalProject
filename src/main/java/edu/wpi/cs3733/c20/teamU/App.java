@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
@@ -138,6 +139,7 @@ public class App extends Application {
   public static FireController getFireController(){return fireController;}
   public static GraphEditController getGraphEditController() { return graphEditController;}
   public static WeatherController weatherController() {return weatherController; }
+  public static NodeEditController getEditController() { return editController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -161,6 +163,7 @@ public class App extends Application {
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
+    DatabaseWrapper.updateGraph();
     try {
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));

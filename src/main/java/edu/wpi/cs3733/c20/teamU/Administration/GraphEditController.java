@@ -4,6 +4,7 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -87,6 +88,45 @@ public class GraphEditController {
   @FXML
   protected void exitNodeMode() {
     nodeMode = false;
+    update();
+  }
+
+  @FXML
+  protected void add() {
+    if (nodeMode) { //Add node
+      if (selectedNode != null) { //We're editing a node!
+        if (pos != null) { //We're editing a node, and the position will default to the selected position!
+          App.getEditController().selectedNodeVal(selectedNode, pos.x, pos.y);
+        }
+        else {
+          App.getEditController().selectedNodeVal(selectedNode);
+        }
+        editScreen();
+        update();
+      }
+      else { //We're adding a node!
+        if (pos != null) { //Adding a node with preset position
+          App.getAddNodeScreenController().setDefaultPos(pos.x, pos.y);
+        }
+        addNodeScreen();
+        update();
+      }
+    }
+    else { //Add edge
+      DatabaseWrapper.addEdge(selectedStartNode.getID(), selectedEndNode.getID());
+      removeFromPath(extraLine);
+      update();
+    }
+  }
+
+  @FXML
+  protected void remove() {
+    if (nodeMode) { //Remove node
+      DatabaseWrapper.delNode(selectedNode.getID());
+    }
+    else { //Remove edge
+      DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
+    }
     update();
   }
 
@@ -242,6 +282,7 @@ public class GraphEditController {
   }
 
   private void drawEdges() {
+    DatabaseWrapper.updateGraph();
     for (Edge e : DatabaseWrapper.getGraph().getEdges()) {
       if (e.getStart().getFloor() == e.getEnd().getFloor() && e.getEnd().getFloor() == drawnFloor) {
         MoveTo move = new MoveTo(e.getEnd().getX(),e.getEnd().getY());
@@ -330,12 +371,12 @@ public class GraphEditController {
 
   /**
    * Changes scene to Edit_node...
-   * @param event
-   * @throws IOException
    */
-  public void editScreen(ActionEvent event) throws IOException {
+  public void editScreen(){
       App.getPopup().getContent().clear();
       App.getPopup().getContent().add(App.getEdit());
+      App.getAdminNode().setOpacity(0.5);
+      App.getAdminNode().setDisable(true);
       App.getPopup().show(App.getPrimaryStage());
     } //Admin edit nodes interface
 
@@ -351,8 +392,10 @@ public class GraphEditController {
     App.getPopup().show(App.getPrimaryStage());
   } //Admin edit nodes interface
 @FXML
-  public void addNodeScreen(ActionEvent event) throws IOException {
+  public void addNodeScreen() {
     App.getPopup().getContent().clear();
+    App.getAdminNode().setOpacity(0.5);
+    App.getAdminNode().setDisable(true);
     App.getPopup().getContent().add(App.getAddNode());
     App.getPopup().show(App.getPrimaryStage());
   }
@@ -367,39 +410,6 @@ public class GraphEditController {
   }
   private void removeFromPath(javafx.scene.Node e) {
     NodesPane.getChildren().remove(e);
-  }
-
-  @FXML
-  private void detectClick() {
-
-  }
-
-  /**
-   * Function to create an ObservableList from nodes in Hashmap
-   * @return ObservableList<edu.wpi.teamname.NOde> oblist of location nodes
-   */
-  private ObservableList<Node> hashToOblist(){
-    ObservableList<Node> nodes = FXCollections.observableArrayList();
-
-    //getting nodes created in Hashmap from database
-    HashMap<String, Node> graph = new HashMap<String, Node>();
-    DatabaseWrapper.getNodes(graph);
-
-    //add each node to the oblist
-    Set keys = graph.keySet();
-    for(Iterator i = keys.iterator(); i.hasNext();){
-      String key = (String) i.next();
-      nodes.add(graph.get(key));
-    }
-    return nodes;
-  }
-
-  /**
-   * Function to initialize all the columns in Tableview
-   */
-  @FXML
-  private void initialize() {
-
   }
 
 }
