@@ -23,7 +23,6 @@ public class WeatherController {
       Runnable incrementTime = new Runnable() {
         @Override
         public void run() {
-//          updateTime(); // uncomment once the UI is better
 //          System.out.println(setTime());
 //          time.setText(setTime());
         }
@@ -66,7 +65,6 @@ public class WeatherController {
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
-//    System.out.println(hr + ":" + m + ":" + s);
     startT.setDaemon(true);
     startT.start();
   }

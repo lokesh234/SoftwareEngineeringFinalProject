@@ -19,11 +19,9 @@ public class HomeController {
 
   @FXML private Button test;
   @FXML private Button navButton;
+  @FXML private GesturePane MapGes;
   private long startTime;
   private long currentTime;
-  @FXML
-  private GesturePane MapGes;
-  private boolean startTimer = false;
 
     @FXML
     private void openLoginScene(ActionEvent e) {
@@ -72,7 +70,7 @@ public class HomeController {
         public void run() {
           if (App.getChange()) {
             currentTime = System.currentTimeMillis();
-//            System.out.println(currentTime - startTime);
+            System.out.println(currentTime - startTime);
             if ((currentTime - startTime) > 60000) { // will go to openStartScene if the screen has not been touched within 60 secs
               openStartScene();
             }
@@ -116,7 +114,9 @@ public class HomeController {
   @FXML
   private void initialize() {
     MapGes.setOnMouseClicked(e -> {
+      if(e.isDragDetect()) setTime();
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        setTime();
         Point2D pivotOnTarget = MapGes.targetPointAt(new Point2D(e.getX(), e.getY()))
             .orElse(MapGes.targetPointAtViewportCentre());
         // increment of scale makes more sense exponentially instead of linearly

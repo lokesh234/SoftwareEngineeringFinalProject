@@ -10,11 +10,7 @@ import com.github.prominence.openweathermap.api.model.response.HourlyForecast.Fo
 import com.github.prominence.openweathermap.api.model.response.Weather;
 import com.github.prominence.openweathermap.api.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import javax.print.DocFlavor.STRING;
 
 public class WeatherBoi {
   private String apiKey = "a697a406b377b5a3c6c25ac287a60bde";
@@ -33,7 +29,7 @@ public class WeatherBoi {
    * @throws InvalidAuthTokenException
    * @throws DataNotFoundException
    */
-  public void getRequestAgain() throws InvalidAuthTokenException, DataNotFoundException {
+  public void getRequestAgain() {
     try {
       this.openWeatherMapManager = new OpenWeatherMapManager(apiKey);
       this.weatherRequester = openWeatherMapManager.getWeatherRequester();

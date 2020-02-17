@@ -79,6 +79,9 @@ public class App extends Application {
   private static FireController fireController;
   private static AddNodeScreenController addNodeScreenController;
 
+  private static boolean didChange = false;
+  private static long time;
+
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
@@ -148,6 +151,10 @@ public class App extends Application {
   public static void setServiceEdit(Service serviceSel) { service = serviceSel; }
   public static Service getService() { return service; }
 
+  public static void change(boolean hey) { didChange = hey; }
+  public static boolean getChange() { return didChange; }
+  public static void setTime(long sys) { time = sys; }
+  public static long getTime() { return time; }
   public static void setUser(String user1) { user = user1; }
   public static String getUser() { return user; }
   public static int getNodeSize() { return nodeSize; }
@@ -157,22 +164,6 @@ public class App extends Application {
   public static Popup getRequestPop() { return requestPop; }
   public static Popup getMedicinePop() { return medicinePop; }
 
-  private static boolean didChange = false;
-  public static void change(boolean hey) {
-    didChange = hey;
-  }
-  public static boolean getChange() {
-    return didChange;
-  }
-
-  private static long time;
-  public static void setTime(long sys) {
-    time = sys;
-  }
-
-  public static long getTime() {
-    return time;
-  }
   @Override
   public void start(Stage primaryStage) throws Exception {
 
@@ -207,18 +198,6 @@ public class App extends Application {
       medicine = medicineLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
-
-      /*
-      LoginController loginController = loginLoader.getController();
-      HomeController homeController = homeLoader.getController();
-      PathfindController pathfindController = pathfindLoader.getController();
-      SecurityController securityController = securityLoader.getController();
-      RequestController requestController = requestLoader.getController();
-      MedicineContoller medicineContoller = medicineLoader.getController();
-      startController startControl = startLoader.getController();
-      FireController fireController = fireLoader.getController();
-       */
-
       export = exportLoader.load();
       edit = editLoader.load();
       adminRequest = adminRequestLoader.load();

@@ -8,10 +8,7 @@ import com.github.prominence.openweathermap.api.exception.InvalidAuthTokenExcept
 import java.net.ProtocolException;
 
 public class Main {
-
-
-    public static void main(String[] args) throws InvalidAuthTokenException, DataNotFoundException {
-//    WeatherBoi boi = new WeatherBoi(); // will be unblocked once the UI is up
+    public static void main(String[] args) {
     DatabaseWrapper.Initializer();
     App.launch(App.class, args);
   }
