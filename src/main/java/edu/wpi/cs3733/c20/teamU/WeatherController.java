@@ -24,7 +24,7 @@ public class WeatherController {
         @Override
         public void run() {
 //          updateTime(); // uncomment once the UI is better
-          System.out.println(setTime());
+          //System.out.println(setTime());
         }
       };
       while (true) {
