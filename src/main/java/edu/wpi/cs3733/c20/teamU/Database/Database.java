@@ -503,7 +503,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','EMPLY')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','EMPLY','MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -918,7 +918,7 @@ public class Database {
      * @param inputPassword password
      * @return true if they match in the table
      */
-    public static boolean checkCred(String inputUsername, String inputPassword){
+    public static String checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
         String tableName = "loginDB";
@@ -937,10 +937,10 @@ public class Database {
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
-                    return true;
+                    return results.getString(3);
                 }
                 else {
-                    return false;
+                    return "FALSE";
                 }
             }
             results.close();
@@ -950,9 +950,9 @@ public class Database {
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return false;
+            return "FALSE";
         }
-        return false;
+        return "FALSE";
     }
 
     /**
