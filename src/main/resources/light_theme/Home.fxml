@@ -42,7 +42,7 @@
                                  <graphic>
                                     <ImageView fitHeight="35.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@/png_files/LogInButtonDM.png" />
+                                          <Image url="@../png_files/user.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -69,7 +69,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@/png_files/HomeButtonDM.png" />
+                                    <Image url="@../png_files/home.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -82,7 +82,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@/png_files/NavigateDM.png" />
+                                    <Image url="@../png_files/arrow.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -98,7 +98,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@/png_files/AssistanceButtonDM.png" />
+                                    <Image url="@../png_files/services.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -111,7 +111,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@/png_files/InfoDM.png" />
+                                    <Image url="@../png_files/info.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -124,7 +124,7 @@
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@/png_files/HelpButtonDM.png" />
+                                    <Image url="@../png_files/help.png" />
                                  </image>
                               </ImageView>
                            </graphic>
