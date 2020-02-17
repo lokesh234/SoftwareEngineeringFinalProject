@@ -20,8 +20,8 @@ public class LoginScreenController {
   @FXML
   private void isAuthorized() {
 
-    boolean haveAccess = Database.checkCred(usernameField.getText(), passwordField.getText());
-    if (!haveAccess) {
+    String  haveAccess = Database.checkCred(usernameField.getText(), passwordField.getText());
+    if (haveAccess.equals("FALSE")) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
         changeScene();

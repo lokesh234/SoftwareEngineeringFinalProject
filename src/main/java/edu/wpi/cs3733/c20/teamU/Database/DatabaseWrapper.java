@@ -192,7 +192,7 @@ public class DatabaseWrapper {
      * @param inputPassword password
      * @return true if they match in the table
      */
-    public static boolean checkCred(String inputUsername, String inputPassword){
+    public static String checkCred(String inputUsername, String inputPassword){
         return (Database.checkCred(inputUsername, inputPassword));
     }
 
