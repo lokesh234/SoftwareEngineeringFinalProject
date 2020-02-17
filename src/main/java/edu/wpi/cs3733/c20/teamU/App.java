@@ -44,6 +44,7 @@ public class App extends Application {
   private static Pane addNode;
   private static Pane resolveRequest;
   private static Pane weather;
+  private static Pane IT;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -90,6 +91,7 @@ public class App extends Application {
   private static Popup securityPop = new Popup();
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
+  private static Popup ITPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -110,6 +112,8 @@ public class App extends Application {
   public static Pane getAdminNode() { return adminNode;}
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
+  public static Pane getIT() { return IT;}
+
 
   public static Scene getHomeScene() { return homeScene; }
   public static Scene getLoginScene() { return loginScene; }
@@ -158,6 +162,7 @@ public class App extends Application {
   public static Popup getSecurityPop() { return securityPop; }
   public static Popup getRequestPop() { return requestPop; }
   public static Popup getMedicinePop() { return medicinePop; }
+  public static Popup getITPop() { return ITPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -183,6 +188,9 @@ public class App extends Application {
       FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
       FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/WeatherWindow.fxml"));
+      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/IT.fxml"));
+
+
 
 
       home = homeLoader.load();
@@ -195,6 +203,7 @@ public class App extends Application {
       medicine = medicineLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
+      IT = ITLoader.load();
 
       /*
       LoginController loginController = loginLoader.getController();
@@ -246,6 +255,8 @@ public class App extends Application {
       securityPop.getContent().addAll();
       requestPop.getContent().addAll();
       medicinePop.getContent().addAll();
+      ITPop.getContent().addAll();
+
 
       homeScene = new Scene(home);
       pathScene = new Scene(path);
