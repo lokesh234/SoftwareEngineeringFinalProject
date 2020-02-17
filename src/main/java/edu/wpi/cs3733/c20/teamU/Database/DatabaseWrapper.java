@@ -130,7 +130,9 @@ public class DatabaseWrapper {
    * @return true if the tuple was able to be created
    */
   public static boolean addEdge(String startID, String endID) {
-    return (Database.addEdge(startID, endID));
+    boolean r = (Database.addEdge(startID, endID));
+    updateGraph();
+    return r;
   }
 
   /**
@@ -147,7 +149,9 @@ public class DatabaseWrapper {
    * @return true if the tuple was able to be created
    */
   public static boolean addNode( String nodeID, int xcoord, int ycoord, int floor, String building, String nodeType, String longName, String shortName) {
-    return (Database.addNode(nodeID, xcoord, ycoord, floor, building, nodeType, longName, shortName));
+    boolean r = (Database.addNode(nodeID, xcoord, ycoord, floor, building, nodeType, longName, shortName));
+    updateGraph();
+    return r;
   }
 
   /**
@@ -157,7 +161,9 @@ public class DatabaseWrapper {
    * @return true if tuple was deleted
    */
   public static boolean delEdge(String edgeID) {
-    return (Database.delEdge(edgeID));
+    boolean r = (Database.delEdge(edgeID));
+    updateGraph();
+    return r;
   }
 
   /**
@@ -167,7 +173,9 @@ public class DatabaseWrapper {
    * @return true if tuple was deleted
    */
   public static boolean delNode(String nodeID) {
-    return (Database.delNode(nodeID));
+    boolean r = (Database.delNode(nodeID));
+    updateGraph();
+    return r;
   }
 
   /**
@@ -203,7 +211,9 @@ public class DatabaseWrapper {
      * @return true if tuple was able to be edited
      */
     public static boolean editNode(String nodeIDN, int xcoordN, int ycoordN, int floorN, String buildingN, String nodeTypeN, String longNameN, String shortNameN ) {
-        return (Database.editTuple(nodeIDN, xcoordN, ycoordN, floorN, buildingN, nodeTypeN, longNameN, shortNameN));
+        boolean r = (Database.editTuple(nodeIDN, xcoordN, ycoordN, floorN, buildingN, nodeTypeN, longNameN, shortNameN));
+        updateGraph();
+        return r;
     }
 
     /**
@@ -215,7 +225,9 @@ public class DatabaseWrapper {
      * @return true if tuple was able to be edited
      */
     public static boolean editEdge(String edgeIDN, String startNodeN, String endNodeN ) {
-        return (Database.editEdge(edgeIDN, startNodeN, endNodeN));
+        boolean r = (Database.editEdge(edgeIDN, startNodeN, endNodeN));
+        updateGraph();
+        return r;
     }
 
   //SERVICE DATABASE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -278,5 +290,8 @@ public class DatabaseWrapper {
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static NodesDatabase getGraph() {
       return graph; //Other nodesDatabase functions should be accessed through DatabaseWrapper.getGraph().x();
+  }
+  public static void updateGraph() {
+      graph.update();
   }
 }

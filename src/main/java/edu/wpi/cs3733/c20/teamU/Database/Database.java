@@ -503,7 +503,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), PRIMARY KEY (username))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','EMPLY')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -525,7 +525,8 @@ public class Database {
                     else{
                         String username = csvString[0];
                         String password = csvString[1];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "')");
+                        String position = csvString[2];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + position + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -977,8 +978,9 @@ public class Database {
             stmt = conn.createStatement();
             String sql1 = "UPDATE " + tableName + " SET xcoord = " + xcoordN + ", ycoord = " + ycoordN + ", floor = " + floorN + ", building = '" + buildingN + "', nodeType = '" + nodeTypeN + "', longName = '" + longNameN + "', shortName = '" + shortNameN + "' WHERE nodeID = '" + nodeIDN + "'";
 
-            int result = stmt.executeUpdate(sql1);
-            System.out.println(result);
+            stmt.executeUpdate(sql1);
+            //System.out.println(result);
+            CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
             return true;

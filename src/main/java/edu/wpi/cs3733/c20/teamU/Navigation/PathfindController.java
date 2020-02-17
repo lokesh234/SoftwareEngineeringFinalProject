@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
@@ -55,6 +56,7 @@ public class PathfindController {
     private boolean displayingPath = false;
     private HashMap<Node, Circle> circles = new HashMap<>();
     private ArrayList<Path> pathes = new ArrayList<>();
+    private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
 
 
@@ -73,14 +75,14 @@ public class PathfindController {
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
                 //System.out.println("Start Click");
-                start = temp;
+                if (temp != null) start = temp;
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getID());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
-                end = temp;
+                if (temp != null) end = temp;
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getID());
                 state = State.NEUTRAL;
@@ -135,13 +137,17 @@ public class PathfindController {
         end = null;
         startReady = false;
         endReady = false;
+        startLabel.setText("None Selected");
+        endLabel.setText("None Selected");
+        clearPath();
         //ArrayList<Node> nodes = App.getGraph().getNodes();
+        DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         if (circles.size() > 0) {
             for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
                 Node n = pair.getKey();
                 Circle c = pair.getValue();
-                App.removeFromPath(c);
+                removeFromPath(c);
             }
         }
         circles.clear();
@@ -162,7 +168,7 @@ public class PathfindController {
     }
 
     private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
-        return !n.getNodeType().equals("HALL"); //If ID is shorter than 6, it's not a hallway node
+        return !n.getNodeType().equals("HALL") && n.getFloor() == drawnFloor; //If ID is shorter than 6, it's not a hallway node
         //return true; //Everything!
     }
 
