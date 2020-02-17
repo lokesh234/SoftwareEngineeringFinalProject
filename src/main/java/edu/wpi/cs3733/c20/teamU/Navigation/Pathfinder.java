@@ -119,11 +119,11 @@ public class Pathfinder {
         return;
     }
 
-    public void breadthFirstGraph(String startID, String endID, NodesDatabase graph) {
-        breadthFirst(graph.getNode(startID), graph.getNode(endID), graph);
+    public void breadthFirstGraph(String startID, String endID) {
+        breadthFirst(DatabaseWrapper.getGraph().getNode(startID), DatabaseWrapper.getGraph().getNode(endID));
     }
 
-    public void breadthFirst(Node start, Node end, NodesDatabase graph) {
+    public void breadthFirst(Node start, Node end) {
         /*
         Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
          *
@@ -165,7 +165,11 @@ public class Pathfinder {
         latestPath.clear();
     }
 
-    public void depthFirst(Node start, Node end, NodesDatabase graph) {
+    public void depthFirstGraph(String startID, String endID) {
+        depthFirst(DatabaseWrapper.getGraph().getNode(startID), DatabaseWrapper.getGraph().getNode(endID));
+    }
+
+    public void depthFirst(Node start, Node end) {
         /*
         Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
          *
@@ -175,7 +179,7 @@ public class Pathfinder {
         }
         Stack<Node> nodeStack = new Stack<>();
         ArrayList<Node> visitedNodes = new ArrayList<>();
-        HashMap<Node, Node> cametaFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
+        HashMap<Node, Node> cameFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
 
         nodeStack.add(start);
         cameFrom.put(start, null);
