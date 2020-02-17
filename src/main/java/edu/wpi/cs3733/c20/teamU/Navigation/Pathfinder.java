@@ -6,9 +6,7 @@ import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import javafx.scene.shape.Path;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Pathfinder {
     /*
@@ -119,6 +117,94 @@ public class Pathfinder {
         latestCost = -999999; //We've looked everywhere without reaching the end - we need to update latestCost and latestPath to reflect this
         latestPath.clear();
         return;
+    }
+
+    public void breadthFirstGraph(String startID, String endID, NodesDatabase graph) {
+        breadthFirst(graph.getNode(startID), graph.getNode(endID), graph);
+    }
+
+    public void breadthFirst(Node start, Node end, NodesDatabase graph) {
+        /*
+        Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
+         *
+         */
+        ArrayList<Node> visited =  new ArrayList<Node>();
+        if (start == end){
+            return;
+        }
+        Queue<Node> queue = new LinkedList<Node>();
+        HashMap<Node, Node> cameFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
+        queue.add(start);
+        cameFrom.put(start, null);
+
+        while(!queue.isEmpty()){
+            Node current = queue.poll();
+            if (current.equals(end)) { //This Is The End ,Ed-Boy
+                latestPath.clear();
+                latestPath.add(end);
+                Node next = cameFrom.get(end);
+                while (!latestPath.contains(start)) {
+                    latestPath.add(next);
+                    next = cameFrom.get(next);
+                }
+                return; //That's everything!
+            }
+            ArrayList<Node> adjacentNodes = graph.getNeighborNodes(current);
+            for (Node n: adjacentNodes){
+                if(!visited.contains(n)){
+                    queue.add(n);
+                    visited.add(n);
+                    cameFrom.put(n, current);
+                    if(current == end){
+                        break;
+                    }
+                }
+            }
+        }
+        latestCost = -999999; //No path found
+        latestPath.clear();
+    }
+
+    public void depthFirst(Node start, Node end, NodesDatabase graph) {
+        /*
+        Finds a path from start to end using BFS. To retrieve your results, use getLatestPath() *after* calling this function
+         *
+         */
+        if (start == end){
+            return;
+        }
+        Stack<Node> nodeStack = new Stack<>();
+        ArrayList<Node> visitedNodes = new ArrayList<>();
+        HashMap<Node, Node> cameFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
+
+        nodeStack.add(start);
+        cameFrom.put(start, null);
+
+        while(!nodeStack.isEmpty()){
+            Node current = nodeStack.pop();
+            if (current.equals(end)) { //This Is The End ,Ed-Boy
+                latestPath.clear();
+                latestPath.add(end);
+                Node next = cameFrom.get(end);
+                while (!latestPath.contains(start)) {
+                    latestPath.add(next);
+                    next = cameFrom.get(next);
+                }
+                return; //That's everything!
+            }
+            ArrayList<Node> adjacentNodes = graph.getNeighborNodes(current);
+            for (Node n: adjacentNodes){
+                if(!visitedNodes.contains(n)){
+                    visitedNodes.add(n);
+                    cameFrom.put(n, current);
+                    if(current == end){
+                        break;
+                    }
+                }
+            }
+        }
+        latestCost = -999999; //No path found
+        latestPath.clear();
     }
 
     public void starSingularNoWeight(Node start, Node end){
