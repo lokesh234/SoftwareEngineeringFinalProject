@@ -175,7 +175,7 @@ public class Pathfinder {
         }
         Stack<Node> nodeStack = new Stack<>();
         ArrayList<Node> visitedNodes = new ArrayList<>();
-        HashMap<Node, Node> cameFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
+        HashMap<Node, Node> cametaFrom = new HashMap<Node, Node>(); //All nodes we've seen, and the node we rode in on, in order (Child, Parent)
 
         nodeStack.add(start);
         cameFrom.put(start, null);
