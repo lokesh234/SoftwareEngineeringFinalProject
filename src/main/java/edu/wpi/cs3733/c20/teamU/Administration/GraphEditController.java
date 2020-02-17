@@ -34,6 +34,11 @@ public class GraphEditController {
   //Database graph;
   NodeEditController toEdit;
   boolean nodeMode = true;
+  private State state = State.neutral;
+
+  private enum State {
+    neutral, selectStart, selectEnd, selectPos;
+  }
 
 
   public GraphEditController() {}
@@ -46,6 +51,7 @@ public class GraphEditController {
   }
   @FXML
   private void backToAdmin() {
+    state = State.neutral;
     App.getHome().setOpacity(0.5);
     App.getHome().setDisable(true);
     App.getPrimaryStage().setScene(App.getHomeScene());
@@ -64,6 +70,21 @@ public class GraphEditController {
   protected void exitNodeMode() {
     nodeMode = false;
     update();
+  }
+
+  @FXML
+  protected void startState() {
+    state = State.selectStart;
+  }
+
+  @FXML
+  protected void endState() {
+    state = State.selectEnd;
+  }
+
+  @FXML
+  protected void posState() {
+    state = State.selectPos;
   }
 
   protected void update() {
