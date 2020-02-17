@@ -155,9 +155,6 @@ public class Pathfinder {
                     queue.add(n);
                     visited.add(n);
                     cameFrom.put(n, current);
-                    if(current == end){
-                        break;
-                    }
                 }
             }
         }
@@ -198,12 +195,10 @@ public class Pathfinder {
             }
             ArrayList<Node> adjacentNodes = DatabaseWrapper.getGraph().getNeighborNodes(current);
             for (Node n: adjacentNodes){
-                if(!visitedNodes.contains(n)){it 
+                if(!visitedNodes.contains(n)){
                     visitedNodes.add(n);
                     cameFrom.put(n, current);
-                    if(current == end){
-                        break;
-                    }
+                    nodeStack.add(n);
                 }
             }
         }
