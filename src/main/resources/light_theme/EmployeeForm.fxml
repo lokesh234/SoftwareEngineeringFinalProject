@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXChipView?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -35,16 +36,19 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="49.0" minHeight="7.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.333343505859375" minHeight="30.0" prefHeight="18.333343505859375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="26.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="25.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="30.0" prefHeight="41.333343505859375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="60.0" prefHeight="66.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="41.33331298828125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <JFXTextField fx:id="firstNameText" promptText="Input Node iD" text="John" GridPane.columnIndex="1" />
                   <JFXTextField fx:id="lastNameText" promptText="Input X Coordinate" text="Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <JFXTextField fx:id="employeeIdText" promptText="Input Y Coordinate" text="1234" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="employeeIdText" promptText="Input Y Coordinate" text="jdoe1234" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER">
                      <children>
                         <Label text="First Name">
@@ -65,14 +69,14 @@
                   </HBox>
                   <HBox alignment="CENTER" GridPane.rowIndex="2">
                      <children>
-                        <Label text="Employee ID">
+                        <Label text="Username">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="3">
+                  <HBox alignment="CENTER" GridPane.rowIndex="5">
                      <children>
                         <Label text="Employee Type(s)">
                            <font>
@@ -81,7 +85,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox fx:id="employeeCombo" alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <HBox fx:id="employeeCombo" alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <JFXComboBox />
                         <JFXButton style="-fx-background-color: #474338;" text="Add" textFill="WHITE">
@@ -91,7 +95,29 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXChipView fx:id="employeeChip" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXChipView fx:id="employeeChip" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="Password">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <JFXTextField text="************" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                     <children>
+                        <Label text="Confirm Password">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <JFXTextField text="************" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" />
+                  <JFXCheckBox text="I Promise Not To Be A Robot" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
                <VBox.margin>
                   <Insets />
