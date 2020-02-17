@@ -149,7 +149,7 @@ public class Pathfinder {
                 }
                 return; //That's everything!
             }
-            ArrayList<Node> adjacentNodes = graph.getNeighborNodes(current);
+            ArrayList<Node> adjacentNodes = DatabaseWrapper.getGraph().getNeighborNodes(current);
             for (Node n: adjacentNodes){
                 if(!visited.contains(n)){
                     queue.add(n);
