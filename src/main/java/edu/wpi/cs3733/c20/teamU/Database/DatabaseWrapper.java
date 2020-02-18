@@ -186,6 +186,10 @@ public class DatabaseWrapper {
     Database.getServices(servicesList, user);
   }
 
+  public static void getFinishedServices(ArrayList<Service> servicesList, String user) {
+    Database.getFinishedServices(servicesList, user);
+  }
+
     /**
      * Check the if the username and password are valid for login
      * @param inputUsername username
