@@ -94,6 +94,7 @@ public class App extends Application {
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
   private static String user;
+  private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
@@ -173,6 +174,8 @@ public class App extends Application {
   public static long getTime() { return time; }
   public static void setUser(String user1) { user = user1; }
   public static String getUser() { return user; }
+  public static void setUsernameTried(String username1) { usernameTried = username1; }
+  public static String getUsernameTried() { return usernameTried; }
   public static int getNodeSize() { return nodeSize; }
 
   public static Popup getPopup() { return popup; }

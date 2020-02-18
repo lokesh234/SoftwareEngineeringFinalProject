@@ -5,6 +5,7 @@ import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import lombok.NoArgsConstructor;
 
+import javax.swing.plaf.nimbus.State;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -42,6 +43,8 @@ public class Database {
             dropTable(stmt, "ServiceFinished");
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
+            dropTable(stmt, "LanguageSR");
+
             dropTable(stmt, "ServiceRequest");
             // drops database tables if they currently exist
             System.out.println("Dropped tables");
@@ -53,6 +56,7 @@ public class Database {
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
             createSecuritySRTable(stmt, "SecuritySR");
+            createLanguageSRTable(stmt, "LanguageSR");
             populateServiceRequestTable(stmt, "ServiceRequest");
             // Creates tables again or for the first time
             System.out.println("Created Tables");
@@ -64,6 +68,7 @@ public class Database {
             printTable(stmt, "ServiceFinished");
             printTable(stmt, "MedicineSR");
             printTable(stmt, "SecuritySR");
+            printTable(stmt, "LanguageSR");
             //print tables to test
 
             System.out.println("== Apache Derby Databases Established! ==");
@@ -248,8 +253,7 @@ public class Database {
      */
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, reqType VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
-                    "CONSTRAINT SR_TY CHECK (reqType in ('MEDIC','SECUR')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, types VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), CONSTRAINT SR_TY CHECK (types in ('MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -287,30 +291,35 @@ public class Database {
                     String reqDate = csvString[1];
                     String type = csvString[2];
                     String info = csvString[3];
-                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, reqType, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
+                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, types, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
                 }
             }
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName);
             ArrayList<Integer> Medic = new ArrayList<>();
             ArrayList<Integer> Secur = new ArrayList<>();
+            ArrayList<Integer> Lange = new ArrayList<>();
 
             //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
             while (rs.next()) {
-                if (rs.getString(3).equals("MEDIC")){
-                    Medic.add(rs.getInt(1));
+                switch (rs.getString(3)){
+                    case "MEDIC":
+                        Medic.add(rs.getInt(1));
+                        break;
+                    case "SECUR":
+                        Secur.add(rs.getInt(1));
+                        break;
+                    case "LANGE":
+                        Lange.add(rs.getInt(1));
+                        break;
                 }
-                else if (rs.getString(3).equals("SECUR")){
-                    Secur.add(rs.getInt(1));
-                }
-                //System.out.print(rs.getInt(1) + "\t");
-                //System.out.println(rs.getString(3));
             }
             //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             rs.close();
             populateMedicineSR(stmt, "MedicineSR", Medic);
             populateSecuritySR(stmt, "SecuritySR", Secur);
+            populateLanguageSR(stmt, "LanguageSR", Lange);
 
         }
         catch (IOException | SQLException e){
@@ -328,7 +337,7 @@ public class Database {
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
-                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR')))";
+                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -377,7 +386,7 @@ public class Database {
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
-                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
+                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('Suppository','Oral', 'Topical')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -409,6 +418,23 @@ public class Database {
 
         }
     }
+
+    private static void createLanguageSRTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), lastName VARCHAR(20), firstName VARCHAR(20), language VARCHAR(20), location VARCHAR(20), " +
+                    "CONSTRAINT LT_CK CHECK (language in ('Chinese','Hindi','Japanese','Spanish','Russian','Ethiopian')))";
+
+            stmt.executeUpdate(slqCreate);
+
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
+
 
     /**
      *
@@ -495,6 +521,39 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
+    private static void populateLanguageSR(Statement stmt, String tableName, ArrayList<Integer> Lange){
+        String line = "";
+        String csvSplit = ",";
+        //parses through csv file and creates a new row in the database for each row
+        try {
+            BufferedReader br = getBR(tableName);
+            int starter = 0;
+            int i = -1;
+            while ((line = br.readLine()) != null) {
+
+                String[] csvString = line.split(csvSplit);
+                if (starter == 0){
+                    starter = 1;
+                }
+                else{
+                    //int reqID = Integer.parseInt(csvString[0]);
+                    int reqID = Lange.get(i);
+                    String timeReq = csvString[1];
+                    String lastName = csvString[2];
+                    String firstName = csvString[3];
+                    String language = csvString[4];
+                    String location = csvString[5];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + lastName + "', '" + firstName + "', '" + language + "', '" + location + "')");
+                    System.out.println("reached update");
+                }
+                i++;
+            }
+        }
+        catch (SQLException | IOException e){
+            e.printStackTrace();
+        }
+        CreateCSV(stmt, tableName, null);
+    }
     /**
      *
      * TODO：finish commenting
@@ -880,9 +939,67 @@ public class Database {
                 sql = "SELECT * FROM " + tableName;
             }
             else {
-                sql = "SELECT  * FROM " + tableName + " WHERE reqtype = "+ user;
+                sql = "SELECT  * FROM " + tableName + " WHERE types = '"+ user + "'";
 
                // ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
+            }
+            ResultSet results = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = results.getMetaData();
+
+
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (results.next()) {
+                String date = results.getString(1);
+                String requestID = results.getString(2);
+                String name = results.getString(3);
+                String requestType = results.getString(4);
+//                System.out.println(date);
+//                System.out.println(requestID);
+//                System.out.println(name);
+//                System.out.println(requestType);
+                Service s = new Service(date, requestID, name, requestType);
+                servicesList.add(s);
+                System.out.println("service list: " + servicesList);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
+
+    public static void getFinishedServices(ArrayList<Service> servicesList, String user){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "ServiceFinished";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            if (user == null){
+                return;
+            }
+            else if (user.equals("ADMIN")) {
+                sql = "SELECT * FROM " + tableName;
+            }
+            else {
+                sql = "SELECT  * FROM " + tableName + " WHERE reqtype = "+ user;
+
+                // ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
             }
             ResultSet results = stmt.executeQuery(sql);
             ResultSetMetaData rsmd = results.getMetaData();

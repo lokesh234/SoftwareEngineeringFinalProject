@@ -186,6 +186,10 @@ public class DatabaseWrapper {
     Database.getServices(servicesList, user);
   }
 
+  public static void getFinishedServices(ArrayList<Service> servicesList, String user) {
+    Database.getFinishedServices(servicesList, user);
+  }
+
     /**
      * Check the if the username and password are valid for login
      * @param inputUsername username
@@ -284,6 +288,18 @@ public class DatabaseWrapper {
    */
     public static boolean medicineSRDel(int reqID, String adminsName, String user) {
         return (ServiceDatabase.medicineSRDel(reqID, adminsName, user));
+    }
+
+
+    //Use functions to update all database tables: "[Name]SR, ServiceRequest, ServiceFinished"
+    //ex input: languageSRAdd("Chalmers", "Marcus", "Chinese");
+    //ex input: languageSRDel(2, "adminUsername", "LANGE");
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
+      return (ServiceDatabase.languageSRAdd(patentLastName, patentFirstName, language));
+    }
+
+    public static boolean languageSRDel(int reqID, String adminsName, String user) {
+      return  (ServiceDatabase.languageSRDel(reqID, adminsName, user));
     }
 
 
