@@ -49,6 +49,7 @@ public class App extends Application {
   private static Pane resolveRequest;
   private static Pane weather;
   private static Pane IT;
+  private static Pane clown;
 
   private static Pane religious;
 
@@ -95,6 +96,7 @@ public class App extends Application {
   private static ReligiousController religiousController;
   private static ExtTransportController extTransportController; //anir
   private static PathfindTextController pathfindTextController;
+  private static ClownController clownController;
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -119,6 +121,7 @@ public class App extends Application {
   private static Popup religiousPop = new Popup();
   private static Popup extTransportPop = new Popup(); //anir
   private static Popup TextDirectionsPop = new Popup();
+  private static Popup clownPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -146,6 +149,7 @@ public class App extends Application {
   public static Pane getReligious() { return religious;}
 
   public static Pane getEmployeeForm() {return employeeF; }
+  public static Pane getClown() { return clown;}
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -214,6 +218,7 @@ public class App extends Application {
   public static Popup getReligiousPop() { return religiousPop;}
   public static Popup getExtTransportPop() {return extTransportPop;}
   public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
+  public static Popup getClownPop() { return clownPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -248,6 +253,7 @@ public class App extends Application {
 
       FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
       FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
+      FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
 
 
       home = homeLoader.load();
@@ -273,6 +279,7 @@ public class App extends Application {
       employeeF = employeeFormLoader.load();
       externalTransport = extTransportLoader.load();
       pathFindText = pathfindtextLoader.load();
+      clown = clownDeliveryLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -295,6 +302,7 @@ public class App extends Application {
 //      editEdgeController = adminNodeLoader.getController();
       extTransportController = extTransportLoader.getController();
       pathfindController = pathfindLoader.getController();
+      clownController = clownDeliveryLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
