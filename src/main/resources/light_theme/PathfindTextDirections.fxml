@@ -34,7 +34,7 @@
                                 <Font name="Segoe UI Bold" size="24.0" />
                             </font>
                         </Label>
-                        <Label text="Multiline instructions here" VBox.vgrow="ALWAYS">
+                        <Label fx:id="Directions" text="Multiline instructions here" VBox.vgrow="ALWAYS">
                             <font>
                                 <Font name="Segoe UI" size="14.0" />
                             </font>
