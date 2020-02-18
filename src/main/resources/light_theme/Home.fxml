@@ -157,6 +157,27 @@
                   </padding>
               </VBox>
          </center>
+          <right>
+              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
+                          <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                          </font>
+                      </JFXButton>
+                      <Label fx:id="floorLabel" text="1">
+                          <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                          </font>
+                      </Label>
+                      <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
+                          <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                          </font>
+                      </JFXButton>
+                  </children>
+              </VBox>
+          </right>
       </BorderPane>
     </children>
 </AnchorPane>
