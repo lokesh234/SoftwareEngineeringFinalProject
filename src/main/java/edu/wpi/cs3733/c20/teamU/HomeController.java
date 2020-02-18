@@ -129,4 +129,11 @@ public class HomeController {
     startT.setDaemon(true);
     startT.start();
   }
+
+  @FXML private void clickUp() {
+
+  }
+  @FXML private void clickDown() {
+
+  }
 }

@@ -34,13 +34,8 @@
                </children>
                <children>
                   <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-<<<<<<< HEAD
                      <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
                         <AnchorPane fx:id="NodesPane2">
-=======
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
-                        <AnchorPane>
->>>>>>> 23797d3babe6f63529a3ae4af51bac051301e762
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/main_2_blue.png" />
@@ -52,13 +47,8 @@
                </children>
                <children>
                   <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-<<<<<<< HEAD
                      <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
                         <AnchorPane fx:id="NodesPane3">
-=======
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
-                        <AnchorPane>
->>>>>>> 23797d3babe6f63529a3ae4af51bac051301e762
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/main_3_blue.png" />
@@ -70,13 +60,8 @@
                </children>
                <children>
                   <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-<<<<<<< HEAD
                      <GesturePane fx:id="PathGes" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
                         <AnchorPane fx:id="NodesPane4">
-=======
-                     <GesturePane fx:id="PathGes" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
-                        <AnchorPane fx:id="NodesPane">
->>>>>>> 23797d3babe6f63529a3ae4af51bac051301e762
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/Final-Floor-4.png" />

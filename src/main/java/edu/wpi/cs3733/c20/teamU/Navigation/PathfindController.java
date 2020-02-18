@@ -74,6 +74,8 @@ public class PathfindController {
     private HashMap<Path, Integer> pathes = new HashMap<>();
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
+    private ArrayList<Integer> floorsInPath = new ArrayList<>();
+    private HashMap<Circle, Integer> interFloorPaths = new HashMap<>();
 
 
     @FXML
@@ -122,19 +124,29 @@ public class PathfindController {
 
 
     @FXML private void clickUp(ActionEvent e){
-        floor++;
-        stateMachine(floor);
-        if(floor > 5){
-            floor = 5;
+        if (displayingPath && floorsInPath.contains(floor) && floorsInPath.indexOf(floor) < (floorsInPath.size()-1)) {
+            floor = floorsInPath.get(floorsInPath.indexOf(floor)+1);
         }
+        else {
+            floor++;
+            if(floor > 5) {
+                floor = 5;
+            }
+        }
+        stateMachine(floor);
     }
 
     @FXML private void clickDown(ActionEvent e){
-        floor--;
-        stateMachine(floor);
-        if(floor < 1){
-            floor = 1;
+        if (displayingPath && floorsInPath.contains(floor) && floorsInPath.indexOf(floor) > 0) {
+            floor = floorsInPath.get(floorsInPath.indexOf(floor)-1);
         }
+        else {
+            floor--;
+            if (floor < 1) {
+                floor = 1;
+            }
+        }
+        stateMachine(floor);
     }
 
     @FXML private void stateMachine(int floor){
@@ -266,7 +278,13 @@ public class PathfindController {
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue());
         }
+        for (Map.Entry<Circle, Integer> pair : interFloorPaths.entrySet()) {
+            removeFromPath(pair.getKey(), pair.getValue());
+        }
         displayingPath = false;
+        floorsInPath.clear();
+        pathes.clear();
+        interFloorPaths.clear();
         updateStatus();
     }
     private void drawPath() {
@@ -280,6 +298,7 @@ public class PathfindController {
         for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
+            if (!floorsInPath.contains(n1.getFloor())) floorsInPath.add(n1.getFloor());
 
             if (n1.getFloor() == n2.getFloor()) {
 
@@ -292,6 +311,24 @@ public class PathfindController {
                 pathe.setStrokeWidth(5.0);
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
+            }
+            else {
+                Circle c = new Circle();
+                Circle c2 = new Circle();
+                c.setCenterX(n1.getX());
+                c.setCenterY(n1.getY());
+                c2.setCenterY(n2.getY());
+                c2.setCenterX(n2.getX());
+                c.setFill(Color.TRANSPARENT);
+                c2.setFill(Color.TRANSPARENT);
+                c.setStroke(Color.GREEN);
+                c2.setStroke(Color.ORCHID);
+                c.setRadius(App.getNodeSize()+5);
+                c2.setRadius(App.getNodeSize()+5);
+                interFloorPaths.put(c, n1.getFloor());
+                interFloorPaths.put(c2, n2.getFloor());
+                addToPath(c, n1.getFloor());
+                addToPath(c2, n2.getFloor());
             }
 
         }
