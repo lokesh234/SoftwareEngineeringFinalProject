@@ -27,8 +27,8 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXTextField prefHeight="37.0" prefWidth="367.0" promptText="Please Specify Path" />
-                  <JFXButton prefHeight="29.0" prefWidth="55.0" style="-fx-background-color: #BFB397;" text=". . ." onAction="#browse" />
+                  <JFXTextField fx:id="location1" prefHeight="37.0" prefWidth="367.0" promptText="Please Specify Path" />
+                  <JFXButton fx:id="browse" prefHeight="29.0" prefWidth="55.0" style="-fx-background-color: #BFB397;" text=". . ." onAction="#browse" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -39,12 +39,12 @@
                   <Insets right="10.0" top="35.0" />
                </VBox.margin>
                <children>
-                  <JFXButton buttonType="RAISED" style="-fx-background-color: #807765;" text="Cancel" onAction="#adminScreen">
+                  <JFXButton fx:id="cancel" buttonType="RAISED" style="-fx-background-color: #807765;" text="Cancel" onAction="#adminScreen">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" style="-fx-background-color: #807765;" text="Save" onAction="#save">
+                  <JFXButton fx:id="save" buttonType="RAISED" style="-fx-background-color: #807765;" text="Save" onAction="#save">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>

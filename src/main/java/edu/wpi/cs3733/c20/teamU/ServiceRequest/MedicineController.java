@@ -22,7 +22,7 @@ public class MedicineController {
     @FXML private JFXTextField frequency;
     @FXML private JFXTextField first;
     @FXML private JFXTextField drug;
-    @FXML private JFXButton closeMedicineScreen;
+    @FXML private JFXButton backToRequest;
     @FXML private JFXComboBox comboBox = new JFXComboBox();
 
     @FXML
@@ -54,7 +54,7 @@ public class MedicineController {
             first.setStyle("-fx-border-color:  #FFEEC9");
             ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
-            closeMedicineScreen.fire();
+            backToRequest.fire();
         }
     }
 
@@ -67,10 +67,12 @@ public class MedicineController {
         comboBox.getSelectionModel().clearSelection();
     }
     @FXML
-    private void closeMedicineForm(){
-        App.getHome().setOpacity(1);
-        App.getHome().setDisable(false);
+    private void goBack(){
+//        App.getHome().setOpacity(1);
+//        App.getHome().setDisable(false);
         App.getMedicinePop().getContent().clear();
+        App.getRequestPop().getContent().add(App.getRequest());
+        App.getRequestPop().show(App.getPrimaryStage());
     }
 
     @FXML
