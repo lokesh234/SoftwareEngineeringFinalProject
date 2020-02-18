@@ -224,7 +224,7 @@ public class GraphEditController {
       lines.get(selectedEdge).setStroke(Color.BLACK);
     }
     if (nodeMode) {
-      addButton.setDisable(false);
+      addButton.setDisable(selectedNode != null);
       editButton.setDisable(selectedNode == null);
       removeButton.setDisable(selectedNode == null);
     }
