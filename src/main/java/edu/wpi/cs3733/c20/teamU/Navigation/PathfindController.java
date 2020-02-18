@@ -41,7 +41,6 @@ public class PathfindController {
 
     public void setAttributes(Parent root) {
         this.root = root;
-        NodesPane.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
         this.drawNodes();
         this.updateStatus();
     }
@@ -54,7 +53,7 @@ public class PathfindController {
     private boolean startReady = false;
     private boolean endReady = false;
     private boolean displayingPath = false;
-    private HashMap<Node, Circle> circles = new HashMap<>();
+    private HashMap<Circle, Node> circles = new HashMap<>();
     private ArrayList<Path> pathes = new ArrayList<>();
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
@@ -69,20 +68,17 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             updateStatus();
-            int x = (int) event.getX();
-            int y = (int) event.getY();
-            Node temp = getClickedNode(x, y);
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
                 //System.out.println("Start Click");
-                if (temp != null) start = temp;
+                start = circles.get(event.getSource());
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getID());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
-                if (temp != null) end = temp;
+                end = circles.get(event.getSource());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getID());
                 state = State.NEUTRAL;
@@ -119,18 +115,6 @@ public class PathfindController {
         else statusLabel.setText("Click on a Node to Set Start Position");
     }
 
-    private Node getClickedNode(int x, int y) {
-        /*
-        Enhancement of NodeDatabase's getNodeInRange() method that only looks through rendered nodes
-         */
-        for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
-            Node n = pair.getKey();
-            //if (NodesDatabase.dist(x, y, n.getX(), n.getY()) <= App.getNodeSize()) return n;
-            if (DatabaseWrapper.getGraph().dist(x,y,n.getX(),n.getY()) <= App.getNodeSize()) return n;
-        }
-        return null;
-    }
-
     public void drawNodes() {
         state = State.NEUTRAL;
         start = null;
@@ -144,9 +128,9 @@ public class PathfindController {
         DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         if (circles.size() > 0) {
-            for (Map.Entry<Node, Circle> pair : circles.entrySet()) {
-                Node n = pair.getKey();
-                Circle c = pair.getValue();
+            for (Map.Entry<Circle, Node> pair : circles.entrySet()) {
+                Node n = pair.getValue();
+                Circle c = pair.getKey();
                 removeFromPath(c);
             }
         }
@@ -162,7 +146,8 @@ public class PathfindController {
                 addToPath(c);
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-                circles.put(n, c);
+                c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                circles.put(c, n);
             }
         }
     }

@@ -51,7 +51,7 @@
                             <children>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Export" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Export" textFill="WHITE" onAction="#export">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -67,7 +67,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Edit Graph" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Edit Graph" textFill="WHITE" onAction="#editNodes">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -83,7 +83,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="110.0" style="-fx-background-color: #474338;" text="Edit Requests" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="110.0" style="-fx-background-color: #474338;" text="Edit Requests" textFill="WHITE" onAction="#requestPowers">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>

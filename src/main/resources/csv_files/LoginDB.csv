@@ -1,8 +1,5 @@
-username,password,position
-admin,password,ADMIN
-James,password1234,EMPLY
-wwong2,HarvardBad,ADMIN
-teamU,bestTeam,ADMIN
-fakeName,fakePass,EMPLY
-medic,password,MEDIC
-security,password,SECUR
+username,password,firstName,lastName,position
+admin,password,admin,user,ADMIN
+medic,password,medic,user,MEDIC
+security,password,security,user,SECUR
+staff,staff,template,user,ADMIN
