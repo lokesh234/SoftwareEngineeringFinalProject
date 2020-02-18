@@ -59,11 +59,20 @@ public class GraphEditController {
   private Node selectedNode;
   private Node selectedStartNode;
   private Node selectedEndNode;
-  private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
+  private HashMap<EdgeWrapper, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode;
+  }
+
+  private class EdgeWrapper {
+    public Edge e;
+    public Node n;
+    public EdgeWrapper(Edge E, Node N) {
+      e = E;
+      n = N;
+    }
   }
 
   private class Pos {
@@ -250,12 +259,12 @@ public class GraphEditController {
       if (selectedEdge.getStart().getFloor() == selectedEdge.getEnd().getFloor()) lines.get(selectedEdge).setStroke(Color.BLACK);
       else {
         if (selectedEdge.getEnd().getFloor() < selectedEdge.getStart().getFloor()) {
-          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.ORCHID);
-          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.DARKGREEN);
+          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getStart())).setStroke(Color.ORCHID);
+          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getEnd())).setStroke(Color.DARKGREEN);
         }
         else {
-          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.DARKGREEN);
-          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.ORCHID);
+          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getStart())).setStroke(Color.DARKGREEN);
+          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getEnd())).setStroke(Color.ORCHID);
         }
       }
     }
@@ -313,8 +322,8 @@ public class GraphEditController {
         selectedEdge = DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode);
         if (selectedEndNode.getFloor() == selectedStartNode.getFloor()) lines.get(selectedEdge).setStroke(Color.DARKORANGE);
         else {
-          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.DARKORANGE);
-          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.DARKORANGE);
+          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getStart())).setStroke(Color.DARKORANGE);
+          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getEnd())).setStroke(Color.DARKORANGE);
         }
 
         addButton.setDisable(true);
@@ -344,8 +353,8 @@ public class GraphEditController {
         Path c = pair.getValue();
         removeFromPath(c, pair.getKey().getStart().getFloor());
       }
-      for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
-        removeFromPath(pair.getValue(), pair.getKey().getFloor());
+      for (Map.Entry<EdgeWrapper, Circle> pair : interFloorPaths.entrySet()) {
+        removeFromPath(pair.getValue(), pair.getKey().n.getFloor());
       }
     }
     interFloorPaths.clear();
@@ -399,8 +408,10 @@ public class GraphEditController {
         c2.setRadius(App.getNodeSize()+5);
         c.setStrokeWidth(5);
         c2.setStrokeWidth(5);
-        interFloorPaths.put(n1, c);
-        interFloorPaths.put(n2, c2);
+        c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+        c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+        interFloorPaths.put(new EdgeWrapper(e, n1), c);
+        interFloorPaths.put(new EdgeWrapper(e, n2), c2);
         addToPath(c, n1.getFloor());
         addToPath(c2, n2.getFloor());
       }
@@ -524,6 +535,18 @@ public class GraphEditController {
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
       source.setFill(Color.BLACK);
+    }
+  };
+
+  EventHandler<MouseEvent> interFloorHandler = new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+      for (Map.Entry<EdgeWrapper, Circle> pair : interFloorPaths.entrySet()) {
+        if (pair.getValue().equals(event.getSource())) {
+          floor = pair.getKey().e.getOther(pair.getKey().n).getFloor();
+          stateMachine(floor);
+        }
+      }
     }
   };
 

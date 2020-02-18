@@ -93,6 +93,38 @@ public class DatabaseWrapper {
   }
 
   /**
+   * create a new user or edit and existing one
+   * @param username username for login (PK)
+   * @param password password for login
+   * @param firstName FirstName
+   * @param lastName LastName
+   * @param position Position: one of ('ADMIN' 'MEDIC' ...)
+   * @return boolean if loginSR is updated or edited
+   */
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position){
+    return (Database.addLoginSR(username, password, firstName, lastName, position));
+  }
+
+  /**
+   * give the username as a string and it will return an array list with the following strings in this order
+   * username, password, firstName, lastName, position
+   * @param username used as the PK
+   * @return returns arrayList of strings (U,P,F,L,P)
+   */
+  public static ArrayList<String> getLoginSR(String username){
+    return (Database.getLoginSR(username));
+  }
+
+  /**
+   * Deletes a row from the database
+   * @param username give unique Username for deletion
+   * @return returns true if row is deleted
+   */
+  public static boolean delLoginSR(String username){
+    return (Database.delLoginSR(username));
+  }
+
+  /**
    * Print a given database table
    *
    * @param stmt Statement (sql)
@@ -184,6 +216,10 @@ public class DatabaseWrapper {
    */
   public static void getServices(ArrayList<Service> servicesList, String user) {
     Database.getServices(servicesList, user);
+  }
+
+  public static void getFinishedServices(ArrayList<Service> servicesList, String user) {
+    Database.getFinishedServices(servicesList, user);
   }
 
     /**
@@ -284,6 +320,18 @@ public class DatabaseWrapper {
    */
     public static boolean medicineSRDel(int reqID, String adminsName, String user) {
         return (ServiceDatabase.medicineSRDel(reqID, adminsName, user));
+    }
+
+
+    //Use functions to update all database tables: "[Name]SR, ServiceRequest, ServiceFinished"
+    //ex input: languageSRAdd("Chalmers", "Marcus", "Chinese");
+    //ex input: languageSRDel(2, "adminUsername", "LANGE");
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
+      return (ServiceDatabase.languageSRAdd(patentLastName, patentFirstName, language));
+    }
+
+    public static boolean languageSRDel(int reqID, String adminsName, String user) {
+      return  (ServiceDatabase.languageSRDel(reqID, adminsName, user));
     }
 
 

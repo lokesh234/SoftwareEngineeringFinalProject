@@ -96,7 +96,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, reqType, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
@@ -115,6 +115,41 @@ public class ServiceDatabase {
         }
     }
 
+    //languageSRAdd("Chalmers", "Marcus", "Chinese");
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String location = "Terminal 1"; //place holder for when terminal is given
+
+
+        String LSRTableName = "LanguageSR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'LANGE', 'Language request of " + language + " at location: " + location + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + LSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentLastName + "', '" + patentFirstName + "', '" + language + "', '" + location + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, LSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
     //gets current date
     static String getCurrentDate(){
         String timeReq;
@@ -125,7 +160,7 @@ public class ServiceDatabase {
         return timeReq;
     }
 
-    //ServiceDatabase.medicineSRAdd("Marcus", "Chalmers", "Sadness", "Everyday", "IV", "sad boi hours"); Example
+    //ServiceDatabase.medicineSRAdd("Marcus", "Chalmers", "Sadness", "Everyday", "Oral", "sad boi hours"); Example
     public static boolean medicineSRAdd(String patentFirstName, String patentLastName, String drugName, String frequency, String deliveryMethod, String comment){
         int reqID;
         String timeReq = getCurrentDate();
@@ -139,7 +174,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, reqType, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
@@ -168,6 +203,7 @@ public class ServiceDatabase {
     String SFTable = "ServiceFinished";
     String curDate = getCurrentDate();
     String location;
+    String SRTime;
 
     Connection conn = null;
     Statement stmt = null;
@@ -178,6 +214,7 @@ public class ServiceDatabase {
             ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
             results.next();
             location = results.getString(3);
+            SRTime = results.getString(2);
             results.close();
 
             //delete from table SecuritySR first (needs to be before servicereuest)
@@ -186,7 +223,7 @@ public class ServiceDatabase {
             //delete from table servicerequest
             stmt.executeUpdate("DELETE FROM " + SRTable + " WHERE reqID = " + reqID);
 
-            stmt.executeUpdate("INSERT INTO " + SFTable + " VALUES ('" + curDate + "', 'SECUR', '" + adminsName + "', 'Location: " + location + "')");
+            stmt.executeUpdate("INSERT INTO " + SFTable + " VALUES ('" + curDate + "', 'SECUR', '" + adminsName + "', 'Location: " + location + " Time: " + SRTime + "')");
 
             Database.CreateCSV(stmt, STable, null);
             Database.CreateCSV(stmt, SRTable, null);
@@ -217,7 +254,7 @@ public class ServiceDatabase {
       Database.getServices(services, user);
       for (Service s : services) {
           if (Integer.parseInt(s.getDate()) == reqID) {
-              info = s.getName() + " needed: " + s.getRequestType();
+              info = s.getName() + " | request: " + s.getRequestType();
               break;
           }
       }
@@ -244,4 +281,50 @@ public class ServiceDatabase {
         }
     }
 
+    public static boolean languageSRDel(int reqID, String adminsName, String user) {
+        String LTable = "LanguageSR";
+        String SRTable = "ServiceRequest";
+        String SFTable = "ServiceFinished";
+        String curDate = getCurrentDate();
+        String info = "";
+
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            ArrayList<Service> services = new ArrayList<>();
+            Database.getServices(services, user);
+            for (Service s : services) {
+                if (Integer.parseInt(s.getDate()) == reqID) {
+                    info = s.getName() + " | request: " + s.getRequestType();
+                    break;
+                }
+                else{
+                    info = "*Request information not found*";
+                }
+            }
+
+
+            // delete from table SecuritySR first (needs to be before servicereuest)
+            stmt.executeUpdate("DELETE FROM " + LTable + " WHERE reqID = " + reqID);
+
+            // delete from table servicerequest
+            stmt.executeUpdate("DELETE FROM " + SRTable + " WHERE reqID = " + reqID);
+
+            stmt.executeUpdate(
+                    "INSERT INTO " + SFTable + " VALUES ('" + curDate + "', 'LANGE', '" + adminsName + "', '" + info + "')");
+
+            Database.CreateCSV(stmt, LTable, null);
+            Database.CreateCSV(stmt, SRTable, null);
+            Database.CreateCSV(stmt, SFTable, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

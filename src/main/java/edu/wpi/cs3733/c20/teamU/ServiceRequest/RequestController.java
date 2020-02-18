@@ -29,5 +29,17 @@ public class RequestController {
         App.getITPop().show(App.getPrimaryStage());
     }
 
+    @FXML
+    public void openReligiousRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getReligiousPop().getContent().add(App.getReligious());
+        App.getReligiousPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void popReligious(){
+
+    }
+
 
 }
