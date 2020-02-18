@@ -43,8 +43,9 @@ public class Database {
             dropTable(stmt, "ServiceFinished");
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
-            dropTable(stmt, "ServiceRequest");
             dropTable(stmt, "LanguageSR");
+
+            dropTable(stmt, "ServiceRequest");
             // drops database tables if they currently exist
             System.out.println("Dropped tables");
 
@@ -252,8 +253,7 @@ public class Database {
      */
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
-                    "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR', 'LANGE')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
