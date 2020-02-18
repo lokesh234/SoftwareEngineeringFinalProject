@@ -37,8 +37,10 @@ public class RequestController {
     }
 
     @FXML
-    public void popReligious(){
-
+    public void openExtTransportRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getExtTransportPop().getContent().add(App.getExternalTransport());
+        App.getExtTransportPop().show(App.getPrimaryStage());
     }
 
 
