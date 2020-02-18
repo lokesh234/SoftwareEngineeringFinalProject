@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -35,11 +36,7 @@
          <center>
             <VBox fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <ImageView fitHeight="273.0" fitWidth="348.0" pickOnBounds="true" VBox.vgrow="ALWAYS">
-                     <image>
-                        <Image url="@../png_files/meatball.jpg" />
-                     </image>
-                  </ImageView>
+                  <ImageView fitHeight="273.0" fitWidth="348.0" pickOnBounds="true" VBox.vgrow="ALWAYS" />
                   <Label text="Cloudy with a chance of memeballs" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
@@ -76,6 +73,19 @@
                         <Font name="Segoe UI" size="36.0" />
                      </font>
                   </Label>
+                  <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <JFXButton contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #474338;" text=" ">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/cloud_sun.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </right>
@@ -84,11 +94,7 @@
                <children>
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-                           <image>
-                              <Image url="@../png_files/Weather_Icons/Blizzard.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                         <Label text="Day +1">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
@@ -117,11 +123,7 @@
                   </VBox>
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-                           <image>
-                              <Image url="@../png_files/Weather_Icons/Cloudy_Day.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                         <Label text="Day +2">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
@@ -150,11 +152,7 @@
                   </VBox>
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-                           <image>
-                              <Image url="@../png_files/Weather_Icons/Cloudy_Night.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                         <Label text="Day +3">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
@@ -183,11 +181,7 @@
                   </VBox>
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-                           <image>
-                              <Image url="@../png_files/Weather_Icons/Day.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                         <Label text="Day +4">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
@@ -216,11 +210,7 @@
                   </VBox>
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-                           <image>
-                              <Image url="@../png_files/Weather_Icons/Day_LightRain.png" />
-                           </image>
-                        </ImageView>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                         <Label text="Day +5">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
