@@ -119,7 +119,7 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="cancel"  style="-fx-background-color: #BFB397;" text="Cancel">
+                  <JFXButton fx:id="cancel" onAction="#cancelExt"  style="-fx-background-color: #BFB397;" text="Cancel">
                      <font>
                         <Font size="18.0" />
                      </font>
