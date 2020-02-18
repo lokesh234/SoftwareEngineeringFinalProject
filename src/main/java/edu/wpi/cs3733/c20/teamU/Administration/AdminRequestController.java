@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
@@ -20,8 +21,8 @@ public class AdminRequestController {
   @FXML private TableColumn<Service, String> requestID;
   @FXML private TableColumn<Service, String> type;
   @FXML private TableColumn<Service, String> info;
-  @FXML private Button close;
-  @FXML private Button backButton;
+  @FXML private JFXButton close;
+  @FXML private JFXButton backButton;
   RequestScreenController requestScreenController;
 
   public void setAttributes(RequestScreenController requestScreenController1) {
@@ -55,7 +56,9 @@ public class AdminRequestController {
   private ObservableList<Service> arrayToOBList() {
     ObservableList<Service> services = FXCollections.observableArrayList();
     ArrayList<Service> temp = new ArrayList<>();
-    Database.getServices(temp);
+    String user = App.getUser();
+    System.out.println("init with user" + user);
+    Database.getServices(temp, user);
     if (temp != null) {
       services.addAll(temp);
     }
@@ -72,8 +75,6 @@ public class AdminRequestController {
 
     info.setCellValueFactory(new PropertyValueFactory<>("requestType"));
     if (!arrayToOBList().isEmpty()) {
-
-
       serviceTable.setItems(arrayToOBList());
     }
     close.setDisable(true);

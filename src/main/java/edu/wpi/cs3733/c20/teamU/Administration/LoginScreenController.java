@@ -64,6 +64,7 @@ public class LoginScreenController {
 //      adminScreenController.enableBasedOnCred(whoTried);
       if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());
+      App.getAdminRequestController().update();
       App.getPopup().show(App.getPrimaryStage());
     }
     usernameField.clear();
