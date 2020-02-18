@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.NodeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EdgeEditController">
    <children>
       <VBox style="-fx-background-color: #474338;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -67,10 +67,10 @@
                         </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
                            <children>
-                              <JFXButton fx:id="addButton" buttonType="RAISED" style="-fx-background-color: #FFEEC9;" text="Add" />
-                              <JFXButton fx:id="edit" buttonType="RAISED" onAction="#editScreen" style="-fx-background-color: #FFEEC9;" text="Edit" />
-                              <JFXButton fx:id="removeButton" buttonType="RAISED" onAction="#editScreen" style="-fx-background-color: #db6e6e;" text="Remove" />
-                              <JFXButton fx:id="export" buttonType="RAISED" onAction="#exportScreen" style="-fx-background-color: #FFEEC9;" text="Export" />
+                              <JFXButton fx:id="startNode" onAction="#save" buttonType="RAISED" style="-fx-background-color: #FFEEC9;" text="Add" />
+                              <JFXButton fx:id="endNode" buttonType="RAISED" onAction="#selectEnd" style="-fx-background-color: #FFEEC9;" text="Edit" />
+                              <JFXButton fx:id="saveButton" buttonType="RAISED" onAction="#selectStart" style="-fx-background-color: #db6e6e;" text="Remove" />
+                              <JFXButton fx:id="cancelButton" buttonType="RAISED" onAction="#back" style="-fx-background-color: #FFEEC9;" text="Export" />
                            </children>
                         </VBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />

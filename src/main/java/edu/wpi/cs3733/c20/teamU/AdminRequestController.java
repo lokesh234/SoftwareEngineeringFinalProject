@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,16 +16,18 @@ import javax.management.StandardEmitterMBean;
 import java.util.ArrayList;
 
 public class AdminRequestController {
-    @FXML
-    private TableView<Service> serviceTable;
+    @FXML private TableView<Service> serviceTable;
     @FXML private TableColumn<Service, String> date;
     @FXML private TableColumn<Service, String> requestID;
     @FXML private TableColumn<Service, String> type;
     @FXML private TableColumn<Service, String> info;
     @FXML private JFXButton close;
     @FXML private Button backButton;
+    RequestScreenController requestScreenController;
 
-//    private Popup popup = App.getPopup();
+    public void setAttributes(RequestScreenController requestScreenController1) {
+        requestScreenController = requestScreenController1;
+    }
 
     @FXML
     private void detectClick() {
@@ -40,7 +45,7 @@ public class AdminRequestController {
         }
     }
 
-    protected void update() {
+    public void update() {
         serviceTable.setItems(arrayToOBList());
         serviceTable.setVisible(true);
     }

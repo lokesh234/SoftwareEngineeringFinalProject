@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<!--<?import net.kurobako.gesturefx.GesturePane?>-->
+<?import net.kurobako.gesturefx.GesturePane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
@@ -35,7 +35,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                            <children>
-                              <JFXButton buttonType="RAISED" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login ">
+                              <JFXButton fx:id="login" onAction="#openLoginScene" buttonType="RAISED" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login ">
                                  <font>
                                     <Font name="Segoe UI Bold" size="20.0" />
                                  </font>
@@ -78,7 +78,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" text="Navigate" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="navButton" onAction="#openNavScene" contentDisplay="TOP" text="Navigate" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -94,7 +94,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" text="Services" HBox.hgrow="ALWAYS">
+                        <JFXButton onAction="#openRequestScene" contentDisplay="TOP" text="Services" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -120,7 +120,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" text="Help" HBox.hgrow="ALWAYS">
+                        <JFXButton onAction="#openHelpScene" contentDisplay="TOP" text="Help" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>

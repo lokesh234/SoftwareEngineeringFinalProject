@@ -23,7 +23,7 @@
                   <AnchorPane fx:id="NodesPane">
                      <ImageView >
                         <image>
-                           <Image url="@png_files/Hospital.png"/>
+                           <Image url="@../png_files/Hospital.png"/>
                         </image>
                      </ImageView>
                   </AnchorPane>

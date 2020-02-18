@@ -37,10 +37,10 @@ public class MedicineControllerTest extends ApplicationTest {
         clickOn("#comments").write("I need this right now");
         clickOn("#comboBox");
     }
-    @Test
-    public void testSubmitCanClick() {
-        //waiting on database
-//        clickOn("#submit");
-    }
+//    @Test
+//    public void testSubmitCanClick() {
+//        //waiting on database
+////        clickOn("#submit");
+//    }
 
 }

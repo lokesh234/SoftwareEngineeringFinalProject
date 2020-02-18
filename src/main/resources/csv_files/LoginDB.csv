@@ -1,6 +1,8 @@
-username,password
-admin,password
-James,password1234
-wwong2,HarvardBad
-teamU,bestTeam
-fakeName,fakePass
+username,password,position
+admin,password,ADMIN
+James,password1234,EMPLY
+wwong2,HarvardBad,ADMIN
+teamU,bestTeam,ADMIN
+fakeName,fakePass,EMPLY
+medic,password,MEDIC
+security,password,SECUR
