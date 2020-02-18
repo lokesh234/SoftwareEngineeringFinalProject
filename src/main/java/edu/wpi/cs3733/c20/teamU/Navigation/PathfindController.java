@@ -56,6 +56,13 @@ public class PathfindController {
     @FXML VBox oppo;
     @FXML Label floorLabel;
 
+    @FXML private GesturePane MapGes1;
+    @FXML private GesturePane MapGes2;
+    @FXML private GesturePane MapGes3;
+    @FXML private GesturePane MapGes4;
+    @FXML private GesturePane MapGes5;
+
+
     public void setAttributes(Parent root) {
         this.root = root;
         this.drawNodes();
@@ -176,41 +183,122 @@ public class PathfindController {
                 oppo.getChildren().add(N1);
                 floor = 1;
                 floorLabel.setText("1");
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
                 break;
             case 2:
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N2);
                 floor = 2;
                 floorLabel.setText("2");
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes2.getCurrentScale() - 30000, MapGes2.targetPointAtViewportCentre());
                 break;
             case 3:
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N3);
                 floor = 3;
                 floorLabel.setText("3");
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
                 break;
             case 4:
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N4);
                 floor = 4;
                 floorLabel.setText("4");
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
                 break;
             case 5:
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N5);
                 floor = 5;
                 floorLabel.setText("5");
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
                 break;
         }
     }
 
+
+
     @FXML private void zoomIn() {
-
-    }
-    @FXML private void zoomOut() {
-
+        ZoomInMachine(floor);
     }
 
+    @FXML private void ZoomInMachine(int floor){
+        switch (floor){
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes2.getCurrentScale(), MapGes2.targetPointAtViewportCentre());
+
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes3.getCurrentScale(), MapGes3.targetPointAtViewportCentre());
+                break;
+            case 4:
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes4.getCurrentScale(), MapGes4.targetPointAtViewportCentre());
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
+
+                break;
+        }
+    }
+
+    @FXML private void ZoomOutMachine(int floor) {
+        switch (floor) {
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() - 200, MapGes1.targetPointAtViewportCentre());
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes2.getCurrentScale() - 200, MapGes2.targetPointAtViewportCentre());
+
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes3.getCurrentScale() - 200, MapGes3.targetPointAtViewportCentre());
+                break;
+            case 4:
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes4.getCurrentScale() - 200, MapGes4.targetPointAtViewportCentre());
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes5.getCurrentScale() - 200, MapGes5.targetPointAtViewportCentre());
+
+                break;
+        }
+    }
+
+    @FXML private void zoomOut(){
+        ZoomOutMachine(floor);
+    }
 
 
     private void updateStatus() {
@@ -262,16 +350,71 @@ public class PathfindController {
 
     @FXML
     private void initialize() {
-        PathGes.setOnMouseClicked(e -> {
+        MapGes1.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-                Point2D pivotOnTarget = PathGes.targetPointAt(new Point2D(e.getX(), e.getY()))
-                        .orElse(PathGes.targetPointAtViewportCentre());
+                Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(MapGes1.targetPointAtViewportCentre());
                 // increment of scale makes more sense exponentially instead of linearly
-                PathGes.animate(Duration.millis(200))
+                MapGes1.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(PathGes.getCurrentScale(), pivotOnTarget);
+                        .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
             }
         });
+        MapGes2.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+                Point2D pivotOnTarget = MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(MapGes2.targetPointAtViewportCentre());
+                // increment of scale makes more sense exponentially instead of linearly
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
+            }
+        });
+        MapGes3.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+                Point2D pivotOnTarget = MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(MapGes3.targetPointAtViewportCentre());
+                // increment of scale makes more sense exponentially instead of linearly
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
+            }
+        });
+        MapGes4.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+                Point2D pivotOnTarget = MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(MapGes4.targetPointAtViewportCentre());
+                // increment of scale makes more sense exponentially instead of linearly
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
+            }
+        });
+        MapGes5.setOnMouseClicked(e -> {
+            if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+                Point2D pivotOnTarget = MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
+                        .orElse(MapGes5.targetPointAtViewportCentre());
+                // increment of scale makes more sense exponentially instead of linearly
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
+            }
+        });
+        MapGes1.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+        MapGes2.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+        MapGes3.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+        MapGes4.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+        MapGes5.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
     }
@@ -335,8 +478,8 @@ public class PathfindController {
                 Path pathe = new Path();
                 pathe.getElements().add(move);
                 pathe.getElements().add(line);
-                pathe.setStroke(Color.web("#39ff14"));
-                pathe.setStrokeWidth(5.0);
+                pathe.setStroke(Color.web("#7851a9"));
+                pathe.setStrokeWidth(10.0);
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
             }

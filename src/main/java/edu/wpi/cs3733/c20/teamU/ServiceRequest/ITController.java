@@ -14,9 +14,7 @@ public class ITController {
         @FXML
         private TextField last;
         @FXML private TextArea comments;
-        @FXML private TextField frequency;
         @FXML private TextField first;
-        @FXML private TextField drug;
         @FXML private Button closeITScreen;
         @FXML private ComboBox comboBox = new ComboBox();
 
@@ -24,30 +22,23 @@ public class ITController {
         private void getSubmission() {
             String userLast = last.getText();
             String userComment = comments.getText();
-            String userFreq = frequency.getText();
             String userFirst = first.getText();
-            String userDrug = drug.getText();
             String userDelivery;
             if(comboBox.getValue() == null) userDelivery = "";
             else userDelivery = comboBox.getValue().toString();
 
             //TODO: specify which textfield to write in if empty
-            if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
+            if( userLast.isEmpty() || userFirst.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
                 // will print out some text eventually, right now nothing
                 last.setStyle("-fx-border-color: red");
-//            comments.setStyle("-fx-border-color: red");
-                frequency.setStyle("-fx-border-color: red");
-                drug.setStyle("-fx-border-color: red");
                 comboBox.setStyle("-fx-border-color: red");
                 first.setStyle("-fx-border-color: red");
             } else {
                 last.setStyle("-fx-border-color: clear");
                 comments.setStyle("-fx-border-color: clear");
-                frequency.setStyle("-fx-border-color: clear");
-                drug.setStyle("-fx-border-color: clear");
                 comboBox.setStyle("-fx-border-color: clear");
                 first.setStyle("-fx-border-color: clear");
-                //ServiceDatabase.ITSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment); TODO:Add method in database class
+                //ServiceDatabase.ITSRAdd(userFirst, userLast, issueType, userComment); TODO:Add method in database class
                 clearField();
                 closeITScreen.fire();
             }
@@ -77,9 +68,7 @@ public class ITController {
         public void clearField() {
             last.clear();
             comments.clear();
-            frequency.clear();
             first.clear();
-            drug.clear();
             comboBox.getSelectionModel().clearSelection();
         }
         @FXML
@@ -88,13 +77,24 @@ public class ITController {
         }
 
         @FXML
+        private void goBack(){
+//        App.getHome().setOpacity(1);
+//        App.getHome().setDisable(false);
+            App.getITPop().getContent().clear();
+            App.getRequestPop().getContent().add(App.getRequest());
+            App.getRequestPop().show(App.getPrimaryStage());
+        }
+        @FXML
         public void initialize() {
 //        submit.setDisable(false);
             ObservableList<String> deliveryOptions =
                     FXCollections.observableArrayList(
-                            "Oral",
-                            "Topical",
-                            "Suppository"
+                            "WIFI",
+                            "Kiosk",
+                            "Software",
+                            "Hardware",
+                            "Other",
+                            "Don'tknow"
                     );
             comboBox.getItems().addAll(deliveryOptions);
         }

@@ -30,6 +30,20 @@ public class RequestController {
     }
 
     @FXML
+    public void openReligiousRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getReligiousPop().getContent().add(App.getReligious());
+        App.getReligiousPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void openExtTransportRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getExtTransportPop().getContent().add(App.getExternalTransport());
+        App.getExtTransportPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
     public void openFlowerRequest() {
         App.getRequestPop().getContent().clear();
         App.getFlowerPop().getContent().add(App.getFlower());

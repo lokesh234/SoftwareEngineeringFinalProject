@@ -49,7 +49,13 @@ public class App extends Application {
   private static Pane resolveRequest;
   private static Pane weather;
   private static Pane IT;
+
+  private static Pane religious;
+
   private static Pane employeeF;
+
+  private static Pane externalTransport;  // This is anir
+
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -67,6 +73,8 @@ public class App extends Application {
   private static Scene resolveRequestScene;
   private static Scene weatherScene;
   private static Scene employeeFormScene;
+  private static Scene religiousScene;
+  private static Scene extTransportScene; //this is anir
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -82,6 +90,8 @@ public class App extends Application {
   private static EdgeEditController editEdgeController;
   private static WeatherController weatherController;
   private static EmployeeFormController employeeFormController;
+  private static ReligiousController religiousController;
+  private static ExtTransportController extTransportController; //anir
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -95,6 +105,7 @@ public class App extends Application {
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
   private static String user;
+  private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
@@ -102,6 +113,8 @@ public class App extends Application {
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
   private static Popup ITPop = new Popup();
+  private static Popup religiousPop = new Popup();
+  private static Popup extTransportPop = new Popup(); //anir
   private static Popup flowerPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
@@ -124,6 +137,8 @@ public class App extends Application {
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
+  public static Pane getExternalTransport() {return externalTransport;} //anir
+  public static Pane getReligious() { return religious;}
   public static Pane getEmployeeForm() {return employeeF; }
   public static Pane getFlower(){return  flower;}
 
@@ -144,6 +159,10 @@ public class App extends Application {
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
   public static Scene getWeatherScene() {return weatherScene; }
   public static Scene getEmployeeFormScene() {return employeeFormScene; }
+  public static Scene getExtTransportScene() {return extTransportScene;} //anir
+    public static Scene getReligiousScene() {
+        return religiousScene;
+    }
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -159,6 +178,10 @@ public class App extends Application {
   public static WeatherController weatherController() {return weatherController; }
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
+  public static ExtTransportController getExtTransportController() {return  extTransportController;}
+    public static ReligiousController getReligiousController() {
+        return religiousController;
+    }
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -176,6 +199,8 @@ public class App extends Application {
   public static long getTime() { return time; }
   public static void setUser(String user1) { user = user1; }
   public static String getUser() { return user; }
+  public static void setUsernameTried(String username1) { usernameTried = username1; }
+  public static String getUsernameTried() { return usernameTried; }
   public static int getNodeSize() { return nodeSize; }
 
   public static Popup getPopup() { return popup; }
@@ -183,7 +208,8 @@ public class App extends Application {
   public static Popup getRequestPop() { return requestPop; }
   public static Popup getMedicinePop() { return medicinePop; }
   public static Popup getITPop() { return ITPop;}
-
+  public static Popup getReligiousPop() { return religiousPop;}
+  public static Popup getExtTransportPop() {return extTransportPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -191,6 +217,7 @@ public class App extends Application {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     try {
+
       FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/HomeStart.fxml"));
       FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/light_theme/Home.fxml"));
       FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/light_theme/LoginForm.fxml"));
@@ -208,12 +235,15 @@ public class App extends Application {
       FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/View_Edges.fxml")); //TODO: add correct fxml
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFormResolve.fxml"));
       FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/light_theme/WeatherWindow.fxml"));
-      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/IT.fxml"));
+      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestIT.fxml"));
       FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindEmergency.fxml"));
       FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminGraph.fxml"));
 //      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
+      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
+
+      FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
 
 
       home = homeLoader.load();
@@ -227,6 +257,7 @@ public class App extends Application {
       flower = flowerLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
+      religious = religiousLoader.load();
       IT = ITLoader.load();
       export = exportLoader.load();
       edit = editLoader.load();
@@ -237,6 +268,7 @@ public class App extends Application {
       addNode = addNodeLoader.load();
       resolveRequest = RRLoader.load();
       employeeF = employeeFormLoader.load();
+      externalTransport = extTransportLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -255,7 +287,9 @@ public class App extends Application {
       fireController = fireLoader.getController();
       weatherController = weatherLoader.getController();
       employeeFormController = employeeFormLoader.getController();
+      religiousController = religiousLoader.getController();
 //      editEdgeController = adminNodeLoader.getController();
+      extTransportController = extTransportLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -273,6 +307,8 @@ public class App extends Application {
       requestPop.getContent().addAll();
       medicinePop.getContent().addAll();
       ITPop.getContent().addAll();
+      religiousPop.getContent().addAll();
+      extTransportPop.getContent().addAll();
 
 
       homeScene = new Scene(home);
