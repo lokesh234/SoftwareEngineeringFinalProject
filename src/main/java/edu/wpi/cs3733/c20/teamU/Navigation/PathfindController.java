@@ -74,6 +74,7 @@ public class PathfindController {
     private HashMap<Path, Integer> pathes = new HashMap<>();
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
+    private ArrayList<Integer> floorsInPath = new ArrayList<>();
 
 
     @FXML
@@ -122,19 +123,29 @@ public class PathfindController {
 
 
     @FXML private void clickUp(ActionEvent e){
-        floor++;
-        stateMachine(floor);
-        if(floor > 5){
-            floor = 5;
+        if (displayingPath && floorsInPath.contains(floor) && floorsInPath.indexOf(floor) < (floorsInPath.size()-1)) {
+            floor = floorsInPath.get(floorsInPath.indexOf(floor)+1);
         }
+        else {
+            floor++;
+            if(floor > 5) {
+                floor = 5;
+            }
+        }
+        stateMachine(floor);
     }
 
     @FXML private void clickDown(ActionEvent e){
-        floor--;
-        stateMachine(floor);
-        if(floor < 1){
-            floor = 1;
+        if (displayingPath && floorsInPath.contains(floor) && floorsInPath.indexOf(floor) > 0) {
+            floor = floorsInPath.get(floorsInPath.indexOf(floor)-1);
         }
+        else {
+            floor--;
+            if (floor < 1) {
+                floor = 1;
+            }
+        }
+        stateMachine(floor);
     }
 
     @FXML private void stateMachine(int floor){
@@ -267,6 +278,7 @@ public class PathfindController {
             removeFromPath(pair.getKey(), pair.getValue());
         }
         displayingPath = false;
+        floorsInPath.clear();
         updateStatus();
     }
     private void drawPath() {
@@ -280,6 +292,7 @@ public class PathfindController {
         for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
+            if (!floorsInPath.contains(n1.getFloor())) floorsInPath.add(n1.getFloor());
 
             if (n1.getFloor() == n2.getFloor()) {
 
