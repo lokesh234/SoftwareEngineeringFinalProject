@@ -75,6 +75,7 @@ public class PathfindController {
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
     private ArrayList<Integer> floorsInPath = new ArrayList<>();
+    private HashMap<Circle, Integer> interFloorPaths = new HashMap<>();
 
 
     @FXML
@@ -277,8 +278,13 @@ public class PathfindController {
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue());
         }
+        for (Map.Entry<Circle, Integer> pair : interFloorPaths.entrySet()) {
+            removeFromPath(pair.getKey(), pair.getValue());
+        }
         displayingPath = false;
         floorsInPath.clear();
+        pathes.clear();
+        interFloorPaths.clear();
         updateStatus();
     }
     private void drawPath() {
@@ -305,6 +311,24 @@ public class PathfindController {
                 pathe.setStrokeWidth(5.0);
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
+            }
+            else {
+                Circle c = new Circle();
+                Circle c2 = new Circle();
+                c.setCenterX(n1.getX());
+                c.setCenterY(n1.getY());
+                c2.setCenterY(n2.getY());
+                c2.setCenterX(n2.getX());
+                c.setFill(Color.TRANSPARENT);
+                c2.setFill(Color.TRANSPARENT);
+                c.setStroke(Color.GREEN);
+                c2.setStroke(Color.ORCHID);
+                c.setRadius(App.getNodeSize()+5);
+                c2.setRadius(App.getNodeSize()+5);
+                interFloorPaths.put(c, n1.getFloor());
+                interFloorPaths.put(c2, n2.getFloor());
+                addToPath(c, n1.getFloor());
+                addToPath(c2, n2.getFloor());
             }
 
         }

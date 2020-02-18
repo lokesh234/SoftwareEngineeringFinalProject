@@ -59,6 +59,8 @@ public class GraphEditController {
   private Node selectedNode;
   private Node selectedStartNode;
   private Node selectedEndNode;
+  private HashMap<Circle, Integer> interFloorPaths = new HashMap<>();
+  private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode;
@@ -135,6 +137,9 @@ public class GraphEditController {
     else { //Add edge
       DatabaseWrapper.addEdge(selectedStartNode.getID(), selectedEndNode.getID());
       removeFromPath(extraLine, extraLineFloor);
+      for (Map.Entry<Circle, Integer> pair : extraFloorPaths.entrySet()) {
+        removeFromPath(pair.getKey(), pair.getValue());
+      }
       update();
     }
   }
@@ -251,18 +256,46 @@ public class GraphEditController {
     }
     else if (selectedStartNode != null && selectedEndNode != null) {
       clearExtraLine();
-      if (!DatabaseWrapper.getGraph().getNeighborNodes(DatabaseWrapper.getGraph().getNode(selectedStartNode.getID())).contains(selectedEndNode) && selectedStartNode.getFloor() == selectedEndNode.getFloor()) { //ya like ()?
-        extraLine = new Path(); //This is an edge that doesn't exist, so let's highlight it in green!
-        extraLineFloor = selectedStartNode.getFloor();
-        MoveTo move = new MoveTo(selectedEndNode.getX(),selectedEndNode.getY());
-        LineTo line = new LineTo(selectedStartNode.getX(),selectedStartNode.getY());
-        extraLine.getElements().add(move);
-        extraLine.getElements().add(line);
-        extraLine.setStroke(green);
-        extraLine.setStrokeWidth(5.0);
-        extraLine.getStrokeDashArray().addAll(15d, 15d);
-        extraLine.setStrokeDashOffset(15d);
-        addToPath(extraLine, extraLineFloor);
+      if (!DatabaseWrapper.getGraph().getNeighborNodes(DatabaseWrapper.getGraph().getNode(selectedStartNode.getID())).contains(selectedEndNode)) { //ya like ()?
+        if (selectedStartNode.getFloor() == selectedEndNode.getFloor()) {
+          extraLine = new Path(); //This is an edge that doesn't exist, so let's highlight it in green!
+          extraLineFloor = selectedStartNode.getFloor();
+          MoveTo move = new MoveTo(selectedEndNode.getX(), selectedEndNode.getY());
+          LineTo line = new LineTo(selectedStartNode.getX(), selectedStartNode.getY());
+          extraLine.getElements().add(move);
+          extraLine.getElements().add(line);
+          extraLine.setStroke(green);
+          extraLine.setStrokeWidth(5.0);
+          extraLine.getStrokeDashArray().addAll(15d, 15d);
+          extraLine.setStrokeDashOffset(15d);
+          addToPath(extraLine, extraLineFloor);
+        }
+        else {
+          Node n1 = selectedEndNode;
+          Node n2 = selectedStartNode;
+          Circle c = new Circle();
+          Circle c2 = new Circle();
+          c.setCenterX(n1.getX());
+          c.setCenterY(n1.getY());
+          c2.setCenterY(n2.getY());
+          c2.setCenterX(n2.getX());
+          c.setFill(Color.TRANSPARENT);
+          c2.setFill(Color.TRANSPARENT);
+          c.setStroke(Color.GREEN);
+          c2.setStroke(Color.GREEN);
+          c.setRadius(App.getNodeSize()+5);
+          c2.setRadius(App.getNodeSize()+5);
+          c.getStrokeDashArray().addAll(15d, 15d);
+          c.setStrokeDashOffset(15d);
+          c2.getStrokeDashArray().addAll(15d, 15d);
+          c2.setStrokeDashOffset(15d);
+          c.setStrokeWidth(5);
+          c2.setStrokeWidth(5);
+          extraFloorPaths.put(c, n1.getFloor());
+          extraFloorPaths.put(c2, n2.getFloor());
+          addToPath(c, n1.getFloor());
+          addToPath(c2, n2.getFloor());
+        }
         addButton.setDisable(false);
         removeButton.setDisable(true);
       }
@@ -289,7 +322,11 @@ public class GraphEditController {
         Path c = pair.getValue();
         removeFromPath(c, pair.getKey().getStart().getFloor());
       }
+      for (Map.Entry<Circle, Integer> pair : interFloorPaths.entrySet()) {
+        removeFromPath(pair.getKey(), pair.getValue());
+      }
     }
+    interFloorPaths.clear();
     lines.clear();
   }
 
@@ -306,6 +343,8 @@ public class GraphEditController {
   private void drawEdges() {
     DatabaseWrapper.updateGraph();
     for (Edge e : DatabaseWrapper.getGraph().getEdges()) {
+      Node n1 = e.getEnd();
+      Node n2 = e.getStart();
       if (e.getStart().getFloor() == e.getEnd().getFloor()) {
         MoveTo move = new MoveTo(e.getEnd().getX(),e.getEnd().getY());
         LineTo line = new LineTo(e.getStart().getX(),e.getStart().getY());
@@ -316,6 +355,24 @@ public class GraphEditController {
         pathe.setStrokeWidth(5.0);
         addToPath(pathe, e.getStart().getFloor());
         lines.put(e, pathe);
+      }
+      else {
+        Circle c = new Circle();
+        Circle c2 = new Circle();
+        c.setCenterX(n1.getX());
+        c.setCenterY(n1.getY());
+        c2.setCenterY(n2.getY());
+        c2.setCenterX(n2.getX());
+        c.setFill(Color.TRANSPARENT);
+        c2.setFill(Color.TRANSPARENT);
+        c.setStroke(Color.GREEN);
+        c2.setStroke(Color.ORCHID);
+        c.setRadius(App.getNodeSize()+5);
+        c2.setRadius(App.getNodeSize()+5);
+        interFloorPaths.put(c, n1.getFloor());
+        interFloorPaths.put(c2, n2.getFloor());
+        addToPath(c, n1.getFloor());
+        addToPath(c2, n2.getFloor());
       }
     }
   }
