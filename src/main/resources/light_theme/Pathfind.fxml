@@ -193,17 +193,17 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="upButton" text="Λ">
+                  <JFXButton onAction="#clickUp" fx:id="upButton" text="Λ">
                      <font>
                         <Font name="Segoe UI Bold" size="48.0" />
                      </font>
                   </JFXButton>
-                  <Label fx:id="floorLabel" text="4">
+                  <Label fx:id="floorLabel" text="1">
                      <font>
                         <Font name="Segoe UI Bold" size="48.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="downButton" text="V">
+                  <JFXButton onAction="#clickDown" fx:id="downButton" text="V">
                      <font>
                         <Font name="Segoe UI Bold" size="48.0" />
                      </font>
