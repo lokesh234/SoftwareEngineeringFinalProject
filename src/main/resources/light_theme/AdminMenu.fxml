@@ -43,6 +43,7 @@
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -51,7 +52,7 @@
                             <children>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Export" textFill="WHITE" onAction="#export">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#export" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Export" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -67,7 +68,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Edit Graph" textFill="WHITE" onAction="#editNodes">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#editNodes" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Edit Graph" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -83,7 +84,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" prefHeight="19.0" prefWidth="110.0" style="-fx-background-color: #474338;" text="Edit Requests" textFill="WHITE" onAction="#requestPowers">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#requestPowers" prefHeight="19.0" prefWidth="110.0" style="-fx-background-color: #474338;" text="Edit Requests" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -112,6 +113,22 @@
                               </JFXButton>
                                     </children>
                                 </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="2">
+                           <children>
+                              <JFXButton contentDisplay="TOP" style="-fx-background-color: #474338;" text="Choose Path Strategy" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="116.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/path.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="12.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </VBox>
                             </children>
                         </GridPane>
                     </children>

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <?import net.kurobako.gesturefx.GesturePane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
@@ -35,7 +34,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                            <children>
-                              <JFXButton fx:id="login" onAction="#openLoginScene" buttonType="RAISED" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login ">
+                              <JFXButton fx:id="login" buttonType="RAISED" onAction="#openLoginScene" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login " textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="20.0" />
                                  </font>
@@ -65,7 +64,7 @@
                <children>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" HBox.hgrow="ALWAYS">
+                        <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -73,12 +72,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="navButton" onAction="#openNavScene" contentDisplay="TOP" text="Navigate" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="navButton" contentDisplay="TOP" onAction="#openNavScene" text="Navigate" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -87,14 +89,14 @@
                               </ImageView>
                            </graphic>
                            <font>
-                              <Font name="Segoe UI" size="12.0" />
+                              <Font name="Segoe UI Bold" size="16.0" />
                            </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton onAction="#openRequestScene" contentDisplay="TOP" text="Services" HBox.hgrow="ALWAYS">
+                        <JFXButton contentDisplay="TOP" onAction="#openRequestScene" text="Services" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -102,12 +104,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" text="Information" HBox.hgrow="ALWAYS">
+                        <JFXButton contentDisplay="TOP" text="Information" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -115,12 +120,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton onAction="#openHelpScene" contentDisplay="TOP" text="Help" HBox.hgrow="ALWAYS">
+                        <JFXButton contentDisplay="TOP" onAction="#openHelpScene" text="Help" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -128,6 +136,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
@@ -138,8 +149,8 @@
               <VBox alignment="CENTER" style="-fx-background-color: #D4D5D2;" BorderPane.alignment="CENTER">
                   <children>
                       <AnchorPane prefHeight="900.0" prefWidth="1600.0">
-                    <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">
-                        <AnchorPane fx:id="NodesPane" >
+                    <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                        <AnchorPane fx:id="NodesPane">
                 <ImageView pickOnBounds="true" preserveRatio="true">
                    <image>
                        <Image url="@../png_files/Final-Floor-4.png" />
@@ -158,23 +169,41 @@
               </VBox>
          </center>
           <right>
-              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="55.0" BorderPane.alignment="CENTER">
                   <children>
-                      <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
-                          <font>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                            <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
+                                <font>
+                                    <Font name="Segoe UI Bold" size="48.0" />
+                                </font>
+                            </JFXButton>
+                            <Label fx:id="floorLabel" text="1">
+                                <font>
+                                    <Font name="Segoe UI Bold" size="48.0" />
+                                </font>
+                            </Label>
+                            <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
+                                <font>
+                                    <Font name="Segoe UI Bold" size="48.0" />
+                                </font>
+                            </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <JFXButton fx:id="plus" onAction="#zoomIn" text="+">
+                           <font>
                               <Font name="Segoe UI Bold" size="48.0" />
-                          </font>
-                      </JFXButton>
-                      <Label fx:id="floorLabel" text="1">
-                          <font>
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="minus" onAction="#zoomOut" text="-">
+                           <font>
                               <Font name="Segoe UI Bold" size="48.0" />
-                          </font>
-                      </Label>
-                      <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
-                          <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
-                          </font>
-                      </JFXButton>
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
                   </children>
               </VBox>
           </right>
