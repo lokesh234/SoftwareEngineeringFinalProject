@@ -56,7 +56,9 @@ public class AdminRequestController {
   private ObservableList<Service> arrayToOBList() {
     ObservableList<Service> services = FXCollections.observableArrayList();
     ArrayList<Service> temp = new ArrayList<>();
-    Database.getServices(temp);
+    String user = App.getUser();
+    System.out.println("init with user" + user);
+    Database.getServices(temp, user);
     if (temp != null) {
       services.addAll(temp);
     }
@@ -73,8 +75,6 @@ public class AdminRequestController {
 
     info.setCellValueFactory(new PropertyValueFactory<>("requestType"));
     if (!arrayToOBList().isEmpty()) {
-
-
       serviceTable.setItems(arrayToOBList());
     }
     close.setDisable(true);

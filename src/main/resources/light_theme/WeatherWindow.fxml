@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.WeatherController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -34,7 +33,7 @@
             </HBox>
          </top>
          <center>
-            <VBox fillWidth="false" BorderPane.alignment="TOP_CENTER">
+            <VBox fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
                <children>
                   <ImageView fitHeight="273.0" fitWidth="348.0" pickOnBounds="true" VBox.vgrow="ALWAYS">
                      <image>
@@ -46,6 +45,18 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Worcester, MA">
+                           <font>
+                              <Font name="Segoe UI" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
                </children>
                <padding>
                   <Insets left="20.0" />
@@ -69,17 +80,174 @@
             </VBox>
          </right>
          <bottom>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="Worcester, MA">
-                     <font>
-                        <Font name="Segoe UI" size="24.0" />
-                     </font>
-                  </Label>
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../png_files/Weather_Icons/Blizzard.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Day +1">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Hi" textFill="#e84b4b">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="/">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Lo" textFill="#2ccacd">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../png_files/Weather_Icons/Cloudy_Day.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Day +2">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Hi" textFill="#e84b4b">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="/">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Lo" textFill="#2ccacd">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../png_files/Weather_Icons/Cloudy_Night.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Day +3">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Hi" textFill="#e84b4b">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="/">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Lo" textFill="#2ccacd">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../png_files/Weather_Icons/Day.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Day +4">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Hi" textFill="#e84b4b">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="/">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Lo" textFill="#2ccacd">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../png_files/Weather_Icons/Day_LightRain.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Day +5">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Label text="Hi" textFill="#e84b4b">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="/">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Lo" textFill="#2ccacd">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
             </HBox>
          </bottom>
       </BorderPane>

@@ -20,17 +20,73 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <AnchorPane prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                        <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
-                           <AnchorPane fx:id="NodesPane">
+            <VBox fx:id="oppo" prefHeight="3240">
+               <children>
+                  <AnchorPane fx:id="N1" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="PathGes1" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane1">
                            <ImageView >
                               <image>
-                                 <Image url="@../png_files/Hospital.png" />
+                                 <Image url="@../png_files/main_1_blue.png"/>
                               </image>
                            </ImageView>
-                           </AnchorPane>
-                        </GesturePane>
-            </AnchorPane>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane2">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_2_blue.png"/>
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane3">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_3_blue.png"/>
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="PathGes" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane4">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/Final-Floor-4.png"/>
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane5">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_5_blue.png"/>
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+            </VBox>
          </center>
          <top>
             <HBox prefHeight="100.0" style="-fx-background-color: #302D26;" BorderPane.alignment="CENTER">
@@ -165,17 +221,17 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton text="Λ">
+                  <JFXButton text="Λ" onAction="#clickUp">
                      <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>
                   </JFXButton>
-                  <Label text="#">
+                  <Label text="#" fx:id="floorLabel">
                      <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>
                   </Label>
-                  <JFXButton text="V">
+                  <JFXButton text="V" onAction="#clickDown">
                      <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>
