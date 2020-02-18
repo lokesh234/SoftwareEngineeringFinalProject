@@ -138,18 +138,18 @@
               <VBox alignment="CENTER" style="-fx-background-color: #D4D5D2;" BorderPane.alignment="CENTER">
                   <children>
                       <AnchorPane prefHeight="900.0" prefWidth="1600.0">
-<!--                    <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">-->
-<!--                        <AnchorPane fx:id="NodesPane" >-->
-<!--                <ImageView pickOnBounds="true" preserveRatio="true">-->
-<!--                    <image>-->
-<!--                        <Image url="@../png_files/Final-Floor-4.png" />-->
-<!--                    </image>-->
-<!--                    <VBox.margin>-->
-<!--                        <Insets />-->
-<!--                    </VBox.margin>-->
-<!--                </ImageView>-->
-<!--                        </AnchorPane>-->
-<!--                    </GesturePane>-->
+                    <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">
+                        <AnchorPane fx:id="NodesPane" >
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                   <image>-->
+                       <Image url="@../png_files/Final-Floor-4.png" />
+                    </image>
+                   <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </ImageView>
+                       </AnchorPane>
+                    </GesturePane>
                 </AnchorPane>
                   </children>
                   <padding>
