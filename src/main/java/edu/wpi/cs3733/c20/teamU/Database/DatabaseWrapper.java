@@ -287,6 +287,18 @@ public class DatabaseWrapper {
     }
 
 
+    //Use functions to update all database tables: "[Name]SR, ServiceRequest, ServiceFinished"
+    //ex input: languageSRAdd("Chalmers", "Marcus", "Chinese");
+    //ex input: languageSRDel(2, "adminUsername", "LANGE");
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
+      return (ServiceDatabase.languageSRAdd(patentLastName, patentFirstName, language));
+    }
+
+    public static boolean languageSRDel(int reqID, String adminsName, String user) {
+      return  (ServiceDatabase.languageSRDel(reqID, adminsName, user));
+    }
+
+
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static NodesDatabase getGraph() {
       return graph; //Other nodesDatabase functions should be accessed through DatabaseWrapper.getGraph().x();

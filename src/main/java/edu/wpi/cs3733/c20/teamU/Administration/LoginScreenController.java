@@ -13,6 +13,7 @@ public class LoginScreenController {
   private int trackLoginCount;
   private boolean didFail;
   private String whoTried;
+  private String usernameTried;
   private AdminScreenController adminScreenController;
 
   public void setAttributes(AdminScreenController attributes) {
@@ -27,7 +28,8 @@ public class LoginScreenController {
   @FXML
   private void isAuthorized() {
 
-    whoTried = Database.checkCred(usernameField.getText(), passwordField.getText());
+    usernameTried = usernameField.getText();
+    whoTried = Database.checkCred(usernameTried, passwordField.getText());
     if (whoTried.equals("FALSE")) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
@@ -61,6 +63,7 @@ public class LoginScreenController {
       App.getHome().setDisable(false);
     } else {
       App.setUser(whoTried);
+      App.setUsernameTried(usernameTried);
 //      adminScreenController.enableBasedOnCred(whoTried);
       if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());

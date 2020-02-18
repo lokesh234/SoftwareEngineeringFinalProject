@@ -4,7 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Administration.AdministrationWrapper;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -50,15 +51,16 @@ public class RequestScreenController {
     @FXML
     private void resolveRequest() {
 
-        String userName = App.getUser();
+        //String userName = App.getUser();
+        String userName = App.getUsernameTried();
 //        System.out.println(Id + date + name + reqType + " jjjjjjjjjj");
 //        System.out.println(name);
         switch (name) {
             case "MEDIC":
-                if (!ServiceDatabase.medicineSRDel(Integer.parseInt(date), userName, "MEDIC")) System.out.println("oh no");
+                if (!DatabaseWrapper.medicineSRDel(Integer.parseInt(date), userName, "MEDIC")) System.out.println("oh no | medicDEL broken");
                 break;
             case "SECUR":
-                ServiceDatabase.securitySRDel(Integer.parseInt(date), userName);
+                DatabaseWrapper.securitySRDel(Integer.parseInt(date), userName, "SECUR");
                 break;
         }
         //adminRequestController.update();
