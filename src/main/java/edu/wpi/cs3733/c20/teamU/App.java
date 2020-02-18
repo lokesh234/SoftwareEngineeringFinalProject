@@ -207,7 +207,7 @@ public class App extends Application {
       FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/View_Edges.fxml")); //TODO: add correct fxml
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFormResolve.fxml"));
       FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/light_theme/WeatherWindow.fxml"));
-      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/IT.fxml"));
+      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestIT.fxml"));
       FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindEmergency.fxml"));
       FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminGraph.fxml"));
 //      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));

@@ -997,7 +997,7 @@ public class Database {
                 sql = "SELECT * FROM " + tableName;
             }
             else {
-                sql = "SELECT  * FROM " + tableName + " WHERE reqtype = "+ user;
+                sql = "SELECT  * FROM " + tableName + " WHERE reqType = '"+ user + "'";
 
                 // ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
             }
@@ -1013,9 +1013,9 @@ public class Database {
             System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
             while (results.next()) {
-                String date = results.getString(1);
-                String requestID = results.getString(2);
-                String name = results.getString(3);
+                String date = results.getString(3);
+                String requestID = results.getString(1);
+                String name = results.getString(2);
                 String requestType = results.getString(4);
 //                System.out.println(date);
 //                System.out.println(requestID);
