@@ -562,7 +562,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -578,10 +578,12 @@ public class Database {
                 while ((line = br.readLine()) != null) {
 
                     String[] csvString = line.split(csvSplit);
+                    System.out.println(csvString);
                     if (starter == 0){
                         starter = 1;
                     }
                     else{
+
                         String username = csvString[0];
                         String password = csvString[1];
                         String firstName = csvString[2];
@@ -1081,7 +1083,105 @@ public class Database {
         return "FALSE";
     }
 
+  /**
+   * create a new user or edit and existing one
+   *
+   * @param username username for login (PK)
+   * @param password password for login
+   * @param firstName FirstName
+   * @param lastName LastName
+   * @param position Position: one of ('ADMIN' 'MEDIC' ...)
+   * @return boolean if loginSR is updated or edited
+   */
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position) {
+    String tableName = "LoginDB";
+    Connection conn = null;
+    Statement stmt = null;
+    try {
+      conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+      stmt = conn.createStatement();
+      // getting UBDatabase
+      // check to see if username exists in LoginDB:
+      ResultSet results = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE username = '" + username + "'");
+      if (results != null) {
+        while (results.next()) {
+          username = results.getString(1);
+        }
+        stmt.executeUpdate("DELETE FROM " + tableName + " WHERE username = '" + username + "'");
+      }
+
+      stmt.executeUpdate(
+          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "')");
+
+      Database.CreateCSV(stmt, tableName, null);
+      stmt.close();
+      conn.close();
+      return true;
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return false;
+    }
+  }
+
     /**
+     * give the username as a string and it will return an array list with the following strings in this order
+     * username, password, firstName, lastName, position
+     * @param username used as the PK
+     * @return returns arrayList of strings (U,P,F,L,P)
+     */
+  public static ArrayList<String> getLoginSR(String username){
+      String tableName = "LoginDB";
+      Connection conn = null;
+      Statement stmt = null;
+      ArrayList<String> values = new ArrayList<>();
+      try {
+          conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+          stmt = conn.createStatement();
+          // getting UBDatabase
+          // check to see if username exists in LoginDB:
+          ResultSet results = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE username = '" + username + "'");
+              while (results.next()) {
+                  values.add(username);
+                  values.add(results.getString(2));
+                  values.add(results.getString(3));
+                  values.add(results.getString(4));
+                  values.add(results.getString(5));
+              }
+          stmt.close();
+          conn.close();
+          return values;
+      } catch (SQLException e) {
+          e.printStackTrace();
+          return null;
+      }
+  }
+
+    /**
+     * Deletes a row from the database
+      * @param username give unique Username for deletion
+     * @return returns true if row is deleted
+     */
+  public static boolean delLoginSR(String username){
+        String tableName = "LoginDB";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            // getting UBDatabase
+            // check to see if username exists in LoginDB:
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE username = '" + username + "'");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+        /**
      *
      * Edits an existing Node tuple
      * @param nodeIDN Primary Key
