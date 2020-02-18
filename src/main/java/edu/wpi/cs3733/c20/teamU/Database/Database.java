@@ -503,7 +503,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','EMPLY','MEDIC','SECUR')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -525,8 +525,10 @@ public class Database {
                     else{
                         String username = csvString[0];
                         String password = csvString[1];
-                        String position = csvString[2];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + position + "')");
+                        String firstName = csvString[2];
+                        String lastName = csvString[3];
+                        String position = csvString[4];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -937,7 +939,7 @@ public class Database {
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
-                    return results.getString(3);
+                    return results.getString(5);
                 }
                 else {
                     return "FALSE";
