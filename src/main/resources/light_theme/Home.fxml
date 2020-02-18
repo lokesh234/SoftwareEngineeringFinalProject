@@ -146,27 +146,73 @@
               </VBox>
          </left>
          <center>
-              <VBox alignment="CENTER" style="-fx-background-color: #D4D5D2;" BorderPane.alignment="CENTER">
-                  <children>
-                      <AnchorPane prefHeight="900.0" prefWidth="1600.0">
-                    <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
-                        <AnchorPane fx:id="NodesPane">
-                <ImageView pickOnBounds="true" preserveRatio="true">
-                   <image>
-                       <Image url="@../png_files/Final-Floor-4.png" />
-                    </image>
-                   <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                </ImageView>
-                       </AnchorPane>
-                    </GesturePane>
-                </AnchorPane>
-                  </children>
-                  <padding>
-                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                  </padding>
-              </VBox>
+             <VBox fx:id="oppo" prefHeight="3240">
+                 <children>
+                     <AnchorPane fx:id="N1" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                             <AnchorPane fx:id="NodesPane1">
+                                 <ImageView>
+                                     <image>
+                                         <Image url="@../png_files/main_1_blue.png" />
+                                     </image>
+                                 </ImageView>
+                             </AnchorPane>
+                         </GesturePane>
+                     </AnchorPane>
+                 </children>
+                 <children>
+                     <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes2" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                             <AnchorPane fx:id="NodesPane2">
+                                 <ImageView>
+                                     <image>
+                                         <Image url="@../png_files/main_2_blue.png" />
+                                     </image>
+                                 </ImageView>
+                             </AnchorPane>
+                         </GesturePane>
+                     </AnchorPane>
+                 </children>
+                 <children>
+                     <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes3" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                             <AnchorPane fx:id="NodesPane3">
+                                 <ImageView>
+                                     <image>
+                                         <Image url="@../png_files/main_3_blue.png" />
+                                     </image>
+                                 </ImageView>
+                             </AnchorPane>
+                         </GesturePane>
+                     </AnchorPane>
+                 </children>
+                 <children>
+                     <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes4" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                             <AnchorPane fx:id="NodesPane4">
+                                 <ImageView>
+                                     <image>
+                                         <Image url="@../png_files/Final-Floor-4.png" />
+                                     </image>
+                                 </ImageView>
+                             </AnchorPane>
+                         </GesturePane>
+                     </AnchorPane>
+                 </children>
+                 <children>
+                     <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes5" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                             <AnchorPane fx:id="NodesPane5">
+                                 <ImageView>
+                                     <image>
+                                         <Image url="@../png_files/main_5_blue.png" />
+                                     </image>
+                                 </ImageView>
+                             </AnchorPane>
+                         </GesturePane>
+                     </AnchorPane>
+                 </children>
+             </VBox>
          </center>
           <right>
               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="55.0" BorderPane.alignment="CENTER">
