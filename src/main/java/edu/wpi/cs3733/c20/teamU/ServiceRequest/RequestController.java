@@ -43,5 +43,13 @@ public class RequestController {
         App.getExtTransportPop().show(App.getPrimaryStage());
     }
 
+    @FXML
+    public void openIntTransportRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getIntTransportPop().getContent().add(App.getInternalTransport());
+        App.getIntTransportPop().show(App.getPrimaryStage());
+    }
+
+
 
 }
