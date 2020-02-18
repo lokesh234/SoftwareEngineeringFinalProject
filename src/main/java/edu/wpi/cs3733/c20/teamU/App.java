@@ -125,6 +125,7 @@ public class App extends Application {
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
   public static Pane getEmployeeForm() {return employeeF; }
+  public static Pane getFlower(){return  flower;}
 
 
   public static Scene getHomeScene() { return homeScene; }

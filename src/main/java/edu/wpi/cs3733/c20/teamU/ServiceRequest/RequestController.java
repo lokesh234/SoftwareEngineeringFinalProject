@@ -29,5 +29,11 @@ public class RequestController {
         App.getITPop().show(App.getPrimaryStage());
     }
 
+    @FXML
+    public void openFlowerRequest() {
+        App.getRequestPop().getContent().clear();
+        App.getFlowerPop().getContent().add(App.getFlower());
+        App.getFlowerPop().show(App.getPrimaryStage());
+    }
 
 }
