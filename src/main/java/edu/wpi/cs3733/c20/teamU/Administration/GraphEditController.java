@@ -59,7 +59,7 @@ public class GraphEditController {
   private Node selectedNode;
   private Node selectedStartNode;
   private Node selectedEndNode;
-  private HashMap<Circle, Integer> interFloorPaths = new HashMap<>();
+  private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
   private enum State {
@@ -247,7 +247,17 @@ public class GraphEditController {
 
   private void updateButtons() {
     if (selectedEdge != null) {
-      lines.get(selectedEdge).setStroke(Color.BLACK);
+      if (selectedEdge.getStart().getFloor() == selectedEdge.getEnd().getFloor()) lines.get(selectedEdge).setStroke(Color.BLACK);
+      else {
+        if (selectedEdge.getEnd().getFloor() < selectedEdge.getStart().getFloor()) {
+          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.ORCHID);
+          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.DARKGREEN);
+        }
+        else {
+          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.DARKGREEN);
+          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.ORCHID);
+        }
+      }
     }
     if (nodeMode) {
       addButton.setDisable(selectedNode != null);
@@ -301,7 +311,11 @@ public class GraphEditController {
       }
       else { //selectedEndNode is contained in selectedStartNode's neighbors
         selectedEdge = DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode);
-        lines.get(selectedEdge).setStroke(Color.DARKORANGE);
+        if (selectedEndNode.getFloor() == selectedStartNode.getFloor()) lines.get(selectedEdge).setStroke(Color.DARKORANGE);
+        else {
+          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.DARKORANGE);
+          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.DARKORANGE);
+        }
 
         addButton.setDisable(true);
         removeButton.setDisable(false);
@@ -313,7 +327,15 @@ public class GraphEditController {
     }
   }
 
-  private void clearExtraLine() { if (extraLine != null) removeFromPath(extraLine, extraLineFloor);}
+  private void clearExtraLine() {
+    if (extraLine != null) removeFromPath(extraLine, extraLineFloor);
+    else if (extraFloorPaths.size() > 0) {
+      for (Map.Entry<Circle, Integer> pair : extraFloorPaths.entrySet()) {
+        removeFromPath(pair.getKey(), pair.getValue());
+      }
+      extraFloorPaths.clear();
+    }
+  }
 
   private void clearEdges() {
     clearExtraLine();
@@ -322,8 +344,8 @@ public class GraphEditController {
         Path c = pair.getValue();
         removeFromPath(c, pair.getKey().getStart().getFloor());
       }
-      for (Map.Entry<Circle, Integer> pair : interFloorPaths.entrySet()) {
-        removeFromPath(pair.getKey(), pair.getValue());
+      for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
+        removeFromPath(pair.getValue(), pair.getKey().getFloor());
       }
     }
     interFloorPaths.clear();
@@ -365,12 +387,20 @@ public class GraphEditController {
         c2.setCenterX(n2.getX());
         c.setFill(Color.TRANSPARENT);
         c2.setFill(Color.TRANSPARENT);
-        c.setStroke(Color.GREEN);
-        c2.setStroke(Color.ORCHID);
+        if (n1.getFloor() < n2.getFloor()) {
+          c.setStroke(Color.DARKGREEN);
+          c2.setStroke(Color.ORCHID);
+        }
+        else {
+          c2.setStroke(Color.DARKGREEN);
+          c.setStroke(Color.ORCHID);
+        }
         c.setRadius(App.getNodeSize()+5);
         c2.setRadius(App.getNodeSize()+5);
-        interFloorPaths.put(c, n1.getFloor());
-        interFloorPaths.put(c2, n2.getFloor());
+        c.setStrokeWidth(5);
+        c2.setStrokeWidth(5);
+        interFloorPaths.put(n1, c);
+        interFloorPaths.put(n2, c2);
         addToPath(c, n1.getFloor());
         addToPath(c2, n2.getFloor());
       }

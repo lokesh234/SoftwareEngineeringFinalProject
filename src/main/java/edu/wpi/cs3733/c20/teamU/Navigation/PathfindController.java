@@ -124,8 +124,10 @@ public class PathfindController {
 
 
     @FXML private void clickUp(ActionEvent e){
-        if (displayingPath && floorsInPath.contains(floor) && floorsInPath.indexOf(floor) < (floorsInPath.size()-1)) {
-            floor = floorsInPath.get(floorsInPath.indexOf(floor)+1);
+        Collections.sort(floorsInPath);
+        if (displayingPath && floorsInPath.contains(floor)) {
+            if (floorsInPath.indexOf(floor) < (floorsInPath.size()-1)) floor = floorsInPath.get(floorsInPath.indexOf(floor)+1);
+            else return;
         }
         else {
             floor++;
@@ -137,8 +139,10 @@ public class PathfindController {
     }
 
     @FXML private void clickDown(ActionEvent e){
-        if (displayingPath && floorsInPath.contains(floor) && floorsInPath.indexOf(floor) > 0) {
-            floor = floorsInPath.get(floorsInPath.indexOf(floor)-1);
+        Collections.sort(floorsInPath);
+        if (displayingPath && floorsInPath.contains(floor)) {
+            if (floorsInPath.indexOf(floor) > 0) floor = floorsInPath.get(floorsInPath.indexOf(floor)-1);
+            else return;
         }
         else {
             floor--;
@@ -182,6 +186,13 @@ public class PathfindController {
                 floorLabel.setText("5");
                 break;
         }
+    }
+
+    @FXML private void zoomIn() {
+
+    }
+    @FXML private void zoomOut() {
+
     }
 
 
@@ -299,6 +310,7 @@ public class PathfindController {
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
             if (!floorsInPath.contains(n1.getFloor())) floorsInPath.add(n1.getFloor());
+            if (!floorsInPath.contains(n2.getFloor())) floorsInPath.add(n2.getFloor());
 
             if (n1.getFloor() == n2.getFloor()) {
 
@@ -321,10 +333,18 @@ public class PathfindController {
                 c2.setCenterX(n2.getX());
                 c.setFill(Color.TRANSPARENT);
                 c2.setFill(Color.TRANSPARENT);
-                c.setStroke(Color.GREEN);
-                c2.setStroke(Color.ORCHID);
+                if (n1.getFloor() < n2.getFloor()) {
+                    c.setStroke(Color.DARKGREEN);
+                    c2.setStroke(Color.ORCHID);
+                }
+                else {
+                    c.setStroke(Color.ORCHID);
+                    c2.setStroke(Color.DARKGREEN);
+                }
                 c.setRadius(App.getNodeSize()+5);
                 c2.setRadius(App.getNodeSize()+5);
+                c.setStrokeWidth(5);
+                c2.setStrokeWidth(5);
                 interFloorPaths.put(c, n1.getFloor());
                 interFloorPaths.put(c2, n2.getFloor());
                 addToPath(c, n1.getFloor());

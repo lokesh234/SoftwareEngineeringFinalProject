@@ -136,4 +136,10 @@ public class HomeController {
   @FXML private void clickDown() {
 
   }
+  @FXML private void zoomIn() {
+
+  }
+  @FXML private void zoomOut() {
+
+  }
 }
