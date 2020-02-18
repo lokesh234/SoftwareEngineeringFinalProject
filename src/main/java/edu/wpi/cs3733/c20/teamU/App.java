@@ -37,6 +37,7 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane flower;
   private static Pane fire;
   private static Pane export;
   private static Pane edit;
@@ -101,6 +102,7 @@ public class App extends Application {
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
   private static Popup ITPop = new Popup();
+  private static Popup flowerPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -197,6 +199,7 @@ public class App extends Application {
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
+      FXMLLoader flowerLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFlowerForm.fxml"));
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
@@ -220,6 +223,7 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      flower = flowerLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
       IT = ITLoader.load();
