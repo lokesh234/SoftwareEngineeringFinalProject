@@ -141,7 +141,7 @@
                     <GesturePane AnchorPane.leftAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.rightAnchor="0d">
                         <AnchorPane fx:id="NodesPane" >
                 <ImageView pickOnBounds="true" preserveRatio="true">
-                   <image>-->
+                   <image>
                        <Image url="@../png_files/Final-Floor-4.png" />
                     </image>
                    <VBox.margin>
