@@ -50,6 +50,13 @@ public class AdminScreenController {
         App.getPopup().show(App.getPrimaryStage());
     }
 
+    @FXML
+    private void goToEmployees() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getEmployeeForm());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
     /**
      * Admin access
      */

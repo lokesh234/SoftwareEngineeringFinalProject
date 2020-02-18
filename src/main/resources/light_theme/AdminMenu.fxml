@@ -99,7 +99,7 @@
                                 </VBox>
                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.rowIndex="1">
                                     <children>
-                              <JFXButton contentDisplay="TOP" style="-fx-background-color: #474338;" text="Edit Employees" textFill="WHITE">
+                              <JFXButton fx:id="employees" onAction="#goToEmployees" contentDisplay="TOP" style="-fx-background-color: #474338;" text="Edit Employees" textFill="WHITE">
                                  <graphic>
                                                 <ImageView fitHeight="116.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
