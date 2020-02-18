@@ -25,7 +25,7 @@ public class Edge {
     public int getDist() { return dist;}
     public String getID() {return ID;}
 
-    protected Node getOther(Node n) {
+    public Node getOther(Node n) {
         /*
         Returns the endpoint NOT passed to this function.
         For an edge between nodes A and B, getOther(A) returns B and getOther(B) returns A
