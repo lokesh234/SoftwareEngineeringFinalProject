@@ -96,7 +96,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, reqType, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
@@ -139,7 +139,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, reqType, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
@@ -217,7 +217,7 @@ public class ServiceDatabase {
       Database.getServices(services, user);
       for (Service s : services) {
           if (Integer.parseInt(s.getDate()) == reqID) {
-              info = s.getName() + " needed: " + s.getRequestType();
+              info = s.getName() + " | request: " + s.getRequestType();
               break;
           }
       }

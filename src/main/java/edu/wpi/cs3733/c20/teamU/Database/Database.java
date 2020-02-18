@@ -253,7 +253,7 @@ public class Database {
      */
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR', 'LANGE')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, types VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), CONSTRAINT SR_TY CHECK (types in ('MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -291,7 +291,7 @@ public class Database {
                     String reqDate = csvString[1];
                     String type = csvString[2];
                     String info = csvString[3];
-                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, reqType, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
+                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, types, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
                 }
             }
 
@@ -337,7 +337,7 @@ public class Database {
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
-                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR')))";
+                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -386,7 +386,7 @@ public class Database {
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
-                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('IV','Oral', 'Topical')))";
+                    "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('Suppository','Oral', 'Topical')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -939,7 +939,7 @@ public class Database {
                 sql = "SELECT * FROM " + tableName;
             }
             else {
-                sql = "SELECT  * FROM " + tableName + " WHERE reqtype = "+ user;
+                sql = "SELECT  * FROM " + tableName + " WHERE types = '"+ user + "'";
 
                // ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
             }
