@@ -83,7 +83,7 @@ public class AdminRequestController {
   @FXML
   private void backToAdmin() {
     App.getPopup().getContent().clear();
-    if (App.getUser() == "ADMIN") {
+    if (App.getUser().equals("ADMIN")) {
       App.getPopup().getContent().add(App.getAdmin());
       App.getPopup().show(App.getPrimaryStage());
     }
