@@ -238,6 +238,8 @@ public class PathfindController {
                         .zoomBy(PathGes.getCurrentScale(), pivotOnTarget);
             }
         });
+        oppo.getChildren().clear();
+        oppo.getChildren().add(N1);
     }
 
     @FXML
