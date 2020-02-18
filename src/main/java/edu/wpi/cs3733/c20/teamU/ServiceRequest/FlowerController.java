@@ -6,9 +6,11 @@ import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class FlowerController {
@@ -38,6 +40,8 @@ public class FlowerController {
         if(occasionCombo.getValue() == null) userOccasion = "";
         else userOccasion = occasionCombo.getValue().toString();
 
+        String userDate = datePick.getValue().toString();
+
 
 
         //TODO: specify which textfield to write in if empty
@@ -54,7 +58,8 @@ public class FlowerController {
             flowerCombo.setStyle("-fx-border-color: #FFEEC9");
             occasionCombo.setStyle("-fx-border-color: #FFEEC9");
             first.setStyle("-fx-border-color: #FFEEC9");
-//            ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+
+//            ServiceDatabase.flowerSRAdd(userFirst, userLast, userFlower, userOccasion, userDate, userNote);
             clearField();
             backToRequest.fire();
         }
@@ -100,18 +105,20 @@ public class FlowerController {
 
     private void setDate(LocalDate date){
         this.date = date;
+        datePick = new JFXDatePicker(date);
     }
     private LocalDate getDate(){
         return this.date;
     }
 
     private void retrieveDate(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("America/New_York"));
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         int year = now.getYear();
 
-        LocalDate today = new LocalDate(month, day, year);
+        LocalDate today = LocalDate.of(year, month, day);
+        setDate(today);
 
 
     }
