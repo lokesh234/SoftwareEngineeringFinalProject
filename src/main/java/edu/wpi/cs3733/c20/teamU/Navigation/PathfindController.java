@@ -424,11 +424,18 @@ public class PathfindController {
         state = State.START;
         updateStatus();
     }
+
+    @FXML private void textPopUp(){
+        App.getTextDirectionsPop().getContent().add(App.getPathFindText());
+        App.getTextDirectionsPop().show(App.getPrimaryStage());
+    }
+
     @FXML
     private void selectEnd() {
         state = State.END;
         updateStatus();
     }
+
     @FXML
     private void pathfind() {
         if (startReady && endReady) {

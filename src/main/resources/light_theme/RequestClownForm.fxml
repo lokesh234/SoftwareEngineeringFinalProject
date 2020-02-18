@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ReligiousController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ClownController" fx:id="clownParent">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -34,8 +34,8 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Last Name" />
-                              <JFXTextField fx:id="last" prefHeight="20.0" VBox.vgrow="ALWAYS">
+                              <Label text="Location" />
+                              <JFXTextField fx:id="locationField" prefHeight="20.0" VBox.vgrow="ALWAYS">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
@@ -47,48 +47,48 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="First Name" />
-                              <JFXTextField fx:id="first">
+                              <Label text="Quantity Of Clowns" />
+                              <JFXTextField fx:id="nClownsField">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </JFXTextField>
                            </children>
                         </VBox>
-<!--                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">-->
-<!--                           <children>-->
-<!--                              <Label text="Drug Name" />-->
-<!--                              <JFXTextField fx:id="drug">-->
-<!--                                 <padding>-->
-<!--                                    <Insets left="20.0" right="20.0" />-->
-<!--                                 </padding>-->
-<!--                              </JFXTextField>-->
-<!--                           </children>-->
-<!--                        </VBox>-->
-<!--                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">-->
-<!--                           <children>-->
-<!--                              <Label text="Frequency " />-->
-<!--                              <JFXTextField fx:id="frequency">-->
-<!--                                 <padding>-->
-<!--                                    <Insets left="20.0" right="20.0" />-->
-<!--                                 </padding>-->
-<!--                              </JFXTextField>-->
-<!--                           </children>-->
-<!--                        </VBox>-->
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Recipient Name" />
+                              <JFXTextField fx:id="rNameField">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Other (Please Specify)" fx:id="otherLabel"/>
+                              <JFXTextField fx:id="otherField">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </JFXTextField>
+                           </children>
+                        </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                            <children>
-                              <Label text="Religious Affiliation" />
+                              <Label text="Occasion" />
                               <JFXComboBox fx:id="comboBox" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <Label text="Explain Your Request" />
-                              <JFXTextArea fx:id="comments">
+                              <Label text="Delivery Date" />
+                              <JFXTextField fx:id="dateField">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
-                              </JFXTextArea>
+                              </JFXTextField>
                            </children>
                         </VBox>
                      </children>
@@ -109,7 +109,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
                      <children>
-                        <Label text="Religious Request Form" textFill="WHITE">
+                        <Label text="Medicine Request Form" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
