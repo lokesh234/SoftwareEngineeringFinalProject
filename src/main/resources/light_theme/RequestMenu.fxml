@@ -80,11 +80,8 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-<<<<<<< HEAD
-                              <JFXButton onAction="#openReligiousRequest" contentDisplay="TOP" style="-fx-background-color: #474338;" text="Religious Services" textFill="WHITE">
-=======
                               <JFXButton contentDisplay="TOP" onAction="#openReligiousRequest" style="-fx-background-color: #474338;" text="Religious Services" textFill="WHITE">
->>>>>>> ba73256aa03925053d6c0b33a6e5bc380a36046a
+
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

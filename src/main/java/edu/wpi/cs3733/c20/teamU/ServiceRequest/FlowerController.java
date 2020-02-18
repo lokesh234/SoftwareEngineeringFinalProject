@@ -58,7 +58,6 @@ public class FlowerController {
 
         setSelected(datePick.getValue());
         String flowerChipString = flowerChip.getChips().toString();
-        System.out.println(flowerChipString);
 
         boolean hasRoses = flowerChipString.contains("Roses");
         boolean hasLillies = flowerChipString.contains("Lillies");
