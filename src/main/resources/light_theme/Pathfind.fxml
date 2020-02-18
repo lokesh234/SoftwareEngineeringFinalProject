@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import net.kurobako.gesturefx.GesturePane?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox fx:id="oppo" prefHeight="3240">
+               <children>
+                  <AnchorPane fx:id="N1" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                        <AnchorPane fx:id="NodesPane1">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_1_blue.png" />
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="MapGes2" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane2">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_2_blue.png" />
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="MapGes3" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane3">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_3_blue.png" />
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="MapGes4" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane4">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/Final-Floor-4.png" />
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+               <children>
+                  <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <GesturePane fx:id="MapGes5" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                        <AnchorPane fx:id="NodesPane5">
+                           <ImageView>
+                              <image>
+                                 <Image url="@../png_files/main_5_blue.png" />
+                              </image>
+                           </ImageView>
+                        </AnchorPane>
+                     </GesturePane>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox prefHeight="100.0" style="-fx-background-color: #302D26;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Get Directions" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="backButton" onAction="#backHome" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+         </top>
+         <left>
+            <VBox alignment="CENTER" minWidth="150.0" spacing="20.0" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="statusLabel1" text="SEARCH" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField focusColor="#474338" style="-fx-background-color: white;" unFocusColor="GREY" VBox.vgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+                  <Line endX="100.0" startX="-100.0" />
+                  <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label fx:id="statusLabel" text="NAVIGATE" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" maxHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <JFXButton fx:id="startButton" onAction="#selectStart" style="-fx-background-color: #474338;" text="Select Start" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label fx:id="startLabel" text="LongName" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <JFXButton fx:id="endButton" onAction="#selectEnd" style="-fx-background-color: #474338;" text="Select End" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </JFXButton>
+                              <Label fx:id="endLabel" text="LongName" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <JFXButton fx:id="goButton" onAction="#pathfind" style="-fx-background-color: #474338;" text="Go!" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="clearButton" onAction="#clearPath" style="-fx-background-color: #474338;" text="Clear" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Line endX="100.0" startX="-100.0" />
+                  <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="statusLabel2" text="TEXT DIRECTIONS" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="textDirections" style="-fx-background-color: #474338;" text="GET" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="55.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
+                           <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="floorLabel" text="1">
+                           <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                           </font>
+                        </Label>
+                        <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
+                           <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <JFXButton fx:id="plus" onAction="#zoomIn" text="+">
+                           <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="minus" onAction="#zoomOut" text="-">
+                           <font>
+                              <Font name="Segoe UI Bold" size="48.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

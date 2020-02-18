@@ -1,15 +1,9 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
-import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 
 import edu.wpi.cs3733.c20.teamU.App;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class AdminScreenController {
@@ -53,6 +47,13 @@ public class AdminScreenController {
     private void export() {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getExport());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    private void goToEmployees() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getEmployeeForm());
         App.getPopup().show(App.getPrimaryStage());
     }
 
@@ -115,4 +116,5 @@ public class AdminScreenController {
 //        exportButton.setDisable(true);
 //        adminScreen.addEventFilter(MOUSE_PRESSED, checkAccess);
     }
+
 }

@@ -13,6 +13,7 @@ public class LoginScreenController {
   private int trackLoginCount;
   private boolean didFail;
   private String whoTried;
+  private String usernameTried;
   private AdminScreenController adminScreenController;
 
   public void setAttributes(AdminScreenController attributes) {
@@ -27,7 +28,8 @@ public class LoginScreenController {
   @FXML
   private void isAuthorized() {
 
-    whoTried = Database.checkCred(usernameField.getText(), passwordField.getText());
+    usernameTried = usernameField.getText();
+    whoTried = Database.checkCred(usernameTried, passwordField.getText());
     if (whoTried.equals("FALSE")) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
@@ -53,17 +55,19 @@ public class LoginScreenController {
    */
 
   private void changeScene() {
-    usernameField.setStyle("-fx-border-color: skyblue");
-    passwordField.setStyle("-fx-border-color: skyblue");
+    usernameField.setStyle("-fx-border-color: #FFEEC9");
+    passwordField.setStyle("-fx-border-color: #FFEEC9");
     App.getPopup().getContent().clear();
     if (didFail) {
       App.getHome().setOpacity(1);
       App.getHome().setDisable(false);
     } else {
       App.setUser(whoTried);
+      App.setUsernameTried(usernameTried);
 //      adminScreenController.enableBasedOnCred(whoTried);
       if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());
+      App.getAdminRequestController().update();
       App.getPopup().show(App.getPrimaryStage());
     }
     usernameField.clear();
@@ -76,8 +80,8 @@ public class LoginScreenController {
   @FXML
   private void exitPopup() {
     didFail = false;
-    usernameField.setStyle("-fx-border-color: skyblue");
-    passwordField.setStyle("-fx-border-color: skyblue");
+    usernameField.setStyle("-fx-border-color: #FFEEC9");
+    passwordField.setStyle("-fx-border-color: #FFEEC9");
     App.getHome().setOpacity(1);
     App.getHome().setDisable(false);
     App.getPopup().getContent().clear();

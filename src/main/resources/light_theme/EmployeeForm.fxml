@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXChipView?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EmployeeFormController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label text="Create/Edit Employee" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="24.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <GridPane alignment="CENTER" prefHeight="250.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.333343505859375" minHeight="30.0" prefHeight="18.333343505859375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="26.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="25.666656494140625" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="30.0" prefHeight="41.333343505859375" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="60.0" prefHeight="66.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="41.33331298828125" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="firstNameText" text="John" GridPane.columnIndex="1" />
+                  <JFXTextField fx:id="lastNameText" text="Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="employeeIdText" text="jdoe1234" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="First Name">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="Last Name">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Username">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="5">
+                     <children>
+                        <Label text="Employee Type(s)">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <JFXComboBox fx:id="employeeCombo" />
+                        <JFXButton fx:id="add" onAction="#employeeTypeAdd" style="-fx-background-color: #474338;" text="Add" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="12.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <JFXChipView fx:id="employeeChip" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="Password">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <JFXTextField fx:id="passwordText" text="************" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                     <children>
+                        <Label text="Confirm Password">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <JFXTextField fx:id="confirmPassText" text="************" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" />
+                  <JFXCheckBox fx:id="checkBox" text="I Promise Not To Be A Robot" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </GridPane>
+            <HBox alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="confirm" onAction="#setConfirm" style="-fx-background-color: #BFB397;" text="Confirm">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="cancel" onAction="#returnToAdmin" style="-fx-background-color: #BFB397;" text="Cancel">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

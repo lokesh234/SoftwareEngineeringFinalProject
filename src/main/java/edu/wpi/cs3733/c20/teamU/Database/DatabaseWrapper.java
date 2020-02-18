@@ -182,8 +182,12 @@ public class DatabaseWrapper {
    * Fill in the HashMap for all Services from the table
    * @param servicesList the ArrayList to store the services
    */
-  public static void getServices(ArrayList<Service> servicesList) {
-    Database.getServices(servicesList);
+  public static void getServices(ArrayList<Service> servicesList, String user) {
+    Database.getServices(servicesList, user);
+  }
+
+  public static void getFinishedServices(ArrayList<Service> servicesList, String user) {
+    Database.getFinishedServices(servicesList, user);
   }
 
     /**
@@ -272,7 +276,7 @@ public class DatabaseWrapper {
    * @param adminsName String of the name of the admin user that completed the task
    * @return returns true if value was deleted
    */
-    public static boolean securitySRDel(int reqID, String adminsName){
+    public static boolean securitySRDel(int reqID, String adminsName,String user){
         return (ServiceDatabase.securitySRDel(reqID, adminsName));
     }
 
@@ -282,8 +286,20 @@ public class DatabaseWrapper {
    * @param adminsName String of admin user that competed task
    * @return returns true if it was deleted
    */
-    public static boolean medicineSRDel(int reqID, String adminsName) {
-        return (ServiceDatabase.medicineSRDel(reqID, adminsName));
+    public static boolean medicineSRDel(int reqID, String adminsName, String user) {
+        return (ServiceDatabase.medicineSRDel(reqID, adminsName, user));
+    }
+
+
+    //Use functions to update all database tables: "[Name]SR, ServiceRequest, ServiceFinished"
+    //ex input: languageSRAdd("Chalmers", "Marcus", "Chinese");
+    //ex input: languageSRDel(2, "adminUsername", "LANGE");
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
+      return (ServiceDatabase.languageSRAdd(patentLastName, patentFirstName, language));
+    }
+
+    public static boolean languageSRDel(int reqID, String adminsName, String user) {
+      return  (ServiceDatabase.languageSRDel(reqID, adminsName, user));
     }
 
 

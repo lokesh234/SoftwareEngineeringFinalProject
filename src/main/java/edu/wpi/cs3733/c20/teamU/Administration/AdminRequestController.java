@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
@@ -15,14 +16,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ArrayList;
 
 public class AdminRequestController {
-  @FXML private TableView<Service> serviceTable;
-  @FXML private TableColumn<Service, String> date;
-  @FXML private TableColumn<Service, String> requestID;
-  @FXML private TableColumn<Service, String> type;
-  @FXML private TableColumn<Service, String> info;
-  @FXML private Button close;
-  @FXML private Button backButton;
+  @FXML private TableView<Service> serviceTable1;
+  @FXML private TableColumn<Service, String> date1;
+  @FXML private TableColumn<Service, String> requestID1;
+  @FXML private TableColumn<Service, String> type1;
+  @FXML private TableColumn<Service, String> info1;
+  @FXML private TableView<Service> serviceTable2;
+  @FXML private TableColumn<Service, String> date2;
+  @FXML private TableColumn<Service, String> requestID2;
+  @FXML private TableColumn<Service, String> type2;
+  @FXML private TableColumn<Service, String> info2;
+  @FXML private JFXButton close;
+  @FXML private JFXButton backButton;
   RequestScreenController requestScreenController;
+  private boolean pending = true;
 
   public void setAttributes(RequestScreenController requestScreenController1) {
     requestScreenController = requestScreenController1;
@@ -30,9 +37,9 @@ public class AdminRequestController {
 
   @FXML
   private void detectClick() {
-    if (serviceTable.getSelectionModel().getSelectedItem() != null) {
+    if (serviceTable1.getSelectionModel().getSelectedItem() != null) {
       close.setDisable(false);
-      App.setServiceEdit(serviceTable.getSelectionModel().getSelectedItem());
+      App.setServiceEdit(serviceTable1.getSelectionModel().getSelectedItem());
 //      System.out.println(App.getService().getName());
       requestScreenController.setService();
       //            selectedNode = serviceTable.getSelectionModel().getSelectedItem();
@@ -48,14 +55,24 @@ public class AdminRequestController {
   }
 
   public void update() {
-    serviceTable.setItems(arrayToOBList());
-    serviceTable.setVisible(true);
+    pending = true;
+    serviceTable1.setItems(arrayToOBList());
+    pending = false;
+    serviceTable2.setItems(arrayToOBList());
+    serviceTable1.setVisible(true);
   }
 
   private ObservableList<Service> arrayToOBList() {
     ObservableList<Service> services = FXCollections.observableArrayList();
     ArrayList<Service> temp = new ArrayList<>();
-    Database.getServices(temp);
+    String user = App.getUser();
+    System.out.println("init with user" + user);
+    if (pending == true) {
+      Database.getServices(temp, user);
+    }
+    else {
+      Database.getFinishedServices(temp, user);
+    }
     if (temp != null) {
       services.addAll(temp);
     }
@@ -64,17 +81,29 @@ public class AdminRequestController {
 
   @FXML
   private void initialize() {
-    requestID.setCellValueFactory(new PropertyValueFactory<>("date"));
+    requestID1.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-    date.setCellValueFactory(new PropertyValueFactory<>("requestID"));
+    date1.setCellValueFactory(new PropertyValueFactory<>("requestID"));
 
-    type.setCellValueFactory(new PropertyValueFactory<>("name"));
+    type1.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-    info.setCellValueFactory(new PropertyValueFactory<>("requestType"));
+    info1.setCellValueFactory(new PropertyValueFactory<>("requestType"));
+
+    requestID2.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+    date2.setCellValueFactory(new PropertyValueFactory<>("requestID"));
+
+    type2.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+    info2.setCellValueFactory(new PropertyValueFactory<>("requestType"));
+
+    pending = true;
     if (!arrayToOBList().isEmpty()) {
-
-
-      serviceTable.setItems(arrayToOBList());
+      serviceTable1.setItems(arrayToOBList());
+    }
+    pending = false;
+    if (!arrayToOBList().isEmpty()) {
+      serviceTable2.setItems(arrayToOBList());
     }
     close.setDisable(true);
   }
@@ -82,7 +111,7 @@ public class AdminRequestController {
   @FXML
   private void backToAdmin() {
     App.getPopup().getContent().clear();
-    if (App.getUser() == "ADMIN") {
+    if (App.getUser().equals("ADMIN")) {
       App.getPopup().getContent().add(App.getAdmin());
       App.getPopup().show(App.getPrimaryStage());
     }

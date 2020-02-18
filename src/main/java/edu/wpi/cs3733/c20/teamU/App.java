@@ -1,11 +1,12 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
+import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
-import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 //import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
@@ -26,6 +27,8 @@ public class App extends Application {
 
   private static Stage primaryStage;
 
+  private static ArrayList<String> textpath = new ArrayList<>();
+
   private static Pane home;
   private static Pane login;
   private static Pane start;
@@ -45,7 +48,11 @@ public class App extends Application {
   private static Pane resolveRequest;
   private static Pane weather;
   private static Pane IT;
+
   private static Pane religious;
+
+  private static Pane employeeF;
+
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -62,6 +69,8 @@ public class App extends Application {
   private static Scene addNodeScene;
   private static Scene resolveRequestScene;
   private static Scene weatherScene;
+  private static Scene employeeFormScene;
+  private static Scene religiousScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -76,6 +85,8 @@ public class App extends Application {
   private static EdgeViewScreenController viewEdgeViewScreenController;
   private static EdgeEditController editEdgeController;
   private static WeatherController weatherController;
+  private static EmployeeFormController employeeFormController;
+  private static ReligiousController religiousController;
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -89,6 +100,7 @@ public class App extends Application {
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
   private static String user;
+  private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
 
   private static Popup popup = new Popup();
@@ -118,7 +130,10 @@ public class App extends Application {
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
+
   public static Pane getReligious() { return religious;}
+
+  public static Pane getEmployeeForm() {return employeeF; }
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -136,8 +151,12 @@ public class App extends Application {
   public static Scene getAdminNodeScene() {return adminNodeScene;}
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
   public static Scene getWeatherScene() {return weatherScene; }
+  public static Scene getEmployeeFormScene() {return employeeFormScene; }
+    public static Scene getReligiousScene() {
+        return religiousScene;
+    }
 
-  public static LoginScreenController getLoginScreenController() { return loginScreenController;}
+    public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
   public static SecurityController getSecurityController() { return securityController;}
@@ -150,9 +169,14 @@ public class App extends Application {
   public static GraphEditController getGraphEditController() { return graphEditController;}
   public static WeatherController weatherController() {return weatherController; }
   public static NodeEditController getEditController() { return editController;}
+  public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
+    public static ReligiousController getReligiousController() {
+        return religiousController;
+    }
 
-  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
+    public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
+  public static ArrayList<String> getTextpath() { return textpath;}
 
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Database.Node userNode) { nodeEdit = userNode; }
   public static void setEdgeEdit(Edge userEdge) { edgeEdit = userEdge; }
@@ -166,6 +190,8 @@ public class App extends Application {
   public static long getTime() { return time; }
   public static void setUser(String user1) { user = user1; }
   public static String getUser() { return user; }
+  public static void setUsernameTried(String username1) { usernameTried = username1; }
+  public static String getUsernameTried() { return usernameTried; }
   public static int getNodeSize() { return nodeSize; }
 
   public static Popup getPopup() { return popup; }
@@ -175,33 +201,37 @@ public class App extends Application {
   public static Popup getITPop() { return ITPop;}
   public static Popup getReligiousPop() { return religiousPop;}
 
+
   @Override
   public void start(Stage primaryStage) throws Exception {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
-      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
-      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
-      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/AdminGraph.fxml"));
-      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
-      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
-      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
-      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
-      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/pathfindEmergency.fxml"));
-      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
-      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
-      FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/Add_Node.fxml"));
-      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
-      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/Edit_Edge.fxml"));
-      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
-      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
-      FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/WeatherWindow.fxml"));
-      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/IT.fxml"));
-      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/ReligiousRequest.fxml"));
 
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/HomeStart.fxml"));
+      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/light_theme/Home.fxml"));
+      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/light_theme/LoginForm.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminMenu.fxml"));
+//      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
+      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/light_theme/Pathfind.fxml"));
+      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
+      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
+      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
+      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
+      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
+      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
+      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/Edit_Edge.fxml"));
+      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/View_Edges.fxml")); //TODO: add correct fxml
+      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFormResolve.fxml"));
+      FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/light_theme/WeatherWindow.fxml"));
+      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/IT.fxml"));
+      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindEmergency.fxml"));
+      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminGraph.fxml"));
+//      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
+      FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
+      FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
+      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/Religious.fxml"));
 
 
       home = homeLoader.load();
@@ -215,7 +245,6 @@ public class App extends Application {
       fire = fireLoader.load();
       weather = weatherLoader.load();
       religious = religiousLoader.load();
-
       IT = ITLoader.load();
       export = exportLoader.load();
       edit = editLoader.load();
@@ -225,6 +254,7 @@ public class App extends Application {
       adminEdge = adminEdgeLoader.load();
       addNode = addNodeLoader.load();
       resolveRequest = RRLoader.load();
+      employeeF = employeeFormLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -242,6 +272,9 @@ public class App extends Application {
       requestScreenController = RRLoader.getController();
       fireController = fireLoader.getController();
       weatherController = weatherLoader.getController();
+      employeeFormController = employeeFormLoader.getController();
+      religiousController = religiousLoader.getController();
+//      editEdgeController = adminNodeLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -252,6 +285,7 @@ public class App extends Application {
       adminRequestController.setAttributes(requestScreenController);
       addNodeScreenController.setAttributes(graphEditController);
       loginScreenController.setAttributes(adminScreenController);
+
 
       popup.getContent().addAll();
       securityPop.getContent().addAll();

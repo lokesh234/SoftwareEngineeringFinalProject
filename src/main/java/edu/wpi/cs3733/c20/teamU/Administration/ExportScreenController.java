@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import javafx.event.ActionEvent;
@@ -18,10 +20,10 @@ import java.sql.Statement;
 
 public class ExportScreenController {
 
-  @FXML private Button cancel;
-  @FXML private Button save;
-  @FXML private TextField location1;
-  @FXML private Button browse;
+  @FXML private JFXButton cancel;
+  @FXML private JFXButton save;
+  @FXML private JFXTextField location1;
+  @FXML private JFXButton browse;
   private Stage scene;
   public ExportScreenController() {}
 

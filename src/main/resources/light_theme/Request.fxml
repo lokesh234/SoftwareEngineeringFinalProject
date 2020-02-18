@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #302d26;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="View and Edit Requests" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font></Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXButton fx:id="backButton" onAction="#backToAdmin" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
+               <children>
+<!--                        <HBox prefHeight="20.0" spacing="10.0">-->
+<!--                           <children>-->
+<!--                              <Label text="Browse for file" />-->
+<!--                              <Button mnemonicParsing="false" text="..." />-->
+<!--                           </children>-->
+<!--                           <VBox.margin>-->
+<!--                              <Insets />-->
+<!--                           </VBox.margin>-->
+<!--                        </HBox>-->
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
+                     <children>
+                        <JFXButton fx:id="close" onAction="#closeRequest" style="-fx-background-color: #474338;" text="Close" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font></JFXButton>
+                     </children>
+                  </HBox>
+<!--                  <JFXButton fx:id="close1" onAction="#closeRequest" style="-fx-background-color: #474338;" text="View" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI" size="18.0" />-->
+<!--                     </font>-->
+<!--                  </JFXButton>-->
+<!--                        <HBox prefHeight="100.0" prefWidth="200.0">-->
+<!--                           <children>-->
+<!--                              <Button mnemonicParsing="false" text="Export to CSV..." onAction="#exportScreen"/>-->
+<!--                           </children>-->
+<!--                        </HBox>-->
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </left>
+         <center>
+            <TabPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFEEC9;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="All Pending">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="serviceTable1" onMouseClicked="#detectClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                   <TableColumn fx:id="requestID1" prefWidth="101.6666259765625" text="RequestID" />
+                                   <TableColumn fx:id="date1" prefWidth="128.33331298828125" text="date" />
+                                   <TableColumn fx:id="type1" prefWidth="121.66668701171875" text="Type" />
+                                   <TableColumn fx:id="info1" prefWidth="130" text="Info" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Medicine">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                  <Tab text="Transport EXT">
+                      <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      </content>
+                  </Tab>                <Tab text="Transport INT">
+                  <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+              </Tab>                <Tab text="Floral">
+                  <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+              </Tab>                <Tab text="Translate">
+                  <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+              </Tab>                <Tab text="All Completed">
+                  <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <children>
+                              <TableView fx:id="serviceTable2" onMouseClicked="#detectClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                  <columns>
+                                      <TableColumn fx:id="requestID2" prefWidth="101.6666259765625" text="RequestID" />
+                                      <TableColumn fx:id="date2" prefWidth="128.33331298828125" text="date" />
+                                      <TableColumn fx:id="type2" prefWidth="121.66668701171875" text="Type" />
+                                      <TableColumn fx:id="info2" prefWidth="130" text="Info" />
+                                  </columns>
+                              </TableView>
+                          </children>
+                      </AnchorPane>
+                  </content>
+              </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
