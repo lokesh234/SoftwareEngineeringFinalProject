@@ -40,43 +40,22 @@ public class MedicineController {
         if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
             // will print out some text eventually, right now nothing
             last.setStyle("-fx-border-color: red");
-//            comments.setStyle("-fx-border-color: red");
+            comments.setStyle("-fx-border-color: red");
             frequency.setStyle("-fx-border-color: red");
             drug.setStyle("-fx-border-color: red");
             comboBox.setStyle("-fx-border-color: red");
             first.setStyle("-fx-border-color: red");
         } else {
-            last.setStyle("-fx-border-color: clear");
-            comments.setStyle("-fx-border-color: clear");
-            frequency.setStyle("-fx-border-color: clear");
-            drug.setStyle("-fx-border-color: clear");
-            comboBox.setStyle("-fx-border-color: clear");
-            first.setStyle("-fx-border-color: clear");
+            last.setStyle("-fx-border-color:  #FFEEC9");
+            comments.setStyle("-fx-border-color:  #FFEEC9");
+            frequency.setStyle("-fx-border-color:  #FFEEC9");
+            drug.setStyle("-fx-border-color:  #FFEEC9");
+            comboBox.setStyle("-fx-border-color:  #FFEEC9");
+            first.setStyle("-fx-border-color:  #FFEEC9");
             ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
             closeMedicineScreen.fire();
         }
-//
-//      if (userFreq.isEmpty()) {
-//        frequency.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userLast.isEmpty()) {
-//        last.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userFirst.isEmpty()) {
-//        first.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userDrug.isEmpty()) {
-//        drug.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userDelivery.isEmpty()) {
-//        comboBox.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
     }
 
     public void clearField() {
