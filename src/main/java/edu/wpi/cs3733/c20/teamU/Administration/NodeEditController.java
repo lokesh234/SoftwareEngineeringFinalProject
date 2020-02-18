@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
@@ -14,9 +16,9 @@ import java.util.HashMap;
 
 public class NodeEditController {
 
-  @FXML private Button confirm;
-  @FXML private Button cancel;
-  @FXML private TextField text1, text2, text3, text4, text5, text6, text7, text8;;
+  @FXML private JFXButton confirm;
+  @FXML private JFXButton cancel;
+  @FXML private JFXTextField text1, text2, text3, text4, text5, text6, text7, text8;;
   private String ID, x, y, floor, build, type, shortName, longName;
   GraphEditController nodeViewScreenController;
 
