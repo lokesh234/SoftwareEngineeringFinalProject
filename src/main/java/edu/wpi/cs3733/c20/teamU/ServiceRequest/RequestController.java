@@ -44,7 +44,7 @@ public class RequestController {
     }
 
     @FXML
-    public void openFlowerRequest() {
+    public void openFlowerForm() {
         App.getRequestPop().getContent().clear();
         App.getFlowerPop().getContent().add(App.getFlower());
         App.getFlowerPop().show(App.getPrimaryStage());
