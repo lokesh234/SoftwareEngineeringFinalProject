@@ -9,6 +9,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 //import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,14 +49,17 @@ public class App extends Application {
   private static Pane resolveRequest;
   private static Pane weather;
   private static Pane IT;
+  private static Pane clown;
 
   private static Pane religious;
 
   private static Pane employeeF;
 
   private static Pane externalTransport;  // This is anir
+
   private static Pane internalTransport; //Marcus
 
+private static Pane pathFindText;
 
 
   private static Scene homeScene;
@@ -76,7 +80,10 @@ public class App extends Application {
   private static Scene employeeFormScene;
   private static Scene religiousScene;
   private static Scene extTransportScene; //this is anir
+
   private static Scene intTransportScene; //marcus
+
+  private static Scene pathFindTextScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -94,7 +101,12 @@ public class App extends Application {
   private static EmployeeFormController employeeFormController;
   private static ReligiousController religiousController;
   private static ExtTransportController extTransportController; //anir
+
   private static IntTranspoerController intTranspoerController; //marcus
+
+  private static PathfindTextController pathfindTextController;
+  private static ClownController clownController;
+
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -119,6 +131,8 @@ public class App extends Application {
   private static Popup religiousPop = new Popup();
   private static Popup extTransportPop = new Popup(); //anir
   private static Popup intTransportPop = new Popup(); //marcus
+  private static Popup TextDirectionsPop = new Popup();
+  private static Popup clownPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -143,11 +157,12 @@ public class App extends Application {
   public static Pane getExternalTransport() {return externalTransport;} //anir
   public static Pane getInternalTransport() { return internalTransport;} //marcus
 
-
+  public static Pane getPathFindText() {return pathFindText;}
 
   public static Pane getReligious() { return religious;}
 
   public static Pane getEmployeeForm() {return employeeF; }
+  public static Pane getClown() { return clown;}
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -171,8 +186,9 @@ public class App extends Application {
         return religiousScene;
     }
   public static Scene getIntTransportScene() { return intTransportScene; } //marcus
+  public static Scene getPathFindTextScene() {return pathFindTextScene;}
 
-    public static LoginScreenController getLoginScreenController() { return loginScreenController;}
+  public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
   public static SecurityController getSecurityController() { return securityController;}
@@ -187,12 +203,11 @@ public class App extends Application {
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
   public static ExtTransportController getExtTransportController() {return  extTransportController;}
-    public static ReligiousController getReligiousController() {
-        return religiousController;
-    }
   public static IntTransportController getIntTransportController() { return intTransportController; } //marcus
+  public static ReligiousController getReligiousController() { return religiousController; }
+  public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
 
-    public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
+  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
   public static ArrayList<String> getTextpath() { return textpath;}
 
@@ -220,6 +235,8 @@ public class App extends Application {
   public static Popup getReligiousPop() { return religiousPop;}
   public static Popup getExtTransportPop() {return extTransportPop;}
   public static Popup getIntTransportPop() { return intTransportPop;} //marcus
+  public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
+  public static Popup getClownPop() { return clownPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -252,8 +269,12 @@ public class App extends Application {
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
       FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
 
+
       FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
       FXMLLoader intTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/InternalTransportForm.fxml")); //marcus
+      FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
+      FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
+
 
 
       home = homeLoader.load();
@@ -279,6 +300,8 @@ public class App extends Application {
       employeeF = employeeFormLoader.load();
       externalTransport = extTransportLoader.load();
       internalTransport = intTransportLoader.load();
+      pathFindText = pathfindtextLoader.load();
+      clown = clownDeliveryLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -301,6 +324,8 @@ public class App extends Application {
 //      editEdgeController = adminNodeLoader.getController();
       extTransportController = extTransportLoader.getController();
       intTransportController = intTransportLoader.getController(); //marcus
+      pathfindController = pathfindLoader.getController();
+      clownController = clownDeliveryLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -312,7 +337,6 @@ public class App extends Application {
       addNodeScreenController.setAttributes(graphEditController);
       loginScreenController.setAttributes(adminScreenController);
 
-
       popup.getContent().addAll();
       securityPop.getContent().addAll();
       requestPop.getContent().addAll();
@@ -321,6 +345,7 @@ public class App extends Application {
       religiousPop.getContent().addAll();
       extTransportPop.getContent().addAll();
       intTransportPop.getContent().addAll();
+      TextDirectionsPop.getContent().addAll();
 
 
       homeScene = new Scene(home);

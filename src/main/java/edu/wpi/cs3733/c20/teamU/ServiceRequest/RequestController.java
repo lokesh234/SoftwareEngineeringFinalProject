@@ -36,6 +36,7 @@ public class RequestController {
         App.getReligiousPop().show(App.getPrimaryStage());
     }
 
+
     @FXML
     public void openExtTransportRequest() {
         App.getRequestPop().getContent().remove(0);
@@ -51,5 +52,12 @@ public class RequestController {
     }
 
 
+
+    @FXML
+    public void openClownRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getClownPop().getContent().add(App.getClown());
+        App.getClownPop().show(App.getPrimaryStage());
+    }
 
 }
