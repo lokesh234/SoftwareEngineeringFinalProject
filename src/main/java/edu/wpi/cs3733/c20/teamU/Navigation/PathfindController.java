@@ -26,6 +26,7 @@ import net.kurobako.gesturefx.GesturePane;
 
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -300,6 +301,17 @@ public class PathfindController {
         }
         displayingPath = true;
         updateStatus();
+    }
+
+    private void getTextPath(){
+        App.getTextpath().clear();
+        Node n2 = path.get(path.size() - 1);
+        for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path
+            Node n1 = path.get(i);
+            App.getTextpath().add(n1.getLongName());
+        }
+        App.getTextpath().add(n2.getLongName());
+        Collections.reverse(App.getTextpath());
     }
 
     @FXML

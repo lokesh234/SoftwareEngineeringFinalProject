@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
@@ -25,6 +26,8 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Stage primaryStage;
+
+  private static ArrayList<String> textpath = new ArrayList<>();
 
   private static Pane home;
   private static Pane login;
@@ -150,6 +153,7 @@ public class App extends Application {
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
+  public static ArrayList<String> getTextpath() { return textpath;}
 
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Database.Node userNode) { nodeEdit = userNode; }
   public static void setEdgeEdit(Edge userEdge) { edgeEdit = userEdge; }
@@ -170,6 +174,7 @@ public class App extends Application {
   public static Popup getRequestPop() { return requestPop; }
   public static Popup getMedicinePop() { return medicinePop; }
   public static Popup getITPop() { return ITPop;}
+
 
   @Override
   public void start(Stage primaryStage) throws Exception {

@@ -96,7 +96,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, type, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, reqType, info) VALUES ('" + timeReq + "', 'SECUR', 'Security request at " + location + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
@@ -139,7 +139,7 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, type, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, reqType, info) VALUES ('" + timeReq + "', 'MEDIC', '" + patentFirstName + " " + patentLastName + " drug: " + drugName + " " + comment + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
@@ -200,7 +200,7 @@ public class ServiceDatabase {
         }
     }
 
-  public static boolean medicineSRDel(int reqID, String adminsName) {
+  public static boolean medicineSRDel(int reqID, String adminsName, String user) {
     String MTable = "MedicineSR";
     String SRTable = "ServiceRequest";
     String SFTable = "ServiceFinished";
@@ -214,7 +214,7 @@ public class ServiceDatabase {
       stmt = conn.createStatement();
 
       ArrayList<Service> services = new ArrayList<>();
-      Database.getServices(services);
+      Database.getServices(services, user);
       for (Service s : services) {
           if (Integer.parseInt(s.getDate()) == reqID) {
               info = s.getName() + " needed: " + s.getRequestType();
