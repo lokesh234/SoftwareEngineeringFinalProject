@@ -196,7 +196,7 @@
                               <Font name="Segoe UI Bold" size="18.0" />
                            </font>
                         </Label>
-                        <JFXButton fx:id="textDirections" style="-fx-background-color: #474338;" text="GET" textFill="WHITE">
+                        <JFXButton onAction="#textPopUp" fx:id="textDirections" style="-fx-background-color: #474338;" text="GET" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font>
