@@ -478,8 +478,8 @@ public class PathfindController {
                 Path pathe = new Path();
                 pathe.getElements().add(move);
                 pathe.getElements().add(line);
-                pathe.setStroke(Color.web("#39ff14"));
-                pathe.setStrokeWidth(5.0);
+                pathe.setStroke(Color.web("#7851a9"));
+                pathe.setStrokeWidth(10.0);
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
             }

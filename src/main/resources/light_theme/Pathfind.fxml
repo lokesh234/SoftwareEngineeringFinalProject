@@ -64,7 +64,7 @@
                         <AnchorPane fx:id="NodesPane4">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/Final-Floor-4.png" />
+                                 <Image url="@../png_files/Hospital.png" />
                               </image>
                            </ImageView>
                         </AnchorPane>
