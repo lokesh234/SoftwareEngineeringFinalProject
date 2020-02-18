@@ -16,7 +16,7 @@
          <children>
             <HBox fx:id="cancelSecurity" alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="600.0">
                <children>
-                  <JFXButton style="-fx-background-color: #eb4034;" text=" X " textFill="WHITE">
+                  <JFXButton onAction="#closeHelpScreen" style="-fx-background-color: #eb4034;" text=" X " textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                      </font>

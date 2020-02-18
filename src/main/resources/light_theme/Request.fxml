@@ -68,11 +68,11 @@
                            </font></JFXButton>
                      </children>
                   </HBox>
-                  <JFXButton fx:id="close1" onAction="#closeRequest" style="-fx-background-color: #474338;" text="View" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                  </JFXButton>
+<!--                  <JFXButton fx:id="close1" onAction="#closeRequest" style="-fx-background-color: #474338;" text="View" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI" size="18.0" />-->
+<!--                     </font>-->
+<!--                  </JFXButton>-->
 <!--                        <HBox prefHeight="100.0" prefWidth="200.0">-->
 <!--                           <children>-->
 <!--                              <Button mnemonicParsing="false" text="Export to CSV..." onAction="#exportScreen"/>-->
