@@ -37,6 +37,19 @@ public class RequestController {
     }
 
 
+    @FXML
+    public void openExtTransportRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getExtTransportPop().getContent().add(App.getExternalTransport());
+        App.getExtTransportPop().show(App.getPrimaryStage());
+    }
 
+
+    @FXML
+    public void openClownRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getClownPop().getContent().add(App.getClown());
+        App.getClownPop().show(App.getPrimaryStage());
+    }
 
 }

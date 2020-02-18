@@ -93,6 +93,38 @@ public class DatabaseWrapper {
   }
 
   /**
+   * create a new user or edit and existing one
+   * @param username username for login (PK)
+   * @param password password for login
+   * @param firstName FirstName
+   * @param lastName LastName
+   * @param position Position: one of ('ADMIN' 'MEDIC' ...)
+   * @return boolean if loginSR is updated or edited
+   */
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position){
+    return (Database.addLoginSR(username, password, firstName, lastName, position));
+  }
+
+  /**
+   * give the username as a string and it will return an array list with the following strings in this order
+   * username, password, firstName, lastName, position
+   * @param username used as the PK
+   * @return returns arrayList of strings (U,P,F,L,P)
+   */
+  public static ArrayList<String> getLoginSR(String username){
+    return (Database.getLoginSR(username));
+  }
+
+  /**
+   * Deletes a row from the database
+   * @param username give unique Username for deletion
+   * @return returns true if row is deleted
+   */
+  public static boolean delLoginSR(String username){
+    return (Database.delLoginSR(username));
+  }
+
+  /**
    * Print a given database table
    *
    * @param stmt Statement (sql)
