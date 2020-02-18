@@ -54,7 +54,7 @@ public class RequestScreenController {
 //        System.out.println(name);
         switch (name) {
             case "MEDIC":
-                if (!ServiceDatabase.medicineSRDel(Integer.parseInt(date), userName)) System.out.println("oh no");
+                if (!ServiceDatabase.medicineSRDel(Integer.parseInt(date), userName, "MEDIC")) System.out.println("oh no");
                 break;
             case "SECUR":
                 ServiceDatabase.securitySRDel(Integer.parseInt(date), userName);

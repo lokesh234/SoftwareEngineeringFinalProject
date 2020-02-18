@@ -248,8 +248,8 @@ public class Database {
      */
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
-                    "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, reqType VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
+                    "CONSTRAINT SR_TY CHECK (reqType in ('MEDIC','SECUR')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -287,7 +287,7 @@ public class Database {
                     String reqDate = csvString[1];
                     String type = csvString[2];
                     String info = csvString[3];
-                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, type, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
+                    stmt.executeUpdate("INSERT INTO " + tableName + " (dateReq, reqType, info) VALUES ('" + reqDate + "', '" + type + "', '" + info + "')");
                 }
             }
 
@@ -862,24 +862,31 @@ public class Database {
      * Fill in the HashMap for all Services from the table
      * @param servicesList the ArrayList to store the services
      */
-    public static void getServices(ArrayList<Service> servicesList){
+    public static void getServices(ArrayList<Service> servicesList, String user){
         Connection connection = null;
         Statement stmt = null;
         String tableName = "ServiceRequest";
-        //printTable(stmt, "MedicalSR");
-//        Statement stmt1 = null;
-//        Statement stmt2 = null;
-//        String tableName1 = "MedicineSR";
-//        String tableName2 = "SecuritySR";
-//        //printTable(stmt, "MedicineSR");
-        //printTable(stmt, "SecuritySR");
+        String sql = null;
+
 
         try {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = connection.createStatement();
-            String sql = "SELECT * FROM " + tableName;
+
+            if (user == null){
+                return;
+            }
+            else if (user.equals("ADMIN")) {
+                sql = "SELECT * FROM " + tableName;
+            }
+            else {
+                sql = "SELECT  * FROM " + tableName + " WHERE reqtype = "+ user;
+
+               // ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
+            }
             ResultSet results = stmt.executeQuery(sql);
             ResultSetMetaData rsmd = results.getMetaData();
+
 
             int columns = rsmd.getColumnCount();
             for (int i = 1; i <= columns; i++) {
