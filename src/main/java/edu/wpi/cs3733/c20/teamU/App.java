@@ -210,6 +210,8 @@ public class App extends Application {
   public static Popup getITPop() { return ITPop;}
   public static Popup getReligiousPop() { return religiousPop;}
   public static Popup getExtTransportPop() {return extTransportPop;}
+  public static Popup getFlowerPop(){return flowerPop;}
+
 
   @Override
   public void start(Stage primaryStage) throws Exception {
