@@ -7,6 +7,7 @@ import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import javafx.animation.Interpolator;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -17,6 +18,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
@@ -33,11 +35,24 @@ public class PathfindController {
     }
 
     private Parent root;
+    int floor = 1;
 
     @FXML
     private AnchorPane NodesPane;
     @FXML
     private GesturePane PathGes;
+    @FXML
+    private AnchorPane N1;
+    @FXML
+    private AnchorPane N2;
+    @FXML
+    private AnchorPane N3;
+    @FXML
+    private AnchorPane N4;
+    @FXML
+    private AnchorPane N5;
+    @FXML VBox oppo;
+    @FXML Label floorLabel;
 
     public void setAttributes(Parent root) {
         this.root = root;
@@ -102,6 +117,60 @@ public class PathfindController {
             source.setFill(Color.BLACK);
         }
     };
+
+
+    @FXML private void clickUp(ActionEvent e){
+        floor++;
+        stateMachine(floor);
+        if(floor > 5){
+            floor = 5;
+        }
+    }
+
+    @FXML private void clickDown(ActionEvent e){
+        floor--;
+        stateMachine(floor);
+        if(floor < 1){
+            floor = 1;
+        }
+    }
+
+    @FXML private void stateMachine(int floor){
+        switch (floor){
+            case 1:
+                oppo.getChildren().clear();
+                oppo.getChildren().add(N1);
+                floor = 1;
+                floorLabel.setText("1");
+                break;
+            case 2:
+                oppo.getChildren().clear();
+                oppo.getChildren().add(N2);
+                floor = 2;
+                floorLabel.setText("2");
+                break;
+            case 3:
+                oppo.getChildren().clear();
+                oppo.getChildren().add(N3);
+                floor = 3;
+                floorLabel.setText("3");
+                break;
+            case 4:
+                oppo.getChildren().clear();
+                oppo.getChildren().add(N4);
+                floor = 4;
+                floorLabel.setText("4");
+                break;
+            case 5:
+                oppo.getChildren().clear();
+                oppo.getChildren().add(N5);
+                floor = 5;
+                floorLabel.setText("5");
+                break;
+        }
+    }
+
+
 
     private void updateStatus() {
         if (state == State.NEUTRAL) {
