@@ -45,19 +45,29 @@ public class FlowerController {
 
 
         //TODO: specify which textfield to write in if empty
-        if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty()) {
+
+        // check if date is in the past. No time travel!
+        boolean hasPassed = false;
+        int dateCompVal = getDate().compareTo(datePick.getValue());
+        if(dateCompVal <= 0 ){
+            hasPassed = true;
+        }
+
+        if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty() || hasPassed) {
             // will print out some text eventually, right now nothing
             last.setStyle("-fx-border-color: red");
             giftNote.setStyle("-fx-border-color: red");
             flowerCombo.setStyle("-fx-border-color: red");
             occasionCombo.setStyle("-fx-border-color: red");
             first.setStyle("-fx-border-color: red");
+            datePick.setStyle("-fx-border-color: red");
         } else {
             last.setStyle("-fx-border-color: #FFEEC9");
             giftNote.setStyle("-fx-border-color: #FFEEC9");
             flowerCombo.setStyle("-fx-border-color: #FFEEC9");
             occasionCombo.setStyle("-fx-border-color: #FFEEC9");
             first.setStyle("-fx-border-color: #FFEEC9");
+            datePick.setStyle("-fx-border-color: #FFEEC9");
 
 //            ServiceDatabase.flowerSRAdd(userFirst, userLast, userFlower, userOccasion, userDate, userNote);
             clearField();
@@ -119,7 +129,5 @@ public class FlowerController {
 
         LocalDate today = LocalDate.of(year, month, day);
         setDate(today);
-
-
     }
 }
