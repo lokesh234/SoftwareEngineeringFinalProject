@@ -29,6 +29,8 @@ public class startController {
     App.setTime(System.currentTimeMillis());
     App.change(true);
     App.getPrimaryStage().setScene(App.getHomeScene());
+    App.getHome().setDisable(false);
+    App.getHome().setOpacity(1);
   }
 
   @FXML

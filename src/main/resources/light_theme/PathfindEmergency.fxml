@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import net.kurobako.gesturefx.GesturePane?>
+<AnchorPane onKeyPressed="#checkout" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.FireController">
+   <children>
+      <BorderPane layoutX="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="1920" prefWidth="1080">
+                    <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d" fx:id="FireGesPane">
+                            <AnchorPane fx:id="fireNodes">
+            <ImageView  preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../png_files/Final-Floor_4_map_1.png" />
+               </image>
+            </ImageView>
+                       </AnchorPane>
+                    </GesturePane>
+            </AnchorPane>
+         </center>
+         <left>
+            <VBox alignment="CENTER" minWidth="150.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" />
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox prefHeight="200.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+         </right>
+         <top>
+            <HBox alignment="CENTER" prefHeight="100.0" spacing="50.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="FIRE EMERGENCY" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="72.0" />
+                     </font>
+                  </Label>
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+<!--                  <Label text="FIRE EMERGENCY" textFill="WHITE">-->
+<!--                     <font>-->
+<!--                        <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                     </font>-->
+<!--                  </Label>-->
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox alignment="CENTER" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="PLEASE PROCEED TO NEAREST EXIT" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

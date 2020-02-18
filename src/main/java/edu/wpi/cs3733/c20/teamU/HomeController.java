@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.animation.Interpolator;
@@ -17,7 +18,7 @@ import java.io.IOException;
 
 public class HomeController {
 
-  @FXML private Button test;
+  @FXML private JFXButton login;
   @FXML private Button navButton;
   @FXML private GesturePane MapGes;
   private long startTime;
@@ -113,18 +114,18 @@ public class HomeController {
 
   @FXML
   private void initialize() {
-    MapGes.setOnMouseClicked(e -> {
-      if(e.isDragDetect()) setTime();
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        setTime();
-        Point2D pivotOnTarget = MapGes.targetPointAt(new Point2D(e.getX(), e.getY()))
-            .orElse(MapGes.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes.getCurrentScale(), pivotOnTarget);
-      }
-    });
+//    MapGes.setOnMouseClicked(e -> {
+//      if(e.isDragDetect()) setTime();
+//      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+//        setTime();
+//        Point2D pivotOnTarget = MapGes.targetPointAt(new Point2D(e.getX(), e.getY()))
+//            .orElse(MapGes.targetPointAtViewportCentre());
+//        // increment of scale makes more sense exponentially instead of linearly
+//        MapGes.animate(Duration.millis(200))
+//            .interpolateWith(Interpolator.EASE_BOTH)
+//            .zoomBy(MapGes.getCurrentScale(), pivotOnTarget);
+//      }
+//    });
     startT.setDaemon(true);
     startT.start();
   }

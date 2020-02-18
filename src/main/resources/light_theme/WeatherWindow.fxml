@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.WeatherController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
+               <children>
+                  <Label fx:id="time" text="4:20 PM" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Segoe UI Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="EST" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="110.0" />
+               </padding>
+            </HBox>
+         </top>
+         <center>
+            <VBox fillWidth="false" BorderPane.alignment="TOP_CENTER">
+               <children>
+                  <ImageView fitHeight="273.0" fitWidth="348.0" pickOnBounds="true" VBox.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@../png_files/meatball.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="Cloudy with a chance of memeballs" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
+         </center>
+         <right>
+            <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="temp" text="69*F" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Segoe UI Bold" size="72.0" />
+                     </font>
+                  </Label>
+                  <Label text="20.5*C">
+                     <font>
+                        <Font name="Segoe UI" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </right>
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Worcester, MA">
+                     <font>
+                        <Font name="Segoe UI" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -3,9 +3,9 @@ package edu.wpi.cs3733.c20.teamU;
 import java.io.IOException;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
+import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
-import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 //import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
@@ -177,25 +177,28 @@ public class App extends Application {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     try {
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/Tap_to_start.fxml"));
-      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/bigScreenv2.fxml"));
-      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/LoginUI.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/AllAdmin.fxml"));
-      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/AdminGraph.fxml"));
-      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/pathfind.fxml"));
-      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/Security.fxml"));
-      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/AllRequests.fxml"));
-      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/MedicineRequestForm.fxml"));
-      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/pathfindEmergency.fxml"));
-      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/Export_CSV.fxml"));
-      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/Edit_Node.fxml"));
-      FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/Add_Node.fxml"));
-      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/Admin_Service.fxml")));
-      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/Edit_Edge.fxml"));
-      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/View_Edges.fxml")); //TODO: add correct fxml
-      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
-      FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/WeatherWindow.fxml"));
-      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/IT.fxml"));
+      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/HomeStart.fxml"));
+      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/light_theme/Home.fxml"));
+      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/light_theme/LoginForm.fxml"));
+      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminMenu.fxml"));
+//      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
+      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/light_theme/Pathfind.fxml"));
+      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
+      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
+      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
+      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
+      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
+      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
+      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/Edit_Edge.fxml"));
+      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/View_Edges.fxml")); //TODO: add correct fxml
+      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFormResolve.fxml"));
+      FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/light_theme/WeatherWindow.fxml"));
+      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/IT.fxml"));
+      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindEmergency.fxml"));
+      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminGraph.fxml"));
+//      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
+
+      FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
 
 
 
@@ -209,7 +212,6 @@ public class App extends Application {
       medicine = medicineLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
-
       IT = ITLoader.load();
       export = exportLoader.load();
       edit = editLoader.load();
@@ -236,6 +238,7 @@ public class App extends Application {
       requestScreenController = RRLoader.getController();
       fireController = fireLoader.getController();
       weatherController = weatherLoader.getController();
+//      editEdgeController = adminNodeLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -246,6 +249,7 @@ public class App extends Application {
       adminRequestController.setAttributes(requestScreenController);
       addNodeScreenController.setAttributes(graphEditController);
       loginScreenController.setAttributes(adminScreenController);
+
 
       popup.getContent().addAll();
       securityPop.getContent().addAll();

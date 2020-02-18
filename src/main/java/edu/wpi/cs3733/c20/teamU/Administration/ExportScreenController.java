@@ -66,6 +66,6 @@ public class ExportScreenController {
 
   @FXML
   public void initialize() {
-    location1.setText(System.getProperty("user.dir"));
+//    location1.setText(System.getProperty("user.dir"));
   }
 }
