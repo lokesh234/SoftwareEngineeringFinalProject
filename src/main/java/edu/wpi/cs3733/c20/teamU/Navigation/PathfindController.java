@@ -25,6 +25,7 @@ import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 import javax.xml.crypto.Data;
+import javax.xml.crypto.NodeSetData;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,8 +40,6 @@ public class PathfindController {
     int floor = 1;
 
     @FXML
-    private AnchorPane NodesPane;
-    @FXML
     private GesturePane PathGes;
     @FXML
     private AnchorPane N1;
@@ -52,6 +51,8 @@ public class PathfindController {
     private AnchorPane N4;
     @FXML
     private AnchorPane N5;
+
+    @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
     @FXML VBox oppo;
     @FXML Label floorLabel;
 
@@ -70,7 +71,7 @@ public class PathfindController {
     private boolean endReady = false;
     private boolean displayingPath = false;
     private HashMap<Circle, Node> circles = new HashMap<>();
-    private ArrayList<Path> pathes = new ArrayList<>();
+    private HashMap<Path, Integer> pathes = new HashMap<>();
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
 
@@ -193,17 +194,10 @@ public class PathfindController {
         endReady = false;
         startLabel.setText("None Selected");
         endLabel.setText("None Selected");
-        clearPath();
         //ArrayList<Node> nodes = App.getGraph().getNodes();
         DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
-        if (circles.size() > 0) {
-            for (Map.Entry<Circle, Node> pair : circles.entrySet()) {
-                Node n = pair.getValue();
-                Circle c = pair.getKey();
-                removeFromPath(c);
-            }
-        }
+        clearPath();
         circles.clear();
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
@@ -213,7 +207,7 @@ public class PathfindController {
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
                 c.setRadius(App.getNodeSize());
-                addToPath(c);
+                addToPath(c, n.getFloor());
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
@@ -223,7 +217,7 @@ public class PathfindController {
     }
 
     private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
-        return !n.getNodeType().equals("HALL") && n.getFloor() == drawnFloor; //If ID is shorter than 6, it's not a hallway node
+        return !n.getNodeType().equals("HALL"); //no hallway nodes
         //return true; //Everything!
     }
 
@@ -269,9 +263,8 @@ public class PathfindController {
     }
     @FXML
     private void clearPath() {
-        if (pathes.size() == 0) return;
-        for (Path p : pathes) {
-            removeFromPath(p);
+        for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
+            removeFromPath(pair.getKey(), pair.getValue());
         }
         displayingPath = false;
         updateStatus();
@@ -288,15 +281,18 @@ public class PathfindController {
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
 
-            MoveTo move = new MoveTo(n1.getX(),n1.getY());
-            LineTo line = new LineTo(n2.getX(),n2.getY());
-            Path pathe = new Path();
-            pathe.getElements().add(move);
-            pathe.getElements().add(line);
-            pathe.setStroke(Color.web("#39ff14"));
-            pathe.setStrokeWidth(5.0);
-            pathes.add(pathe);
-            addToPath(pathe);
+            if (n1.getFloor() == n2.getFloor()) {
+
+                MoveTo move = new MoveTo(n1.getX(), n1.getY());
+                LineTo line = new LineTo(n2.getX(), n2.getY());
+                Path pathe = new Path();
+                pathe.getElements().add(move);
+                pathe.getElements().add(line);
+                pathe.setStroke(Color.web("#39ff14"));
+                pathe.setStrokeWidth(5.0);
+                pathes.put(pathe, n1.getFloor());
+                addToPath(pathe, n1.getFloor());
+            }
 
         }
         displayingPath = true;
@@ -318,10 +314,42 @@ public class PathfindController {
     private void backHome() {
         App.getPrimaryStage().setScene(App.getHomeScene());
     }
-    private void addToPath(javafx.scene.Node e) {
-        NodesPane.getChildren().add(e);
+    private void addToPath(javafx.scene.Node e, int floor) {
+        switch (floor) {
+            case 1:
+                NodesPane1.getChildren().add(e);
+                break;
+            case 2:
+                NodesPane2.getChildren().add(e);
+                break;
+            case 3:
+                NodesPane3.getChildren().add(e);
+                break;
+            case 4:
+                NodesPane4.getChildren().add(e);
+                break;
+            case 5:
+                NodesPane5.getChildren().add(e);
+                break;
+        }
     }
-    private void removeFromPath(javafx.scene.Node e) {
-        NodesPane.getChildren().remove(e);
+    private void removeFromPath(javafx.scene.Node e, int floor) {
+        switch (floor) {
+            case 1:
+                NodesPane1.getChildren().remove(e);
+                break;
+            case 2:
+                NodesPane2.getChildren().remove(e);
+                break;
+            case 3:
+                NodesPane3.getChildren().remove(e);
+                break;
+            case 4:
+                NodesPane4.getChildren().remove(e);
+                break;
+            case 5:
+                NodesPane5.getChildren().remove(e);
+                break;
+        }
     }
 }

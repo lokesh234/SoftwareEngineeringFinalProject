@@ -35,7 +35,7 @@
                <children>
                   <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                      <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
-                        <AnchorPane>
+                        <AnchorPane fx:id="NodesPane2">
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/main_2_blue.png"/>
@@ -48,7 +48,7 @@
                <children>
                   <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                      <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
-                        <AnchorPane>
+                        <AnchorPane fx:id="NodesPane3">
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/main_3_blue.png"/>
@@ -61,7 +61,7 @@
                <children>
                   <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                      <GesturePane fx:id="PathGes" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
-                        <AnchorPane fx:id="NodesPane">
+                        <AnchorPane fx:id="NodesPane4">
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/Final-Floor-4.png"/>
@@ -74,7 +74,7 @@
                <children>
                   <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                      <GesturePane AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
-                        <AnchorPane>
+                        <AnchorPane fx:id="NodesPane5">
                            <ImageView>
                               <image>
                                  <Image url="@../png_files/main_5_blue.png"/>
