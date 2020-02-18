@@ -45,6 +45,7 @@ public class App extends Application {
   private static Pane resolveRequest;
   private static Pane weather;
   private static Pane IT;
+  private static Pane religious;
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -95,6 +96,7 @@ public class App extends Application {
   private static Popup requestPop = new Popup();
   private static Popup medicinePop = new Popup();
   private static Popup ITPop = new Popup();
+  private static Popup religiousPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -116,6 +118,7 @@ public class App extends Application {
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
+  public static Pane getReligious() { return religious;}
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -170,6 +173,7 @@ public class App extends Application {
   public static Popup getRequestPop() { return requestPop; }
   public static Popup getMedicinePop() { return medicinePop; }
   public static Popup getITPop() { return ITPop;}
+  public static Popup getReligiousPop() { return religiousPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -196,6 +200,7 @@ public class App extends Application {
       FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
       FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/WeatherWindow.fxml"));
       FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/IT.fxml"));
+      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/ReligiousRequest.fxml"));
 
 
 
@@ -209,6 +214,7 @@ public class App extends Application {
       medicine = medicineLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
+      religious = religiousLoader.load();
 
       IT = ITLoader.load();
       export = exportLoader.load();
@@ -252,6 +258,7 @@ public class App extends Application {
       requestPop.getContent().addAll();
       medicinePop.getContent().addAll();
       ITPop.getContent().addAll();
+      religiousPop.getContent().addAll();
 
 
       homeScene = new Scene(home);

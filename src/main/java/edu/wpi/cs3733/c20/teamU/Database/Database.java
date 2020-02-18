@@ -519,10 +519,12 @@ public class Database {
                 while ((line = br.readLine()) != null) {
 
                     String[] csvString = line.split(csvSplit);
+                    System.out.println(csvString);
                     if (starter == 0){
                         starter = 1;
                     }
                     else{
+
                         String username = csvString[0];
                         String password = csvString[1];
                         String position = csvString[2];
