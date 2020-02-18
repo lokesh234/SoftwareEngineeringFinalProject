@@ -1,5 +1,9 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
@@ -13,13 +17,13 @@ import javafx.scene.control.TextField;
 
 public class MedicineController {
 
-    @FXML private TextField last;
-    @FXML private TextArea comments;
-    @FXML private TextField frequency;
-    @FXML private TextField first;
-    @FXML private TextField drug;
-    @FXML private Button closeMedicineScreen;
-    @FXML private ComboBox comboBox = new ComboBox();
+    @FXML private JFXTextArea comments;
+    @FXML private JFXTextField last;
+    @FXML private JFXTextField frequency;
+    @FXML private JFXTextField first;
+    @FXML private JFXTextField drug;
+    @FXML private JFXButton closeMedicineScreen;
+    @FXML private JFXComboBox comboBox = new JFXComboBox();
 
     @FXML
     private void getSubmission() {

@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
@@ -20,8 +21,8 @@ public class AdminRequestController {
   @FXML private TableColumn<Service, String> requestID;
   @FXML private TableColumn<Service, String> type;
   @FXML private TableColumn<Service, String> info;
-  @FXML private Button close;
-  @FXML private Button backButton;
+  @FXML private JFXButton close;
+  @FXML private JFXButton backButton;
   RequestScreenController requestScreenController;
 
   public void setAttributes(RequestScreenController requestScreenController1) {

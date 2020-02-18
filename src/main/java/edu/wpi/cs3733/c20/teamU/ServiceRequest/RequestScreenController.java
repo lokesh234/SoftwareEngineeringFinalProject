@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Administration.AdministrationWrapper;
 import edu.wpi.cs3733.c20.teamU.App;
@@ -9,9 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class RequestScreenController {
-    @FXML private Button resolve;
-    @FXML private Button cancel;
-    @FXML private Button back;
+    @FXML private JFXButton resolveButton;
+    @FXML private JFXButton cancelButton;
+    @FXML private JFXButton backButton;
     @FXML private Label field1;
     @FXML private Label field2;
     @FXML private Label field3;
@@ -62,7 +63,7 @@ public class RequestScreenController {
         }
         //adminRequestController.update();
         AdministrationWrapper.adminRequestControllerUpdate(adminRequestController);
-        back.fire();
+        backButton.fire();
     }
 
     @FXML
