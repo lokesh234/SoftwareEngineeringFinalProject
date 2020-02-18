@@ -53,7 +53,8 @@ public class AdminRequestController {
     private ObservableList<Service> arrayToOBList(){
         ObservableList<Service> services = FXCollections.observableArrayList();
         ArrayList<Service> temp = new ArrayList<>();
-        Database.getServices(temp, App.getUser());
+        String user = App.getUser();
+        Database.getServices(temp, user);
         if(temp != null) {
             services.addAll(temp);
         }

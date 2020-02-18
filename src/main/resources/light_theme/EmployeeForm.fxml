@@ -46,9 +46,9 @@
                   <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="41.33331298828125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="firstNameText" promptText="Input Node iD" text="John" GridPane.columnIndex="1" />
-                  <JFXTextField fx:id="lastNameText" promptText="Input X Coordinate" text="Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <JFXTextField fx:id="employeeIdText" promptText="Input Y Coordinate" text="jdoe1234" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="firstNameText" text="John" GridPane.columnIndex="1" />
+                  <JFXTextField fx:id="lastNameText" text="Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="employeeIdText" text="jdoe1234" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER">
                      <children>
                         <Label text="First Name">
@@ -88,7 +88,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <JFXComboBox fx:id="employeeCombo" />
-                        <JFXButton fx:id="add" style="-fx-background-color: #474338;" text="Add" textFill="WHITE">
+                        <JFXButton fx:id="add" onAction="#employeeTypeAdd" style="-fx-background-color: #474338;" text="Add" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="12.0" />
                            </font>
