@@ -91,7 +91,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="submit" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE">
+                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font></JFXButton>
@@ -114,7 +114,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="backButton" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font></JFXButton>

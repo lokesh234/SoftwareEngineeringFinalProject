@@ -14,20 +14,22 @@ import java.time.ZoneId;
 import java.util.Date;
 
 public class FlowerController {
-    LocalDate date;
+    LocalDate today;
+    LocalDate selected;
 
     @FXML private JFXTextField first;
     @FXML private JFXTextField last;
     @FXML private JFXTextArea giftNote;
     @FXML private JFXButton backToRequest;
+    @FXML private JFXButton submit;
     @FXML private JFXComboBox flowerCombo = new JFXComboBox();
     @FXML private JFXComboBox occasionCombo = new JFXComboBox();
-    @FXML private JFXDatePicker datePick = new JFXDatePicker(date);
+    @FXML private JFXDatePicker datePick;
 
 
 
     @FXML
-    private void submit() {
+    private void getSubmission() {
         String userLast = last.getText();
         String userNote = giftNote.getText();
         String userFirst = first.getText();
@@ -40,18 +42,19 @@ public class FlowerController {
         if(occasionCombo.getValue() == null) userOccasion = "";
         else userOccasion = occasionCombo.getValue().toString();
 
-        String userDate = datePick.getValue().toString();
+        setSelected(datePick.getValue());
 
 
 
         //TODO: specify which textfield to write in if empty
 
         // check if date is in the past. No time travel!
-        boolean hasPassed = false;
-        int dateCompVal = getDate().compareTo(datePick.getValue());
-        if(dateCompVal <= 0 ){
-            hasPassed = true;
-        }
+        // getDate is the current date
+        // datePick is the selected date
+        // if getDate (today) is *after* the selected date,
+        // that means they have selected a date in the past
+
+        boolean hasPassed = getToday().isAfter(getSelected());
 
         if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty() || hasPassed) {
             // will print out some text eventually, right now nothing
@@ -62,12 +65,6 @@ public class FlowerController {
             first.setStyle("-fx-border-color: red");
             datePick.setStyle("-fx-border-color: red");
         } else {
-            last.setStyle("-fx-border-color: #FFEEC9");
-            giftNote.setStyle("-fx-border-color: #FFEEC9");
-            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
-            occasionCombo.setStyle("-fx-border-color: #FFEEC9");
-            first.setStyle("-fx-border-color: #FFEEC9");
-            datePick.setStyle("-fx-border-color: #FFEEC9");
 
 //            ServiceDatabase.flowerSRAdd(userFirst, userLast, userFlower, userOccasion, userDate, userNote);
             clearField();
@@ -76,15 +73,23 @@ public class FlowerController {
     }
 
     public void clearField() {
+        last.setStyle("-fx-border-color: #FFEEC9");
+        giftNote.setStyle("-fx-border-color: #FFEEC9");
+        flowerCombo.setStyle("-fx-border-color: #FFEEC9");
+        occasionCombo.setStyle("-fx-border-color: #FFEEC9");
+        first.setStyle("-fx-border-color: #FFEEC9");
+        datePick.setStyle("-fx-border-color: #FFEEC9");
+
         last.clear();
         giftNote.clear();
         first.clear();
         flowerCombo.getSelectionModel().clearSelection();
         occasionCombo.getSelectionModel().clearSelection();
-        retrieveDate(); // will 'clear' the date field
+        datePick.getEditor().clear();
     }
     @FXML
     private void goBack(){
+        clearField();
 //        App.getHome().setOpacity(1);
 //        App.getHome().setDisable(false);
         App.getFlowerPop().getContent().clear();
@@ -94,8 +99,10 @@ public class FlowerController {
 
     @FXML
     public void initialize() {
-        retrieveDate();
-        System.out.println(getDate());
+        //first set what today is, then dont touch it
+        LocalDate today = retrieveDate();
+        setToday(today);
+
 //        submit.setDisable(false);
         ObservableList<String> flowerOptions =
                 FXCollections.observableArrayList(
@@ -113,21 +120,33 @@ public class FlowerController {
         occasionCombo.getItems().addAll(occasionOptions);
     }
 
-    private void setDate(LocalDate date){
-        this.date = date;
-        datePick = new JFXDatePicker(date);
-    }
-    private LocalDate getDate(){
-        return this.date;
+    private void setSelected(LocalDate date){
+        this.selected = date;
     }
 
-    private void retrieveDate(){
+
+    private LocalDate getSelected(){
+        return this.selected;
+    }
+
+    private LocalDate retrieveDate(){
         LocalDateTime now = LocalDateTime.now(ZoneId.of("America/New_York"));
         int month = now.getMonthValue();
         int day = now.getDayOfMonth();
         int year = now.getYear();
 
         LocalDate today = LocalDate.of(year, month, day);
-        setDate(today);
+        return today;
+    }
+    private void setTodayDate(){
+        LocalDate today = retrieveDate();
+        datePick = new JFXDatePicker(today);
+    }
+
+    private void setToday(LocalDate today){
+        this.today = today;
+    }
+    private LocalDate getToday(){
+        return this.today;
     }
 }
