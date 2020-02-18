@@ -55,8 +55,8 @@ public class LoginScreenController {
    */
 
   private void changeScene() {
-    usernameField.setStyle("-fx-border-color: skyblue");
-    passwordField.setStyle("-fx-border-color: skyblue");
+    usernameField.setStyle("-fx-border-color: #FFEEC9");
+    passwordField.setStyle("-fx-border-color: #FFEEC9");
     App.getPopup().getContent().clear();
     if (didFail) {
       App.getHome().setOpacity(1);
@@ -80,8 +80,8 @@ public class LoginScreenController {
   @FXML
   private void exitPopup() {
     didFail = false;
-    usernameField.setStyle("-fx-border-color: skyblue");
-    passwordField.setStyle("-fx-border-color: skyblue");
+    usernameField.setStyle("-fx-border-color: #FFEEC9");
+    passwordField.setStyle("-fx-border-color: #FFEEC9");
     App.getHome().setOpacity(1);
     App.getHome().setDisable(false);
     App.getPopup().getContent().clear();

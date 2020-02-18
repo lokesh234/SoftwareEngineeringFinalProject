@@ -24,7 +24,7 @@ public class WeatherController {
         @Override
         public void run() {
 //          System.out.println(setTime());
-//          time.setText(setTime());
+          time.setText(setTime());
         }
       };
       while (true) {
@@ -56,7 +56,8 @@ public class WeatherController {
         }
       }
     }
-    return String.format("%1$02d : %2$02d : %3$02d", hr, m, s);
+    if(hr >= 12) return String.format("%1$02d : %2$02d : %3$02d PM", hr, m, s);
+    else return String.format("%1$02d : %2$02d : %3$02d AM", hr, m, s);
   }
 
   @FXML

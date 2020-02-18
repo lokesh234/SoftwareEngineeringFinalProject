@@ -979,6 +979,64 @@ public class Database {
         }
     }
 
+    public static void getFinishedServices(ArrayList<Service> servicesList, String user){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "ServiceFinished";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            if (user == null){
+                return;
+            }
+            else if (user.equals("ADMIN")) {
+                sql = "SELECT * FROM " + tableName;
+            }
+            else {
+                sql = "SELECT  * FROM " + tableName + " WHERE reqtype = "+ user;
+
+                // ResultSet results = stmt.executeQuery("SELECT  * FROM " + STable + " WHERE reqID = " + reqID);
+            }
+            ResultSet results = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = results.getMetaData();
+
+
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (results.next()) {
+                String date = results.getString(1);
+                String requestID = results.getString(2);
+                String name = results.getString(3);
+                String requestType = results.getString(4);
+//                System.out.println(date);
+//                System.out.println(requestID);
+//                System.out.println(name);
+//                System.out.println(requestType);
+                Service s = new Service(date, requestID, name, requestType);
+                servicesList.add(s);
+                System.out.println("service list: " + servicesList);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
+
 
     /**
      * Check the if the username and password are valid for login
