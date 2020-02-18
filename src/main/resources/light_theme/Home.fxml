@@ -34,7 +34,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                            <children>
-                              <JFXButton fx:id="login" buttonType="RAISED" onAction="#openLoginScene" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login ">
+                              <JFXButton fx:id="login" buttonType="RAISED" onAction="#openLoginScene" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login " textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="20.0" />
                                  </font>
@@ -64,7 +64,7 @@
                <children>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" HBox.hgrow="ALWAYS">
+                        <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -72,12 +72,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="navButton" contentDisplay="TOP" onAction="#openNavScene" text="Navigate" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="navButton" contentDisplay="TOP" onAction="#openNavScene" text="Navigate" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -86,14 +89,14 @@
                               </ImageView>
                            </graphic>
                            <font>
-                              <Font name="Segoe UI" size="12.0" />
+                              <Font name="Segoe UI Bold" size="16.0" />
                            </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" onAction="#openRequestScene" text="Services" HBox.hgrow="ALWAYS">
+                        <JFXButton contentDisplay="TOP" onAction="#openRequestScene" text="Services" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -101,12 +104,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" text="Information" HBox.hgrow="ALWAYS">
+                        <JFXButton contentDisplay="TOP" text="Information" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -114,12 +120,15 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" onAction="#openHelpScene" text="Help" HBox.hgrow="ALWAYS">
+                        <JFXButton contentDisplay="TOP" onAction="#openHelpScene" text="Help" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -127,6 +136,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
                         </JFXButton>
                      </children>
                   </HBox>
