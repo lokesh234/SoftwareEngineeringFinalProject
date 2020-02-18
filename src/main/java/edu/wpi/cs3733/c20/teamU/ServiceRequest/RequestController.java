@@ -36,10 +36,7 @@ public class RequestController {
         App.getReligiousPop().show(App.getPrimaryStage());
     }
 
-    @FXML
-    public void popReligious(){
 
-    }
 
 
 }

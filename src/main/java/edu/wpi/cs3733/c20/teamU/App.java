@@ -231,7 +231,7 @@ public class App extends Application {
 //      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
-      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/Religious.fxml"));
+      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
 
 
       home = homeLoader.load();
