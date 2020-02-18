@@ -25,6 +25,19 @@ public class FlowerController {
     @FXML private JFXComboBox flowerCombo = new JFXComboBox();
     @FXML private JFXComboBox occasionCombo = new JFXComboBox();
     @FXML private JFXDatePicker datePick;
+    @FXML private JFXChipView flowerChip = new JFXChipView();
+    @FXML private JFXTextField room;
+
+    @FXML
+    private void flowerTypeAdd() {
+        if (!flowerCombo.getSelectionModel().isEmpty()) {
+            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
+            flowerChip.getChips().add(flowerCombo.getSelectionModel().getSelectedItem());
+            flowerCombo.getSelectionModel().clearSelection();
+        } else {
+            flowerCombo.setStyle("-fx-border-color: red");
+        }
+    }
 
 
 
@@ -33,16 +46,26 @@ public class FlowerController {
         String userLast = last.getText();
         String userNote = giftNote.getText();
         String userFirst = first.getText();
+        String userRoom = room.getText();
 
         String userFlower;
-        if(flowerCombo.getValue() == null) userFlower = "";
-        else userFlower = flowerCombo.getValue().toString();
+        if(flowerChip.getChips().toString() == null) userFlower = "";
+        else userFlower = flowerChip.getChips().toString();
 
         String userOccasion;
         if(occasionCombo.getValue() == null) userOccasion = "";
         else userOccasion = occasionCombo.getValue().toString();
 
         setSelected(datePick.getValue());
+        String flowerChipString = flowerChip.getChips().toString();
+        System.out.println(flowerChipString);
+
+        boolean hasRoses = flowerChipString.contains("Roses");
+        boolean hasLillies = flowerChipString.contains("Lillies");
+        boolean hasTulips = flowerChipString.contains("Tulips");
+
+        String userDate = getSelected().toString();
+
 
 
 
@@ -56,7 +79,7 @@ public class FlowerController {
 
         boolean hasPassed = getToday().isAfter(getSelected());
 
-        if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty() || hasPassed) {
+        if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty() || userRoom.isEmpty()|| hasPassed) {
             // will print out some text eventually, right now nothing
             last.setStyle("-fx-border-color: red");
             giftNote.setStyle("-fx-border-color: red");
@@ -64,9 +87,10 @@ public class FlowerController {
             occasionCombo.setStyle("-fx-border-color: red");
             first.setStyle("-fx-border-color: red");
             datePick.setStyle("-fx-border-color: red");
+            room.setStyle("-fx-border-color: red");
         } else {
 
-//            ServiceDatabase.flowerSRAdd(userFirst, userLast, userFlower, userOccasion, userDate, userNote);
+//            ServiceDatabase.flowerSRAdd(userLast, userFirst, hasRoses, hasTulips, hasLillies, userOccasion, userDate, userNote, userRoom);
             clearField();
             backToRequest.fire();
         }
@@ -79,6 +103,7 @@ public class FlowerController {
         occasionCombo.setStyle("-fx-border-color: #FFEEC9");
         first.setStyle("-fx-border-color: #FFEEC9");
         datePick.setStyle("-fx-border-color: #FFEEC9");
+        room.setStyle("-fx-border-color: #FFEEC9");
 
         last.clear();
         giftNote.clear();
@@ -86,6 +111,8 @@ public class FlowerController {
         flowerCombo.getSelectionModel().clearSelection();
         occasionCombo.getSelectionModel().clearSelection();
         datePick.getEditor().clear();
+        flowerChip.getChips().clear();
+        room.clear();
     }
     @FXML
     private void goBack(){
