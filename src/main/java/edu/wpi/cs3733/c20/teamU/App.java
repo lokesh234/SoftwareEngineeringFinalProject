@@ -53,6 +53,8 @@ public class App extends Application {
 
   private static Pane employeeF;
 
+  private static Pane externalTransport;  // This is anir
+
 
   private static Scene homeScene;
   private static Scene loginScene;
@@ -71,6 +73,7 @@ public class App extends Application {
   private static Scene weatherScene;
   private static Scene employeeFormScene;
   private static Scene religiousScene;
+  private static Scene extTransportScene; //this is anir
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -87,6 +90,7 @@ public class App extends Application {
   private static WeatherController weatherController;
   private static EmployeeFormController employeeFormController;
   private static ReligiousController religiousController;
+  private static ExtTransportController extTransportController; //anir
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -109,6 +113,7 @@ public class App extends Application {
   private static Popup medicinePop = new Popup();
   private static Popup ITPop = new Popup();
   private static Popup religiousPop = new Popup();
+  private static Popup extTransportPop = new Popup(); //anir
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -130,6 +135,7 @@ public class App extends Application {
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
+  public static Pane getExternalTransport() {return externalTransport;} //anir
 
   public static Pane getReligious() { return religious;}
 
@@ -152,6 +158,7 @@ public class App extends Application {
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
   public static Scene getWeatherScene() {return weatherScene; }
   public static Scene getEmployeeFormScene() {return employeeFormScene; }
+  public static Scene getExtTransportScene() {return extTransportScene;} //anir
     public static Scene getReligiousScene() {
         return religiousScene;
     }
@@ -170,6 +177,7 @@ public class App extends Application {
   public static WeatherController weatherController() {return weatherController; }
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
+  public static ExtTransportController getExtTransportController() {return  extTransportController;}
     public static ReligiousController getReligiousController() {
         return religiousController;
     }
@@ -200,7 +208,7 @@ public class App extends Application {
   public static Popup getMedicinePop() { return medicinePop; }
   public static Popup getITPop() { return ITPop;}
   public static Popup getReligiousPop() { return religiousPop;}
-
+  public static Popup getExtTransportPop() {return extTransportPop;}
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -232,6 +240,7 @@ public class App extends Application {
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
       FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/Religious.fxml"));
+      FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
 
 
       home = homeLoader.load();
@@ -255,6 +264,7 @@ public class App extends Application {
       addNode = addNodeLoader.load();
       resolveRequest = RRLoader.load();
       employeeF = employeeFormLoader.load();
+      externalTransport = extTransportLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -275,6 +285,7 @@ public class App extends Application {
       employeeFormController = employeeFormLoader.getController();
       religiousController = religiousLoader.getController();
 //      editEdgeController = adminNodeLoader.getController();
+      extTransportController = extTransportLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -293,6 +304,7 @@ public class App extends Application {
       medicinePop.getContent().addAll();
       ITPop.getContent().addAll();
       religiousPop.getContent().addAll();
+      extTransportPop.getContent().addAll();
 
 
       homeScene = new Scene(home);
