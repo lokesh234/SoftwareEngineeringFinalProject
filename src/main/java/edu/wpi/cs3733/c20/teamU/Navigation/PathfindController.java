@@ -75,7 +75,7 @@ public class PathfindController {
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
     private ArrayList<Integer> floorsInPath = new ArrayList<>();
-    private HashMap<Circle, Integer> interFloorPaths = new HashMap<>();
+    private HashMap<Circle, Node> interFloorPaths = new HashMap<>();
 
 
     @FXML
@@ -119,6 +119,22 @@ public class PathfindController {
         public void handle(MouseEvent event) {
             Circle source = (Circle) event.getSource();
             source.setFill(Color.BLACK);
+        }
+    };
+
+    EventHandler<MouseEvent> interFloorPathHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) { //We know that one of the adjacent nodes is on a different floor (might be both of them, but then we can go to either)
+            Node n1 = interFloorPaths.get(event.getSource());
+            int circleFloor = n1.getFloor();
+            if (path.indexOf(n1) > 0 && path.get(path.indexOf(n1)-1).getFloor() != circleFloor) { //The node before us is on a different floor
+                floor = path.get(path.indexOf(n1)-1).getFloor();
+                stateMachine(floor);
+            }
+            else { //Given that: 1. there is a node adjacent to us on a different floor and 2. the node before us (if it exists) is not on a different floor, we can conclude that there is a node behind us and it is on a different floor
+                floor = path.get(path.indexOf(n1)+1).getFloor();
+                stateMachine(floor);
+            }
         }
     };
 
@@ -289,8 +305,8 @@ public class PathfindController {
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue());
         }
-        for (Map.Entry<Circle, Integer> pair : interFloorPaths.entrySet()) {
-            removeFromPath(pair.getKey(), pair.getValue());
+        for (Map.Entry<Circle, Node> pair : interFloorPaths.entrySet()) {
+            removeFromPath(pair.getKey(), pair.getValue().getFloor());
         }
         displayingPath = false;
         floorsInPath.clear();
@@ -345,8 +361,10 @@ public class PathfindController {
                 c2.setRadius(App.getNodeSize()+5);
                 c.setStrokeWidth(5);
                 c2.setStrokeWidth(5);
-                interFloorPaths.put(c, n1.getFloor());
-                interFloorPaths.put(c2, n2.getFloor());
+                c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorPathHandler);
+                c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorPathHandler);
+                interFloorPaths.put(c, n1);
+                interFloorPaths.put(c2, n2);
                 addToPath(c, n1.getFloor());
                 addToPath(c2, n2.getFloor());
             }
