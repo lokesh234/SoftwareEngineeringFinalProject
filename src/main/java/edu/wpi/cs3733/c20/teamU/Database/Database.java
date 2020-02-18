@@ -5,6 +5,7 @@ import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import lombok.NoArgsConstructor;
 
+import javax.swing.plaf.nimbus.State;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class Database {
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
             dropTable(stmt, "ServiceRequest");
+            dropTable(stmt, "LanguageSR");
             // drops database tables if they currently exist
             System.out.println("Dropped tables");
 
@@ -53,6 +55,7 @@ public class Database {
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
             createSecuritySRTable(stmt, "SecuritySR");
+            createLanguageSRTable(stmt, "LanguageSR");
             populateServiceRequestTable(stmt, "ServiceRequest");
             // Creates tables again or for the first time
             System.out.println("Created Tables");
@@ -64,6 +67,7 @@ public class Database {
             printTable(stmt, "ServiceFinished");
             printTable(stmt, "MedicineSR");
             printTable(stmt, "SecuritySR");
+            printTable(stmt, "LanguageSR");
             //print tables to test
 
             System.out.println("== Apache Derby Databases Established! ==");
@@ -249,7 +253,7 @@ public class Database {
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, type VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), "+
-                    "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR')))";
+                    "CONSTRAINT SR_TY CHECK (type in ('MEDIC','SECUR', 'LANGE')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -294,23 +298,28 @@ public class Database {
             ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName);
             ArrayList<Integer> Medic = new ArrayList<>();
             ArrayList<Integer> Secur = new ArrayList<>();
+            ArrayList<Integer> Lange = new ArrayList<>();
 
             //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
             while (rs.next()) {
-                if (rs.getString(3).equals("MEDIC")){
-                    Medic.add(rs.getInt(1));
+                switch (rs.getString(3)){
+                    case "MEDIC":
+                        Medic.add(rs.getInt(1));
+                        break;
+                    case "SECUR":
+                        Secur.add(rs.getInt(1));
+                        break;
+                    case "LANGE":
+                        Lange.add(rs.getInt(1));
+                        break;
                 }
-                else if (rs.getString(3).equals("SECUR")){
-                    Secur.add(rs.getInt(1));
-                }
-                //System.out.print(rs.getInt(1) + "\t");
-                //System.out.println(rs.getString(3));
             }
             //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
             rs.close();
             populateMedicineSR(stmt, "MedicineSR", Medic);
             populateSecuritySR(stmt, "SecuritySR", Secur);
+            populateLanguageSR(stmt, "LanguageSR", Lange);
 
         }
         catch (IOException | SQLException e){
@@ -410,6 +419,23 @@ public class Database {
         }
     }
 
+    private static void createLanguageSRTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), lastName VARCHAR(20), firstName VARCHAR(20), language VARCHAR(20), location VARCHAR(20), " +
+                    "CONSTRAINT LT_CK CHECK (language in ('Chinese','Hindi','Japanese','Spanish','Russian','Ethiopian')))";
+
+            stmt.executeUpdate(slqCreate);
+
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
+
+
     /**
      *
      * TODO：finish commenting
@@ -495,6 +521,39 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
+    private static void populateLanguageSR(Statement stmt, String tableName, ArrayList<Integer> Lange){
+        String line = "";
+        String csvSplit = ",";
+        //parses through csv file and creates a new row in the database for each row
+        try {
+            BufferedReader br = getBR(tableName);
+            int starter = 0;
+            int i = -1;
+            while ((line = br.readLine()) != null) {
+
+                String[] csvString = line.split(csvSplit);
+                if (starter == 0){
+                    starter = 1;
+                }
+                else{
+                    //int reqID = Integer.parseInt(csvString[0]);
+                    int reqID = Lange.get(i);
+                    String timeReq = csvString[1];
+                    String lastName = csvString[2];
+                    String firstName = csvString[3];
+                    String language = csvString[4];
+                    String location = csvString[5];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + lastName + "', '" + firstName + "', '" + language + "', '" + location + "')");
+                    System.out.println("reached update");
+                }
+                i++;
+            }
+        }
+        catch (SQLException | IOException e){
+            e.printStackTrace();
+        }
+        CreateCSV(stmt, tableName, null);
+    }
     /**
      *
      * TODO：finish commenting
