@@ -7,22 +7,23 @@ import javafx.scene.control.Label;
 
 public class PathfindTextController {
 
-    @FXML Label Directions;
+    @FXML private Label Directions;
 
     @FXML
     public void exitPopup(ActionEvent e){
         App.getTextDirectionsPop().getContent().remove(0);
-        //Directions.setText("YEEHAW");
+//        Directions.setText("YEEHAW");
     }
 
+    @FXML
     public void Populate(){
+        Directions.setText("");
         for (int i = 0; i < App.getTextpath().size(); i++){
-            System.out.println(Directions);
-            Directions.setText(App.getTextpath().get(i));
+//            System.out.println(this.Directions);
+            this.Directions.setText(Directions.getText() + "\n" + App.getTextpath().get(i));
         }
     }
 
-    public void showDirections(){
-        Populate();
-    }
+    @FXML
+    private void initialize() {}
 }

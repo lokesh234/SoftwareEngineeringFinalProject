@@ -430,7 +430,6 @@ public class PathfindController {
         App.getTextDirectionsPop().getContent().add(App.getPathFindText());
         App.getTextDirectionsPop().show(App.getPrimaryStage());
         //pathfindTextController.Directions = new Label();
-        pathfindTextController.showDirections();
     }
 
     @FXML
@@ -454,6 +453,7 @@ public class PathfindController {
             getTextPath();
         }
         updateStatus();
+        //pathfindTextController.Directions = new Label();
     }
 
 
