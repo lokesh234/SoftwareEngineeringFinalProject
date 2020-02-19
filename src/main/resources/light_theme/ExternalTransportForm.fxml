@@ -102,8 +102,8 @@
                      </children>
                   </HBox>
                   <JFXTextField fx:id="confirmPassText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <JFXDatePicker defaultColor="#807765" prefHeight="25.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <JFXTimePicker defaultColor="#807765" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXDatePicker defaultColor="#807765" prefHeight="25.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4"  fx:id="dp"/>
+                  <JFXTimePicker defaultColor="#807765" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="tp"/>
                </children>
                <VBox.margin>
                   <Insets />
@@ -114,12 +114,12 @@
             </GridPane>
             <HBox alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="confirm"  style="-fx-background-color: #BFB397;" text="Confirm">
+                  <JFXButton fx:id="confirm"  onAction="#getSubmission" style="-fx-background-color: #BFB397;" text="Confirm">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="cancel" onAction="#cancelExt"  style="-fx-background-color: #BFB397;" text="Cancel">
+                  <JFXButton fx:id="cancel" onAction="#goBack"  style="-fx-background-color: #BFB397;" text="Cancel">
                      <font>
                         <Font size="18.0" />
                      </font>
