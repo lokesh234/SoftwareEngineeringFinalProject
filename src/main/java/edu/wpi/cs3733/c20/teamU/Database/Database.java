@@ -560,7 +560,7 @@ public class Database {
       String slqCreate =
           "CREATE TABLE "
               + tableName
-              + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(20), religiousAffiliation VARCHAR(30), explanation VARCHAR(200), "
+              + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(30), religiousAffiliation VARCHAR(30), explanation VARCHAR(200), "
               + "CONSTRAINT RRSR_CK CHECK (religiousAffiliation in ('Protestantism', 'Catholicism', 'Judaism', 'Mormonism', 'Islam', 'Other', 'No Religion')))";
 
             stmt.executeUpdate(slqCreate);
@@ -605,7 +605,7 @@ public class Database {
 
     private static void createLanguageSRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), lastName VARCHAR(20), firstName VARCHAR(20), language VARCHAR(20), location VARCHAR(20), " +
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, lastName VARCHAR(20), firstName VARCHAR(20), language VARCHAR(20), location VARCHAR(20), " +
                     "CONSTRAINT LT_CK CHECK (language in ('Chinese','Hindi','Japanese','Spanish','Russian','Ethiopian')))";
 
             stmt.executeUpdate(slqCreate);

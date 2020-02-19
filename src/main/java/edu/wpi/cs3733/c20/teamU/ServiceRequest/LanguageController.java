@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 
@@ -32,10 +33,10 @@ public class LanguageController {
         String userFirst = firstNameText.getText();
         String userLast = lastNameText.getText();
         String userPass = passwordText.getText();
-        String userLanguage;
+        String userLanguage = "";
 
         //TODO: specify which textfield to write in if empty
-        if (userFirst.isEmpty() || userLast.isEmpty() || userPass.isEmpty() || (!Japenese.isSelected() && !Russian.isSelected() && !Hindi.isSelected() && !Spanish.isSelected() && !Chinese.isSelected())) {
+        if (userFirst.isEmpty() || userLast.isEmpty() || userPass.isEmpty() || (!Japenese.isSelected() && !Russian.isSelected() && !Hindi.isSelected() && !Spanish.isSelected() && !Chinese.isSelected() && !Ethiopian.isSelected())) {
             // will print out some text eventually, right now nothing
             firstNameText.setStyle("-fx-border-color: red");
 //            comments.setStyle("-fx-border-color: red");
@@ -78,6 +79,7 @@ public class LanguageController {
 
             //TODO:
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            DatabaseWrapper.languageSRAdd(userLast,userFirst,userLanguage, userPass);
             clearField();
             cancel.fire();
         }

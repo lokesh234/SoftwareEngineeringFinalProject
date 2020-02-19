@@ -88,6 +88,9 @@ public class RequestScreenController {
             case "SANIT":
                 DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "SANIT", "SanitarySR", "SANIT");
                 break;
+            case "LANGE":
+                DatabaseWrapper.languageSRDel(Integer.parseInt(date), userName, "LANGE");
+                break;
         }
         //adminRequestController.update();
         AdministrationWrapper.adminRequestControllerUpdate(adminRequestController);

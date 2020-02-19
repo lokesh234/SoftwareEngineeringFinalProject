@@ -116,10 +116,9 @@ public class ServiceDatabase {
     }
 
     //languageSRAdd("Chalmers", "Marcus", "Chinese");
-    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language, String location){
         int reqID;
         String timeReq = getCurrentDate();
-        String location = "Terminal 1"; //place holder for when terminal is given
 
 
         String LSRTableName = "LanguageSR";
@@ -329,7 +328,7 @@ public class ServiceDatabase {
         }
     }
 
-    public static boolean ReligionSRAdd(String patentLastName, String patentFirstName, String religiousAffiliation, String explanation){
+    public static boolean ReligionSRAdd(String patentName, String religiousAffiliation, String explanation){
         int reqID;
         String timeReq = getCurrentDate();
         String RSRTableName = "ReligionSR";
@@ -344,7 +343,7 @@ public class ServiceDatabase {
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
-            stmt.executeUpdate("INSERT INTO " + RSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + religiousAffiliation + "', '" + explanation + "')");
+            stmt.executeUpdate("INSERT INTO " + RSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentName + "', '" + religiousAffiliation + "', '" + explanation + "')");
 
             rs.close();
             Database.CreateCSV(stmt, RSRTableName, null);
