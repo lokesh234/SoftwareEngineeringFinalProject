@@ -9,12 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 
 import java.io.IOException;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class ReligiousControllerTest extends ApplicationExtension {
+public class ReligiousControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
         Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
         Scene scene1 = new Scene(sceneRoot);
@@ -24,12 +25,12 @@ public class ReligiousControllerTest extends ApplicationExtension {
 
     @Test
     public void testButtons() {
-        verifyThat("#confirm", hasText("Confirm"));
+        verifyThat("#confirm", hasText("Submit"));
     }
 
     @Test
     public void testLabels() {
-        verifyThat("#Exlpain", hasText("Explain Your Request"));
+        verifyThat("#Explain", hasText("Explain Your Request"));
     }
 
     @Test

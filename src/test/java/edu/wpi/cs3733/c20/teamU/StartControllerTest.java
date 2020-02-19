@@ -18,25 +18,24 @@ import java.io.IOException;
 
 @ExtendWith(ApplicationExtension.class)
 public class StartControllerTest extends ApplicationTest {
-  Scene scene1;
-  Pane scene;
   public void start(Stage stage) throws IOException {
-    Parent sceneRoot = FXMLLoader.load(getClass().getResource("/Tap_to_start.fxml"));
-    scene = FXMLLoader.load(getClass().getResource("/bigScreenv2.fxml"));
-    scene1 = new Scene(sceneRoot);
+    Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/Home.fxml"));
+    Scene scene1 = new Scene(sceneRoot);
     stage.setScene(scene1);
     stage.show();
   }
 
   @Test
   public void testButtons() {
-    verifyThat("#login", hasText("Admin Login"));
+    verifyThat("#login", hasText("Login"));
+    verifyThat("#navButton", hasText("Navigate"));
+    verifyThat("#upButton", hasText("Λ"));
+    verifyThat("#downButton", hasText("V"));
+    verifyThat("#plus", hasText("+"));
+    verifyThat("#minus", hasText("-"));
+
   }
 
-  @Test
-  public void testScene() throws IOException {
-    clickOn("#login").moveTo(scene);
-  }
 
 
 }

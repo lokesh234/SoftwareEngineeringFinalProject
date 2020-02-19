@@ -10,14 +10,15 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 
 import java.io.IOException;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class SanRequestControllerTest extends ApplicationExtension {
+public class SanRequestControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
-        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/SanitationRequest.fxml"));
+        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/SanitationRequests.fxml"));
         Scene scene1 = new Scene(sceneRoot);
         stage.setScene(scene1);
         stage.show();
@@ -38,6 +39,7 @@ public class SanRequestControllerTest extends ApplicationExtension {
         clickOn("#a").write("Jon");
         clickOn("#b").write("Doe");
         clickOn("#c").write("3");
+        clickOn("#d").write("3");
     }
 
 }
