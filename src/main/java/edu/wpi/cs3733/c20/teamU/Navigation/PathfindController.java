@@ -100,14 +100,14 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = circles.get(event.getSource());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getID());
+                if (startReady) startLabel.setText(start.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
                 end = circles.get(event.getSource());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getID());
+                if (endReady) endLabel.setText(end.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
@@ -142,6 +142,29 @@ public class PathfindController {
             else { //Given that: 1. there is a node adjacent to us on a different floor and 2. the node before us (if it exists) is not on a different floor, we can conclude that there is a node behind us and it is on a different floor
                 floor = path.get(path.indexOf(n1)+1).getFloor();
                 stateMachine(floor);
+            }
+        }
+    };
+
+    EventHandler<ActionEvent> searchBoxHandler = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            updateStatus();
+            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
+            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                startReady = (start != null) || startReady;
+                if (startReady) startLabel.setText(start.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
+                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                endReady = (end != null) || endReady;
+                if (endReady) endLabel.setText(end.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
             }
         }
     };
@@ -420,6 +443,7 @@ public class PathfindController {
         TextFields.bindAutoCompletion(SearchBox, AllNodeNames);
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
+        SearchBox.setOnAction(searchBoxHandler);
     }
 
     private void Populate(){
