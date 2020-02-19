@@ -141,7 +141,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <JFXButton contentDisplay="TOP" style="-fx-background-color: #474338;" text="Internal Transport" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openIntTransportRequest" style="-fx-background-color: #474338;" text="Internal Transport" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

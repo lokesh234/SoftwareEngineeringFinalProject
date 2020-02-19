@@ -1,76 +1,87 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 public class IntTransportController {
 
-    @FXML private JFXTextArea comments;
-    @FXML private JFXTextField last;
-    @FXML private JFXTextField frequency;
-    @FXML private JFXTextField first;
-    @FXML private JFXTextField drug;
-    @FXML private JFXButton backToRequest;
-    @FXML private JFXComboBox comboBox = new JFXComboBox();
+    @FXML private JFXTextField firstNameText;
+    @FXML private JFXTextField lastNameText;
+    @FXML private JFXTextField start;
+    @FXML private JFXTextField end;
+    @FXML private JFXRadioButton crutches;
+    @FXML private JFXRadioButton wheelchair;
+    @FXML private JFXButton cancel;
+
 
     @FXML
     private void getSubmission() {
-        String userLast = last.getText();
-        String userComment = comments.getText();
-        String userFreq = frequency.getText();
-        String userFirst = first.getText();
-        String userDrug = drug.getText();
-        String userDelivery;
-        if(comboBox.getValue() == null) userDelivery = "";
-        else userDelivery = comboBox.getValue().toString();
+        String userFirst = firstNameText.getText();
+        String userLast = lastNameText.getText();
+        String userStart = start.getText();
+        String userEnd = end.getText();
+        String userEquipment;
+
+
 
         //TODO: specify which textfield to write in if empty
-        if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
+        if(userFirst.isEmpty() || userLast.isEmpty() || userStart.isEmpty() || userEnd.isEmpty() || (!wheelchair.isSelected() && !crutches.isSelected())) {
             // will print out some text eventually, right now nothing
-            last.setStyle("-fx-border-color: red");
-            comments.setStyle("-fx-border-color: red");
-            frequency.setStyle("-fx-border-color: red");
-            drug.setStyle("-fx-border-color: red");
-            comboBox.setStyle("-fx-border-color: red");
-            first.setStyle("-fx-border-color: red");
+            firstNameText.setStyle("-fx-border-color: red");
+            lastNameText.setStyle("-fx-border-color: red");
+            start.setStyle("-fx-border-color: red");
+            end.setStyle("-fx-border-color: red");
+            wheelchair.setStyle("-fx-border-color: red");
+            crutches.setStyle("-fx-border-color: red");
         } else {
-            last.setStyle("-fx-border-color:  #FFEEC9");
-            comments.setStyle("-fx-border-color:  #FFEEC9");
-            frequency.setStyle("-fx-border-color:  #FFEEC9");
-            drug.setStyle("-fx-border-color:  #FFEEC9");
-            comboBox.setStyle("-fx-border-color:  #FFEEC9");
-            first.setStyle("-fx-border-color:  #FFEEC9");
-            ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            firstNameText.setStyle("-fx-border-color:  #FFEEC9");
+            lastNameText.setStyle("-fx-border-color:  #FFEEC9");
+            start.setStyle("-fx-border-color:  #FFEEC9");
+            end.setStyle("-fx-border-color:  #FFEEC9");
+            wheelchair.setStyle("-fx-border-color:  #FFEEC9");
+            crutches.setStyle("-fx-border-color:  #FFEEC9");
+            if (wheelchair.isSelected()){
+                userEquipment = "Wheelchair";
+            }
+            else {
+                userEquipment = "Crutches";
+            }
+
+            //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
-            backToRequest.fire();
+            cancel.fire();
         }
     }
 
     public void clearField() {
-        last.clear();
-        comments.clear();
-        frequency.clear();
-        first.clear();
-        drug.clear();
-        comboBox.getSelectionModel().clearSelection();
+        firstNameText.clear();
+        lastNameText.clear();
+        start.clear();
+        end.clear();
+        initialize();
+        firstNameText.setStyle("-fx-border-color:  null");
+        lastNameText.setStyle("-fx-border-color:  null");
+        start.setStyle("-fx-border-color:  null");
+        end.setStyle("-fx-border-color:  null");
+        wheelchair.setStyle("-fx-border-color:  null");
+        crutches.setStyle("-fx-border-color:  null");
     }
     @FXML
-    private void goBack(){
+    private void cancelExt(){
 //        App.getHome().setOpacity(1);
 //        App.getHome().setDisable(false);
-        App.getMedicinePop().getContent().clear();
+        clearField();
+        App.getIntTransportPop().getContent().clear();
         App.getRequestPop().getContent().add(App.getRequest());
         App.getRequestPop().show(App.getPrimaryStage());
     }
@@ -78,12 +89,10 @@ public class IntTransportController {
     @FXML
     public void initialize() {
 //        submit.setDisable(false);
-        ObservableList<String> deliveryOptions =
-                FXCollections.observableArrayList(
-                        "Oral",
-                        "Topical",
-                        "Suppository"
-                );
-        comboBox.getItems().addAll(deliveryOptions);
+        ToggleGroup equipmentGroup = new ToggleGroup();
+        wheelchair.setToggleGroup(equipmentGroup);
+        crutches.setToggleGroup(equipmentGroup);
+        equipmentGroup.selectToggle(null);
     }
+
 }

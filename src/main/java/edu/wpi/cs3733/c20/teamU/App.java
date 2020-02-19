@@ -103,7 +103,7 @@ private static Pane pathFindText;
   private static ReligiousController religiousController;
   private static ExtTransportController extTransportController; //anir
 
-  private static IntTranspoerController intTranspoerController; //marcus
+  private static IntTransportController intTranspoerController; //marcus
 
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
@@ -206,7 +206,7 @@ private static Pane pathFindText;
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
   public static ExtTransportController getExtTransportController() {return  extTransportController;}
-  public static IntTransportController getIntTransportController() { return intTransportController; } //marcus
+  public static IntTransportController getIntTransportController() { return intTranspoerController; } //marcus
   public static ReligiousController getReligiousController() { return religiousController; }
   public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
 
@@ -330,7 +330,7 @@ private static Pane pathFindText;
       religiousController = religiousLoader.getController();
 //      editEdgeController = adminNodeLoader.getController();
       extTransportController = extTransportLoader.getController();
-      intTransportController = intTransportLoader.getController(); //marcus
+      intTranspoerController = intTransportLoader.getController(); //marcus
       pathfindController = pathfindLoader.getController();
       clownController = clownDeliveryLoader.getController();
       pathfindTextController = pathfindtextLoader.getController();

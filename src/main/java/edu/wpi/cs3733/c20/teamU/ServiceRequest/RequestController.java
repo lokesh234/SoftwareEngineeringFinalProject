@@ -45,21 +45,18 @@ public class RequestController {
     }
 
     @FXML
-<<<<<<< HEAD
     public void openIntTransportRequest() {
         App.getRequestPop().getContent().remove(0);
         App.getIntTransportPop().getContent().add(App.getInternalTransport());
         App.getIntTransportPop().show(App.getPrimaryStage());
     }
 
-
-=======
+    @FXML
     public void openFlowerForm() {
         App.getRequestPop().getContent().clear();
         App.getFlowerPop().getContent().add(App.getFlower());
         App.getFlowerPop().show(App.getPrimaryStage());
     }
->>>>>>> 8be31bf37cb04d609a973de066fe504fc6c73886
 
     @FXML
     public void openClownRequest() {
