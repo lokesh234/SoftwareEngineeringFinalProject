@@ -9,8 +9,10 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 //import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -37,6 +39,7 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane flower;
   private static Pane fire;
   private static Pane export;
   private static Pane edit;
@@ -48,10 +51,16 @@ public class App extends Application {
   private static Pane resolveRequest;
   private static Pane weather;
   private static Pane IT;
+  private static Pane clown;
+  private static Pane sanRequest;
 
   private static Pane religious;
 
   private static Pane employeeF;
+
+  private static Pane externalTransport;  // This is anir
+  private static Pane pathFindText;
+  private static Pane languageSR;
 
 
   private static Scene homeScene;
@@ -71,6 +80,11 @@ public class App extends Application {
   private static Scene weatherScene;
   private static Scene employeeFormScene;
   private static Scene religiousScene;
+  private static Scene extTransportScene; //this is anir
+  private static Scene pathFindTextScene;
+  private static Scene sanSRScene;
+  private static Scene languageSRScene;
+
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -87,11 +101,16 @@ public class App extends Application {
   private static WeatherController weatherController;
   private static EmployeeFormController employeeFormController;
   private static ReligiousController religiousController;
+  private static ExtTransportController extTransportController; //anir
+  private static PathfindTextController pathfindTextController;
+  private static ClownController clownController;
+  private static LanguageController languageController;
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
   private static FireController fireController;
   private static AddNodeScreenController addNodeScreenController;
+  private static SanRequestController sanRequestController;
 
   private static boolean didChange = false;
   private static long time;
@@ -109,6 +128,12 @@ public class App extends Application {
   private static Popup medicinePop = new Popup();
   private static Popup ITPop = new Popup();
   private static Popup religiousPop = new Popup();
+  private static Popup extTransportPop = new Popup(); //anir
+  private static Popup flowerPop = new Popup();
+  private static Popup TextDirectionsPop = new Popup();
+  private static Popup clownPop = new Popup();
+  private static Popup sanRequestPop = new Popup();
+  private static Popup languageSRPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -130,10 +155,16 @@ public class App extends Application {
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
+  public static Pane getExternalTransport() {return externalTransport;} //anir
+  public static Pane getPathFindText() {return pathFindText;}
 
   public static Pane getReligious() { return religious;}
 
   public static Pane getEmployeeForm() {return employeeF; }
+  public static Pane getFlower(){return  flower;}
+  public static Pane getClown() { return clown;}
+  public static Pane getSanRequest(){return sanRequest;}
+  public static Pane getLanguageSR() {return languageSR;}
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -152,11 +183,12 @@ public class App extends Application {
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
   public static Scene getWeatherScene() {return weatherScene; }
   public static Scene getEmployeeFormScene() {return employeeFormScene; }
-    public static Scene getReligiousScene() {
-        return religiousScene;
-    }
+  public static Scene getExtTransportScene() {return extTransportScene;} //anir
+  public static Scene getReligiousScene() { return religiousScene; }
+  public static Scene getPathFindTextScene() {return pathFindTextScene;}
+  public static Scene getLanguageSRScene() {return languageSRScene;}
 
-    public static LoginScreenController getLoginScreenController() { return loginScreenController;}
+  public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
   public static PathfindController getPathfindController() { return pathfindController;}
   public static SecurityController getSecurityController() { return securityController;}
@@ -170,11 +202,13 @@ public class App extends Application {
   public static WeatherController weatherController() {return weatherController; }
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
-    public static ReligiousController getReligiousController() {
-        return religiousController;
-    }
+  public static ExtTransportController getExtTransportController() {return  extTransportController;}
+  public static ReligiousController getReligiousController() { return religiousController; }
+  public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
+  public static SanRequestController getSanRequestController() {return sanRequestController;}
+  public static LanguageController getLanguageController() {return languageController;}
 
-    public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
+  public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
   public static ArrayList<String> getTextpath() { return textpath;}
 
@@ -200,6 +234,12 @@ public class App extends Application {
   public static Popup getMedicinePop() { return medicinePop; }
   public static Popup getITPop() { return ITPop;}
   public static Popup getReligiousPop() { return religiousPop;}
+  public static Popup getExtTransportPop() {return extTransportPop;}
+  public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
+  public static Popup getClownPop() { return clownPop;}
+  public static Popup getFlowerPop(){return flowerPop;}
+  public static Popup getSanRequestPop(){ return sanRequestPop;}
+  public static Popup getLanguageSRPop() {return languageSRPop;}
 
 
   @Override
@@ -218,6 +258,7 @@ public class App extends Application {
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
+      FXMLLoader flowerLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFlowerForm.fxml"));
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
@@ -232,6 +273,13 @@ public class App extends Application {
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
       FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
+      FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
+      FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
+      FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
+      FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/light_theme/SanitationRequests.fxml"));
+      FXMLLoader languageLoader = new FXMLLoader(getClass().getResource("/light_theme/LanguageForm.fxml"));
+
+
 
 
       home = homeLoader.load();
@@ -242,6 +290,7 @@ public class App extends Application {
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      flower = flowerLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
       religious = religiousLoader.load();
@@ -255,6 +304,11 @@ public class App extends Application {
       addNode = addNodeLoader.load();
       resolveRequest = RRLoader.load();
       employeeF = employeeFormLoader.load();
+      externalTransport = extTransportLoader.load();
+      pathFindText = pathfindtextLoader.load();
+      clown = clownDeliveryLoader.load();
+      sanRequest = sanRequestLoader.load();
+      languageSR = languageLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -275,6 +329,11 @@ public class App extends Application {
       employeeFormController = employeeFormLoader.getController();
       religiousController = religiousLoader.getController();
 //      editEdgeController = adminNodeLoader.getController();
+      extTransportController = extTransportLoader.getController();
+      pathfindController = pathfindLoader.getController();
+      clownController = clownDeliveryLoader.getController();
+      pathfindTextController = pathfindtextLoader.getController();
+      languageController = languageLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -294,6 +353,10 @@ public class App extends Application {
       medicinePop.getContent().addAll();
       ITPop.getContent().addAll();
       religiousPop.getContent().addAll();
+      extTransportPop.getContent().addAll();
+      TextDirectionsPop.getContent().addAll();
+      sanRequestPop.getContent().addAll();
+      languageSRPop.getContent().addAll();
 
 
       homeScene = new Scene(home);

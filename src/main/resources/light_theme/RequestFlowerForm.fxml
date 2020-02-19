@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXChipView?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -15,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ReligiousController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.FlowerController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -29,12 +31,13 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Last Name" />
+                              <Label text="Recipient Last Name" />
                               <JFXTextField fx:id="last" prefHeight="20.0" VBox.vgrow="ALWAYS">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
@@ -47,7 +50,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="First Name" />
+                              <Label text="Recipient First Name" />
                               <JFXTextField fx:id="first">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
@@ -55,40 +58,48 @@
                               </JFXTextField>
                            </children>
                         </VBox>
-<!--                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">-->
-<!--                           <children>-->
-<!--                              <Label text="Drug Name" />-->
-<!--                              <JFXTextField fx:id="drug">-->
-<!--                                 <padding>-->
-<!--                                    <Insets left="20.0" right="20.0" />-->
-<!--                                 </padding>-->
-<!--                              </JFXTextField>-->
-<!--                           </children>-->
-<!--                        </VBox>-->
-<!--                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">-->
-<!--                           <children>-->
-<!--                              <Label text="Frequency " />-->
-<!--                              <JFXTextField fx:id="frequency">-->
-<!--                                 <padding>-->
-<!--                                    <Insets left="20.0" right="20.0" />-->
-<!--                                 </padding>-->
-<!--                              </JFXTextField>-->
-<!--                           </children>-->
-<!--                        </VBox>-->
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Religious Affiliation" />
-                              <JFXComboBox fx:id="comboBox" />
+                              <Label text="Flower Type" />
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXComboBox fx:id="flowerCombo" />
+                                    <JFXButton fx:id="flo" onAction="#flowerTypeAdd" style="-fx-background-color: #474338;" text="Add" textFill="WHITE" />
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Explain Your Request" />
-                              <JFXTextArea fx:id="comments">
+                              <Label text="Occasion" />
+                              <JFXComboBox fx:id="occasionCombo" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+                           <children>
+                              <Label text="Delivery Date" />
+                              <JFXDatePicker fx:id="datePick" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Label text="Gift Note" />
+                              <JFXTextArea fx:id="giftNote">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
                               </JFXTextArea>
+                           </children>
+                        </VBox>
+                        <JFXChipView fx:id="flowerChip" disable="false" GridPane.rowIndex="2" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <Label text="Room " />
+                              <JFXTextField fx:id="room">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0" />
+                                 </padding>
+                              </JFXTextField>
                            </children>
                         </VBox>
                      </children>
@@ -98,7 +109,10 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE" />
+                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font></JFXButton>
                      </children>
                   </HBox>
                </children>
@@ -109,7 +123,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
                      <children>
-                        <Label text="Religious Request Form" textFill="WHITE">
+                        <Label text="Flowers Request Form" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -118,7 +132,10 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI" size="18.0" />
+                           </font></JFXButton>
                      </children>
                   </HBox>
                </children>

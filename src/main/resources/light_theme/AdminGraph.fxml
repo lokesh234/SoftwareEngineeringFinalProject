@@ -27,7 +27,7 @@
                         <AnchorPane fx:id="NodesPane1">
                            <ImageView >
                               <image>
-                                 <Image url="@../png_files/main_1_blue.png"/>
+                                 <Image url="@../png_files/Floor1LM.png"/>
                               </image>
                            </ImageView>
                         </AnchorPane>
@@ -40,7 +40,7 @@
                         <AnchorPane fx:id="NodesPane2">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/main_2_blue.png"/>
+                                 <Image url="@../png_files/hospital2.png"/>
                               </image>
                            </ImageView>
                         </AnchorPane>
@@ -53,7 +53,7 @@
                         <AnchorPane fx:id="NodesPane3">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/main_3_blue.png"/>
+                                 <Image url="@../png_files/hospital3.png"/>
                               </image>
                            </ImageView>
                         </AnchorPane>
@@ -66,7 +66,7 @@
                         <AnchorPane fx:id="NodesPane4">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/Final-Floor-4.png"/>
+                                 <Image url="@../png_files/Floor4LM.png"/>
                               </image>
                            </ImageView>
                         </AnchorPane>
@@ -79,7 +79,7 @@
                         <AnchorPane fx:id="NodesPane5">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/main_5_blue.png"/>
+                                 <Image url="@../png_files/hospital5.png"/>
                               </image>
                            </ImageView>
                         </AnchorPane>

@@ -36,10 +36,40 @@ public class RequestController {
         App.getReligiousPop().show(App.getPrimaryStage());
     }
 
-    @FXML
-    public void popReligious(){
 
+    @FXML
+    public void openExtTransportRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getExtTransportPop().getContent().add(App.getExternalTransport());
+        App.getExtTransportPop().show(App.getPrimaryStage());
     }
 
+    @FXML
+    public void openFlowerForm() {
+        App.getRequestPop().getContent().clear();
+        App.getFlowerPop().getContent().add(App.getFlower());
+        App.getFlowerPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void openClownRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getClownPop().getContent().add(App.getClown());
+        App.getClownPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void openSanRequest(){
+        App.getRequestPop().getContent().remove(0);
+        App.getSanRequestPop().getContent().add(App.getSanRequest());
+        App.getSanRequestPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void openLangaugeRequest(){
+        App.getRequestPop().getContent().remove(0);
+        App.getLanguageSRPop().getContent().add(App.getLanguageSR());
+        App.getLanguageSRPop().show(App.getPrimaryStage());
+    }
 
 }

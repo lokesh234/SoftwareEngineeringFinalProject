@@ -91,13 +91,26 @@ public class ReligiousController {
     }
 
     @FXML
+    private void goBack(){
+//        App.getHome().setOpacity(1);
+//        App.getHome().setDisable(false);
+        App.getReligiousPop().getContent().clear();
+        App.getRequestPop().getContent().add(App.getRequest());
+        App.getRequestPop().show(App.getPrimaryStage());
+    }
+    @FXML
     public void initialize() {
 //        submit.setDisable(false);
         ObservableList<String> deliveryOptions =
                 FXCollections.observableArrayList(
-                        "Oral",
-                        "Topical",
-                        "Suppository"
+                        "Protestantism",
+                        "Catholicism",
+                        "Judaism",
+                        "Mormonism",
+                        "Islam",
+                        "Other",
+                        "No Religion"
+
                 );
         comboBox.getItems().addAll(deliveryOptions);
     }

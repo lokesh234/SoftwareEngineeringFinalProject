@@ -83,6 +83,7 @@ public class PathfindController {
     final ToggleGroup group = new ToggleGroup();
     private ArrayList<Integer> floorsInPath = new ArrayList<>();
     private HashMap<Circle, Node> interFloorPaths = new HashMap<>();
+    PathfindTextController pathfindTextController = new PathfindTextController();
 
 
     @FXML
@@ -424,11 +425,20 @@ public class PathfindController {
         state = State.START;
         updateStatus();
     }
+
+    @FXML private void textPopUp(){
+        App.getTextDirectionsPop().getContent().add(App.getPathFindText());
+        App.getTextDirectionsPop().show(App.getPrimaryStage());
+        App.getPathfindTextController().Populate();
+        //pathfindTextController.Directions = new Label();
+    }
+
     @FXML
     private void selectEnd() {
         state = State.END;
         updateStatus();
     }
+
     @FXML
     private void pathfind() {
         if (startReady && endReady) {
@@ -438,11 +448,16 @@ public class PathfindController {
             pathes.clear();
             engine.starSingular(start, end);
             path = engine.getLatestPath();
-            //System.out.println(path.size());
+            //System.out.print
+            // ln(path.size());
             drawPath();
+            getTextPath();
         }
         updateStatus();
+        //pathfindTextController.Directions = new Label();
     }
+
+
     @FXML
     private void clearPath() {
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
@@ -478,8 +493,8 @@ public class PathfindController {
                 Path pathe = new Path();
                 pathe.getElements().add(move);
                 pathe.getElements().add(line);
-                pathe.setStroke(Color.web("#39ff14"));
-                pathe.setStrokeWidth(5.0);
+                pathe.setStroke(Color.web("#7851a9"));
+                pathe.setStrokeWidth(10.0);
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
             }
