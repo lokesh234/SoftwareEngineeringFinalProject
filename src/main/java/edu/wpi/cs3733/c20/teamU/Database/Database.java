@@ -3,17 +3,19 @@ package edu.wpi.cs3733.c20.teamU.Database;
 import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.swing.plaf.nimbus.State;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-@NoArgsConstructor
+//@NoArgsConstructor
 public class Database {
+    private Database() {}
+
     /**
      * Initializes every database table according to the CSV's either found in the jar file or
      * externally in DatabaseBackup
@@ -44,6 +46,7 @@ public class Database {
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
             dropTable(stmt, "LanguageSR");
+            dropTable(stmt, "InternalTransportSR");
 
             dropTable(stmt, "ServiceRequest");
             // drops database tables if they currently exist
@@ -57,6 +60,7 @@ public class Database {
             createMedicineSRTable(stmt, "MedicineSR");
             createSecuritySRTable(stmt, "SecuritySR");
             createLanguageSRTable(stmt, "LanguageSR");
+            createIntTransportSRTable(stmt, "InternalTransportSR");
             populateServiceRequestTable(stmt, "ServiceRequest");
             // Creates tables again or for the first time
             System.out.println("Created Tables");
@@ -69,6 +73,7 @@ public class Database {
             printTable(stmt, "MedicineSR");
             printTable(stmt, "SecuritySR");
             printTable(stmt, "LanguageSR");
+            printTable(stmt,"InternalTransportSR");
             //print tables to test
 
             System.out.println("== Apache Derby Databases Established! ==");
@@ -253,7 +258,7 @@ public class Database {
      */
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, types VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), CONSTRAINT SR_TY CHECK (types in ('MEDIC','SECUR', 'LANGE')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, types VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), CONSTRAINT SR_TY CHECK (types in ('MEDIC','SECUR', 'LANGE', 'ITRAN')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -299,6 +304,7 @@ public class Database {
             ArrayList<Integer> Medic = new ArrayList<>();
             ArrayList<Integer> Secur = new ArrayList<>();
             ArrayList<Integer> Lange = new ArrayList<>();
+            ArrayList<Integer> Itran = new ArrayList<>();
 
             //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
@@ -313,6 +319,8 @@ public class Database {
                     case "LANGE":
                         Lange.add(rs.getInt(1));
                         break;
+                    case "ITRAN":
+                        Itran.add(rs.getInt(1));
                 }
             }
             //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -320,6 +328,7 @@ public class Database {
             populateMedicineSR(stmt, "MedicineSR", Medic);
             populateSecuritySR(stmt, "SecuritySR", Secur);
             populateLanguageSR(stmt, "LanguageSR", Lange);
+            populateIntTransportSR(stmt, "InternalTransportSR", Itran);
 
         }
         catch (IOException | SQLException e){
@@ -337,7 +346,7 @@ public class Database {
     private static void createServiceFinishedTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
-                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR', 'LANGE')))";
+                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR', 'LANGE', 'ITRAN')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -387,6 +396,21 @@ public class Database {
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
                     "frequency VARCHAR(20), deliveryMethod VARCHAR(20), comment VARCHAR(200), CONSTRAINT MSSR_UR CHECK (deliveryMethod in ('Suppository','Oral', 'Topical')))";
+
+            stmt.executeUpdate(slqCreate);
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+    }
+
+    private static void createIntTransportSRTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(20), lastName VARCHAR(20), startLocation VARCHAR(20), "+
+                    "endLocation VARCHAR(20), equipment VARCHAR(20), CONSTRAINT ITSR_CK CHECK (equipment in ('Wheelchair','Crutches')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -481,6 +505,42 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
+    private static void populateIntTransportSR(Statement stmt, String tableName, ArrayList<Integer> Itran){
+        String line = "";
+        String csvSplit = ",";
+
+        //parses through csv file and creates a new row in the database for each row
+        try {
+            BufferedReader br = getBR(tableName);
+            int starter = 0;
+            int i = -1;
+            while ((line = br.readLine()) != null) {
+
+                String[] csvString = line.split(csvSplit);
+                if (starter == 0){
+                    starter = 1;
+                }
+                else{
+                    //int reqID = Integer.parseInt(csvString[0]);
+                    int reqID;
+                    reqID = Itran.get(i);
+                    String timeReq = csvString[1];
+                    String patentFirstName = csvString[2];
+                    String patentLastName = csvString[3];
+                    String startLocation = csvString[4];
+                    String endLocation = csvString[5];
+                    String equipment = csvString[6];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + patentFirstName +  "', '" + patentLastName + "', '" + startLocation +  "', '" + endLocation + "', '" + equipment + "')");
+                    System.out.println("reached update");
+                }
+                i++;
+            }
+        }
+        catch (SQLException | IOException e){
+            e.printStackTrace();
+        }
+        CreateCSV(stmt, tableName, null);
+    }
     /**
      *
      * TODO：finish commenting

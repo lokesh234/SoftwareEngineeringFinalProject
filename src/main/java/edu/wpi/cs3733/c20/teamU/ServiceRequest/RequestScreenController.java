@@ -5,6 +5,7 @@ import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Administration.AdministrationWrapper;
 import edu.wpi.cs3733.c20.teamU.App;
 //import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -61,6 +62,9 @@ public class RequestScreenController {
                 break;
             case "SECUR":
                 DatabaseWrapper.securitySRDel(Integer.parseInt(date), userName, "SECUR");
+                break;
+            case "ITRAN":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "ITRAN", "InternalTransportSR", "ITRAN");
                 break;
         }
         //adminRequestController.update();

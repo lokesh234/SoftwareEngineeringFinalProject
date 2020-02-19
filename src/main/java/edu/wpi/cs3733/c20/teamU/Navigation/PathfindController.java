@@ -446,7 +446,17 @@ public class PathfindController {
             //System.out.println("PathfindPress");
             path.clear();
             pathes.clear();
-            engine.starSingular(start, end);
+            switch (NavigationWrapper.getPathType()) {
+                case "A*":
+                    engine.starSingular(start, end);
+                    break;
+                case "BFS":
+                    engine.breadthFirst(start, end);
+                    break;
+                case "DFS":
+                    engine.depthFirst(start, end);
+                    break;
+            }
             path = engine.getLatestPath();
             //System.out.print
             // ln(path.size());
@@ -517,8 +527,8 @@ public class PathfindController {
                 }
                 c.setRadius(App.getNodeSize()+5);
                 c2.setRadius(App.getNodeSize()+5);
-                c.setStrokeWidth(5);
-                c2.setStrokeWidth(5);
+                c.setStrokeWidth(10);
+                c2.setStrokeWidth(10);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorPathHandler);
                 c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorPathHandler);
                 interFloorPaths.put(c, n1);
@@ -533,6 +543,7 @@ public class PathfindController {
     }
 
     private void getTextPath(){
+        if (path.size() == 0) return;
         App.getTextpath().clear();
         Node n2 = path.get(path.size() - 1);
         for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path

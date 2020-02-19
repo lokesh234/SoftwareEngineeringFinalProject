@@ -67,6 +67,7 @@ public class LoginScreenController {
       employeeFormController.setFields();
       if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());
+      App.getAdminRequestController().cred();
       App.getAdminRequestController().update();
       App.getPopup().show(App.getPrimaryStage());
     }
