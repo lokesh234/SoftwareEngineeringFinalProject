@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Internal Transport Request" textFill="WHITE">
+                  <Label fx:id="ITrans" text="Internal Transport Request" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font></Label>

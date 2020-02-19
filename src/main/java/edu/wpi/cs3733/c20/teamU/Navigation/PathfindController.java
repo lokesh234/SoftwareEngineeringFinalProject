@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,12 +80,16 @@ public class PathfindController {
     private ArrayList<Integer> floorsInPath = new ArrayList<>();
     private HashMap<Circle, Node> interFloorPaths = new HashMap<>();
     PathfindTextController pathfindTextController = new PathfindTextController();
+    private ArrayList<String> AllNodeNames= new ArrayList<String>();
 
 
     @FXML
     Button startButton, goButton, endButton, clearButton, backButton;
     @FXML
     Label startLabel, endLabel, statusLabel;
+    @FXML
+    TextField SearchBox;
+
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -94,14 +100,14 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = circles.get(event.getSource());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getID());
+                if (startReady) startLabel.setText(start.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
                 end = circles.get(event.getSource());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getID());
+                if (endReady) endLabel.setText(end.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
@@ -136,6 +142,29 @@ public class PathfindController {
             else { //Given that: 1. there is a node adjacent to us on a different floor and 2. the node before us (if it exists) is not on a different floor, we can conclude that there is a node behind us and it is on a different floor
                 floor = path.get(path.indexOf(n1)+1).getFloor();
                 stateMachine(floor);
+            }
+        }
+    };
+
+    EventHandler<ActionEvent> searchBoxHandler = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            updateStatus();
+            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
+            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                startReady = (start != null) || startReady;
+                if (startReady) startLabel.setText(start.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
+                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                endReady = (end != null) || endReady;
+                if (endReady) endLabel.setText(end.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
             }
         }
     };
@@ -410,8 +439,17 @@ public class PathfindController {
         MapGes5.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+        Populate();
+        TextFields.bindAutoCompletion(SearchBox, AllNodeNames);
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
+        SearchBox.setOnAction(searchBoxHandler);
+    }
+
+    private void Populate(){
+        for (int i = 0; i < DatabaseWrapper.getGraph().getNodes().size(); i++){
+            AllNodeNames.add(DatabaseWrapper.getGraph().getNodes().get(i).getLongName());
+        }
     }
 
     @FXML

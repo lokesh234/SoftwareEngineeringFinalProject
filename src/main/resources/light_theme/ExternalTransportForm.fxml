@@ -85,7 +85,7 @@
                   <JFXTextField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label text="Departure Time">
+                        <Label fx:id="deptTime" text="Departure Time">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -94,7 +94,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="18.0" prefWidth="290.0" GridPane.rowIndex="5">
                      <children>
-                        <Label text="Number Of Passengers">
+                        <Label fx:id="Pass" text="Number Of Passengers">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>

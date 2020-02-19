@@ -110,7 +110,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
                      <children>
-                        <Label text="Clown Request Form by Alek" textFill="WHITE">
+                        <Label fx:id="Name" text="Clown Request Form by Alek" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>

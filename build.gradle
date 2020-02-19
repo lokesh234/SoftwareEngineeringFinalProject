@@ -25,6 +25,7 @@ dependencies {
             // You may comment out the database dependency you do not use
             [group: 'org.xerial', name: 'sqlite-jdbc', version: '3.30.1'],
             [group: 'org.apache.derby',name: 'derby', version: '10.14.2.0'],
+            [group: 'org.controlsfx', name: 'controlsfx', version: '8.40.16']
     )
 
     compileOnly(

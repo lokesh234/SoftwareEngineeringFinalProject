@@ -46,6 +46,15 @@ public class NodesDatabase {
 
     public void removeEdge(Edge e) { edges.remove(e.getID());}
 
+    public Node getNodeByLongName(String longName) {
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
+            if (pair.getValue().getLongName().equals(longName)) {
+                return pair.getValue();
+            }
+        }
+        return null;
+    }
+
     public Node getNode(String ID) {
         /*
         Returns the node with matching ID, or Null if not found
