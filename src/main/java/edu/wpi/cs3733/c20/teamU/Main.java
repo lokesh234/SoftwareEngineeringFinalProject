@@ -10,6 +10,6 @@ import java.net.ProtocolException;
 public class Main {
     public static void main(String[] args) {
     DatabaseWrapper.Initializer();
-    App.launch(App.class, args);
+    //App.launch(App.class, args);
   }
 }
