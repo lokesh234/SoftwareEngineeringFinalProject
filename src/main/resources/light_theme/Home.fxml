@@ -219,12 +219,12 @@
                   <children>
                       <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="161.0" spacing="20.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                           <children>
-                              <Label fx:id="floorLabel1" text="12:34:56 PM" textFill="WHITE">
+                              <Label fx:id="time" text="12:34:56 PM" textFill="WHITE">
                                   <font>
                                       <Font name="Segoe UI Bold" size="24.0" />
                                   </font>
                               </Label>
-                              <JFXButton contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #807765;" text=" " VBox.vgrow="ALWAYS">
+                              <JFXButton fx:id="weather" onAction="#openWeather" contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #807765;" text=" " VBox.vgrow="ALWAYS">
                                   <graphic>
                                       <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                           <image>

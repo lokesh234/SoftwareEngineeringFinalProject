@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import com.github.prominence.openweathermap.api.exception.DataNotFoundException;
+import com.github.prominence.openweathermap.api.exception.InvalidAuthTokenException;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
@@ -18,37 +20,41 @@ import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
 
 public class HomeController {
 
   @FXML private JFXButton login;
   @FXML private Button navButton;
-  @FXML private GesturePane MapGes1;
-  private long startTime;
-  private long currentTime;
-  int floor = 1;
-  @FXML
-  VBox oppo;
-  @FXML
-  Label floorLabel;
-  @FXML
-  private AnchorPane N1;
-  @FXML
-  private AnchorPane N2;
-  @FXML
-  private AnchorPane N3;
-  @FXML
-  private AnchorPane N4;
-  @FXML
-  private AnchorPane N5;
+  @FXML private VBox oppo;
+  @FXML private Label floorLabel;
+  @FXML private Label time;
+  @FXML private JFXButton weather;
+  @FXML private AnchorPane N1;
+  @FXML private AnchorPane N2;
+  @FXML private AnchorPane N3;
+  @FXML private AnchorPane N4;
+  @FXML private AnchorPane N5;
   @FXML private GesturePane MapGes2;
   @FXML private GesturePane MapGes3;
   @FXML private GesturePane MapGes4;
   @FXML private GesturePane MapGes5;
+  @FXML private GesturePane MapGes1;
+  private WeatherController weatherController;
+  private long startTime;
+  private long currentTime;
+  int floor = 1;
+  private int hr;
+  private int m;
+  private int s;
 
 
-
+  public void setWeatherData(WeatherController weatherController1) {
+    weatherController = weatherController1;
+  }
   @FXML
     private void openLoginScene(ActionEvent e) {
         App.getPopup().getContent().add(App.getLogin());
@@ -118,6 +124,51 @@ public class HomeController {
     }
   });
 
+  Thread startC = new Thread(new Runnable() {
+    @Override
+    public void run() {
+      Runnable incrementTime = new Runnable() {
+        @Override
+        public void run() {
+//          System.out.println(setTime());
+          time.setText(setClock());
+        }
+      };
+      while (true) {
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+          ex.printStackTrace();
+        }
+        Platform.runLater(incrementTime);
+      }
+    }
+  });
+
+  /**
+   * increments the time by 1
+   * Adjusts for hours, mins, secs
+   * @return string of time HH : MM :: SS
+   */
+  private String setClock() {
+    s++;
+    if(s >= 60) {
+      s = 0;
+      m++;
+      if(m >= 60) {
+        m = 0;
+        hr++;
+        if(hr >= 24) {
+          hr = 0;
+        }
+      }
+    }
+    if(hr >= 12) return String.format("%1$02d:%2$02d:%3$02dPM", hr, m, s);
+    else return String.format("%1$02d:%2$02d:%3$02dAM", hr, m, s);
+//    if(hr >= 12) return String.format("%1$02d:%2$02dPM", hr, m);
+//    else return String.format("%1$02d:%2$02dAM", hr, m);
+  }
+
   private void setTime() {
     startTime = System.currentTimeMillis();
   }
@@ -130,6 +181,14 @@ public class HomeController {
   }
 
   @FXML
+  private void openWeather() throws InvalidAuthTokenException, DataNotFoundException, IOException {
+    App.getPopup().getContent().add(App.getWeather());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+//    weatherController.setWeatherFields();
+    App.getPopup().show(App.getPrimaryStage());
+  }
+  @FXML
   private void openRequestScene(ActionEvent e) {
     App.getRequestPop().getContent().add(App.getRequest());
     App.getHome().setOpacity(.5);
@@ -139,6 +198,11 @@ public class HomeController {
 
   @FXML
   private void initialize() {
+    hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
+    m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
+    s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
+    startC.setDaemon(true);
+    startC.start();
     MapGes1.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
