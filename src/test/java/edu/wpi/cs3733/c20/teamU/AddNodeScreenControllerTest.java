@@ -28,10 +28,9 @@ public class AddNodeScreenControllerTest extends ApplicationTest {
     clickOn("#text3").write("s");
     clickOn("#text4").write("s");
     clickOn("#text5").write("s");
-    clickOn("#text6").write("s");
-    clickOn("#text7").write("s");
     clickOn("#text7").write("s");
     clickOn("#text8").write("s");
+    clickOn("#nodeType");
   }
 
 }

@@ -10,12 +10,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 
 import java.io.IOException;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class ClownControllerTest extends ApplicationExtension {
+public class ClownControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
         Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/RequestClownForm.fxml"));
         Scene scene1 = new Scene(sceneRoot);
@@ -35,7 +36,7 @@ public class ClownControllerTest extends ApplicationExtension {
 
     @Test
     public void testWriteField() {
-        clickOn("#locationsField").write("Room3");
+        clickOn("#locationField").write("Room3");
         clickOn("#nClownsField").write("TheJoker");
         clickOn("#rNameField").write("BruceWayne");
         clickOn("#otherField").write("Batman");

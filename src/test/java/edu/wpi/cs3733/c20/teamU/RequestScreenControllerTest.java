@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -19,18 +20,22 @@ import org.testfx.framework.junit5.ApplicationTest;
 public class RequestScreenControllerTest extends ApplicationTest {
 
   public void start(Stage stage) throws IOException {
-    FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/Resolve_Request.fxml"));
-    Pane sceneRoot = RRLoader.load();
-    RequestScreenController requestScreenController = RRLoader.getController();
-    Scene scene = new Scene(sceneRoot);
+    Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/Request.fxml"));
+    Scene scene1 = new Scene(sceneRoot);
+    stage.setScene(scene1);
     stage.show();
   }
 
   @Test
   public void testButtons() {
-    verifyThat("#resolve", hasText("Resolve"));
-    verifyThat("#cancel", hasText("Cancel"));
-    verifyThat("#back", hasText("Back"));
+    verifyThat("#close", hasText("Close"));
+//    verifyThat("#date1", hasText("date"));
+    verifyThat("#backButton", hasText("Back"));
+  }
+
+  @Test
+  public void testClick() {
+    clickOn("#comboBox");
   }
 
 //  @Test
