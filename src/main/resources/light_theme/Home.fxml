@@ -215,44 +215,68 @@
              </VBox>
          </center>
           <right>
-              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="55.0" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                   <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                            <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="48.0" />
-                                </font>
-                            </JFXButton>
-                            <Label fx:id="floorLabel" text="1">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="48.0" />
-                                </font>
-                            </Label>
-                            <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
-                                <font>
-                                    <Font name="Segoe UI Bold" size="48.0" />
-                                </font>
-                            </JFXButton>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <JFXButton fx:id="plus" onAction="#zoomIn" text="+">
-                           <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="minus" onAction="#zoomOut" text="-">
-                           <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </VBox>
+                      <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="161.0" spacing="20.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
+                          <children>
+                              <Label fx:id="time" text="12:34:56 PM" textFill="WHITE">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="24.0" />
+                                  </font>
+                              </Label>
+                              <JFXButton fx:id="weather" onAction="#openWeather" contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #807765;" text=" " VBox.vgrow="ALWAYS">
+                                  <graphic>
+                                      <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../png_files/cloud_sun.png" />
+                                          </image>
+                                      </ImageView>
+                                  </graphic>
+                              </JFXButton>
+                          </children>
+                          <VBox.margin>
+                              <Insets top="-10.0" />
+                          </VBox.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                      </VBox>
+                      <VBox alignment="CENTER" prefHeight="533.0" prefWidth="161.0" VBox.vgrow="ALWAYS">
+                          <children>
+                              <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="48.0" />
+                                  </font>
+                              </JFXButton>
+                              <Label fx:id="floorLabel" text="1">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="48.0" />
+                                  </font>
+                              </Label>
+                              <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="48.0" />
+                                  </font>
+                              </JFXButton>
+                          </children>
+                      </VBox>
+                      <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                          <children>
+                              <JFXButton fx:id="plus" onAction="#zoomIn" text="+">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="48.0" />
+                                  </font>
+                              </JFXButton>
+                              <JFXButton fx:id="minus" onAction="#zoomOut" text="-">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="48.0" />
+                                  </font>
+                              </JFXButton>
+                          </children>
+                      </VBox>
                   </children>
               </VBox>
-          </right>
+      </right>
       </BorderPane>
     </children>
 </AnchorPane>

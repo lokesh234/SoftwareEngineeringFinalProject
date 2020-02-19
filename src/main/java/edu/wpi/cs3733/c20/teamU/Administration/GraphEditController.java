@@ -4,24 +4,17 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
-import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.util.*;
 
@@ -59,21 +52,14 @@ public class GraphEditController {
   private Node selectedNode;
   private Node selectedStartNode;
   private Node selectedEndNode;
-  private HashMap<EdgeWrapper, Circle> interFloorPaths = new HashMap<>();
+  private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode;
   }
 
-  private class EdgeWrapper {
-    public Edge e;
-    public Node n;
-    public EdgeWrapper(Edge E, Node N) {
-      e = E;
-      n = N;
-    }
-  }
+
 
   private class Pos {
     protected int x, y;
@@ -259,12 +245,12 @@ public class GraphEditController {
       if (selectedEdge.getStart().getFloor() == selectedEdge.getEnd().getFloor()) lines.get(selectedEdge).setStroke(Color.BLACK);
       else {
         if (selectedEdge.getEnd().getFloor() < selectedEdge.getStart().getFloor()) {
-          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getStart())).setStroke(Color.ORCHID);
-          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getEnd())).setStroke(Color.DARKGREEN);
+          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.ORCHID);
+          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.DARKGREEN);
         }
         else {
-          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getStart())).setStroke(Color.DARKGREEN);
-          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getEnd())).setStroke(Color.ORCHID);
+          interFloorPaths.get(selectedEdge.getStart()).setStroke(Color.DARKGREEN);
+          interFloorPaths.get(selectedEdge.getEnd()).setStroke(Color.ORCHID);
         }
       }
     }
@@ -322,8 +308,8 @@ public class GraphEditController {
         selectedEdge = DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode);
         if (selectedEndNode.getFloor() == selectedStartNode.getFloor()) lines.get(selectedEdge).setStroke(Color.DARKORANGE);
         else {
-          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getStart())).setStroke(Color.DARKORANGE);
-          interFloorPaths.get(new EdgeWrapper(selectedEdge, selectedEdge.getEnd())).setStroke(Color.DARKORANGE);
+          interFloorPaths.get(selectedEndNode).setStroke(Color.DARKORANGE);
+          interFloorPaths.get(selectedStartNode).setStroke(Color.DARKORANGE);
         }
 
         addButton.setDisable(true);
@@ -353,8 +339,8 @@ public class GraphEditController {
         Path c = pair.getValue();
         removeFromPath(c, pair.getKey().getStart().getFloor());
       }
-      for (Map.Entry<EdgeWrapper, Circle> pair : interFloorPaths.entrySet()) {
-        removeFromPath(pair.getValue(), pair.getKey().n.getFloor());
+      for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
+        removeFromPath(pair.getValue(), pair.getKey().getFloor());
       }
     }
     interFloorPaths.clear();
@@ -410,8 +396,8 @@ public class GraphEditController {
         c2.setStrokeWidth(5);
         c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
         c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
-        interFloorPaths.put(new EdgeWrapper(e, n1), c);
-        interFloorPaths.put(new EdgeWrapper(e, n2), c2);
+        interFloorPaths.put(n1, c);
+        interFloorPaths.put(n2, c2);
         addToPath(c, n1.getFloor());
         addToPath(c2, n2.getFloor());
       }
@@ -482,6 +468,7 @@ public class GraphEditController {
       c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
       c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
       c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
+      if (n.getNodeType().equals("HALL")) c.setFill(Color.GRAY);
       circles.put(c, n);
     }
   }
@@ -534,16 +521,22 @@ public class GraphEditController {
     @Override
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
-      source.setFill(Color.BLACK);
+      if (circles.get(source).getNodeType().equals("HALL")) source.setFill(Color.GRAY);
+      else source.setFill(Color.BLACK);
     }
   };
 
   EventHandler<MouseEvent> interFloorHandler = new EventHandler<MouseEvent>() {
     @Override
     public void handle(MouseEvent event) {
-      for (Map.Entry<EdgeWrapper, Circle> pair : interFloorPaths.entrySet()) {
+      for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
         if (pair.getValue().equals(event.getSource())) {
-          floor = pair.getKey().e.getOther(pair.getKey().n).getFloor();
+          for (Node n : DatabaseWrapper.getGraph().getNeighborNodes(pair.getKey())) {
+            if (n.getFloor() != floor) {
+              floor = n.getFloor();
+              break;
+            }
+          }
           stateMachine(floor);
         }
       }

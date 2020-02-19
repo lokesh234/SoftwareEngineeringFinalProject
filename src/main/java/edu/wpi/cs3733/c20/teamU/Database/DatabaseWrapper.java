@@ -338,6 +338,34 @@ public class DatabaseWrapper {
       return (ServiceDatabase.intTransportSRAdd(patentLastName, patentFirstName, startLocation, endLocation, equipment));
     }
 
+  public static boolean extTransportSRAdd(String patentLastName, String patentFirstName, String destination, String departureTime, String departureDate, int nPassengers){
+      return (ServiceDatabase.extTransportSRAdd(patentLastName, patentFirstName, destination, departureTime, departureDate, nPassengers));
+  }
+
+  public static boolean deliverySRAdd(String patentLastName, String patentFirstName, String gift, String room){
+      return (ServiceDatabase.deliverySRAdd(patentLastName, patentFirstName, gift, room));
+  }
+
+  public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName){
+      return (ServiceDatabase.ClownDeliverySRAdd(location, nClowns, recipientName));
+  }
+
+  public static boolean FlowersSRAdd(String lastName, String firstName, boolean roses, boolean tulips, boolean lilies, String occasion, String deliveryDate, String giftNote, String room){
+      return (ServiceDatabase.FlowersSRAdd(lastName,firstName,roses,tulips,lilies,occasion,deliveryDate,giftNote,room));
+  }
+
+  public static boolean ITSRAdd(String patentLastName, String patentFirstName, String helpType, String comments){
+      return (ServiceDatabase.ITSRAdd(patentLastName,patentFirstName,helpType,comments));
+  }
+
+  public static boolean ReligionSRAdd(String patentLastName, String patentFirstName, String religiousAffiliation, String explanation){
+      return (ServiceDatabase.ReligionSRAdd(patentLastName,patentFirstName,religiousAffiliation,explanation));
+  }
+
+  public static boolean SanitarySRAdd(String service, String location, String nature, String info){
+      return (ServiceDatabase.SanitarySRAdd(service,location,nature,info));
+  }
+
     public static boolean serviceRequestDel(int reqID, String adminsName, String user, String tableName, String jobType){
       return (ServiceDatabase.serviceRequestDel(reqID, adminsName, user, tableName, jobType));
     }

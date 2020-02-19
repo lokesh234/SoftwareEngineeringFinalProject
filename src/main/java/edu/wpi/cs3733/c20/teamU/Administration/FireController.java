@@ -1,9 +1,8 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
-import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindAStar;
 import javafx.animation.Interpolator;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FireController {
@@ -25,7 +23,6 @@ public class FireController {
     @FXML
     private AnchorPane fireNodes;
     private HashMap<Node, Circle> circles = new HashMap<>();
-    private Pathfinder firePath = Pathfinder.getPathfinder();
     @FXML
     private GesturePane FireGesPane;
 

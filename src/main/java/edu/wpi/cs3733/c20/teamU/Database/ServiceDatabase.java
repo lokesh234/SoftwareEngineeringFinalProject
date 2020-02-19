@@ -179,6 +179,215 @@ public class ServiceDatabase {
         }
     }
 
+    public static boolean extTransportSRAdd(String patentLastName, String patentFirstName, String destination, String departureTime, String departureDate, int nPassengers){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String ETSRTableName = "ExternalTransportSR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'ETRAN', 'Transport to: " + destination + " at: " + departureDate + " " + departureTime + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + ETSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + destination + "', '" + departureTime + "', '" + departureDate + "', '" + nPassengers + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, ETSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean deliverySRAdd(String patentLastName, String patentFirstName, String gift, String room){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String DSRTableName = "DeliverySR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'DELIV', 'Deliver: " + gift + " to: " + room + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + DSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + gift + "', '" + room + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, DSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String CDSRTableName = "ClownDeliverySR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'CLOWN', 'Number of clowns: " + nClowns + " for: " + recipientName + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + CDSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + location + "', '" + nClowns + "', '" + recipientName + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, CDSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean FlowersSRAdd(String lastName, String firstName, boolean roses, boolean tulips, boolean lilies, String occasion, String deliveryDate, String giftNote, String room){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String FSRTableName = "FlowersSR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'FLOWR', 'Deliver flowers to: " + room + " on: " + deliveryDate + " : " + giftNote + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + FSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + lastName + "', '" + firstName + "', '" + roses + "', '" + tulips + "', '" + lilies + "', '" + occasion + "', '" + deliveryDate + "', '" + giftNote + "', '" + room + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, FSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean ITSRAdd(String patentLastName, String patentFirstName, String helpType, String comments){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String ITSRTableName = "ITRS";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'INTEC', 'Help on: " + helpType + " where: " + comments + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + ITSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + helpType + "', '" + comments + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, ITSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean ReligionSRAdd(String patentLastName, String patentFirstName, String religiousAffiliation, String explanation){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String RSRTableName = "ReligionSR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'RELIG', 'Service for : " + religiousAffiliation + " where: " + explanation + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + RSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + religiousAffiliation + "', '" + explanation + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, RSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean SanitarySRAdd(String service, String location, String nature, String info){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String SSRTableName = "SanitarySR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'SANIT', 'Service: " + service + " needed: " + location + " where: " + info + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + SSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + service + "', '" + location + "', '" + nature + "', '" + info + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, SSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     //gets current date
     static String getCurrentDate(){

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AddNodeScreenController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -120,7 +121,7 @@
                   <JFXTextField fx:id="text3" promptText="Input Y" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <JFXTextField fx:id="text4" promptText="Input Floor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <JFXTextField fx:id="text5" promptText="Input Building" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <JFXTextField fx:id="text6" promptText="Input Node Type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <JFXComboBox fx:id="nodeType" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                   <JFXTextField fx:id="text7" promptText="Input Long Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <JFXTextField fx:id="text8" promptText="Input Short Name" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>

@@ -1,10 +1,8 @@
 package edu.wpi.cs3733.c20.teamU.Database;
 
-import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
+import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindAStar;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.*;
 import java.sql.*;
@@ -1214,7 +1212,7 @@ public class Database {
                 Node node1 = nHM.get(results.getString(2));
                 Node node2 = nHM.get(results.getString(3));
                 //calculate the distance, create a new Edge(), put it into the result HashMap
-                int dis = Pathfinder.dist(node1, node2);
+                int dis = NavigationWrapper.dist(node1, node2);
                 eHM.put(edgeID, new Edge(node1, node2, dis, edgeID));
            }
 

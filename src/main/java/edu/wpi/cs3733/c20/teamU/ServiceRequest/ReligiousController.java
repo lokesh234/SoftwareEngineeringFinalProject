@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
@@ -12,77 +13,48 @@ import javafx.scene.control.TextField;
 
 public class ReligiousController {
 
-    @FXML private TextField last;
+    @FXML private TextField lastName;
     @FXML private TextArea comments;
-    @FXML private TextField frequency;
-    @FXML private TextField first;
-    @FXML private TextField drug;
-    @FXML private Button closeMedicineScreen;
-    @FXML private ComboBox comboBox = new ComboBox();
+    @FXML private TextField firstName;
+    @FXML private ComboBox comboBox;
+    @FXML private JFXButton cancel;
 
     @FXML
     private void getSubmission() {
-        String userLast = last.getText();
+        String userLast = lastName.getText();
         String userComment = comments.getText();
-        String userFreq = frequency.getText();
-        String userFirst = first.getText();
-        String userDrug = drug.getText();
-        String userDelivery;
-        if(comboBox.getValue() == null) userDelivery = "";
-        else userDelivery = comboBox.getValue().toString();
+        String userFreq = firstName.getText();
+        String userBox;
+        if(comboBox.getValue() == null) userBox = "";
+        else userBox = comboBox.getValue().toString();
 
         //TODO: specify which textfield to write in if empty
-        if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
+        if (userFreq.isEmpty() || userLast.isEmpty() || userBox.isEmpty() || userComment.isEmpty()) {
             // will print out some text eventually, right now nothing
-            last.setStyle("-fx-border-color: red");
+            lastName.setStyle("-fx-border-color: red");
 //            comments.setStyle("-fx-border-color: red");
-            frequency.setStyle("-fx-border-color: red");
-            drug.setStyle("-fx-border-color: red");
+            comments.setStyle("-fx-border-color: red");
+            firstName.setStyle("-fx-border-color: red");
             comboBox.setStyle("-fx-border-color: red");
-            first.setStyle("-fx-border-color: red");
         } else {
-            last.setStyle("-fx-border-color: clear");
+            lastName.setStyle("-fx-border-color: clear");
             comments.setStyle("-fx-border-color: clear");
-            frequency.setStyle("-fx-border-color: clear");
-            drug.setStyle("-fx-border-color: clear");
+            firstName.setStyle("-fx-border-color: clear");
             comboBox.setStyle("-fx-border-color: clear");
-            first.setStyle("-fx-border-color: clear");
             //TODO:
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
-            closeMedicineScreen.fire();
+            cancel.fire();
         }
-//
-//      if (userFreq.isEmpty()) {
-//        frequency.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userLast.isEmpty()) {
-//        last.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userFirst.isEmpty()) {
-//        first.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userDrug.isEmpty()) {
-//        drug.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
-//      if (userDelivery.isEmpty()) {
-//        comboBox.setStyle("-fx-border-color: red");
-//        emptyText = true;
-//      }
     }
 
     public void clearField() {
-        last.clear();
+        lastName.clear();
         comments.clear();
-        frequency.clear();
-        first.clear();
-        drug.clear();
+        firstName.clear();
         comboBox.getSelectionModel().clearSelection();
     }
+
     @FXML
     private void closeMedicineForm(){
         App.getHome().setOpacity(1);

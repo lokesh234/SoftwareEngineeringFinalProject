@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -15,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import com.jfoenix.controls.JFXDatePicker?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ClownController" fx:id="clownParent">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.GiftDeliveryController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -30,13 +28,12 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Location" />
-                              <JFXTextField fx:id="locationField" prefHeight="20.0" VBox.vgrow="ALWAYS">
+                              <Label text="Last Name" />
+                              <JFXTextField fx:id="last" prefHeight="20.0" VBox.vgrow="ALWAYS">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
@@ -48,8 +45,8 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Quantity Of Clowns" />
-                              <JFXTextField fx:id="nClownsField">
+                              <Label text="First Name" />
+                              <JFXTextField fx:id="first">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
@@ -58,8 +55,8 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Recipient Name" />
-                              <JFXTextField fx:id="rNameField">
+                              <Label text="Room Number" />
+                              <JFXTextField fx:id="room">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
@@ -68,28 +65,8 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label text="Other (Please Specify)" fx:id="otherLabel"/>
-                              <JFXTextField fx:id="otherField">
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" />
-                                 </padding>
-                              </JFXTextField>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                           <children>
-                              <Label text="Occasion" />
-                              <JFXComboBox fx:id="comboBox" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <Label text="Delivery Date" />
-                              <JFXDatePicker fx:id="dateField">
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" />
-                                 </padding>
-                              </JFXDatePicker>
+                              <Label text="Gift" />
+                              <JFXComboBox fx:id="gift" />
                            </children>
                         </VBox>
                      </children>
@@ -99,7 +76,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE" />
+                        <JFXButton fx:id="submit" onAction="#setSubmit" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
@@ -110,7 +87,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
                      <children>
-                        <Label text="Clown Request Form by Alek" textFill="WHITE">
+                        <Label text="Gift Delivery" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -119,7 +96,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="back" onAction="#returnToRequest" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>

@@ -84,18 +84,18 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                            <children>
-                              <JFXRadioButton text="Spanish" />
-                              <JFXRadioButton text="Chinese" />
+                              <JFXRadioButton fx:id="Spanish" text="Spanish" />
+                              <JFXRadioButton fx:id="Chinese" text="Chinese" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
-                              <JFXRadioButton text="Japanese">
+                              <JFXRadioButton fx:id="Japenese" text="Japanese">
                                  <HBox.margin>
                                     <Insets left="27.0" right="-3.0" />
                                  </HBox.margin>
                               </JFXRadioButton>
-                              <JFXRadioButton text="Hindi">
+                              <JFXRadioButton fx:id="Hindi" text="Hindi">
                                  <padding>
                                     <Insets right="51.0" />
                                  </padding>
@@ -113,8 +113,8 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                            <children>
-                              <JFXRadioButton text="Ethiopian" />
-                              <JFXRadioButton text="Russian" />
+                              <JFXRadioButton fx:id="Ethiopian" text="Ethiopian" />
+                              <JFXRadioButton fx:id="Russian" text="Russian" />
                            </children>
                         </HBox>
                      </children>
@@ -129,7 +129,7 @@
             </GridPane>
             <HBox alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="confirm" style="-fx-background-color: #BFB397;" text="Confirm">
+                  <JFXButton fx:id="confirm" onAction="#getSubmission" style="-fx-background-color: #BFB397;" text="Confirm">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>

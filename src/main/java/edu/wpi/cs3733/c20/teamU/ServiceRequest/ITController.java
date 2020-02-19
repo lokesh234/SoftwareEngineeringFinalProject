@@ -34,13 +34,13 @@ public class ITController {
                 comboBox.setStyle("-fx-border-color: red");
                 first.setStyle("-fx-border-color: red");
             } else {
-                last.setStyle("-fx-border-color: clear");
-                comments.setStyle("-fx-border-color: clear");
-                comboBox.setStyle("-fx-border-color: clear");
-                first.setStyle("-fx-border-color: clear");
+                last.setStyle("-fx-border-color:  #FFEEC9");
+                comments.setStyle("-fx-border-color:  #FFEEC9");
+                comboBox.setStyle("-fx-border-color:  #FFEEC9");
+                first.setStyle("-fx-border-color:  #FFEEC9");
                 //ServiceDatabase.ITSRAdd(userFirst, userLast, issueType, userComment); TODO:Add method in database class
                 clearField();
-                closeITScreen.fire();
+                goBack();
             }
 //
 //      if (userFreq.isEmpty()) {
