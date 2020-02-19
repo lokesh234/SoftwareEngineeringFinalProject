@@ -43,7 +43,8 @@ public class ReligiousController {
             firstName.setStyle("-fx-border-color: clear");
             comboBox.setStyle("-fx-border-color: clear");
             //TODO:
-            DatabaseWrapper.ReligionSRAdd(userLast,userFreq,userBox,userComment);
+            String name = userFreq + " " + userLast;
+            DatabaseWrapper.ReligionSRAdd(name,userBox,userComment);
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
             cancel.fire();

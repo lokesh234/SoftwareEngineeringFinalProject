@@ -326,8 +326,8 @@ public class DatabaseWrapper {
     //Use functions to update all database tables: "[Name]SR, ServiceRequest, ServiceFinished"
     //ex input: languageSRAdd("Chalmers", "Marcus", "Chinese");
     //ex input: languageSRDel(2, "adminUsername", "LANGE");
-    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language){
-      return (ServiceDatabase.languageSRAdd(patentLastName, patentFirstName, language));
+    public static boolean languageSRAdd(String patentLastName, String patentFirstName, String language, String location){
+      return (ServiceDatabase.languageSRAdd(patentLastName, patentFirstName, language, location));
     }
 
     public static boolean languageSRDel(int reqID, String adminsName, String user) {
@@ -358,8 +358,8 @@ public class DatabaseWrapper {
       return (ServiceDatabase.ITSRAdd(patentLastName,patentFirstName,helpType,comments));
   }
 
-  public static boolean ReligionSRAdd(String patentLastName, String patentFirstName, String religiousAffiliation, String explanation){
-      return (ServiceDatabase.ReligionSRAdd(patentLastName,patentFirstName,religiousAffiliation,explanation));
+  public static boolean ReligionSRAdd(String patentName, String religiousAffiliation, String explanation){
+      return (ServiceDatabase.ReligionSRAdd(patentName,religiousAffiliation,explanation));
   }
 
   public static boolean SanitarySRAdd(String service, String location, String nature, String info){
