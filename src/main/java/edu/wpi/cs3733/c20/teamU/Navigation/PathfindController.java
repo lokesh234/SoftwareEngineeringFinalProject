@@ -493,8 +493,8 @@ public class PathfindController {
         for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
-            if (!floorsInPath.contains(n1.getFloor())) floorsInPath.add(n1.getFloor());
-            if (!floorsInPath.contains(n2.getFloor())) floorsInPath.add(n2.getFloor());
+            if (!floorsInPath.contains(n1.getFloor()) && (i == 0 || (!n1.getNodeType().equals("STAI") && !n1.getNodeType().equals("ELEV")))) floorsInPath.add(n1.getFloor());
+            if (!floorsInPath.contains(n2.getFloor()) && (i+2 == path.size() || (!n2.getNodeType().equals("STAI") && !n2.getNodeType().equals("ELEV")))) floorsInPath.add(n2.getFloor());
 
             if (n1.getFloor() == n2.getFloor()) {
 
