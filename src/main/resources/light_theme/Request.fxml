@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -59,7 +60,16 @@
 <!--                           <VBox.margin>-->
 <!--                              <Insets />-->
 <!--                           </VBox.margin>-->
-<!--                        </HBox>-->
+<!--                        </HBox>--><HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
+                   <children>
+                       <Label text="User Type as:" fx:id="label"></Label>
+                   </children>
+               </HBox>
+                   <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
+                       <children>
+                           <JFXComboBox fx:id="comboBox" disable="true"/>
+                       </children>
+               </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
                      <children>
                         <JFXButton fx:id="close" onAction="#closeRequest" style="-fx-background-color: #474338;" text="Close" textFill="WHITE">
@@ -103,28 +113,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Medicine">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                  <Tab text="Transport EXT">
-                      <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                      </content>
-                  </Tab>                <Tab text="Transport INT">
-                  <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-              </Tab>                <Tab text="Floral">
-                  <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-              </Tab>                <Tab text="Translate">
-                  <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-              </Tab>                <Tab text="All Completed">
+                  <Tab text="All Completed">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                           <children>

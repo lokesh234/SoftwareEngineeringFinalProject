@@ -1,18 +1,24 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.awt.event.MouseEvent;
+import java.beans.EventHandler;
 import java.util.ArrayList;
 
 public class AdminRequestController {
@@ -28,8 +34,11 @@ public class AdminRequestController {
   @FXML private TableColumn<Service, String> info2;
   @FXML private JFXButton close;
   @FXML private JFXButton backButton;
+  @FXML private JFXComboBox comboBox;
+  @FXML private Label label;
   RequestScreenController requestScreenController;
   private boolean pending = true;
+  private String user = "";
 
   public void setAttributes(RequestScreenController requestScreenController1) {
     requestScreenController = requestScreenController1;
@@ -54,6 +63,24 @@ public class AdminRequestController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
+  @FXML
+  public void cred(){
+    user = App.getUser();
+    if(App.getUser().equals("ADMIN")){
+      comboBox.setDisable(false);
+    }
+    else {
+      comboBox.setDisable(true);
+    }
+    comboBox.setPromptText(user);
+  }
+
+  @FXML
+  public void selection(){
+    user = comboBox.getValue().toString();
+    System.out.println(user);
+  }
+
   public void update() {
     pending = true;
     serviceTable1.setItems(arrayToOBList());
@@ -65,8 +92,6 @@ public class AdminRequestController {
   private ObservableList<Service> arrayToOBList() {
     ObservableList<Service> services = FXCollections.observableArrayList();
     ArrayList<Service> temp = new ArrayList<>();
-    String user = App.getUser();
-    System.out.println("init with user" + user);
     if (pending == true) {
       Database.getServices(temp, user);
     }
@@ -80,7 +105,7 @@ public class AdminRequestController {
   }
 
   @FXML
-  private void initialize() {
+  protected void initialize() {
     requestID1.setCellValueFactory(new PropertyValueFactory<>("date"));
 
     date1.setCellValueFactory(new PropertyValueFactory<>("requestID"));
@@ -97,6 +122,17 @@ public class AdminRequestController {
 
     info2.setCellValueFactory(new PropertyValueFactory<>("requestType"));
 
+    comboBox.setPromptText("...");
+    comboBox.valueProperty().addListener(new ChangeListener<String>() {
+      @Override
+      public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        selection();
+        update();
+        System.out.println("changes");
+      }
+    });
+
+
     pending = true;
     if (!arrayToOBList().isEmpty()) {
       serviceTable1.setItems(arrayToOBList());
@@ -106,6 +142,14 @@ public class AdminRequestController {
       serviceTable2.setItems(arrayToOBList());
     }
     close.setDisable(true);
+
+    ObservableList<String> deliveryOptions =
+            FXCollections.observableArrayList(
+                    "ADMIN",
+                    "SECUR",
+                    "MEDIC"
+            );
+    comboBox.getItems().addAll(deliveryOptions);
   }
 
   @FXML
