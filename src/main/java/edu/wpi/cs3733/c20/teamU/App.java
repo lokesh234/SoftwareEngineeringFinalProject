@@ -38,6 +38,7 @@ public class App extends Application {
   private static Pane security;
   private static Pane request;
   private static Pane medicine;
+  private static Pane flower;
   private static Pane fire;
   private static Pane export;
   private static Pane edit;
@@ -131,6 +132,7 @@ private static Pane pathFindText;
   private static Popup religiousPop = new Popup();
   private static Popup extTransportPop = new Popup(); //anir
   private static Popup intTransportPop = new Popup(); //marcus
+  private static Popup flowerPop = new Popup();
   private static Popup TextDirectionsPop = new Popup();
   private static Popup clownPop = new Popup();
 
@@ -162,6 +164,7 @@ private static Pane pathFindText;
   public static Pane getReligious() { return religious;}
 
   public static Pane getEmployeeForm() {return employeeF; }
+  public static Pane getFlower(){return  flower;}
   public static Pane getClown() { return clown;}
 
 
@@ -237,6 +240,8 @@ private static Pane pathFindText;
   public static Popup getIntTransportPop() { return intTransportPop;} //marcus
   public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
   public static Popup getClownPop() { return clownPop;}
+  public static Popup getFlowerPop(){return flowerPop;}
+
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -254,6 +259,7 @@ private static Pane pathFindText;
       FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
       FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
       FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
+      FXMLLoader flowerLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFlowerForm.fxml"));
       FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
       FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
       FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
@@ -285,6 +291,7 @@ private static Pane pathFindText;
       admin = adminLoader.load();
       request = requestLoader.load();
       medicine = medicineLoader.load();
+      flower = flowerLoader.load();
       fire = fireLoader.load();
       weather = weatherLoader.load();
       religious = religiousLoader.load();
@@ -336,6 +343,7 @@ private static Pane pathFindText;
       adminRequestController.setAttributes(requestScreenController);
       addNodeScreenController.setAttributes(graphEditController);
       loginScreenController.setAttributes(adminScreenController);
+
 
       popup.getContent().addAll();
       securityPop.getContent().addAll();

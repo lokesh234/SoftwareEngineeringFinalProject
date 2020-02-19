@@ -83,6 +83,7 @@ public class PathfindController {
     final ToggleGroup group = new ToggleGroup();
     private ArrayList<Integer> floorsInPath = new ArrayList<>();
     private HashMap<Circle, Node> interFloorPaths = new HashMap<>();
+    PathfindTextController pathfindTextController = new PathfindTextController();
 
 
     @FXML
@@ -428,6 +429,7 @@ public class PathfindController {
     @FXML private void textPopUp(){
         App.getTextDirectionsPop().getContent().add(App.getPathFindText());
         App.getTextDirectionsPop().show(App.getPrimaryStage());
+        //pathfindTextController.Directions = new Label();
     }
 
     @FXML
@@ -445,11 +447,16 @@ public class PathfindController {
             pathes.clear();
             engine.starSingular(start, end);
             path = engine.getLatestPath();
-            //System.out.println(path.size());
+            //System.out.print
+            // ln(path.size());
             drawPath();
+            getTextPath();
         }
         updateStatus();
+        //pathfindTextController.Directions = new Label();
     }
+
+
     @FXML
     private void clearPath() {
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
