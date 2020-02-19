@@ -11,9 +11,9 @@ import javafx.fxml.FXML;
 
 public class SanRequestController {
 
-    @FXML private JFXTextArea service;
-    @FXML private JFXTextField location;
-    @FXML private JFXTextField nature;
-    @FXML private JFXTextArea additional;
-    @FXML private JFXButton submit;
+   // @FXML private JFXTextArea service;
+    //@FXML private JFXTextField location;
+    //@FXML private JFXTextField nature;
+   // @FXML private JFXTextArea additional;
+   // @FXML private JFXButton submit;
 }

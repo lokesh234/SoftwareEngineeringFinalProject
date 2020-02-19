@@ -80,6 +80,7 @@ public class App extends Application {
   private static Scene religiousScene;
   private static Scene extTransportScene; //this is anir
   private static Scene pathFindTextScene;
+  private static Scene sanSRScene;
 
 
   private static LoginScreenController loginScreenController;
@@ -105,6 +106,7 @@ public class App extends Application {
   private static RequestScreenController requestScreenController;
   private static FireController fireController;
   private static AddNodeScreenController addNodeScreenController;
+  private static SanRequestController sanRequestController;
 
   private static boolean didChange = false;
   private static long time;
@@ -196,6 +198,7 @@ public class App extends Application {
   public static ExtTransportController getExtTransportController() {return  extTransportController;}
   public static ReligiousController getReligiousController() { return religiousController; }
   public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
+  public static SanRequestController getSanRequestController() {return sanRequestController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -227,7 +230,7 @@ public class App extends Application {
   public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
   public static Popup getClownPop() { return clownPop;}
   public static Popup getFlowerPop(){return flowerPop;}
-  public static Popup getMyRequestPop(){ return sanRequestPop;}
+  public static Popup getSanRequestPop(){ return sanRequestPop;}
 
 
   @Override
@@ -261,12 +264,10 @@ public class App extends Application {
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
       FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
-
-
       FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
       FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
       FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
-      FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/SanitationRequests.fxml"));
+      FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/light_theme/SanitationRequests.fxml"));
 
 
 
