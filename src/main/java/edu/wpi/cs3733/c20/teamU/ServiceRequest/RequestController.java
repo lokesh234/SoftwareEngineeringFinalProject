@@ -65,4 +65,11 @@ public class RequestController {
         App.getSanRequestPop().show(App.getPrimaryStage());
     }
 
+    @FXML
+    public void openLangaugeRequest(){
+        App.getRequestPop().getContent().remove(0);
+        App.getLanguageSRPop().getContent().add(App.getLanguageSR());
+        App.getLanguageSRPop().show(App.getPrimaryStage());
+    }
+
 }

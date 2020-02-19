@@ -12,6 +12,7 @@ import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -59,6 +60,7 @@ public class App extends Application {
 
   private static Pane externalTransport;  // This is anir
   private static Pane pathFindText;
+  private static Pane languageSR;
 
 
   private static Scene homeScene;
@@ -81,6 +83,7 @@ public class App extends Application {
   private static Scene extTransportScene; //this is anir
   private static Scene pathFindTextScene;
   private static Scene sanSRScene;
+  private static Scene languageSRScene;
 
 
   private static LoginScreenController loginScreenController;
@@ -101,6 +104,7 @@ public class App extends Application {
   private static ExtTransportController extTransportController; //anir
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
+  private static LanguageController languageController;
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
@@ -129,6 +133,7 @@ public class App extends Application {
   private static Popup TextDirectionsPop = new Popup();
   private static Popup clownPop = new Popup();
   private static Popup sanRequestPop = new Popup();
+  private static Popup languageSRPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -159,6 +164,7 @@ public class App extends Application {
   public static Pane getFlower(){return  flower;}
   public static Pane getClown() { return clown;}
   public static Pane getSanRequest(){return sanRequest;}
+  public static Pane getLanguageSR() {return languageSR;}
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -180,6 +186,7 @@ public class App extends Application {
   public static Scene getExtTransportScene() {return extTransportScene;} //anir
   public static Scene getReligiousScene() { return religiousScene; }
   public static Scene getPathFindTextScene() {return pathFindTextScene;}
+  public static Scene getLanguageSRScene() {return languageSRScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -199,6 +206,7 @@ public class App extends Application {
   public static ReligiousController getReligiousController() { return religiousController; }
   public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
   public static SanRequestController getSanRequestController() {return sanRequestController;}
+  public static LanguageController getLanguageController() {return languageController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -231,6 +239,7 @@ public class App extends Application {
   public static Popup getClownPop() { return clownPop;}
   public static Popup getFlowerPop(){return flowerPop;}
   public static Popup getSanRequestPop(){ return sanRequestPop;}
+  public static Popup getLanguageSRPop() {return languageSRPop;}
 
 
   @Override
@@ -268,6 +277,7 @@ public class App extends Application {
       FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
       FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
       FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/light_theme/SanitationRequests.fxml"));
+      FXMLLoader languageLoader = new FXMLLoader(getClass().getResource("/light_theme/LanguageForm.fxml"));
 
 
 
@@ -298,6 +308,7 @@ public class App extends Application {
       pathFindText = pathfindtextLoader.load();
       clown = clownDeliveryLoader.load();
       sanRequest = sanRequestLoader.load();
+      languageSR = languageLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -322,6 +333,7 @@ public class App extends Application {
       pathfindController = pathfindLoader.getController();
       clownController = clownDeliveryLoader.getController();
       pathfindTextController = pathfindtextLoader.getController();
+      languageController = languageLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -343,6 +355,7 @@ public class App extends Application {
       extTransportPop.getContent().addAll();
       TextDirectionsPop.getContent().addAll();
       sanRequestPop.getContent().addAll();
+      languageSRPop.getContent().addAll();
 
 
       homeScene = new Scene(home);
