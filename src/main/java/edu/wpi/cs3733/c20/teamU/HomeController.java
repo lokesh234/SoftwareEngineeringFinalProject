@@ -7,6 +7,9 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.animation.Interpolator;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -284,53 +287,84 @@ public class HomeController {
 
   @FXML
   private void stateMachine(int floor) {
-    switch (floor) {
+    switch (floor){
       case 1:
-        oppo.getChildren().clear();
-        oppo.getChildren().add(N1);
-        floor = 1;
-        floorLabel.setText("1");
-        MapGes1.animate(Duration.millis(200))
+    oppo.getChildren().clear();
+    N1.translateYProperty().set(1500);
+    oppo.getChildren().add(N1);
+    floor = 1;
+    floorLabel.setText("1");
+    Timeline timeline1 = new Timeline();
+    KeyValue kv1 = new KeyValue(N1.translateYProperty(), 0, Interpolator.EASE_IN);
+    KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(.5), kv1);
+    timeline1.getKeyFrames().add(keyFrame1);
+    timeline1.play();
+    MapGes1.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
-        break;
-      case 2:
-        oppo.getChildren().clear();
-        oppo.getChildren().add(N2);
-        floor = 2;
-        floorLabel.setText("2");
-        MapGes2.animate(Duration.millis(200))
+
+    break;
+    case 2:
+    oppo.getChildren().clear();
+    N2.translateYProperty().set(1500);
+    oppo.getChildren().add(N2);
+    floor = 2;
+    floorLabel.setText("2");
+    Timeline timeline2 = new Timeline();
+    KeyValue kv2 = new KeyValue(N2.translateYProperty(), 0, Interpolator.EASE_IN);
+    KeyFrame keyFrame2 = new KeyFrame(Duration.seconds(.5), kv2);
+    timeline2.getKeyFrames().add(keyFrame2);
+    timeline2.play();
+    MapGes2.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes2.getCurrentScale() - 30000, MapGes2.targetPointAtViewportCentre());
-        break;
-      case 3:
-        oppo.getChildren().clear();
-        oppo.getChildren().add(N3);
-        floor = 3;
-        floorLabel.setText("3");
-        MapGes3.animate(Duration.millis(200))
+    break;
+    case 3:
+    oppo.getChildren().clear();
+    N3.translateYProperty().set(1500);
+    oppo.getChildren().add(N3);
+    floor = 3;
+    floorLabel.setText("3");
+    Timeline timeline3 = new Timeline();
+    KeyValue kv3 = new KeyValue(N3.translateYProperty(), 0, Interpolator.EASE_IN);
+    KeyFrame keyFrame3 = new KeyFrame(Duration.seconds(.5), kv3);
+    timeline3.getKeyFrames().add(keyFrame3);
+    timeline3.play();
+    MapGes3.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
-        break;
-      case 4:
-        oppo.getChildren().clear();
-        oppo.getChildren().add(N4);
-        floor = 4;
-        floorLabel.setText("4");
-        MapGes4.animate(Duration.millis(200))
+    break;
+    case 4:
+    oppo.getChildren().clear();
+    N4.translateYProperty().set(1500);
+    oppo.getChildren().add(N4);
+    floor = 4;
+    floorLabel.setText("4");
+    Timeline timeline4 = new Timeline();
+    KeyValue kv4 = new KeyValue(N4.translateYProperty(), 0, Interpolator.EASE_IN);
+    KeyFrame keyFrame4 = new KeyFrame(Duration.seconds(.5), kv4);
+    timeline4.getKeyFrames().add(keyFrame4);
+    timeline4.play();
+    MapGes4.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
-        break;
-      case 5:
-        oppo.getChildren().clear();
-        oppo.getChildren().add(N5);
-        floor = 5;
-        floorLabel.setText("5");
-        MapGes5.animate(Duration.millis(200))
+    break;
+    case 5:
+    oppo.getChildren().clear();
+    N5.translateYProperty().set(1500);
+    oppo.getChildren().add(N5);
+    floor = 5;
+    Timeline timeline5 = new Timeline();
+    KeyValue kv5 = new KeyValue(N5.translateYProperty(), 0, Interpolator.EASE_IN);
+    KeyFrame keyFrame5 = new KeyFrame(Duration.seconds(.5), kv5);
+    timeline5.getKeyFrames().add(keyFrame5);
+    timeline5.play();
+    floorLabel.setText("5");
+    MapGes5.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
-        break;
-    }
+    break;
+  }
   }
 
   @FXML
