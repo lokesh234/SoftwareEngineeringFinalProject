@@ -149,7 +149,7 @@
              <VBox fx:id="oppo" prefHeight="3240">
                  <children>
                      <AnchorPane fx:id="N1" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                         <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane1">
                                  <ImageView>
                                      <image>
@@ -162,7 +162,7 @@
                  </children>
                  <children>
                      <AnchorPane fx:id="N2" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                         <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane2">
                                  <ImageView>
                                      <image>
@@ -175,7 +175,7 @@
                  </children>
                  <children>
                      <AnchorPane fx:id="N3" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                         <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane3">
                                  <ImageView>
                                      <image>
@@ -188,7 +188,7 @@
                  </children>
                  <children>
                      <AnchorPane fx:id="N4" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                         <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane4">
                                  <ImageView>
                                      <image>
@@ -201,7 +201,7 @@
                  </children>
                  <children>
                      <AnchorPane fx:id="N5" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                         <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane5">
                                  <ImageView>
                                      <image>
