@@ -5,6 +5,10 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -17,6 +21,7 @@ public class ExtTransportController {
         @FXML private JFXTimePicker tp;
         @FXML private JFXDatePicker dp;
         @FXML private JFXButton cancel;
+        @FXML private JFXButton confirm;
 
         @FXML
         private void getSubmission() {
@@ -46,7 +51,6 @@ public class ExtTransportController {
                // DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
                 //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
                 clearField();
-                cancel.fire();
             }
         }
 
@@ -69,7 +73,6 @@ public class ExtTransportController {
         }
 
         @FXML
-        public void initialize() {
-    }
+        public void initialize() {}
 
 }
