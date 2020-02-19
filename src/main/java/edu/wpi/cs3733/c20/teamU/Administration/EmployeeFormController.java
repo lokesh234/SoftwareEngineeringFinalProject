@@ -173,6 +173,7 @@ public class EmployeeFormController {
     checkBox1.addEventHandler(MOUSE_CLICKED, event -> {
       if(checkBox1.isSelected()) {
         clearFields();
+        checkBox1.setSelected(true);
         delete.setDisable(true);
       } else {
         clearFields();
