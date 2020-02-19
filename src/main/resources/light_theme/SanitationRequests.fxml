@@ -30,7 +30,7 @@
             </Label>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="66.0" prefWidth="286.0">
                <children>
-                  <Button onAction="#closeSanSR" mnemonicParsing="false" style="-fx-background-color: #807765;" text="Back" textAlignment="CENTER" textFill="WHITE" />
+                  <Button fx:id="back" onAction="#closeSanSR" mnemonicParsing="false" style="-fx-background-color: #807765;" text="Back" textAlignment="CENTER" textFill="WHITE" />
                </children>
                <padding>
                   <Insets bottom="15.0" right="10.0" />
@@ -58,7 +58,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="a">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
@@ -73,7 +73,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <TextArea prefHeight="200.0" prefWidth="200.0">
+                        <TextArea prefHeight="200.0" prefWidth="200.0" fx:id="d">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </VBox.margin>
@@ -89,7 +89,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="b">
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
@@ -103,7 +103,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField>
+                  <TextField fx:id="c" >
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
@@ -114,7 +114,7 @@
       </GridPane>
       <HBox alignment="CENTER" layoutX="192.0" layoutY="286.0" prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: #807765;" text="Submit Request" textFill="WHITE" />
+            <Button mnemonicParsing="false" style="-fx-background-color: #807765;" text="Submit Request" textFill="WHITE" onAction="#getSubmission"/>
          </children>
       </HBox>
    </children>

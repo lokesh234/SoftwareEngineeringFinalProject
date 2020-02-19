@@ -45,8 +45,6 @@ public class ExtTransportController {
                 lastNameText.setStyle("-fx-border-color:  #FFEEC9");
                 confirmPassText.setStyle("-fx-border-color:  #FFEEC9");
                 firstNameText.setStyle("-fx-border-color:  #FFEEC9");
-                dp.setStyle("-fx-border-color:  #FFEEC9");
-                tp.setStyle("-fx-border-color:  #FFEEC9");
                 passwordText.setStyle("-fx-border-color:  #FFEEC9");
                // DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
                 //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
