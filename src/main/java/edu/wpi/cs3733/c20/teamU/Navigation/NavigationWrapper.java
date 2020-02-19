@@ -6,7 +6,7 @@ import edu.wpi.cs3733.c20.teamU.Database.Node;
 import java.util.ArrayList;
 
 public class NavigationWrapper {
-    private static String pathType;
+    private static String pathType = "A*";
     public ArrayList<Edge> getPath(Node node1, Node node2) {
         return null;
     }
