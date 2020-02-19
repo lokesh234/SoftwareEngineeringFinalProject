@@ -213,8 +213,8 @@ public class HomeController {
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
-    startC.setDaemon(true);
-    startC.start();
+//    startC.setDaemon(true);
+//    startC.start();
     MapGes1.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
@@ -282,8 +282,8 @@ public class HomeController {
         .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
     oppo.getChildren().clear();
     oppo.getChildren().add(N1);
-    startT.setDaemon(true);
-    startT.start();
+//    startT.setDaemon(true);
+//    startT.start();
   }
 
   @FXML
