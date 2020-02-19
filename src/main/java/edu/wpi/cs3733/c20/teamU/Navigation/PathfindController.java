@@ -2,10 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
-import edu.wpi.cs3733.c20.teamU.Database.NodesDatabase;
-import edu.wpi.cs3733.c20.teamU.Navigation.Pathfinder;
 import javafx.animation.Interpolator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,8 +21,6 @@ import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
-import javax.xml.crypto.Data;
-import javax.xml.crypto.NodeSetData;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -73,7 +68,6 @@ public class PathfindController {
     private Node start;
     private Node end;
     private ArrayList<Node> path = new ArrayList<>();
-    private Pathfinder engine = Pathfinder.getPathfinder();
     private boolean startReady = false;
     private boolean endReady = false;
     private boolean displayingPath = false;
@@ -446,18 +440,8 @@ public class PathfindController {
             //System.out.println("PathfindPress");
             path.clear();
             pathes.clear();
-            switch (NavigationWrapper.getPathType()) {
-                case "A*":
-                    engine.starSingular(start, end);
-                    break;
-                case "BFS":
-                    engine.breadthFirst(start, end);
-                    break;
-                case "DFS":
-                    engine.depthFirst(start, end);
-                    break;
-            }
-            path = engine.getLatestPath();
+            NavigationWrapper.pathfind(start, end);
+            path = NavigationWrapper.getPath();
             //System.out.print
             // ln(path.size());
             drawPath();
