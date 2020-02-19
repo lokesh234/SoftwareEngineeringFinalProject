@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,6 +43,7 @@ public class ReligiousController {
             firstName.setStyle("-fx-border-color: clear");
             comboBox.setStyle("-fx-border-color: clear");
             //TODO:
+            DatabaseWrapper.ReligionSRAdd(userLast,userFreq,userBox,userComment);
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
             cancel.fire();

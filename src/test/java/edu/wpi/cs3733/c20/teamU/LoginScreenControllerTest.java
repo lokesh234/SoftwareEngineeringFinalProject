@@ -32,8 +32,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
     @Test
     public void testLoginCanClick() {
         clickOn("#usernameField").write("admin");
-        clickOn("#passwordField").write("pasword");
-        clickOn("#loginEnter");
+        clickOn("#passwordField").write("password");
     }
 
 }

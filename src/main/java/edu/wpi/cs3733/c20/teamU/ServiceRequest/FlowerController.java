@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,6 +90,7 @@ public class FlowerController {
         } else {
 
 //            ServiceDatabase.flowerSRAdd(userLast, userFirst, hasRoses, hasTulips, hasLillies, userOccasion, userDate, userNote, userRoom);
+            DatabaseWrapper.FlowersSRAdd(userFirst,userLast,hasRoses,hasTulips,hasLillies,userOccasion,userDate,userNote,userRoom);
             clearField();
             backToRequest.fire();
         }

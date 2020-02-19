@@ -84,7 +84,7 @@
                                 <Insets top="14.0" />
                             </padding>
                         </HBox>
-                  <JFXButton buttonType="RAISED" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #807765;" text="Enter" onAction="#isAuthorized">
+                  <JFXButton fx:id="loginEnter" buttonType="RAISED" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #807765;" text="Enter" onAction="#isAuthorized">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>

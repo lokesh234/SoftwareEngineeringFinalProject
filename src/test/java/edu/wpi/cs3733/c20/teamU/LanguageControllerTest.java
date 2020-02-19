@@ -9,12 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 
 import java.io.IOException;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class LanguageControllerTest extends ApplicationExtension {
+public class LanguageControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
         Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/LanguageForm.fxml"));
         Scene scene1 = new Scene(sceneRoot);
@@ -29,7 +30,7 @@ public class LanguageControllerTest extends ApplicationExtension {
 
     @Test
     public void testLabels() {
-        verifyThat("#FirstNameLabel", hasText("First Name"));
+        verifyThat("#firstNameLabel", hasText("First Name"));
     }
 
     @Test

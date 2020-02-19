@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,6 +39,7 @@ public class ITController {
                 comments.setStyle("-fx-border-color:  #FFEEC9");
                 comboBox.setStyle("-fx-border-color:  #FFEEC9");
                 first.setStyle("-fx-border-color:  #FFEEC9");
+                DatabaseWrapper.ITSRAdd(userLast,userFirst,userDelivery,userComment);
                 //ServiceDatabase.ITSRAdd(userFirst, userLast, issueType, userComment); TODO:Add method in database class
                 clearField();
                 goBack();

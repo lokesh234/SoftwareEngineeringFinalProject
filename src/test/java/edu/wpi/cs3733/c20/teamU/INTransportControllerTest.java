@@ -9,12 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 
 import java.io.IOException;
+import org.testfx.framework.junit5.ApplicationTest;
 
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class INTransportControllerTest extends ApplicationExtension {
+public class INTransportControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
         Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/InternalTransportForm.fxml"));
         Scene scene1 = new Scene(sceneRoot);
