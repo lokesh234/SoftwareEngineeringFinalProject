@@ -51,6 +51,7 @@ public class App extends Application {
   private static Pane weather;
   private static Pane IT;
   private static Pane clown;
+  private static Pane sanRequest;
 
   private static Pane religious;
 
@@ -79,6 +80,7 @@ public class App extends Application {
   private static Scene religiousScene;
   private static Scene extTransportScene; //this is anir
   private static Scene pathFindTextScene;
+
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -124,6 +126,7 @@ public class App extends Application {
   private static Popup flowerPop = new Popup();
   private static Popup TextDirectionsPop = new Popup();
   private static Popup clownPop = new Popup();
+  private static Popup sanRequestPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -153,6 +156,7 @@ public class App extends Application {
   public static Pane getEmployeeForm() {return employeeF; }
   public static Pane getFlower(){return  flower;}
   public static Pane getClown() { return clown;}
+  public static Pane getSanRequest(){return sanRequest;}
 
 
   public static Scene getHomeScene() { return homeScene; }
@@ -223,6 +227,7 @@ public class App extends Application {
   public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
   public static Popup getClownPop() { return clownPop;}
   public static Popup getFlowerPop(){return flowerPop;}
+  public static Popup getMyRequestPop(){ return sanRequestPop;}
 
 
   @Override
@@ -261,6 +266,8 @@ public class App extends Application {
       FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
       FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
       FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
+      FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/SanitationRequests.fxml"));
+
 
 
 
@@ -289,6 +296,7 @@ public class App extends Application {
       externalTransport = extTransportLoader.load();
       pathFindText = pathfindtextLoader.load();
       clown = clownDeliveryLoader.load();
+      sanRequest = sanRequestLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -333,6 +341,7 @@ public class App extends Application {
       religiousPop.getContent().addAll();
       extTransportPop.getContent().addAll();
       TextDirectionsPop.getContent().addAll();
+      sanRequestPop.getContent().addAll();
 
 
       homeScene = new Scene(home);
