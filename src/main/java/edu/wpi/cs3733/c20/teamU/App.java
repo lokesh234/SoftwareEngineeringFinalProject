@@ -285,6 +285,7 @@ public class App extends Application {
       adminRequestController.setAttributes(requestScreenController);
       addNodeScreenController.setAttributes(graphEditController);
       loginScreenController.setAttributes(adminScreenController);
+      homeController.setWeatherData(weatherController);
 
 
       popup.getContent().addAll();
