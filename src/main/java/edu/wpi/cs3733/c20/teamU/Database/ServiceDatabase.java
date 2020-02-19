@@ -149,6 +149,36 @@ public class ServiceDatabase {
         }
     }
 
+    public static boolean intTransportSRAdd(String patentLastName, String patentFirstName, String startLocation, String endLocation, String equipment){
+        int reqID;
+        String timeReq = getCurrentDate();
+        String ITSRTableName = "InternalTransportSR";
+        String SRTableName = "ServiceRequest";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            //getting UBDatabase
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'ITRAN', 'Transport from: " + startLocation + " to: " + endLocation + " via: " + equipment + "')",Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            reqID = rs.getInt(1);
+            stmt.executeUpdate("INSERT INTO " + ITSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + patentFirstName + "', '" + patentLastName + "', '" + startLocation + "', '" + endLocation + "', '" + equipment + "')");
+
+            rs.close();
+            Database.CreateCSV(stmt, ITSRTableName, null);
+            Database.CreateCSV(stmt, SRTableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     //gets current date
     static String getCurrentDate(){
@@ -327,4 +357,52 @@ public class ServiceDatabase {
             return false;
         }
     }
+
+    //Ex: serviceRequestDel(1, "admin", "ADMIN", "InternalTransportSR", "ITRAN");
+    public static boolean serviceRequestDel(int reqID, String adminsName, String user, String tableName, String jobType) {
+        String SRTable = "ServiceRequest";
+        String SFTable = "ServiceFinished";
+        String curDate = getCurrentDate();
+        String info = "";
+
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            ArrayList<Service> services = new ArrayList<>();
+            Database.getServices(services, user);
+            for (Service s : services) {
+                if (Integer.parseInt(s.getDate()) == reqID) {
+                    info = s.getName() + " | request: " + s.getRequestType();
+                    break;
+                }
+                else{
+                    info = "*Request information not found*";
+                }
+            }
+
+
+            // delete from table SecuritySR first (needs to be before servicereuest)
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE reqID = " + reqID);
+
+            // delete from table servicerequest
+            stmt.executeUpdate("DELETE FROM " + SRTable + " WHERE reqID = " + reqID);
+
+            stmt.executeUpdate(
+                    "INSERT INTO " + SFTable + " VALUES ('" + curDate + "', '" + jobType + "', '" + adminsName + "', '" + info + "')");
+
+            Database.CreateCSV(stmt, tableName, null);
+            Database.CreateCSV(stmt, SRTable, null);
+            Database.CreateCSV(stmt, SFTable, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

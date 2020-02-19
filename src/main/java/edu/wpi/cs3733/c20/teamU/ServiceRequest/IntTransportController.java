@@ -56,7 +56,7 @@ public class IntTransportController {
             else {
                 userEquipment = "Crutches";
             }
-
+            DatabaseWrapper.intTransportSRAdd(userLast, userFirst, userStart, userEnd, userEquipment);
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
             cancel.fire();

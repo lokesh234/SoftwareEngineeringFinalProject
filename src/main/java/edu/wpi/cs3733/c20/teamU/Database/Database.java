@@ -409,7 +409,7 @@ public class Database {
 
     private static void createIntTransportSRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), startLocation VARCHAR(20), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(20), lastName VARCHAR(20), startLocation VARCHAR(20), "+
                     "endLocation VARCHAR(20), equipment VARCHAR(20), CONSTRAINT ITSR_CK CHECK (equipment in ('Wheelchair','Crutches')))";
 
             stmt.executeUpdate(slqCreate);

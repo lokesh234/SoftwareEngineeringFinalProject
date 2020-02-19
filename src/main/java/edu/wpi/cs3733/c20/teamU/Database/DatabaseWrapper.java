@@ -334,6 +334,14 @@ public class DatabaseWrapper {
       return  (ServiceDatabase.languageSRDel(reqID, adminsName, user));
     }
 
+    public static boolean intTransportSRAdd(String patentLastName, String patentFirstName, String startLocation, String endLocation, String equipment){
+      return (ServiceDatabase.intTransportSRAdd(patentLastName, patentFirstName, startLocation, endLocation, equipment));
+    }
+
+    public static boolean serviceRequestDel(int reqID, String adminsName, String user, String tableName, String jobType){
+      return (ServiceDatabase.serviceRequestDel(reqID, adminsName, user, tableName, jobType));
+    }
+
 
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static NodesDatabase getGraph() {
