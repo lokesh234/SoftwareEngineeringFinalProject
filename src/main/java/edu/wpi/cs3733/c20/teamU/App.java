@@ -325,7 +325,7 @@ public class App extends Application {
       medicine = medicineLoader.load();
       flower = flowerLoader.load();
       fire = fireLoader.load();
-      //weather = weatherLoader.load();
+      weather = weatherLoader.load();
       religious = religiousLoader.load();
       IT = ITLoader.load();
       export = exportLoader.load();
