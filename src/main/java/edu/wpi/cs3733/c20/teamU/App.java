@@ -65,6 +65,7 @@ public class App extends Application {
   private static Pane pathFindText;
   private static Pane languageSR;
   private static Pane PathChoose;
+  private static Pane giftDelivery;
 
 
   private static Scene homeScene;
@@ -92,6 +93,7 @@ public class App extends Application {
   private static Scene sanSRScene;
   private static Scene languageSRScene;
   private static Scene PathChooseScene;
+  private static Scene giftScene;
 
 
   private static LoginScreenController loginScreenController;
@@ -111,12 +113,14 @@ public class App extends Application {
   private static ReligiousController religiousController;
   private static ExtTransportController extTransportController; //anir
 
+
   private static IntTransportController intTranspoerController; //marcus
 
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
   private static LanguageController languageController;
   private static ChoosePathController choosePathController;
+  private static GiftDeliveryController giftDeliveryController;
 
 
   private static Edge edgeEdit;
@@ -183,7 +187,7 @@ public class App extends Application {
   public static Pane getClown() { return clown;}
   public static Pane getSanRequest(){return sanRequest;}
   public static Pane getLanguageSR() {return languageSR;}
-
+  public static Pane getGiftDelivery() {return giftDelivery;}
   public static Pane getPathChoose() { return PathChoose; }
 
   public static Scene getHomeScene() { return homeScene; }
@@ -210,6 +214,7 @@ public class App extends Application {
   public static Scene getPathFindTextScene() {return pathFindTextScene;}
   public static Scene getLanguageSRScene() {return languageSRScene;}
   public static Scene getPathChooseScene() {return PathChooseScene; }
+  public static Scene getGiftScene() {return giftScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -232,6 +237,7 @@ public class App extends Application {
   public static SanRequestController getSanRequestController() {return sanRequestController;}
   public static LanguageController getLanguageController() {return languageController;}
   public static ChoosePathController getChoosePathController() {return choosePathController; }
+  public static GiftDeliveryController getGiftDeliveryController() {return giftDeliveryController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -307,6 +313,7 @@ public class App extends Application {
       FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/light_theme/SanitationRequests.fxml"));
       FXMLLoader languageLoader = new FXMLLoader(getClass().getResource("/light_theme/LanguageForm.fxml"));
       FXMLLoader choosePathLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminPathForm.fxml"));
+      FXMLLoader giftDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestGiftDelivery.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -337,6 +344,7 @@ public class App extends Application {
       sanRequest = sanRequestLoader.load();
       languageSR = languageLoader.load();
       PathChoose = choosePathLoader.load();
+      giftDelivery = giftDeliveryLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -364,6 +372,7 @@ public class App extends Application {
       pathfindTextController = pathfindtextLoader.getController();
       languageController = languageLoader.getController();
       choosePathController = choosePathLoader.getController();
+      giftDeliveryController = giftDeliveryLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);

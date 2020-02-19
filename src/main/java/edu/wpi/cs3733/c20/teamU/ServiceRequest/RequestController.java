@@ -80,4 +80,11 @@ public class RequestController {
         App.getLanguageSRPop().show(App.getPrimaryStage());
     }
 
+    @FXML
+    private void openGiftDeliveryRequest() {
+        App.getRequestPop().getContent().clear();
+        App.getPopup().getContent().add(App.getGiftDelivery());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
 }
