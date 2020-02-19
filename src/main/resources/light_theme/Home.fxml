@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-              <VBox BorderPane.alignment="CENTER">
+              <VBox prefHeight="60.0" BorderPane.alignment="CENTER">
                   <children>
                       <HBox alignment="CENTER_LEFT" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                           <children>
@@ -60,13 +60,13 @@
               </VBox>
          </top>
          <left>
-              <VBox alignment="CENTER" prefHeight="998.0" prefWidth="140.0" spacing="5.5" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" prefWidth="140.0" spacing="5.5" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
                         <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../png_files/home.png" />
                                  </image>
@@ -82,7 +82,7 @@
                      <children>
                         <JFXButton fx:id="navButton" contentDisplay="TOP" onAction="#openNavScene" text="Navigate" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../png_files/arrow.png" />
                                  </image>
@@ -98,7 +98,7 @@
                      <children>
                         <JFXButton contentDisplay="TOP" onAction="#openRequestScene" text="Services" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../png_files/services.png" />
                                  </image>
@@ -114,7 +114,7 @@
                      <children>
                         <JFXButton contentDisplay="TOP" text="Information" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../png_files/info.png" />
                                  </image>
@@ -130,7 +130,7 @@
                      <children>
                         <JFXButton contentDisplay="TOP" onAction="#openHelpScene" text="Help" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../png_files/help.png" />
                                  </image>
@@ -148,7 +148,7 @@
          <center>
              <VBox fx:id="oppo" prefHeight="3240">
                  <children>
-                     <AnchorPane fx:id="N1" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N1" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                              <AnchorPane fx:id="NodesPane1">
                                  <ImageView>
@@ -161,8 +161,8 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes2" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                     <AnchorPane fx:id="N2" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                              <AnchorPane fx:id="NodesPane2">
                                  <ImageView>
                                      <image>
@@ -174,8 +174,8 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes3" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                     <AnchorPane fx:id="N3" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                              <AnchorPane fx:id="NodesPane3">
                                  <ImageView>
                                      <image>
@@ -187,8 +187,8 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes4" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                     <AnchorPane fx:id="N4" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                              <AnchorPane fx:id="NodesPane4">
                                  <ImageView>
                                      <image>
@@ -200,8 +200,8 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                         <GesturePane fx:id="MapGes5" AnchorPane.rightAnchor="0d" AnchorPane.bottomAnchor="0d" AnchorPane.topAnchor="0d" AnchorPane.leftAnchor="0d">
+                     <AnchorPane fx:id="N5" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                         <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                              <AnchorPane fx:id="NodesPane5">
                                  <ImageView>
                                      <image>
@@ -224,7 +224,7 @@
                                       <Font name="Segoe UI Bold" size="24.0" />
                                   </font>
                               </Label>
-                              <JFXButton fx:id="weather" onAction="#openWeather" contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #807765;" text=" " VBox.vgrow="ALWAYS">
+                              <JFXButton fx:id="weather" contentDisplay="CENTER" onAction="#openWeather" ripplerFill="WHITE" style="-fx-background-color: #807765;" text=" " VBox.vgrow="ALWAYS">
                                   <graphic>
                                       <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
