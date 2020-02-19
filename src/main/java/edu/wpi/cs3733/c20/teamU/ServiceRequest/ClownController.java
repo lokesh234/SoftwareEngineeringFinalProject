@@ -26,7 +26,7 @@ public class ClownController {
         String location = locationField.getText();
         String nClowns = nClownsField.getText();
         String rName = rNameField.getText();
-        String other = otherField.getText();
+        //String other = otherField.getText();
         String date = dateField.getValue().toString();
         //String userDelivery;
         //if(comboBox.getValue() == null) userDelivery = "";
