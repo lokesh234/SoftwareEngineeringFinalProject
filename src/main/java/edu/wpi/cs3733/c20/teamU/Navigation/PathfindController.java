@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -20,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.textfield.TextFields;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,12 +80,16 @@ public class PathfindController {
     private ArrayList<Integer> floorsInPath = new ArrayList<>();
     private HashMap<Circle, Node> interFloorPaths = new HashMap<>();
     PathfindTextController pathfindTextController = new PathfindTextController();
+    private ArrayList<String> AllNodeNames= new ArrayList<String>();
 
 
     @FXML
     Button startButton, goButton, endButton, clearButton, backButton;
     @FXML
     Label startLabel, endLabel, statusLabel;
+    @FXML
+    TextField SearchBox;
+
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -410,8 +416,16 @@ public class PathfindController {
         MapGes5.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+        Populate();
+        TextFields.bindAutoCompletion(SearchBox, AllNodeNames);
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
+    }
+
+    private void Populate(){
+        for (int i = 0; i < DatabaseWrapper.getGraph().getNodes().size(); i++){
+            AllNodeNames.add(DatabaseWrapper.getGraph().getNodes().get(i).getLongName());
+        }
     }
 
     @FXML
