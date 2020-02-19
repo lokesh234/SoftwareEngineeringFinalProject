@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane maxHeight="1080.0" maxWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -20,7 +20,7 @@
                   <children>
                       <HBox alignment="CENTER_LEFT" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                           <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                            <children>
                                       <Label alignment="CENTER" prefHeight="55.0" prefWidth="635.0" text="BWH Faulkner Hospital Map" textFill="WHITE">
                                           <font>
@@ -146,9 +146,9 @@
               </VBox>
          </left>
          <center>
-             <VBox fx:id="oppo" prefHeight="3240">
+             <VBox fx:id="oppo" alignment="CENTER">
                  <children>
-                     <AnchorPane fx:id="N1" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N1" prefWidth="1080" prefHeight="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane1">
                                  <ImageView>
@@ -161,7 +161,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N2" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N2" prefWidth="1080" prefHeight="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane2">
                                  <ImageView>
@@ -174,7 +174,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N3" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N3" prefWidth="1080" prefHeight="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane3">
                                  <ImageView>
@@ -187,7 +187,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N4" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N4" prefWidth="1080" prefHeight="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane4">
                                  <ImageView>
@@ -200,7 +200,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N5" prefHeight="600" prefWidth="600" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N5" prefWidth="1080" prefHeight="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane5">
                                  <ImageView>
