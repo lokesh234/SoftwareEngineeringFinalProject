@@ -3,11 +3,17 @@ package edu.wpi.cs3733.c20.teamU.Navigation;
 import edu.wpi.cs3733.c20.teamU.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PathfindTextController {
 
-    @FXML private Label Directions;
+    @FXML private AnchorPane DirectionsPane;
+    private ArrayList<Label> direction = new ArrayList<>();
 
     @FXML
     public void exitPopup(ActionEvent e){
@@ -15,13 +21,31 @@ public class PathfindTextController {
 //        Directions.setText("YEEHAW");
     }
 
-    @FXML
     public void Populate(){
-        Directions.setText("");
+        String directions = "";
         for (int i = 0; i < App.getTextpath().size(); i++){
 //            System.out.println(this.Directions);
-            this.Directions.setText(Directions.getText() + "\n" + App.getTextpath().get(i));
+            directions = directions + "\n" + App.getTextpath().get(i);
         }
+        Label l = new Label();
+        l.setText(directions);
+        direction.add(l);
+        addToPath(l);
+    }
+
+    private void wipeDirections() {
+        for (Label l : direction) {
+            removeFromPath(l);
+        }
+        direction.clear();
+    }
+
+    private void addToPath(Node e) {
+        DirectionsPane.getChildren().add(e);
+    }
+
+    private void removeFromPath(Node e) {
+        DirectionsPane.getChildren().remove(e);
     }
 
     @FXML

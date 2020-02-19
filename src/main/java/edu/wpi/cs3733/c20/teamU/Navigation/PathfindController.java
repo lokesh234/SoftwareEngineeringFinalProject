@@ -429,6 +429,7 @@ public class PathfindController {
     @FXML private void textPopUp(){
         App.getTextDirectionsPop().getContent().add(App.getPathFindText());
         App.getTextDirectionsPop().show(App.getPrimaryStage());
+        App.getPathfindTextController().Populate();
         //pathfindTextController.Directions = new Label();
     }
 

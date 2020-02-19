@@ -333,6 +333,7 @@ private static Pane pathFindText;
       intTransportController = intTransportLoader.getController(); //marcus
       pathfindController = pathfindLoader.getController();
       clownController = clownDeliveryLoader.getController();
+      pathfindTextController = pathfindtextLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
