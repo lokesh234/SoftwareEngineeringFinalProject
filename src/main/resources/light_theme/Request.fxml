@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -13,14 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<AnchorPane prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
+<AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #302d26;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #302d26;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="View and Edit Requests" textFill="WHITE">
                            <font>
@@ -34,7 +34,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="80.0" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="backButton" onAction="#backToAdmin" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
                            <font>
@@ -50,7 +50,7 @@
             </HBox>
          </top>
          <left>
-            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
                <children>
 <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
 <!--                           <children>-->
@@ -60,17 +60,17 @@
 <!--                           <VBox.margin>-->
 <!--                              <Insets />-->
 <!--                           </VBox.margin>-->
-<!--                        </HBox>--><HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
+<!--                        </HBox>--><HBox alignment="CENTER_LEFT" spacing="10.0">
                    <children>
-                       <Label text="User Type as:" fx:id="label"></Label>
+                       <Label fx:id="label" text="User Type as:" />
                    </children>
                </HBox>
-                   <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
+                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                        <children>
-                           <JFXComboBox fx:id="comboBox" disable="true"/>
+                           <JFXComboBox fx:id="comboBox" disable="true" />
                        </children>
                </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0">
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
                         <JFXButton fx:id="close" onAction="#closeRequest" style="-fx-background-color: #474338;" text="Close" textFill="WHITE">
                            <font>
@@ -99,15 +99,18 @@
               <tabs>
                 <Tab text="All Pending">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
                               <TableView fx:id="serviceTable1" onMouseClicked="#detectClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
-                                   <TableColumn fx:id="requestID1" prefWidth="101.6666259765625" text="RequestID" />
+                                   <TableColumn fx:id="requestID1" maxWidth="-1.0" minWidth="-1.0" prefWidth="-1.0" text="RequestID" />
                                    <TableColumn fx:id="date1" prefWidth="128.33331298828125" text="date" />
                                    <TableColumn fx:id="type1" prefWidth="121.66668701171875" text="Type" />
                                    <TableColumn fx:id="info1" prefWidth="130" text="Info" />
                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                            </children>
                         </AnchorPane>
@@ -115,7 +118,7 @@
                 </Tab>
                   <Tab text="All Completed">
                   <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0">
                           <children>
                               <TableView fx:id="serviceTable2" onMouseClicked="#detectClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                   <columns>
@@ -124,6 +127,9 @@
                                       <TableColumn fx:id="type2" prefWidth="121.66668701171875" text="Type" />
                                       <TableColumn fx:id="info2" prefWidth="130" text="Info" />
                                   </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
                               </TableView>
                           </children>
                       </AnchorPane>
