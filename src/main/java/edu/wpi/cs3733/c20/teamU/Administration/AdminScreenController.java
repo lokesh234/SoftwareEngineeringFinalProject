@@ -105,6 +105,18 @@ public class AdminScreenController {
     }
 
     @FXML
+    private void openDiffPathfinding(){
+        App.getPopup().getContent().clear();
+        App.getChoosePathPop().getContent().add(App.getPathChoose());
+        App.getHome().setOpacity(.5);
+        App.getHome().setDisable(true);
+        App.getChoosePathPop().show(App.getPrimaryStage());
+    }
+
+
+
+
+    @FXML
     private void initialize() {
 //        EventHandler<MouseEvent> checkAccess = new EventHandler<MouseEvent>() {
 //            @Override
