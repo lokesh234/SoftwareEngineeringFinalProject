@@ -312,6 +312,7 @@ public class App extends Application {
       extTransportController = extTransportLoader.getController();
       pathfindController = pathfindLoader.getController();
       clownController = clownDeliveryLoader.getController();
+      pathfindTextController = pathfindtextLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
