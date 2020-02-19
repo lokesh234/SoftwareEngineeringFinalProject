@@ -45,7 +45,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="cancelButton" onAction="#returnToHome" style="-fx-background-color: #474338;" text="Cancel" textFill="WHITE">
+                  <JFXButton fx:id="cancelButton" onAction="#returnToAdmin" style="-fx-background-color: #474338;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font></JFXButton>

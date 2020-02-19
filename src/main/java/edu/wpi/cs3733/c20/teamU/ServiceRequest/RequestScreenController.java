@@ -47,6 +47,7 @@ public class RequestScreenController {
         field2.setText(name);
         field3.setText(Id);
         field4.setText(reqType);
+        field6.setText("Resolve Request as: " + App.getUsernameTried());
     }
 
     @FXML
@@ -80,13 +81,16 @@ public class RequestScreenController {
     }
 
     @FXML
-    private void returnToHome() {
+    private void returnToAdmin() {
         App.getPopup().getContent().clear();
-        App.getPrimaryStage().setScene(App.getHomeScene());
-        App.getHome().setDisable(false);
-        App.getHome().setOpacity(1);
+        if(App.getUser().equals("ADMIN")) {
+            App.getPopup().getContent().add(App.getAdmin());
+        } else {
+            App.getPopup().getContent().add(App.getAdminRequest());
+//            App.getHome().setDisable(false);
+//            App.getHome().setOpacity(1);
+        }
     }
-
 
     @FXML
     private void initialize() {}
