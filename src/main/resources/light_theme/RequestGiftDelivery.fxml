@@ -96,7 +96,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="backToRequest" onAction="#returnToRequest" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="back" onAction="#returnToRequest" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
