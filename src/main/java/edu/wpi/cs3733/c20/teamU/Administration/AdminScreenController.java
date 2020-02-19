@@ -23,6 +23,7 @@ public class AdminScreenController {
     private void requestPowers() {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getAdminRequest());
+        App.getAdminRequestController().cred();
         App.getAdminRequestController().update();
         App.getPopup().show(App.getPrimaryStage());
     }

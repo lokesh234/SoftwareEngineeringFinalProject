@@ -5,7 +5,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,7 +53,8 @@ public class MedicineController {
             drug.setStyle("-fx-border-color:  #FFEEC9");
             comboBox.setStyle("-fx-border-color:  #FFEEC9");
             first.setStyle("-fx-border-color:  #FFEEC9");
-            ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
             backToRequest.fire();
         }

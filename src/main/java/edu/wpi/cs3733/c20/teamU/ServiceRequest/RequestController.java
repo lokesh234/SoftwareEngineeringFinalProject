@@ -24,6 +24,7 @@ public class RequestController {
 
     @FXML
     public void openITRequest() {
+        App.getRequestPop().getContent().remove(0);
         App.getRequestPop().getContent().clear();
         App.getITPop().getContent().add(App.getIT());
         App.getITPop().show(App.getPrimaryStage());
@@ -42,6 +43,13 @@ public class RequestController {
         App.getRequestPop().getContent().remove(0);
         App.getExtTransportPop().getContent().add(App.getExternalTransport());
         App.getExtTransportPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void openIntTransportRequest() {
+        App.getRequestPop().getContent().remove(0);
+        App.getIntTransportPop().getContent().add(App.getInternalTransport());
+        App.getIntTransportPop().show(App.getPrimaryStage());
     }
 
     @FXML
