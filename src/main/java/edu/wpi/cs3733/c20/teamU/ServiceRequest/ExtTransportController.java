@@ -28,7 +28,7 @@ public class ExtTransportController {
     String userLast = lastNameText.getText();
     String userFirst = firstNameText.getText();
     String dest = passwordText.getText();
-    String numOfPas = confirmPassText.getText();
+    String numOfPas = confirmPassText.getText().trim();
     String t = tp.getValue().toString().trim();
     String d = dp.getValue().toString().trim();
 
@@ -47,6 +47,7 @@ public class ExtTransportController {
       confirmPassText.setStyle("-fx-border-color:  #FFEEC9");
       firstNameText.setStyle("-fx-border-color:  #FFEEC9");
       passwordText.setStyle("-fx-border-color:  #FFEEC9");
+      System.out.println(Integer.parseInt(numOfPas));
       DatabaseWrapper
           .extTransportSRAdd(userLast, userFirst, dest, t, d, Integer.parseInt(numOfPas));
       clearField();

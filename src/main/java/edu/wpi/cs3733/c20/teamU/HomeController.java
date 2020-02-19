@@ -53,6 +53,7 @@ public class HomeController {
   private int hr;
   private int m;
   private int s;
+  private int checker;
 
 
   public void setWeatherData(WeatherController weatherController1) {
@@ -290,7 +291,12 @@ public class HomeController {
     switch (floor){
       case 1:
     oppo.getChildren().clear();
-    N1.translateYProperty().set(1500);
+    if(checker == 1){
+      N1.translateYProperty().set(1500);
+    }
+    if(checker == 2) {
+      N1.translateYProperty().set(-1500);
+    }
     oppo.getChildren().add(N1);
     floor = 1;
     floorLabel.setText("1");
@@ -306,7 +312,12 @@ public class HomeController {
     break;
     case 2:
     oppo.getChildren().clear();
-    N2.translateYProperty().set(1500);
+    if (checker == 1) {
+      N2.translateYProperty().set(1500);
+    }
+    if (checker == 2){
+      N2.translateYProperty().set(-1500);
+    }
     oppo.getChildren().add(N2);
     floor = 2;
     floorLabel.setText("2");
@@ -321,7 +332,12 @@ public class HomeController {
     break;
     case 3:
     oppo.getChildren().clear();
-    N3.translateYProperty().set(1500);
+    if (checker == 1) {
+      N3.translateYProperty().set(1500);
+    }
+    if (checker == 2){
+      N3.translateYProperty().set(-1500);
+    }
     oppo.getChildren().add(N3);
     floor = 3;
     floorLabel.setText("3");
@@ -336,7 +352,12 @@ public class HomeController {
     break;
     case 4:
     oppo.getChildren().clear();
-    N4.translateYProperty().set(1500);
+    if(checker == 1) {
+      N4.translateYProperty().set(1500);
+    }
+    if (checker == 2){
+      N4.translateYProperty().set(-1500);
+    }
     oppo.getChildren().add(N4);
     floor = 4;
     floorLabel.setText("4");
@@ -351,7 +372,12 @@ public class HomeController {
     break;
     case 5:
     oppo.getChildren().clear();
-    N5.translateYProperty().set(1500);
+    if (checker == 1) {
+      N5.translateYProperty().set(1500);
+    }
+    if (checker == 2){
+      N5.translateYProperty().set(-1500);
+    }
     oppo.getChildren().add(N5);
     floor = 5;
     Timeline timeline5 = new Timeline();
@@ -374,6 +400,7 @@ public class HomeController {
     if (floor > 5) {
       floor = 5;
     }
+    checker = 1;
   }
 
   @FXML
@@ -383,6 +410,7 @@ public class HomeController {
     if (floor < 1) {
       floor = 1;
     }
+    checker = 2;
   }
 
   @FXML
