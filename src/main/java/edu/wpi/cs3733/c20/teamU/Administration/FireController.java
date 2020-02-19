@@ -23,7 +23,6 @@ public class FireController {
     @FXML
     private AnchorPane fireNodes;
     private HashMap<Node, Circle> circles = new HashMap<>();
-    private PathfindAStar firePath = PathfindAStar.getPathfinder();
     @FXML
     private GesturePane FireGesPane;
 

@@ -75,7 +75,7 @@ public class FlowerController {
         // if getDate (today) is *after* the selected date,
         // that means they have selected a date in the past
 
-        boolean hasPassed = getToday().isAfter(datePick.getValue());
+        boolean hasPassed = datePick.getValue() != null && getToday().isAfter(datePick.getValue()); //Short-circuiting is the best!
 
         if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty() || userRoom.isEmpty()|| hasPassed) {
             // will print out some text eventually, right now nothing
