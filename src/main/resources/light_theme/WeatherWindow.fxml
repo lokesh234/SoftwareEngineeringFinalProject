@@ -56,7 +56,7 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT">
                      <children>
-                        <Label text="Worcester, MA" HBox.hgrow="ALWAYS">
+                        <Label fx:id="location" text="Worcester, MA" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI" size="24.0" />
                            </font>

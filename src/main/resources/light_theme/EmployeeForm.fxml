@@ -45,9 +45,9 @@
                   <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="41.33331298828125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXTextField fx:id="firstNameText" text="John" GridPane.columnIndex="1" />
-                  <JFXTextField fx:id="lastNameText" text="Doe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <JFXTextField fx:id="employeeIdText" text="jdoe1234" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="firstNameText" GridPane.columnIndex="1" />
+                  <JFXTextField fx:id="lastNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="employeeIdText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox alignment="CENTER">
                      <children>
                         <Label text="First Name">
