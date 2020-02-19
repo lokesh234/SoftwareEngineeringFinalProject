@@ -30,7 +30,7 @@
             </Label>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="66.0" prefWidth="286.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #807765;" text="Back" textAlignment="CENTER" textFill="WHITE" />
+                  <Button onAction="#closeSanSR" mnemonicParsing="false" style="-fx-background-color: #807765;" text="Back" textAlignment="CENTER" textFill="WHITE" />
                </children>
                <padding>
                   <Insets bottom="15.0" right="10.0" />
