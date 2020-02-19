@@ -63,10 +63,9 @@ public class FlowerController {
         boolean hasLillies = flowerChipString.contains("Lillies");
         boolean hasTulips = flowerChipString.contains("Tulips");
 
-        String userDate = getSelected().toString();
-
-
-
+        String userDate;
+        if(datePick.getValue() == null) userDate = "";
+        else userDate = datePick.getValue().toString();
 
         //TODO: specify which textfield to write in if empty
 
@@ -76,7 +75,7 @@ public class FlowerController {
         // if getDate (today) is *after* the selected date,
         // that means they have selected a date in the past
 
-        boolean hasPassed = getToday().isAfter(getSelected());
+        boolean hasPassed = getToday().isAfter(datePick.getValue());
 
         if(userNote.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userFlower.isEmpty() || userOccasion.isEmpty() || userRoom.isEmpty()|| hasPassed) {
             // will print out some text eventually, right now nothing
