@@ -302,7 +302,7 @@ public class ServiceDatabase {
     public static boolean ITSRAdd(String patentLastName, String patentFirstName, String helpType, String comments){
         int reqID;
         String timeReq = getCurrentDate();
-        String ITSRTableName = "ITRS";
+        String ITSRTableName = "ITSR";
         String SRTableName = "ServiceRequest";
         Connection conn = null;
         Statement stmt = null;

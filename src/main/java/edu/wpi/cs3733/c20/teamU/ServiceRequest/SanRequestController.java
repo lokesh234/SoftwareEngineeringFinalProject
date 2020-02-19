@@ -49,6 +49,7 @@ public class SanRequestController {
             d.setStyle("-fx-border-color:  #FFEEC9");
             //DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            DatabaseWrapper.SanitarySRAdd(SanService,location,nature,comment);
             clearField();
             back.fire();
         }

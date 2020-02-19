@@ -13,6 +13,6 @@ public class Main {
 //    System.out.println(boi.getForecasts().get(0).getWeatherStates().get(0).toString());
 //    System.out.println("YOLOSWAG\n");
     DatabaseWrapper.Initializer();
-    //App.launch(App.class, args);
+    App.launch(App.class, args);
   }
 }
