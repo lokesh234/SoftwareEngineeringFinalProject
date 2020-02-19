@@ -146,6 +146,29 @@ public class PathfindController {
         }
     };
 
+    EventHandler<ActionEvent> searchBoxHandler = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            updateStatus();
+            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
+            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                startReady = (start != null) || startReady;
+                if (startReady) startLabel.setText(start.getID());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
+                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                endReady = (end != null) || endReady;
+                if (endReady) endLabel.setText(end.getID());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+        }
+    };
+
 
     @FXML private void clickUp(ActionEvent e){
         Collections.sort(floorsInPath);
@@ -420,6 +443,7 @@ public class PathfindController {
         TextFields.bindAutoCompletion(SearchBox, AllNodeNames);
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
+        SearchBox.setOnAction(searchBoxHandler);
     }
 
     private void Populate(){
