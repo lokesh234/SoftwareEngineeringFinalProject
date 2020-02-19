@@ -11,8 +11,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
@@ -70,7 +70,6 @@ public class FireController {
                 }
             }
         });
-        /*
         App.getPath().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -97,8 +96,7 @@ public class FireController {
                 }
             }
         });
-         */
-        /*
+         /*
         App.getFire().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -108,73 +106,47 @@ public class FireController {
             }
         });
         */
+        FireGesPane.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(FireGesPane.getCurrentScale() - 3000, FireGesPane.targetPointAtViewportCentre());
     }
 
-    private void drawNodes() {
-        //ArrayList<Node> nodes = App.getGraph().getNodes();
-        ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
-        for (Node n : nodes) {
-            if (isDrawableNode(n)) {
-                Circle c = new Circle();
-                c.setCenterX(n.getX());
-                c.setCenterY(n.getY());
-                c.setRadius(App.getNodeSize());
-                addToPath(c);
-                circles.put(n, c);
-            }
-        }
-    }
 
     private void addToPath(javafx.scene.Node e) { fireNodes.getChildren().add(e);
     }
 
-    private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
-        return !n.getNodeType().equals("HALL"); //Everything except hallway nodes
-        //return true; //Everything!
-    }
-
     public void setAttributes(Parent root) {
         this.root = root;
-        this.drawNodes();
         this.drawPath();
     }
 
-    /*
 
     private void drawPath() {
-        if (path.size() == 0) return; //No path to draw
-        System.out.println("a");
-        for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
-            Node n1 = path.get(i);
-            Node n2 = path.get(i+1);
-
-            Line l = new Line();
-            l.setStartX(n1.getX());
-            l.setStartY(n1.getY());
-            l.setEndX(n2.getX());
-            l.setEndY(n2.getY());
-            lines.add(l);
-            addToPath(l);
-        }
-        updateStatus();
+        MoveTo move = new MoveTo(1375,1215);
+        LineTo line = new LineTo( 1250, 1215);
+        Path pathe = new Path();
+        pathe.getElements().add(move);
+        pathe.getElements().add(line);
+        pathe.setStroke(Color.web("#ff0000"));
+        pathe.setStrokeWidth(10.0);
+        MoveTo move2 = new MoveTo(1250,1215);
+        LineTo line2 = new LineTo( 1250, 1035);
+        Path pathe2 = new Path();
+        pathe.getElements().add(move2);
+        pathe.getElements().add(line2);
+        pathe.setStroke(Color.web("#ff0000"));
+        pathe.setStrokeWidth(10.0);
+        MoveTo move3 = new MoveTo(1250,1035);
+        LineTo line3 = new LineTo( 1240, 1035);
+        Path pathe3 = new Path();
+        pathe.getElements().add(move3);
+        pathe.getElements().add(line3);
+        pathe.setStroke(Color.web("#ff0000"));
+        pathe.setStrokeWidth(10.0);
+        addToPath(pathe);
+        addToPath(pathe2);
+        addToPath(pathe3);
     }
-
-    */
-
-    private void drawPath() {
-            Line l = new Line();
-            l.setStartX(1250);
-            l.setStartY(997);
-            l.setEndX(1250);
-            l.setEndY(1035);
-            Line w = new Line();
-            w.setStartX(1250);
-            w.setStartY(1035);
-            w.setEndX(1225);
-            w.setEndY(1035);
-            addToPath(l);
-            addToPath(w);
-        }
 
 }
 
