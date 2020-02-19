@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -46,11 +46,16 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Prof. Wong">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" style="-fx-background-color: #474338;" text="Cleanup" textFill="WHITE">
+                              <JFXButton onAction="#openSanRequest" contentDisplay="TOP" style="-fx-background-color: #474338;" text="Cleanup" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -61,6 +66,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Mielynn">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.rowIndex="1">
@@ -76,6 +86,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Ted">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -92,6 +107,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Matt">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="2">
@@ -107,6 +127,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Ted">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -122,6 +147,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Byron">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.rowIndex="2">
@@ -137,6 +167,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Anir">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -152,6 +187,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Markus">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -167,6 +207,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Jon">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="3" GridPane.rowIndex="1">
@@ -183,11 +228,16 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Alek">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="3">
                            <children>
-                              <JFXButton contentDisplay="TOP" style="-fx-background-color: #474338;" text="Translator" textFill="WHITE">
+                              <JFXButton onAction="#openLangaugeRequest" contentDisplay="TOP" style="-fx-background-color: #474338;" text="Translator" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -199,6 +249,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </JFXButton>
+                              <Label text="by Lokesh">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>

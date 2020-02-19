@@ -12,6 +12,7 @@ import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -51,6 +52,7 @@ public class App extends Application {
   private static Pane weather;
   private static Pane IT;
   private static Pane clown;
+  private static Pane sanRequest;
 
   private static Pane religious;
 
@@ -60,7 +62,9 @@ public class App extends Application {
 
   private static Pane internalTransport; //Marcus
 
-private static Pane pathFindText;
+  private static Pane pathFindText;
+  private static Pane languageSR;
+  private static Pane PathChoose;
 
 
   private static Scene homeScene;
@@ -85,6 +89,10 @@ private static Pane pathFindText;
   private static Scene intTransportScene; //marcus
 
   private static Scene pathFindTextScene;
+  private static Scene sanSRScene;
+  private static Scene languageSRScene;
+  private static Scene PathChooseScene;
+
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -107,12 +115,15 @@ private static Pane pathFindText;
 
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
+  private static LanguageController languageController;
+  private static ChoosePathController choosePathController;
 
 
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
   private static FireController fireController;
   private static AddNodeScreenController addNodeScreenController;
+  private static SanRequestController sanRequestController;
 
   private static boolean didChange = false;
   private static long time;
@@ -135,6 +146,9 @@ private static Pane pathFindText;
   private static Popup flowerPop = new Popup();
   private static Popup TextDirectionsPop = new Popup();
   private static Popup clownPop = new Popup();
+  private static Popup sanRequestPop = new Popup();
+  private static Popup languageSRPop = new Popup();
+  private static Popup ChoosePathPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -166,7 +180,10 @@ private static Pane pathFindText;
   public static Pane getEmployeeForm() {return employeeF; }
   public static Pane getFlower(){return  flower;}
   public static Pane getClown() { return clown;}
+  public static Pane getSanRequest(){return sanRequest;}
+  public static Pane getLanguageSR() {return languageSR;}
 
+  public static Pane getPathChoose() { return PathChoose; }
 
   public static Scene getHomeScene() { return homeScene; }
   public static Scene getLoginScene() { return loginScene; }
@@ -190,6 +207,8 @@ private static Pane pathFindText;
     }
   public static Scene getIntTransportScene() { return intTransportScene; } //marcus
   public static Scene getPathFindTextScene() {return pathFindTextScene;}
+  public static Scene getLanguageSRScene() {return languageSRScene;}
+  public static Scene getPathChooseScene() {return PathChooseScene; }
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -209,6 +228,9 @@ private static Pane pathFindText;
   public static IntTransportController getIntTransportController() { return intTranspoerController; } //marcus
   public static ReligiousController getReligiousController() { return religiousController; }
   public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
+  public static SanRequestController getSanRequestController() {return sanRequestController;}
+  public static LanguageController getLanguageController() {return languageController;}
+  public static ChoosePathController getChoosePathController() {return choosePathController; }
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -241,7 +263,9 @@ private static Pane pathFindText;
   public static Popup getTextDirectionsPop() {return TextDirectionsPop;}
   public static Popup getClownPop() { return clownPop;}
   public static Popup getFlowerPop(){return flowerPop;}
-
+  public static Popup getSanRequestPop(){ return sanRequestPop;}
+  public static Popup getLanguageSRPop() {return languageSRPop;}
+  public static Popup getChoosePathPop() { return ChoosePathPop; }
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -274,14 +298,13 @@ private static Pane pathFindText;
       FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
       FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
       FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
-
-
       FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
       FXMLLoader intTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/InternalTransportForm.fxml")); //marcus
       FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
       FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
-
-
+      FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/light_theme/SanitationRequests.fxml"));
+      FXMLLoader languageLoader = new FXMLLoader(getClass().getResource("/light_theme/LanguageForm.fxml"));
+      FXMLLoader choosePathLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminPathForm.fxml"));
 
       home = homeLoader.load();
       login = loginLoader.load();
@@ -309,6 +332,9 @@ private static Pane pathFindText;
       internalTransport = intTransportLoader.load();
       pathFindText = pathfindtextLoader.load();
       clown = clownDeliveryLoader.load();
+      sanRequest = sanRequestLoader.load();
+      languageSR = languageLoader.load();
+      PathChoose = choosePathLoader.load();
 
       loginScreenController = loginLoader.getController();
       homeController = homeLoader.getController();
@@ -334,6 +360,8 @@ private static Pane pathFindText;
       pathfindController = pathfindLoader.getController();
       clownController = clownDeliveryLoader.getController();
       pathfindTextController = pathfindtextLoader.getController();
+      languageController = languageLoader.getController();
+      choosePathController = choosePathLoader.getController();
 
       pathfindController.setAttributes(path);
       fireController.setAttributes(fire);
@@ -355,6 +383,9 @@ private static Pane pathFindText;
       extTransportPop.getContent().addAll();
       intTransportPop.getContent().addAll();
       TextDirectionsPop.getContent().addAll();
+      sanRequestPop.getContent().addAll();
+      languageSRPop.getContent().addAll();
+      ChoosePathPop.getContent().addAll();
 
 
       homeScene = new Scene(home);
