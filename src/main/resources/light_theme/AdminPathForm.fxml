@@ -36,17 +36,17 @@
             </VBox>
                 <VBox prefHeight="280.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXRadioButton text="A*" VBox.vgrow="ALWAYS">
+                  <JFXRadioButton text="A*" VBox.vgrow="ALWAYS" fx:id="sta">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
                   </JFXRadioButton>
-                  <JFXRadioButton text="Breadth-first">
+                  <JFXRadioButton text="Breadth-first" fx:id="bfs">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
                   </JFXRadioButton>
-                  <JFXRadioButton text="Depth-first">
+                  <JFXRadioButton text="Depth-first" fx:id="dfs">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
@@ -63,7 +63,7 @@
                 </VBox>
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton style="-fx-background-color: #474338;" text="Done" textFill="WHITE">
+                  <JFXButton style="-fx-background-color: #474338;" text="Done" textFill="WHITE" fx:id="done" onAction="#set">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>

@@ -23,6 +23,7 @@ public class AdminScreenController {
     private void requestPowers() {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getAdminRequest());
+        App.getAdminRequestController().cred();
         App.getAdminRequestController().update();
         App.getPopup().show(App.getPrimaryStage());
     }
@@ -107,6 +108,7 @@ public class AdminScreenController {
     private void openDiffPathfinding(){
         App.getPopup().getContent().clear();
         App.getChoosePathPop().getContent().add(App.getPathChoose());
+        App.getChoosePathController().update();
         App.getHome().setOpacity(.5);
         App.getHome().setDisable(true);
         App.getChoosePathPop().show(App.getPrimaryStage());

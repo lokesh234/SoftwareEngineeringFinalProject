@@ -24,6 +24,7 @@ public class RequestController {
 
     @FXML
     public void openITRequest() {
+        App.getRequestPop().getContent().remove(0);
         App.getRequestPop().getContent().clear();
         App.getITPop().getContent().add(App.getIT());
         App.getITPop().show(App.getPrimaryStage());

@@ -38,7 +38,7 @@
                         <AnchorPane fx:id="NodesPane2">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/hospital2.png" />
+                                 <Image url="@../png_files/Floor2LM.png" />
                               </image>
                            </ImageView>
                         </AnchorPane>
@@ -51,7 +51,7 @@
                         <AnchorPane fx:id="NodesPane3">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/hospital3.png" />
+                                 <Image url="@../png_files/Floor3LM.png" />
                               </image>
                            </ImageView>
                         </AnchorPane>
@@ -77,7 +77,7 @@
                         <AnchorPane fx:id="NodesPane5">
                            <ImageView>
                               <image>
-                                 <Image url="@../png_files/hospital5.png" />
+                                 <Image url="@../png_files/Floor5LM.png" />
                               </image>
                            </ImageView>
                         </AnchorPane>
