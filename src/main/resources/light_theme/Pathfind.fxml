@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<?import javafx.scene.control.TextField?>
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #474338" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -159,7 +158,7 @@
          <left>
             <HBox alignment="CENTER" style="-fx-border-color: #302D26; -fx-border-width: 0 3 0 0;" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" minWidth="150.0" spacing="20.0" style="-fx-background-color: #807765;">
+                  <VBox alignment="CENTER" prefWidth="350.0" spacing="20.0" style="-fx-background-color: #807765;">
                      <children>
                         <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                            <children>
