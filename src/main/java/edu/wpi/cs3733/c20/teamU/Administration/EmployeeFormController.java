@@ -153,7 +153,16 @@ public class EmployeeFormController {
         FXCollections.observableArrayList(
             "ADMIN",
             "MEDIC",
-            "SECUR"
+            "SECUR",
+            "FLOWR",
+            "DELIV",
+            "ITRAN",
+            "ETRAN",
+            "CLOWN",
+            "RELIG",
+            "SANIT",
+            "LANGE",
+            "INTEC"
         );
     employeeCombo.getItems().addAll(employee);
     checkBox.setDisable(true);

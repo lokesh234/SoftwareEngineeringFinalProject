@@ -146,7 +146,16 @@ public class AdminRequestController {
             FXCollections.observableArrayList(
                     "ADMIN",
                     "SECUR",
-                    "MEDIC"
+                    "MEDIC",
+                    "FLOWR",
+                    "DELIV",
+                    "ITRAN",
+                    "ETRAN",
+                    "CLOWN",
+                    "RELIG",
+                    "SANIT",
+                    "LANGE",
+                    "INTEC"
             );
     comboBox.getItems().addAll(deliveryOptions);
   }
