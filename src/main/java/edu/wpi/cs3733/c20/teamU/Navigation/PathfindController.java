@@ -100,14 +100,14 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = circles.get(event.getSource());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getID());
+                if (startReady) startLabel.setText(start.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
                 end = circles.get(event.getSource());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getID());
+                if (endReady) endLabel.setText(end.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
@@ -155,14 +155,14 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getID());
+                if (startReady) startLabel.setText(start.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
             else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
                 end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getID());
+                if (endReady) endLabel.setText(end.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
