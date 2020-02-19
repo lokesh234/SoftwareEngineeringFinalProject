@@ -149,6 +149,7 @@ public class App extends Application {
   private static Popup sanRequestPop = new Popup();
   private static Popup languageSRPop = new Popup();
   private static Popup ChoosePathPop = new Popup();
+  private static Popup weatherPop = new Popup();
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -266,6 +267,7 @@ public class App extends Application {
   public static Popup getSanRequestPop(){ return sanRequestPop;}
   public static Popup getLanguageSRPop() {return languageSRPop;}
   public static Popup getChoosePathPop() { return ChoosePathPop; }
+  public static Popup getWeatherPop() { return weatherPop; }
 
   @Override
   public void start(Stage primaryStage) throws Exception {

@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXChipView?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -41,8 +40,8 @@
                   <RowConstraints maxHeight="20.333343505859375" minHeight="30.0" prefHeight="18.333343505859375" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="26.666656494140625" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="25.666656494140625" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="82.0" minHeight="30.0" prefHeight="41.333343505859375" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="82.0" minHeight="60.0" prefHeight="66.66668701171875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="30.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="82.0" minHeight="28.0" prefHeight="41.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="41.33331298828125" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -88,14 +87,8 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <JFXComboBox fx:id="employeeCombo" />
-                        <JFXButton fx:id="add" style="-fx-background-color: #474338;" text="Add" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Bold" size="12.0" />
-                           </font>
-                        </JFXButton>
                      </children>
                   </HBox>
-                  <JFXChipView fx:id="employeeChip" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
                         <Label text="Password">
@@ -119,6 +112,7 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7" />
                   <JFXCheckBox fx:id="checkBox" text="I Promise Not To Be A Robot" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <JFXCheckBox fx:id="checkBox1" text="Add Employee" GridPane.rowIndex="6" />
+                  <JFXCheckBox fx:id="delete" text="Delete Employee" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
                <VBox.margin>
                   <Insets />

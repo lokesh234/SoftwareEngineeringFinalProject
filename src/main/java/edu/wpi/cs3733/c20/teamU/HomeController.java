@@ -58,9 +58,9 @@ public class HomeController {
 
   @FXML
   private void openLoginScene() {
-    App.getPopup().getContent().add(App.getLogin());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
+    App.getPopup().getContent().add(App.getLogin());
     App.getPopup().show(App.getPrimaryStage());
   }
 
@@ -189,12 +189,11 @@ public class HomeController {
   }
 
   @FXML
-  private void openWeather() throws InvalidAuthTokenException, DataNotFoundException, IOException {
-    App.getPopup().getContent().add(App.getWeather());
+  private void openWeather() {
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
-//    weatherController.setWeatherFields();
-    App.getPopup().show(App.getPrimaryStage());
+    App.getWeatherPop().getContent().add(App.getWeather());
+    App.getWeatherPop().show(App.getPrimaryStage());
   }
 
   @FXML

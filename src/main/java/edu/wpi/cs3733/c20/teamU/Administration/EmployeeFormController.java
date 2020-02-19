@@ -24,14 +24,19 @@ public class EmployeeFormController {
   @FXML private JFXTextField confirmPassText;
   @FXML private JFXButton confirm;
   @FXML private JFXButton cancel;
-  @FXML private JFXButton add;
 //  @FXML private JFXChipView employeeChip = new JFXChipView();
   @FXML private JFXComboBox employeeCombo = new JFXComboBox();
   @FXML private JFXCheckBox checkBox;
   @FXML private JFXCheckBox checkBox1;
+  @FXML private JFXCheckBox delete;
   private String first, last, user, pass, checkPass, position;
   private String userOG;
 
+  //TODO: code needs refactoring, will do iteration 3
+
+  /**
+   * function gets the user's inputs and adds/edits/deletes based on conditions
+   */
   @FXML
   private void setConfirm() {
     first = firstNameText.getText();
@@ -57,8 +62,8 @@ public class EmployeeFormController {
     }
     else if(user.equals(userOG)) employeeIdText.setStyle("-fx-border-color: red");
     else {
-//      DatabaseWrapper.addLoginSR(employeeIdText.getText(), passwordText.getText(), firstNameText.getText(), lastNameText.getText(), employeeCombo.getSelectionModel().getSelectedItem().toString());
-      DatabaseWrapper.addLoginSR(user, pass, first, last, position);
+      if(delete.isSelected()) DatabaseWrapper.delLoginSR(user);
+      else DatabaseWrapper.addLoginSR(user, pass, first, last, position);
       cancel.fire();
     }
   }
@@ -74,21 +79,30 @@ public class EmployeeFormController {
 //    }
 //  }
 
+  /**
+   * function to return to admin screen
+   */
   @FXML
   private void returnToAdmin() {
     clearFields();
-//    setFields();
+    setFields();
     App.getPopup().getContent().clear();
     App.getPrimaryStage().setOpacity(1);
     App.getPopup().getContent().add(App.getAdmin());
   }
 
+  /**
+   * funciton to clear all fields and reset them
+   */
   private void clearFields() {
     firstNameText.clear();
     lastNameText.clear();
     employeeIdText.clear();
     passwordText.clear();
     confirmPassText.clear();
+    checkBox.setSelected(false);
+    checkBox1.setSelected(false);
+    delete.setSelected(false);
 //    employeeChip.getChips().clear();
     employeeCombo.getSelectionModel().clearSelection();
     firstNameText.setStyle("-fx-border-color: #FFEEC9");
@@ -99,10 +113,20 @@ public class EmployeeFormController {
     employeeCombo.setStyle("-fx-border-color: #FFEEC9");
   }
 
+  /**
+   * checks to see if the two different passwords are correct
+   * @param password String of first password
+   * @param password1 String of copy of second password
+   * @return false if they are different, true if same
+   */
   private boolean checkPasswords(String password, String password1) {
     if(password.equals(password1)) return true;
     else return false;
   }
+
+  /**
+   * function to set the fields of the UI to the user's data
+   */
   public void setFields() {
     ArrayList<String> userData = DatabaseWrapper.getLoginSR(App.getUsernameTried());
     userOG = userData.get(0);
@@ -111,14 +135,17 @@ public class EmployeeFormController {
     firstNameText.setText(userData.get(2));
     lastNameText.setText(userData.get(3));
     employeeCombo.getSelectionModel().select(userData.get(4));
+    BooleanBinding bind = employeeIdText.textProperty().isEqualTo(userOG);
+    confirm.disableProperty().bind(bind);
   }
 
-  private void willAdd() {
-    if(checkBox1.isSelected()) {
-      employeeIdText.setDisable(false);
-      clearFields();
-    }
-  }
+//  private void willAdd() {
+//    if(checkBox1.isSelected()) {
+//      clearFields();
+//      setFields();
+//      delete.setDisable(true);
+//    }
+//  }
 
   @FXML
   public void initialize() {
@@ -135,9 +162,16 @@ public class EmployeeFormController {
         .or(passwordText.textProperty().isEmpty()).or(confirmPassText.textProperty().isEmpty());
     checkBox.disableProperty().bind(blockCheckBox);
     checkBox1.addEventHandler(MOUSE_CLICKED, event -> {
-      willAdd();
+      if(checkBox1.isSelected()) {
+        clearFields();
+        delete.setDisable(true);
+      } else {
+        clearFields();
+        setFields();
+        delete.setDisable(false);
+      }
     });
-    employeeIdText.setDisable(true);
+//    employeeIdText.setDisable(true);
 //    firstNameText.setDisable(true);
 //    lastNameText.setDisable(true);
 //    confirm.setDisable(true);

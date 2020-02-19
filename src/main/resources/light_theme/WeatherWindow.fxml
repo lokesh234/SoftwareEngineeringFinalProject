@@ -99,7 +99,7 @@
                   </Label>
                   <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="back" onAction="#returnHome" contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #474338;" text=" ">
+                        <JFXButton fx:id="back" contentDisplay="CENTER" onAction="#returnHome" ripplerFill="WHITE" style="-fx-background-color: #474338;" text=" ">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -119,19 +119,24 @@
                   <VBox alignment="BOTTOM_CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fx:id="day1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                        <Label text="Day +1">
+                        <Label fx:id="nextDay1" text="Day +1">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label textFill="#e84b4b">
+                              <Label fx:id="hi1" textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
                               <Label text="/">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="low1" textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -143,14 +148,14 @@
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fx:id="day2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                        <Label text="Day +2">
+                        <Label fx:id="nextDay2" text="Day +2">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label textFill="#e84b4b">
+                              <Label fx:id="hi2" textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -160,7 +165,7 @@
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <Label textFill="#2ccacd">
+                              <Label fx:id="low2" textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -172,14 +177,14 @@
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fx:id="day3" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                        <Label text="Day +3">
+                        <Label fx:id="nextDay3" text="Day +3">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label textFill="#e84b4b">
+                              <Label fx:id="hi3" textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -189,7 +194,7 @@
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <Label textFill="#2ccacd">
+                              <Label fx:id="low3" textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -201,14 +206,14 @@
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
                         <ImageView fx:id="day4" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                        <Label text="Day +4">
+                        <Label fx:id="nextDay4" text="Day +4">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label textFill="#e84b4b">
+                              <Label fx:id="hi4" textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -218,7 +223,7 @@
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <Label textFill="#2ccacd">
+                              <Label fx:id="low4" textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>

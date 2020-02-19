@@ -31,6 +31,10 @@ public class WeatherController {
   @FXML private JFXButton refresh;
   @FXML private JFXButton back;
   @FXML private Label lastUpdate;
+  @FXML private Label nextDay1;
+  @FXML private Label nextDay2;
+  @FXML private Label nextDay3;
+  @FXML private Label nextDay4;
   @FXML private ImageView now;
   @FXML private ImageView day1;
   @FXML private ImageView day2;
@@ -47,6 +51,11 @@ public class WeatherController {
 
   //TODO: refactor this code to be less jank...meanwhile works for iteration 2
 
+  /**
+   * function to refresh the weather data
+   * @throws InvalidAuthTokenException
+   * @throws DataNotFoundException
+   */
   @FXML
   public void refreshData() throws InvalidAuthTokenException, DataNotFoundException {
     weather = weatherBoi.getForecasts();
@@ -110,8 +119,9 @@ public class WeatherController {
   //  }
 
   /**
-   * @param weatherCheck
-   * @return
+   * function to get the directory based on the conditions of the weather
+   * @param weatherCheck String of the weather condition
+   * @return String path directory
    */
   private String getWeather(String weatherCheck) {
 //    System.out.println(weatherCheck);
@@ -143,18 +153,32 @@ public class WeatherController {
     }
   }
 
+  /**
+   * function to return back to home scene
+   */
   @FXML
   private void returnHome() {
-    App.getPopup().getContent().clear();
+    App.getWeatherPop().getContent().clear();
     App.getHome().setOpacity(1);
     App.getHome().setDisable(false);
   }
+
+  /**
+   * function to return #.##
+   * @param temperature double type of temperature
+   * @return formatted string of the temperature
+   */
   private String getTempString(double temperature) {
     String tempCopy = Double.toString(temperature);
 //    System.out.println(String.format("%.2d",tempCopy));
     return String.format("%.2s",tempCopy);
   }
 
+  /**
+   * converts from Celsius to Fahrenheit
+   * @param cel double type of celsius
+   * @return double type of Fahrenheit
+   */
   private double returnF(double cel) {
     return (9.0/5.0) * cel + 32;
   }
@@ -170,26 +194,32 @@ public class WeatherController {
     now.setImage(new Image(getClass().getResource(getWeather(weather.get(0).getWeatherStates().toString())).toString()));
 
     day1.setImage(new Image(getClass().getResource(getWeather(weather.get(8).getWeatherStates().toString())).toString()));
-//    hi1.setText(getTempString(returnF(weather.get(4).getWeatherInfo().getMaximumTemperature())) + "*F");
-//    low1.setText(getTempString(returnF(weather.get(8).getWeatherInfo().getMinimumTemperature())) + "*F");
+    hi1.setText(getTempString(returnF(weather.get(4).getWeatherInfo().getMaximumTemperature())) + "*F");
+    low1.setText(getTempString(returnF(weather.get(8).getWeatherInfo().getMinimumTemperature())) + "*F");
 
     day2.setImage(new Image(getClass().getResource(getWeather(weather.get(15).getWeatherStates().toString())).toString()));
-//    hi2.setText(getTempString(returnF(weather.get(15).getWeatherInfo().getMaximumTemperature())) + "*F");
-//    low2.setText(getTempString(returnF(weather.get(9).getWeatherInfo().getMinimumTemperature())) + "*F");
+    hi2.setText(getTempString(returnF(weather.get(15).getWeatherInfo().getMaximumTemperature())) + "*F");
+    low2.setText(getTempString(returnF(weather.get(9).getWeatherInfo().getMinimumTemperature())) + "*F");
 
     day3.setImage(new Image(getClass().getResource(getWeather(weather.get(23).getWeatherStates().toString())).toString()));
-//    hi3.setText(getTempString(returnF(weather.get(23).getWeatherInfo().getMaximumTemperature())) + "*F");
-//    low3.setText(getTempString(returnF(weather.get(16).getWeatherInfo().getMinimumTemperature())) + "*F");
+    hi3.setText(getTempString(returnF(weather.get(23).getWeatherInfo().getMaximumTemperature())) + "*F");
+    low3.setText(getTempString(returnF(weather.get(16).getWeatherInfo().getMinimumTemperature())) + "*F");
 
     day4.setImage(new Image(getClass().getResource(getWeather(weather.get(31).getWeatherStates().toString())).toString()));
-//    hi4.setText(getTempString(returnF(weather.get(31).getWeatherInfo().getMaximumTemperature())) + "*F");
-//    low4.setText(getTempString(returnF(weather.get(24).getWeatherInfo().getMinimumTemperature())) + "*F");
+    hi4.setText(getTempString(returnF(weather.get(31).getWeatherInfo().getMaximumTemperature())) + "*F");
+    low4.setText(getTempString(returnF(weather.get(24).getWeatherInfo().getMinimumTemperature())) + "*F");
 
     tempC = weatherBoi.getWeather().getTemperature();
     tempF = returnF(tempC);
     temp.setText(String.format("%.2s", Double.toString(tempF)) + "*F");
     tempCel.setText(String.format("%.4s", Double.toString(tempC)) + "*C");
     cloud.setText(weatherBoi.getWeather().getClouds().toString());
+//    System.out.println(weather.get(8).getDataCalculationDate().toString());
+    nextDay1.setText(weather.get(8).getDataCalculationDate().toString().substring(0, 3));
+    nextDay2.setText(weather.get(15).getDataCalculationDate().toString().substring(0, 3));
+    nextDay3.setText(weather.get(23).getDataCalculationDate().toString().substring(0, 3));
+    nextDay4.setText(weather.get(31).getDataCalculationDate().toString().substring(0, 3));
+
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
