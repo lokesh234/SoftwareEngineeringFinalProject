@@ -45,7 +45,7 @@
                   <JFXTextField fx:id="lastNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <HBox alignment="CENTER">
                      <children>
-                        <Label text="First Name">
+                        <Label fx:id="firstNameLabel" text="First Name">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
