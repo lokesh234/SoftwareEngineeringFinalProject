@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #FFEEC9;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.WeatherController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #FFEEC9;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.WeatherController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -19,21 +19,16 @@
                <children>
                   <HBox HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="time" text="4:20 PM" HBox.hgrow="ALWAYS">
+                        <Label fx:id="time" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <Label text="EST" HBox.hgrow="ALWAYS">
-                           <font>
-                              <Font name="Segoe UI" size="24.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" spacing="10.0">
                      <children>
-                        <JFXButton contentDisplay="GRAPHIC_ONLY" style="-fx-background-color: #474338;" text=" ">
+                        <JFXButton fx:id="refresh" contentDisplay="GRAPHIC_ONLY" onAction="#refreshData" style="-fx-background-color: #474338;" text=" ">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -54,7 +49,7 @@
             <VBox fillWidth="false" spacing="10.0" BorderPane.alignment="TOP_CENTER">
                <children>
                   <ImageView fx:id="now" fitHeight="273.0" fitWidth="348.0" pickOnBounds="true" VBox.vgrow="ALWAYS" />
-                  <Label text="Cloudy with a chance of memeballs" VBox.vgrow="ALWAYS">
+                  <Label fx:id="cloud" text="Cloudy with a chance of memeballs" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
@@ -73,7 +68,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" spacing="10.0">
                      <children>
-                        <Label text="Last Updated 4:20PM">
+                        <Label fx:id="lastUpdate" text="Last Updated 4:20PM">
                            <font>
                               <Font name="Segoe UI" size="12.0" />
                            </font>
@@ -97,16 +92,16 @@
                         <Font name="Segoe UI Bold" size="72.0" />
                      </font>
                   </Label>
-                  <Label text="20.5*C">
+                  <Label fx:id="tempCel" text="20.5*C">
                      <font>
                         <Font name="Segoe UI" size="36.0" />
                      </font>
                   </Label>
                   <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #474338;" text=" ">
+                        <JFXButton fx:id="back" onAction="#returnHome" contentDisplay="CENTER" ripplerFill="WHITE" style="-fx-background-color: #474338;" text=" ">
                            <graphic>
-                              <ImageView fx:id="back" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../png_files/cloud_sun.png" />
                                  </image>
@@ -131,17 +126,12 @@
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="Hi" textFill="#e84b4b">
+                              <Label textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
                               <Label text="/">
-                                 <font>
-                                    <Font name="Segoe UI" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Lo" textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -160,7 +150,7 @@
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="Hi" textFill="#e84b4b">
+                              <Label textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -170,7 +160,7 @@
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Lo" textFill="#2ccacd">
+                              <Label textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -189,7 +179,7 @@
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="Hi" textFill="#e84b4b">
+                              <Label textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -199,7 +189,7 @@
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Lo" textFill="#2ccacd">
+                              <Label textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -218,7 +208,7 @@
                         </Label>
                         <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label text="Hi" textFill="#e84b4b">
+                              <Label textFill="#e84b4b">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -228,7 +218,7 @@
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Lo" textFill="#2ccacd">
+                              <Label textFill="#2ccacd">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
