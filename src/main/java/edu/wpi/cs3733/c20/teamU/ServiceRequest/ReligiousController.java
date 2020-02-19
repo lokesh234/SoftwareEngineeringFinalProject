@@ -17,7 +17,7 @@ public class ReligiousController {
     @FXML private TextArea comments;
     @FXML private TextField firstName;
     @FXML private ComboBox comboBox;
-    @FXML private JFXButton confirm;
+    @FXML private JFXButton cancel;
 
     @FXML
     private void getSubmission() {
@@ -44,7 +44,7 @@ public class ReligiousController {
             //TODO:
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
-            confirm.fire();
+            cancel.fire();
         }
     }
 

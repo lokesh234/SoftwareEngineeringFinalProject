@@ -49,6 +49,7 @@ public class ExtTransportController {
                // DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
                 //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
                 clearField();
+                cancel.fire();
             }
         }
 
@@ -65,6 +66,7 @@ public class ExtTransportController {
         private void goBack(){
 //        App.getHome().setOpacity(1);
 //        App.getHome().setDisable(false);
+            clearField();
             App.getExtTransportPop().getContent().clear();
             App.getRequestPop().getContent().add(App.getRequest());
             App.getRequestPop().show(App.getPrimaryStage());

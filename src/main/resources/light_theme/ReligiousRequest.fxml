@@ -118,7 +118,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="BacktoReq" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="cancel" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
