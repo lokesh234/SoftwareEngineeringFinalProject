@@ -208,35 +208,6 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-                     <children>
-                        <ImageView fx:id="day5" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                        <Label text="Day +5">
-                           <font>
-                              <Font name="Segoe UI" size="14.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
-                           <children>
-                              <Label text="Hi" textFill="#e84b4b">
-                                 <font>
-                                    <Font name="Segoe UI" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="/">
-                                 <font>
-                                    <Font name="Segoe UI" size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Lo" textFill="#2ccacd">
-                                 <font>
-                                    <Font name="Segoe UI" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
                </children>
             </HBox>
          </bottom>
