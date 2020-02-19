@@ -50,7 +50,7 @@ public class ClownController {
             //comboBox.setStyle("-fx-border-color:  #FFEEC9");
             dateField.setStyle("-fx-border-color:  #FFEEC9");
             //DatabaseWrapper.clownAdd();
-            DatabaseWrapper.ClownDeliverySRAdd(location,Integer.parseInt(nClowns),rName,date);
+            DatabaseWrapper.ClownDeliverySRAdd(location,Integer.getInteger(nClowns),rName,date);
             clearField();
             backToRequest.fire();
         }

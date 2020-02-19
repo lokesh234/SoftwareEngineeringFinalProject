@@ -525,7 +525,7 @@ public class Database {
     private static void createDeliverySRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(20), lastName VARCHAR(20), gift VARCHAR(20), room VARCHAR(20), " +
-                "CONSTRAINT DSR_CK CHECK (gift in ('Teddy Bear', 'Cookies', 'Chocolate')))";
+                "CONSTRAINT DSR_CK CHECK (gift in ('TeddyBear', 'Cookies', 'Chocolate')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -904,11 +904,10 @@ public class Database {
                     int reqID;
                     reqID = Relig.get(i);
                     String timeReq = csvString[1];
-                    String patentFirstName = csvString[2];
-                    String patentLastName = csvString[3];
-                    String religiousAffiliation = csvString[4];
-                    String explanation = csvString[5];
-                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + patentFirstName +  "', '" + patentLastName + "', '" + religiousAffiliation +  "', '" + explanation +  "')");
+                    String patentName = csvString[2];
+                    String religiousAffiliation = csvString[3];
+                    String explanation = csvString[4];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + patentName + "', '" + religiousAffiliation +  "', '" + explanation +  "')");
                     System.out.println("reached update");
                 }
                 i++;
