@@ -14,10 +14,10 @@ public class LoginScreenController {
   private boolean didFail;
   private String whoTried;
   private String usernameTried;
-  private AdminScreenController adminScreenController;
+  private EmployeeFormController employeeFormController;
 
-  public void setAttributes(AdminScreenController attributes) {
-    adminScreenController = attributes;
+  public void setAttributes(EmployeeFormController attribute) {
+    employeeFormController = attribute;
   }
 
 
@@ -64,7 +64,7 @@ public class LoginScreenController {
     } else {
       App.setUser(whoTried);
       App.setUsernameTried(usernameTried);
-//      adminScreenController.enableBasedOnCred(whoTried);
+      employeeFormController.setFields();
       if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());
       App.getAdminRequestController().update();

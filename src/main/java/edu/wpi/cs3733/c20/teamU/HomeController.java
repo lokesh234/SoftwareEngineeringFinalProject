@@ -55,36 +55,37 @@ public class HomeController {
   public void setWeatherData(WeatherController weatherController1) {
     weatherController = weatherController1;
   }
+
   @FXML
-    private void openLoginScene(ActionEvent e) {
-        App.getPopup().getContent().add(App.getLogin());
-        App.getHome().setOpacity(.5);
-        App.getHome().setDisable(true);
-        App.getPopup().show(App.getPrimaryStage());
-    }
+  private void openLoginScene() {
+    App.getPopup().getContent().add(App.getLogin());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getPopup().show(App.getPrimaryStage());
+  }
 
-    @FXML
-    private void openStartScene() {
-        App.getPrimaryStage().setScene(App.getStartScene());
-    }
+  @FXML
+  private void openStartScene() {
+    App.getPrimaryStage().setScene(App.getStartScene());
+  }
 
-    @FXML
-    private void openNavScene(ActionEvent e) throws IOException {
-        //App.getGraph().update();
-        DatabaseWrapper.updateGraph();
-        //App.getPathfindController().drawNodes();
-        ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
-        App.getPrimaryStage().setScene(App.getPathScene());
-    }
+  @FXML
+  private void openNavScene(ActionEvent e) throws IOException {
+    //App.getGraph().update();
+    DatabaseWrapper.updateGraph();
+    //App.getPathfindController().drawNodes();
+    ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
+    App.getPrimaryStage().setScene(App.getPathScene());
+  }
 
-    @FXML
-    private void openHelpScene(ActionEvent e) {
-        App.getSecurityPop().getContent().add(App.getSecurity());
-        App.getHome().setOpacity(.5);
-        App.getHome().setDisable(true);
-        App.getSecurityController().addRequest();
-        App.getSecurityPop().show(App.getPrimaryStage());
-    }
+  @FXML
+  private void openHelpScene(ActionEvent e) {
+    App.getSecurityPop().getContent().add(App.getSecurity());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getSecurityController().addRequest();
+    App.getSecurityPop().show(App.getPrimaryStage());
+  }
 
   @FXML
   private void openHomeScene() {
@@ -103,7 +104,8 @@ public class HomeController {
           if (App.getChange()) {
             currentTime = System.currentTimeMillis();
 //            System.out.println(currentTime - startTime);
-            if ((currentTime - startTime) > 60000) { // will go to openStartScene if the screen has not been touched within 60 secs
+            if ((currentTime - startTime)
+                > 60000) { // will go to openStartScene if the screen has not been touched within 60 secs
               openStartScene();
             }
           }
@@ -115,10 +117,12 @@ public class HomeController {
         } catch (InterruptedException ex) {
           ex.printStackTrace();
         }
-        if(!App.getChange()) {
+        if (!App.getChange()) {
           Platform.runLater(() -> setTime());
           App.change(true);
-        } else Platform.runLater(runTask);
+        } else {
+          Platform.runLater(runTask);
+        }
 
       }
     }
@@ -146,25 +150,28 @@ public class HomeController {
   });
 
   /**
-   * increments the time by 1
-   * Adjusts for hours, mins, secs
+   * increments the time by 1 Adjusts for hours, mins, secs
+   *
    * @return string of time HH : MM :: SS
    */
   private String setClock() {
     s++;
-    if(s >= 60) {
+    if (s >= 60) {
       s = 0;
       m++;
-      if(m >= 60) {
+      if (m >= 60) {
         m = 0;
         hr++;
-        if(hr >= 24) {
+        if (hr >= 24) {
           hr = 0;
         }
       }
     }
-    if(hr >= 12) return String.format("%1$02d:%2$02d:%3$02dPM", hr, m, s);
-    else return String.format("%1$02d:%2$02d:%3$02dAM", hr, m, s);
+    if (hr >= 12) {
+      return String.format("%1$02d:%2$02d:%3$02dPM", hr, m, s);
+    } else {
+      return String.format("%1$02d:%2$02d:%3$02dAM", hr, m, s);
+    }
 //    if(hr >= 12) return String.format("%1$02d:%2$02dPM", hr, m);
 //    else return String.format("%1$02d:%2$02dAM", hr, m);
   }
@@ -172,6 +179,7 @@ public class HomeController {
   private void setTime() {
     startTime = System.currentTimeMillis();
   }
+
   @FXML
   private void checkTime(ActionEvent event) {
 //    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
@@ -188,6 +196,7 @@ public class HomeController {
 //    weatherController.setWeatherFields();
     App.getPopup().show(App.getPrimaryStage());
   }
+
   @FXML
   private void openRequestScene(ActionEvent e) {
     App.getRequestPop().getContent().add(App.getRequest());
@@ -206,84 +215,85 @@ public class HomeController {
     MapGes1.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes1.targetPointAtViewportCentre());
+            .orElse(MapGes1.targetPointAtViewportCentre());
         // increment of scale makes more sense exponentially instead of linearly
         MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
       }
     });
     MapGes2.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes2.targetPointAtViewportCentre());
+            .orElse(MapGes2.targetPointAtViewportCentre());
         // increment of scale makes more sense exponentially instead of linearly
         MapGes2.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
       }
     });
     MapGes3.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes3.targetPointAtViewportCentre());
+            .orElse(MapGes3.targetPointAtViewportCentre());
         // increment of scale makes more sense exponentially instead of linearly
         MapGes3.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
       }
     });
     MapGes4.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes4.targetPointAtViewportCentre());
+            .orElse(MapGes4.targetPointAtViewportCentre());
         // increment of scale makes more sense exponentially instead of linearly
         MapGes4.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
       }
     });
     MapGes5.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes5.targetPointAtViewportCentre());
+            .orElse(MapGes5.targetPointAtViewportCentre());
         // increment of scale makes more sense exponentially instead of linearly
         MapGes5.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
       }
     });
     MapGes1.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
     MapGes2.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
     MapGes3.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
     MapGes4.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
     MapGes5.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
     oppo.getChildren().clear();
     oppo.getChildren().add(N1);
     startT.setDaemon(true);
     startT.start();
   }
 
-  @FXML private void stateMachine(int floor){
-    switch (floor){
+  @FXML
+  private void stateMachine(int floor) {
+    switch (floor) {
       case 1:
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
         floor = 1;
         floorLabel.setText("1");
         MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
         break;
       case 2:
         oppo.getChildren().clear();
@@ -291,8 +301,8 @@ public class HomeController {
         floor = 2;
         floorLabel.setText("2");
         MapGes2.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes2.getCurrentScale() - 30000, MapGes2.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale() - 30000, MapGes2.targetPointAtViewportCentre());
         break;
       case 3:
         oppo.getChildren().clear();
@@ -300,8 +310,8 @@ public class HomeController {
         floor = 3;
         floorLabel.setText("3");
         MapGes3.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
         break;
       case 4:
         oppo.getChildren().clear();
@@ -309,8 +319,8 @@ public class HomeController {
         floor = 4;
         floorLabel.setText("4");
         MapGes4.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
         break;
       case 5:
         oppo.getChildren().clear();
@@ -318,98 +328,104 @@ public class HomeController {
         floor = 5;
         floorLabel.setText("5");
         MapGes5.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         break;
     }
   }
 
-  @FXML private void clickUp(ActionEvent e){
+  @FXML
+  private void clickUp(ActionEvent e) {
     floor++;
     stateMachine(floor);
-    if(floor > 5){
+    if (floor > 5) {
       floor = 5;
     }
   }
-  @FXML private void clickDown(ActionEvent e){
+
+  @FXML
+  private void clickDown(ActionEvent e) {
     floor--;
     stateMachine(floor);
-    if(floor < 1){
+    if (floor < 1) {
       floor = 1;
     }
   }
 
-  @FXML private void zoomIn() {
+  @FXML
+  private void zoomIn() {
     ZoomInMachine(floor);
   }
 
-  @FXML private void ZoomInMachine(int floor){
-    switch (floor){
+  @FXML
+  private void ZoomInMachine(int floor) {
+    switch (floor) {
       case 1:
         MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
         break;
       case 2:
         MapGes2.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes2.getCurrentScale(), MapGes2.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale(), MapGes2.targetPointAtViewportCentre());
 
         break;
       case 3:
         MapGes3.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes3.getCurrentScale(), MapGes3.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale(), MapGes3.targetPointAtViewportCentre());
         break;
       case 4:
         MapGes4.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes4.getCurrentScale(), MapGes4.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale(), MapGes4.targetPointAtViewportCentre());
         break;
       case 5:
         MapGes5.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
 
         break;
     }
   }
 
-  @FXML private void ZoomOutMachine(int floor){
-    switch (floor){
+  @FXML
+  private void ZoomOutMachine(int floor) {
+    switch (floor) {
       case 1:
         MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale() - 15 , MapGes1.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes1.getCurrentScale() - 15, MapGes1.targetPointAtViewportCentre());
         break;
       case 2:
         MapGes2.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes2.getCurrentScale() - 15, MapGes2.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale() - 15, MapGes2.targetPointAtViewportCentre());
 
         break;
       case 3:
         MapGes3.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes3.getCurrentScale() - 15, MapGes3.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale() - 15, MapGes3.targetPointAtViewportCentre());
         break;
       case 4:
         MapGes4.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes4.getCurrentScale() - 15 , MapGes4.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale() - 15, MapGes4.targetPointAtViewportCentre());
         break;
       case 5:
         MapGes5.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes5.getCurrentScale() - 15, MapGes5.targetPointAtViewportCentre());
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale() - 15, MapGes5.targetPointAtViewportCentre());
 
         break;
     }
   }
 
 
-
-  @FXML private void zoomOut() {
+  @FXML
+  private void zoomOut() {
     ZoomOutMachine(floor);
   }
 }

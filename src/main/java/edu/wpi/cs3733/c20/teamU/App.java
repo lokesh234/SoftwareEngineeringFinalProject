@@ -343,7 +343,7 @@ public class App extends Application {
       requestScreenController.setAttributes(adminRequestController);
       adminRequestController.setAttributes(requestScreenController);
       addNodeScreenController.setAttributes(graphEditController);
-      loginScreenController.setAttributes(adminScreenController);
+      loginScreenController.setAttributes(employeeFormController);
       homeController.setWeatherData(weatherController);
 
 

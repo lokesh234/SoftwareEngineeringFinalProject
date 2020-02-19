@@ -1,20 +1,9 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
-import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
-
-import javafx.animation.Interpolator;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.util.Duration;
-import lombok.SneakyThrows;
-import net.kurobako.gesturefx.GesturePane;
-
 
 public class startController {
 
