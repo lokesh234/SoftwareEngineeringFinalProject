@@ -28,21 +28,18 @@ public class WeatherController {
   @FXML private ImageView day2;
   @FXML private ImageView day3;
   @FXML private ImageView day4;
-  @FXML private ImageView day5;
   private WeatherBoi weatherBoi;
   private List<HourlyForecast.Forecast> weather;
 
-  public void setWeatherFields() throws InvalidAuthTokenException, DataNotFoundException {
+  public void refreshData() throws InvalidAuthTokenException, DataNotFoundException {
     weather = weatherBoi.getForecasts();
     //    System.out.println(weather.get(6).getWeatherStates().toString());
 //    System.out.println(weatherBoi.getWeather().getWeatherDescription());
-
-//    now.setImage(new Image(getClass().getResource(getWeather(weather.get(0).getWeatherStates().toString())).toString()));
-//    day1.setImage(new Image(getClass().getResource(getWeather(weather.get(0).getWeatherStates().toString())).toString()));
-//    day2.setImage(new Image(getClass().getResource(getWeather(weather.get(1).getWeatherStates().toString())).toString()));
-//    day3.setImage(new Image(getClass().getResource(getWeather(weather.get(2).getWeatherStates().toString())).toString()));
-//    day4.setImage(new Image(getClass().getResource(getWeather(weather.get(3).getWeatherStates().toString())).toString()));
-//    day5.setImage(new Image(getClass().getResource(getWeather(weather.get(4).getWeatherStates().toString())).toString()));
+    now.setImage(new Image(getClass().getResource(getWeather(weather.get(0).getWeatherStates().toString())).toString()));
+    day1.setImage(new Image(getClass().getResource(getWeather(weather.get(1).getWeatherStates().toString())).toString()));
+    day2.setImage(new Image(getClass().getResource(getWeather(weather.get(2).getWeatherStates().toString())).toString()));
+    day3.setImage(new Image(getClass().getResource(getWeather(weather.get(3).getWeatherStates().toString())).toString()));
+    day4.setImage(new Image(getClass().getResource(getWeather(weather.get(4).getWeatherStates().toString())).toString()));
   }
   //  private int hr;
   //  private int m;
@@ -97,6 +94,7 @@ public class WeatherController {
    * @return
    */
   private String getWeather(String weatherCheck) {
+//    System.out.println(weatherCheck);
     switch (weatherCheck) {
       case "[Weather: light rain]":
         return "/png_files/Weather_Icons/Day_LightRain.png";
@@ -127,7 +125,19 @@ public class WeatherController {
 
   @FXML
   public void initialize() throws InvalidAuthTokenException, DataNotFoundException {
-        weatherBoi = new WeatherBoi();
+    weatherBoi = new WeatherBoi();
+    weather = weatherBoi.getForecasts();
+    System.out.println(weather.get(0).getDataCalculationDate());
+    System.out.println(weather.get(8).getDataCalculationDate());
+    System.out.println(weather.get(15).getDataCalculationDate());
+    System.out.println(weather.get(23).getDataCalculationDate());
+    System.out.println(weather.get(31).getDataCalculationDate());
+
+    now.setImage(new Image(getClass().getResource(getWeather(weather.get(0).getWeatherStates().toString())).toString()));
+    day1.setImage(new Image(getClass().getResource(getWeather(weather.get(8).getWeatherStates().toString())).toString()));
+    day2.setImage(new Image(getClass().getResource(getWeather(weather.get(15).getWeatherStates().toString())).toString()));
+    day3.setImage(new Image(getClass().getResource(getWeather(weather.get(23).getWeatherStates().toString())).toString()));
+    day4.setImage(new Image(getClass().getResource(getWeather(weather.get(31).getWeatherStates().toString())).toString()));
     //    hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     //    m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     //    s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();

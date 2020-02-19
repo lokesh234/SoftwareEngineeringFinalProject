@@ -185,7 +185,7 @@ public class HomeController {
     App.getPopup().getContent().add(App.getWeather());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
-    weatherController.setWeatherFields();
+//    weatherController.setWeatherFields();
     App.getPopup().show(App.getPrimaryStage());
   }
   @FXML
