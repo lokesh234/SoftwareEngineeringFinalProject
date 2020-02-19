@@ -120,8 +120,7 @@ public class EmployeeFormController {
    * @return false if they are different, true if same
    */
   private boolean checkPasswords(String password, String password1) {
-    if(password.equals(password1)) return true;
-    else return false;
+    return password.equals(password1);
   }
 
   /**
@@ -134,7 +133,7 @@ public class EmployeeFormController {
     employeeIdText.setText(userData.get(0));
     firstNameText.setText(userData.get(2));
     lastNameText.setText(userData.get(3));
-    employeeCombo.getSelectionModel().select(userData.get(4));
+    employeeCombo.setValue(userData.get(4));
     BooleanBinding bind = employeeIdText.textProperty().isEqualTo(userOG);
     confirm.disableProperty().bind(bind);
   }

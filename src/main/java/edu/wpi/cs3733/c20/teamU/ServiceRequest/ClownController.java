@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
@@ -17,7 +14,8 @@ import javafx.scene.layout.AnchorPane;
 
 public class ClownController {
 
-    @FXML private JFXTextField locationField, nClownsField, rNameField, otherField, dateField;
+    @FXML private JFXTextField locationField, nClownsField, rNameField, otherField;
+    @FXML private JFXDatePicker dateField;
     @FXML private JFXButton backToRequest;
     @FXML private JFXComboBox comboBox = new JFXComboBox();
     @FXML private AnchorPane clownParent;
@@ -28,7 +26,7 @@ public class ClownController {
         String nClowns = nClownsField.getText();
         String rName = rNameField.getText();
         String other = otherField.getText();
-        String date = dateField.getText();
+        String date = dateField.getValue().toString();
         String userDelivery;
         if(comboBox.getValue() == null) userDelivery = "";
         else userDelivery = comboBox.getValue().toString();
@@ -76,7 +74,7 @@ public class ClownController {
         nClownsField.clear();
         rNameField.clear();
         otherField.clear();
-        dateField.clear();
+        dateField.getEditor().clear();
         comboBox.getSelectionModel().clearSelection();
     }
     @FXML
