@@ -66,22 +66,6 @@
                               </JFXTextField>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <Label text="Other (Please Specify)" fx:id="otherLabel"/>
-                              <JFXTextField fx:id="otherField">
-                                 <padding>
-                                    <Insets left="20.0" right="20.0" />
-                                 </padding>
-                              </JFXTextField>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                           <children>
-                              <Label text="Occasion" />
-                              <JFXComboBox fx:id="comboBox" />
-                           </children>
-                        </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label text="Delivery Date" />
@@ -89,13 +73,13 @@
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </JFXDatePicker>
                            </children>
                         </VBox>
                      </children>
-                     <padding>
-                        <Insets top="8.0" />
-                     </padding>
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>

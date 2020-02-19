@@ -28,26 +28,26 @@ public class ClownController {
         String rName = rNameField.getText();
         String other = otherField.getText();
         String date = dateField.getValue().toString();
-        String userDelivery;
-        if(comboBox.getValue() == null) userDelivery = "";
-        else userDelivery = comboBox.getValue().toString();
+        //String userDelivery;
+        //if(comboBox.getValue() == null) userDelivery = "";
+        //else userDelivery = comboBox.getValue().toString();
 
         //TODO: specify which textfield to write in if empty
-        if(rName.isEmpty() || location.isEmpty() || (other.isEmpty() && userDelivery.equals("Other")) || date.isEmpty() || userDelivery.isEmpty() || nClowns.isEmpty()) {
+        if(rName.isEmpty() || location.isEmpty() || date.isEmpty() || nClowns.isEmpty()) {
             // will print out some text eventually, right now nothing
             locationField.setStyle("-fx-border-color: red");
             nClownsField.setStyle("-fx-border-color: red");
             rNameField.setStyle("-fx-border-color: red");
-            if (!otherField.isDisable()) otherField.setStyle("-fx-border-color: red");
-            else otherField.setStyle("-fx-border-color:  #FFEEC9");
-            comboBox.setStyle("-fx-border-color: red");
+            //if (!otherField.isDisable()) otherField.setStyle("-fx-border-color: red");
+            //else otherField.setStyle("-fx-border-color:  #FFEEC9");
+            //comboBox.setStyle("-fx-border-color: red");
             dateField.setStyle("-fx-border-color: red");
         } else {
             locationField.setStyle("-fx-border-color:  #FFEEC9");
             nClownsField.setStyle("-fx-border-color:  #FFEEC9");
             rNameField.setStyle("-fx-border-color:  #FFEEC9");
-            otherField.setStyle("-fx-border-color:  #FFEEC9");
-            comboBox.setStyle("-fx-border-color:  #FFEEC9");
+            //otherField.setStyle("-fx-border-color:  #FFEEC9");
+            //comboBox.setStyle("-fx-border-color:  #FFEEC9");
             dateField.setStyle("-fx-border-color:  #FFEEC9");
             //DatabaseWrapper.clownAdd();
             DatabaseWrapper.ClownDeliverySRAdd(location,Integer.getInteger(nClowns),rName,date);
@@ -55,6 +55,8 @@ public class ClownController {
             backToRequest.fire();
         }
     }
+
+    /*
 
     EventHandler<ActionEvent> otherHandler = new EventHandler<ActionEvent>() {
         @Override
@@ -71,13 +73,15 @@ public class ClownController {
         }
     };
 
+     */
+
     public void clearField() {
         locationField.clear();
         nClownsField.clear();
         rNameField.clear();
-        otherField.clear();
+        //otherField.clear();
         dateField.getEditor().clear();
-        comboBox.getSelectionModel().clearSelection();
+        //comboBox.getSelectionModel().clearSelection();
     }
     @FXML
     private void goBack(){
@@ -98,7 +102,7 @@ public class ClownController {
                         "Other"
                 );
         comboBox.getItems().addAll(deliveryOptions);
-        comboBox.setOnAction(otherHandler);
-        otherField.setDisable(true);
+        //comboBox.setOnAction(otherHandler);
+///        otherField.setDisable(true);
     }
 }
