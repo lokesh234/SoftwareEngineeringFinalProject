@@ -127,27 +127,27 @@ public class WeatherController {
 //    System.out.println(weatherCheck);
     switch (weatherCheck) {
       case "[Weather: light rain]":
-        return "/png_files/Weather_Icons/Day_LightRain.png";
+        return "/png_files/Weather_Icons/ShowerRain_Day.png";
       case "[Weather: moderate rain]":
-        return "/png_files/Weather_Icons/Day_LightRain.png";
+        return "/png_files/Weather_Icons/ShowerRain_Day.png";
       case "[Weather: few clouds]":
-        return "/png_files/Weather_Icons/Cloudy_Day.png";
+        return "/png_files/Weather_Icons/FewClouds_Day.png";
       case "[Weather: scattered clouds]":
-        return "/png_files/Weather_Icons/Cloudy_Day.png";
+        return "/png_files/Weather_Icons/ScatteredClouds_Day.png";
       case "[Weather: clear sky]":
-        return "/png_files/Weather_Icons/Day.png";
+        return "/png_files/Weather_Icons/ClearSky_Day.png";
       case "[Weather: broken clouds]":
-        return "/png_files/Weather_Icons/Cloudy_Day.png";
+        return "/png_files/Weather_Icons/BrokenClouds_Day.png";
       case "[Weather: shower rain]":
-        return "/png_files/Weather_Icons/Day_LightRain.png";
+        return "/png_files/Weather_Icons/ShowerRain_Day.png";
       case "[Weather: rain]":
-        return "/png_files/Weather_Icons/HeavyRain.png";
+        return "/png_files/Weather_Icons/Rain.png";
       case "[Weather: thunderstorm]":
-        return "/png_files/Weather_Icons/HeavyRain.png";
+        return "/png_files/Weather_Icons/Thunderstorm.png";
       case "[Weather: snow]":
-        return "/png_files/Weather_Icons/Day_snow.png";
+        return "/png_files/Weather_Icons/Snow_Day.png";
       case "[Weather: overcast clouds]":
-        return "/png_files/Weather_Icons/Cloudy_Day.png";
+        return "/png_files/Weather_Icons/FewClouds_Day.png";
       default:
         return "noWeather";
     }

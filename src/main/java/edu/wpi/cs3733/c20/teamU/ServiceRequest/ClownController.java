@@ -26,7 +26,7 @@ public class ClownController {
         String location = locationField.getText();
         String nClowns = nClownsField.getText();
         String rName = rNameField.getText();
-        String other = otherField.getText();
+        //String other = otherField.getText();
         String date = dateField.getValue().toString();
         //String userDelivery;
         //if(comboBox.getValue() == null) userDelivery = "";
@@ -50,7 +50,7 @@ public class ClownController {
             //comboBox.setStyle("-fx-border-color:  #FFEEC9");
             dateField.setStyle("-fx-border-color:  #FFEEC9");
             //DatabaseWrapper.clownAdd();
-            DatabaseWrapper.ClownDeliverySRAdd(location,Integer.getInteger(nClowns),rName);
+            DatabaseWrapper.ClownDeliverySRAdd(location,Integer.parseInt(nClowns),rName,date);
             clearField();
             backToRequest.fire();
         }

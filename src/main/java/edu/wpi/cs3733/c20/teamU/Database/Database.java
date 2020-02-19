@@ -496,7 +496,7 @@ public class Database {
 
     private static void createClownDeliverySRTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, location VARCHAR(40), nClowns INTEGER , recipientName VARCHAR(30))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, location VARCHAR(40), nClowns INTEGER , recipientName VARCHAR(30), deliveryDate DATE)";
 
             stmt.executeUpdate(slqCreate);
 
@@ -757,7 +757,8 @@ public class Database {
                     String location = csvString[2];
                     int nClowns = Integer.getInteger(csvString[3]);
                     String recipientName = csvString[4];
-                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + location +  "', '" + nClowns + "', '" + recipientName + "')");
+                    String deliveryDate = csvString[5];
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + location +  "', '" + nClowns + "', '" + recipientName + "', '" + deliveryDate + "')");
                     System.out.println("reached update");
                 }
                 i++;
