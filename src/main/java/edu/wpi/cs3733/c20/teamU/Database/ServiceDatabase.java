@@ -238,7 +238,7 @@ public class ServiceDatabase {
         }
     }
 
-    public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName){
+    public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName, String deliveryDate){
         int reqID;
         String timeReq = getCurrentDate();
         String CDSRTableName = "ClownDeliverySR";
@@ -249,11 +249,11 @@ public class ServiceDatabase {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
             //getting UBDatabase
-            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'CLOWN', 'Number of clowns: " + nClowns + " for: " + recipientName + "')",Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate("INSERT  INTO " + SRTableName + " (dateReq, types, info) VALUES ('" + timeReq + "', 'CLOWN', 'Number of clowns: " + nClowns + " for: " + recipientName + " on: " + deliveryDate + "')",Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
-            stmt.executeUpdate("INSERT INTO " + CDSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + location + "', '" + nClowns + "', '" + recipientName + "')");
+            stmt.executeUpdate("INSERT INTO " + CDSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + location + "', '" + nClowns + "', '" + recipientName + "', '" + deliveryDate + "')");
 
             rs.close();
             Database.CreateCSV(stmt, CDSRTableName, null);

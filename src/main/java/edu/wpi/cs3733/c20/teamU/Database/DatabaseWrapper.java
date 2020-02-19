@@ -346,8 +346,8 @@ public class DatabaseWrapper {
       return (ServiceDatabase.deliverySRAdd(patentLastName, patentFirstName, gift, room));
   }
 
-  public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName){
-      return (ServiceDatabase.ClownDeliverySRAdd(location, nClowns, recipientName));
+  public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName, String deliveryDate){
+      return (ServiceDatabase.ClownDeliverySRAdd(location, nClowns, recipientName, deliveryDate));
   }
 
   public static boolean FlowersSRAdd(String lastName, String firstName, boolean roses, boolean tulips, boolean lilies, String occasion, String deliveryDate, String giftNote, String room){
