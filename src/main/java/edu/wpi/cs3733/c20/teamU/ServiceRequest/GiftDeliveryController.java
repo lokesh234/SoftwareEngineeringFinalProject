@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,16 +20,17 @@ public class GiftDeliveryController {
 
   @FXML
   private void setSubmit() {
-//    String userFirst = first.getText();
-//    String userLast = last.getText();
-//    String userRoom = room.getText();
-//    String userGift = gift.getSelectionModel().getSelectedItem().toString();
-//    if(!checkFields()) {
-//      // add to database
-//      back.fire();
-//    }
+    String userFirst = first.getText();
+    String userLast = last.getText();
+    String userRoom = room.getText();
+    String userGift = gift.getSelectionModel().getSelectedItem().toString();
+    if(!checkFields()) {
+      // add to database
+      DatabaseWrapper.deliverySRAdd(userLast,userFirst,userGift,userRoom);
+      back.fire();
+    }
     //add to database
-    back.fire();
+    //back.fire();
   }
 
   @FXML
@@ -50,30 +52,30 @@ public class GiftDeliveryController {
     gift.setStyle("-fx-border-color:  #FFEEC9");
   }
 
-//  private boolean checkFields() {
-//    boolean didFail = false;
-//    first.setStyle("-fx-border-color:  #FFEEC9");
-//    last.setStyle("-fx-border-color:  #FFEEC9");
-//    room.setStyle("-fx-border-color:  #FFEEC9");
-//    gift.setStyle("-fx-border-color:  #FFEEC9");
-//    if(first.getText().isEmpty()) {
-//      first.setStyle("-fx-border-color: red");
-//      didFail = true;
-//    }
-//    if(gift.getSelectionModel().getSelectedItem().toString().isEmpty()) {
-//      gift.setStyle("-fx-border-color: red");
-//      didFail = true;
-//    }
-//    if(last.getText().isEmpty()) {
-//      last.setStyle("-fx-border-color: red");
-//      didFail = true;
-//    }
-//    if(room.getText().isEmpty()) {
-//      room.setStyle("-fx-border-color: red");
-//      didFail = true;
-//    }
-//    return didFail;
-//  }
+  private boolean checkFields() {
+    boolean didFail = false;
+    first.setStyle("-fx-border-color:  #FFEEC9");
+    last.setStyle("-fx-border-color:  #FFEEC9");
+    room.setStyle("-fx-border-color:  #FFEEC9");
+    gift.setStyle("-fx-border-color:  #FFEEC9");
+    if(first.getText().isEmpty()) {
+      first.setStyle("-fx-border-color: red");
+      didFail = true;
+    }
+    if(gift.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+      gift.setStyle("-fx-border-color: red");
+      didFail = true;
+    }
+    if(last.getText().isEmpty()) {
+      last.setStyle("-fx-border-color: red");
+      didFail = true;
+    }
+    if(room.getText().isEmpty()) {
+      room.setStyle("-fx-border-color: red");
+      didFail = true;
+    }
+    return didFail;
+  }
   @FXML
   private void initialize() {
     BooleanBinding blockSubmit = first.textProperty().isEmpty()

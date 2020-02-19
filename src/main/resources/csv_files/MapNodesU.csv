@@ -258,8 +258,8 @@ VDEPT01705,1136,290,5,Faulkner,DEPT,5B Left  Ear Nose and Throat,5B L,Team V
 VDEPT01805,1301,265,5,Faulkner,DEPT,5C Right - Orthopaedic Associates,5C R,Team V
 VHALL03705,1252,777,5,Faulkner,HALL,5K Upper Door (Hall 37),5K Up Dr,Team V
 VDEPT01905,1275,777,5,Faulkner,DEPT,5K Upper,5K Up,Team V
-HALL00001,748,1250,2,0,HALL,Hallway Junction,0,Team U
-DEPTGYN3,1403,369,3,0,DEPT,Division of Gynocology,GYNDIV,Team U
-HALL0002,1402,1115,1,0,HALL,0,0,Team U
-HALL0003,2284,1114,1,0,HALL,0,0,Team U
-STAI005,1782,1267,5,0,STAI,Stairs 5th Floor,sta,Team U
+UHALL00102,748,1250,2,Faulkner,HALL,Hallway Junction,Hall,Team U
+UDEPT00103,1403,369,3,Faulkner,DEPT,Division of Gynocology,GYNDIV,Team U
+UHALL00101,1402,1115,1,Faulkner,HALL,Hall,Hall,Team U
+UHALL00201,2284,1114,1,Faulkner,HALL,Hall,Hall,Team U
+USTAI00105,1782,1267,5,Faulkner,STAI,Stairs 5th Floor,stai,Team U

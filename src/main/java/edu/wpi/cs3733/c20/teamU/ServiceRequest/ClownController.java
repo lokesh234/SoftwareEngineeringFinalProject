@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.collections.FXCollections;
@@ -49,6 +50,7 @@ public class ClownController {
             comboBox.setStyle("-fx-border-color:  #FFEEC9");
             dateField.setStyle("-fx-border-color:  #FFEEC9");
             //DatabaseWrapper.clownAdd();
+            DatabaseWrapper.ClownDeliverySRAdd(location,Integer.getInteger(nClowns),rName);
             clearField();
             backToRequest.fire();
         }

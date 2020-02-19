@@ -67,6 +67,27 @@ public class RequestScreenController {
             case "ITRAN":
                 DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "ITRAN", "InternalTransportSR", "ITRAN");
                 break;
+            case "ETRAN":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "ETRAN", "ExternalTransportSR", "ETRAN");
+                break;
+            case "DELIV":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "DELIV", "DeliverySR", "DELIV");
+                break;
+            case "FLOWR":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "FLOWR", "FlowersSR", "FLOWR");
+                break;
+            case "CLOWN":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "CLOWN", "ClownDeliverySR", "CLOWN");
+                break;
+            case "INTEC":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "INTEC", "ITSR", "INTEC");
+                break;
+            case "RELIG":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "RELIG", "ReligionSR", "RELIG");
+                break;
+            case "SANIT":
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, "SANIT", "SanitarySR", "SANIT");
+                break;
         }
         //adminRequestController.update();
         AdministrationWrapper.adminRequestControllerUpdate(adminRequestController);

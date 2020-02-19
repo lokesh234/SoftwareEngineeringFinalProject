@@ -48,6 +48,7 @@ public class ExtTransportController {
                 passwordText.setStyle("-fx-border-color:  #FFEEC9");
                // DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
                 //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+                DatabaseWrapper.extTransportSRAdd(userLast,userFirst,dest,t,d,Integer.getInteger(numOfPas));
                 clearField();
                 cancel.fire();
             }
