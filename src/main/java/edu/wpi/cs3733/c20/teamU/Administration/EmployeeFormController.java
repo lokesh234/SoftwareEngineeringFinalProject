@@ -32,6 +32,7 @@ public class EmployeeFormController {
   private String first, last, user, pass, checkPass, position;
   private String userOG;
 
+  public EmployeeFormController() {}
   //TODO: code needs refactoring, will do iteration 3
 
   /**
