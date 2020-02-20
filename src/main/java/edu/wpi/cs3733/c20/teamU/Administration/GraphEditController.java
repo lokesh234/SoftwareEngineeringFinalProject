@@ -526,6 +526,15 @@ public class GraphEditController {
     }
   };
 
+  EventHandler<MouseEvent> circleDragHandler = new EventHandler<MouseEvent>(){
+    @Override
+    public void handle(MouseEvent event) {
+      Circle source = (Circle) event.getSource();
+      Node n = circles.get(source);
+      DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
+    }
+  };
+
   EventHandler<MouseEvent> interFloorHandler = new EventHandler<MouseEvent>() {
     @Override
     public void handle(MouseEvent event) {
