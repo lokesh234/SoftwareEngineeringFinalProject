@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Database;
 
+import edu.wpi.cs3733.c20.teamU.Administration.Account;
 import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
-import edu.wpi.cs3733.c20.teamU.Navigation.PathfindAStar;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 
 import java.io.*;
@@ -1508,6 +1508,54 @@ public class Database {
         }
     }
 
+    public static void getAccounts(ArrayList<Account> accounts){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "LoginDB";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            sql = "SELECT  * FROM " + tableName;
+            ResultSet results = stmt.executeQuery(sql);
+            ResultSetMetaData rsmd = results.getMetaData();
+
+
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (results.next()) {
+                String username = results.getString(1);
+                String password = results.getString(2);
+                String firstName = results.getString(3);
+                String lastName = results.getString(4);
+                String cred = results.getString(4);
+//                System.out.println(date);
+//                System.out.println(requestID);
+//                System.out.println(name);
+//                System.out.println(requestType);
+                Account a = new Account(username, password, firstName, lastName, cred);
+                accounts.add(a);
+                System.out.println("Account list: " + accounts);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
 
     /**
      * Check the if the username and password are valid for login
@@ -1515,7 +1563,7 @@ public class Database {
      * @param inputPassword password
      * @return true if they match in the table
      */
-    public static String checkCred(String inputUsername, String inputPassword){
+    public static Account checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
         String tableName = "loginDB";
@@ -1534,22 +1582,32 @@ public class Database {
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
-                    return results.getString(5);
+                    String username = results.getString(1);
+                    String password = results.getString(2);
+                    String firstName = results.getString(3);
+                    String lastName = results.getString(4);
+                    String cred = results.getString(4);
+//                System.out.println(date);
+//                System.out.println(requestID);
+//                System.out.println(name);
+//                System.out.println(requestType);
+                    Account a = new Account(username, password, firstName, lastName, cred);
+                    return a;
                 }
                 else {
-                    return "FALSE";
+                    return null;
                 }
             }
             results.close();
             stmt.close();
             connection.close();
+            return null;
 
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return "FALSE";
+            return null;
         }
-        return "FALSE";
     }
 
   /**

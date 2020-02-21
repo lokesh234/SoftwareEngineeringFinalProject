@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXButton;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import javafx.collections.FXCollections;
@@ -12,7 +12,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javax.management.StandardEmitterMBean;
 import java.util.ArrayList;
 
 public class AdminRequestController {
@@ -53,8 +52,8 @@ public class AdminRequestController {
     private ObservableList<Service> arrayToOBList(){
         ObservableList<Service> services = FXCollections.observableArrayList();
         ArrayList<Service> temp = new ArrayList<>();
-        String user = App.getUser();
-        Database.getServices(temp, user);
+        String user = App.getUser().getCred();
+        DatabaseWrapper.getServices(temp, user);
         if(temp != null) {
             services.addAll(temp);
         }

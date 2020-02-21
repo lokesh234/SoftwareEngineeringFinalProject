@@ -3,13 +3,10 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -50,7 +47,7 @@ public class NodeEditController {
   private void confirmChange() {
     overWrite();
     HashMap<String, Node> graph = new HashMap<String, Node>();
-    Database.getNodes(graph);
+    DatabaseWrapper.getNodes(graph);
     cancel.fire();
   }
 

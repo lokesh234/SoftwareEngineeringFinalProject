@@ -2,16 +2,13 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.collections.FXCollections;
-import javafx.collections.FXCollections.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -64,7 +61,7 @@ public class AddNodeScreenController {
       return; //If this fails, there's a problem with the text input
     }
     HashMap<String, Node> graph = new HashMap<String, Node>();
-    Database.getNodes(graph);
+    DatabaseWrapper.getNodes(graph);
 //    System.out.println(graph.get(userID).getFloor());
     cancel.fire();
   }

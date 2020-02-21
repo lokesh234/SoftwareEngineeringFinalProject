@@ -1,15 +1,12 @@
 package edu.wpi.cs3733.c20.teamU.Database;
 
 
+import edu.wpi.cs3733.c20.teamU.Administration.Account;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 
-import java.sql.*;
-import java.io.*;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Date;
-import java.util.Map;
 
 public class DatabaseWrapper {
 //  private Database database;
@@ -228,7 +225,7 @@ public class DatabaseWrapper {
      * @param inputPassword password
      * @return true if they match in the table
      */
-    public static String checkCred(String inputUsername, String inputPassword){
+    public static Account checkCred(String inputUsername, String inputPassword){
         return (Database.checkCred(inputUsername, inputPassword));
     }
 
@@ -378,4 +375,9 @@ public class DatabaseWrapper {
   public static void updateGraph() {
       graph.update();
   }
+
+  public static void CreateCSV(Statement st, String s, String path){
+    DatabaseWrapper.createCSV(st, s, path);
+  }
+
 }

@@ -1,21 +1,16 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
-//import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,12 +20,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
-
-import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
-
-//import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 
 public class App<loadedAdminRequests> extends Application {
 
@@ -154,7 +145,7 @@ public class App<loadedAdminRequests> extends Application {
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
-  private static String user;
+  private static Account user;
   private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
 
@@ -281,8 +272,8 @@ public class App<loadedAdminRequests> extends Application {
   public static boolean getChange() { return didChange; }
   public static void setTime(long sys) { time = sys; }
   public static long getTime() { return time; }
-  public static void setUser(String user1) { user = user1; }
-  public static String getUser() { return user; }
+  public static void setUser(Account user1) { user = user1; }
+  public static Account getUser() { return user; }
   public static void setUsernameTried(String username1) { usernameTried = username1; }
   public static String getUsernameTried() { return usernameTried; }
   public static int getNodeSize() { return nodeSize; }
@@ -302,11 +293,6 @@ public class App<loadedAdminRequests> extends Application {
   public static Popup getLanguageSRPop() {return languageSRPop;}
   public static Popup getChoosePathPop() { return ChoosePathPop; }
   public static Popup getWeatherPop() { return weatherPop; }
-  public static StackPane layout = new StackPane();
-  public static StackPane returnStack() {
-    return layout;
-  }
-
 
   @Override
   public void start(Stage primaryStage) {

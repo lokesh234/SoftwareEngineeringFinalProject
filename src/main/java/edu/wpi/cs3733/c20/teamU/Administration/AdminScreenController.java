@@ -132,4 +132,9 @@ public class AdminScreenController {
 //        adminScreen.addEventFilter(MOUSE_PRESSED, checkAccess);
     }
 
+    public void cred() {
+        String cred = App.getUser().getCred();
+        String firstName = App.getUser().getFirstName();
+        String lastName = App.getUser().getLastName();
+    }
 }

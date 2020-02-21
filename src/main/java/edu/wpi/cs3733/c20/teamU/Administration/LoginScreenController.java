@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -12,7 +12,7 @@ public class LoginScreenController {
 
   private int trackLoginCount;
   private boolean didFail;
-  private String whoTried;
+  private Account whoTried;
   private String usernameTried;
   private EmployeeFormController employeeFormController;
 
@@ -29,8 +29,8 @@ public class LoginScreenController {
   private void isAuthorized() {
 
     usernameTried = usernameField.getText();
-    whoTried = Database.checkCred(usernameTried, passwordField.getText());
-    if (whoTried.equals("FALSE")) {
+    whoTried = DatabaseWrapper.checkCred(usernameTried, passwordField.getText());
+    if (whoTried == null) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
         changeScene();
@@ -65,8 +65,9 @@ public class LoginScreenController {
       App.setUser(whoTried);
       App.setUsernameTried(usernameTried);
       employeeFormController.setFields();
-      if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
+      if(whoTried.getCred().equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());
+      App.getAdminScreenController().cred();
       App.getAdminRequestController().cred();
       App.getAdminRequestController().update();
       App.getPopup().show(App.getPrimaryStage());
