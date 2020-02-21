@@ -375,4 +375,9 @@ public class DatabaseWrapper {
   public static void updateGraph() {
       graph.update();
   }
+
+  public static void CreateCSV(Statement st, String s, String path){
+    DatabaseWrapper.createCSV(st, s, path);
+  }
+
 }

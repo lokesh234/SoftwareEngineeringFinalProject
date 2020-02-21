@@ -3,22 +3,19 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.awt.event.MouseEvent;
-import java.beans.EventHandler;
 import java.util.ArrayList;
 
 public class AdminRequestController {
@@ -93,10 +90,10 @@ public class AdminRequestController {
     ObservableList<Service> services = FXCollections.observableArrayList();
     ArrayList<Service> temp = new ArrayList<>();
     if (pending == true) {
-      Database.getServices(temp, cred);
+      DatabaseWrapper.getServices(temp, cred);
     }
     else {
-      Database.getFinishedServices(temp, cred);
+      DatabaseWrapper.getFinishedServices(temp, cred);
     }
     if (temp != null) {
       services.addAll(temp);

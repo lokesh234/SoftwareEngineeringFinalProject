@@ -3,11 +3,9 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -56,7 +54,7 @@ public class ExportScreenController {
       conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
       stmt = conn.createStatement();
       //getting UBDatabase
-      Database.CreateCSV(stmt,"MapNodesU", file.toString());
+      DatabaseWrapper.CreateCSV(stmt,"MapNodesU", file.toString());
       stmt.close();
       conn.close();
     }

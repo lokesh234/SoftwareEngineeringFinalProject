@@ -1,8 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import edu.wpi.cs3733.c20.teamU.Administration.EdgeEditController;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import javafx.collections.FXCollections;
@@ -25,7 +24,7 @@ public class EdgeViewScreenController {
   @FXML private TableView<Edge> edges;
   @FXML private TableColumn<Edge, String> edgeIdColumn, startNodeColumn, endNodeColumn;
 
-  Database graph;
+  DatabaseWrapper graph;
   EdgeEditController toEdit;
   private Edge selected;
 
@@ -90,8 +89,8 @@ public class EdgeViewScreenController {
     //getting nodes created in Hashmap from database
     HashMap<String, Edge> graph = new HashMap<String, Edge>();
     HashMap<String, Node> nodent = new HashMap<String, Node>();
-    Database.getNodes(nodent);
-    Database.getEdges(graph, nodent);
+    DatabaseWrapper.getNodes(nodent);
+    DatabaseWrapper.getEdges(graph, nodent);
 
     //add each node to the oblist
     Set keys = graph.keySet();
@@ -109,7 +108,7 @@ public class EdgeViewScreenController {
   @FXML
   public void remove() {
     if (selected != null) {
-      Database.delEdge(selected.getID());
+      DatabaseWrapper.delEdge(selected.getID());
       update();
     }
   }

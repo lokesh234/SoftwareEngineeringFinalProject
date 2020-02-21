@@ -1,7 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -29,7 +29,7 @@ public class LoginScreenController {
   private void isAuthorized() {
 
     usernameTried = usernameField.getText();
-    whoTried = Database.checkCred(usernameTried, passwordField.getText());
+    whoTried = DatabaseWrapper.checkCred(usernameTried, passwordField.getText());
     if (whoTried == null) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;

@@ -1,7 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
@@ -45,7 +44,7 @@ public class EdgeEditController {
 
     //getting nodes created in Hashmap from database
     HashMap<String, Node> graph = new HashMap<String, Node>();
-    Database.getNodes(graph);
+    DatabaseWrapper.getNodes(graph);
 
 
     //add each node to the oblist
@@ -102,11 +101,11 @@ public class EdgeEditController {
   public void save() {
     if (editing) {
       //Database.editEdge(selectedEdge.getID(), selectedStartNode.getNodeID(), selectedEndNode.getNodeID());
-      Database.editEdge(selectedEdge.getID(), DatabaseWrapper.getNodeID(selectedStartNode), DatabaseWrapper.getNodeID(selectedEndNode));
+      DatabaseWrapper.editEdge(selectedEdge.getID(), DatabaseWrapper.getNodeID(selectedStartNode), DatabaseWrapper.getNodeID(selectedEndNode));
       update();
     }
     else if (selectedEndNode != null && selectedStartNode != null) {
-      Database.addEdge(selectedStartNode.getID(), selectedEndNode.getID());
+      DatabaseWrapper.addEdge(selectedStartNode.getID(), selectedEndNode.getID());
       update();
     }
     else { //Not ready to save, don't do anything

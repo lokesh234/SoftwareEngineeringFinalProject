@@ -4,12 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Administration.AdministrationWrapper;
 import edu.wpi.cs3733.c20.teamU.App;
-//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 
 public class RequestScreenController {
     @FXML private JFXButton resolveButton;
