@@ -1,15 +1,10 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
+import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
-//import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
@@ -21,10 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-
-
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+//import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 
 //import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 
@@ -144,7 +142,7 @@ public class App extends Application {
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
-  private static String user;
+  private static Account user;
   private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
 
@@ -271,8 +269,8 @@ public class App extends Application {
   public static boolean getChange() { return didChange; }
   public static void setTime(long sys) { time = sys; }
   public static long getTime() { return time; }
-  public static void setUser(String user1) { user = user1; }
-  public static String getUser() { return user; }
+  public static void setUser(Account user1) { user = user1; }
+  public static Account getUser() { return user; }
   public static void setUsernameTried(String username1) { usernameTried = username1; }
   public static String getUsernameTried() { return usernameTried; }
   public static int getNodeSize() { return nodeSize; }

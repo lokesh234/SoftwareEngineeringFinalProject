@@ -38,7 +38,7 @@ public class AdminRequestController {
   @FXML private Label label;
   RequestScreenController requestScreenController;
   private boolean pending = true;
-  private String user = "";
+  private String cred = "";
 
   public void setAttributes(RequestScreenController requestScreenController1) {
     requestScreenController = requestScreenController1;
@@ -65,20 +65,20 @@ public class AdminRequestController {
 
   @FXML
   public void cred(){
-    user = App.getUser();
+    cred = App.getUser().getCred();
     if(App.getUser().equals("ADMIN")){
       comboBox.setDisable(false);
     }
     else {
       comboBox.setDisable(true);
     }
-    comboBox.setPromptText(user);
+    comboBox.setPromptText(cred);
   }
 
   @FXML
   public void selection(){
-    user = comboBox.getValue().toString();
-    System.out.println(user);
+    cred = comboBox.getValue().toString();
+    System.out.println(cred);
   }
 
   public void update() {
@@ -93,10 +93,10 @@ public class AdminRequestController {
     ObservableList<Service> services = FXCollections.observableArrayList();
     ArrayList<Service> temp = new ArrayList<>();
     if (pending == true) {
-      Database.getServices(temp, user);
+      Database.getServices(temp, cred);
     }
     else {
-      Database.getFinishedServices(temp, user);
+      Database.getFinishedServices(temp, cred);
     }
     if (temp != null) {
       services.addAll(temp);

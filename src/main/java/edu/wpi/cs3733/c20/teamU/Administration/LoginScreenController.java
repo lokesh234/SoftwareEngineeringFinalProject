@@ -12,7 +12,7 @@ public class LoginScreenController {
 
   private int trackLoginCount;
   private boolean didFail;
-  private String whoTried;
+  private Account whoTried;
   private String usernameTried;
   private EmployeeFormController employeeFormController;
 
@@ -30,7 +30,7 @@ public class LoginScreenController {
 
     usernameTried = usernameField.getText();
     whoTried = Database.checkCred(usernameTried, passwordField.getText());
-    if (whoTried.equals("FALSE")) {
+    if (whoTried == null) {
       if (trackLoginCount == 3) {
         trackLoginCount = 0;
         changeScene();
@@ -65,8 +65,9 @@ public class LoginScreenController {
       App.setUser(whoTried);
       App.setUsernameTried(usernameTried);
       employeeFormController.setFields();
-      if(whoTried.equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
+      if(whoTried.getCred().equals("ADMIN")) App.getPopup().getContent().add(App.getAdmin());
       else App.getPopup().getContent().add(App.getAdminRequest());
+      App.getAdminScreenController().cred();
       App.getAdminRequestController().cred();
       App.getAdminRequestController().update();
       App.getPopup().show(App.getPrimaryStage());

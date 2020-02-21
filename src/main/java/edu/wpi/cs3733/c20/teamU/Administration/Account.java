@@ -14,4 +14,20 @@ public class Account {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getCred() {
+        return cred;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

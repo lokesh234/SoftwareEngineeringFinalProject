@@ -1563,7 +1563,7 @@ public class Database {
      * @param inputPassword password
      * @return true if they match in the table
      */
-    public static String checkCred(String inputUsername, String inputPassword){
+    public static Account checkCred(String inputUsername, String inputPassword){
         Connection connection = null;
         Statement stmt = null;
         String tableName = "loginDB";
@@ -1582,22 +1582,32 @@ public class Database {
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
-                    return results.getString(5);
+                    String username = results.getString(1);
+                    String password = results.getString(2);
+                    String firstName = results.getString(3);
+                    String lastName = results.getString(4);
+                    String cred = results.getString(4);
+//                System.out.println(date);
+//                System.out.println(requestID);
+//                System.out.println(name);
+//                System.out.println(requestType);
+                    Account a = new Account(username, password, firstName, lastName, cred);
+                    return a;
                 }
                 else {
-                    return "FALSE";
+                    return null;
                 }
             }
             results.close();
             stmt.close();
             connection.close();
+            return null;
 
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return "FALSE";
+            return null;
         }
-        return "FALSE";
     }
 
   /**
