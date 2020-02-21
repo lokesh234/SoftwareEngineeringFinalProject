@@ -17,11 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.FlowerController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.FlowerController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER">
                <children>
                   <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                     <columnConstraints>
@@ -64,7 +64,7 @@
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <JFXComboBox fx:id="flowerCombo" />
-                                    <JFXButton fx:id="flo" onAction="#flowerTypeAdd" style="-fx-background-color: #474338;" text="Add" textFill="WHITE" />
+                                    <JFXButton fx:id="flo" onAction="#flowerTypeAdd" text="Add" />
                                  </children>
                               </HBox>
                            </children>
@@ -109,21 +109,18 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI" size="18.0" />
-                           </font></JFXButton>
+                        <JFXButton fx:id="submit" onAction="#getSubmission" text="Submit" />
                      </children>
                   </HBox>
                </children>
             </VBox>
          </center>
          <top>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #302D26;" BorderPane.alignment="CENTER">
+            <HBox fx:id="titleBar" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
                      <children>
-                        <Label text="Flowers Request Form" textFill="WHITE">
+                        <Label fx:id="titleLabel" text="Flowers Request Form" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
@@ -132,10 +129,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI" size="18.0" />
-                           </font></JFXButton>
+                        <JFXButton fx:id="backToRequest" onAction="#goBack" text="Back" />
                      </children>
                   </HBox>
                </children>
