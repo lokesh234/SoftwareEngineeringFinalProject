@@ -10,7 +10,7 @@ public class Account {
     public Account(String userName, String password, String cred, String firstName, String lastName) {
         this.userName = userName;
         this.password = password;
-        this.cred = cred;
+        this.cred = cred.toUpperCase();
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -20,7 +20,7 @@ public class Account {
     }
 
     public String getCred() {
-        return cred.toUpperCase();
+        return cred;
     }
 
     public String getFirstName() {

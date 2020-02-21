@@ -65,7 +65,6 @@ public class LoginScreenController {
       App.setUser(whoTried);
       App.setUsernameTried(usernameTried);
       employeeFormController.setFields();
-      System.out.println(whoTried.getCred().toUpperCase());
       if(whoTried.getCred().equals("ADMIN")) {
 //        System.out.println("here");
         App.getPopup().getContent().add(App.getAdmin());

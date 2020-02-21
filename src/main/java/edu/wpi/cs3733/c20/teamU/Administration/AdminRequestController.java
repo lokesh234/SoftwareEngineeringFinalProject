@@ -63,7 +63,7 @@ public class AdminRequestController {
   @FXML
   public void cred(){
     cred = App.getUser().getCred();
-    if(App.getUser().equals("ADMIN")){
+    if(cred.equals("ADMIN")){
       comboBox.setDisable(false);
     }
     else {
@@ -160,7 +160,7 @@ public class AdminRequestController {
   @FXML
   private void backToAdmin() {
     App.getPopup().getContent().clear();
-    if (App.getUser().equals("ADMIN")) {
+    if (cred.equals("ADMIN")) {
       App.getPopup().getContent().add(App.getAdmin());
       App.getPopup().show(App.getPrimaryStage());
     }
