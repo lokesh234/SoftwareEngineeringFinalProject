@@ -1586,7 +1586,7 @@ public class Database {
                     String password = results.getString(2);
                     String firstName = results.getString(3);
                     String lastName = results.getString(4);
-                    String cred = results.getString(4);
+                    String cred = results.getString(5).toUpperCase();
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
