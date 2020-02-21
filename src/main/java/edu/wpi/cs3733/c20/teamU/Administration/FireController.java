@@ -43,56 +43,6 @@ public class FireController {
                         .zoomBy(FireGesPane.getCurrentScale(), pivotOnTarget);
             }
         });
-        App.getHome().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getLogin().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getStart().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-        App.getPath().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        })
-        ;
-        App.getSecurity().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
-
-        App.getAdmin().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.F) {
-                    App.getPrimaryStage().setScene(App.getFireScene());
-                }
-            }
-        });
          /*
         App.getFire().setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override

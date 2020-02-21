@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
@@ -12,11 +13,13 @@ import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
-import javafx.fxml.FXML;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 
@@ -132,6 +135,12 @@ public class App extends Application {
   private static boolean didChange = false;
   private static long time;
 
+  private static boolean loadedHome = false;
+  private static boolean loadedAdminRequests = false;
+  private static boolean loadedPathfinding = false;
+  private static boolean loadedWeather = false;
+  private static boolean loadedAdminGraph = false;
+
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
@@ -154,6 +163,15 @@ public class App extends Application {
   private static Popup languageSRPop = new Popup();
   private static Popup ChoosePathPop = new Popup();
   private static Popup weatherPop = new Popup();
+
+  private static EventHandler<KeyEvent> fireKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.F) {
+        App.getPrimaryStage().setScene(App.getFireScene());
+      }
+    }
+  };
 
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
@@ -276,148 +294,238 @@ public class App extends Application {
   public static Popup getWeatherPop() { return weatherPop; }
 
   @Override
-  public void start(Stage primaryStage) throws Exception {
+  public void start(Stage primaryStage) {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
-    try {
 
-      FXMLLoader startLoader = new FXMLLoader(getClass().getResource("/light_theme/HomeStart.fxml"));
-      FXMLLoader homeLoader = new FXMLLoader(getClass().getResource("/light_theme/Home.fxml"));
-      FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("/light_theme/LoginForm.fxml"));
-      FXMLLoader adminLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminMenu.fxml"));
-//      FXMLLoader adminNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
-      FXMLLoader pathfindLoader = new FXMLLoader(getClass().getResource("/light_theme/Pathfind.fxml"));
-      FXMLLoader securityLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestSecurityForm.fxml"));
-      FXMLLoader requestLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMenu.fxml"));
-      FXMLLoader medicineLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestMedicineForm.fxml"));
-      FXMLLoader flowerLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFlowerForm.fxml"));
-      FXMLLoader exportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExportForm.fxml"));
-      FXMLLoader editLoader = new FXMLLoader(getClass().getResource("/light_theme/NodeForm.fxml"));
-      FXMLLoader adminRequestLoader = new FXMLLoader((getClass().getResource("/light_theme/Request.fxml")));
-      FXMLLoader editEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/Edit_Edge.fxml"));
-      FXMLLoader adminEdgeLoader = new FXMLLoader(getClass().getResource("/light_theme/View_Edges.fxml")); //TODO: add correct fxml
-      FXMLLoader RRLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestFormResolve.fxml"));
-      FXMLLoader weatherLoader = new FXMLLoader(getClass().getResource("/light_theme/WeatherWindow.fxml"));
-      FXMLLoader ITLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestIT.fxml"));
-      FXMLLoader fireLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindEmergency.fxml"));
-      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminGraph.fxml"));
-//      FXMLLoader adminGraphLoader = new FXMLLoader(getClass().getResource("/light_theme/Node.fxml"));
-      FXMLLoader addNodeLoader = new FXMLLoader(getClass().getResource("/light_theme/Add_Node.fxml"));
-      FXMLLoader employeeFormLoader = new FXMLLoader(getClass().getResource("/light_theme/EmployeeForm.fxml"));
-      FXMLLoader religiousLoader = new FXMLLoader(getClass().getResource("/light_theme/ReligiousRequest.fxml"));
-      FXMLLoader extTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/ExternalTransportForm.fxml")); //anir
-      FXMLLoader intTransportLoader = new FXMLLoader(getClass().getResource("/light_theme/InternalTransportForm.fxml")); //marcus
-      FXMLLoader pathfindtextLoader = new FXMLLoader(getClass().getResource("/light_theme/PathfindTextDirections.fxml"));
-      FXMLLoader clownDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestClownForm.fxml"));
-      FXMLLoader sanRequestLoader = new FXMLLoader(getClass().getResource("/light_theme/SanitationRequests.fxml"));
-      FXMLLoader languageLoader = new FXMLLoader(getClass().getResource("/light_theme/LanguageForm.fxml"));
-      FXMLLoader choosePathLoader = new FXMLLoader(getClass().getResource("/light_theme/AdminPathForm.fxml"));
-      FXMLLoader giftDeliveryLoader = new FXMLLoader(getClass().getResource("/light_theme/RequestGiftDelivery.fxml"));
+    popup.getContent().addAll();
+    securityPop.getContent().addAll();
+    requestPop.getContent().addAll();
+    medicinePop.getContent().addAll();
+    ITPop.getContent().addAll();
+    religiousPop.getContent().addAll();
+    extTransportPop.getContent().addAll();
+    intTransportPop.getContent().addAll();
+    TextDirectionsPop.getContent().addAll();
+    sanRequestPop.getContent().addAll();
+    languageSRPop.getContent().addAll();
+    ChoosePathPop.getContent().addAll();
 
-      home = homeLoader.load();
-      login = loginLoader.load();
-      start = startLoader.load();
-      path = pathfindLoader.load();
-      security = securityLoader.load();
-      admin = adminLoader.load();
-      request = requestLoader.load();
-      medicine = medicineLoader.load();
-      flower = flowerLoader.load();
-      fire = fireLoader.load();
-      weather = weatherLoader.load();
-      religious = religiousLoader.load();
-      IT = ITLoader.load();
-      export = exportLoader.load();
-      edit = editLoader.load();
-      adminRequest = adminRequestLoader.load();
-      adminNode = adminGraphLoader.load();
-      editEdge = editEdgeLoader.load();
-      adminEdge = adminEdgeLoader.load();
-      addNode = addNodeLoader.load();
-      resolveRequest = RRLoader.load();
-      employeeF = employeeFormLoader.load();
-      externalTransport = extTransportLoader.load();
-      internalTransport = intTransportLoader.load();
-      pathFindText = pathfindtextLoader.load();
-      clown = clownDeliveryLoader.load();
-      sanRequest = sanRequestLoader.load();
-      languageSR = languageLoader.load();
-      PathChoose = choosePathLoader.load();
-      giftDelivery = giftDeliveryLoader.load();
+    loadHome();
 
-      loginScreenController = loginLoader.getController();
-      homeController = homeLoader.getController();
-      pathfindController = pathfindLoader.getController();
-      securityController = securityLoader.getController();
-      requestController = requestLoader.getController();
-      medicineController = medicineLoader.getController();
-      adminScreenController = adminLoader.getController();
-      adminRequestController = adminRequestLoader.getController();
-      graphEditController = adminGraphLoader.getController();
-      editController = editLoader.getController();
-      editEdgeController = editEdgeLoader.getController();
-      viewEdgeViewScreenController = adminEdgeLoader.getController();
-      addNodeScreenController = addNodeLoader.getController();
-      requestScreenController = RRLoader.getController();
-      fireController = fireLoader.getController();
-      weatherController = weatherLoader.getController();
-      employeeFormController = employeeFormLoader.getController();
-      religiousController = religiousLoader.getController();
-//      editEdgeController = adminNodeLoader.getController();
-      extTransportController = extTransportLoader.getController();
-      intTranspoerController = intTransportLoader.getController(); //marcus
-      pathfindController = pathfindLoader.getController();
-      clownController = clownDeliveryLoader.getController();
-      pathfindTextController = pathfindtextLoader.getController();
-      languageController = languageLoader.getController();
-      choosePathController = choosePathLoader.getController();
-      giftDeliveryController = giftDeliveryLoader.getController();
+    primaryStage.setScene(startScene);
+    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wwong2.jpg")));
+    primaryStage.show();
 
-      pathfindController.setAttributes(path);
-      fireController.setAttributes(fire);
-      graphEditController.setAttributes(editController);
-      editController.setAttributes(graphEditController);
-      viewEdgeViewScreenController.setAttributes(editEdgeController);
-      requestScreenController.setAttributes(adminRequestController);
-      adminRequestController.setAttributes(requestScreenController);
-      addNodeScreenController.setAttributes(graphEditController);
-      loginScreenController.setAttributes(employeeFormController);
-      homeController.setWeatherData(weatherController);
+  }
 
+  public static void loadHome() {
+    if (!loadedHome) {
+      try {
+        FXMLLoader startLoader = new FXMLLoader(App.class.getResource("/light_theme/HomeStart.fxml"));
+        FXMLLoader homeLoader = new FXMLLoader(App.class.getResource("/light_theme/Home.fxml"));
+        FXMLLoader fireLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindEmergency.fxml"));
+        FXMLLoader securityLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestSecurityForm.fxml"));
 
-      popup.getContent().addAll();
-      securityPop.getContent().addAll();
-      requestPop.getContent().addAll();
-      medicinePop.getContent().addAll();
-      ITPop.getContent().addAll();
-      religiousPop.getContent().addAll();
-      extTransportPop.getContent().addAll();
-      intTransportPop.getContent().addAll();
-      TextDirectionsPop.getContent().addAll();
-      sanRequestPop.getContent().addAll();
-      languageSRPop.getContent().addAll();
-      ChoosePathPop.getContent().addAll();
+        home = homeLoader.load();
+        start = startLoader.load();
+        fire = fireLoader.load();
+        security = securityLoader.load();
 
+        home.setOnKeyPressed(fireKey);
+        start.setOnKeyPressed(fireKey);
+        security.setOnKeyPressed(fireKey);
 
-      homeScene = new Scene(home);
-      pathScene = new Scene(path);
-      startScene = new Scene(start);
-      fireScene = new Scene(fire);
-      adminScene = new Scene(admin);
-      adminNodeScene = new Scene(adminNode);
-//      addNodeScene = new Scene(addNode);
-//      deleteNodeScene = new Scene(deleteNode);
+        homeController = homeLoader.getController();
+        fireController = fireLoader.getController();
+        securityController = securityLoader.getController();
 
-      primaryStage.setScene(startScene);
-      primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wwong2.jpg")));
-      primaryStage.show();
-    } catch (IOException e) {
-      e.printStackTrace();
+        fireController.setAttributes(fire);
+
+        homeScene = new Scene(home);
+        startScene = new Scene(start);
+        fireScene = new Scene(fire);
+
+        loadedHome = true;
+      }
+      catch (IOException e) {
+        e.printStackTrace();
+        return;
+      }
     }
   }
 
+  public static void loadAdminRequests() {
+    if (!loadedAdminRequests) {
+      try {
+        FXMLLoader adminLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminMenu.fxml"));
+        FXMLLoader adminRequestLoader = new FXMLLoader((App.class.getResource("/light_theme/Request.fxml")));
+        FXMLLoader choosePathLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminPathForm.fxml"));
+        FXMLLoader employeeFormLoader = new FXMLLoader(App.class.getResource("/light_theme/EmployeeForm.fxml"));
+        FXMLLoader exportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExportForm.fxml"));
+        FXMLLoader RRLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestFormResolve.fxml"));
+        FXMLLoader requestLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMenu.fxml"));
+        FXMLLoader medicineLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMedicineForm.fxml"));
+        FXMLLoader flowerLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestFlowerForm.fxml"));
+        FXMLLoader religiousLoader = new FXMLLoader(App.class.getResource("/light_theme/ReligiousRequest.fxml"));
+        FXMLLoader extTransportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExternalTransportForm.fxml")); //anir
+        FXMLLoader intTransportLoader = new FXMLLoader(App.class.getResource("/light_theme/InternalTransportForm.fxml")); //marcus
+        FXMLLoader clownDeliveryLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestClownForm.fxml"));
+        FXMLLoader sanRequestLoader = new FXMLLoader(App.class.getResource("/light_theme/SanitationRequests.fxml"));
+        FXMLLoader languageLoader = new FXMLLoader(App.class.getResource("/light_theme/LanguageForm.fxml"));
+        FXMLLoader giftDeliveryLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestGiftDelivery.fxml"));
+        FXMLLoader ITLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestIT.fxml"));
+        FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/light_theme/LoginForm.fxml"));
 
+        admin = adminLoader.load();
+        adminRequest = adminRequestLoader.load();
+        employeeF = employeeFormLoader.load();
+        PathChoose = choosePathLoader.load();
+        resolveRequest = RRLoader.load();
+        export = exportLoader.load();
+        request = requestLoader.load();
+        medicine = medicineLoader.load();
+        flower = flowerLoader.load();
+        religious = religiousLoader.load();
+        IT = ITLoader.load();
+        externalTransport = extTransportLoader.load();
+        internalTransport = intTransportLoader.load();
+        clown = clownDeliveryLoader.load();
+        sanRequest = sanRequestLoader.load();
+        languageSR = languageLoader.load();
+        giftDelivery = giftDeliveryLoader.load();
+        login = loginLoader.load();
+
+        admin.setOnKeyPressed(fireKey);
+        adminRequest.setOnKeyPressed(fireKey);
+        employeeF.setOnKeyPressed(fireKey);
+        PathChoose.setOnKeyPressed(fireKey);
+        resolveRequest.setOnKeyPressed(fireKey);
+        export.setOnKeyPressed(fireKey);
+        request.setOnKeyPressed(fireKey);
+        medicine.setOnKeyPressed(fireKey);
+        flower.setOnKeyPressed(fireKey);
+        religious.setOnKeyPressed(fireKey);
+        IT.setOnKeyPressed(fireKey);
+        externalTransport.setOnKeyPressed(fireKey);
+        internalTransport.setOnKeyPressed(fireKey);
+        clown.setOnKeyPressed(fireKey);
+        sanRequest.setOnKeyPressed(fireKey);
+        languageSR.setOnKeyPressed(fireKey);
+        giftDelivery.setOnKeyPressed(fireKey);
+        login.setOnKeyPressed(fireKey);
+
+        adminScreenController = adminLoader.getController();
+        adminRequestController = adminRequestLoader.getController();
+        employeeFormController = employeeFormLoader.getController();
+        choosePathController = choosePathLoader.getController();
+        requestScreenController = RRLoader.getController();
+        requestController = requestLoader.getController();
+        medicineController = medicineLoader.getController();
+        religiousController = religiousLoader.getController();
+        extTransportController = extTransportLoader.getController();
+        intTranspoerController = intTransportLoader.getController(); //marcus
+        clownController = clownDeliveryLoader.getController();
+        languageController = languageLoader.getController();
+        giftDeliveryController = giftDeliveryLoader.getController();
+        loginScreenController = loginLoader.getController();
+
+        requestScreenController.setAttributes(adminRequestController);
+        adminRequestController.setAttributes(requestScreenController);
+        loginScreenController.setAttributes(employeeFormController);
+
+        adminScene = new Scene(admin);
+
+        loadedAdminRequests = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadPathfinding() {
+    if (!loadedPathfinding) {
+      try {
+        FXMLLoader pathfindLoader = new FXMLLoader(App.class.getResource("/light_theme/Pathfind.fxml"));
+        FXMLLoader pathfindtextLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindTextDirections.fxml"));
+
+        path = pathfindLoader.load();
+        pathFindText = pathfindtextLoader.load();
+
+        path.setOnKeyPressed(fireKey);
+        pathFindText.setOnKeyPressed(fireKey);
+
+        pathfindController = pathfindLoader.getController();
+        pathfindTextController = pathfindtextLoader.getController();
+
+        pathfindController.setAttributes(path);
+
+        pathScene = new Scene(path);
+
+        loadedPathfinding = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadWeather() {
+    if (!loadedWeather) {
+      try {
+        FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("/light_theme/WeatherWindow.fxml"));
+
+        weather = weatherLoader.load();
+
+        weather.setOnKeyPressed(fireKey);
+
+        weatherController = weatherLoader.getController();
+
+        homeController.setWeatherData(weatherController);
+
+        loadedWeather = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadAdminGraph() {
+    if (!loadedAdminGraph) {
+      try {
+        FXMLLoader adminGraphLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminGraph.fxml"));
+        FXMLLoader addNodeLoader = new FXMLLoader(App.class.getResource("/light_theme/Add_Node.fxml"));
+        FXMLLoader editLoader = new FXMLLoader(App.class.getResource("/light_theme/NodeForm.fxml"));
+
+        edit = editLoader.load();
+        adminNode = adminGraphLoader.load();
+        addNode = addNodeLoader.load();
+
+        edit.setOnKeyPressed(fireKey);
+        adminNode.setOnKeyPressed(fireKey);
+        addNode.setOnKeyPressed(fireKey);
+
+        graphEditController = adminGraphLoader.getController();
+        editController = editLoader.getController();
+        addNodeScreenController = addNodeLoader.getController();
+
+        graphEditController.setAttributes(editController);
+        editController.setAttributes(graphEditController);
+
+        addNodeScreenController.setAttributes(graphEditController);
+
+        adminNodeScene = new Scene(adminNode);
+
+        loadedAdminGraph = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
 
   public static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
     path.getChildren().add(e);

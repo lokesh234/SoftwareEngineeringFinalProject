@@ -33,6 +33,7 @@ public class AdminScreenController {
      */
     @FXML
     private void editNodes() {
+        App.loadAdminGraph();
         App.getPopup().getContent().clear();
         App.getPrimaryStage().setScene(App.getAdminNodeScene());
         App.getPrimaryStage().setOpacity(1);

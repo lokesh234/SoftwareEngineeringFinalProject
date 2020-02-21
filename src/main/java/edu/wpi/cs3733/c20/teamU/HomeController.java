@@ -62,6 +62,7 @@ public class HomeController {
 
   @FXML
   private void openLoginScene() {
+    App.loadAdminRequests();
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getPopup().getContent().add(App.getLogin());
@@ -75,6 +76,7 @@ public class HomeController {
 
   @FXML
   private void openNavScene(ActionEvent e) throws IOException {
+    App.loadPathfinding();
     //App.getGraph().update();
     DatabaseWrapper.updateGraph();
     //App.getPathfindController().drawNodes();
@@ -194,6 +196,7 @@ public class HomeController {
 
   @FXML
   private void openWeather() {
+    App.loadWeather();
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getWeatherPop().getContent().add(App.getWeather());
@@ -202,6 +205,7 @@ public class HomeController {
 
   @FXML
   private void openRequestScene(ActionEvent e) {
+    App.loadAdminRequests();
     App.getRequestPop().getContent().add(App.getRequest());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
