@@ -20,7 +20,7 @@ public class Account {
     }
 
     public String getCred() {
-        return cred;
+        return cred.toUpperCase();
     }
 
     public String getFirstName() {
