@@ -173,13 +173,7 @@ public class HomeController {
         }
       }
     }
-    if (hr >= 12) {
-      return String.format("%1$02d:%2$02d:%3$02dPM", hr, m, s);
-    } else {
-      return String.format("%1$02d:%2$02d:%3$02dAM", hr, m, s);
-    }
-//    if(hr >= 12) return String.format("%1$02d:%2$02dPM", hr, m);
-//    else return String.format("%1$02d:%2$02dAM", hr, m);
+      return String.format("%1$02d:%2$02d:%3$02d", hr, m, s);
   }
 
   private void setTime() {
@@ -217,8 +211,8 @@ public class HomeController {
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
-//    startC.setDaemon(true);
-//    startC.start();
+    startC.setDaemon(true);
+    startC.start();
     MapGes1.setOnMouseClicked(e -> {
       if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
         Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))

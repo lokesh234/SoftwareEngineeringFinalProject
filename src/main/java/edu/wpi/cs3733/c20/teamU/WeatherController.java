@@ -87,7 +87,7 @@ public class WeatherController {
     App.getHome().setOpacity(1);
     App.getHome().setDisable(false);
   }
-  
+
   @FXML
   public void initialize() throws InvalidAuthTokenException, DataNotFoundException {
     weatherBoi = new WeatherBoi();
@@ -118,7 +118,7 @@ public class WeatherController {
 
     tempC = weatherBoi.getWeather().getTemperature();
     tempF = returnF(tempC);
-    now.setEffect(setEffect((int)returnF(tempF)));
+    now.setEffect(setEffect((int)tempF));
     temp.setText(String.format("%.2s", tempF) + "\u00B0" + "F");
     tempCel.setText(String.format("%.4s", tempC) + "\u00B0" + "C");
 

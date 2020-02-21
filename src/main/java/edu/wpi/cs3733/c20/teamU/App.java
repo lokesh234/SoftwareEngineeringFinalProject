@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,7 @@ import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,12 +26,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 
+import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 //import static com.sun.org.apache.bcel.internal.util.SecuritySupport.getResourceAsStream;
 
-public class App extends Application {
+public class App<loadedAdminRequests> extends Application {
 
   private static Stage primaryStage;
 
@@ -140,6 +144,12 @@ public class App extends Application {
   private static boolean loadedPathfinding = false;
   private static boolean loadedWeather = false;
   private static boolean loadedAdminGraph = false;
+
+  public static boolean getLoadedAdmin() {return loadedAdminRequests;}
+  public static boolean getLoadedPathFinding() {return loadedPathfinding;}
+  public static boolean getLoadedWeather() {return loadedWeather;}
+  public static boolean getLoadedAdminGraph() {return loadedAdminGraph;}
+
 
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
@@ -292,6 +302,11 @@ public class App extends Application {
   public static Popup getLanguageSRPop() {return languageSRPop;}
   public static Popup getChoosePathPop() { return ChoosePathPop; }
   public static Popup getWeatherPop() { return weatherPop; }
+  public static StackPane layout = new StackPane();
+  public static StackPane returnStack() {
+    return layout;
+  }
+
 
   @Override
   public void start(Stage primaryStage) {
@@ -347,7 +362,6 @@ public class App extends Application {
         startScene = new Scene(start);
         fireScene = new Scene(fire);
 
-        loadedHome = true;
       }
       catch (IOException e) {
         e.printStackTrace();
@@ -438,6 +452,7 @@ public class App extends Application {
         adminScene = new Scene(admin);
 
         loadedAdminRequests = true;
+
       }
       catch (IOException e) {
         return;
