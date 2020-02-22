@@ -3,16 +3,14 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
 
 public class FlowerController {
     LocalDate today;
@@ -145,6 +143,25 @@ public class FlowerController {
                 );
         flowerCombo.getItems().addAll(flowerOptions);
         occasionCombo.getItems().addAll(occasionOptions);
+
+        submit.setDisable(true);
+        BooleanBinding blockCheckBox = (first.textProperty().isEmpty())
+                .or(last.textProperty().isEmpty()).or(giftNote.textProperty().isEmpty())
+                .or(room.textProperty().isEmpty())
+                //.or(flowerChip.getTypeSelector().isEmpty())
+                .or(occasionCombo.getSelectionModel().selectedItemProperty().isNull())
+                .or(datePick.getEditor().textProperty().isEmpty());
+
+//        @FXML private JFXTextField first;
+//        @FXML private JFXTextField last;
+//        @FXML private JFXTextArea giftNote;
+//        @FXML private JFXButton backToRequest;
+//        @FXML private JFXButton submit;
+//        @FXML private JFXComboBox flowerCombo = new JFXComboBox();
+//        @FXML private JFXComboBox occasionCombo = new JFXComboBox();
+//        @FXML private JFXDatePicker datePick;
+//        @FXML private JFXChipView flowerChip = new JFXChipView();
+//        @FXML private JFXTextField room;
     }
 
     private void setSelected(LocalDate date){
