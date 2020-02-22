@@ -10,7 +10,7 @@ import java.util.NavigableMap;
 
 public class ChoosePathController {
 
-    @FXML private JFXRadioButton sta, bfs, dfs;
+    @FXML private JFXRadioButton sta, bfs, dfs, djikstra;
     private ToggleGroup group = new ToggleGroup();
 
     @FXML
@@ -46,5 +46,6 @@ public class ChoosePathController {
         sta.setToggleGroup(group);
         bfs.setToggleGroup(group);
         dfs.setToggleGroup(group);
+        djikstra.setToggleGroup(group);
     }
 }
