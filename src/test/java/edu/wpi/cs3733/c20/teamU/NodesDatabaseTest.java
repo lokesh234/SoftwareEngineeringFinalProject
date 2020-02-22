@@ -11,7 +11,7 @@ public class NodesDatabaseTest {
         NodesDatabase nd = new NodesDatabase();
         Node testNode1 = new Node("1",1,2,3 ,"1","1","1","1");
         Node testNode2 = new Node("12",1,2,3 ,"1","1","1","1");
-       //nd.addNode(testNode1);
+        //nd.addNode(testNode1);
         DatabaseWrapper.nodeDatabaseAddNode(testNode1, nd);
         //assertEquals(testNode1, nd.getNode("1"));
         assertEquals(testNode1, DatabaseWrapper.nodeDatabaseGetNode("1", nd));
