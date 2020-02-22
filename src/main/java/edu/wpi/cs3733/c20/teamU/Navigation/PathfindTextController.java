@@ -17,6 +17,7 @@ public class PathfindTextController {
 
     @FXML
     public void exitPopup(ActionEvent e){
+        wipeDirections();
         App.getTextDirectionsPop().getContent().remove(0);
 //        Directions.setText("YEEHAW");
     }
