@@ -78,6 +78,7 @@ public class ExtTransportController {
             .or(lastNameText.textProperty().isEmpty()).or(passwordText.textProperty().isEmpty())
             .or(confirmPassText.textProperty().isEmpty()).or(tp.getEditor().textProperty().isEmpty())
             .or(dp.getEditor().textProperty().isEmpty());
+    confirm.disableProperty().bind(blockCheckBox);
   }
 
 //  @FXML private JFXTextField firstNameText;

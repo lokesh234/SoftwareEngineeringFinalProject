@@ -90,5 +90,17 @@ public class GiftDeliveryController {
             "Cookies"
         );
     gift.getItems().addAll(deliveryOptions);
+
+    submit.setDisable(true);
+    BooleanBinding blockCheckBox = (first.textProperty().isEmpty())
+            .or(last.textProperty().isEmpty()).or(room.textProperty().isEmpty())
+            .or(gift.getSelectionModel().selectedItemProperty().isNull());
+    submit.disableProperty().bind(blockCheckBox);
+//    @FXML private JFXTextField first;
+//    @FXML private JFXTextField last;
+//    @FXML private JFXTextField room;
+//    @FXML private JFXComboBox gift;
+//    @FXML private JFXButton submit;
+//    @FXML private JFXButton back;
   }
 }
