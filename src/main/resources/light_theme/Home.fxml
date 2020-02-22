@@ -151,11 +151,7 @@
                      <AnchorPane fx:id="N1" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane1">
-                                 <ImageView>
-                                     <image>
-                                         <Image url="@../png_files/Floor1LM.png" />
-                                     </image>
-                                 </ImageView>
+
                              </AnchorPane>
                          </GesturePane>
                      </AnchorPane>
@@ -164,11 +160,7 @@
                      <AnchorPane fx:id="N2" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane2">
-                                 <ImageView>
-                                     <image>
-                                         <Image url="@../png_files/Floor2LM.png" />
-                                     </image>
-                                 </ImageView>
+
                              </AnchorPane>
                          </GesturePane>
                      </AnchorPane>
@@ -177,11 +169,7 @@
                      <AnchorPane fx:id="N3" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane3">
-                                 <ImageView>
-                                     <image>
-                                         <Image url="@../png_files/Floor3LM.png" />
-                                     </image>
-                                 </ImageView>
+
                              </AnchorPane>
                          </GesturePane>
                      </AnchorPane>
@@ -190,11 +178,7 @@
                      <AnchorPane fx:id="N4" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane4">
-                                 <ImageView>
-                                     <image>
-                                         <Image url="@../png_files/Floor4LM.png" />
-                                     </image>
-                                 </ImageView>
+
                              </AnchorPane>
                          </GesturePane>
                      </AnchorPane>
@@ -203,11 +187,7 @@
                      <AnchorPane fx:id="N5" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane5">
-                                 <ImageView>
-                                     <image>
-                                         <Image url="@../png_files/Floor5LM.png" />
-                                     </image>
-                                 </ImageView>
+
                              </AnchorPane>
                          </GesturePane>
                      </AnchorPane>

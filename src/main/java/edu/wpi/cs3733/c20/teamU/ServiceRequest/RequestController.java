@@ -15,6 +15,7 @@ public class RequestController {
 
     @FXML
     public void openMedicineForm(ActionEvent e){
+        App.loadMedicine();
         App.getHome().setOpacity(.5);
         App.getHome().setDisable(true);
         App.getRequestPop().getContent().clear();
@@ -24,6 +25,7 @@ public class RequestController {
 
     @FXML
     public void openITRequest() {
+        App.loadIT();
         App.getRequestPop().getContent().remove(0);
         App.getRequestPop().getContent().clear();
         App.getITPop().getContent().add(App.getIT());
@@ -32,6 +34,7 @@ public class RequestController {
 
     @FXML
     public void openReligiousRequest() {
+        App.loadReligious();
         App.getRequestPop().getContent().remove(0);
         App.getReligiousPop().getContent().add(App.getReligious());
         App.getReligiousPop().show(App.getPrimaryStage());
@@ -40,6 +43,7 @@ public class RequestController {
 
     @FXML
     public void openExtTransportRequest() {
+        App.loadExtTransport();
         App.getRequestPop().getContent().remove(0);
         App.getExtTransportPop().getContent().add(App.getExternalTransport());
         App.getExtTransportPop().show(App.getPrimaryStage());
@@ -47,6 +51,7 @@ public class RequestController {
 
     @FXML
     public void openIntTransportRequest() {
+        App.loadIntTransport();
         App.getRequestPop().getContent().remove(0);
         App.getIntTransportPop().getContent().add(App.getInternalTransport());
         App.getIntTransportPop().show(App.getPrimaryStage());
@@ -54,6 +59,7 @@ public class RequestController {
 
     @FXML
     public void openFlowerForm() {
+        App.loadFlower();
         App.getRequestPop().getContent().clear();
         App.getFlowerPop().getContent().add(App.getFlower());
         App.getFlowerPop().show(App.getPrimaryStage());
@@ -61,6 +67,7 @@ public class RequestController {
 
     @FXML
     public void openClownRequest() {
+        App.loadClown();
         App.getRequestPop().getContent().remove(0);
         App.getClownPop().getContent().add(App.getClown());
         App.getClownPop().show(App.getPrimaryStage());
@@ -68,6 +75,7 @@ public class RequestController {
 
     @FXML
     public void openSanRequest(){
+        App.loadSan();
         App.getRequestPop().getContent().remove(0);
         App.getSanRequestPop().getContent().add(App.getSanRequest());
         App.getSanRequestPop().show(App.getPrimaryStage());
@@ -75,6 +83,7 @@ public class RequestController {
 
     @FXML
     public void openLangaugeRequest(){
+        App.loadLanguage();
         App.getRequestPop().getContent().remove(0);
         App.getLanguageSRPop().getContent().add(App.getLanguageSR());
         App.getLanguageSRPop().show(App.getPrimaryStage());
@@ -82,6 +91,7 @@ public class RequestController {
 
     @FXML
     private void openGiftDeliveryRequest() {
+        App.loadGift();
         App.getRequestPop().getContent().clear();
         App.getPopup().getContent().add(App.getGiftDelivery());
         App.getPopup().show(App.getPrimaryStage());

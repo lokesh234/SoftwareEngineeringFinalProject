@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -70,6 +71,15 @@ public class GraphEditController {
     public String toString() {
       return "("+Integer.toString(x)+", "+Integer.toString(y)+")";
     }
+  }
+
+  @FXML
+  private void initialize() {
+    NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
+    NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
+    NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
+    NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
+    NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
   }
 
 

@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -379,6 +380,12 @@ public class PathfindController {
 
     @FXML
     private void initialize() {
+        NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
+        NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
+        NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
+        NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
+        NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
+
         MapGes1.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
                 Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
@@ -575,18 +582,65 @@ public class PathfindController {
         updateStatus();
     }
 
-    private void getTextPath(){
-        if (path.size() == 0) return;
-        App.getTextpath().clear();
-        Node n2 = path.get(path.size() - 1);
-        for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path
-            Node n1 = path.get(i);
-            App.getTextpath().add(n1.getLongName());
+    private void getTextPath() {
+        if (path.size() == 0) {
+            return;
         }
-        App.getTextpath().add(n2.getLongName());
-        Collections.reverse(App.getTextpath());
+        App.getTextpath().clear();
+//        String pathWay = "";
+//        Node n2 = path.get(path.size() - 1);
+//        for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path
+//            Node n1 = path.get(i);
+//            if (i != path.size() - 2) {
+//                pathWay = getDirection(path.get(i), path.get(i + 1));
+//                System.out.println(pathWay);
+//            }
+//            App.getTextpath().add(pathWay + ": " + n1.getLongName());
+//        }
+        String direction = "";
+        boolean didContinue = false;
+        for(int i = path.size() - 1; i >= 0; i--) {
+            String name = path.get(i).getLongName();
+//            System.out.println(path.get(i).getID().substring(1, 5));
+            if(i == 0) {
+//                App.getTextpath().add(getDirection(path.get(i + 1), path.get(i)) + path.get(i + 1).getLongName());
+                App.getTextpath().add("Arrived at: " + name);
+                continue;
+            }
+            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
+                if(!didContinue) {
+                    App.getTextpath().add("Continue through " + name);
+                    didContinue = true;
+                }
+                continue;
+            }
+            didContinue = false;
+            direction = getDirection(path.get(i), path.get(i - 1));
+//            System.out.println(nodeType);
+            App.getTextpath().add(direction + name);
+        }
+//        App.getTextpath().add("Arrived at: " + n2.getLongName());
+//        Collections.reverse(App.getTextpath());
     }
 
+    private String getDirection(Node one, Node two) {
+        int x = one.getX() - two.getX();
+//        System.out.println(x);
+        int y = one.getY() - two.getY();
+//        System.out.println(y);
+        int pixTol = 20;
+//        if(Math.abs(x) < pixTol && Math.abs(y) < pixTol) {
+//            System.out.println("here");
+//            return "Keep Moving...";
+//        }
+
+        if(x > 0) return "Go Left on ";
+        if(x < 0) return "Go Right on ";
+        if(y < 0) return "Go Down on ";
+        if(y > 0) return "Go Up on ";
+        return "Nothing";
+
+    }
     @FXML
     private void backHome() {
         App.getPrimaryStage().setScene(App.getHomeScene());

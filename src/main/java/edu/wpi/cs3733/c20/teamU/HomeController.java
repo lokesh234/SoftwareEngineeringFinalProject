@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -46,6 +47,9 @@ public class HomeController {
   @FXML private GesturePane MapGes4;
   @FXML private GesturePane MapGes5;
   @FXML private GesturePane MapGes1;
+
+  @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
+
   private WeatherController weatherController;
   private long startTime;
   private long currentTime;
@@ -208,6 +212,12 @@ public class HomeController {
 
   @FXML
   private void initialize() {
+    NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
+    NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
+    NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
+    NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
+    NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
+
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
