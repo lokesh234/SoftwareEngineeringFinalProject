@@ -6,15 +6,12 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 
 public class MedicineController {
 
@@ -24,6 +21,7 @@ public class MedicineController {
     @FXML private JFXTextField first;
     @FXML private JFXTextField drug;
     @FXML private JFXButton backToRequest;
+    @FXML private JFXButton submit;
     @FXML private JFXComboBox comboBox = new JFXComboBox();
 
     @FXML
@@ -87,5 +85,21 @@ public class MedicineController {
                         "Suppository"
                 );
         comboBox.getItems().addAll(deliveryOptions);
+
+        submit.setDisable(true);
+        BooleanBinding blockCheckBox = comments.textProperty().isEmpty()
+                .or(last.textProperty().isEmpty()).or(frequency.textProperty().isEmpty())
+                .or(first.textProperty().isEmpty()).or(drug.textProperty().isEmpty()).or(comboBox.getSelectionModel().selectedItemProperty().isNull());
+        submit.disableProperty().bind(blockCheckBox);
     }
+
+//
+//    @FXML private JFXTextArea comments;
+//    @FXML private JFXTextField last;
+//    @FXML private JFXTextField frequency;
+//    @FXML private JFXTextField first;
+//    @FXML private JFXTextField drug;
+//    @FXML private JFXButton backToRequest;
+//    @FXML private JFXButton submit;
+//    @FXML private JFXComboBox comboBox = new JFXComboBox();
 }
