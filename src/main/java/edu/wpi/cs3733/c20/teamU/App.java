@@ -130,6 +130,7 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean didChange = false;
   private static long time;
 
+  private static boolean loadedImages = false;
   private static boolean loadedHome = false;
   private static boolean loadedAdminRequests = false;
   private static boolean loadedPathfinding = false;
@@ -164,6 +165,12 @@ public class App<loadedAdminRequests> extends Application {
   private static Popup languageSRPop = new Popup();
   private static Popup ChoosePathPop = new Popup();
   private static Popup weatherPop = new Popup();
+
+  private static Image floor1;
+  private static Image floor2;
+  private static Image floor3;
+  private static Image floor4;
+  private static Image floor5;
 
   private static EventHandler<KeyEvent> fireKey = new EventHandler<javafx.scene.input.KeyEvent>() {
     @Override
@@ -294,6 +301,12 @@ public class App<loadedAdminRequests> extends Application {
   public static Popup getChoosePathPop() { return ChoosePathPop; }
   public static Popup getWeatherPop() { return weatherPop; }
 
+  public static Image getFloor1() { return floor1;}
+  public static Image getFloor2() { return floor2;}
+  public static Image getFloor3() { return floor3;}
+  public static Image getFloor4() { return floor4;}
+  public static Image getFloor5() { return floor5;}
+
   @Override
   public void start(Stage primaryStage) {
 
@@ -321,9 +334,23 @@ public class App<loadedAdminRequests> extends Application {
 
   }
 
+  private static void loadImages() {
+    if (!loadedImages) {
+       floor1 = new Image("/png_files/Floor1LM.png");
+       floor2 = new Image("/png_files/Floor1LM.png");
+       floor3 = new Image("/png_files/Floor1LM.png");
+       floor4 = new Image("/png_files/Floor1LM.png");
+       floor5 = new Image("/png_files/Floor1LM.png");
+
+      loadedImages = true;
+    }
+  }
+
   public static void loadHome() {
     if (!loadedHome) {
       try {
+        loadImages();
+
         FXMLLoader startLoader = new FXMLLoader(App.class.getResource("/light_theme/HomeStart.fxml"));
         FXMLLoader homeLoader = new FXMLLoader(App.class.getResource("/light_theme/Home.fxml"));
         FXMLLoader fireLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindEmergency.fxml"));

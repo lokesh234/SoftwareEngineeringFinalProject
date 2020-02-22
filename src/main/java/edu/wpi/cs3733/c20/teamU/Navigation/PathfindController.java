@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -379,6 +380,12 @@ public class PathfindController {
 
     @FXML
     private void initialize() {
+        NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
+        NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
+        NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
+        NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
+        NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
+
         MapGes1.setOnMouseClicked(e -> {
             if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
                 Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
