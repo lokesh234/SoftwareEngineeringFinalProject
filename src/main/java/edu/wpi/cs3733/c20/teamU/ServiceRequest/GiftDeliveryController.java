@@ -37,6 +37,7 @@ public class GiftDeliveryController {
   private void returnToRequest() {
     clearField();
     App.getPopup().getContent().clear();
+    App.getPopup().hide();
     App.getRequestPop().getContent().add(App.getRequest());
     App.getRequestPop().show(App.getPrimaryStage());
   }
