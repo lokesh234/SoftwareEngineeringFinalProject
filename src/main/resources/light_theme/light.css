@@ -22,11 +22,12 @@
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI";
     -fx-base: rgb(0, 0, 0);
-    -fx-background: rgb(225, 228, 203);
+    -fx-background: #ffeec9;
 }
 
 .titleBar{
-    -fx-background-color: blue;
+    -fx-background-color: #302d26;
+    /*-fx-background-color: red;*/
 }
 .titleBar .label{
     -fx-font-size: 20pt;
