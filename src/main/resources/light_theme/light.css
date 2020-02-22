@@ -26,7 +26,7 @@
 }
 
 .titleBar{
-    -fx-background-color: #302d26;
+    -fx-background-color: blue;
 }
 .titleBar .label{
     -fx-font-size: 20pt;
@@ -566,4 +566,16 @@
 }
 .jfx-tree-view-path .buttons-container{
     -fx-background-color: -fx-container-color;
+}
+
+.buttonGrid {
+}
+
+.buttonGrid .jfx-button{
+    -fx-background-radius: 5px;
+    -fx-font-size: 14pt;
+}
+
+.buttonGrid .gridPane{
+    -fx-border-width: 0px 0px 0px 0px;
 }
