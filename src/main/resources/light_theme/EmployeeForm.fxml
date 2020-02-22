@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EmployeeFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EmployeeFormController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -37,6 +37,7 @@
               <rowConstraints>
                 <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.333343505859375" minHeight="30.0" prefHeight="18.333343505859375" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="20.333343505859375" minHeight="30.0" prefHeight="18.333343505859375" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="26.666656494140625" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="49.0" minHeight="30.0" prefHeight="25.666656494140625" vgrow="SOMETIMES" />
@@ -74,7 +75,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" GridPane.rowIndex="5">
+                  <HBox alignment="CENTER" GridPane.rowIndex="6">
                      <children>
                         <Label text="Employee Type(s)">
                            <font>
@@ -83,12 +84,12 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
                         <JFXComboBox fx:id="employeeCombo" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
                         <Label text="Password">
                            <font>
@@ -97,8 +98,8 @@
                         </Label>
                      </children>
                   </HBox>
-                  <JFXTextField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                  <JFXTextField fx:id="passwordText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
                         <Label text="Confirm Password">
                            <font>
@@ -107,15 +108,29 @@
                         </Label>
                      </children>
                   </HBox>
-                  <JFXTextField fx:id="confirmPassText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                  <JFXTextField fx:id="confirmPassText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
                         <JFXCheckBox fx:id="checkBox1" text="Add Employee" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
                         <JFXCheckBox fx:id="delete" checkedColor="#ff4a4a" text="Delete Employee" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <JFXTextField fx:id="employeeEmail" prefHeight="31.0" prefWidth="292.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="Email">
+                           <font>
+                              <Font name="Segoe UI" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>

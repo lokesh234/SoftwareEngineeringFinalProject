@@ -1031,7 +1031,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), email VARCHAR(30), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -1058,7 +1058,8 @@ public class Database {
                         String firstName = csvString[2];
                         String lastName = csvString[3];
                         String position = csvString[4];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "')");
+                        String email = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + email + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -1536,12 +1537,13 @@ public class Database {
                 String password = results.getString(2);
                 String firstName = results.getString(3);
                 String lastName = results.getString(4);
-                String cred = results.getString(4);
+                String cred = results.getString(5);
+                String email = results.getString(6);
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
 //                System.out.println(requestType);
-                Account a = new Account(username, password, firstName, lastName, cred);
+                Account a = new Account(username, password, firstName, lastName, cred, email);
                 accounts.add(a);
                 System.out.println("Account list: " + accounts);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
@@ -1574,35 +1576,38 @@ public class Database {
 
             String sql1 = "SELECT * FROM " + tableName + " WHERE username = '" + inputUsername + "'";
             ResultSet results = stmt.executeQuery(sql1);
-            ResultSetMetaData rsmd = results.getMetaData();
-            int columns = rsmd.getColumnCount();
-            for (int i = 1; i <= columns; i++) {
-            }
-
+//            ResultSetMetaData rsmd = results.getMetaData();
+//            int columns = rsmd.getColumnCount();
+//            for (int i = 1; i <= columns; i++) {
+//            }
+            String username = "";
+            String password = "";
+            String firstName = "";
+            String lastName = "";
+            String cred = "";
+            String email = "";
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
-                    String username = results.getString(1);
-                    String password = results.getString(2);
-                    String firstName = results.getString(3);
-                    String lastName = results.getString(4);
-                    String cred = results.getString(5).toUpperCase();
+                    username = results.getString(1);
+                    password = results.getString(2);
+                    firstName = results.getString(3);
+                    lastName = results.getString(4);
+                    cred = results.getString(5).toUpperCase();
+                    email = results.getString(6);
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
 //                System.out.println(requestType);
-                    Account a = new Account(username, password, firstName, lastName, cred);
-                    return a;
-                }
-                else {
+                } else {
                     return null;
                 }
             }
+            Account a = new Account(username, password, firstName, lastName, cred, email);
             results.close();
             stmt.close();
             connection.close();
-            return null;
-
+            return a;
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
@@ -1620,7 +1625,7 @@ public class Database {
    * @param position Position: one of ('ADMIN' 'MEDIC' ...)
    * @return boolean if loginSR is updated or edited
    */
-  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position) {
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String email) {
     String tableName = "LoginDB";
     Connection conn = null;
     Statement stmt = null;
@@ -1638,7 +1643,7 @@ public class Database {
       }
 
       stmt.executeUpdate(
-          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "')");
+          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + email + "')");
 
       Database.CreateCSV(stmt, tableName, null);
       stmt.close();
@@ -1656,27 +1661,32 @@ public class Database {
      * @param username used as the PK
      * @return returns arrayList of strings (U,P,F,L,P)
      */
-  public static ArrayList<String> getLoginSR(String username){
+  public static Account getLoginSR(String username){
       String tableName = "LoginDB";
       Connection conn = null;
       Statement stmt = null;
-      ArrayList<String> values = new ArrayList<>();
       try {
           conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
           stmt = conn.createStatement();
           // getting UBDatabase
           // check to see if username exists in LoginDB:
           ResultSet results = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE username = '" + username + "'");
-              while (results.next()) {
-                  values.add(username);
-                  values.add(results.getString(2));
-                  values.add(results.getString(3));
-                  values.add(results.getString(4));
-                  values.add(results.getString(5));
+          String password = "";
+          String firstName = "";
+          String lastName = "";
+          String position = "";
+          String email = "";
+          while (results.next()) {
+            password = results.getString(2);
+            firstName = results.getString(3);
+            lastName = results.getString(4);
+            position = results.getString(5);
+            email = results.getString(6);
               }
+          Account a = new Account(username, password, firstName, lastName, position, email);
           stmt.close();
           conn.close();
-          return values;
+          return a;
       } catch (SQLException e) {
           e.printStackTrace();
           return null;

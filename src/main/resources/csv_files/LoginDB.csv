@@ -1,6 +1,6 @@
-username,password,firstName,lastName,position
-admin,password,admin,user,ADMIN
-medic,password,medic,user,MEDIC
-security,password,security,user,SECUR
-staff,staff,template,user,ADMIN
-alek,password,Alek,Lewis,CLOWN
+username,password,firstName,lastName,position,email
+admin,password,admin,user,ADMIN,fakeEmail@email.com
+medic,password,medic,user,MEDIC,fakeEmail@email.com
+security,password,security,user,SECUR,fakeEmail@email.com
+staff,staff,template,user,ADMIN,fakeEmail@email.com
+alek,password,Alek,Lewis,CLOWN,fakeEmail@email.com

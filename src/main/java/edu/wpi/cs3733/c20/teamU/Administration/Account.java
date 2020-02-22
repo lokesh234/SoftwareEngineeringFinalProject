@@ -3,16 +3,18 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 public class Account {
     private String userName;
     private String password;
-    private String cred;
     private String firstName;
     private String lastName;
+    private String cred;
+    private String email;
 
-    public Account(String userName, String password, String cred, String firstName, String lastName) {
+    public Account(String userName, String password, String firstName, String lastName, String cred, String email) {
         this.userName = userName;
         this.password = password;
-        this.cred = cred.toUpperCase();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.cred = cred.toUpperCase();
     }
 
     public String getUserName() {
@@ -30,4 +32,6 @@ public class Account {
     public String getLastName() {
         return lastName;
     }
+
+    public String getEmail() {return email;}
 }
