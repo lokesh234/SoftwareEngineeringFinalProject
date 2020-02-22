@@ -29,8 +29,6 @@ public class StartControllerTest extends ApplicationTest {
   public void testButtons() {
     verifyThat("#login", hasText("Login"));
     verifyThat("#navButton", hasText("Navigate"));
-    verifyThat("#upButton", hasText("Λ"));
-    verifyThat("#downButton", hasText("V"));
     verifyThat("#plus", hasText("+"));
     verifyThat("#minus", hasText("-"));
 

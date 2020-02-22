@@ -16,9 +16,9 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-public class ClownControllerTest extends ApplicationTest {
+public class GiftDeliveryControllerTest extends ApplicationTest {
     public void start(Stage stage) throws IOException {
-        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/RequestClownForm.fxml"));
+        Parent sceneRoot = FXMLLoader.load(getClass().getResource("/light_theme/RequestGiftDelivery.fxml"));
         Scene scene1 = new Scene(sceneRoot);
         stage.setScene(scene1);
         stage.show();
@@ -27,18 +27,14 @@ public class ClownControllerTest extends ApplicationTest {
     @Test
     public void testButtons() {
         verifyThat("#submit", hasText("Submit"));
-    }
-
-    @Test
-    public void testLabels() {
-        verifyThat("#Name", hasText("Clown Request Form by Alek"));
+        verifyThat("#back", hasText("Back"));
     }
 
     @Test
     public void testWriteField() {
-        clickOn("#locationField").write("Room3");
-        clickOn("#nClownsField").write("3");
-        clickOn("#rNameField").write("TheJoker");
-        clickOn("#dateField").write("2/22/4022");
+        clickOn("#last").write("Je");
+        clickOn("#first").write("Ted");
+        clickOn("#room").write("Room_1");
+        clickOn("#gift");
     }
 }

@@ -1602,14 +1602,21 @@ public class Database {
 //                System.out.println(name);
 //                System.out.println(requestType);
                 } else {
+                    results.close();
+                    stmt.close();
+                    connection.close();
                     return null;
                 }
+                Account a = new Account(username, password, firstName, lastName, cred, email);
+                results.close();
+                stmt.close();
+                connection.close();
+                return a;
             }
-            Account a = new Account(username, password, firstName, lastName, cred, email);
             results.close();
             stmt.close();
             connection.close();
-            return a;
+            return null;
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();

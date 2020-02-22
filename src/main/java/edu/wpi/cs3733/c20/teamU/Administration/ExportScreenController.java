@@ -54,7 +54,7 @@ public class ExportScreenController {
       conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
       stmt = conn.createStatement();
       //getting UBDatabase
-      DatabaseWrapper.CreateCSV(stmt,"MapNodesU", file.toString());
+      DatabaseWrapper.createCSV(stmt,"MapNodesU", file.toString());
       stmt.close();
       conn.close();
     }
