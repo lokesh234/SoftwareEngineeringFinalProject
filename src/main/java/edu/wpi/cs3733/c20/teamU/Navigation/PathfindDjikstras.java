@@ -100,7 +100,7 @@ public class PathfindDjikstras implements PathfinderInterface {
                 if (!costSoFar.containsKey(n) || newCost < costSoFar.get(n)) { //Either we've been here before, but this time we got here cheaper, or this is new
                     costSoFar.put(n, newCost);
                     cameFrom.put(n, current);
-                    int priority = newCost + NavigationWrapper.dist(n, end);
+                    int priority = newCost;
                     frontier.add(new PriNode(n, priority));
                 }
             }

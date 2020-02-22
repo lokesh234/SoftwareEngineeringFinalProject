@@ -25,6 +25,8 @@ public class NavigationWrapper {
             case "DFS":
                 engine = PathfindDFS.getInstance();
                 break;
+            case "DJI":
+                engine = PathfindDjikstras.getPathfinder();
         }
     }
     public static void pathfind(Node start, Node end) {
