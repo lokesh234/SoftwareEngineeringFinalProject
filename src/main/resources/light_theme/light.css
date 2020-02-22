@@ -328,7 +328,7 @@
 }
 
 .jfx-slider:min .animated-thumb {
-    -fx-background-color: -jfx-default-track;
+    -fx-background-color: -jfx-defaulit-track;
     -fx-background-radius: 50% 50% 50% 0%;
     -fx-background-insets: 0;
 }
