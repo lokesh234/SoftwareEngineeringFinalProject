@@ -1,14 +1,8 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -28,6 +22,7 @@ public class SanRequestController {
     @FXML private TextField b;
     @FXML private TextField c;
     @FXML private Button back;
+    @FXML private Button confirm;
 
     @FXML
     private void getSubmission() {
@@ -69,6 +64,26 @@ public class SanRequestController {
         App.getHome().setOpacity(.5);
         App.getHome().setDisable(true);
         App.getRequestPop().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void initialize() {
+        confirm.setDisable(true);
+        BooleanBinding blockCheckBox = (a.textProperty().isEmpty())
+                .or(b.textProperty().isEmpty()).or(c.textProperty().isEmpty())
+                .or(d.textProperty().isEmpty());
+        confirm.disableProperty().bind(blockCheckBox);
+//        @FXML private TextArea d;
+//        @FXML private TextField a;
+//        @FXML private TextField b;
+//        @FXML private TextField c;
+//            @FXML
+//            private TextField last;
+//            @FXML private TextArea comments;
+//            @FXML private TextField first;
+//            @FXML private Button closeITScreen;
+//            @FXML private Button submit;
+//            @FXML private ComboBox comboBox = new ComboBox();
     }
 
 }

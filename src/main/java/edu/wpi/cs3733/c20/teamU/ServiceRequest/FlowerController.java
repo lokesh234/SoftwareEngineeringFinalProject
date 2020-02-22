@@ -148,9 +148,10 @@ public class FlowerController {
         BooleanBinding blockCheckBox = (first.textProperty().isEmpty())
                 .or(last.textProperty().isEmpty()).or(giftNote.textProperty().isEmpty())
                 .or(room.textProperty().isEmpty())
-                //.or(flowerChip.getTypeSelector().isEmpty())
+                .or(flowerChip.converterProperty().isNull())
                 .or(occasionCombo.getSelectionModel().selectedItemProperty().isNull())
                 .or(datePick.getEditor().textProperty().isEmpty());
+        submit.disableProperty().bind(blockCheckBox);
 
 //        @FXML private JFXTextField first;
 //        @FXML private JFXTextField last;

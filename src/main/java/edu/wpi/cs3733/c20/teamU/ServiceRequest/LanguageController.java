@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 
@@ -14,7 +15,7 @@ public class LanguageController {
     @FXML
     JFXTextField firstNameText, lastNameText, passwordText;
     @FXML
-    JFXButton cancel;
+    JFXButton cancel, confirm;
     @FXML
     JFXRadioButton Japenese, Russian, Hindi, Spanish, Chinese, Ethiopian;
 
@@ -111,6 +112,21 @@ public class LanguageController {
         Chinese.setToggleGroup(equipmentGroup);
         Ethiopian.setToggleGroup(equipmentGroup);
         equipmentGroup.selectToggle(null);
+
+        confirm.setDisable(true);
+        BooleanBinding blockCheckBox = (firstNameText.textProperty().isEmpty())
+                .or(lastNameText.textProperty().isEmpty()).or(passwordText.textProperty().isEmpty())
+                //.or(flowerChip.getTypeSelector().isEmpty())
+                .or(Japenese.selectedProperty().and(Russian.selectedProperty()).and(Hindi.selectedProperty())
+                        .and(Spanish.selectedProperty()).and(Chinese.selectedProperty()).and(Ethiopian.selectedProperty()));
+        confirm.disableProperty().bind(blockCheckBox);
+//        @FXML
+//        JFXTextField firstNameText, lastNameText, passwordText;
+//        @FXML
+//        JFXButton cancel, confirm;
+//        @FXML
+//        JFXRadioButton Japenese, Russian, Hindi, Spanish, Chinese, Ethiopian;
+//
     }
 
 }

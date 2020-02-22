@@ -3,11 +3,10 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,11 +18,11 @@ public class ReligiousController {
     @FXML private TextField firstName;
     @FXML private ComboBox comboBox;
     @FXML private JFXButton cancel;
+    @FXML private JFXButton confirm;
 
     @FXML
     private void getSubmission() {
-        String userLast = lastName.getText();
-        String userComment = comments.getText();
+        String userLast = lastName.getText();        String userComment = comments.getText();
         String userFreq = firstName.getText();
         String userBox;
         if(comboBox.getValue() == null) userBox = "";
@@ -88,5 +87,17 @@ public class ReligiousController {
 
                 );
         comboBox.getItems().addAll(deliveryOptions);
+        confirm.setDisable(true);
+        BooleanBinding blockCheckBox = (firstName.textProperty().isEmpty())
+                .or(lastName.textProperty().isEmpty()).or(comments.textProperty().isEmpty())
+                .or(comboBox.getSelectionModel().selectedItemProperty().isNull());
+        confirm.disableProperty().bind(blockCheckBox);
+//
+//        @FXML private TextField lastName;
+//        @FXML private TextArea comments;
+//        @FXML private TextField firstName;
+//        @FXML private ComboBox comboBox;
+//        @FXML private JFXButton cancel;
+//        @FXML private JFXButton confirm;
     }
 }

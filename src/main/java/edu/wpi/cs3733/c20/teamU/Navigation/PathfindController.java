@@ -63,6 +63,9 @@ public class PathfindController {
     @FXML private GesturePane MapGes4;
     @FXML private GesturePane MapGes5;
 
+    private Circle startSelect = new Circle();
+    private Circle endSelect = new Circle();
+
 
     public void setAttributes(Parent root) {
         this.root = root;
@@ -367,6 +370,34 @@ public class PathfindController {
         }
         else if (state == State.END) statusLabel.setText("Click on a Node to Set Destination");
         else statusLabel.setText("Click on a Node to Set Start Position");
+
+        if (startReady) {
+            removeFromPath(startSelect, start.getFloor());
+            startSelect.setCenterX(start.getX());
+            startSelect.setCenterY(start.getY());
+            startSelect.setFill(Color.TRANSPARENT);
+            startSelect.setStroke(Color.YELLOW);
+            startSelect.setStrokeWidth(5);
+            startSelect.setRadius(20);
+            addToPath(startSelect, start.getFloor());
+        }
+        else if (start != null) {
+            removeFromPath(startSelect, start.getFloor());
+        }
+
+        if (endReady) {
+            removeFromPath(endSelect, end.getFloor());
+            endSelect.setCenterX(end.getX());
+            endSelect.setCenterY(end.getY());
+            endSelect.setFill(Color.TRANSPARENT);
+            endSelect.setStroke(Color.ORANGE);
+            endSelect.setStrokeWidth(5);
+            endSelect.setRadius(20);
+            addToPath(endSelect, end.getFloor());
+        }
+        else if (end != null) {
+            removeFromPath(endSelect, end.getFloor());
+        }
     }
 
     public void drawNodes() {
@@ -674,38 +705,38 @@ public class PathfindController {
     private void addToPath(javafx.scene.Node e, int floor) {
         switch (floor) {
             case 1:
-                NodesPane1.getChildren().add(e);
+                if (!NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().add(e);
                 break;
             case 2:
-                NodesPane2.getChildren().add(e);
+                if (!NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().add(e);
                 break;
             case 3:
-                NodesPane3.getChildren().add(e);
+                if (!NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().add(e);
                 break;
             case 4:
-                NodesPane4.getChildren().add(e);
+                if (!NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().add(e);
                 break;
             case 5:
-                NodesPane5.getChildren().add(e);
+                if (!NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().add(e);
                 break;
         }
     }
     private void removeFromPath(javafx.scene.Node e, int floor) {
         switch (floor) {
             case 1:
-                NodesPane1.getChildren().remove(e);
+                if (NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().remove(e);
                 break;
             case 2:
-                NodesPane2.getChildren().remove(e);
+                if (NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().remove(e);
                 break;
             case 3:
-                NodesPane3.getChildren().remove(e);
+                if (NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().remove(e);
                 break;
             case 4:
-                NodesPane4.getChildren().remove(e);
+                if (NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().remove(e);
                 break;
             case 5:
-                NodesPane5.getChildren().remove(e);
+                if (NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().remove(e);
                 break;
         }
     }

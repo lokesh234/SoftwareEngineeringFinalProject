@@ -2,7 +2,7 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,6 +17,7 @@ public class ITController {
         @FXML private TextArea comments;
         @FXML private TextField first;
         @FXML private Button closeITScreen;
+        @FXML private Button submit;
         @FXML private ComboBox comboBox = new ComboBox();
 
         @FXML
@@ -99,6 +100,18 @@ public class ITController {
                             "Don'tknow"
                     );
             comboBox.getItems().addAll(deliveryOptions);
+            submit.setDisable(true);
+            BooleanBinding blockCheckBox = (first.textProperty().isEmpty())
+                    .or(last.textProperty().isEmpty()).or(comments.textProperty().isEmpty())
+                    .or(comboBox.getSelectionModel().selectedItemProperty().isNull());
+            submit.disableProperty().bind(blockCheckBox);
+//            @FXML
+//            private TextField last;
+//            @FXML private TextArea comments;
+//            @FXML private TextField first;
+//            @FXML private Button closeITScreen;
+//            @FXML private Button submit;
+//            @FXML private ComboBox comboBox = new ComboBox();
         }
 
 }
