@@ -136,6 +136,16 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedPathfinding = false;
   private static boolean loadedWeather = false;
   private static boolean loadedAdminGraph = false;
+  private static boolean loadedMedicine = false;
+  private static boolean loadedFlower = false;
+  private static boolean loadedReligious = false;
+  private static boolean loadedExtTransport = false;
+  private static boolean loadedIntTransport = false;
+  private static boolean loadedClown = false;
+  private static boolean loadedSan = false;
+  private static boolean loadedLanguage = false;
+  private static boolean loadedGift = false;
+  private static boolean loadedIT = false;
 
   public static boolean getLoadedAdmin() {return loadedAdminRequests;}
   public static boolean getLoadedPathFinding() {return loadedPathfinding;}
@@ -393,16 +403,6 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader exportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExportForm.fxml"));
         FXMLLoader RRLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestFormResolve.fxml"));
         FXMLLoader requestLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMenu.fxml"));
-        FXMLLoader medicineLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMedicineForm.fxml"));
-        FXMLLoader flowerLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestFlowerForm.fxml"));
-        FXMLLoader religiousLoader = new FXMLLoader(App.class.getResource("/light_theme/ReligiousRequest.fxml"));
-        FXMLLoader extTransportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExternalTransportForm.fxml")); //anir
-        FXMLLoader intTransportLoader = new FXMLLoader(App.class.getResource("/light_theme/InternalTransportForm.fxml")); //marcus
-        FXMLLoader clownDeliveryLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestClownForm.fxml"));
-        FXMLLoader sanRequestLoader = new FXMLLoader(App.class.getResource("/light_theme/SanitationRequests.fxml"));
-        FXMLLoader languageLoader = new FXMLLoader(App.class.getResource("/light_theme/LanguageForm.fxml"));
-        FXMLLoader giftDeliveryLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestGiftDelivery.fxml"));
-        FXMLLoader ITLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestIT.fxml"));
         FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/light_theme/LoginForm.fxml"));
 
         admin = adminLoader.load();
@@ -412,16 +412,6 @@ public class App<loadedAdminRequests> extends Application {
         resolveRequest = RRLoader.load();
         export = exportLoader.load();
         request = requestLoader.load();
-        medicine = medicineLoader.load();
-        flower = flowerLoader.load();
-        religious = religiousLoader.load();
-        IT = ITLoader.load();
-        externalTransport = extTransportLoader.load();
-        internalTransport = intTransportLoader.load();
-        clown = clownDeliveryLoader.load();
-        sanRequest = sanRequestLoader.load();
-        languageSR = languageLoader.load();
-        giftDelivery = giftDeliveryLoader.load();
         login = loginLoader.load();
 
         admin.setOnKeyPressed(fireKey);
@@ -431,16 +421,6 @@ public class App<loadedAdminRequests> extends Application {
         resolveRequest.setOnKeyPressed(fireKey);
         export.setOnKeyPressed(fireKey);
         request.setOnKeyPressed(fireKey);
-        medicine.setOnKeyPressed(fireKey);
-        flower.setOnKeyPressed(fireKey);
-        religious.setOnKeyPressed(fireKey);
-        IT.setOnKeyPressed(fireKey);
-        externalTransport.setOnKeyPressed(fireKey);
-        internalTransport.setOnKeyPressed(fireKey);
-        clown.setOnKeyPressed(fireKey);
-        sanRequest.setOnKeyPressed(fireKey);
-        languageSR.setOnKeyPressed(fireKey);
-        giftDelivery.setOnKeyPressed(fireKey);
         login.setOnKeyPressed(fireKey);
 
         adminScreenController = adminLoader.getController();
@@ -449,13 +429,6 @@ public class App<loadedAdminRequests> extends Application {
         choosePathController = choosePathLoader.getController();
         requestScreenController = RRLoader.getController();
         requestController = requestLoader.getController();
-        medicineController = medicineLoader.getController();
-        religiousController = religiousLoader.getController();
-        extTransportController = extTransportLoader.getController();
-        intTranspoerController = intTransportLoader.getController(); //marcus
-        clownController = clownDeliveryLoader.getController();
-        languageController = languageLoader.getController();
-        giftDeliveryController = giftDeliveryLoader.getController();
         loginScreenController = loginLoader.getController();
 
         requestScreenController.setAttributes(adminRequestController);
@@ -466,6 +439,190 @@ public class App<loadedAdminRequests> extends Application {
 
         loadedAdminRequests = true;
 
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadMedicine() {
+    if (!loadedMedicine) {
+      try {
+        FXMLLoader medicineLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMedicineForm.fxml"));
+
+        medicine = medicineLoader.load();
+
+        medicineController = medicineLoader.getController();
+
+        medicine.setOnKeyPressed(fireKey);
+
+        loadedMedicine = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadFlower() {
+    if (!loadedFlower) {
+      try {
+        FXMLLoader flowerLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestFlowerForm.fxml"));
+
+        flower = flowerLoader.load();
+
+        flower.setOnKeyPressed(fireKey);
+
+        loadedFlower = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadReligious() {
+    if (!loadedReligious) {
+      try {
+        FXMLLoader religiousLoader = new FXMLLoader(App.class.getResource("/light_theme/ReligiousRequest.fxml"));
+
+        religious = religiousLoader.load();
+
+        religiousController = religiousLoader.getController();
+
+        religious.setOnKeyPressed(fireKey);
+
+        loadedReligious = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadExtTransport() {
+    if (!loadedExtTransport) {
+      try {
+        FXMLLoader extTransportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExternalTransportForm.fxml")); //anir
+
+        externalTransport = extTransportLoader.load();
+
+        extTransportController = extTransportLoader.getController();
+
+        externalTransport.setOnKeyPressed(fireKey);
+
+        loadedExtTransport = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadIntTransport() {
+    if (!loadedIntTransport) {
+      try {
+        FXMLLoader intTransportLoader = new FXMLLoader(App.class.getResource("/light_theme/InternalTransportForm.fxml")); //marcus
+
+        internalTransport = intTransportLoader.load();
+
+        intTranspoerController = intTransportLoader.getController(); //marcus
+
+        internalTransport.setOnKeyPressed(fireKey);
+
+        loadedIntTransport = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadClown() {
+    if (!loadedClown) {
+      try {
+        FXMLLoader clownDeliveryLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestClownForm.fxml"));
+
+        clown = clownDeliveryLoader.load();
+
+        clownController = clownDeliveryLoader.getController();
+
+        clown.setOnKeyPressed(fireKey);
+
+        loadedClown = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadSan() {
+    if (!loadedSan){
+      try {
+        FXMLLoader sanRequestLoader = new FXMLLoader(App.class.getResource("/light_theme/SanitationRequests.fxml"));
+
+        sanRequest = sanRequestLoader.load();
+
+        sanRequest.setOnKeyPressed(fireKey);
+
+        loadedSan = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadLanguage() {
+    if (!loadedLanguage) {
+      try {
+        FXMLLoader languageLoader = new FXMLLoader(App.class.getResource("/light_theme/LanguageForm.fxml"));
+
+        languageSR = languageLoader.load();
+
+        languageController = languageLoader.getController();
+
+        languageSR.setOnKeyPressed(fireKey);
+
+        loadedLanguage = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadGift() {
+    if (!loadedGift) {
+      try {
+        FXMLLoader giftDeliveryLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestGiftDelivery.fxml"));
+
+        giftDelivery = giftDeliveryLoader.load();
+
+        giftDeliveryController = giftDeliveryLoader.getController();
+
+        giftDelivery.setOnKeyPressed(fireKey);
+
+        loadedGift = true;
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadIT() {
+    if (!loadedIT) {
+      try {
+        FXMLLoader ITLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestIT.fxml"));
+
+        IT = ITLoader.load();
+
+        IT.setOnKeyPressed(fireKey);
+
+        loadedIT = true;
       }
       catch (IOException e) {
         return;
