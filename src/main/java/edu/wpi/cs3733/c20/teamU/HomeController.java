@@ -382,28 +382,35 @@ public class HomeController {
                   .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
           zoomed = MapGes1.getCurrentScale();
           zoomCounter--;
-          System.out.println(MapGes1.getCurrentScale());
         }
         break;
       case 2:
         MapGes2.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes2.getCurrentScale(), MapGes2.targetPointAtViewportCentre());
+        zoomed = MapGes2.getCurrentScale();
+        zoomCounter--;
         break;
       case 3:
         MapGes3.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes3.getCurrentScale(), MapGes3.targetPointAtViewportCentre());
+        zoomed = MapGes3.getCurrentScale();
+        zoomCounter--;
         break;
       case 4:
         MapGes4.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes4.getCurrentScale(), MapGes4.targetPointAtViewportCentre());
+        zoomed = MapGes4.getCurrentScale();
+        zoomCounter--;
         break;
       case 5:
         MapGes5.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
+        zoomed = MapGes5.getCurrentScale();
+        zoomCounter--;
         break;
     }
   }
@@ -417,7 +424,7 @@ public class HomeController {
                   .interpolateWith(Interpolator.EASE_BOTH)
                   .zoomTo(zoomed/2, MapGes1.targetPointAtViewportCentre());
           zoomed /= 2;
-          System.out.println(zoomed/2);
+          //System.out.println(zoomed/2);
           zoomCounter++;
         }
 //        System.out.println(MapGes1.getCurrentScale() - 5);
@@ -425,22 +432,30 @@ public class HomeController {
       case 2:
         MapGes2.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes2.getCurrentScale() - 2, MapGes2.targetPointAtViewportCentre());
+            .zoomTo(zoomed/2, MapGes2.targetPointAtViewportCentre());
+        zoomed /= 2;
+        zoomCounter++;
         break;
       case 3:
         MapGes3.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes3.getCurrentScale() - 2, MapGes3.targetPointAtViewportCentre());
+            .zoomTo(zoomed/2, MapGes3.targetPointAtViewportCentre());
+        zoomed /= 2;
+        zoomCounter++;
         break;
       case 4:
         MapGes4.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes4.getCurrentScale() - 2, MapGes4.targetPointAtViewportCentre());
+            .zoomTo(zoomed/2, MapGes4.targetPointAtViewportCentre());
+        zoomed /= 2;
+        zoomCounter++;
         break;
       case 5:
         MapGes5.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes5.getCurrentScale() - 2, MapGes5.targetPointAtViewportCentre());
+            .zoomTo(zoomed/2, MapGes5.targetPointAtViewportCentre());
+        zoomed /= 2;
+        zoomCounter++;
         break;
     }
   }
