@@ -39,6 +39,9 @@
     -fx-background-color: #474338;
 }
 
+.sideBar .jfx-button{
+    -fx-background-radius: 5px;
+}
 
 .border-pane{
     -fx-background-color: #ffeec9;
