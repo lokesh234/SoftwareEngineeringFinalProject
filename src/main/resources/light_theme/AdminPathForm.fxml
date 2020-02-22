@@ -51,7 +51,7 @@
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
                   </JFXRadioButton>
-                  <JFXRadioButton text="Dijkstra's">
+                  <JFXRadioButton text="Dijkstra's" fx:id="djikstra">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
