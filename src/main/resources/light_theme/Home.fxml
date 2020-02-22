@@ -22,7 +22,7 @@
                           <children>
                         <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                            <children>
-                                      <Label alignment="CENTER" prefHeight="55.0" prefWidth="635.0" text="BWH Faulkner Hospital Map" textFill="WHITE">
+                                      <Label  fx:id="BWHospital" alignment="CENTER" prefHeight="55.0" prefWidth="635.0" text="BWH Faulkner Hospital Map" textFill="WHITE">
                                           <font>
                                               <Font name="System Bold" size="38.0" />
                                           </font>
@@ -34,7 +34,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                            <children>
-                              <JFXButton fx:id="login" buttonType="RAISED" onAction="#openLoginScene" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login " textFill="WHITE">
+                              <JFXButton fx:id="login" buttonType="RAISED" onAction="#openLoginScene" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #807765;" text="Login" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="20.0" />
                                  </font>
@@ -64,7 +64,7 @@
                <children>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="home" alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -96,7 +96,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" onAction="#openRequestScene" text="Services" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="services" contentDisplay="TOP" onAction="#openRequestScene" text="Services" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -112,7 +112,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" text="Information" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="info" contentDisplay="TOP" text="Information" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -128,7 +128,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" onAction="#openHelpScene" text="Help" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="help" contentDisplay="TOP" onAction="#openHelpScene" text="Help" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

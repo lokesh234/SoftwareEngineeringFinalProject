@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Add Nodes Menu" textFill="WHITE">
+                  <Label fx:id="AddNodesMenu" text="Add Nodes Menu" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font></Label>
@@ -46,7 +46,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="NODEID">
+                        <Label fx:id="NodeID" text="NODEID">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -55,7 +55,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="XCOORD">
+                        <Label fx:id="XCOORD" text="XCOORD">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -64,7 +64,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <children>
-                        <Label text="YCOORD">
+                        <Label fx:id="YCOORD" text="YCOORD">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -73,7 +73,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label text="FLOOR">
+                        <Label fx:id="FLOOR" text="FLOOR">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -82,7 +82,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                      <children>
-                        <Label text="BUILDING">
+                        <Label fx:id="building" text="BUILDING">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -91,7 +91,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
                      <children>
-                        <Label text="NODETYPE">
+                        <Label fx:id="nodetype" text="NODETYPE">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -100,7 +100,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                      <children>
-                        <Label text="LONGNAME">
+                        <Label fx:id="longname" text="LONGNAME">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -109,7 +109,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
                      <children>
-                        <Label text="SHORTNAME">
+                        <Label fx:id="shortname" text="SHORTNAME">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>

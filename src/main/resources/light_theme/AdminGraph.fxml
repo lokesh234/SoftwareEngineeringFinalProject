@@ -73,7 +73,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="View Graph" textFill="WHITE">
+                        <Label fx:id="viewGraph" text="View Graph" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="36.0" />
                            </font>
@@ -117,7 +117,7 @@
                   <Line endX="100.0" startX="-100.0" />
                   <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="MODE SELECT" textFill="WHITE">
+                        <Label fx:id="select" text="MODE SELECT" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="18.0" />
                            </font>
@@ -201,7 +201,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton text="Λ" onAction="#clickUp">
+                  <JFXButton fx:id="up" text="Λ" onAction="#clickUp">
                      <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>
@@ -211,7 +211,7 @@
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>
                   </Label>
-                  <JFXButton text="V" onAction="#clickDown">
+                  <JFXButton fx:id="down" text="V" onAction="#clickDown">
                      <font>
                         <Font name="Segoe UI Bold" size="36.0" />
                      </font>

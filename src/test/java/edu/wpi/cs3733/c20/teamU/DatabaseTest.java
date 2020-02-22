@@ -19,15 +19,15 @@ public class DatabaseTest {
         db.UDBInitializer();
         Connection conn = null;
         Statement stmt = null;
-    try{
-        conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
-        stmt = conn.createStatement();
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
 
-        assertTrue(db.printTable(stmt, "MapNodesU"), "Table MapNodesU Not Found");
-        assertTrue(db.printTable(stmt, "MapEdgesU"), "Table MapEdgesU Not Found");
+            assertTrue(db.printTable(stmt, "MapNodesU"), "Table MapNodesU Not Found");
+            assertTrue(db.printTable(stmt, "MapEdgesU"), "Table MapEdgesU Not Found");
 
-        stmt.close();
-        conn.close();
+            stmt.close();
+            conn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
