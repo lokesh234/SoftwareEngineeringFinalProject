@@ -63,6 +63,9 @@ public class PathfindController {
     @FXML private GesturePane MapGes4;
     @FXML private GesturePane MapGes5;
 
+    private Circle startSelect = new Circle();
+    private Circle endSelect = new Circle();
+
 
     public void setAttributes(Parent root) {
         this.root = root;
@@ -261,70 +264,96 @@ public class PathfindController {
     @FXML private void zoomIn() {
         ZoomInMachine(floor);
     }
-
-    @FXML private void ZoomInMachine(int floor){
-        switch (floor){
+    private int zoomCounter = 5;
+    private double zoomed = 0;
+    private void ZoomInMachine(int floor) {
+        switch (floor) {
             case 1:
-                MapGes1.animate(Duration.millis(200))
-                        .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
+                if(zoomCounter <= 5 && zoomCounter > 0) {
+                    MapGes1.animate(Duration.millis(200))
+                            .interpolateWith(Interpolator.EASE_BOTH)
+                            .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
+                    zoomed = MapGes1.getCurrentScale();
+                    zoomCounter--;
+                }
                 break;
             case 2:
                 MapGes2.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes2.getCurrentScale(), MapGes2.targetPointAtViewportCentre());
-
+                zoomed = MapGes2.getCurrentScale();
+                zoomCounter--;
                 break;
             case 3:
                 MapGes3.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes3.getCurrentScale(), MapGes3.targetPointAtViewportCentre());
+                zoomed = MapGes3.getCurrentScale();
+                zoomCounter--;
                 break;
             case 4:
                 MapGes4.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes4.getCurrentScale(), MapGes4.targetPointAtViewportCentre());
+                zoomed = MapGes4.getCurrentScale();
+                zoomCounter--;
                 break;
             case 5:
                 MapGes5.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
-
+                zoomed = MapGes5.getCurrentScale();
+                zoomCounter--;
                 break;
         }
     }
 
-    @FXML private void ZoomOutMachine(int floor) {
+
+    private void ZoomOutMachine(int floor) {
         switch (floor) {
             case 1:
-                MapGes1.animate(Duration.millis(200))
-                        .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(MapGes1.getCurrentScale() - 15, MapGes1.targetPointAtViewportCentre());
+                if(zoomCounter < 5 && zoomCounter >= 0 ) {
+//          System.out.println(MapGes1.getCurrentScale());
+                    MapGes1.animate(Duration.millis(200))
+                            .interpolateWith(Interpolator.EASE_BOTH)
+                            .zoomTo(zoomed/2, MapGes1.targetPointAtViewportCentre());
+                    zoomed /= 2;
+                    //System.out.println(zoomed/2);
+                    zoomCounter++;
+                }
+//        System.out.println(MapGes1.getCurrentScale() - 5);
                 break;
             case 2:
                 MapGes2.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(MapGes2.getCurrentScale() - 15, MapGes2.targetPointAtViewportCentre());
-
+                        .zoomTo(zoomed/2, MapGes2.targetPointAtViewportCentre());
+                zoomed /= 2;
+                zoomCounter++;
                 break;
             case 3:
                 MapGes3.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(MapGes3.getCurrentScale() - 15, MapGes3.targetPointAtViewportCentre());
+                        .zoomTo(zoomed/2, MapGes3.targetPointAtViewportCentre());
+                zoomed /= 2;
+                zoomCounter++;
                 break;
             case 4:
                 MapGes4.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(MapGes4.getCurrentScale() - 15, MapGes4.targetPointAtViewportCentre());
+                        .zoomTo(zoomed/2, MapGes4.targetPointAtViewportCentre());
+                zoomed /= 2;
+                zoomCounter++;
                 break;
             case 5:
                 MapGes5.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomBy(MapGes5.getCurrentScale() - 15, MapGes5.targetPointAtViewportCentre());
-
+                        .zoomTo(zoomed/2, MapGes5.targetPointAtViewportCentre());
+                zoomed /= 2;
+                zoomCounter++;
                 break;
         }
     }
+
 
     @FXML private void zoomOut(){
         ZoomOutMachine(floor);
@@ -341,6 +370,34 @@ public class PathfindController {
         }
         else if (state == State.END) statusLabel.setText("Click on a Node to Set Destination");
         else statusLabel.setText("Click on a Node to Set Start Position");
+
+        if (startReady) {
+            removeFromPath(startSelect, start.getFloor());
+            startSelect.setCenterX(start.getX());
+            startSelect.setCenterY(start.getY());
+            startSelect.setFill(Color.TRANSPARENT);
+            startSelect.setStroke(Color.YELLOW);
+            startSelect.setStrokeWidth(5);
+            startSelect.setRadius(20);
+            addToPath(startSelect, start.getFloor());
+        }
+        else if (start != null) {
+            removeFromPath(startSelect, start.getFloor());
+        }
+
+        if (endReady) {
+            removeFromPath(endSelect, end.getFloor());
+            endSelect.setCenterX(end.getX());
+            endSelect.setCenterY(end.getY());
+            endSelect.setFill(Color.TRANSPARENT);
+            endSelect.setStroke(Color.ORANGE);
+            endSelect.setStrokeWidth(5);
+            endSelect.setRadius(20);
+            addToPath(endSelect, end.getFloor());
+        }
+        else if (end != null) {
+            removeFromPath(endSelect, end.getFloor());
+        }
     }
 
     public void drawNodes() {
@@ -648,38 +705,38 @@ public class PathfindController {
     private void addToPath(javafx.scene.Node e, int floor) {
         switch (floor) {
             case 1:
-                NodesPane1.getChildren().add(e);
+                if (!NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().add(e);
                 break;
             case 2:
-                NodesPane2.getChildren().add(e);
+                if (!NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().add(e);
                 break;
             case 3:
-                NodesPane3.getChildren().add(e);
+                if (!NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().add(e);
                 break;
             case 4:
-                NodesPane4.getChildren().add(e);
+                if (!NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().add(e);
                 break;
             case 5:
-                NodesPane5.getChildren().add(e);
+                if (!NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().add(e);
                 break;
         }
     }
     private void removeFromPath(javafx.scene.Node e, int floor) {
         switch (floor) {
             case 1:
-                NodesPane1.getChildren().remove(e);
+                if (NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().remove(e);
                 break;
             case 2:
-                NodesPane2.getChildren().remove(e);
+                if (NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().remove(e);
                 break;
             case 3:
-                NodesPane3.getChildren().remove(e);
+                if (NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().remove(e);
                 break;
             case 4:
-                NodesPane4.getChildren().remove(e);
+                if (NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().remove(e);
                 break;
             case 5:
-                NodesPane5.getChildren().remove(e);
+                if (NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().remove(e);
                 break;
         }
     }

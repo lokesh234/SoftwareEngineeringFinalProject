@@ -1212,7 +1212,9 @@ public class Database {
                 Node node1 = nHM.get(results.getString(2));
                 Node node2 = nHM.get(results.getString(3));
                 //calculate the distance, create a new Edge(), put it into the result HashMap
-                int dis = NavigationWrapper.dist(node1, node2);
+                int dis = 0;
+                if (node1.getNodeType().equals("STAI") && node2.getNodeType().equals("STAI")) dis = 250;
+                else if (!node1.getNodeType().equals("ELEV") && !node2.getNodeType().equals("ELEV")) dis = NavigationWrapper.dist(node1, node2);
                 eHM.put(edgeID, new Edge(node1, node2, dis, edgeID));
            }
 

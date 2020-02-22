@@ -1,15 +1,12 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
-import com.jfoenix.controls.*;
-import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import javafx.event.ActionEvent;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 
 public class ExtTransportController {
@@ -76,6 +73,19 @@ public class ExtTransportController {
 
   @FXML
   public void initialize() {
+    confirm.setDisable(true);
+    BooleanBinding blockCheckBox = (firstNameText.textProperty().isEmpty())
+            .or(lastNameText.textProperty().isEmpty()).or(passwordText.textProperty().isEmpty())
+            .or(confirmPassText.textProperty().isEmpty()).or(tp.getEditor().textProperty().isEmpty())
+            .or(dp.getEditor().textProperty().isEmpty());
+    confirm.disableProperty().bind(blockCheckBox);
   }
+
+//  @FXML private JFXTextField firstNameText;
+//  @FXML private JFXTextField lastNameText;
+//  @FXML private JFXTextField passwordText;
+//  @FXML private JFXTextField confirmPassText;
+//  @FXML private JFXTimePicker tp;
+//  @FXML private JFXDatePicker dp;
 
 }

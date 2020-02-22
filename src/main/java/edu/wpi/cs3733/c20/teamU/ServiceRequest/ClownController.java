@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ public class ClownController {
     @FXML private JFXTextField locationField, nClownsField, rNameField, otherField;
     @FXML private JFXDatePicker dateField;
     @FXML private JFXButton backToRequest;
+    @FXML private JFXButton submit;
     @FXML private JFXComboBox comboBox = new JFXComboBox();
     @FXML private AnchorPane clownParent;
 
@@ -100,6 +102,12 @@ public class ClownController {
                         "Other"
                 );
         comboBox.getItems().addAll(deliveryOptions);
+
+        submit.setDisable(true);
+        BooleanBinding blockCheckBox = (nClownsField.textProperty().isEmpty())
+                .or(locationField.textProperty().isEmpty()).or(rNameField.textProperty().isEmpty())
+                .or(comboBox.getSelectionModel().selectedItemProperty().isNull());
+        submit.disableProperty().bind(blockCheckBox);
         //comboBox.setOnAction(otherHandler);
 ///        otherField.setDisable(true);
     }

@@ -24,6 +24,7 @@ public class ChoosePathController {
         if (sta.isSelected()) NavigationWrapper.setSearchType("A*");
         else if (bfs.isSelected()) NavigationWrapper.setSearchType("BFS");
         else if (dfs.isSelected()) NavigationWrapper.setSearchType("DFS");
+        else if (djikstra.isSelected()) NavigationWrapper.setSearchType("DJI");
         closePop();
     }
 
@@ -38,6 +39,8 @@ public class ChoosePathController {
             case "DFS":
                 dfs.setSelected(true);
                 break;
+            case "DJI":
+                djikstra.setSelected(true);
         }
     }
 

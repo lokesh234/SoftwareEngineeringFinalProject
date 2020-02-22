@@ -1,17 +1,15 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import javafx.scene.control.ToggleGroup;
 
-import javafx.scene.control.*;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
+//import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 
 public class IntTransportController {
 
@@ -22,6 +20,7 @@ public class IntTransportController {
     @FXML private JFXRadioButton crutches;
     @FXML private JFXRadioButton wheelchair;
     @FXML private JFXButton cancel;
+    @FXML private JFXButton confirm;
 
 
     @FXML
@@ -93,6 +92,24 @@ public class IntTransportController {
         wheelchair.setToggleGroup(equipmentGroup);
         crutches.setToggleGroup(equipmentGroup);
         equipmentGroup.selectToggle(null);
+
+        confirm.setDisable(true);
+        BooleanBinding blockCheckBox = (firstNameText.textProperty().isEmpty())
+                .or(lastNameText.textProperty().isEmpty()).or(start.textProperty().isEmpty())
+                .or(end.textProperty().isEmpty())
+                //.or(flowerChip.getTypeSelector().isEmpty())
+                .or(crutches.selectedProperty().and(wheelchair.selectedProperty()));
+        confirm.disableProperty().bind(blockCheckBox);
     }
+
+
+//    @FXML private JFXTextField firstNameText;
+//    @FXML private JFXTextField lastNameText;
+//    @FXML private JFXTextField start;
+//    @FXML private JFXTextField end;
+//    @FXML private JFXRadioButton crutches;
+//    @FXML private JFXRadioButton wheelchair;
+//    @FXML private JFXButton cancel;
+//    @FXML private JFXButton confirm;
 
 }
