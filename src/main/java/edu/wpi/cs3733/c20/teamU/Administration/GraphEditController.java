@@ -56,6 +56,9 @@ public class GraphEditController {
   private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
+  private Circle startSelect = new Circle();
+  private Circle endSelect = new Circle();
+
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode;
   }
@@ -251,6 +254,15 @@ public class GraphEditController {
   }
 
   private void updateButtons() {
+    removeFromAll(startSelect);
+    removeFromAll(endSelect);
+    for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
+      removeFromAll(pair.getValue());
+    }
+    for (Map.Entry<Circle, Integer> pair : extraFloorPaths.entrySet()) {
+      removeFromAll(pair.getKey());
+    }
+    if (extraLine != null) removeFromAll(extraLine);
     if (selectedEdge != null) {
       if (selectedEdge.getStart().getFloor() == selectedEdge.getEnd().getFloor()) lines.get(selectedEdge).setStroke(Color.BLACK);
       else {
@@ -268,68 +280,98 @@ public class GraphEditController {
       addButton.setDisable(selectedNode != null);
       editButton.setDisable(selectedNode == null);
       removeButton.setDisable(selectedNode == null);
-    }
-    else if (selectedStartNode != null && selectedEndNode != null) {
-      clearExtraLine();
-      if (!DatabaseWrapper.getGraph().getNeighborNodes(DatabaseWrapper.getGraph().getNode(selectedStartNode.getID())).contains(selectedEndNode)) { //ya like ()?
-        if (selectedStartNode.getFloor() == selectedEndNode.getFloor()) {
-          extraLine = new Path(); //This is an edge that doesn't exist, so let's highlight it in green!
-          extraLineFloor = selectedStartNode.getFloor();
-          MoveTo move = new MoveTo(selectedEndNode.getX(), selectedEndNode.getY());
-          LineTo line = new LineTo(selectedStartNode.getX(), selectedStartNode.getY());
-          extraLine.getElements().add(move);
-          extraLine.getElements().add(line);
-          extraLine.setStroke(green);
-          extraLine.setStrokeWidth(5.0);
-          extraLine.getStrokeDashArray().addAll(15d, 15d);
-          extraLine.setStrokeDashOffset(15d);
-          addToPath(extraLine, extraLineFloor);
-        }
-        else {
-          Node n1 = selectedEndNode;
-          Node n2 = selectedStartNode;
-          Circle c = new Circle();
-          Circle c2 = new Circle();
-          c.setCenterX(n1.getX());
-          c.setCenterY(n1.getY());
-          c2.setCenterY(n2.getY());
-          c2.setCenterX(n2.getX());
-          c.setFill(Color.TRANSPARENT);
-          c2.setFill(Color.TRANSPARENT);
-          c.setStroke(Color.GREEN);
-          c2.setStroke(Color.GREEN);
-          c.setRadius(App.getNodeSize()+5);
-          c2.setRadius(App.getNodeSize()+5);
-          c.getStrokeDashArray().addAll(15d, 15d);
-          c.setStrokeDashOffset(15d);
-          c2.getStrokeDashArray().addAll(15d, 15d);
-          c2.setStrokeDashOffset(15d);
-          c.setStrokeWidth(5);
-          c2.setStrokeWidth(5);
-          extraFloorPaths.put(c, n1.getFloor());
-          extraFloorPaths.put(c2, n2.getFloor());
-          addToPath(c, n1.getFloor());
-          addToPath(c2, n2.getFloor());
-        }
-        addButton.setDisable(false);
-        removeButton.setDisable(true);
-      }
-      else { //selectedEndNode is contained in selectedStartNode's neighbors
-        selectedEdge = DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode);
-        if (selectedEndNode.getFloor() == selectedStartNode.getFloor()) lines.get(selectedEdge).setStroke(Color.DARKORANGE);
-        else {
-          interFloorPaths.get(selectedEndNode).setStroke(Color.DARKORANGE);
-          interFloorPaths.get(selectedStartNode).setStroke(Color.DARKORANGE);
-        }
-
-        addButton.setDisable(true);
-        removeButton.setDisable(false);
+      if (selectedNode != null) {
+        startSelect.setCenterX(selectedNode.getX());
+        startSelect.setCenterY(selectedNode.getY());
+        startSelect.setFill(Color.TRANSPARENT);
+        startSelect.setStroke(Color.YELLOW);
+        startSelect.setStrokeWidth(5);
+        startSelect.setRadius(20);
+        addToPath(startSelect, selectedNode.getFloor());
       }
     }
     else {
-      addButton.setDisable(true);
-      removeButton.setDisable(true);
+      if (selectedStartNode != null) {
+        startSelect.setCenterX(selectedStartNode.getX());
+        startSelect.setCenterY(selectedStartNode.getY());
+        startSelect.setFill(Color.TRANSPARENT);
+        startSelect.setStroke(Color.YELLOW);
+        startSelect.setStrokeWidth(5);
+        startSelect.setRadius(20);
+        addToPath(startSelect, selectedStartNode.getFloor());
+      }
+      if (selectedEndNode != null) {
+        endSelect.setCenterX(selectedEndNode.getX());
+        endSelect.setCenterY(selectedEndNode.getY());
+        endSelect.setFill(Color.TRANSPARENT);
+        endSelect.setStroke(Color.ORANGE);
+        endSelect.setStrokeWidth(5);
+        endSelect.setRadius(20);
+        addToPath(endSelect, selectedEndNode.getFloor());
+      }
+      if (selectedStartNode != null && selectedEndNode != null) {
+        clearExtraLine();
+        if (!DatabaseWrapper.getGraph().getNeighborNodes(DatabaseWrapper.getGraph().getNode(selectedStartNode.getID())).contains(selectedEndNode)) { //ya like ()?
+          if (selectedStartNode.getFloor() == selectedEndNode.getFloor()) {
+            extraLine = new Path(); //This is an edge that doesn't exist, so let's highlight it in green!
+            extraLineFloor = selectedStartNode.getFloor();
+            MoveTo move = new MoveTo(selectedEndNode.getX(), selectedEndNode.getY());
+            LineTo line = new LineTo(selectedStartNode.getX(), selectedStartNode.getY());
+            extraLine.getElements().add(move);
+            extraLine.getElements().add(line);
+            extraLine.setStroke(green);
+            extraLine.setStrokeWidth(5.0);
+            extraLine.getStrokeDashArray().addAll(15d, 15d);
+            extraLine.setStrokeDashOffset(15d);
+            addToPath(extraLine, extraLineFloor);
+          }
+          else {
+            Node n1 = selectedEndNode;
+            Node n2 = selectedStartNode;
+            Circle c = new Circle();
+            Circle c2 = new Circle();
+            c.setCenterX(n1.getX());
+            c.setCenterY(n1.getY());
+            c2.setCenterY(n2.getY());
+            c2.setCenterX(n2.getX());
+            c.setFill(Color.TRANSPARENT);
+            c2.setFill(Color.TRANSPARENT);
+            c.setStroke(Color.GREEN);
+            c2.setStroke(Color.GREEN);
+            c.setRadius(App.getNodeSize()+5);
+            c2.setRadius(App.getNodeSize()+5);
+            c.getStrokeDashArray().addAll(15d, 15d);
+            c.setStrokeDashOffset(15d);
+            c2.getStrokeDashArray().addAll(15d, 15d);
+            c2.setStrokeDashOffset(15d);
+            c.setStrokeWidth(5);
+            c2.setStrokeWidth(5);
+            extraFloorPaths.put(c, n1.getFloor());
+            extraFloorPaths.put(c2, n2.getFloor());
+            addToPath(c, n1.getFloor());
+            addToPath(c2, n2.getFloor());
+          }
+          addButton.setDisable(false);
+          removeButton.setDisable(true);
+        }
+        else { //selectedEndNode is contained in selectedStartNode's neighbors
+          selectedEdge = DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode);
+          if (selectedEndNode.getFloor() == selectedStartNode.getFloor()) lines.get(selectedEdge).setStroke(Color.DARKORANGE);
+          else {
+            interFloorPaths.get(selectedEndNode).setStroke(Color.DARKORANGE);
+            interFloorPaths.get(selectedStartNode).setStroke(Color.DARKORANGE);
+          }
+
+          addButton.setDisable(true);
+          removeButton.setDisable(false);
+        }
+      }
+      else {
+        addButton.setDisable(true);
+        removeButton.setDisable(true);
+      }
     }
+
   }
 
   private void clearExtraLine() {
@@ -613,10 +655,9 @@ public class GraphEditController {
   /**
    * function to change scene to Export_CSV
    * @param event
-   * @throws IOException
    */
   @FXML
-  public void exportScreen(ActionEvent event) throws IOException {
+  public void exportScreen(ActionEvent event) {
     App.getPopup().getContent().clear();
     App.getPopup().getContent().add(App.getExport());
     App.getPopup().show(App.getPrimaryStage());
@@ -638,19 +679,19 @@ public class GraphEditController {
   private void addToPath(javafx.scene.Node e, int floor) {
     switch (floor) {
       case 1:
-        NodesPane1.getChildren().add(e);
+        if (!NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().add(e);
         break;
       case 2:
-        NodesPane2.getChildren().add(e);
+        if (!NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().add(e);
         break;
       case 3:
-        NodesPane3.getChildren().add(e);
+        if (!NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().add(e);
         break;
       case 4:
-        NodesPane4.getChildren().add(e);
+        if (!NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().add(e);
         break;
       case 5:
-        NodesPane5.getChildren().add(e);
+        if (!NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().add(e);
         break;
     }
   }
@@ -672,6 +713,14 @@ public class GraphEditController {
         NodesPane5.getChildren().remove(e);
         break;
     }
+  }
+
+  private void removeFromAll(javafx.scene.Node e) {
+    removeFromPath(e, 1);
+    removeFromPath(e, 2);
+    removeFromPath(e, 3);
+    removeFromPath(e, 4);
+    removeFromPath(e, 5);
   }
 
 }
