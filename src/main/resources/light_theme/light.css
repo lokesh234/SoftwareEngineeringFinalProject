@@ -138,6 +138,7 @@
     -jfx-focus-color: #4059A9;
     -jfx-unfocus-color: #4d4d4d;
     -fx-prompt-text-fill: #4d4d4d;
+    -fx-padding: 0.0em 1em 0.0em 1em;
 }
 
 .jfx-combo-box,
