@@ -6,15 +6,16 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EdgeEditController">
    <children>
-      <VBox style="-fx-background-color: #474338;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #474338;">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #474338;" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -37,71 +38,65 @@
                      </children>
                   </HBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         </top>
+         <center>
+            <TableView fx:id="nodeTable" onMouseClicked="#detectClick" style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="NodeID" prefWidth="75.0" text="NodeID" />
+                  <TableColumn prefWidth="75.0" text="X-coord" fx:id="xCoord" />
+                  <TableColumn fx:id="yCoord" prefWidth="75.0" text="Y-coord" />
+                  <TableColumn fx:id="floor" prefWidth="75.0" text="Floor" />
+                  <TableColumn fx:id="building" prefWidth="75.0" text="Building" />
+                  <TableColumn fx:id="nodeType" prefWidth="75.0" text="NodeType" />
+                  <TableColumn fx:id="longName" prefWidth="123.0" text="LongName" />
+                  <TableColumn fx:id="shortName" prefWidth="76.0" text="ShortName" />
+               </columns>
+            </TableView>
+         </center>
+         <left>
+            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #807765;" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #807765;" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="140.0" spacing="10.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="107.0" prefWidth="140.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="20.0" spacing="10.0">
                            <children>
-                              <HBox alignment="CENTER" prefHeight="20.0" spacing="10.0">
-                                 <children>
-                                    <Label text="Locate File" textFill="WHITE">
-                                       <font>
-                                          <Font name="Segoe UI" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <JFXButton prefHeight="30.0" prefWidth="32.0" style="-fx-background-color: #BFB397;" text=". . ." />
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
+                              <Label text="Locate File" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton prefHeight="30.0" prefWidth="32.0" style="-fx-background-color: #BFB397;" text=". . ." />
                            </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
-                           <children>
-                              <JFXButton fx:id="startNode" onAction="#save" buttonType="RAISED" style="-fx-background-color: #FFEEC9;" text="Add" />
-                              <JFXButton fx:id="endNode" buttonType="RAISED" onAction="#selectEnd" style="-fx-background-color: #FFEEC9;" text="Edit" />
-                              <JFXButton fx:id="saveButton" buttonType="RAISED" onAction="#selectStart" style="-fx-background-color: #db6e6e;" text="Remove" />
-                              <JFXButton fx:id="cancelButton" buttonType="RAISED" onAction="#back" style="-fx-background-color: #FFEEC9;" text="Export" />
-                           </children>
-                        </VBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-<!--                             <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export"/>-->
-                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
                      </children>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
                   </VBox>
-                  <TableView fx:id="nodeTable" onMouseClicked="#detectClick" style="-fx-background-color: #FFEEC9;" HBox.hgrow="ALWAYS">
-                    <columns>
-                       <TableColumn fx:id="NodeID" prefWidth="75.0" text="NodeID" />
-                       <TableColumn prefWidth="75.0" text="X-coord" fx:id="xCoord" />
-                       <TableColumn fx:id="yCoord" prefWidth="75.0" text="Y-coord" />
-                       <TableColumn fx:id="floor" prefWidth="75.0" text="Floor" />
-                       <TableColumn fx:id="building" prefWidth="75.0" text="Building" />
-                       <TableColumn fx:id="nodeType" prefWidth="75.0" text="NodeType" />
-                       <TableColumn fx:id="longName" prefWidth="123.0" text="LongName" />
-                       <TableColumn fx:id="shortName" prefWidth="76.0" text="ShortName" />
-                    </columns>
-                  </TableView>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
+                     <children>
+                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" style="-fx-background-color: #FFEEC9;" text="Add" />
+                        <JFXButton fx:id="endNode" buttonType="RAISED" onAction="#selectEnd" style="-fx-background-color: #FFEEC9;" text="Edit" />
+                        <JFXButton fx:id="saveButton" buttonType="RAISED" onAction="#selectStart" style="-fx-background-color: #db6e6e;" text="Remove" />
+                        <JFXButton fx:id="cancelButton" buttonType="RAISED" onAction="#back" style="-fx-background-color: #FFEEC9;" text="Export" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <!--                             <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export"/>-->
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-         </children>
-      </VBox>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+         </left>
+      </BorderPane>
    </children>
 </AnchorPane>
