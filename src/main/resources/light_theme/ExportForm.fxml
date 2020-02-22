@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ExportScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ExportScreenController">
    <children>
       <VBox alignment="TOP_CENTER" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="9.0" prefWidth="600.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="9.0" prefWidth="600.0" styleClass="titleBar" VBox.vgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER" text="Choose location to export to CSV" textFill="WHITE">
                      <font>
@@ -25,10 +25,10 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <JFXTextField fx:id="location1" prefHeight="37.0" prefWidth="367.0" promptText="Please Specify Path" />
-                  <JFXButton fx:id="browse" prefHeight="29.0" prefWidth="55.0" style="-fx-background-color: #BFB397;" text=". . ." onAction="#browse" />
+                  <JFXButton fx:id="browse" onAction="#browse" prefHeight="29.0" prefWidth="55.0" text=". . ." />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -39,12 +39,12 @@
                   <Insets right="10.0" top="35.0" />
                </VBox.margin>
                <children>
-                  <JFXButton fx:id="cancel" buttonType="RAISED" style="-fx-background-color: #807765;" text="Cancel" onAction="#adminScreen">
+                  <JFXButton fx:id="cancel" buttonType="RAISED" onAction="#adminScreen" text="Cancel">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="save" buttonType="RAISED" style="-fx-background-color: #807765;" text="Save" onAction="#save">
+                  <JFXButton fx:id="save" buttonType="RAISED" onAction="#save" text="Save">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
