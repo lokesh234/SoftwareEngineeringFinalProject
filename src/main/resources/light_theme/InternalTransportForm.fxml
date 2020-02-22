@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.IntTransportController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.IntTransportController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="80.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="80.0" styleClass="titleBar" VBox.vgrow="ALWAYS">
                <children>
                   <Label fx:id="ITrans" text="Internal Transport Request" textFill="WHITE">
                      <font>
@@ -28,7 +28,7 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <GridPane alignment="CENTER" prefHeight="184.0" prefWidth="600.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
+            <GridPane alignment="CENTER" prefHeight="184.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -107,12 +107,12 @@
             </GridPane>
             <HBox alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="confirm" onAction="#getSubmission" style="-fx-background-color: #BFB397;" text="Confirm">
+                  <JFXButton fx:id="confirm" onAction="#getSubmission" text="Confirm">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="cancel" onAction="#cancelExt" style="-fx-background-color: #BFB397;" text="Cancel">
+                  <JFXButton fx:id="cancel" onAction="#cancelExt" text="Cancel">
                      <font>
                         <Font size="18.0" />
                      </font>
