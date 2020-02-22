@@ -10,7 +10,7 @@ import java.util.NavigableMap;
 
 public class ChoosePathController {
 
-    @FXML private JFXRadioButton sta, bfs, dfs;
+    @FXML private JFXRadioButton sta, bfs, dfs, djikstra;
     private ToggleGroup group = new ToggleGroup();
 
     @FXML
@@ -24,6 +24,7 @@ public class ChoosePathController {
         if (sta.isSelected()) NavigationWrapper.setSearchType("A*");
         else if (bfs.isSelected()) NavigationWrapper.setSearchType("BFS");
         else if (dfs.isSelected()) NavigationWrapper.setSearchType("DFS");
+        else if (djikstra.isSelected()) NavigationWrapper.setSearchType("DJI");
         closePop();
     }
 
@@ -38,6 +39,8 @@ public class ChoosePathController {
             case "DFS":
                 dfs.setSelected(true);
                 break;
+            case "DJI":
+                djikstra.setSelected(true);
         }
     }
 
@@ -46,5 +49,6 @@ public class ChoosePathController {
         sta.setToggleGroup(group);
         bfs.setToggleGroup(group);
         dfs.setToggleGroup(group);
+        djikstra.setToggleGroup(group);
     }
 }
