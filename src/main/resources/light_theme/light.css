@@ -46,6 +46,10 @@
     -fx-font-weight: bold;
 }
 
+.jfx-chip-view{
+
+}
+
 /** end **/
 
 .jfx-alert-overlay{
@@ -166,7 +170,7 @@
 }
 
 .jfx-date-picker{
-    -jfx-default-color: #009688;
+    -jfx-default-color: #302d26;
 }
 
 .jfx-date-picker,

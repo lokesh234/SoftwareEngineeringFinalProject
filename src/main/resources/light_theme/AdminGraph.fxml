@@ -73,11 +73,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="View Graph" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI Bold" size="36.0" />
-                           </font>
-                        </Label>
+                        <Label text="View Graph" textFill="WHITE"/>
                      </children>
                      <padding>
                         <Insets left="10.0" />
@@ -85,11 +81,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="backButton" onAction="#backToAdmin" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
-                           <font>
-                              <Font name="Segoe UI" size="18.0" />
-                           </font>
-                        </JFXButton>
+                        <JFXButton fx:id="backButton" onAction="#backToAdmin" style="-fx-background-color: #474338;" text="Back" textFill="WHITE"/>
                      </children>
                   </HBox>
                </children>
