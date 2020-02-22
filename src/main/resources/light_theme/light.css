@@ -34,6 +34,10 @@
     -fx-text-fill: white;
 }
 
+.sideBar{
+    -fx-background-color: #474338;
+}
+
 
 .border-pane{
     -fx-background-color: #ffeec9;
