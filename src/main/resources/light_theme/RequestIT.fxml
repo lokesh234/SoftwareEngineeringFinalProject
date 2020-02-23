@@ -19,7 +19,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER">
                <children>
                   <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                     <columnConstraints>
@@ -79,14 +79,14 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="111.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE" />
+                        <JFXButton fx:id="submit" onAction="#getSubmission" text="Submit" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
             </VBox>
          </center>
          <top>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #302D26;" styleClass="titleBar" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
                      <children>
@@ -99,7 +99,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
                      <children>
-                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="backToRequest" onAction="#goBack" text="Back" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>

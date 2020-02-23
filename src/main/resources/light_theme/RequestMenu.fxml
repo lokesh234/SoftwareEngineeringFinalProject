@@ -18,7 +18,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
+            <VBox BorderPane.alignment="CENTER">
                <children>
                   <GridPane styleClass="buttonGrid" VBox.vgrow="ALWAYS">
                      <columnConstraints>
@@ -35,7 +35,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;">
                            <children>
-                              <JFXButton fx:id="mealService" contentDisplay="TOP" style="-fx-background-color: #474338;" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
+                              <JFXButton fx:id="mealService" contentDisplay="TOP" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -55,7 +55,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1">
                            <children>
-                              <JFXButton fx:id="clean" contentDisplay="TOP" onAction="#openSanRequest" style="-fx-background-color: #474338;" text="Cleanup" textFill="WHITE">
+                              <JFXButton fx:id="clean" contentDisplay="TOP" onAction="#openSanRequest" text="Cleanup" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -75,7 +75,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton fx:id="medicineSign" contentDisplay="TOP" onAction="#openMedicineForm" style="-fx-background-color: #474338;" text="Medicine Delivery" textFill="WHITE">
+                              <JFXButton fx:id="medicineSign" contentDisplay="TOP" onAction="#openMedicineForm" text="Medicine Delivery" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -95,7 +95,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton fx:id="religion" contentDisplay="TOP" onAction="#openReligiousRequest" style="-fx-background-color: #474338;" text="Religious Services" textFill="WHITE">
+                              <JFXButton fx:id="religion" contentDisplay="TOP" onAction="#openReligiousRequest" text="Religious Services" textFill="WHITE">
 
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
@@ -116,7 +116,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="2">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openGiftDeliveryRequest" style="-fx-background-color: #474338;" text="Delivery" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openGiftDeliveryRequest" text="Delivery" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -136,7 +136,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openITRequest" style="-fx-background-color: #474338;" text="IT Support" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openITRequest" text="IT Support" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -156,7 +156,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.rowIndex="2">
                            <children>
-                              <JFXButton fx:id="extTransport" contentDisplay="TOP" onAction="#openExtTransportRequest" style="-fx-background-color: #474338;" text="External Transport" textFill="WHITE">
+                              <JFXButton fx:id="extTransport" contentDisplay="TOP" onAction="#openExtTransportRequest" text="External Transport" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -176,7 +176,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openIntTransportRequest" style="-fx-background-color: #474338;" text="Internal Transport" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openIntTransportRequest" text="Internal Transport" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -196,7 +196,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openFlowerForm" style="-fx-background-color: #474338;" text="Floral Delivery" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openFlowerForm" text="Floral Delivery" textFill="WHITE">
                                  <graphic>
                                     <ImageView fx:id="flowerButton" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -216,7 +216,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openClownRequest" style="-fx-background-color: #474338;" text="Clown Event" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openClownRequest" text="Clown Event" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -237,7 +237,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;" GridPane.columnIndex="3">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openLangaugeRequest" style="-fx-background-color: #474338;" text="Translator" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openLangaugeRequest" text="Translator" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -262,7 +262,7 @@
             </VBox>
          </center>
          <top>
-            <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0" style="-fx-background-color: #302D26;" styleClass="titleBar" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <children>
@@ -271,7 +271,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton contentDisplay="TOP" onAction="#closeRequestScreen" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                        <JFXButton contentDisplay="TOP" onAction="#closeRequestScreen" text="Back" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font></JFXButton>
