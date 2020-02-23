@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ChoosePathController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ChoosePathController">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER" styleClass="titleBar" stylesheets="@light.css" VBox.vgrow="ALWAYS">
                     <children>
-                  <Label text="Choose Pathfinding Algorithm">
+                  <Label prefHeight="95.0" prefWidth="383.0" text="Choose Pathfinding Algorithm">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
@@ -25,27 +25,39 @@
                         <Insets right="18.0" top="7.0" />
                     </padding>
                 </HBox>
-                <VBox alignment="CENTER_LEFT" prefHeight="280.0" prefWidth="600.0" spacing="10.0" stylesheets="@light.css" VBox.vgrow="ALWAYS">
+                <VBox alignment="CENTER" prefHeight="267.0" prefWidth="428.0" spacing="10.0" stylesheets="@light.css" VBox.vgrow="ALWAYS">
                <children>
                   <JFXRadioButton fx:id="sta" text="A*" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets right="79.0" />
+                     </VBox.margin>
                   </JFXRadioButton>
                   <JFXRadioButton fx:id="bfs" text="Breadth-first">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets right="-8.0" />
+                     </VBox.margin>
                   </JFXRadioButton>
                   <JFXRadioButton fx:id="dfs" text="Depth-first">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets right="11.0" />
+                     </VBox.margin>
                   </JFXRadioButton>
-                  <JFXRadioButton text="Dijkstra's" fx:id="djikstra">
+                  <JFXRadioButton fx:id="djikstra" text="Dijkstra's">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets right="22.0" />
+                     </VBox.margin>
                   </JFXRadioButton>
                </children>
                <padding>

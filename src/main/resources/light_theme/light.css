@@ -22,33 +22,37 @@
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI";
     -fx-base: rgb(0, 0, 0);
-    -fx-background: #ffeec9;
+    -fx-background: #FFF9E9;
 }
 
 .titleBar{
-    -fx-background-color: #302d26;
+    -fx-background-color: #969696;
     /*-fx-background-color: red;*/
 }
 .titleBar .label{
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
+    -fx-text-fill: #FFF9E9;
 }
 
 .sideBar{
-    -fx-background-color: #474338;
+    -fx-background-color: #FFF9E9;
 }
 
 .sideBar .jfx-button{
     -fx-background-radius: 5px;
 }
 
+.sideBar .label{
+    -fx-text-fill: black;
+}
+
 .border-pane{
-    -fx-background-color: #ffeec9;
+    -fx-background-color: #DBC6B3;
 }
 
 .jfx-button {
-    -fx-background-color: #474338;
+    -fx-background-color: #B89A8C;
     -fx-background-radius: 50px;
     -fx-background-insets: 0px;
     -fx-font-weight: bold;
@@ -77,8 +81,8 @@
 
 
 .jfx-check-box {
-    -jfx-unchecked-color: #5A5A5A;
-    -jfx-checked-color: #0F9D58;
+    -jfx-unchecked-color: #DBC6B3;
+    -jfx-checked-color: #B89A8C;
 }
 
 .jfx-check-box .box-container {
@@ -141,14 +145,14 @@
 
 
 .jfx-color-picker .color-box {
-    -fx-background-color: #fafafa;
+    -fx-background-color: #B89A8C;
     -fx-background-radius: 3px;
     -fx-background-insets: 0px;
 }
 
 .jfx-combo-box{
-    -jfx-focus-color: #4059A9;
-    -jfx-unfocus-color: #4d4d4d;
+    -jfx-focus-color: #B89A8C;
+    -jfx-unfocus-color: #DBC6B3;
     -fx-prompt-text-fill: #4d4d4d;
     -fx-padding: 0.0em 1em 0.0em 1em;
 }
@@ -167,8 +171,8 @@
 }
 
 .jfx-combo-box:error {
-    -jfx-focus-color: #D34336;
-    -jfx-unfocus-color: #D34336;
+    -jfx-focus-color: #B89A8C;
+    -jfx-unfocus-color: #DBC6B3;
 }
 
 .jfx-combo-box > .arrow-button,
@@ -178,7 +182,7 @@
 }
 
 .jfx-date-picker{
-    -jfx-default-color: #302d26;
+    -jfx-default-color: #B89A8C;
 }
 
 .jfx-date-picker,
@@ -235,14 +239,14 @@
 }
 
 .jfx-password-field {
-    -jfx-focus-color: #4059A9;
-    -jfx-unfocus-color: #4d4d4d;
+    -jfx-focus-color: #B89A8C;
+    -jfx-unfocus-color: #DBC6B3;
     -fx-padding: 0.333333em 0 0.333333em 0;
 }
 
 .jfx-password-field,
 .jfx-password-field:focused {
-    -fx-prompt-text-fill: #4D4D4D;
+    -fx-prompt-text-fill: #B89A8C;
     -fx-background-color: TRANSPARENT, TRANSPARENT, TRANSPARENT;
 }
 
@@ -260,18 +264,18 @@
 }
 
 .jfx-progress-bar > .track{
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #B89A8C;
 }
 
 .jfx-progress-bar > .bar,
 .jfx-progress-bar:indeterminate > .bar{
-    -fx-background-color: #0F9D58;
+    -fx-background-color: #B89A8C;
     -fx-padding: 1.5;
 }
 
 .jfx-progress-bar > .secondary-bar,
 .jfx-progress-bar:indeterminate > .secondary-bar{
-    -fx-background-color: #CDE1B7;
+    -fx-background-color: #B89A8C;
 }
 
 .jfx-progress-bar > .track,
@@ -334,8 +338,8 @@
 }
 
 .jfx-text-area {
-    -jfx-focus-color: #4059A9;
-    -jfx-unfocus-color: #4d4d4d;
+    -jfx-focus-color: #B89A8C;
+    -jfx-unfocus-color: #DBC6B3;
 }
 
 .jfx-text-area,
@@ -370,8 +374,8 @@
 }
 
 .jfx-text-field {
-    -jfx-focus-color: #4059A9;
-    -jfx-unfocus-color: #4d4d4d;
+    -jfx-focus-color: #B89A8C;
+    -jfx-unfocus-color: #DBC6B3;
     -fx-padding: 0.33em 1em 0.33em 1em;
 }
 
@@ -410,7 +414,7 @@
 }
 
 .jfx-time-picker{
-    -jfx-default-color: #009688;
+    -jfx-default-color: #B89A8C;
 }
 
 .jfx-time-picker,

@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
+<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
    <children>
-      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER_RIGHT" style="-fx-background-color: #302d26;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                      <children>
@@ -36,7 +36,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="80.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="backButton" onAction="#backToAdmin" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
+                        <JFXButton fx:id="backButton" onAction="#backToAdmin" text="Back" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font>
@@ -50,7 +50,7 @@
             </HBox>
          </top>
          <left>
-            <VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #807765;" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" spacing="10.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
 <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
 <!--                           <children>-->
@@ -72,7 +72,7 @@
                </HBox>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
-                        <JFXButton fx:id="close" onAction="#closeRequest" style="-fx-background-color: #474338;" text="Close" textFill="WHITE">
+                        <JFXButton fx:id="close" onAction="#closeRequest" text="Close" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font></JFXButton>

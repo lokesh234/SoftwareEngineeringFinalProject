@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminEmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminEmployeeController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #474338;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -30,7 +30,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton buttonType="RAISED" prefHeight="37.0" prefWidth="90.0" style="-fx-background-color: #BFB397;" text="Back">
+                        <JFXButton buttonType="RAISED" prefHeight="37.0" prefWidth="90.0" text="Back">
                            <HBox.margin>
                               <Insets right="26.0" />
                            </HBox.margin>
@@ -44,7 +44,7 @@
             </HBox>
          </top>
          <center>
-            <TableView fx:id="employeeTable" onMouseClicked="#detectClick" style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
+            <TableView fx:id="employeeTable" onMouseClicked="#detectClick" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="NodeID" prefWidth="75.0" text="NodeID" />
                   <TableColumn prefWidth="75.0" text="X-coord" fx:id="xCoord" />
@@ -58,18 +58,18 @@
             </TableView>
          </center>
          <left>
-            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #807765;" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" styleClass="sideBar" HBox.hgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER" prefHeight="107.0" prefWidth="140.0" spacing="10.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="20.0" spacing="10.0">
+                        <HBox alignment="CENTER" prefHeight="20.0" spacing="10.0" styleClass="side">
                            <children>
-                              <Label text="Locate File" textFill="WHITE">
+                              <Label text="Locate File">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
                               </Label>
-                              <JFXButton prefHeight="30.0" prefWidth="32.0" style="-fx-background-color: #BFB397;" text=". . ." />
+                              <JFXButton prefHeight="30.0" prefWidth="32.0" text=". . ." />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -79,10 +79,10 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
                      <children>
-                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" style="-fx-background-color: #FFEEC9;" text="Add" />
-                        <JFXButton fx:id="endNode" buttonType="RAISED" onAction="#selectEnd" style="-fx-background-color: #FFEEC9;" text="Edit" />
+                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" text="Add" />
+                        <JFXButton fx:id="endNode" buttonType="RAISED" onAction="#selectEnd" text="Edit" />
                         <JFXButton fx:id="saveButton" buttonType="RAISED" onAction="#selectStart" style="-fx-background-color: #db6e6e;" text="Remove" />
-                        <JFXButton fx:id="cancelButton" buttonType="RAISED" onAction="#back" style="-fx-background-color: #FFEEC9;" text="Export" />
+                        <JFXButton fx:id="cancelButton" buttonType="RAISED" onAction="#back" text="Export" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
