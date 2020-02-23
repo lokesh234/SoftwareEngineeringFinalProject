@@ -1,6 +1,5 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
 
 import javafx.application.Platform;

@@ -1,15 +1,12 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import com.github.prominence.openweathermap.api.exception.DataNotFoundException;
-import com.github.prominence.openweathermap.api.exception.InvalidAuthTokenException;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import javafx.animation.Interpolator;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,12 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Collections;
 
 public class HomeController {
 

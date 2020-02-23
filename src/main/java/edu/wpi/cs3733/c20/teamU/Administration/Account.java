@@ -6,14 +6,14 @@ public class Account {
     private String firstName;
     private String lastName;
     private String cred;
-    private String email;
+    private String number;
 
-    public Account(String userName, String password, String firstName, String lastName, String cred, String email) {
+    public Account(String userName, String password, String firstName, String lastName, String cred, String number) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.number = number;
         this.cred = cred.toUpperCase();
     }
 
@@ -33,5 +33,5 @@ public class Account {
         return lastName;
     }
 
-    public String getEmail() {return email;}
+    public String getNumber() {return number;}
 }

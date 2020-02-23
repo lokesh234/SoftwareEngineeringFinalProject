@@ -51,21 +51,17 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane IT;
   private static Pane clown;
   private static Pane sanRequest;
-
   private static Pane religious;
-
   private static Pane employeeF;
-
-  private static Pane externalTransport;  // This is anir
-
-  private static Pane internalTransport; //Marcus
-
+  private static Pane externalTransport;
+  private static Pane internalTransport;
   private static Pane pathFindText;
   private static Pane languageSR;
   private static Pane PathChoose;
   private static Pane giftDelivery;
+  private static Pane verification;
 
-
+  private static Scene verificationScene;
   private static Scene homeScene;
   private static Scene loginScene;
   private static Scene startScene;
@@ -83,10 +79,8 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene weatherScene;
   private static Scene employeeFormScene;
   private static Scene religiousScene;
-  private static Scene extTransportScene; //this is anir
-
-  private static Scene intTransportScene; //marcus
-
+  private static Scene extTransportScene;
+  private static Scene intTransportScene;
   private static Scene pathFindTextScene;
   private static Scene sanSRScene;
   private static Scene languageSRScene;
@@ -109,18 +103,14 @@ public class App<loadedAdminRequests> extends Application {
   private static WeatherController weatherController;
   private static EmployeeFormController employeeFormController;
   private static ReligiousController religiousController;
-  private static ExtTransportController extTransportController; //anir
-
-
-  private static IntTransportController intTranspoerController; //marcus
-
+  private static ExtTransportController extTransportController;
+  private static IntTransportController intTranspoerController;
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
   private static LanguageController languageController;
   private static ChoosePathController choosePathController;
   private static GiftDeliveryController giftDeliveryController;
-
-
+  private static VerificationController verificationController;
   private static Edge edgeEdit;
   private static RequestScreenController requestScreenController;
   private static FireController fireController;
@@ -211,13 +201,10 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getFire(){ return fire; }
   public static Pane getWeather() {return weather;}
   public static Pane getIT() { return IT;}
-  public static Pane getExternalTransport() {return externalTransport;} //anir
-  public static Pane getInternalTransport() { return internalTransport;} //marcus
-
+  public static Pane getExternalTransport() {return externalTransport;}
+  public static Pane getInternalTransport() { return internalTransport;}
   public static Pane getPathFindText() {return pathFindText;}
-
   public static Pane getReligious() { return religious;}
-
   public static Pane getEmployeeForm() {return employeeF; }
   public static Pane getFlower(){return  flower;}
   public static Pane getClown() { return clown;}
@@ -225,7 +212,9 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getLanguageSR() {return languageSR;}
   public static Pane getGiftDelivery() {return giftDelivery;}
   public static Pane getPathChoose() { return PathChoose; }
+  public static Pane getVerification() { return verification;}
 
+  public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
   public static Scene getLoginScene() { return loginScene; }
   public static Scene getStartScene() { return startScene; }
@@ -242,11 +231,11 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
   public static Scene getWeatherScene() {return weatherScene; }
   public static Scene getEmployeeFormScene() {return employeeFormScene; }
-  public static Scene getExtTransportScene() {return extTransportScene;} //anir
-    public static Scene getReligiousScene() {
+  public static Scene getExtTransportScene() {return extTransportScene;}
+  public static Scene getReligiousScene() {
         return religiousScene;
     }
-  public static Scene getIntTransportScene() { return intTransportScene; } //marcus
+  public static Scene getIntTransportScene() { return intTransportScene; }
   public static Scene getPathFindTextScene() {return pathFindTextScene;}
   public static Scene getLanguageSRScene() {return languageSRScene;}
   public static Scene getPathChooseScene() {return PathChooseScene; }
@@ -274,6 +263,7 @@ public class App<loadedAdminRequests> extends Application {
   public static LanguageController getLanguageController() {return languageController;}
   public static ChoosePathController getChoosePathController() {return choosePathController; }
   public static GiftDeliveryController getGiftDeliveryController() {return giftDeliveryController;}
+  public static VerificationController getVerificationController() {return verificationController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -404,6 +394,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader RRLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestFormResolve.fxml"));
         FXMLLoader requestLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMenu.fxml"));
         FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/light_theme/LoginForm.fxml"));
+        FXMLLoader verificationLoader = new FXMLLoader(App.class.getResource("/light_theme/VerificationForm.fxml"));
 
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
@@ -413,6 +404,7 @@ public class App<loadedAdminRequests> extends Application {
         export = exportLoader.load();
         request = requestLoader.load();
         login = loginLoader.load();
+        verification = verificationLoader.load();
 
         admin.setOnKeyPressed(fireKey);
         adminRequest.setOnKeyPressed(fireKey);
@@ -423,6 +415,7 @@ public class App<loadedAdminRequests> extends Application {
         request.setOnKeyPressed(fireKey);
         login.setOnKeyPressed(fireKey);
 
+        verificationController = verificationLoader.getController();
         adminScreenController = adminLoader.getController();
         adminRequestController = adminRequestLoader.getController();
         employeeFormController = employeeFormLoader.getController();

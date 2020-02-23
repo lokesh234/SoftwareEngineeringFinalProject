@@ -2,12 +2,10 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXChipView;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import java.util.ArrayList;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -139,7 +137,7 @@ public class EmployeeFormController {
     employeeIdText.setText(userData.getUserName());
     firstNameText.setText(userData.getFirstName());
     lastNameText.setText(userData.getLastName());
-    employeeEmail.setText(userData.getEmail());
+    employeeEmail.setText(userData.getNumber());
     employeeCombo.setValue(userData.getCred());
     BooleanBinding bind = employeeIdText.textProperty().isEqualTo(userOG);
     confirm.disableProperty().bind(bind);
