@@ -67,7 +67,6 @@ public class IntTransportController {
         lastNameText.clear();
         start.clear();
         end.clear();
-        initialize();
         firstNameText.setStyle("-fx-border-color:  null");
         lastNameText.setStyle("-fx-border-color:  null");
         start.setStyle("-fx-border-color:  null");

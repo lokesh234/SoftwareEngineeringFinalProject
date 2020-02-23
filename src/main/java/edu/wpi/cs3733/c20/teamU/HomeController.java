@@ -185,11 +185,13 @@ public class HomeController {
 
   @FXML
   private void openWeather() {
-    App.loadWeather();
+//    App.loadWeather();
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
-    App.getWeatherPop().getContent().add(App.getWeather());
-    App.getWeatherPop().show(App.getPrimaryStage());
+//    App.getWeatherPop().getContent().add(App.getWeather());
+//    App.getWeatherPop().show(App.getPrimaryStage());
+    App.getPopup().getContent().add(App.getWeather());
+    App.getPopup().show(App.getPrimaryStage());
   }
 
   @FXML

@@ -90,7 +90,6 @@ public class LanguageController {
         lastNameText.clear();
         firstNameText.clear();
         passwordText.clear();
-        initialize();
         firstNameText.setStyle("-fx-border-color: null");
         lastNameText.setStyle("-fx-border-color: null");
         passwordText.setStyle("-fx-border-color: null");
