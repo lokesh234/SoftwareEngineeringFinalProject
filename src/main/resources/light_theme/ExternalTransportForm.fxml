@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ExtTransportController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ExtTransportController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: #FFEEC9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" styleClass="titleBar" stylesheets="@light.css" VBox.vgrow="ALWAYS">
                <children>
@@ -29,7 +29,7 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
-            <GridPane alignment="CENTER" prefHeight="184.0" prefWidth="600.0" style="-fx-background-color: #FFEEC9;" VBox.vgrow="ALWAYS">
+            <GridPane alignment="CENTER" prefHeight="184.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -102,8 +102,8 @@
                      </children>
                   </HBox>
                   <JFXTextField fx:id="confirmPassText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <JFXDatePicker fx:id="dp" defaultColor="#807765" prefHeight="25.0" prefWidth="287.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <JFXTimePicker fx:id="tp" defaultColor="#807765" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXDatePicker fx:id="dp" defaultColor="#807765" prefHeight="37.0" prefWidth="279.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXTimePicker fx:id="tp" defaultColor="#807765" prefHeight="33.0" prefWidth="280.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
                <VBox.margin>
                   <Insets />

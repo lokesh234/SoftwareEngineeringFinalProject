@@ -26,13 +26,13 @@
 }
 
 .titleBar{
-    -fx-background-color: #E8DFCD;
+    -fx-background-color: #969696;
     /*-fx-background-color: red;*/
 }
 .titleBar .label{
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #969696;
+    -fx-text-fill: #FFF9E9;
 }
 
 .sideBar{
@@ -41,6 +41,10 @@
 
 .sideBar .jfx-button{
     -fx-background-radius: 5px;
+}
+
+.sideBar .label{
+    -fx-text-fill: black;
 }
 
 .border-pane{

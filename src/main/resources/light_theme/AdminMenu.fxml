@@ -17,7 +17,7 @@
     <children>
         <VBox layoutX="14.0" layoutY="21.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="600.0" style="-fx-background-color: #474338;">
+                <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="600.0" styleClass="titleBar">
                     <children>
                   <JFXButton onAction="#backHome" style="-fx-background-color: #eb4034;" text="X" textFill="WHITE">
                      <font>
@@ -28,9 +28,9 @@
                   <Insets right="10.0" top="10.0" />
                </padding>
                 </HBox>
-                <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color: #474338;">
+                <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="600.0" styleClass="titleBar">
                     <children>
-                        <Label alignment="TOP_CENTER" prefHeight="40.0" prefWidth="184.0" text="Select Admin Menu" textFill="WHITE">
+                        <Label alignment="TOP_CENTER" prefHeight="40.0" prefWidth="284.0" text="Select Admin Menu" textFill="WHITE">
                             <font>
                                 <Font name="Segoe UI Bold" size="20.0" />
                             </font>
@@ -39,7 +39,7 @@
                 </HBox>
                 <VBox prefHeight="320.0" prefWidth="600.0">
                     <children>
-                        <GridPane prefHeight="324.0" prefWidth="600.0" style="-fx-background-color: #FFEEC9;" styleClass="buttonGrid">
+                        <GridPane prefHeight="324.0" prefWidth="600.0" styleClass="buttonGrid">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,9 +50,9 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#export" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Export" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#export" prefHeight="19.0" prefWidth="89.0" text="Export" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -66,14 +66,14 @@
                               </JFXButton>
                            </children>
                                 </VBox>
-                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;">
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#editNodes" prefHeight="19.0" prefWidth="89.0" style="-fx-background-color: #474338;" text="Edit Graph" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#editNodes" prefHeight="19.0" prefWidth="89.0" text="Edit Graph" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
                                  <graphic>
-                                    <ImageView fitHeight="126.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="106.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../png_files/graph.png" />
                                        </image>
@@ -82,9 +82,9 @@
                               </JFXButton>
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="1">
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                     <children>
-                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#requestPowers" prefHeight="19.0" prefWidth="110.0" style="-fx-background-color: #474338;" text="Edit Requests" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" ellipsisString="" onAction="#requestPowers" prefHeight="19.0" prefWidth="110.0" text="Edit Requests" textFill="WHITE">
                                  <font>
                                     <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
@@ -98,9 +98,9 @@
                               </JFXButton>
                                     </children>
                                 </VBox>
-                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.rowIndex="1">
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                                     <children>
-                              <JFXButton fx:id="employees" contentDisplay="TOP" onAction="#goToEmployees" style="-fx-background-color: #474338;" text="Edit Employees" textFill="WHITE">
+                              <JFXButton fx:id="employees" contentDisplay="TOP" onAction="#goToEmployees" prefHeight="144.0" prefWidth="130.0" text="Edit Employees" textFill="WHITE">
                                  <graphic>
                                                 <ImageView fitHeight="116.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -113,9 +113,9 @@
                               </JFXButton>
                                     </children>
                                 </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #FFEEC9;" GridPane.columnIndex="2">
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                            <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openDiffPathfinding" prefHeight="276.0" prefWidth="198.0" style="-fx-background-color: #474338;" text="Choose Path Strategy" textFill="WHITE">
+                              <JFXButton contentDisplay="TOP" onAction="#openDiffPathfinding" prefHeight="139.0" prefWidth="175.0" text="Choose Path Strategy" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="116.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
