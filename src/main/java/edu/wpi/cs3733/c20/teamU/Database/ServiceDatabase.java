@@ -613,4 +613,50 @@ public class ServiceDatabase {
         }
     }
 
+    public static int getServiceRequestAmount(String serviceRequestType, String dateType, String day, String month, String year){
+        int retNumber = 0;
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "ServiceRequest";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            if (dateType.equals("day")) {
+                sql = "SELECT * FROM " + tableName + " WHERE types = '" + serviceRequestType + "' AND dateReq = '" + year + "-" + month + "-" + day + "'";
+            }
+            else if (dateType.equals("month")) {
+                sql = "SELECT * FROM " + tableName + " WHERE types = '"+ serviceRequestType + "' AND MONTH(dateReq) = " + month + " AND YEAR(dateReq) = " + year;
+            }
+            else if (dateType.equals("year")){
+                sql = "SELECT * FROM " + tableName + " WHERE types = '"+ serviceRequestType + "' AND YEAR(dateReq) = " + year;
+            }
+            ResultSet results = stmt.executeQuery(sql);
+
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            while (results.next()) {
+                String requestID = results.getString(1);
+                String date = results.getString(2);
+                String requestType = results.getString(3);
+                System.out.println("Tuple: " + requestID + " " + date + " " + requestType);
+                retNumber++;
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return 0;
+        }
+        return retNumber;
+    }
+
 }

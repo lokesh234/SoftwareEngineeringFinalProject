@@ -263,7 +263,28 @@ public class DatabaseWrapper {
         return r;
     }
 
-  //SERVICE DATABASE ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // SERVICE DATABASE
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  /**
+   * takes in a date finds the number of requests for a given range
+   *
+   * @param serviceRequestType (MEDIC, INTEC, CLOWN ...)
+   * @param dateType either "day" "month" or "year"
+   * @param day if dateType is day eneter date as shown: "01"
+   * @param month if date type is day or month enter month as: "01"
+   * @param year enter year as: "2000"
+   * @return Int corresponding to the number of rows in that date time frame be sure to input
+   *     correct strings otherwise the method wont work at all. all single digit numbers require
+   *     leading 0 for 2 places | strings inputted into day or month dont matter if you chose a
+   *     dateType larger than it. EX:
+   *     getServiceRequestAmount("SECUR", "day", "23", "02","2020");
+   *     getServiceRequestAmount("SECUR", "month", "00", "02", "2020");
+   *     getServiceRequestAmount("SECUR", "year", "00", "00", "2020");
+   */
+  public static int getServiceRequestAmount(String serviceRequestType, String dateType, String day, String month, String year) {
+      return ServiceDatabase.getServiceRequestAmount(serviceRequestType, dateType, day, month, year);
+  }
 
   /**
    * Add a value to the Servie Finished DatabaseTable

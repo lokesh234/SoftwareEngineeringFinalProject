@@ -755,10 +755,10 @@ public class Database {
                     reqID = Clown.get(i);
                     String timeReq = csvString[1];
                     String location = csvString[2];
-                    int nClowns = Integer.getInteger(csvString[3]);
+                    String nClowns = csvString[3];
                     String recipientName = csvString[4];
                     String deliveryDate = csvString[5];
-                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + location +  "', '" + nClowns + "', '" + recipientName + "', '" + deliveryDate + "')");
+                    stmt.executeUpdate("INSERT INTO " + tableName + " VALUES (" + reqID + ", '" + timeReq + "', '" + location +  "', " + nClowns + ", '" + recipientName + "', '" + deliveryDate + "')");
                     System.out.println("reached update");
                 }
                 i++;
