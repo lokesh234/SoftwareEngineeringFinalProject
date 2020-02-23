@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController">
+<AnchorPane minHeight="600.0" minWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -27,7 +27,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" styleClass="titleBar" stylesheets="@light.css" HBox.hgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="backButton" onAction="#returnToResolve" style="-fx-background-color: #474338;" text="Back" textFill="WHITE">
                            <font>
@@ -43,7 +43,7 @@
             </HBox>
          </top>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #FFEEC9;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #FFEEC9;" stylesheets="@light.css" BorderPane.alignment="CENTER">
                <children>
                   <JFXButton fx:id="cancelButton" onAction="#returnToAdmin" style="-fx-background-color: #474338;" text="Cancel" textFill="WHITE">
                      <font>

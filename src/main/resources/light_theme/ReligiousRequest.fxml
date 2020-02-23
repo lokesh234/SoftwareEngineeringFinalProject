@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ReligiousController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.ReligiousController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -84,7 +84,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="Explain" text="Explain Your Request" />
-                              <JFXTextArea fx:id="comments">
+                              <JFXTextArea fx:id="comments" focusColor="WHITE">
                                  <padding>
                                     <Insets left="20.0" right="20.0" />
                                  </padding>
@@ -96,9 +96,10 @@
                         <Insets top="8.0" />
                      </padding>
                   </GridPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="confirm" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE" />
+                        <JFXButton fx:id="confirm" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Confirm" textFill="WHITE" />
+                        <JFXButton fx:id="cancel" onAction="#goBack" style="-fx-background-color: #474338;" text="Cancel" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
@@ -114,11 +115,6 @@
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
                         </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
-                     <children>
-                        <JFXButton fx:id="cancel" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>

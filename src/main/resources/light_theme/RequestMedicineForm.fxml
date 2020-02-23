@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.MedicineController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.MedicineController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -96,9 +96,10 @@
                         <Insets top="8.0" />
                      </padding>
                   </GridPane>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" style="-fx-background-color: #474338;" text="Submit" textFill="WHITE" />
+                        <JFXButton fx:id="submit" onAction="#getSubmission" text="Confirm" textFill="WHITE" />
+                        <JFXButton fx:id="backToRequest" onAction="#goBack" text="Cancel" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>
@@ -107,18 +108,13 @@
          <top>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #302D26;" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
+                  <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" styleClass="titleBar" stylesheets="@light.css">
                      <children>
                         <Label text="Medicine Request Form" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="20.0" />
                            </font>
                         </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="600.0">
-                     <children>
-                        <JFXButton fx:id="backToRequest" onAction="#goBack" style="-fx-background-color: #474338;" text="Back" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>

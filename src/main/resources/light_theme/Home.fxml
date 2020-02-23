@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-              <VBox prefHeight="60.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+              <VBox prefHeight="91.0" prefWidth="1920.0" styleClass="titleBar" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
                   <children>
                       <HBox alignment="CENTER_LEFT" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                           <children>
@@ -60,9 +60,9 @@
               </VBox>
          </top>
          <left>
-              <VBox alignment="CENTER" prefWidth="140.0" spacing="5.5" style="-fx-background-color: #807765;" BorderPane.alignment="TOP_CENTER">
+              <VBox alignment="CENTER" prefWidth="140.0" spacing="5.5" style="-fx-background-color: #807765;" styleClass="sideBar" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                      <children>
                         <JFXButton fx:id="home" alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
@@ -148,7 +148,7 @@
          <center>
              <VBox fx:id="oppo" alignment="TOP_CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                  <children>
-                     <AnchorPane fx:id="N1" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N1" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane1">
 
@@ -157,7 +157,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N2" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane2">
 
@@ -166,7 +166,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N3" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane3">
 
@@ -175,7 +175,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N4" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane4">
 
@@ -184,7 +184,7 @@
                      </AnchorPane>
                  </children>
                  <children>
-                     <AnchorPane fx:id="N5" prefWidth="1920" prefHeight="1080" BorderPane.alignment="CENTER">
+                     <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
                          <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                              <AnchorPane fx:id="NodesPane5">
 
@@ -195,9 +195,9 @@
              </VBox>
          </center>
           <right>
-              <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+              <VBox alignment="CENTER" styleClass="sideBar" BorderPane.alignment="CENTER">
                   <children>
-                      <VBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="161.0" spacing="20.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
+                      <VBox alignment="CENTER" prefHeight="0.0" prefWidth="161.0" spacing="20.0" style="-fx-background-color: #474338;" VBox.vgrow="ALWAYS">
                           <children>
                               <Label fx:id="time" text="12:34:56 PM" textFill="WHITE">
                                   <font>
@@ -221,7 +221,7 @@
                         <Insets left="10.0" right="10.0" />
                      </padding>
                       </VBox>
-                      <VBox alignment="CENTER" prefHeight="533.0" prefWidth="161.0" VBox.vgrow="ALWAYS">
+                      <VBox alignment="CENTER" prefHeight="0.0" prefWidth="161.0" VBox.vgrow="ALWAYS">
                           <children>
                               <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
                                   <font>
@@ -240,7 +240,7 @@
                               </JFXButton>
                           </children>
                       </VBox>
-                      <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                      <VBox alignment="TOP_CENTER" spacing="40.0" VBox.vgrow="ALWAYS">
                           <children>
                               <JFXButton fx:id="plus" onAction="#zoomIn" text="+">
                                   <font>
