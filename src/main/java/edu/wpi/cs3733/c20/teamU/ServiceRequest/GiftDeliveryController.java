@@ -91,11 +91,13 @@ public class GiftDeliveryController {
         );
     gift.getItems().addAll(deliveryOptions);
 
-    submit.setDisable(true);
+//    submit.setDisable(true);
     BooleanBinding blockCheckBox = (first.textProperty().isEmpty())
             .or(last.textProperty().isEmpty()).or(room.textProperty().isEmpty())
             .or(gift.getSelectionModel().selectedItemProperty().isNull());
     submit.disableProperty().bind(blockCheckBox);
+
+
 //    @FXML private JFXTextField first;
 //    @FXML private JFXTextField last;
 //    @FXML private JFXTextField room;

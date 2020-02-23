@@ -310,7 +310,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) throws ServiceException {
+  public void start(Stage primaryStage) throws IOException {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
@@ -333,8 +333,8 @@ public class App<loadedAdminRequests> extends Application {
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wwong2.jpg")));
     primaryStage.show();
-    FoodRequest foodRequest = new FoodRequest();
-    foodRequest.run(800, 800, 800, 800, null, "something", "something");
+//    FoodRequest foodRequest = new FoodRequest();
+//    foodRequest.run(800, 800, 800, 800, null, "something", "something");
 
   }
 
@@ -359,20 +359,28 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader homeLoader = new FXMLLoader(App.class.getResource("/light_theme/Home.fxml"));
         FXMLLoader fireLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindEmergency.fxml"));
         FXMLLoader securityLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestSecurityForm.fxml"));
+        FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("/light_theme/WeatherWindow.fxml"));
+
 
         home = homeLoader.load();
         start = startLoader.load();
         fire = fireLoader.load();
         security = securityLoader.load();
+        weather = weatherLoader.load();
+
 
         home.setOnKeyPressed(fireKey);
         start.setOnKeyPressed(fireKey);
         security.setOnKeyPressed(fireKey);
+        weather.setOnKeyPressed(fireKey);
+
 
         homeController = homeLoader.getController();
         fireController = fireLoader.getController();
         securityController = securityLoader.getController();
+        weatherController = weatherLoader.getController();
 
+        homeController.setWeatherData(weatherController);
         fireController.setAttributes(fire);
 
         homeScene = new Scene(home);
@@ -657,6 +665,7 @@ public class App<loadedAdminRequests> extends Application {
   public static void loadWeather() {
     if (!loadedWeather) {
       try {
+        System.out.println(App.class.getResource("/light_theme/light.css").toExternalForm());
         FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("/light_theme/WeatherWindow.fxml"));
 
         weather = weatherLoader.load();

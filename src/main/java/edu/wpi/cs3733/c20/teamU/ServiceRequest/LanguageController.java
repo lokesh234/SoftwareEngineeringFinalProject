@@ -112,7 +112,7 @@ public class LanguageController {
         Ethiopian.setToggleGroup(equipmentGroup);
         equipmentGroup.selectToggle(null);
 
-        confirm.setDisable(true);
+//        confirm.setDisable(true);
         BooleanBinding blockCheckBox = (firstNameText.textProperty().isEmpty())
                 .or(lastNameText.textProperty().isEmpty()).or(passwordText.textProperty().isEmpty())
                 //.or(flowerChip.getTypeSelector().isEmpty())
