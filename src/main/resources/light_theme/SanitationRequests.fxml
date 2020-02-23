@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.SanRequestController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.SanRequestController">
    <children>
-      <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0" style="-fx-background-color: #302D26;">
+      <HBox alignment="CENTER" prefHeight="66.0" prefWidth="600.0" styleClass="titleBar">
          <children>
             <Label text="Sanitation Service Request" textFill="WHITE">
                <font>
@@ -29,7 +29,7 @@
                </HBox.margin>
             </Label>
          </children></HBox>
-      <GridPane layoutY="67.0" prefHeight="237.0" prefWidth="600.0">
+      <GridPane layoutY="67.0" prefHeight="237.0" prefWidth="600.0" styleClass="windowScreen">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.3333282470703" minWidth="30.0" prefWidth="30.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.3333282470703" minWidth="250.0" prefWidth="265.00000381469727" />
@@ -88,7 +88,7 @@
             </VBox>
          </children>
       </GridPane>
-      <HBox alignment="CENTER" layoutX="192.0" layoutY="286.0" prefHeight="66.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="192.0" layoutY="286.0" prefHeight="66.0" prefWidth="600.0" spacing="20.0" styleClass="windowScreen" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXButton fx:id="confirm" onAction="#getSubmission" text="Confirm" />
             <JFXButton fx:id="back" onAction="#closeSanSR" text="Cancel" />

@@ -51,6 +51,14 @@
     -fx-background-color: #DBC6B3;
 }
 
+.h-box{
+    -fx-background-color: #FFF9E9;
+}
+
+.v-box{
+    -fx-background-color: #FFF9E9;
+}
+
 .jfx-button {
     -fx-background-color: #B89A8C;
     -fx-background-radius: 50px;
@@ -581,6 +589,7 @@
 }
 
 .buttonGrid {
+    -fx-background-color: #FFF9E9;
 }
 
 .buttonGrid .jfx-button{
@@ -590,4 +599,8 @@
 
 .buttonGrid .gridPane{
     -fx-border-width: 0px 0px 0px 0px;
+}
+
+.windowScreen{
+    -fx-background-color: #FFF9E9;
 }
