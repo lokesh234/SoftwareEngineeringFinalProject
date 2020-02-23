@@ -85,8 +85,11 @@ public class PathfindDFS implements PathfinderInterface {
                 }
                 return; //That's everything!
             }
-            ArrayList<Node> adjacentNodes = DatabaseWrapper.getGraph().getNeighborNodes(current);
-            for (Node n: adjacentNodes){
+            ArrayList<Node> neighbors;
+            if (NavigationWrapper.getStatus() == 0) neighbors = DatabaseWrapper.getGraph().getNeighborNodes(current);
+            else if (NavigationWrapper.getStatus() == 1) neighbors = DatabaseWrapper.getGraph().getNeighborNodesNoStairs(current);
+            else neighbors = DatabaseWrapper.getGraph().getNeighborNodesNoElev(current);
+            for (Node n : neighbors) {
                 if(!visitedNodes.contains(n)){
                     visitedNodes.add(n);
                     cameFrom.put(n, current);

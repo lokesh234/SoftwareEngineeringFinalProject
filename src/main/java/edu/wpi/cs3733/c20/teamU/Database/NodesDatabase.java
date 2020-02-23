@@ -143,6 +143,26 @@ public class NodesDatabase {
         return neighbors;
     }
 
+    public ArrayList<Edge> getNeighborsNoStairs(Node n) {
+        if (!hasNode(n)) return null;
+        ArrayList<Edge> neighbors = new ArrayList<Edge>();
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
+            if (e.hasNode(n) && !n.getNodeType().equals("STAI") && !e.getOther(n).getNodeType().equals("STAI")) neighbors.add(e);
+        }
+        return neighbors;
+    }
+
+    public ArrayList<Edge> getNeighborsNoElev(Node n) {
+        if (!hasNode(n)) return null;
+        ArrayList<Edge> neighbors = new ArrayList<Edge>();
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
+            if (e.hasNode(n) && !n.getNodeType().equals("ELEV") && !e.getOther(n).getNodeType().equals("ELEV")) neighbors.add(e);
+        }
+        return neighbors;
+    }
+
     public ArrayList<Node> getNeighborNodes(Node n) {
         /*
         Similar behavior to getNeighbors(), but returns list of nodes and not edges
@@ -152,6 +172,32 @@ public class NodesDatabase {
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
             if (e.hasNode(n)) neighbors.add(e.getOther(n));
+        }
+        return neighbors;
+    }
+
+    public ArrayList<Node> getNeighborNodesNoStairs(Node n) {
+        /*
+        Similar behavior to getNeighbors(), but returns list of nodes and not edges
+         */
+        if (!hasNode(n)) return null;
+        ArrayList<Node> neighbors = new ArrayList<Node>();
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
+            if (e.hasNode(n) && !n.getNodeType().equals("STAI") && !e.getOther(n).getNodeType().equals("STAI")) neighbors.add(e.getOther(n));
+        }
+        return neighbors;
+    }
+
+    public ArrayList<Node> getNeighborNodesNoElev(Node n) {
+        /*
+        Similar behavior to getNeighbors(), but returns list of nodes and not edges
+         */
+        if (!hasNode(n)) return null;
+        ArrayList<Node> neighbors = new ArrayList<Node>();
+        for (Map.Entry<String, Edge> pair : edges.entrySet()) {
+            Edge e = pair.getValue();
+            if (e.hasNode(n) && !n.getNodeType().equals("ELEV") && !e.getOther(n).getNodeType().equals("ELEV")) neighbors.add(e.getOther(n));
         }
         return neighbors;
     }

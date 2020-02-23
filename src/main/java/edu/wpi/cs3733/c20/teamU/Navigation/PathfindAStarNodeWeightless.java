@@ -86,8 +86,11 @@ public class PathfindAStarNodeWeightless implements PathfinderInterface {
                 return; //That's everything!
             }
             //Most likely, we have to go through the search process before we reach the goal
-            //for (Node n : graph.getNeighborNodes(current)) {
-            for (Node n :  DatabaseWrapper.getGraph().getNeighborNodes(current)) {
+            ArrayList<Node> neighbors;
+            if (NavigationWrapper.getStatus() == 0) neighbors = DatabaseWrapper.getGraph().getNeighborNodes(current);
+            else if (NavigationWrapper.getStatus() == 1) neighbors = DatabaseWrapper.getGraph().getNeighborNodesNoStairs(current);
+            else neighbors = DatabaseWrapper.getGraph().getNeighborNodesNoElev(current);
+            for (Node n : neighbors) {
                 //int newCost = costSoFar.get(current) + graph.costNoWeight(current, n);
                 int newCost = costSoFar.get(current) + DatabaseWrapper.getGraph().cost(current, n);
                 if (!costSoFar.containsKey(n) || newCost < costSoFar.get(n)) { //Either we've been here before, but this time we got here cheaper, or this is new

@@ -9,9 +9,27 @@ public class NavigationWrapper {
     private static String pathType = "A*";
     private static ArrayList<Node> path;
     private static int cost;
+    private static int status = 0;
     public ArrayList<Edge> getPath(Node node1, Node node2) {
         return null;
     }
+
+    public static int getStatus() { return status;}
+    public static void setStatus(int x) { status = x;}
+
+    /*
+    A*: A* Algorithm, unmodified
+    BFS: Breadth First Search
+    DFS: Depth First Search
+    DJI: Dijkstra's Algorithm
+    */
+
+    /*
+    Status:
+     - 0: no preference
+     - 1: no stairs
+     - 2: no elevators
+     */
 
     public static void setSearchType(String searchType) {
         pathType = searchType;
