@@ -22,7 +22,7 @@
                           <children>
                         <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                            <children>
-                                      <Label  fx:id="BWHospital" alignment="CENTER" prefHeight="55.0" prefWidth="635.0" text="BWH Faulkner Hospital Map" textFill="WHITE">
+                                      <Label fx:id="BWHospital" alignment="CENTER" prefHeight="55.0" prefWidth="635.0" text="BWH Faulkner Hospital Map" textFill="WHITE">
                                           <font>
                                               <Font name="System Bold" size="38.0" />
                                           </font>
@@ -60,7 +60,7 @@
               </VBox>
          </top>
          <left>
-              <VBox alignment="CENTER" prefWidth="140.0" spacing="5.5" style="-fx-background-color: #807765;" styleClass="sideBar" BorderPane.alignment="TOP_CENTER">
+              <VBox alignment="CENTER" prefWidth="140.0" spacing="5.5" styleClass="sideBar" BorderPane.alignment="TOP_CENTER">
                <children>
                   <HBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                      <children>

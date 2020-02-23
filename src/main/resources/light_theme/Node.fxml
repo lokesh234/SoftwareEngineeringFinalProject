@@ -15,7 +15,7 @@
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #474338;" styleClass="titleBar" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -55,7 +55,7 @@
             </TableView>
          </center>
          <left>
-            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" style="-fx-background-color: #807765;" styleClass="sideBar" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" styleClass="sideBar" HBox.hgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER" prefHeight="107.0" prefWidth="140.0" spacing="10.0">
                      <children>
