@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import foodRequest.FoodRequest;
+import foodRequest.ServiceException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -308,7 +310,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) {
+  public void start(Stage primaryStage) throws ServiceException {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
@@ -331,6 +333,8 @@ public class App<loadedAdminRequests> extends Application {
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wwong2.jpg")));
     primaryStage.show();
+//    FoodRequest foodRequest = new FoodRequest();
+//    foodRequest.run(800, 800, 800, 800, null, "something", "something");
 
   }
 
