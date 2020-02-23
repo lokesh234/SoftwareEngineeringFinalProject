@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
 import java.util.ArrayList;
@@ -154,28 +155,6 @@ public class PathfindController {
         }
     };
 
-    EventHandler<ActionEvent> searchBoxHandler = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            updateStatus();
-            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
-            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
-                //System.out.println("Start Click");
-                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
-                startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getLongName());
-                state = State.NEUTRAL;
-                updateStatus();
-            }
-            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
-                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
-                endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getLongName());
-                state = State.NEUTRAL;
-                updateStatus();
-            }
-        }
-    };
 
 
     @FXML private void clickUp(ActionEvent e){
@@ -208,6 +187,28 @@ public class PathfindController {
         }
         stateMachine(floor);
         checker = 2;
+    }
+
+    private void Auto(){
+        TextFields.bindAutoCompletion(SearchBox, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+            updateStatus();
+            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
+            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                startReady = (start != null) || startReady;
+                if (startReady) startLabel.setText(start.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
+                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+                endReady = (end != null) || endReady;
+                if (endReady) endLabel.setText(end.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+        });
     }
 
     @FXML private void stateMachine(int floor){
@@ -509,7 +510,7 @@ public class PathfindController {
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         Populate();
-        TextFields.bindAutoCompletion(SearchBox, AllNodeNames);
+        Auto();
         oppo.getChildren().clear();
         N1.translateYProperty().set(1500);
         oppo.getChildren().add(N1);
@@ -518,7 +519,6 @@ public class PathfindController {
         KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(.5), kv1);
         timeline1.getKeyFrames().add(keyFrame1);
         timeline1.play();
-        SearchBox.setOnAction(searchBoxHandler);
     }
 
     private void Populate(){
