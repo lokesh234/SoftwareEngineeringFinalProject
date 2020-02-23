@@ -636,20 +636,19 @@ public class ServiceDatabase {
             }
             ResultSet results = stmt.executeQuery(sql);
 
-            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
             while (results.next()) {
-                String requestID = results.getString(1);
-                String date = results.getString(2);
-                String requestType = results.getString(3);
-                System.out.println("Tuple: " + requestID + " " + date + " " + requestType);
+//                String requestID = results.getString(1);
+//                String date = results.getString(2);
+//                String requestType = results.getString(3);
+//                System.out.println("Tuple: " + requestID + " " + date + " " + requestType);
                 retNumber++;
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
             results.close();
             stmt.close();
             connection.close();
-            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
