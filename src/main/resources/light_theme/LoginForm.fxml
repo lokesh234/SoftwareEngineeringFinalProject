@@ -23,7 +23,7 @@
                   <Label text="Admin Login Screen" />
                </children>
                 </HBox>
-                <VBox alignment="CENTER" prefHeight="288.0" prefWidth="600.0">
+                <VBox alignment="CENTER" prefHeight="288.0" prefWidth="600.0" styleClass="windowScreen">
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>

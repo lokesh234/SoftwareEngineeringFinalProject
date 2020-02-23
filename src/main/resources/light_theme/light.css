@@ -17,26 +17,37 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/** custom shit*/
+/** defining custom colors */
+*{
+    -color-1: #FFF9E9; /* white */
+    -color-2: #969696; /*gray*/
+    -color-3: #DBC6B3; /*cream*/
+    -color-4: #B89A8C; /*light-brown*/
+    -color-5: #4d4d4d; /*dark-gray*/
+    -color-red: #D34336; /*red*/
+    -color-green: #0F9D58; /*green*/
+}
+
 .root{
+
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI";
     -fx-base: rgb(0, 0, 0);
-    -fx-background: #FFF9E9;
+    -fx-background: -color-1;
 }
 
 .titleBar{
-    -fx-background-color: #969696;
+    -fx-background-color: -color-2;
     /*-fx-background-color: red;*/
 }
 .titleBar .label{
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: #FFF9E9;
+    -fx-text-fill: -color-1;
 }
 
 .sideBar{
-    -fx-background-color: #FFF9E9;
+    -fx-background-color: -color-1;
 }
 
 .sideBar .jfx-button{
@@ -48,11 +59,19 @@
 }
 
 .border-pane{
-    -fx-background-color: #DBC6B3;
+    -fx-background-color: -color-3;
+}
+
+.h-box{
+    -fx-background-color: -color-1;
+}
+
+.v-box{
+    -fx-background-color: -color-1;
 }
 
 .jfx-button {
-    -fx-background-color: #B89A8C;
+    -fx-background-color: -color-4;
     -fx-background-radius: 50px;
     -fx-background-insets: 0px;
     -fx-font-weight: bold;
@@ -81,8 +100,8 @@
 
 
 .jfx-check-box {
-    -jfx-unchecked-color: #DBC6B3;
-    -jfx-checked-color: #B89A8C;
+    -jfx-unchecked-color: -color-3;
+    -jfx-checked-color: -color-4;
 }
 
 .jfx-check-box .box-container {
@@ -145,15 +164,15 @@
 
 
 .jfx-color-picker .color-box {
-    -fx-background-color: #B89A8C;
+    -fx-background-color: -color-4;
     -fx-background-radius: 3px;
     -fx-background-insets: 0px;
 }
 
 .jfx-combo-box{
-    -jfx-focus-color: #B89A8C;
-    -jfx-unfocus-color: #DBC6B3;
-    -fx-prompt-text-fill: #4d4d4d;
+    -jfx-focus-color: -color-4;
+    -jfx-unfocus-color: -color-3;
+    -fx-prompt-text-fill: -color-5;
     -fx-padding: 0.0em 1em 0.0em 1em;
 }
 
@@ -171,8 +190,8 @@
 }
 
 .jfx-combo-box:error {
-    -jfx-focus-color: #B89A8C;
-    -jfx-unfocus-color: #DBC6B3;
+    -jfx-focus-color: -color-4;
+    -jfx-unfocus-color: -color-3;
 }
 
 .jfx-combo-box > .arrow-button,
@@ -182,7 +201,7 @@
 }
 
 .jfx-date-picker{
-    -jfx-default-color: #B89A8C;
+    -jfx-default-color: -color-4;
 }
 
 .jfx-date-picker,
@@ -239,43 +258,43 @@
 }
 
 .jfx-password-field {
-    -jfx-focus-color: #B89A8C;
-    -jfx-unfocus-color: #DBC6B3;
+    -jfx-focus-color: -color-4;
+    -jfx-unfocus-color: -color-3;
     -fx-padding: 0.333333em 0 0.333333em 0;
 }
 
 .jfx-password-field,
 .jfx-password-field:focused {
-    -fx-prompt-text-fill: #B89A8C;
+    -fx-prompt-text-fill: -color-4;
     -fx-background-color: TRANSPARENT, TRANSPARENT, TRANSPARENT;
 }
 
 .jfx-password-field:error {
-    -jfx-focus-color: #D34336;
-    -jfx-unfocus-color: #D34336;
+    -jfx-focus-color: -color-red;
+    -jfx-unfocus-color: -color-red;
 }
 
 .jfx-password-field .error-label {
-    -fx-text-fill: #D34336;
+    -fx-text-fill: -color-red;
 }
 
 .jfx-password-field .error-icon {
-    -fx-fill: #D34336;
+    -fx-fill: -color-red;
 }
 
 .jfx-progress-bar > .track{
-    -fx-background-color: #B89A8C;
+    -fx-background-color: -color-4;
 }
 
 .jfx-progress-bar > .bar,
 .jfx-progress-bar:indeterminate > .bar{
-    -fx-background-color: #B89A8C;
+    -fx-background-color: -color-4;
     -fx-padding: 1.5;
 }
 
 .jfx-progress-bar > .secondary-bar,
 .jfx-progress-bar:indeterminate > .secondary-bar{
-    -fx-background-color: #B89A8C;
+    -fx-background-color: -color-4;
 }
 
 .jfx-progress-bar > .track,
@@ -285,8 +304,8 @@
 }
 
 .jfx-slider {
-    -jfx-default-thumb: #0F9D58;
-    -jfx-default-track: #CCCCCC;
+    -jfx-default-thumb: -color-green;
+    -jfx-default-track: -color-1;
 }
 
 .jfx-slider .track,
@@ -312,7 +331,7 @@
 }
 
 .jfx-slider .slider-value {
-    -fx-stroke: WHITE;
+    -fx-stroke: -color-1;
     -fx-font-size: 10;
 }
 
@@ -338,13 +357,13 @@
 }
 
 .jfx-text-area {
-    -jfx-focus-color: #B89A8C;
-    -jfx-unfocus-color: #DBC6B3;
+    -jfx-focus-color: -color-4;
+    -jfx-unfocus-color: -color-3;
 }
 
 .jfx-text-area,
 .jfx-text-area:focused {
-    -fx-prompt-text-fill: #4D4D4D;
+    -fx-prompt-text-fill: -color-5;
 }
 
 .jfx-text-area,
@@ -361,41 +380,41 @@
 }
 
 .jfx-text-area:error {
-    -jfx-focus-color: #D34336;
-    -jfx-unfocus-color: #D34336;
+    -jfx-focus-color: -color-red;
+    -jfx-unfocus-color: -color-red;
 }
 
 .jfx-text-area .error-label {
-    -fx-text-fill: #D34336;
+    -fx-text-fill: -color-red;
 }
 
 .jfx-text-area .error-icon {
-    -fx-fill: #D34336;
+    -fx-fill: -color-red;
 }
 
 .jfx-text-field {
-    -jfx-focus-color: #B89A8C;
-    -jfx-unfocus-color: #DBC6B3;
+    -jfx-focus-color: -color-4;
+    -jfx-unfocus-color: -color-3;
     -fx-padding: 0.33em 1em 0.33em 1em;
 }
 
 .jfx-text-field,
 .jfx-text-field:focused {
     -fx-background-color: TRANSPARENT, TRANSPARENT, TRANSPARENT;
-    -fx-prompt-text-fill: #4D4D4D;
+    -fx-prompt-text-fill: -color-5;
 }
 
 .jfx-text-field:error {
-    -jfx-focus-color: #D34336;
-    -jfx-unfocus-color: #D34336;
+    -jfx-focus-color: -color-red;
+    -jfx-unfocus-color: -color-red;
 }
 
 .jfx-text-field .error-label {
-    -fx-text-fill: #D34336;
+    -fx-text-fill: -color-red;
 }
 
 .jfx-text-field .error-icon {
-    -fx-fill: #D34336;
+    -fx-fill: -color-red;
 }
 
 .combo-box-base:editable > .jfx-text-field,
@@ -414,7 +433,7 @@
 }
 
 .jfx-time-picker{
-    -jfx-default-color: #B89A8C;
+    -jfx-default-color: -color-4;
 }
 
 .jfx-time-picker,
@@ -534,17 +553,17 @@
 }
 
 .tree-table-row-cell .jfx-text-field:error {
-    -jfx-focus-color: #D34336;
-    -jfx-unfocus-color: #D34336;
+    -jfx-focus-color: -color-red;
+    -jfx-unfocus-color: -color-red;
 }
 
 .tree-table-row-cell .jfx-text-field .error-label {
-    -fx-text-fill: #D34336;
+    -fx-text-fill: -color-red;
     -fx-font-size: 0.75em;
 }
 
 .tree-table-row-cell .jfx-text-field .error-icon {
-    -fx-fill: #D34336;
+    -fx-fill: -color-red;
     -fx-font-size: 1.0em;
 }
 
@@ -581,6 +600,7 @@
 }
 
 .buttonGrid {
+    -fx-background-color: -color-1;
 }
 
 .buttonGrid .jfx-button{
@@ -590,4 +610,8 @@
 
 .buttonGrid .gridPane{
     -fx-border-width: 0px 0px 0px 0px;
+}
+
+.windowScreen{
+    -fx-background-color: -color-1;
 }
