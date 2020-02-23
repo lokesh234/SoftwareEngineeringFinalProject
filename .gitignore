@@ -19,6 +19,9 @@ derby.log
 # UDB Folder
 /UDB
 
+# Food request DB
+/gargoyle_food_request_db
+
 # DatabaseBackup Folder
 /DatabaseBackup
 
