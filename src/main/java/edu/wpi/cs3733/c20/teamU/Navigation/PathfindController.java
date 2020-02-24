@@ -12,10 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -64,6 +61,8 @@ public class PathfindController {
     @FXML private GesturePane MapGes4;
     @FXML private GesturePane MapGes5;
 
+    @FXML private RadioButton fast, elev, stai;
+
     private Circle startSelect = new Circle();
     private Circle endSelect = new Circle();
 
@@ -91,6 +90,7 @@ public class PathfindController {
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
 
+    @FXML private VBox radioBox;
 
     @FXML
     Button startButton, goButton, endButton, clearButton, backButton;
@@ -436,8 +436,26 @@ public class PathfindController {
         //return true; //Everything!
     }
 
+    private EventHandler<MouseEvent> radioHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (fast.isSelected()) NavigationWrapper.setStatus(0);
+            else if (elev.isSelected()) NavigationWrapper.setStatus(1);
+            else NavigationWrapper.setStatus(2);
+
+            if (displayingPath) pathfind();
+        }
+    };
+
     @FXML
     private void initialize() {
+        fast.setToggleGroup(group);
+        stai.setToggleGroup(group);
+        elev.setToggleGroup(group);
+        fast.setSelected(true);
+
+        radioBox.addEventFilter(MouseEvent.MOUSE_CLICKED, radioHandler);
+
         NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
         NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
         NodesPane3.getChildren().add(new ImageView(App.getFloor3()));

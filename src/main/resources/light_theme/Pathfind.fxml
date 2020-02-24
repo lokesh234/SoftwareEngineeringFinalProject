@@ -180,11 +180,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+                              <VBox spacing="20.0" VBox.vgrow="ALWAYS" fx:id="radioBox">
                                  <children>
-                                    <JFXRadioButton text="Fastest (Default)" />
-                                    <JFXRadioButton text="Elevator" />
-                                    <JFXRadioButton text="Stairs" />
+                                    <JFXRadioButton text="Fastest (Default)" fx:id="fast" />
+                                    <JFXRadioButton text="Elevator" fx:id="elev" />
+                                    <JFXRadioButton text="Stairs" fx:id="stai" />
                                  </children>
                                  <padding>
                                     <Insets left="20.0" />
