@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
@@ -37,6 +38,9 @@ public class PathfindController {
 
     private Parent root;
     int floor = 4;
+
+    @FXML
+    private JFXButton upButton, downButton;
 
     @FXML
     private GesturePane PathGes;
@@ -218,6 +222,8 @@ public class PathfindController {
                 oppo.getChildren().add(N1);
                 floor = 1;
                 floorLabel.setText("1");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: A9A9A9");
                 MapGes1.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -228,6 +234,8 @@ public class PathfindController {
                 oppo.getChildren().add(N2);
                 floor = 2;
                 floorLabel.setText("2");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes2.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes2.getCurrentScale() - 30000, MapGes2.targetPointAtViewportCentre());
@@ -237,6 +245,8 @@ public class PathfindController {
                 oppo.getChildren().add(N3);
                 floor = 3;
                 floorLabel.setText("3");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes3.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
@@ -246,6 +256,8 @@ public class PathfindController {
                 oppo.getChildren().add(N4);
                 floor = 4;
                 floorLabel.setText("4");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes4.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
@@ -255,6 +267,8 @@ public class PathfindController {
                 oppo.getChildren().add(N5);
                 floor = 5;
                 floorLabel.setText("5");
+                upButton.setStyle("-fx-text-fill: A9A9A9");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes5.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
