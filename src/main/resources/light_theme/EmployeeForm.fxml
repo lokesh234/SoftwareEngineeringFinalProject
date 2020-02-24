@@ -121,7 +121,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <JFXTextField fx:id="employeeEmail" prefHeight="31.0" prefWidth="292.0" />
+                        <JFXTextField fx:id="employeeNumber" prefHeight="31.0" prefWidth="292.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" GridPane.rowIndex="3">
