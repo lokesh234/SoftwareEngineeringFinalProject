@@ -152,7 +152,6 @@ public class App<loadedAdminRequests> extends Application {
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
   private static Service service;
   private static Account user;
-  private static Account accountEdit;
   private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
 
@@ -281,9 +280,7 @@ public class App<loadedAdminRequests> extends Application {
   public static void setNodeEdit(edu.wpi.cs3733.c20.teamU.Database.Node userNode) { nodeEdit = userNode; }
   public static void setEdgeEdit(Edge userEdge) { edgeEdit = userEdge; }
   public static Edge getEdgeEdit() { return edgeEdit; }
-  public static Account getAccountEdit() { return accountEdit; }
   public static void setServiceEdit(Service serviceSel) { service = serviceSel; }
-  public static void setAccountEdit(Account accountSel) { accountEdit = accountSel; }
   public static Service getService() { return service; }
 
   public static void change(boolean hey) { didChange = hey; }

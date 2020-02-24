@@ -1031,7 +1031,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), number VARCHAR(20), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), email VARCHAR(30), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -1058,8 +1058,8 @@ public class Database {
                         String firstName = csvString[2];
                         String lastName = csvString[3];
                         String position = csvString[4];
-                        String number = csvString[5];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + number + "')");
+                        String email = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + email + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -1540,12 +1540,12 @@ public class Database {
                 String firstName = results.getString(3);
                 String lastName = results.getString(4);
                 String cred = results.getString(5);
-                String number = results.getString(6);
+                String email = results.getString(6);
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
 //                System.out.println(requestType);
-                Account a = new Account(username, password, firstName, lastName, cred, number);
+                Account a = new Account(username, password, firstName, lastName, cred, email);
                 accounts.add(a);
                 System.out.println("Account list: " + accounts);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
@@ -1587,7 +1587,7 @@ public class Database {
             String firstName = "";
             String lastName = "";
             String cred = "";
-            String number = "";
+            String email = "";
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
@@ -1596,7 +1596,7 @@ public class Database {
                     firstName = results.getString(3);
                     lastName = results.getString(4);
                     cred = results.getString(5).toUpperCase();
-                    number = results.getString(6);
+                    email = results.getString(6);
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
@@ -1607,7 +1607,7 @@ public class Database {
                     connection.close();
                     return null;
                 }
-                Account a = new Account(username, password, firstName, lastName, cred, number);
+                Account a = new Account(username, password, firstName, lastName, cred, email);
                 results.close();
                 stmt.close();
                 connection.close();
@@ -1632,10 +1632,9 @@ public class Database {
    * @param firstName FirstName
    * @param lastName LastName
    * @param position Position: one of ('ADMIN' 'MEDIC' ...)
-   * @param number
    * @return boolean if loginSR is updated or edited
    */
-  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String number) {
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String email) {
     String tableName = "LoginDB";
     Connection conn = null;
     Statement stmt = null;
@@ -1653,7 +1652,7 @@ public class Database {
       }
 
       stmt.executeUpdate(
-          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + number + "')");
+          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + email + "')");
 
       Database.CreateCSV(stmt, tableName, null);
       stmt.close();
@@ -1685,15 +1684,15 @@ public class Database {
           String firstName = "";
           String lastName = "";
           String position = "";
-          String number = "";
+          String email = "";
           while (results.next()) {
             password = results.getString(2);
             firstName = results.getString(3);
             lastName = results.getString(4);
             position = results.getString(5);
-            number = results.getString(6);
+            email = results.getString(6);
               }
-          Account a = new Account(username, password, firstName, lastName, position, number);
+          Account a = new Account(username, password, firstName, lastName, position, email);
           stmt.close();
           conn.close();
           return a;
@@ -1781,7 +1780,7 @@ public class Database {
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
-            String sql1 = "UPDATE "  + tableName + " SET edgeID = " + edgeIDN + ", startNode = " + startNodeN + ", endNode = " + endNodeN + " WHERE edgeID = '" + edgeIDN + "'";
+            String sql1 = "UPDATE "  + tableName + " SET edgeID = " + edgeIDN + ", startNode = " + startNodeN + ", endNode = " + endNodeN + "' WHERE edgeID = '" + edgeIDN + "'";
 
             int result = stmt.executeUpdate(sql1);
             System.out.println(result);
