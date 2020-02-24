@@ -20,7 +20,7 @@ public class TextPathBuilder {
     }
 
     enum RelativeDirection{
-        STRAIGHT, LEFT, RIGHT, BACKWARDS, ERROR;
+        STRAIGHT, LEFT, RIGHT, BACKWARDS, DIAGONALLY, ERROR;
     }
 
     //...admin sets the units here...
@@ -130,6 +130,8 @@ public class TextPathBuilder {
                         return RelativeDirection.LEFT;
                     case EAST:
                         return RelativeDirection.RIGHT;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
                 }
             case SOUTH:
                 switch (dir2){
@@ -141,6 +143,8 @@ public class TextPathBuilder {
                         return RelativeDirection.RIGHT;
                     case EAST:
                         return RelativeDirection.LEFT;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
                 }
             case EAST:
                 switch (dir2){
@@ -152,6 +156,8 @@ public class TextPathBuilder {
                         return RelativeDirection.BACKWARDS;
                     case EAST:
                         return RelativeDirection.STRAIGHT;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
                 }
             case WEST:
                 switch (dir2){
@@ -163,7 +169,63 @@ public class TextPathBuilder {
                         return RelativeDirection.STRAIGHT;
                     case EAST:
                         return RelativeDirection.BACKWARDS;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
                 }
+            case NORTHEAST:
+                switch(dir2){
+                    case NORTHEAST:
+                        return RelativeDirection.STRAIGHT;
+                    case SOUTHWEST:
+                        return RelativeDirection.BACKWARDS;
+                    case SOUTHEAST:
+                        return RelativeDirection.RIGHT;
+                    case NORTHWEST:
+                        return RelativeDirection.LEFT;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
+                }
+            case SOUTHEAST:
+                switch(dir2){
+                    case NORTHEAST:
+                        return RelativeDirection.LEFT;
+                    case SOUTHWEST:
+                        return RelativeDirection.RIGHT;
+                    case SOUTHEAST:
+                        return RelativeDirection.STRAIGHT;
+                    case NORTHWEST:
+                        return RelativeDirection.BACKWARDS;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
+                }
+            case SOUTHWEST:
+                switch(dir2){
+                    case NORTHEAST:
+                        return RelativeDirection.BACKWARDS;
+                    case SOUTHWEST:
+                        return RelativeDirection.STRAIGHT;
+                    case SOUTHEAST:
+                        return RelativeDirection.LEFT;
+                    case NORTHWEST:
+                        return RelativeDirection.RIGHT;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
+                }
+            case NORTHWEST:
+                switch(dir2){
+                    case NORTHEAST:
+                        return RelativeDirection.RIGHT;
+                    case SOUTHWEST:
+                        return RelativeDirection.LEFT;
+                    case SOUTHEAST:
+                        return RelativeDirection.BACKWARDS;
+                    case NORTHWEST:
+                        return RelativeDirection.STRAIGHT;
+                    default:
+                        return RelativeDirection.DIAGONALLY;
+                }
+
+
         }
         return RelativeDirection.ERROR;
     }

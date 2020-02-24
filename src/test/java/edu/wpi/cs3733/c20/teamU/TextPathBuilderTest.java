@@ -62,6 +62,21 @@ public class TextPathBuilderTest {
         assertEquals("LEFT", answer);
     }
 
+    @Test
+    public void testRight(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(up, center, left);
+        assertEquals("RIGHT", answer);
+    }
+
+    @Test
+    public void testDiagonal(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(up_left , center, down);
+        assertEquals("DIAGONALLY", answer);
+    }
+
+
 
 
 
