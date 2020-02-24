@@ -59,6 +59,12 @@ public class GraphEditController {
   private Circle startSelect = new Circle();
   private Circle endSelect = new Circle();
 
+  public void zoomIn(ActionEvent event) {
+  }
+
+  public void zoomOut(ActionEvent event) {
+  }
+
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode;
   }
