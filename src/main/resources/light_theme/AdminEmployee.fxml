@@ -19,7 +19,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="View Nodes" textFill="WHITE">
+                        <Label text="View Employees" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="24.0" />
                            </font></Label>
