@@ -9,11 +9,13 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class PathfindTextController {
 
     @FXML private AnchorPane DirectionsPane;
     private ArrayList<Label> direction = new ArrayList<>();
+    private TextPathBuilder tpb = new TextPathBuilder();
 
     @FXML
     public void exitPopup(ActionEvent e){
@@ -23,6 +25,7 @@ public class PathfindTextController {
     }
 
     public void Populate(){
+        LinkedList<String> directionsList = tpb.getTextDirections();
         String directions = "";
         for (int i = 0; i < App.getTextpath().size(); i++){
 //            System.out.println(this.Directions);
