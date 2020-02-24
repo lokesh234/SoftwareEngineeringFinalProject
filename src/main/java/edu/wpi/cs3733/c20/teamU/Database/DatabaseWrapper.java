@@ -98,8 +98,8 @@ public class DatabaseWrapper {
    * @param position Position: one of ('ADMIN' 'MEDIC' ...)
    * @return boolean if loginSR is updated or edited
    */
-  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String email){
-    return (Database.addLoginSR(username, password, firstName, lastName, position, email));
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String number){
+    return (Database.addLoginSR(username, password, firstName, lastName, position, number));
   }
 
   /**

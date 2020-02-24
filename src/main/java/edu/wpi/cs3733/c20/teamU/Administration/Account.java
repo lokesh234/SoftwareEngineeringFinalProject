@@ -33,5 +33,5 @@ public class Account {
         return lastName;
     }
 
-    public String getNumber() {return number;}
+    public String  getNumber() {return number;}
 }

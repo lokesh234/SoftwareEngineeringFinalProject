@@ -46,16 +46,13 @@
          <center>
             <TableView fx:id="employeeTable" onMouseClicked="#detectClick" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn fx:id="NodeID" prefWidth="75.0" text="NodeID" />
-                  <TableColumn prefWidth="75.0" text="X-coord" fx:id="xCoord" />
-                  <TableColumn fx:id="yCoord" prefWidth="75.0" text="Y-coord" />
-                  <TableColumn fx:id="floor" prefWidth="75.0" text="Floor" />
-                  <TableColumn fx:id="building" prefWidth="75.0" text="Building" />
-                  <TableColumn fx:id="nodeType" prefWidth="75.0" text="NodeType" />
-                  <TableColumn fx:id="longName" prefWidth="123.0" text="LongName" />
-                  <TableColumn fx:id="shortName" prefWidth="76.0" text="ShortName" />
+                  <TableColumn prefWidth="75.0" text="Username" />
+                  <TableColumn fx:id="firstName" prefWidth="75.0" text="firstName" />
+                  <TableColumn fx:id="lastName" prefWidth="75.0" text="lastName" />
+                  <TableColumn fx:id="cred" prefWidth="75.0" text="Type" />
+                  <TableColumn fx:id="number" prefWidth="75.0" text="PhoneNumber" />
                </columns>
-            </TableView>
+               </TableView>
          </center>
          <left>
             <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" styleClass="sideBar" HBox.hgrow="ALWAYS">
@@ -79,10 +76,10 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
                      <children>
-                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" text="Add" />
-                        <JFXButton fx:id="endNode" buttonType="RAISED" onAction="#selectEnd" text="Edit" />
-                        <JFXButton fx:id="saveButton" buttonType="RAISED" onAction="#selectStart" style="-fx-background-color: #db6e6e;" text="Remove" />
-                        <JFXButton fx:id="cancelButton" buttonType="RAISED" onAction="#back" text="Export" />
+                        <JFXButton fx:id="add_button" buttonType="RAISED" onAction="#add" text="Add" />
+                        <JFXButton fx:id="edit_button" buttonType="RAISED" onAction="#edit" text="Edit" />
+                        <JFXButton fx:id="remove_button" buttonType="RAISED" onAction="#remove" style="-fx-background-color: #db6e6e;" text="Remove" />
+                        <JFXButton fx:id="export_button" buttonType="RAISED" onAction="#export" text="Export" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />

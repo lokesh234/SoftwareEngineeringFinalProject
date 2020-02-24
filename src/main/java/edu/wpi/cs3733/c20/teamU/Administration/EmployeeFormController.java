@@ -20,7 +20,7 @@ public class EmployeeFormController {
   @FXML private JFXTextField employeeIdText;
   @FXML private JFXTextField passwordText;
   @FXML private JFXTextField confirmPassText;
-  @FXML private JFXTextField employeeEmail;
+  @FXML private JFXTextField employeeNumber;
   @FXML private JFXButton confirm;
   @FXML private JFXButton cancel;
 //  @FXML private JFXChipView employeeChip = new JFXChipView();
@@ -28,7 +28,7 @@ public class EmployeeFormController {
   @FXML private JFXCheckBox checkBox;
   @FXML private JFXCheckBox checkBox1;
   @FXML private JFXCheckBox delete;
-  private String first, last, user, pass, checkPass, position, email;
+  private String first, last, user, pass, checkPass, position, number;
   private String userOG;
 
   public EmployeeFormController() {}
@@ -42,17 +42,17 @@ public class EmployeeFormController {
     first = firstNameText.getText();
     last = lastNameText.getText();
     user = employeeIdText.getText();
-    email = employeeEmail.getText();
+    number = employeeNumber.getText();
     pass = passwordText.getText();
     checkPass = confirmPassText.getText();
     position = employeeCombo.getSelectionModel().getSelectedItem().toString();
 
     if (first.isEmpty() || last.isEmpty() ||
-        user.isEmpty() || pass.isEmpty() || checkPass.isEmpty() || position.isEmpty() || email.isEmpty()) {
+        user.isEmpty() || pass.isEmpty() || checkPass.isEmpty() || position.isEmpty() || number.isEmpty()) {
       firstNameText.setStyle("-fx-border-color: red");
       lastNameText.setStyle("-fx-border-color: red");
       employeeIdText.setStyle("-fx-border-color: red");
-      employeeEmail.setStyle("-fx-border-color: red");
+      employeeNumber.setStyle("-fx-border-color: red");
       passwordText.setStyle("-fx-border-color: red");
       confirmPassText.setStyle("-fx-border-color: red");
       employeeCombo.setStyle("-fx-border-color: red");
@@ -65,7 +65,7 @@ public class EmployeeFormController {
     else if(user.equals(userOG)) employeeIdText.setStyle("-fx-border-color: red");
     else {
       if(delete.isSelected()) DatabaseWrapper.delLoginSR(user);
-      else DatabaseWrapper.addLoginSR(user, pass, first, last, position, email);
+      else DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
       cancel.fire();
     }
   }
@@ -102,7 +102,7 @@ public class EmployeeFormController {
     employeeIdText.clear();
     passwordText.clear();
     confirmPassText.clear();
-    employeeEmail.clear();
+    employeeNumber.clear();
     checkBox.setSelected(false);
     checkBox1.setSelected(false);
     delete.setSelected(false);
@@ -112,7 +112,7 @@ public class EmployeeFormController {
     lastNameText.setStyle("-fx-border-color: #FFEEC9");
     employeeIdText.setStyle("-fx-border-color: #FFEEC9");
     passwordText.setStyle("-fx-border-color: #FFEEC9");
-    employeeEmail.setStyle("-fx-border-color: #FFEEC9");
+    employeeNumber.setStyle("-fx-border-color: #FFEEC9");
     confirmPassText.setStyle("-fx-border-color: #FFEEC9");
     employeeCombo.setStyle("-fx-border-color: #FFEEC9");
   }
@@ -137,7 +137,7 @@ public class EmployeeFormController {
     employeeIdText.setText(userData.getUserName());
     firstNameText.setText(userData.getFirstName());
     lastNameText.setText(userData.getLastName());
-    employeeEmail.setText(userData.getNumber());
+    employeeNumber.setText(String.valueOf(userData.getNumber()));
     employeeCombo.setValue(userData.getCred());
     BooleanBinding bind = employeeIdText.textProperty().isEqualTo(userOG);
     confirm.disableProperty().bind(bind);
@@ -191,4 +191,27 @@ public class EmployeeFormController {
 //    confirm.setDisable(true);
   }
 
+    public void setAccountEdit() {
+
+      Account account = App.getAccountEdit();
+
+      first = account.getFirstName();
+      last = account.getLastName();
+      user = account.getUserName();
+      number = account.getNumber();
+      employeeCombo.getSelectionModel().select(account.getCred());
+
+
+//      @FXML private JFXTextField firstNameText;
+//      @FXML private JFXTextField lastNameText;
+//      @FXML private JFXTextField employeeIdText;
+//      @FXML private JFXTextField passwordText;
+//      @FXML private JFXTextField confirmPassText;
+//      @FXML private JFXTextField employeeNumber;
+
+      firstNameText.setText(first);
+      lastNameText.setText(last);
+      employeeIdText.setText(user);
+      employeeNumber.setText(number);
+    }
 }
