@@ -18,7 +18,7 @@ public class TextPathChunk {
 
         this.tpb = tpb;
 
-        this.humanDist = tpb.getHumanDistance(tpb.getPixelDistance(n1, n2) + tpb.getPixelDistance(n2, n3));
+        this.humanDist = tpb.getHumanDistance(tpb.getPixelDistance(n1, n2));
         this.dir = tpb.getRelativeDirection(n1, n2, n3);
     }
 
@@ -31,8 +31,11 @@ public class TextPathChunk {
     }
 
     public String toString(){
-        String answer = "";
-        answer += "Go " + getDir() + " for " + getHumanDist() + " " + tpb.getDistanceUnit();
+        String answer = "Go " + getHumanDist() + " " + tpb.getDistanceUnit();
+
+        if(!(getDir() == TextPathBuilder.RelativeDirection.STRAIGHT)){
+            answer += "\nTurn " + getDir();
+        }
 
         if((this.node3.getID().equals("STAI"))){
             answer += "\n" + "Enter the stairs";

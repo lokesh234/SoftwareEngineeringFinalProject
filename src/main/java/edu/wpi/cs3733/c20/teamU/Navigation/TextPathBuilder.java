@@ -63,13 +63,14 @@ public class TextPathBuilder {
         Node lastNode;
         Node thisNode;
         Node nextNode;
+        TextPathChunk thisChunk;
 
         for(int index = 1; index <= nodes.size()-2; index++){
             lastNode = nodes.get(index-1);
             thisNode = nodes.get(index);
             nextNode = nodes.get(index+1);
 
-            TextPathChunk thisChunk = new TextPathChunk(lastNode, thisNode, nextNode, this);
+            thisChunk = new TextPathChunk(lastNode, thisNode, nextNode, this);
             this.chunks.add(thisChunk);
         }
     }
