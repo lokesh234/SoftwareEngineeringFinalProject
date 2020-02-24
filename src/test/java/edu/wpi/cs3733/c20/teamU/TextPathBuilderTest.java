@@ -30,7 +30,10 @@ public class TextPathBuilderTest {
     static Node node2 = new Node("2",10,0,3 ,"1","HALL","node2","1");
     static Node node3 = new Node("3",10,10,3 ,"1","HALL","node3","1");
     static Node node4 = new Node("4",10,20,3 ,"1","HALL","node4","1");
-    static Node node5 = new Node("5",10,30,3 ,"1","ELEV","node5","1");
+    static Node node5 = new Node("5",20,20,3 ,"1","ELEV","node5","1");
+    static Node node6 = new Node("6",20,20,4 ,"1","ELEV","node6","1");
+    static Node node7 = new Node("7",30,20,4 ,"1","HALL","node7","1");
+    static Node node8 = new Node("8",30,10,4 ,"1","HALL","node8","1");
 
     @Test
     public void testAbsUp(){
@@ -119,7 +122,7 @@ public class TextPathBuilderTest {
 
         String actual = tpb.getTextDirections();
 
-        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nArrive at your destination, node3", actual);
+        assertEquals("Start at node1\nGo 100.0 feet\nTurn LEFT\nGo 100.0 feet\nArrive at node3", actual);
     }
     @Test
     public void testTwoChunks(){
@@ -134,7 +137,7 @@ public class TextPathBuilderTest {
 
         String actual = tpb.getTextDirections();
 
-        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nGo 100.0 feet\nArrive at your destination, node4", actual);
+        assertEquals("Start at node1\nGo 100.0 feet\nTurn LEFT\nGo 100.0 feet\nGo 100.0 feet\nArrive at node4", actual);
     }
     @Test
     public void testThreeChunks(){
@@ -150,6 +153,39 @@ public class TextPathBuilderTest {
 
         String actual = tpb.getTextDirections();
 
-        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nGo 100.0 feet\nGo 100.0 feet\nArrive at your destination, node5", actual);
+        assertEquals("Start at node1\nGo 100.0 feet\nTurn LEFT\nGo 200.0 feet\nGo 100.0 feet\nArrive at node5", actual);
+    }
+
+    @Test
+    public void goToButDoNotEnterElevator(){
+        ArrayList<Node> nodes = new ArrayList<>();
+        nodes.add(node3);
+        nodes.add(node4);
+        nodes.add(node5);
+
+        TextPathBuilder tpb = new TextPathBuilder(nodes);
+        tpb.generateTextDirections();
+
+        String actual = tpb.getTextDirections();
+
+        assertEquals("Start at node3\nGo 100.0 feet\nTurn RIGHT\nGo 100.0 feet\nArrive at node5", actual);
+    }
+
+    @Test
+    public void enterAndExitElevator(){
+        ArrayList<Node> nodes = new ArrayList<>();
+        nodes.add(node3);
+        nodes.add(node4);
+        nodes.add(node5);
+        nodes.add(node6);
+        nodes.add(node7);
+
+        TextPathBuilder tpb = new TextPathBuilder(nodes);
+        tpb.generateTextDirections();
+
+        String actual = tpb.getTextDirections();
+
+        assertEquals("Go 100.0 feet\nEnter the elevator\nGo 100.0 feet\nExit the elevator\nArrive at your destination, node7", actual);
+
     }
 }

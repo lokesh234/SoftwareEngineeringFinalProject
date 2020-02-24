@@ -78,16 +78,45 @@ public class TextPathBuilder {
     public void generateTextDirections(){
         generateChunks();
         this.directions = "";
-        // @TODO remove dupes from chunks...
+        LinkedList<TextPathChunk> cleanedChunks = new LinkedList<TextPathChunk>();
+        TextPathChunk lastChunk;
+        TextPathChunk thisChunk;
+
+        String start = getChunks().getFirst().getNode1().getLongName();
+        String destination = getChunks().getLast().getNode3().getLongName();
+
+//        for(int index = 1; index < getChunks().size(); index++){
+//            // compare the last chunk and this one...
+//            lastChunk = this.chunks.get(index-1);
+//            thisChunk = this.chunks.get(index);
+//
+//            //if the directions are the same, we want to change last chunk to add the distance
+//            //and remove thisChunk from chunks
+//            //@TODO consolidate chunks without deleting stairs/elevators
+//            if(lastChunk.getDir().equals(thisChunk.getDir())){
+//                double lastDist = lastChunk.getHumanDist();
+//                double thisDist = thisChunk.getHumanDist();
+//
+//                lastChunk.setHumanDist(lastDist+thisDist);
+//
+//                this.chunks.remove(thisChunk);
+//                index --;
+//                continue;
+//            }
+//        }
+
+        // go through and get the distances...
+        this.directions += "Start at " + start + "\n";
         for(int index = 0; index < getChunks().size(); index++){
             TextPathChunk c = this.chunks.get(index);
             this.directions += c.toString() + "\n";
 
             // if its the last chunk, we need the last pair to the destination
-            if(index == getChunks().size()-1){
+            if((index == getChunks().size()-1)){
                 this.directions += c.lastPairToString();
             }
         }
+        this.directions += "\nArrive at " + destination;
     }
 
     public double getPixelDistance(Node node1, Node node2){
