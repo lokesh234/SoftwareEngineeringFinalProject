@@ -148,7 +148,7 @@ public class NodesDatabase {
         ArrayList<Edge> neighbors = new ArrayList<Edge>();
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
-            if (e.hasNode(n) && !n.getNodeType().equals("STAI") && !e.getOther(n).getNodeType().equals("STAI")) neighbors.add(e);
+            if (e.hasNode(n) && !(n.getNodeType().equals("STAI") && e.getOther(n).getNodeType().equals("STAI"))) neighbors.add(e);
         }
         return neighbors;
     }
@@ -158,7 +158,7 @@ public class NodesDatabase {
         ArrayList<Edge> neighbors = new ArrayList<Edge>();
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
-            if (e.hasNode(n) && !n.getNodeType().equals("ELEV") && !e.getOther(n).getNodeType().equals("ELEV")) neighbors.add(e);
+            if (e.hasNode(n) && !(n.getNodeType().equals("ELEV") && e.getOther(n).getNodeType().equals("ELEV"))) neighbors.add(e);
         }
         return neighbors;
     }
@@ -184,7 +184,7 @@ public class NodesDatabase {
         ArrayList<Node> neighbors = new ArrayList<Node>();
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
-            if (e.hasNode(n) && !n.getNodeType().equals("STAI") && !e.getOther(n).getNodeType().equals("STAI")) neighbors.add(e.getOther(n));
+            if (e.hasNode(n) && !(n.getNodeType().equals("STAI") && e.getOther(n).getNodeType().equals("STAI"))) neighbors.add(e.getOther(n));
         }
         return neighbors;
     }
@@ -197,7 +197,7 @@ public class NodesDatabase {
         ArrayList<Node> neighbors = new ArrayList<Node>();
         for (Map.Entry<String, Edge> pair : edges.entrySet()) {
             Edge e = pair.getValue();
-            if (e.hasNode(n) && !n.getNodeType().equals("ELEV") && !e.getOther(n).getNodeType().equals("ELEV")) neighbors.add(e.getOther(n));
+            if (e.hasNode(n) && !(n.getNodeType().equals("ELEV") && e.getOther(n).getNodeType().equals("ELEV"))) neighbors.add(e.getOther(n));
         }
         return neighbors;
     }
