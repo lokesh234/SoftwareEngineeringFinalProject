@@ -7,6 +7,10 @@ import edu.wpi.cs3733.c20.teamU.Navigation.TextPathBuilder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -21,6 +25,12 @@ public class TextPathBuilderTest {
     static Node up_right = new Node("2",10,10,3 ,"1","1","up_right","1");
     static Node down_left = new Node("2",-10,-10,3 ,"1","1","down_left","1");
     static Node down_right = new Node("2",10,-10,3 ,"1","1","down_right","1");
+
+    static Node node1 = new Node("2",0,0,3 ,"1","HALL","node1","1");
+    static Node node2 = new Node("2",10,0,3 ,"1","HALL","node2","1");
+    static Node node3 = new Node("2",10,10,3 ,"1","HALL","node3","1");
+    static Node node4 = new Node("2",10,20,3 ,"1","HALL","node4","1");
+    static Node node5 = new Node("2",10,30,3 ,"1","ELEV","node5","1");
 
     @Test
     public void testAbsUp(){
@@ -97,7 +107,20 @@ public class TextPathBuilderTest {
         String answer = ""+tpb.getRelativeDirection(up_right , center, down_right);
         assertEquals("LEFT", answer);
     }
+    @Test
+    public void testChunks1(){
+        ArrayList<Node> nodes = new ArrayList<>();
+        nodes.add(node1);
+        nodes.add(node2);
+        nodes.add(node3);
 
+        TextPathBuilder tpb = new TextPathBuilder(nodes);
+        tpb.generateTextDirections();
+
+        String actual = tpb.getTextDirections();
+
+        assertEquals("Go LEFT for 100.0 feet\n", actual);
+    }
 
 
 

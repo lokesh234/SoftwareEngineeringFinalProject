@@ -1,19 +1,32 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
-import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class TextPathBuilder {
-    private LinkedList<Node> landmarks;
-    private LinkedList<String> directions;
+    private ArrayList<Node> nodes;
+    private LinkedList<TextPathChunk> chunks;
+    private String directions;
     private String distanceUnit;
 
     private double turnThreshold = 5;
     private double pixelsPerMeter = 10;
     private double pixelsPerFoot = 10;
+
+    public TextPathBuilder(){
+        this.chunks = new LinkedList<TextPathChunk>();
+        this.distanceUnit = "feet"; //SAE units by default
+    }
+    public TextPathBuilder(ArrayList<Node> nodes){
+        this.chunks = new LinkedList<TextPathChunk>();
+        this.nodes = nodes;
+        this.distanceUnit = "feet"; //SAE units by default
+    }
+
+    private ArrayList<Node> getNodes(){
+        return this.nodes;
+    }
 
     enum AbsoluteDirection{
         NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST, ERROR;
@@ -23,6 +36,7 @@ public class TextPathBuilder {
         STRAIGHT, LEFT, RIGHT, BACKWARDS, DIAGONALLY, ERROR;
     }
 
+
     //...admin sets the units here...
     public void setDistanceUnit(String unitType){
         this.distanceUnit = unitType;
@@ -31,20 +45,45 @@ public class TextPathBuilder {
         return this.distanceUnit;
     }
 
-    LinkedList<String> getTextDirections(){
-        generateTextDirections();
+    public String getTextDirections(){
         return this.directions;
     }
+    public LinkedList<TextPathChunk> getChunks(){
+        return this.chunks;
+    }
 
-    private void generateTextDirections(){
-        ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
+    public void generateChunks(){
+        //@TODO retrieve actual nodes from database
+//        ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
+        ArrayList<Node> nodes = getNodes();
+
+        //reset the chunks list in case this was called multiple times
+        this.chunks = new LinkedList<TextPathChunk>();
 
         Node lastNode;
         Node thisNode;
+        Node nextNode;
 
+        for(int index = 1; index <= nodes.size()-2; index++){
+            lastNode = nodes.get(index-1);
+            thisNode = nodes.get(index);
+            nextNode = nodes.get(index+1);
+
+            TextPathChunk thisChunk = new TextPathChunk(lastNode, thisNode, nextNode, this);
+            this.chunks.add(thisChunk);
+        }
     }
 
-    private double getPixelDistance(Node node1, Node node2){
+    public void generateTextDirections(){
+        generateChunks();
+        this.directions = "";
+        // @TODO remove dupes from chunks...
+        for(TextPathChunk c : this.chunks){
+            this.directions += c.toString() + "\n";
+        }
+    }
+
+    public double getPixelDistance(Node node1, Node node2){
         double startX = node1.getX();
         double endX = node2.getX();
 
@@ -57,7 +96,7 @@ public class TextPathBuilder {
         return Math.hypot(deltaX, deltaY);
     }
 
-    private double getHumanDistance(double pixelDistance){
+    public double getHumanDistance(double pixelDistance){
         switch(getDistanceUnit()){
             case "feet":
                 return pixelDistance*this.pixelsPerFoot;
@@ -116,8 +155,6 @@ public class TextPathBuilder {
     public RelativeDirection getRelativeDirection(Node node1, Node node2, Node node3){
         AbsoluteDirection dir1 = getAbsoluteDirectionTravelled(node1, node2);
         AbsoluteDirection dir2 = getAbsoluteDirectionTravelled(node2, node3);
-        System.out.println("dir 1 is " + dir1);
-        System.out.println("dir 2 is " + dir2);
 
         switch(dir1){
             case NORTH:

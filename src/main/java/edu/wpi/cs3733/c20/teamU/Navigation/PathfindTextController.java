@@ -25,7 +25,6 @@ public class PathfindTextController {
     }
 
     public void Populate(){
-        LinkedList<String> directionsList = tpb.getTextDirections();
         String directions = "";
         for (int i = 0; i < App.getTextpath().size(); i++){
 //            System.out.println(this.Directions);
