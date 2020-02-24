@@ -114,6 +114,7 @@ public class PathfindController {
                 start = circles.get(event.getSource());
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
+                if (startReady) SearchBox.setText(start.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
@@ -121,6 +122,7 @@ public class PathfindController {
                 end = circles.get(event.getSource());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
+                if (endReady) SearchBox.setText(end.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
