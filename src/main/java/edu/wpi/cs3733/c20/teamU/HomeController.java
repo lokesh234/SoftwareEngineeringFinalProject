@@ -44,7 +44,7 @@ public class HomeController {
   private WeatherController weatherController;
   private long startTime;
   private long currentTime;
-  int floor = 1;
+  int floor = 4;
   private int hr;
   private int m;
   private int s;
@@ -280,7 +280,7 @@ public class HomeController {
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
     oppo.getChildren().clear();
-    oppo.getChildren().add(N1);
+    oppo.getChildren().add(N4);
 //    startT.setDaemon(true);
 //    startT.start();
   }

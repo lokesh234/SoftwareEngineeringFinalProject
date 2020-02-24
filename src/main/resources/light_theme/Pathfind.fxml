@@ -125,7 +125,7 @@
                               <Font name="Segoe UI Bold" size="48.0" />
                            </font>
                         </JFXButton>
-                        <Label fx:id="floorLabel" text="1">
+                        <Label fx:id="floorLabel" text="4">
                            <font>
                               <Font name="Segoe UI Bold" size="48.0" />
                            </font>

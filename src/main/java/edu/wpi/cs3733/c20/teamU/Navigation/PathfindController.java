@@ -36,7 +36,7 @@ public class PathfindController {
     }
 
     private Parent root;
-    int floor = 1;
+    int floor = 4;
 
     @FXML
     private GesturePane PathGes;
@@ -530,13 +530,7 @@ public class PathfindController {
         Populate();
         Auto();
         oppo.getChildren().clear();
-        N1.translateYProperty().set(1500);
-        oppo.getChildren().add(N1);
-        Timeline timeline1 = new Timeline();
-        KeyValue kv1 = new KeyValue(N1.translateYProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(.5), kv1);
-        timeline1.getKeyFrames().add(keyFrame1);
-        timeline1.play();
+        oppo.getChildren().add(N4);
     }
 
     private void Populate(){
