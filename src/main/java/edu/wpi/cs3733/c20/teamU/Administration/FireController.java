@@ -1,7 +1,9 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindAStar;
 import javafx.animation.Interpolator;
 import javafx.event.EventHandler;
@@ -69,6 +71,8 @@ public class FireController {
 
 
     private void drawPath() {
+        NavigationWrapper.pathfind(App.getLocation(), DatabaseWrapper.getGraph().getNode("REXIT00301"));
+
         MoveTo move = new MoveTo(1375,1215);
         LineTo line = new LineTo( 1250, 1215);
         Path pathe = new Path();

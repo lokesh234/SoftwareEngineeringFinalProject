@@ -181,6 +181,11 @@ public class App<loadedAdminRequests> extends Application {
   private static Image floor4;
   private static Image floor5;
 
+  private static edu.wpi.cs3733.c20.teamU.Database.Node location;
+
+  public static edu.wpi.cs3733.c20.teamU.Database.Node getLocation() { return location;}
+  public static void setLocation(edu.wpi.cs3733.c20.teamU.Database.Node n) { location = n;}
+
   public static void setColor(edu.wpi.cs3733.c20.teamU.Database.Node n, Circle c) {
     switch (n.getNodeType()) {
       case "HALL":
@@ -366,6 +371,7 @@ public class App<loadedAdminRequests> extends Application {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
+    setLocation(DatabaseWrapper.getGraph().getNode("UHALL01404"));
 
     popup.getContent().addAll();
     securityPop.getContent().addAll();
