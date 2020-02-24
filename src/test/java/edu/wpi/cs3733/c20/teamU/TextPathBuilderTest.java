@@ -48,6 +48,20 @@ public class TextPathBuilderTest {
         assertEquals("NORTHEAST", ""+tpb.getAbsoluteDirectionTravelled(down_left, up_right));
     }
 
+    @Test
+    public void testStraight(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(left, center, right);
+        assertEquals("STRAIGHT", answer);
+    }
+
+    @Test
+    public void testLeft(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(down, center, left);
+        assertEquals("LEFT", answer);
+    }
+
 
 
 

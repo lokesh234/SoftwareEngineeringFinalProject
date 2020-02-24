@@ -20,7 +20,7 @@ public class TextPathBuilder {
     }
 
     enum RelativeDirection{
-        STRAIGHT, LEFT, RIGHT, ERROR;
+        STRAIGHT, LEFT, RIGHT, BACKWARDS, ERROR;
     }
 
     //...admin sets the units here...
@@ -71,17 +71,17 @@ public class TextPathBuilder {
         double startX = node1.getX();
         double endX = node2.getX();
 
-        double startY = node1.getX();
+        double startY = node1.getY();
         double endY = node2.getY();
 
         double deltaX = endX-startX;
         double deltaY = endY-startY;
 
         boolean movedNorth = (deltaY > this.turnThreshold);
-        boolean movedSouth = (deltaY < (-1)*this.turnThreshold);
+        boolean movedSouth = ((deltaY < (-1)*this.turnThreshold) && (deltaY < 0)); //ensure number is negative
 
         boolean movedEast = (deltaX > this.turnThreshold);
-        boolean movedWest = (deltaX < (-1)*this.turnThreshold);
+        boolean movedWest = ((deltaX < (-1)*this.turnThreshold) && (deltaX < 0)); //ensure number is negative
 
         //check combination directions first
         if(movedNorth && movedEast){
@@ -111,6 +111,61 @@ public class TextPathBuilder {
             return AbsoluteDirection.WEST;
         }
         return AbsoluteDirection.ERROR;
+    }
+
+    public RelativeDirection getRelativeDirection(Node node1, Node node2, Node node3){
+        AbsoluteDirection dir1 = getAbsoluteDirectionTravelled(node1, node2);
+        AbsoluteDirection dir2 = getAbsoluteDirectionTravelled(node2, node3);
+        System.out.println("dir 1 is " + dir1);
+        System.out.println("dir 2 is " + dir2);
+
+        switch(dir1){
+            case NORTH:
+                switch (dir2){
+                    case NORTH:
+                        return RelativeDirection.STRAIGHT;
+                    case SOUTH:
+                        return RelativeDirection.BACKWARDS;
+                    case WEST:
+                        return RelativeDirection.LEFT;
+                    case EAST:
+                        return RelativeDirection.RIGHT;
+                }
+            case SOUTH:
+                switch (dir2){
+                    case NORTH:
+                        return RelativeDirection.BACKWARDS;
+                    case SOUTH:
+                        return RelativeDirection.STRAIGHT;
+                    case WEST:
+                        return RelativeDirection.RIGHT;
+                    case EAST:
+                        return RelativeDirection.LEFT;
+                }
+            case EAST:
+                switch (dir2){
+                    case NORTH:
+                        return RelativeDirection.LEFT;
+                    case SOUTH:
+                        return RelativeDirection.RIGHT;
+                    case WEST:
+                        return RelativeDirection.BACKWARDS;
+                    case EAST:
+                        return RelativeDirection.STRAIGHT;
+                }
+            case WEST:
+                switch (dir2){
+                    case NORTH:
+                        return RelativeDirection.RIGHT;
+                    case SOUTH:
+                        return RelativeDirection.LEFT;
+                    case WEST:
+                        return RelativeDirection.STRAIGHT;
+                    case EAST:
+                        return RelativeDirection.BACKWARDS;
+                }
+        }
+        return RelativeDirection.ERROR;
     }
 
 
