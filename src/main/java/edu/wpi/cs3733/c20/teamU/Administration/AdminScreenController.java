@@ -55,7 +55,7 @@ public class AdminScreenController {
     @FXML
     private void goToEmployees() {
         App.getPopup().getContent().clear();
-        App.getPopup().getContent().add(App.getEmployeeForm());
+        App.getPopup().getContent().add(App.getAdminEmployee());
         App.getPopup().show(App.getPrimaryStage());
     }
 

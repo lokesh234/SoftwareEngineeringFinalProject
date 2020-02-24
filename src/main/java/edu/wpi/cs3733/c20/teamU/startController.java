@@ -58,7 +58,13 @@ public class startController {
           startTime = System.currentTimeMillis();
         });
       }
-      if (App.getLoadedAdmin()) {
+      if (App.getLoadedAdminRequest()) {
+        App.getAdminScene().addEventHandler(MOUSE_MOVED, event3 -> {
+          if (!runThread) App.getAdminScene().removeEventHandler(MOUSE_MOVED, null);
+          startTime = System.currentTimeMillis();
+        });
+      }
+      if (App.getLoadedAdminEmployee()) {
         App.getAdminScene().addEventHandler(MOUSE_MOVED, event3 -> {
           if (!runThread) App.getAdminScene().removeEventHandler(MOUSE_MOVED, null);
           startTime = System.currentTimeMillis();
