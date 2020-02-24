@@ -89,6 +89,10 @@ public class DatabaseWrapper {
     return (Database.CreateCSV(stmt, tableName, path));
   }
 
+  public static void getAccounts(ArrayList<Account> accounts){
+    Database.getAccounts(accounts);
+  }
+
   /**
    * create a new user or edit and existing one
    * @param username username for login (PK)
