@@ -119,7 +119,7 @@ public class TextPathBuilderTest {
 
         String actual = tpb.getTextDirections();
 
-        assertEquals("Go 100.0 feet\nTurn LEFT\n", actual);
+        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nArrive at your destination, node3", actual);
     }
     @Test
     public void testTwoChunks(){
@@ -134,7 +134,7 @@ public class TextPathBuilderTest {
 
         String actual = tpb.getTextDirections();
 
-        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\n", actual);
+        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nGo 100.0 feet\nArrive at your destination, node4", actual);
     }
     @Test
     public void testThreeChunks(){
@@ -150,11 +150,6 @@ public class TextPathBuilderTest {
 
         String actual = tpb.getTextDirections();
 
-        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nGo 300.0 feet\n", actual);
+        assertEquals("Go 100.0 feet\nTurn LEFT\nGo 100.0 feet\nGo 100.0 feet\nGo 100.0 feet\nArrive at your destination, node5", actual);
     }
-
-
-
-
-
 }

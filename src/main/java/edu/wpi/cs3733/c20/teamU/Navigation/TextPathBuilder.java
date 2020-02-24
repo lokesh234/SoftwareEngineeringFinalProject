@@ -79,8 +79,14 @@ public class TextPathBuilder {
         generateChunks();
         this.directions = "";
         // @TODO remove dupes from chunks...
-        for(TextPathChunk c : this.chunks){
+        for(int index = 0; index < getChunks().size(); index++){
+            TextPathChunk c = this.chunks.get(index);
             this.directions += c.toString() + "\n";
+
+            // if its the last chunk, we need the last pair to the destination
+            if(index == getChunks().size()-1){
+                this.directions += c.lastPairToString();
+            }
         }
     }
 
@@ -88,7 +94,7 @@ public class TextPathBuilder {
         double startX = node1.getX();
         double endX = node2.getX();
 
-        double startY = node1.getX();
+        double startY = node1.getY();
         double endY = node2.getY();
 
         double deltaX = Math.abs(endX-startX);

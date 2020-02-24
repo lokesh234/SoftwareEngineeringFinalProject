@@ -45,4 +45,11 @@ public class TextPathChunk {
         }
         return answer;
     }
+
+    public String lastPairToString(){
+        String answer = "Go " + tpb.getHumanDistance(tpb.getPixelDistance(this.node2, this.node3)) + " " + tpb.getDistanceUnit();
+        answer += "\nArrive at your destination, " + this.node3.getLongName();
+
+        return answer;
+    }
 }
