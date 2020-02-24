@@ -109,16 +109,6 @@
                      </children>
                   </HBox>
                   <JFXTextField fx:id="confirmPassText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="7">
-                     <children>
-                        <JFXCheckBox fx:id="checkBox1" text="Add Employee" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <children>
-                        <JFXCheckBox fx:id="delete" checkedColor="#ff4a4a" text="Delete Employee" />
-                     </children>
-                  </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
                         <JFXTextField fx:id="employeeNumber" prefHeight="31.0" prefWidth="292.0" />
@@ -126,7 +116,7 @@
                   </HBox>
                   <HBox alignment="CENTER" GridPane.rowIndex="3">
                      <children>
-                        <Label text="Email">
+                        <Label text="Number">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
@@ -149,7 +139,7 @@
                         <Font name="Segoe UI" size="18.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="cancel" onAction="#returnToAdmin" text="Cancel">
+                  <JFXButton fx:id="cancel" onAction="#returnToAdminEmployee" text="Cancel">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -57,6 +57,7 @@ public class AdminEmployeeController {
 
     public void setAttributes(EmployeeFormController e) {
         employeeFormController = e;
+        e.setMaster(this);
     }
 // <children>
 //                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" text="Add" />
@@ -80,12 +81,31 @@ public class AdminEmployeeController {
             edit_button.setDisable(true);
         }
     }
+
     @FXML
-    public void add(){}
+    public void add(){
+        App.setAccountEdit(null);
+        employeeFormController.setAccountEdit();
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getEmployeeForm());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
     @FXML
-    public void edit(){}
+    public void edit(){
+        employeeFormController.setAccountEdit();
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getEmployeeForm());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
     @FXML
-    public void remove(){}
+    public void remove(){
+        if (App.getAccountEdit() != null) {
+            DatabaseWrapper.delLoginSR(App.getAccountEdit().getUserName());
+            update();
+        }
+    }
 
     @FXML
     public void backToAdmin(){
