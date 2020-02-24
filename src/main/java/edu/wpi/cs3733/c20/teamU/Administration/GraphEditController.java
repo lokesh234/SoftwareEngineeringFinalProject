@@ -526,48 +526,12 @@ public class GraphEditController {
       c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
       c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
       c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
-      setColor(n, c);
+      App.setColor(n, c);
       circles.put(c, n);
     }
   }
 
-  private void setColor(Node n, Circle c) {
-    switch (n.getNodeType()) {
-      case "HALL":
-        c.setFill(Color.GRAY);
-        break;
-      case "DEPT":
-        c.setFill(Color.BLACK);
-        break;
-      case "CONF":
-        c.setFill(Color.DARKSLATEGRAY);
-        break;
-      case "REST":
-        c.setFill(Color.PURPLE);
-        break;
-      case "STAI":
-        c.setFill(Color.LIGHTSEAGREEN);
-        break;
-      case "ELEV":
-        c.setFill(Color.CORNFLOWERBLUE);
-        break;
-      case "LABS":
-        c.setFill(Color.BLUEVIOLET);
-        break;
-      case "INFO":
-        c.setFill(Color.BLUE);
-        break;
-      case "EXIT":
-        c.setFill(Color.RED);
-        break;
-      case "RETL":
-        c.setFill(Color.DARKGOLDENROD);
-        break;
-      case "SERV":
-        c.setFill(Color.GOLD);
-        break;
-    }
-  }
+
 
   EventHandler<MouseEvent> circleClickHandler = new EventHandler<MouseEvent>() {
     @Override
@@ -617,7 +581,7 @@ public class GraphEditController {
     @Override
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
-      setColor(circles.get(source), source);
+      App.setColor(circles.get(source), source);
     }
   };
 

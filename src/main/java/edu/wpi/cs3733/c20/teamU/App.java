@@ -20,6 +20,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -178,6 +180,44 @@ public class App<loadedAdminRequests> extends Application {
   private static Image floor3;
   private static Image floor4;
   private static Image floor5;
+
+  public static void setColor(edu.wpi.cs3733.c20.teamU.Database.Node n, Circle c) {
+    switch (n.getNodeType()) {
+      case "HALL":
+        c.setFill(Color.GRAY);
+        break;
+      case "DEPT":
+        c.setFill(Color.BLACK);
+        break;
+      case "CONF":
+        c.setFill(Color.DARKSLATEGRAY);
+        break;
+      case "REST":
+        c.setFill(Color.PURPLE);
+        break;
+      case "STAI":
+        c.setFill(Color.LIGHTSEAGREEN);
+        break;
+      case "ELEV":
+        c.setFill(Color.CORNFLOWERBLUE);
+        break;
+      case "LABS":
+        c.setFill(Color.BLUEVIOLET);
+        break;
+      case "INFO":
+        c.setFill(Color.BLUE);
+        break;
+      case "EXIT":
+        c.setFill(Color.RED);
+        break;
+      case "RETL":
+        c.setFill(Color.DARKGOLDENROD);
+        break;
+      case "SERV":
+        c.setFill(Color.GOLD);
+        break;
+    }
+  }
 
   private static EventHandler<KeyEvent> fireKey = new EventHandler<javafx.scene.input.KeyEvent>() {
     @Override

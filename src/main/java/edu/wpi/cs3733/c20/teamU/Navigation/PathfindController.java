@@ -141,7 +141,7 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             Circle source = (Circle) event.getSource();
-            source.setFill(Color.BLACK);
+            App.setColor(circles.get(source), source);
         }
     };
 
@@ -442,6 +442,7 @@ public class PathfindController {
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                App.setColor(n, c);
                 circles.put(c, n);
             }
         }
