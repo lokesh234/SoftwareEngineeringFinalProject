@@ -35,6 +35,9 @@ public class TextPathBuilderTest {
     static Node node7 = new Node("7",30,20,4 ,"1","HALL","node7","1");
     static Node node8 = new Node("8",30,10,4 ,"1","HALL","node8","1");
 
+    static Node node9 = new Node("6",20,20,5 ,"1","ELEV","node9","1");
+    static Node node10 = new Node("6",10,20,5 ,"1","HALL","node10","1");
+    static Node node11 = new Node("6",10,30,5 ,"1","HALL","node11","1");
     @Test
     public void testAbsUp(){
         TextPathBuilder tpb = new TextPathBuilder();
@@ -186,6 +189,24 @@ public class TextPathBuilderTest {
         String actual = tpb.getTextDirections();
 
         assertEquals("Go 100.0 feet\nEnter the elevator\nGo 100.0 feet\nExit the elevator\nArrive at your destination, node7", actual);
+    }
+
+    @Test
+    public void goFloor345(){
+        ArrayList<Node> nodes = new ArrayList<>();
+        nodes.add(node4);
+        nodes.add(node5);
+        nodes.add(node6);
+        nodes.add(node9);
+        nodes.add(node10);
+        nodes.add(node11);
+
+        TextPathBuilder tpb = new TextPathBuilder(nodes);
+        tpb.generateTextDirections();
+
+        String actual = tpb.getTextDirections();
+
+        assertEquals("blobshrug", actual);
 
     }
 }

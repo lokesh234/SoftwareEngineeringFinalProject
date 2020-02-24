@@ -45,6 +45,19 @@ public class TextPathChunk {
 
     public String toString(){
         String answer = "";
+        // exit the stairs before we travel more
+
+        //@TODO currently assuming you're only taking all stairs or all elevator
+        // if node 1 was stairs/elevator and we're not on it, we're exiting them
+        if((this.node1.getNodeType().equals("STAI")) && !this.node2.getNodeType().equals("STAI")){
+            answer += "\n" + "Exit the stairs at floor " + this.node2.getFloor();
+        }
+
+        if((this.node1.getNodeType().equals("ELEV")) && !this.node2.getNodeType().equals("ELEV")){
+            answer += "\n" + "Exit the elevator at floor " + this.node2.getFloor();
+        }
+
+
         //@TODO we assume elevators/stairs are perfectly alinged
         if(getHumanDist() > 0.0){
             answer = "Go " + getHumanDist() + " " + tpb.getDistanceUnit();
@@ -57,26 +70,32 @@ public class TextPathChunk {
 
         // if node 2 is stairs/elevator, and node 1 WASNT stairs/elevator we're entering them
         if(!(this.node1.getNodeType().equals("STAI")) && this.node2.getNodeType().equals("STAI")){
-            answer += "\n" + "Enter the stairs";
+            answer += "\n" + "Enter the stairs at floor";
         }
         if(!(this.node1.getNodeType().equals("ELEV")) && this.node2.getNodeType().equals("ELEV")){
             answer += "\n" + "Enter the elevator";
         }
 
-        //@TODO currently assuming you're only taking all stairs or all elevator
-        // if node 1 was stairs/elevator and we're not on it, we're exiting them
-        if((this.node1.getNodeType().equals("STAI")) && !this.node2.getNodeType().equals("STAI")){
-            answer += "\n" + "Exit the stairs";
-        }
-
-        if((this.node1.getNodeType().equals("ELEV")) && !this.node2.getNodeType().equals("ELEV")){
-            answer += "\n" + "Exit the elevator";
-        }
         return answer;
     }
 
     public String lastPairToString(){
-        String answer = "Go " + tpb.getHumanDistance(tpb.getPixelDistance(this.node2, this.node3)) + " " + tpb.getDistanceUnit();
+        String answer = "";
+
+        // if node 2 was stairs/elevator and we're not on it, we're exiting them
+        if((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")){
+            answer += "Exit the stairs at floor " + this.node3.getFloor() + "\n";
+        }
+
+        if((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")){
+            answer += "Exit the elevator at floor " + this.node3.getFloor() + "\n";
+        }
+
+        double dist = tpb.getHumanDistance(tpb.getPixelDistance(this.node2, this.node3));
+        if(dist > 0.0){
+            answer += "Go " + dist + " " + tpb.getDistanceUnit();
+        }
+
         return answer;
     }
 }
