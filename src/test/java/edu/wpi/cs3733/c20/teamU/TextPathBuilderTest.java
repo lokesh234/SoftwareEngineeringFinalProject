@@ -77,6 +77,29 @@ public class TextPathBuilderTest {
     }
 
 
+    @Test
+    public void testStraightSecondary(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(up_left , center, down_right);
+        assertEquals("STRAIGHT", answer);
+    }
+
+    @Test
+    public void testRightSecondary(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(up_left , center, down_left);
+        assertEquals("RIGHT", answer);
+    }
+
+    @Test
+    public void testLeftSecondary(){
+        TextPathBuilder tpb = new TextPathBuilder();
+        String answer = ""+tpb.getRelativeDirection(up_right , center, down_right);
+        assertEquals("LEFT", answer);
+    }
+
+
+
 
 
 
