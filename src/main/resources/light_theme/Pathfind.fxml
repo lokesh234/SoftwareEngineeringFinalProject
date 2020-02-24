@@ -98,6 +98,26 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="55.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton text="Λ" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="66.0" prefWidth="161.0" spacing="10.0">
+                           <children>
+                              <JFXButton text="&lt;" />
+                              <JFXButton text="&gt;" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton text="V" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
