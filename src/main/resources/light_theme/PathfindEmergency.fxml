@@ -19,7 +19,7 @@
                             <AnchorPane fx:id="fireNodes">
             <ImageView preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../png_files/Floor4LM.png" />
+                  <Image url="@../png_files/Floor4TRAN.png" />
                </image>
             </ImageView>
                        </AnchorPane>
