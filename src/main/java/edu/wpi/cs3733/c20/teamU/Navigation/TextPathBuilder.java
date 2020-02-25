@@ -86,25 +86,25 @@ public class TextPathBuilder {
         String start = getChunks().getFirst().getNode1().getLongName();
         String destination = getChunks().getLast().getNode3().getLongName();
 
-//        //@TODO consolidate chunks without deleting stairs/elevators
-//        for(int index = 1; index < getChunks().size(); index++){
-//            // compare the last chunk and this one...
-//            lastChunk = this.chunks.get(index-1);
-//            thisChunk = this.chunks.get(index);
-//
-//            //if the directions are the same, we want to change last chunk to add the distance
-//            //and remove thisChunk from chunks
-//            if(lastChunk.getDir().equals(thisChunk.getDir())){
-//                double lastDist = lastChunk.getHumanDist();
-//                double thisDist = thisChunk.getHumanDist();
-//
-//                lastChunk.setHumanDist(lastDist+thisDist);
-//
-//                this.chunks.remove(thisChunk);
-//                index --;
-//                continue;
-//            }
-//        }
+        //@TODO consolidate chunks without deleting stairs/elevators
+        for(int index = 1; index < getChunks().size(); index++){
+            // compare the last chunk and this one...
+            lastChunk = this.chunks.get(index-1);
+            thisChunk = this.chunks.get(index);
+
+            //if the directions are the same, we want to change last chunk to add the distance
+            //and remove thisChunk from chunks
+            if(lastChunk.getDir().equals(thisChunk.getDir())){
+                double lastDist = lastChunk.getHumanDist();
+                double thisDist = thisChunk.getHumanDist();
+
+                lastChunk.setNode3(thisChunk.getNode3());
+
+                this.chunks.remove(thisChunk);
+                index --;
+                continue;
+            }
+        }
 
         // go through and get the distances...
         this.directions += "Start at " + start + "\n";
