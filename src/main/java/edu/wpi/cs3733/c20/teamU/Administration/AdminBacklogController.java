@@ -65,6 +65,12 @@ public class AdminBacklogController {
         }
         return records;
     }
+    @FXML
+    public void backToAdmin(){
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdmin());
+        App.getPopup().show(App.getPrimaryStage());
+    }
 
     @FXML
     private void initialize(){
