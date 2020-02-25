@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class TextPathBuilder {
@@ -17,11 +18,20 @@ public class TextPathBuilder {
     public TextPathBuilder(){
         this.chunks = new LinkedList<TextPathChunk>();
         this.distanceUnit = "feet"; //SAE units by default
+        this.turnThreshold = 5;
+        this.pixelsPerMeter = 10;
+        this.pixelsPerFoot = 10;
     }
     public TextPathBuilder(ArrayList<Node> nodes){
         this.chunks = new LinkedList<TextPathChunk>();
         this.nodes = nodes;
         this.distanceUnit = "feet"; //SAE units by default
+        this.turnThreshold = 5;
+        this.pixelsPerMeter = 10;
+        this.pixelsPerFoot = 10;
+    }
+    public TextPathBuilder(int turn, int ppm, int ppf){
+
     }
 
     private ArrayList<Node> getNodes(){
@@ -306,6 +316,57 @@ public class TextPathBuilder {
 
         }
         return RelativeDirection.ERROR;
+    }
+
+
+    // consumes a single string with newline characters
+    // produces a linked list of strings that consolidate directions
+    public LinkedList<String> getCleanDirections(){
+        //split by newline
+        String[] directions = getTextDirections().split("\\r?\\n");
+        //convert to linkedlist
+        LinkedList<String> dirs = new LinkedList<> (Arrays.asList(directions));
+
+        //iterate through the list
+        String thisDir = "";
+        String nextDir = "";
+        for(int index = 0; index < dirs.size(); index++){
+            thisDir = dirs.get(index);
+            nextDir = "";
+            // prevent out of bounds error...
+            if(index + 1 < dirs.size()){
+                nextDir = dirs.get(index + 1);
+            }
+
+            // if this and next direction are both go directions, we need to consolidate
+            if(thisDir.startsWith("Go ") && nextDir.startsWith("Go ")){
+                int thisDistSpace = thisDir.lastIndexOf(' ');
+                int nextDistSpace = nextDir.lastIndexOf(' ');
+                String units = thisDir.substring(thisDistSpace);
+
+                double thisDist = Double.parseDouble((String)thisDir.subSequence(3, thisDistSpace));
+                double nextDist = Double.parseDouble((String)thisDir.subSequence(3, nextDistSpace));
+
+                thisDist += nextDist;
+                dirs.set(index, "Go " + thisDist + units);
+                dirs.remove(index + 1); //remove the next direction, specifically
+                index--;
+            }
+
+            //if the directions are unique do nothing...
+        }
+
+        return dirs;
+    }
+
+    // returns the single string version of clean text directions
+    public String getCleanTextDirections(){
+        LinkedList<String> dirs = getCleanDirections();
+        String directions = "";
+        for(String str : dirs){
+            directions += str + "\n";
+        }
+        return directions;
     }
 
 

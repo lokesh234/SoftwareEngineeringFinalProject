@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions.*;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -207,6 +208,55 @@ public class TextPathBuilderTest {
         String actual = tpb.getTextDirections();
 
         assertEquals("Start at node4\nGo 100.0 feet\nEnter the elevator\nExit the elevator at floor 5\nGo 100.0 feet\nTurn RIGHT\nGo 100.0 feet\nArrive at node11", actual);
+    }
 
+    @Test
+    public void testThreeChunksCleaned(){
+        ArrayList<Node> nodes = new ArrayList<>();
+        nodes.add(node1);
+        nodes.add(node2);
+        nodes.add(node3);
+        nodes.add(node4);
+        nodes.add(node5);
+
+        TextPathBuilder tpb = new TextPathBuilder(nodes);
+        tpb.generateTextDirections();
+
+
+        LinkedList<String> actual = tpb.getCleanDirections();
+        LinkedList<String> expected = new LinkedList<String>();
+        expected.add("Start at node1");
+        expected.add("Go 100.0 feet");
+        expected.add("Turn LEFT");
+        expected.add("Go 200.0 feet");
+        expected.add("Turn RIGHT");
+        expected.add("Go 100.0 feet");
+        expected.add("Arrive at node5");
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void testThreeChunksCleanedOneString(){
+        ArrayList<Node> nodes = new ArrayList<>();
+        nodes.add(node1);
+        nodes.add(node2);
+        nodes.add(node3);
+        nodes.add(node4);
+        nodes.add(node5);
+
+        TextPathBuilder tpb = new TextPathBuilder(nodes);
+        tpb.generateTextDirections();
+
+
+        String actual = tpb.getCleanTextDirections();
+        String expected = "";
+        expected += "Start at node1\n";
+        expected+=("Go 100.0 feet\n");
+        expected+=("Turn LEFT\n");
+        expected+=("Go 200.0 feet\n");
+        expected+=("Turn RIGHT\n");
+        expected+=("Go 100.0 feet\n");
+        expected+=("Arrive at node5\n");
+
+        assertEquals(expected, actual);
     }
 }
