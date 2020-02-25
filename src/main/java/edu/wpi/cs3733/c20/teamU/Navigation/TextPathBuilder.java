@@ -112,26 +112,6 @@ public class TextPathBuilder {
         System.out.println(destinationNode);
 
 
-        //@TODO consolidate chunks without deleting stairs/elevators
-//        for(int index = 1; index < getChunks().size(); index++){
-//            // compare the last chunk and this one...
-//            lastChunk = this.chunks.get(index-1);
-//            thisChunk = this.chunks.get(index);
-//
-//            //if the directions are the same, we want to change last chunk to add the distance
-//            //and remove thisChunk from chunks
-//            if(lastChunk.getDir().equals(thisChunk.getDir())){
-//                double lastDist = lastChunk.getHumanDist();
-//                double thisDist = thisChunk.getHumanDist();
-//
-//                lastChunk.setNode3(thisChunk.getNode3());
-//
-//                this.chunks.remove(thisChunk);
-//                index --;
-//                continue;
-//            }
-//        }
-
         // go through and get the distances...
         this.directions += "Start at " + start + "\n";
         for(int index = 0; index < getChunks().size(); index++){
@@ -361,7 +341,7 @@ public class TextPathBuilder {
                 String units = thisDir.substring(thisDistSpace);
 
                 int thisDist = Integer.parseInt((String)thisDir.subSequence(3, thisDistSpace));
-                int nextDist = Integer.parseInt((String)thisDir.subSequence(3, nextDistSpace));
+                int nextDist = Integer.parseInt((String)nextDir.subSequence(3, nextDistSpace));
 
                 thisDist += nextDist;
                 dirs.set(index, "Go " + thisDist + units);

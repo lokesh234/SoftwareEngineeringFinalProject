@@ -67,12 +67,12 @@ public class TextPathChunk {
 
         //@TODO currently assuming you're only taking all stairs or all elevator
         // if node 1 was stairs/elevator and we're not on it, we're exiting them
-        if((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")){
+        if(((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")) && this.node1.getNodeType().equals("STAI")){
 //        if((this.node1.getNodeType().equals("STAI"))&&!(this.node2.getNodeType().equals("STAI"))){
             answer += "Exit the stairs at floor " + this.node3.getFloor();
         }
 
-        if((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")){
+        if(((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")) && this.node1.getNodeType().equals("ELEV")){
 //        if((this.node1.getNodeType().equals("ELEV"))&&!(this.node2.getNodeType().equals("ELEV"))){
             answer += "Exit the elevator at floor " + this.node3.getFloor();
         }
@@ -91,7 +91,7 @@ public class TextPathChunk {
         // if node 2 is stairs/elevator, and node 1 WASNT stairs/elevator we're entering them
         if((!(this.node1.getNodeType().equals("STAI")) && this.node2.getNodeType().equals("STAI"))&&this.node3.getNodeType().equals("STAI")){
 //        if((this.node3.getNodeType().equals("STAI"))&&!(this.node2.getNodeType().equals("STAI"))){
-            answer += "\n" + "Enter the stairs at floor";
+            answer += "\n" + "Enter the stairs";
         }
         if((!(this.node1.getNodeType().equals("ELEV")) && this.node2.getNodeType().equals("ELEV"))&&this.node3.getNodeType().equals("ELEV")){
 //        if((this.node3.getNodeType().equals("ELEV"))&&!(this.node2.getNodeType().equals("ELEV"))){
@@ -101,22 +101,24 @@ public class TextPathChunk {
         return answer;
     }
 
+
     public String lastPairToString(){
         String answer = "";
 
 //         if node 2 was stairs/elevator and we're not on it, we're exiting them
-//        if((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")){
-//            answer += "Exit the stairs at floor " + this.node3.getFloor() + "\n";
-//        }
-//
-//        if((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")){
-//            answer += "Exit the elevator at floor " + this.node3.getFloor() + "\n";
-//        }
+        if((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")){
+            answer += "Exit the stairs at floor " + this.node3.getFloor() + "\n";
+        }
+
+        if((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")){
+            answer += "Exit the elevator at floor " + this.node3.getFloor() + "\n";
+        }
 
         double dist = tpb.getHumanDistance(tpb.getPixelDistance(this.node2, this.node3));
         dist = Math.floor(dist*100)/100;
-        if(dist > 0.0){
-            answer += "Go " + dist + " " + tpb.getDistanceUnit();
+        int intDist = (int)dist;
+        if(intDist > 0.0){
+            answer += "Go " + intDist + " " + tpb.getDistanceUnit();
         }
 
         return answer;
