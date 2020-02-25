@@ -83,6 +83,13 @@ public class AdminScreenController {
 
     }
 
+    @FXML
+    private void backlog(){
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdminBacklog());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
     /**
      * TODO: implement a better system.
      * enables certain access based on user credentials

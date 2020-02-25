@@ -46,6 +46,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane editEdge;
   private static Pane adminRequest;
   private static Pane adminEmployee;
+  private static Pane adminBacklog;
   private static Pane adminNode;
   private static Pane adminEdge;
   private static Pane addNode;
@@ -78,6 +79,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene exportScene;
   private static Scene adminNodeScene;
   private static Scene adminEmployeeScene;
+  private static Scene adminBacklogScene;
   private static Scene addNodeScene;
   private static Scene resolveRequestScene;
   private static Scene weatherScene;
@@ -101,6 +103,7 @@ public class App<loadedAdminRequests> extends Application {
   private static AdminScreenController adminScreenController;
   private static AdminRequestController adminRequestController;
   private static AdminEmployeeController adminEmployeeController;
+  private static AdminBacklogController adminBacklogController;
   private static GraphEditController graphEditController;
   private static NodeEditController editController;
   private static EdgeViewScreenController viewEdgeViewScreenController;
@@ -129,6 +132,7 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedHome = false;
   private static boolean loadedAdminRequests = false;
   private static boolean loadedAdminEmployee = false;
+  private static boolean loadedAdminBacklog = false;
   private static boolean loadedPathfinding = false;
   private static boolean loadedWeather = false;
   private static boolean loadedAdminGraph = false;
@@ -145,6 +149,7 @@ public class App<loadedAdminRequests> extends Application {
 
   public static boolean getLoadedAdminRequest() {return loadedAdminRequests;}
   public static boolean getLoadedAdminEmployee() {return loadedAdminEmployee;}
+  public static boolean getLoadedAdminBacklog() {return loadedAdminBacklog;}
   public static boolean getLoadedPathFinding() {return loadedPathfinding;}
   public static boolean getLoadedWeather() {return loadedWeather;}
   public static boolean getLoadedAdminGraph() {return loadedAdminGraph;}
@@ -247,6 +252,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getAdminEdge() { return adminEdge; }
   public static Pane getAdminRequest() { return adminRequest; }
   public static Pane getAdminEmployee() { return adminEmployee; }
+  public static Pane getAdminBacklog() { return adminBacklog; }
   public static Pane getExport() { return export; }
   public static Pane getEdit() { return edit;}
   public static Pane getAddNode() { return addNode; }
@@ -282,6 +288,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getFireScene(){ return fireScene; }
   public static Scene getAdminNodeScene() {return adminNodeScene;}
   public static Scene getAdminEmployeeScene() {return adminEmployeeScene;}
+  public static Scene getAdminBacklogSceneScene() {return adminBacklogScene;}
   public static Scene getResolveRequestScene() {return resolveRequestScene;}
   public static Scene getWeatherScene() {return weatherScene; }
   public static Scene getEmployeeFormScene() {return employeeFormScene; }
@@ -304,7 +311,8 @@ public class App<loadedAdminRequests> extends Application {
   public static AdminScreenController getAdminScreenController() { return adminScreenController;}
   public static AddNodeScreenController getAddNodeScreenController() { return addNodeScreenController;}
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
-  public static AdminEmployeeController getAdminEmployeeContoller() { return adminEmployeeController;}
+  public static AdminEmployeeController getAdminEmployeeController() { return adminEmployeeController;}
+  public static AdminBacklogController getAdminBacklogController() { return adminBacklogController;}
   public static FireController getFireController(){return fireController;}
   public static GraphEditController getGraphEditController() { return graphEditController;}
   public static WeatherController weatherController() {return weatherController; }
@@ -459,6 +467,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader adminLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminMenu.fxml"));
         FXMLLoader adminRequestLoader = new FXMLLoader((App.class.getResource("/light_theme/Request.fxml")));
         FXMLLoader adminEmployeeLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminEmployee.fxml")));
+        FXMLLoader adminBacklogLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminBacklog.fxml")));
         FXMLLoader choosePathLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminPathForm.fxml"));
         FXMLLoader employeeFormLoader = new FXMLLoader(App.class.getResource("/light_theme/EmployeeForm.fxml"));
         FXMLLoader exportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExportForm.fxml"));
@@ -470,6 +479,7 @@ public class App<loadedAdminRequests> extends Application {
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
         adminEmployee = adminEmployeeLoader.load();
+        adminBacklog = adminBacklogLoader.load();
         employeeF = employeeFormLoader.load();
         PathChoose = choosePathLoader.load();
         resolveRequest = RRLoader.load();
@@ -483,6 +493,7 @@ public class App<loadedAdminRequests> extends Application {
         adminEmployee.setOnKeyPressed(fireKey);
         employeeF.setOnKeyPressed(fireKey);
         PathChoose.setOnKeyPressed(fireKey);
+        adminBacklog.setOnKeyPressed(fireKey);
         resolveRequest.setOnKeyPressed(fireKey);
         export.setOnKeyPressed(fireKey);
         request.setOnKeyPressed(fireKey);
@@ -492,6 +503,7 @@ public class App<loadedAdminRequests> extends Application {
         adminScreenController = adminLoader.getController();
         adminRequestController = adminRequestLoader.getController();
         adminEmployeeController = adminEmployeeLoader.getController();
+        adminBacklogController = adminBacklogLoader.getController();
         employeeFormController = employeeFormLoader.getController();
         choosePathController = choosePathLoader.getController();
         requestScreenController = RRLoader.getController();

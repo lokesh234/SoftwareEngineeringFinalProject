@@ -30,7 +30,7 @@ public class VerificationController {
           DatabaseWrapper
               .addLoginSR(accountDetails.get(0), accountDetails.get(1), accountDetails.get(2),
                   accountDetails.get(3), accountDetails.get(4), accountDetails.get(5));
-          App.getAdminEmployeeContoller().update();
+          App.getAdminEmployeeController().update();
           returnToEmployee();
         }
       } else {
