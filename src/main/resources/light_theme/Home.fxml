@@ -64,11 +64,11 @@
                <children>
                   <HBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="home" alignment="CENTER" contentDisplay="TOP" ripplerFill="BLACK" text="Home" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="home" alignment="CENTER" contentDisplay="TOP" prefHeight="107.0" prefWidth="90.0" ripplerFill="BLACK" text="Lock" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../png_files/home.png" />
+                                    <Image url="@../png_files/Icons/lock-512.png" />
                                  </image>
                               </ImageView>
                            </graphic>
