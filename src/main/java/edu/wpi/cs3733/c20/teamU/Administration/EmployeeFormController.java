@@ -5,8 +5,8 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import java.util.ArrayList;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,17 +24,21 @@ public class EmployeeFormController {
   @FXML private JFXTextField employeeNumber;
   @FXML private JFXButton confirm;
   @FXML private JFXButton cancel;
-//  @FXML private JFXChipView employeeChip = new JFXChipView();
+  //  @FXML private JFXChipView employeeChip = new JFXChipView();
   @FXML private JFXComboBox employeeCombo = new JFXComboBox();
   @FXML private JFXCheckBox checkBox;
   private String first, last, user, pass, checkPass, position, number, oldUsername;
   private String userOG;
   private AdminEmployeeController master;
+  private ArrayList<String> accountDetails;
   boolean edit = false;
-  public EmployeeFormController() {}
-  //TODO: code needs refactoring, will do iteration 3
 
-  public void setMaster(AdminEmployeeController a) { master = a;}
+  public EmployeeFormController() {
+  }
+
+  public void setMaster(AdminEmployeeController a) {
+    master = a;
+  }
 
   /**
    * function gets the user's inputs and adds/edits/deletes based on conditions
@@ -50,7 +54,8 @@ public class EmployeeFormController {
     position = employeeCombo.getSelectionModel().getSelectedItem().toString();
 
     if (first.isEmpty() || last.isEmpty() ||
-        user.isEmpty() || pass.isEmpty() || checkPass.isEmpty() || position.isEmpty() || number.isEmpty()) {
+        user.isEmpty() || pass.isEmpty() || checkPass.isEmpty() || position.isEmpty() || number
+        .isEmpty()) {
       firstNameText.setStyle("-fx-border-color: red");
       lastNameText.setStyle("-fx-border-color: red");
       employeeIdText.setStyle("-fx-border-color: red");
@@ -63,29 +68,29 @@ public class EmployeeFormController {
       clearFields();
       passwordText.setStyle("-fx-border-color: red");
       confirmPassText.setStyle("-fx-border-color: red");
-    }
-    else if(user.equals(userOG)) employeeIdText.setStyle("-fx-border-color: red");
-    else if(edit){
+    } else if (user.equals(userOG)) {
+      employeeIdText.setStyle("-fx-border-color: red");
+    } else if (edit) {
       DatabaseWrapper.delLoginSR(oldUsername);
-      DatabaseWrapper.addLoginSR(user,pass,first,last,position,number);
+      DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
       returnToAdminEmployee();
-    }
-    else {
-      DatabaseWrapper.addLoginSR(user,pass,first,last,position,number);
-      returnToAdminEmployee();
+    } else {
+      accountDetails = new ArrayList<>();
+      accountDetails.add(user);
+      accountDetails.add(pass);
+      accountDetails.add(first);
+      accountDetails.add(last);
+      accountDetails.add(position);
+      accountDetails.add(number);
+      App.getPopup().getContent().add(App.getVerification());
+      App.getVerificationController().setAccountDetails(accountDetails);
+      App.getVerificationController().setAtAdmin(false);
+      App.getVerificationController().startProcess(user, number.replaceAll("\\s+",""));
+      App.getPopup().show(App.getPrimaryStage());
+//      DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
+//      returnToAdminEmployee();
     }
   }
-
-//  @FXML
-//  private void employeeTypeAdd() {
-//    if (!employeeCombo.getSelectionModel().isEmpty()) {
-//      employeeCombo.setStyle("-fx-border-color: #FFEEC9");
-//      employeeChip.getChips().add(employeeCombo.getSelectionModel().getSelectedItem());
-//      employeeCombo.getSelectionModel().clearSelection();
-//    } else {
-//      employeeCombo.setStyle("-fx-border-color: red");
-//    }
-//  }
 
   /**
    * function to return to admin screen
@@ -111,7 +116,6 @@ public class EmployeeFormController {
     confirmPassText.clear();
     employeeNumber.clear();
     checkBox.setSelected(false);
-//    employeeChip.getChips().clear();
     employeeCombo.getSelectionModel().clearSelection();
     firstNameText.setStyle("-fx-border-color: #FFEEC9");
     lastNameText.setStyle("-fx-border-color: #FFEEC9");
@@ -124,7 +128,8 @@ public class EmployeeFormController {
 
   /**
    * checks to see if the two different passwords are correct
-   * @param password String of first password
+   *
+   * @param password  String of first password
    * @param password1 String of copy of second password
    * @return false if they are different, true if same
    */
@@ -138,7 +143,6 @@ public class EmployeeFormController {
   public void setFields() {
     Account userData = DatabaseWrapper.getLoginSR(App.getUsernameTried());
     userOG = userData.getUserName();
-//     user, pass, first, last, position, email
     employeeIdText.setText(userData.getUserName());
     firstNameText.setText(userData.getFirstName());
     lastNameText.setText(userData.getLastName());
@@ -148,16 +152,14 @@ public class EmployeeFormController {
     confirm.disableProperty().bind(bind);
   }
 
-//  private void willAdd() {
-//    if(checkBox1.isSelected()) {
-//      clearFields();
-//      setFields();
-//      delete.setDisable(true);
-//    }
-//  }
-
   @FXML
   public void initialize() {
+    firstNameText.setPromptText("John");
+    lastNameText.setPromptText("Doe");
+    employeeIdText.setPromptText("DJohn");
+    passwordText.setPromptText("password");
+    confirmPassText.setPromptText("password");
+    employeeNumber.setPromptText("+09998887777");
     ObservableList<String> employee =
         FXCollections.observableArrayList(
             "ADMIN",
@@ -181,34 +183,24 @@ public class EmployeeFormController {
     checkBox.disableProperty().bind(blockCheckBox);
   }
 
-    public void setAccountEdit() {
+  public void setAccountEdit() {
+    Account account = App.getAccountEdit();
+    if (account == null) {
+      clearFields();
+      edit = false;
+    } else {
+      oldUsername = account.getUserName();
+      first = account.getFirstName();
+      last = account.getLastName();
+      user = account.getUserName();
+      number = account.getNumber();
+      employeeCombo.getSelectionModel().select(account.getCred());
 
-      Account account = App.getAccountEdit();
-      if (account == null){
-        clearFields();
-        edit = false;
-      }
-      else {
-        oldUsername = account.getUserName();
-        first = account.getFirstName();
-        last = account.getLastName();
-        user = account.getUserName();
-        number = account.getNumber();
-        employeeCombo.getSelectionModel().select(account.getCred());
-
-
-//      @FXML private JFXTextField firstNameText;
-//      @FXML private JFXTextField lastNameText;
-//      @FXML private JFXTextField employeeIdText;
-//      @FXML private JFXTextField passwordText;
-//      @FXML private JFXTextField confirmPassText;
-//      @FXML private JFXTextField employeeNumber;
-
-        firstNameText.setText(first);
-        lastNameText.setText(last);
-        employeeIdText.setText(user);
-        employeeNumber.setText(number);
-        edit = true;
-      }
+      firstNameText.setText(first);
+      lastNameText.setText(last);
+      employeeIdText.setText(user);
+      employeeNumber.setText(number);
+      edit = true;
     }
+  }
 }

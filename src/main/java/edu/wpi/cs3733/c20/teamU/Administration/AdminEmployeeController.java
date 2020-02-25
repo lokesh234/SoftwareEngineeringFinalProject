@@ -135,6 +135,8 @@ public class AdminEmployeeController {
 
     @FXML
     private void initialize(){
+        remove_button.setDisable(true);
+        edit_button.setDisable(true);
         userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
 
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));

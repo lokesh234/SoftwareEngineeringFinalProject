@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EmployeeFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.EmployeeFormController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -116,7 +116,7 @@
                   </HBox>
                   <HBox alignment="CENTER" GridPane.rowIndex="3">
                      <children>
-                        <Label text="Number">
+                        <Label text="Phone Number">
                            <font>
                               <Font name="Segoe UI" size="14.0" />
                            </font>
