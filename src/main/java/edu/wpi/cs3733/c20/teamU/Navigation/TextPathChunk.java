@@ -64,14 +64,21 @@ public class TextPathChunk {
     public String toString(){
         String answer = "";
         // exit the stairs before we travel more
+        boolean firstIsStair = this.node1.getNodeType().equals("STAI");
+        boolean secondIsStair = this.node2.getNodeType().equals("STAI");
+        boolean thirdIsStair = this.node3.getNodeType().equals("STAI");
+
+        boolean firstIsElev = this.node1.getNodeType().equals("ELEV");
+        boolean secondIsElev = this.node2.getNodeType().equals("ELEV");
+        boolean thirdIsElev = this.node3.getNodeType().equals("ELEV");
 
         //@TODO currently assuming you're only taking all stairs or all elevator
         // if node 1 was stairs/elevator and we're not on it, we're exiting them
-        if(((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")) && this.node1.getNodeType().equals("STAI")){
+        if((firstIsStair && secondIsElev) && !thirdIsStair){
             answer += "Exit the stairs at floor " + this.node3.getFloor();
         }
 
-        if(((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")) && this.node1.getNodeType().equals("ELEV")){
+        if((firstIsElev && secondIsElev) && !thirdIsElev){
             answer += "Exit the elevator at floor " + this.node3.getFloor();
         }
 
@@ -87,10 +94,10 @@ public class TextPathChunk {
         }
 
         // if node 2 is stairs/elevator, and node 1 WASNT stairs/elevator we're entering them
-        if((!(this.node1.getNodeType().equals("STAI")) && this.node2.getNodeType().equals("STAI"))&&this.node3.getNodeType().equals("STAI")){
+        if((!firstIsStair && secondIsStair) && thirdIsStair){
             answer += "\n" + "Enter the stairs";
         }
-        if((!(this.node1.getNodeType().equals("ELEV")) && this.node2.getNodeType().equals("ELEV"))&&this.node3.getNodeType().equals("ELEV")){
+        if((!firstIsElev && secondIsElev) && thirdIsElev){
             answer += "\n" + "Enter the elevator";
         }
 
