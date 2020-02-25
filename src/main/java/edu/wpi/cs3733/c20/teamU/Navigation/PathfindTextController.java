@@ -15,7 +15,7 @@ public class PathfindTextController {
 
     @FXML private AnchorPane DirectionsPane;
     private ArrayList<Label> direction = new ArrayList<>();
-    private TextPathBuilder tpb = new TextPathBuilder();
+//    private TextPathBuilder tpb = new TextPathBuilder(10.0, 11.5, 3.5);
 
     @FXML
     public void exitPopup(ActionEvent e){

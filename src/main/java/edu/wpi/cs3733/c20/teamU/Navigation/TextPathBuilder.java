@@ -1,6 +1,8 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import edu.wpi.cs3733.c20.teamU.Database.Node;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -31,9 +33,11 @@ public class TextPathBuilder {
         this.pixelsPerFoot = 10;
     }
     // should use THIS constructor in production (not for tests)
-    // ppf = 3.5
+    // turn = ???
     // ppm = 11.5
-    public TextPathBuilder(int turn, int ppm, int ppf){
+    // ppf = 3.5
+
+    public TextPathBuilder(double turn, double ppm, double ppf){
         this.turnThreshold = turn;
         this.pixelsPerFoot = ppf;
         this.pixelsPerMeter = ppm;
@@ -41,6 +45,9 @@ public class TextPathBuilder {
 
     private ArrayList<Node> getNodes(){
         return this.nodes;
+    }
+    public void setNodes(ArrayList<Node> newNodes){
+        this.nodes = newNodes;
     }
 
     enum AbsoluteDirection{
@@ -68,9 +75,7 @@ public class TextPathBuilder {
     }
 
     public void generateChunks(){
-        //@TODO retrieve actual nodes from database
-//        ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
-        ArrayList<Node> nodes = getNodes();
+//        ArrayList<Node> nodes = getNodes();
 
         //reset the chunks list in case this was called multiple times
         this.chunks = new LinkedList<TextPathChunk>();

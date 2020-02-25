@@ -103,7 +103,6 @@ public class PathfindController {
     @FXML
     TextField SearchBox;
 
-
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
@@ -790,48 +789,43 @@ public class PathfindController {
         displayingPath = true;
         updateStatus();
     }
-
+    //path is an arraylist of nodes
     private void getTextPath() {
         if (path.size() == 0) {
             return;
         }
         App.getTextpath().clear();
-//        String pathWay = "";
-//        Node n2 = path.get(path.size() - 1);
-//        for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path
-//            Node n1 = path.get(i);
-//            if (i != path.size() - 2) {
-//                pathWay = getDirection(path.get(i), path.get(i + 1));
-//                System.out.println(pathWay);
+
+        TextPathBuilder tpb = new TextPathBuilder(10,11.5,3.5);
+
+        tpb.setNodes(path);
+        tpb.generateTextDirections();
+        String directions = tpb.getCleanTextDirections();
+        App.getTextpath().add(directions);
+
+//
+//        String direction = "";
+//        boolean didContinue = false;
+//        for(int i = path.size() - 1; i >= 0; i--) {
+//            String name = path.get(i).getLongName();
+//            if(i == 0) {
+//                App.getTextpath().add("Arrived at: " + name);
+//                continue;
 //            }
-//            App.getTextpath().add(pathWay + ": " + n1.getLongName());
+//            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
+//                if(!didContinue) {
+//                    App.getTextpath().add("Continue through " + name);
+//                    didContinue = true;
+//                }
+//                continue;
+//            }
+//            didContinue = false;
+//            direction = getDirection(path.get(i), path.get(i - 1));
+//            App.getTextpath().add(direction + name);
 //        }
-        String direction = "";
-        boolean didContinue = false;
-        for(int i = path.size() - 1; i >= 0; i--) {
-            String name = path.get(i).getLongName();
-//            System.out.println(path.get(i).getID().substring(1, 5));
-            if(i == 0) {
-//                App.getTextpath().add(getDirection(path.get(i + 1), path.get(i)) + path.get(i + 1).getLongName());
-                App.getTextpath().add("Arrived at: " + name);
-                continue;
-            }
-            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
-                if(!didContinue) {
-                    App.getTextpath().add("Continue through " + name);
-                    didContinue = true;
-                }
-                continue;
-            }
-            didContinue = false;
-            direction = getDirection(path.get(i), path.get(i - 1));
-//            System.out.println(nodeType);
-            App.getTextpath().add(direction + name);
-        }
-//        App.getTextpath().add("Arrived at: " + n2.getLongName());
-//        Collections.reverse(App.getTextpath());
     }
 
+    // this function will be deprecated
     private String getDirection(Node one, Node two) {
         int x = one.getX() - two.getX();
 //        System.out.println(x);
