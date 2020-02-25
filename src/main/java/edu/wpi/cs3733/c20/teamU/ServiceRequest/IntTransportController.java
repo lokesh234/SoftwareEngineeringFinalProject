@@ -22,6 +22,9 @@ public class IntTransportController {
     @FXML private JFXButton cancel;
     @FXML private JFXButton confirm;
 
+    public void keyConfirm(){
+        confirm.fire();
+    }
 
     @FXML
     private void getSubmission() {

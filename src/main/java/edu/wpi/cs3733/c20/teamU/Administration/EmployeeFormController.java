@@ -34,6 +34,10 @@ public class EmployeeFormController {
   private ArrayList<String> accountDetails;
   boolean edit = false;
 
+  public void keyConfirm(){
+    confirm.fire();
+  }
+
   public EmployeeFormController() {
   }
 

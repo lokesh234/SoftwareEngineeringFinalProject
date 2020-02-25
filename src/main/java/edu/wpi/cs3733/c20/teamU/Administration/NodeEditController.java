@@ -19,6 +19,10 @@ public class NodeEditController {
   private String ID, x, y, floor, build, type, shortName, longName;
   GraphEditController nodeViewScreenController;
 
+  public void keyConfirm(){
+    confirm.fire();
+  }
+
   public NodeEditController() {}
 
   /**
