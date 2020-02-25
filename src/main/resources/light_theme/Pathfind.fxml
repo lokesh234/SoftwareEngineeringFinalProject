@@ -102,18 +102,18 @@
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <JFXButton fx:id="upArrow" text="Λ" />
+                              <JFXButton fx:id="upArrow" onAction="#MapUp" text="Λ" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="66.0" prefWidth="161.0" spacing="10.0">
                            <children>
-                              <JFXButton fx:id="leftArrow" text="&lt;" />
-                              <JFXButton fx:id="rightArrow" text="&gt;" />
+                              <JFXButton fx:id="leftArrow" onAction="#MapLeft" text="&lt;" />
+                              <JFXButton fx:id="rightArrow" onAction="#MapRight" text="&gt;" />
                            </children>
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <JFXButton fx:id="downArrow" text="V" />
+                              <JFXButton fx:id="downArrow" onAction="#MapDown" text="V" />
                            </children>
                         </HBox>
                      </children>
