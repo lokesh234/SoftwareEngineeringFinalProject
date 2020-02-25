@@ -11,6 +11,27 @@ public class TextPathChunk {
     private TextPathBuilder.RelativeDirection dir;
     private double humanDist;
 
+    public TextPathChunk(Node n1, Node n2, Node n3){
+        this.node1 = n1;
+        this.node2 = n2;
+        this.node3 = n3;
+
+        //this.humanDist = tpb.getHumanDistance(tpb.getPixelDistance(n1, n2));
+        //this.dir = tpb.getRelativeDirection(n1, n2, n3);
+
+    }
+
+    public TextPathChunk(Node n1, Node n2, Node n3, TextPathBuilder tpb){
+        this.node1 = n1;
+        this.node2 = n2;
+        this.node3 = n3;
+
+        this.tpb = tpb;
+
+        this.humanDist = tpb.getHumanDistance(tpb.getPixelDistance(n1, n2));
+        this.dir = tpb.getRelativeDirection(n1, n2, n3);
+    }
+
     public Node getNode1(){
         return this.node1;
     }
@@ -25,19 +46,12 @@ public class TextPathChunk {
         this.node3 = newNode;
     }
 
-    public TextPathChunk(Node n1, Node n2, Node n3, TextPathBuilder tpb){
-        this.node1 = n1;
-        this.node2 = n2;
-        this.node3 = n3;
-
+    public void setTextPathBuilder(TextPathBuilder tpb){
         this.tpb = tpb;
-
-        this.humanDist = tpb.getHumanDistance(tpb.getPixelDistance(n1, n2));
-        this.dir = tpb.getRelativeDirection(n1, n2, n3);
     }
 
-    public double getHumanDist() {
-        return humanDist;
+    public int getHumanDist() {
+        return (int)Math.floor(humanDist*100)/100;
     }
     public void setHumanDist(double newDist){
         this.humanDist = newDist;
@@ -75,11 +89,11 @@ public class TextPathChunk {
         }
 
         // if node 2 is stairs/elevator, and node 1 WASNT stairs/elevator we're entering them
-        if(!(this.node1.getNodeType().equals("STAI")) && this.node2.getNodeType().equals("STAI")){
+        if((!(this.node1.getNodeType().equals("STAI")) && this.node2.getNodeType().equals("STAI"))&&this.node3.getNodeType().equals("STAI")){
 //        if((this.node3.getNodeType().equals("STAI"))&&!(this.node2.getNodeType().equals("STAI"))){
             answer += "\n" + "Enter the stairs at floor";
         }
-        if(!(this.node1.getNodeType().equals("ELEV")) && this.node2.getNodeType().equals("ELEV")){
+        if((!(this.node1.getNodeType().equals("ELEV")) && this.node2.getNodeType().equals("ELEV"))&&this.node3.getNodeType().equals("ELEV")){
 //        if((this.node3.getNodeType().equals("ELEV"))&&!(this.node2.getNodeType().equals("ELEV"))){
             answer += "\n" + "Enter the elevator";
         }
@@ -100,6 +114,7 @@ public class TextPathChunk {
 //        }
 
         double dist = tpb.getHumanDistance(tpb.getPixelDistance(this.node2, this.node3));
+        dist = Math.floor(dist*100)/100;
         if(dist > 0.0){
             answer += "Go " + dist + " " + tpb.getDistanceUnit();
         }

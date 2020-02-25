@@ -37,10 +37,11 @@ public class TextPathBuilder {
     // ppm = 11.5
     // ppf = 3.5
 
-    public TextPathBuilder(double turn, double ppm, double ppf){
+    public TextPathBuilder(double turn, double ppm, double ppf, String units){
         this.turnThreshold = turn;
         this.pixelsPerFoot = ppf;
         this.pixelsPerMeter = ppm;
+        this.distanceUnit = units;
     }
 
     private ArrayList<Node> getNodes(){
@@ -91,6 +92,7 @@ public class TextPathBuilder {
             nextNode = nodes.get(index+1);
 
             thisChunk = new TextPathChunk(lastNode, thisNode, nextNode, this);
+//            thisChunk.setTextPathBuilder(this);
             this.chunks.add(thisChunk);
 //            System.out.println(thisChunk.toString());
         }
@@ -102,29 +104,33 @@ public class TextPathBuilder {
         LinkedList<TextPathChunk> cleanedChunks = new LinkedList<TextPathChunk>();
         TextPathChunk lastChunk;
         TextPathChunk thisChunk;
+        Node startNode = getChunks().getFirst().getNode1();
+        String start = startNode.getLongName();
+        Node destinationNode = getChunks().getLast().getNode3();
+        String destination = destinationNode.getLongName();
+        System.out.println(startNode);
+        System.out.println(destinationNode);
 
-        String start = getChunks().getFirst().getNode1().getLongName();
-        String destination = getChunks().getLast().getNode3().getLongName();
 
         //@TODO consolidate chunks without deleting stairs/elevators
-        for(int index = 1; index < getChunks().size(); index++){
-            // compare the last chunk and this one...
-            lastChunk = this.chunks.get(index-1);
-            thisChunk = this.chunks.get(index);
-
-            //if the directions are the same, we want to change last chunk to add the distance
-            //and remove thisChunk from chunks
-            if(lastChunk.getDir().equals(thisChunk.getDir())){
-                double lastDist = lastChunk.getHumanDist();
-                double thisDist = thisChunk.getHumanDist();
-
-                lastChunk.setNode3(thisChunk.getNode3());
-
-                this.chunks.remove(thisChunk);
-                index --;
-                continue;
-            }
-        }
+//        for(int index = 1; index < getChunks().size(); index++){
+//            // compare the last chunk and this one...
+//            lastChunk = this.chunks.get(index-1);
+//            thisChunk = this.chunks.get(index);
+//
+//            //if the directions are the same, we want to change last chunk to add the distance
+//            //and remove thisChunk from chunks
+//            if(lastChunk.getDir().equals(thisChunk.getDir())){
+//                double lastDist = lastChunk.getHumanDist();
+//                double thisDist = thisChunk.getHumanDist();
+//
+//                lastChunk.setNode3(thisChunk.getNode3());
+//
+//                this.chunks.remove(thisChunk);
+//                index --;
+//                continue;
+//            }
+//        }
 
         // go through and get the distances...
         this.directions += "Start at " + start + "\n";
@@ -158,11 +164,11 @@ public class TextPathBuilder {
     }
 
     public double getHumanDistance(double pixelDistance){
-        switch(getDistanceUnit()){
+        switch(getDistanceUnit()){//this.distanceUnit
             case "feet":
-                return pixelDistance*this.pixelsPerFoot;
+                return (int)(pixelDistance/this.pixelsPerFoot);
             case "meters":
-                return pixelDistance*this.pixelsPerMeter;
+                return (int)(pixelDistance/this.pixelsPerMeter);
         }
         return -999.99; //something bad...
     }
@@ -177,8 +183,8 @@ public class TextPathBuilder {
         double deltaX = endX-startX;
         double deltaY = endY-startY;
 
-        boolean movedNorth = (deltaY > this.turnThreshold);
-        boolean movedSouth = ((deltaY < (-1)*this.turnThreshold) && (deltaY < 0)); //ensure number is negative
+        boolean movedSouth = (deltaY > this.turnThreshold);
+        boolean movedNorth = ((deltaY < (-1)*this.turnThreshold) && (deltaY < 0)); //ensure number is negative
 
         boolean movedEast = (deltaX > this.turnThreshold);
         boolean movedWest = ((deltaX < (-1)*this.turnThreshold) && (deltaX < 0)); //ensure number is negative
@@ -354,8 +360,8 @@ public class TextPathBuilder {
                 int nextDistSpace = nextDir.lastIndexOf(' ');
                 String units = thisDir.substring(thisDistSpace);
 
-                double thisDist = Double.parseDouble((String)thisDir.subSequence(3, thisDistSpace));
-                double nextDist = Double.parseDouble((String)thisDir.subSequence(3, nextDistSpace));
+                int thisDist = Integer.parseInt((String)thisDir.subSequence(3, thisDistSpace));
+                int nextDist = Integer.parseInt((String)thisDir.subSequence(3, nextDistSpace));
 
                 thisDist += nextDist;
                 dirs.set(index, "Go " + thisDist + units);

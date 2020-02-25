@@ -796,9 +796,16 @@ public class PathfindController {
         }
         App.getTextpath().clear();
 
-        TextPathBuilder tpb = new TextPathBuilder(20,11.5,3.5);
+        TextPathBuilder tpb = new TextPathBuilder(20,11.5,3.5, "feet");
+        // the path is given in the reverse order...
+        ArrayList<Node> reversedPath = new ArrayList<Node>();
+        for(int index = path.size()-1; index >= 0; index --){
+            Node n = path.get(index);
+            reversedPath.add(n);
+        }
 
-        tpb.setNodes(path);
+
+        tpb.setNodes(reversedPath);
         tpb.generateTextDirections();
         String directions = tpb.getCleanTextDirections();
         App.getTextpath().add(directions);
