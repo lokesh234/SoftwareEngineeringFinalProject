@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter @Getter @AllArgsConstructor
 public class UserBacklog {
     private String username;
-    private String dateCompleted;
-    private String timeCompleted;
-    private String serviceType;
+    private String date;
+    private String time;
+    private String type;
     private String operations;
     private String info;
 }

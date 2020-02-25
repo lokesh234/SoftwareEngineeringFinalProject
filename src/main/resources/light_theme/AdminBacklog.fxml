@@ -41,6 +41,7 @@
             <TableView fx:id="recordTable" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="userName" prefWidth="75.0" text="Username" />
+                  <TableColumn fx:id="date" prefWidth="75.0" text="Date" />
                   <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
                   <TableColumn fx:id="type" prefWidth="75.0" text="lastName" />
                   <TableColumn fx:id="operation" prefWidth="75.0" text="Operation" />
