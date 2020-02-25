@@ -108,8 +108,8 @@ public class TextPathBuilder {
         String start = startNode.getLongName();
         Node destinationNode = getChunks().getLast().getNode3();
         String destination = destinationNode.getLongName();
-        System.out.println(startNode);
-        System.out.println(destinationNode);
+//        System.out.println(startNode);
+//        System.out.println(destinationNode);
 
 
         // go through and get the distances...
@@ -364,6 +364,4 @@ public class TextPathBuilder {
         }
         return directions;
     }
-
-
 }
