@@ -5,7 +5,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindAStar;
-import javafx.animation.Interpolator;
+import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -80,25 +80,45 @@ public class FireController {
         pathe.getElements().add(line);
         pathe.setStroke(Color.web("#ff0000"));
         pathe.setStrokeWidth(10.0);
+        pathe.getStrokeDashArray().addAll(15d, 15d);
+        pathe.setStrokeLineCap(StrokeLineCap.ROUND);
+        pathe.setStrokeDashOffset(10);
         MoveTo move2 = new MoveTo(1250,1215);
         LineTo line2 = new LineTo( 1250, 1035);
-        Path pathe2 = new Path();
         pathe.getElements().add(move2);
         pathe.getElements().add(line2);
-        pathe.setStroke(Color.web("#ff0000"));
-        pathe.setStrokeWidth(10.0);
         MoveTo move3 = new MoveTo(1250,1035);
         LineTo line3 = new LineTo( 1240, 1035);
-        Path pathe3 = new Path();
         pathe.getElements().add(move3);
         pathe.getElements().add(line3);
-        pathe.setStroke(Color.web("#ff0000"));
-        pathe.setStrokeWidth(10.0);
         addToPath(pathe);
-        addToPath(pathe2);
-        addToPath(pathe3);
+        final double maxOffset =
+                pathe.getStrokeDashArray().stream()
+                        .reduce(
+                                0d,
+                                (a, b) -> a - b
+                        );
+        Timeline timeline = new Timeline(
+                new KeyFrame(
+                        Duration.ZERO,
+                        new KeyValue(
+                                pathe.strokeDashOffsetProperty(),
+                                0,
+                                Interpolator.LINEAR
+                        )
+                ),
+                new KeyFrame(
+                        Duration.seconds(2),
+                        new KeyValue(
+                                pathe.strokeDashOffsetProperty(),
+                                maxOffset,
+                                Interpolator.LINEAR
+                        )
+                )
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
-
 }
 
 
