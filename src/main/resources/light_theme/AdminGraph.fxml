@@ -83,7 +83,10 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="backButton" onAction="#backToAdmin" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="backButton" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="80.0" text="Back" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></JFXButton>
                      </children>
                   </HBox>
                </children>
@@ -218,6 +221,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
+                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Table View" textAlignment="CENTER" wrapText="true" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
