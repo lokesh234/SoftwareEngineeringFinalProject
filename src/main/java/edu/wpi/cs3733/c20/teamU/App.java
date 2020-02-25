@@ -415,11 +415,16 @@ public class App<loadedAdminRequests> extends Application {
 
   private static void loadImages() {
     if (!loadedImages) {
-       floor1 = new Image("/png_files/Floor1LM.png");
-       floor2 = new Image("/png_files/Floor2LM.png");
-       floor3 = new Image("/png_files/Floor3LM.png");
-       floor4 = new Image("/png_files/Floor4LM.png");
-       floor5 = new Image("/png_files/Floor5LM.png");
+//       floor1 = new Image("/png_files/Floor1LM.png");
+//       floor2 = new Image("/png_files/Floor2LM.png");
+//       floor3 = new Image("/png_files/Floor3LM.png");
+//       floor4 = new Image("/png_files/Floor4LM.png");
+//       floor5 = new Image("/png_files/Floor5LM.png");
+       floor1 = new Image("/png_files/Floor1TRAN.png");
+       floor2 = new Image("/png_files/Floor2TRAN.png");
+       floor3 = new Image("/png_files/Floor3TRAN.png");
+       floor4 = new Image("/png_files/Floor4TRAN.png");
+       floor5 = new Image("/png_files/Floor5TRAN.png");
 
       loadedImages = true;
     }
