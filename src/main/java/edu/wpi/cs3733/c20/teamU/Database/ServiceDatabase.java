@@ -393,7 +393,7 @@ public class ServiceDatabase {
         String timeReq;
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         Date dateobj = new Date();
-        System.out.println(df.format(dateobj));
+        //System.out.println(df.format(dateobj));
         timeReq = df.format(dateobj);
         return timeReq;
     }

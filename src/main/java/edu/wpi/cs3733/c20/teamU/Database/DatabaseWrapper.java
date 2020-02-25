@@ -2,8 +2,11 @@ package edu.wpi.cs3733.c20.teamU.Database;
 
 
 import edu.wpi.cs3733.c20.teamU.Administration.Account;
+import edu.wpi.cs3733.c20.teamU.Administration.Colors;
+import edu.wpi.cs3733.c20.teamU.Administration.UserBacklog;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 
+import javax.xml.crypto.Data;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -267,6 +270,65 @@ public class DatabaseWrapper {
         return r;
     }
 
+  /**
+   * adds a row to the userBacklog table
+   * @param username input username
+   * @param serviceType service type completed
+   * @param operations operations string
+   * @param info general info string
+   * @return true if tuple was created
+   */
+    public static boolean addUserBacklog(String username, String serviceType, String operations, String info){
+      return Database.addUserBacklog(username, serviceType, operations, info);
+    }
+
+    /**
+     * return all values in userBacklog table
+     * @return returns array list of userbacklog class. containing all items from database
+     */
+    public static ArrayList<UserBacklog> getAllUserBacklog(){
+          return Database.getAllUserBacklog();
+      }
+
+    /**
+     * add a color (hex values) to the list
+     * @param colorName unique name of color list
+     * @param color1
+     * @param color2
+     * @param color3
+     * @param color4
+     * @param color5
+     * @return true if color list was added
+     */
+      public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5){
+          return Database.addColor(colorName, color1, color2, color3, color4, color5);
+      }
+
+      /**
+       * get ALL colors in DB
+       * @return returns Array list of all colors (check colors class)
+       */
+      public static ArrayList<Colors> getAllColors(){
+            return Database.getAllColors();
+      }
+
+      /**
+       * get spesific color
+       * @param colorTheme "colorType" of spesific color
+       * @return returns Colors for given color
+       */
+      public static Colors getColor(String colorTheme){
+            return Database.getColor(colorTheme);
+      }
+
+      /**
+       * Delete a row from ColorsDB
+       * @param colorName  unique name of colors
+       * @return true if colors were deleted
+       */
+      public static boolean delColor(String colorName){
+                return Database.delColor(colorName);
+          }
   // SERVICE DATABASE
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

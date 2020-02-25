@@ -1,8 +1,12 @@
 package edu.wpi.cs3733.c20.teamU.Database;
 
 import edu.wpi.cs3733.c20.teamU.Administration.Account;
+import edu.wpi.cs3733.c20.teamU.Administration.Colors;
+import edu.wpi.cs3733.c20.teamU.Administration.UserBacklog;
 import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
+import org.omg.PortableInterceptor.ServerRequestInfo;
 
 import java.io.*;
 import java.sql.*;
@@ -1174,6 +1178,166 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
+    public static boolean addUserBacklog(String username, String serviceType, String operations, String info){
+        String tableName = "UserBacklogDB";
+        Connection conn = null;
+        Statement stmt = null;
+        String date = ServiceDatabase.getCurrentDate();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + date + "', '" + serviceType + "', '" + operations + "', '" + info + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("couldn't update employee table");
+            return false;
+        }
+    }
+
+    public static ArrayList<UserBacklog> getAllUserBacklog(){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "UserBacklogDB";
+        ArrayList<UserBacklog> userBRet = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM " + tableName;
+
+            ResultSet results = stmt.executeQuery(sql1);
+
+            while (results.next()) {
+                String username = results.getString(1);
+                String date = results.getString(2);
+                String position = results.getString(3);
+                String operation = results.getString(4);
+                String info = results.getString(4);
+
+                UserBacklog newUserB = new UserBacklog(username, date, position, operation, info);
+                userBRet.add(newUserB);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return userBRet;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5){
+        String tableName = "ColorsDB";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorName + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("couldn't update color table > make sure color name is unique");
+            return false;
+        }
+    }
+
+    public static ArrayList<Colors> getAllColors(){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "ColorsDB";
+        ArrayList<Colors> colorArr = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM " + tableName;
+
+            ResultSet results = stmt.executeQuery(sql1);
+
+            while (results.next()) {
+                String colorTheme = results.getString(1);
+                String c1 = results.getString(2);
+                String c2 = results.getString(3);
+                String c3 = results.getString(4);
+                String c4 = results.getString(5);
+                String c5 = results.getString(6);
+
+                Colors newColor = new Colors(colorTheme, c1, c2, c3, c4, c5);
+                colorArr.add(newColor);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return colorArr;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Colors getColor(String colorTheme){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "ColorsDB";
+        Colors newColor = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM " + tableName + " WHERE colorTheme = '" + colorTheme + "'";
+
+            ResultSet results = stmt.executeQuery(sql1);
+
+            while (results.next()) {
+                String c1 = results.getString(2);
+                String c2 = results.getString(3);
+                String c3 = results.getString(4);
+                String c4 = results.getString(5);
+                String c5 = results.getString(6);
+
+                newColor = new Colors(colorTheme, c1, c2, c3, c4, c5);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return newColor;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static boolean delColor(String colorName){
+        Statement stmt;
+        Connection conn;
+        String tableName = "ColorsDB";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE colorTheme = '" + colorName + "'");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
+    }
+
     /**
      * Generate a csv file in a given path from the table
      * @param stmt statement
@@ -1808,6 +1972,7 @@ public class Database {
      */
   public static boolean delLoginSR(String username){
         String tableName = "LoginDB";
+        String tableNameUB = "UserBacklogDB";
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -1815,6 +1980,7 @@ public class Database {
             stmt = conn.createStatement();
             // getting UBDatabase
             // check to see if username exists in LoginDB:
+            stmt.executeUpdate("DELETE FROM " + tableNameUB + " WHERE username = '" + username + "'");
             stmt.executeUpdate("DELETE FROM " + tableName + " WHERE username = '" + username + "'");
             CreateCSV(stmt, tableName, null);
             stmt.close();
