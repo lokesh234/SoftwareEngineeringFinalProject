@@ -796,7 +796,7 @@ public class PathfindController {
         }
         App.getTextpath().clear();
 
-        TextPathBuilder tpb = new TextPathBuilder(10,11.5,3.5);
+        TextPathBuilder tpb = new TextPathBuilder(20,11.5,3.5);
 
         tpb.setNodes(path);
         tpb.generateTextDirections();
