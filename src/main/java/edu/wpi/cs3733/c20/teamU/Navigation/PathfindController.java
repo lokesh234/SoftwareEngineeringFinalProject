@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
@@ -12,10 +13,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -39,7 +37,10 @@ public class PathfindController {
     }
 
     private Parent root;
-    int floor = 1;
+    int floor = 4;
+
+    @FXML
+    private JFXButton upButton, downButton;
 
     @FXML
     private GesturePane PathGes;
@@ -63,6 +64,8 @@ public class PathfindController {
     @FXML private GesturePane MapGes3;
     @FXML private GesturePane MapGes4;
     @FXML private GesturePane MapGes5;
+
+    @FXML private RadioButton fast, elev, stai;
 
     private Circle startSelect = new Circle();
     private Circle endSelect = new Circle();
@@ -91,6 +94,7 @@ public class PathfindController {
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
 
+    @FXML private VBox radioBox;
 
     @FXML
     Button startButton, goButton, endButton, clearButton, backButton;
@@ -110,6 +114,7 @@ public class PathfindController {
                 start = circles.get(event.getSource());
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
+                if (startReady) SearchBox.setText(start.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
@@ -117,6 +122,7 @@ public class PathfindController {
                 end = circles.get(event.getSource());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
+                if (endReady) SearchBox.setText(end.getLongName());
                 state = State.NEUTRAL;
                 updateStatus();
             }
@@ -135,7 +141,7 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             Circle source = (Circle) event.getSource();
-            source.setFill(Color.BLACK);
+            App.setColor(circles.get(source), source);
         }
     };
 
@@ -218,6 +224,8 @@ public class PathfindController {
                 oppo.getChildren().add(N1);
                 floor = 1;
                 floorLabel.setText("1");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: A9A9A9");
                 MapGes1.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -228,6 +236,8 @@ public class PathfindController {
                 oppo.getChildren().add(N2);
                 floor = 2;
                 floorLabel.setText("2");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes2.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes2.getCurrentScale() - 30000, MapGes2.targetPointAtViewportCentre());
@@ -237,6 +247,8 @@ public class PathfindController {
                 oppo.getChildren().add(N3);
                 floor = 3;
                 floorLabel.setText("3");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes3.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
@@ -246,6 +258,8 @@ public class PathfindController {
                 oppo.getChildren().add(N4);
                 floor = 4;
                 floorLabel.setText("4");
+                upButton.setStyle("-fx-text-fill: FFFFFF");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes4.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
@@ -255,6 +269,8 @@ public class PathfindController {
                 oppo.getChildren().add(N5);
                 floor = 5;
                 floorLabel.setText("5");
+                upButton.setStyle("-fx-text-fill: A9A9A9");
+                downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes5.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
                         .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
@@ -426,18 +442,160 @@ public class PathfindController {
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                App.setColor(n, c);
                 circles.put(c, n);
             }
         }
     }
+
+    @FXML
+    private void MapLeft(){
+        MoveLeftMachine(floor);
+    }
+
+    @FXML
+    private void MapRight(){
+        MoveRightMachine(floor);
+    }
+
+    @FXML
+    private void MapUp(){
+        MoveUpMachine(floor);
+    }
+
+    @FXML
+    private void MapDown(){
+        MoveDownMachine(floor);
+    }
+
+
+    private void MoveLeftMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() - 20), MapGes1.targetPointAtViewportCentre().getY());
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() - 20), MapGes2.targetPointAtViewportCentre().getY());
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() - 20), MapGes3.targetPointAtViewportCentre().getY());
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() - 20), MapGes4.targetPointAtViewportCentre().getY());
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() - 20), MapGes5.targetPointAtViewportCentre().getY());
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+    private void MoveRightMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() + 20), MapGes1.targetPointAtViewportCentre().getY());
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() + 20), MapGes2.targetPointAtViewportCentre().getY());
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() + 20), MapGes3.targetPointAtViewportCentre().getY());
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() + 20), MapGes4.targetPointAtViewportCentre().getY());
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() + 20), MapGes5.targetPointAtViewportCentre().getY());
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+    private void MoveUpMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(), (MapGes1.targetPointAtViewportCentre().getY() - 20));
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(), (MapGes2.targetPointAtViewportCentre().getY() - 20));
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(), (MapGes3.targetPointAtViewportCentre().getY() - 20));
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(), (MapGes4.targetPointAtViewportCentre().getY() - 20));
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(), (MapGes5.targetPointAtViewportCentre().getY() - 20));
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+    private void MoveDownMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(), (MapGes1.targetPointAtViewportCentre().getY() + 20));
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(), (MapGes2.targetPointAtViewportCentre().getY() + 20));
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(), (MapGes3.targetPointAtViewportCentre().getY() + 20));
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(), (MapGes4.targetPointAtViewportCentre().getY() + 20));
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(), (MapGes5.targetPointAtViewportCentre().getY() + 20));
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+
 
     private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
         return !n.getNodeType().equals("HALL"); //no hallway nodes
         //return true; //Everything!
     }
 
+    private EventHandler<MouseEvent> radioHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (fast.isSelected()) NavigationWrapper.setStatus(0);
+            else if (elev.isSelected()) NavigationWrapper.setStatus(1);
+            else NavigationWrapper.setStatus(2);
+
+            if (displayingPath) pathfind();
+        }
+    };
+
     @FXML
     private void initialize() {
+        fast.setToggleGroup(group);
+        stai.setToggleGroup(group);
+        elev.setToggleGroup(group);
+        fast.setSelected(true);
+
+        radioBox.addEventFilter(MouseEvent.MOUSE_CLICKED, radioHandler);
+
         NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
         NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
         NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
@@ -512,13 +670,7 @@ public class PathfindController {
         Populate();
         Auto();
         oppo.getChildren().clear();
-        N1.translateYProperty().set(1500);
-        oppo.getChildren().add(N1);
-        Timeline timeline1 = new Timeline();
-        KeyValue kv1 = new KeyValue(N1.translateYProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame keyFrame1 = new KeyFrame(Duration.seconds(.5), kv1);
-        timeline1.getKeyFrames().add(keyFrame1);
-        timeline1.play();
+        oppo.getChildren().add(N4);
     }
 
     private void Populate(){

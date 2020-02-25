@@ -2,8 +2,11 @@ package edu.wpi.cs3733.c20.teamU.Database;
 
 
 import edu.wpi.cs3733.c20.teamU.Administration.Account;
+import edu.wpi.cs3733.c20.teamU.Administration.Colors;
+import edu.wpi.cs3733.c20.teamU.Administration.UserBacklog;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 
+import javax.xml.crypto.Data;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +92,10 @@ public class DatabaseWrapper {
     return (Database.CreateCSV(stmt, tableName, path));
   }
 
+  public static void getAccounts(ArrayList<Account> accounts){
+    Database.getAccounts(accounts);
+  }
+
   /**
    * create a new user or edit and existing one
    * @param username username for login (PK)
@@ -98,8 +105,8 @@ public class DatabaseWrapper {
    * @param position Position: one of ('ADMIN' 'MEDIC' ...)
    * @return boolean if loginSR is updated or edited
    */
-  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String email){
-    return (Database.addLoginSR(username, password, firstName, lastName, position, email));
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String number){
+    return (Database.addLoginSR(username, password, firstName, lastName, position, number));
   }
 
   /**
@@ -263,6 +270,70 @@ public class DatabaseWrapper {
         return r;
     }
 
+  /**
+   * adds a row to the userBacklog table
+   * @param username input username
+   * @param serviceType service type completed
+   * @param operations operations string
+   * @param info general info string
+   * @return true if tuple was created
+   *
+   * Optional: insert Date and Time if you dont want time/date to be auto implemented
+   */
+    public static boolean addUserBacklog(String username, String serviceType, String operations, String info){
+      return Database.addUserBacklog(username, serviceType, operations, info);
+    }
+    public static boolean addUserBacklog(String username, String dateCompleted, String timeCompleted, String serviceType, String operations, String info){
+      return Database.addUserBacklog(username, dateCompleted, timeCompleted, serviceType, operations, info);
+    }
+
+    /**
+     * return all values in userBacklog table
+     * @return returns array list of userbacklog class. containing all items from database
+     */
+    public static ArrayList<UserBacklog> getAllUserBacklog(){
+          return Database.getAllUserBacklog();
+      }
+
+    /**
+     * add a color (hex values) to the list
+     * @param colorName unique name of color list
+     * @param color1
+     * @param color2
+     * @param color3
+     * @param color4
+     * @param color5
+     * @return true if color list was added
+     */
+      public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5){
+          return Database.addColor(colorName, color1, color2, color3, color4, color5);
+      }
+
+      /**
+       * get ALL colors in DB
+       * @return returns Array list of all colors (check colors class)
+       */
+      public static ArrayList<Colors> getAllColors(){
+            return Database.getAllColors();
+      }
+
+      /**
+       * get spesific color
+       * @param colorTheme "colorType" of spesific color
+       * @return returns Colors for given color
+       */
+      public static Colors getColor(String colorTheme){
+            return Database.getColor(colorTheme);
+      }
+
+      /**
+       * Delete a row from ColorsDB
+       * @param colorName  unique name of colors
+       * @return true if colors were deleted
+       */
+      public static boolean delColor(String colorName){
+                return Database.delColor(colorName);
+          }
   // SERVICE DATABASE
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

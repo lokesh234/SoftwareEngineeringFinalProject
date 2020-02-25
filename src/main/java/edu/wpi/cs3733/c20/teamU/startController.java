@@ -7,9 +7,6 @@ import javafx.fxml.FXML;
 
 public class startController {
 
-
-  //  private long startTime;
-//  private long currentTime;
   private volatile long startTime;
   private volatile long currentTime;
   private volatile boolean runThread = true;
@@ -26,16 +23,18 @@ public class startController {
             currentTime = System.currentTimeMillis();
 //            System.out.println(currentTime - startTime);
             if ((currentTime - startTime)
-                > 60000) { // will go to openStartScene if the screen has not been touched within 60 secs
+                > App
+                .getTimeoutValue()) { // will go to openStartScene if the screen has not been touched within 60 secs
               App.getPrimaryStage().setScene(App.getStartScene());
+              clearPop();
               runThread = false;
-//              if(!runThread) App.getPrimaryStage().removeEventHandler(MOUSE_MOVED, null);
             }
           }
         };
         while (runThread) {
           try {
             Thread.sleep(1000);
+//            System.out.println(App.getTimeoutValue());
           } catch (InterruptedException ex) {
             ex.printStackTrace();
           }
@@ -48,48 +47,66 @@ public class startController {
 //      System.out.println(startTime);
       if (App.getLoadedAdminGraph()) {
         App.getAdminNodeScene().addEventHandler(MOUSE_MOVED, event1 -> {
-          if (!runThread) App.getAdminNodeScene().removeEventHandler(MOUSE_MOVED, null);
+          if (!runThread) {
+            App.getAdminNodeScene().removeEventHandler(MOUSE_MOVED, null);
+          }
           startTime = System.currentTimeMillis();
         });
       }
       if (App.getLoadedPathFinding()) {
         App.getPathScene().addEventHandler(MOUSE_MOVED, event2 -> {
-          if (!runThread) App.getPathScene().removeEventHandler(MOUSE_MOVED, null);
+          if (!runThread) {
+            App.getPathScene().removeEventHandler(MOUSE_MOVED, null);
+          }
           startTime = System.currentTimeMillis();
         });
       }
       if (App.getLoadedAdminRequest()) {
         App.getAdminScene().addEventHandler(MOUSE_MOVED, event3 -> {
-          if (!runThread) App.getAdminScene().removeEventHandler(MOUSE_MOVED, null);
+          if (!runThread) {
+            App.getAdminScene().removeEventHandler(MOUSE_MOVED, null);
+          }
           startTime = System.currentTimeMillis();
         });
       }
       if (App.getLoadedAdminEmployee()) {
         App.getAdminScene().addEventHandler(MOUSE_MOVED, event3 -> {
-          if (!runThread) App.getAdminScene().removeEventHandler(MOUSE_MOVED, null);
+          if (!runThread) {
+            App.getAdminScene().removeEventHandler(MOUSE_MOVED, null);
+          }
           startTime = System.currentTimeMillis();
         });
       }
-//      if (App.getLoadedWeather()) {
-//        App.getWeatherScene().addEventFilter(MOUSE_MOVED, event4 -> {
-//          if (!runThread) App.getWeatherScene().removeEventHandler(MOUSE_MOVED, null);
-//          startTime = System.currentTimeMillis();
-//        });
-//      }
     });
 
     App.getHomeScene().addEventFilter(MOUSE_MOVED, event -> {
-      if (!runThread) App.getHomeScene().removeEventHandler(MOUSE_MOVED, null);
+      if (!runThread) {
+        App.getHomeScene().removeEventHandler(MOUSE_MOVED, null);
+      }
       startTime = System.currentTimeMillis();
     });
     startTime = System.currentTimeMillis();
     App.getPrimaryStage().setScene(App.getHomeScene());
     App.getHome().setDisable(false);
     App.getHome().setOpacity(1);
-//    startT.setDaemon(true);
-//    startT.start();
+    startT.setDaemon(true);
+    startT.start();
   }
 
+  private void clearPop() {
+    App.getPopup().getContent().clear();
+    App.getRequestPop().getContent().clear();
+    App.getSecurityPop().getContent().clear();
+    App.getMedicinePop().getContent().clear();
+    App.getITPop().getContent().clear();
+    App.getReligiousPop().getContent().clear();
+    App.getExtTransportPop().getContent().clear();
+    App.getIntTransportPop().getContent().clear();
+    App.getTextDirectionsPop().getContent().clear();
+    App.getSanRequestPop().getContent().clear();
+    App.getLanguageSRPop().getContent().clear();
+    App.getChoosePathPop().getContent().clear();
+  }
   @FXML
   private void initialize() {
 //    startT.setDaemon(true);

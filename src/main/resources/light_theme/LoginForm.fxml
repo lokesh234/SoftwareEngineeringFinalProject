@@ -76,7 +76,7 @@
                         </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXCheckBox fx:id="robotCheck" text="What? Me? A robot? IMPOSSIBLE!" />
+                        <JFXCheckBox fx:id="robotCheck" text="Test Two-Factor Verification Feature" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">

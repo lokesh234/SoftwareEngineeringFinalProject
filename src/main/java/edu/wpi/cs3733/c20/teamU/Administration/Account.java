@@ -13,7 +13,7 @@ public class Account {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.number = number;
+        this.number = number.replaceAll("\\s+", "");
         this.cred = cred.toUpperCase();
     }
 

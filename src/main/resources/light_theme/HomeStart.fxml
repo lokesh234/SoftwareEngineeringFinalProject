@@ -45,7 +45,7 @@
                           <graphic>
                       <ImageView fitHeight="500.0" pickOnBounds="true" preserveRatio="true">
                           <image>
-                              <Image url="@../png_files/Floor4LM.png" />
+                              <Image url="@../png_files/Floor4TRAN.png" />
                           </image>
                           <VBox.margin>
                               <Insets />

@@ -1,8 +1,12 @@
 package edu.wpi.cs3733.c20.teamU.Database;
 
 import edu.wpi.cs3733.c20.teamU.Administration.Account;
+import edu.wpi.cs3733.c20.teamU.Administration.Colors;
+import edu.wpi.cs3733.c20.teamU.Administration.UserBacklog;
 import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
+import org.omg.PortableInterceptor.ServerRequestInfo;
 
 import java.io.*;
 import java.sql.*;
@@ -39,7 +43,9 @@ public class Database {
 
             dropTable(stmt, "MapEdgesU");
             dropTable(stmt, "MapNodesU");
+            dropTable(stmt, "UserBacklogDB");
             dropTable(stmt, "LoginDB");
+            dropTable(stmt, "ColorsDB");
             dropTable(stmt, "ServiceFinished");
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
@@ -60,6 +66,8 @@ public class Database {
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
             createLoginTable(stmt, "LoginDB");
+            createUserBacklogTable(stmt, "UserBacklogDB");
+            createColorTable(stmt, "ColorsDB");
             createServiceRequestTable(stmt,"ServiceRequest");
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
@@ -81,6 +89,8 @@ public class Database {
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
             printTable(stmt, "LoginDB");
+            printTable(stmt, "UserBacklogDB");
+            printTable(stmt, "ColorsDB");
             printTable(stmt, "ServiceRequest");
             printTable(stmt, "ServiceFinished");
             printTable(stmt, "MedicineSR");
@@ -1031,7 +1041,7 @@ public class Database {
      */
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), email VARCHAR(30), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), number VARCHAR(20), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -1047,7 +1057,7 @@ public class Database {
                 while ((line = br.readLine()) != null) {
 
                     String[] csvString = line.split(csvSplit);
-                    System.out.println(csvString);
+                  //  System.out.println(csvString);
                     if (starter == 0){
                         starter = 1;
                     }
@@ -1058,8 +1068,8 @@ public class Database {
                         String firstName = csvString[2];
                         String lastName = csvString[3];
                         String position = csvString[4];
-                        String email = csvString[5];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + email + "')");
+                        String number = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + number + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -1074,6 +1084,281 @@ public class Database {
 
         }
         CreateCSV(stmt, tableName, null);
+    }
+
+    private static void createColorTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (colorTheme VARCHAR(20), firstColor VARCHAR(6), secondColor VARCHAR(6), thirdColor VARCHAR(6), fourthColor VARCHAR(6), fifthColor VARCHAR(6), PRIMARY KEY (colorTheme))";
+
+            stmt.executeUpdate(slqCreate);
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try {
+                BufferedReader br = getBR(tableName);
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    //System.out.println(csvString);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+
+                        String colorTheme = csvString[0];
+                        String color1 = csvString[1];
+                        String color2 = csvString[2];
+                        String color3 = csvString[3];
+                        String color4 = csvString[4];
+                        String color5 = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorTheme + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "')");
+                    }
+                }
+                //INSERT INTO TABLENAME VALUES ('STRING', '...
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+        CreateCSV(stmt, tableName, null);
+    }
+
+    private static void createUserBacklogTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(5), operations VARCHAR(200), addInfo VARCHAR(200), " +
+                    "CONSTRAINT UB_TY CHECK (serviceType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT')))";
+
+            stmt.executeUpdate(slqCreate);
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try {
+                BufferedReader br = getBR(tableName);
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    //System.out.println(csvString);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+
+                        String username = csvString[0];
+                        String dateComp = csvString[1];
+                        String timeComp = csvString[2];
+                        String SType = csvString[3];
+                        String operations = csvString[4];
+                        String info = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + dateComp + "', '" + timeComp + "', '" + SType + "', '" + operations + "', '" + info + "')");
+                    }
+                }
+                //INSERT INTO TABLENAME VALUES ('STRING', '...
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+        CreateCSV(stmt, tableName, null);
+    }
+
+    public static boolean addUserBacklog(String username, String serviceType, String operations, String info){
+        String tableName = "UserBacklogDB";
+        Connection conn = null;
+        Statement stmt = null;
+        String date = ServiceDatabase.getCurrentDate();
+        String time = ServiceDatabase.getCurrentTime();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + date + "', '" + time + "', '" + serviceType + "', '" + operations + "', '" + info + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("couldn't update employee table");
+            return false;
+        }
+    }
+
+    public static boolean addUserBacklog(String username, String dateCompleted, String timeCompleted, String serviceType, String operations, String info){
+        String tableName = "UserBacklogDB";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + dateCompleted + "', '" + timeCompleted + "', '" + serviceType + "', '" + operations + "', '" + info + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("couldn't update employee table");
+            return false;
+        }
+    }
+
+    public static ArrayList<UserBacklog> getAllUserBacklog(){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "UserBacklogDB";
+        ArrayList<UserBacklog> userBRet = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM " + tableName;
+
+            ResultSet results = stmt.executeQuery(sql1);
+
+            while (results.next()) {
+                String username = results.getString(1);
+                String date = results.getString(2);
+                String time = results.getString(3);
+                String position = results.getString(4);
+                String operation = results.getString(5);
+                String info = results.getString(6);
+
+                UserBacklog newUserB = new UserBacklog(username, date, time, position, operation, info);
+                userBRet.add(newUserB);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return userBRet;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5){
+        String tableName = "ColorsDB";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorName + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("couldn't update color table > make sure color name is unique");
+            return false;
+        }
+    }
+
+    public static ArrayList<Colors> getAllColors(){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "ColorsDB";
+        ArrayList<Colors> colorArr = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM " + tableName;
+
+            ResultSet results = stmt.executeQuery(sql1);
+
+            while (results.next()) {
+                String colorTheme = results.getString(1);
+                String c1 = results.getString(2);
+                String c2 = results.getString(3);
+                String c3 = results.getString(4);
+                String c4 = results.getString(5);
+                String c5 = results.getString(6);
+
+                Colors newColor = new Colors(colorTheme, c1, c2, c3, c4, c5);
+                colorArr.add(newColor);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return colorArr;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Colors getColor(String colorTheme){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "ColorsDB";
+        Colors newColor = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "SELECT * FROM " + tableName + " WHERE colorTheme = '" + colorTheme + "'";
+
+            ResultSet results = stmt.executeQuery(sql1);
+
+            while (results.next()) {
+                String c1 = results.getString(2);
+                String c2 = results.getString(3);
+                String c3 = results.getString(4);
+                String c4 = results.getString(5);
+                String c5 = results.getString(6);
+
+                newColor = new Colors(colorTheme, c1, c2, c3, c4, c5);
+            }
+
+            results.close();
+            stmt.close();
+            conn.close();
+            return newColor;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static boolean delColor(String colorName){
+        Statement stmt;
+        Connection conn;
+        String tableName = "ColorsDB";
+        try{
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE colorTheme = '" + colorName + "'");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException SQLExcept) {
+            return false;
+        }
     }
 
     /**
@@ -1213,8 +1498,8 @@ public class Database {
                 Node node1 = nHM.get(results.getString(2));
                 Node node2 = nHM.get(results.getString(3));
                 //calculate the distance, create a new Edge(), put it into the result HashMap
-                int dis = 0;
-                if (node1.getNodeType().equals("STAI") && node2.getNodeType().equals("STAI")) dis = 250;
+                int dis = 50;
+                if (node1.getNodeType().equals("STAI") && node2.getNodeType().equals("STAI")) dis = 150;
                 else if (!node1.getNodeType().equals("ELEV") && !node2.getNodeType().equals("ELEV")) dis = NavigationWrapper.dist(node1, node2);
                 eHM.put(edgeID, new Edge(node1, node2, dis, edgeID));
            }
@@ -1540,12 +1825,12 @@ public class Database {
                 String firstName = results.getString(3);
                 String lastName = results.getString(4);
                 String cred = results.getString(5);
-                String email = results.getString(6);
+                String number = results.getString(6);
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
 //                System.out.println(requestType);
-                Account a = new Account(username, password, firstName, lastName, cred, email);
+                Account a = new Account(username, password, firstName, lastName, cred, number);
                 accounts.add(a);
                 System.out.println("Account list: " + accounts);
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
@@ -1587,7 +1872,7 @@ public class Database {
             String firstName = "";
             String lastName = "";
             String cred = "";
-            String email = "";
+            String number = "";
             while (results.next()) {
                 //check if the password matches
                 if (results.getString(2).equals(inputPassword)){
@@ -1596,7 +1881,7 @@ public class Database {
                     firstName = results.getString(3);
                     lastName = results.getString(4);
                     cred = results.getString(5).toUpperCase();
-                    email = results.getString(6);
+                    number = results.getString(6);
 //                System.out.println(date);
 //                System.out.println(requestID);
 //                System.out.println(name);
@@ -1607,7 +1892,7 @@ public class Database {
                     connection.close();
                     return null;
                 }
-                Account a = new Account(username, password, firstName, lastName, cred, email);
+                Account a = new Account(username, password, firstName, lastName, cred, number);
                 results.close();
                 stmt.close();
                 connection.close();
@@ -1632,9 +1917,10 @@ public class Database {
    * @param firstName FirstName
    * @param lastName LastName
    * @param position Position: one of ('ADMIN' 'MEDIC' ...)
+   * @param number
    * @return boolean if loginSR is updated or edited
    */
-  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String email) {
+  public static boolean addLoginSR(String username, String password, String firstName, String lastName, String position, String number) {
     String tableName = "LoginDB";
     Connection conn = null;
     Statement stmt = null;
@@ -1652,7 +1938,7 @@ public class Database {
       }
 
       stmt.executeUpdate(
-          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + email + "')");
+          "INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + number + "')");
 
       Database.CreateCSV(stmt, tableName, null);
       stmt.close();
@@ -1684,15 +1970,15 @@ public class Database {
           String firstName = "";
           String lastName = "";
           String position = "";
-          String email = "";
+          String number = "";
           while (results.next()) {
             password = results.getString(2);
             firstName = results.getString(3);
             lastName = results.getString(4);
             position = results.getString(5);
-            email = results.getString(6);
+            number = results.getString(6);
               }
-          Account a = new Account(username, password, firstName, lastName, position, email);
+          Account a = new Account(username, password, firstName, lastName, position, number);
           stmt.close();
           conn.close();
           return a;
@@ -1709,6 +1995,7 @@ public class Database {
      */
   public static boolean delLoginSR(String username){
         String tableName = "LoginDB";
+        String tableNameUB = "UserBacklogDB";
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -1716,6 +2003,7 @@ public class Database {
             stmt = conn.createStatement();
             // getting UBDatabase
             // check to see if username exists in LoginDB:
+            stmt.executeUpdate("DELETE FROM " + tableNameUB + " WHERE username = '" + username + "'");
             stmt.executeUpdate("DELETE FROM " + tableName + " WHERE username = '" + username + "'");
             CreateCSV(stmt, tableName, null);
             stmt.close();
@@ -1780,7 +2068,7 @@ public class Database {
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
-            String sql1 = "UPDATE "  + tableName + " SET edgeID = " + edgeIDN + ", startNode = " + startNodeN + ", endNode = " + endNodeN + "' WHERE edgeID = '" + edgeIDN + "'";
+            String sql1 = "UPDATE "  + tableName + " SET edgeID = " + edgeIDN + ", startNode = " + startNodeN + ", endNode = " + endNodeN + " WHERE edgeID = '" + edgeIDN + "'";
 
             int result = stmt.executeUpdate(sql1);
             System.out.println(result);

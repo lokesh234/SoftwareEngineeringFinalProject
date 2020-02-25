@@ -5,6 +5,8 @@ import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -393,9 +395,17 @@ public class ServiceDatabase {
         String timeReq;
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         Date dateobj = new Date();
-        System.out.println(df.format(dateobj));
+        //System.out.println(df.format(dateobj));
         timeReq = df.format(dateobj);
         return timeReq;
+    }
+
+    static String getCurrentTime(){
+        String curTime;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        curTime = dtf.format(now);
+        return curTime;
     }
 
     //ServiceDatabase.medicineSRAdd("Marcus", "Chalmers", "Sadness", "Everyday", "Oral", "sad boi hours"); Example
