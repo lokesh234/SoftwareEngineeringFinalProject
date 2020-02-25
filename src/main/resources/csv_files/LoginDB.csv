@@ -1,4 +1,4 @@
-username,password,firstName,lastName,123131
+USERNAME,PASSWORD,FIRSTNAME,LASTNAME,POSITION,NUMBER
 admin,password,admin,user,ADMIN,4134141414
 medic,password,medic,user,MEDIC,1414141
 security,password,security,user,SECUR,141414141234

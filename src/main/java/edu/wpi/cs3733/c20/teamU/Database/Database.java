@@ -39,7 +39,9 @@ public class Database {
 
             dropTable(stmt, "MapEdgesU");
             dropTable(stmt, "MapNodesU");
+            dropTable(stmt, "UserBacklogDB");
             dropTable(stmt, "LoginDB");
+            dropTable(stmt, "ColorsDB");
             dropTable(stmt, "ServiceFinished");
             dropTable(stmt, "SecuritySR");
             dropTable(stmt, "MedicineSR");
@@ -60,6 +62,8 @@ public class Database {
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
             createLoginTable(stmt, "LoginDB");
+            createUserBacklogTable(stmt, "UserBacklogDB");
+            createColorTable(stmt, "ColorsDB");
             createServiceRequestTable(stmt,"ServiceRequest");
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
@@ -81,6 +85,8 @@ public class Database {
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
             printTable(stmt, "LoginDB");
+            printTable(stmt, "UserBacklogDB");
+            printTable(stmt, "ColorsDB");
             printTable(stmt, "ServiceRequest");
             printTable(stmt, "ServiceFinished");
             printTable(stmt, "MedicineSR");
@@ -1047,7 +1053,7 @@ public class Database {
                 while ((line = br.readLine()) != null) {
 
                     String[] csvString = line.split(csvSplit);
-                    System.out.println(csvString);
+                  //  System.out.println(csvString);
                     if (starter == 0){
                         starter = 1;
                     }
@@ -1060,6 +1066,98 @@ public class Database {
                         String position = csvString[4];
                         String number = csvString[5];
                         stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + password + "', '" + firstName + "', '" + lastName + "', '" + position + "', '" + number + "')");
+                    }
+                }
+                //INSERT INTO TABLENAME VALUES ('STRING', '...
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+        CreateCSV(stmt, tableName, null);
+    }
+
+    private static void createColorTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (colorTheme VARCHAR(20), firstColor VARCHAR(6), secondColor VARCHAR(6), thirdColor VARCHAR(6), fourthColor VARCHAR(6), fifthColor VARCHAR(6), PRIMARY KEY (colorTheme))";
+
+            stmt.executeUpdate(slqCreate);
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try {
+                BufferedReader br = getBR(tableName);
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    //System.out.println(csvString);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+
+                        String colorTheme = csvString[0];
+                        String color1 = csvString[1];
+                        String color2 = csvString[2];
+                        String color3 = csvString[3];
+                        String color4 = csvString[4];
+                        String color5 = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorTheme + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "')");
+                    }
+                }
+                //INSERT INTO TABLENAME VALUES ('STRING', '...
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+        CreateCSV(stmt, tableName, null);
+    }
+
+    private static void createUserBacklogTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, serviceType VARCHAR(5), operations VARCHAR(200), addInfo VARCHAR(200), " +
+                    "CONSTRAINT UB_TY CHECK (serviceType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT')))";
+
+            stmt.executeUpdate(slqCreate);
+            //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
+            //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/LoginDB.csv");
+            String line = "";
+            String csvSplit = ",";
+
+            //parses through csv file and creates a new row in the database for each row
+            try {
+                BufferedReader br = getBR(tableName);
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    //System.out.println(csvString);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+
+                        String username = csvString[0];
+                        String dateComp = csvString[1];
+                        String SType = csvString[2];
+                        String operations = csvString[3];
+                        String info = csvString[4];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + dateComp + "', '" + SType + "', '" + operations + "', '" + info + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
