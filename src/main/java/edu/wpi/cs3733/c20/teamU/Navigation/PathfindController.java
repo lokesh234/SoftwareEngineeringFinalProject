@@ -141,7 +141,7 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             Circle source = (Circle) event.getSource();
-            source.setFill(Color.BLACK);
+            App.setColor(circles.get(source), source);
         }
     };
 
@@ -442,10 +442,134 @@ public class PathfindController {
                 c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
                 c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                App.setColor(n, c);
                 circles.put(c, n);
             }
         }
     }
+
+    @FXML
+    private void MapLeft(){
+        MoveLeftMachine(floor);
+    }
+
+    @FXML
+    private void MapRight(){
+        MoveRightMachine(floor);
+    }
+
+    @FXML
+    private void MapUp(){
+        MoveUpMachine(floor);
+    }
+
+    @FXML
+    private void MapDown(){
+        MoveDownMachine(floor);
+    }
+
+
+    private void MoveLeftMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() - 20), MapGes1.targetPointAtViewportCentre().getY());
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() - 20), MapGes2.targetPointAtViewportCentre().getY());
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() - 20), MapGes3.targetPointAtViewportCentre().getY());
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() - 20), MapGes4.targetPointAtViewportCentre().getY());
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() - 20), MapGes5.targetPointAtViewportCentre().getY());
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+    private void MoveRightMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() + 20), MapGes1.targetPointAtViewportCentre().getY());
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() + 20), MapGes2.targetPointAtViewportCentre().getY());
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() + 20), MapGes3.targetPointAtViewportCentre().getY());
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() + 20), MapGes4.targetPointAtViewportCentre().getY());
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() + 20), MapGes5.targetPointAtViewportCentre().getY());
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+    private void MoveUpMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(), (MapGes1.targetPointAtViewportCentre().getY() - 20));
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(), (MapGes2.targetPointAtViewportCentre().getY() - 20));
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(), (MapGes3.targetPointAtViewportCentre().getY() - 20));
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(), (MapGes4.targetPointAtViewportCentre().getY() - 20));
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(), (MapGes5.targetPointAtViewportCentre().getY() - 20));
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+    private void MoveDownMachine(int floor){
+        switch (floor) {
+            case 1:
+                Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(), (MapGes1.targetPointAtViewportCentre().getY() + 20));
+                MapGes1.centreOn(point2Dleft1);
+                break;
+            case 2:
+                Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(), (MapGes2.targetPointAtViewportCentre().getY() + 20));
+                MapGes2.centreOn(point2Dleft2);
+                break;
+            case 3:
+                Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(), (MapGes3.targetPointAtViewportCentre().getY() + 20));
+                MapGes3.centreOn(point2Dleft3);
+                break;
+            case 4:
+                Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(), (MapGes4.targetPointAtViewportCentre().getY() + 20));
+                MapGes4.centreOn(point2Dleft4);
+                break;
+            case 5:
+                Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(), (MapGes5.targetPointAtViewportCentre().getY() + 20));
+                MapGes5.centreOn(point2Dleft5);
+                break;
+        }
+    }
+
+
 
     private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
         return !n.getNodeType().equals("HALL"); //no hallway nodes

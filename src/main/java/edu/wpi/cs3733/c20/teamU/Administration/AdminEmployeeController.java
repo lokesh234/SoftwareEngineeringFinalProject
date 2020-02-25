@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -39,7 +40,7 @@ public class AdminEmployeeController {
 
     EmployeeFormController employeeFormController;
     @FXML
-    JFXButton add_button, edit_button, remove_button, export_button;
+    JFXButton add_button, edit_button, remove_button, export_button, back_button;
     @FXML
     TableView<Account> employeeTable;
     @FXML
@@ -51,11 +52,12 @@ public class AdminEmployeeController {
     @FXML
     TableColumn<Account, String> cred;
     @FXML
-    TableColumn<Account, Integer> number;
+    TableColumn<Account, String> number;
 
 
     public void setAttributes(EmployeeFormController e) {
         employeeFormController = e;
+        e.setMaster(this);
     }
 // <children>
 //                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" text="Add" />
@@ -71,31 +73,80 @@ public class AdminEmployeeController {
         if(employeeTable.getSelectionModel().getSelectedItem() != null) {
             App.setAccountEdit(employeeTable.getSelectionModel().getSelectedItem());
             edit_button.setDisable(false);
+            remove_button.setDisable(false);
             employeeFormController.setAccountEdit();
         }
         else {
+            remove_button.setDisable(true);
             edit_button.setDisable(true);
         }
     }
-    @FXML
-    public void add(){}
-    @FXML
-    public void edit(){}
-    @FXML
-    public void remove(){}
-    @FXML
-    public void export(){}
 
     @FXML
-    public void back(){
-            App.getPopup().getContent().clear();
-                App.getPopup().getContent().add(App.getAdmin());
-                App.getPopup().show(App.getPrimaryStage());
+    public void add(){
+        App.setAccountEdit(null);
+        employeeFormController.setAccountEdit();
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getEmployeeForm());
+        App.getPopup().show(App.getPrimaryStage());
+    }
 
+    @FXML
+    public void edit(){
+        employeeFormController.setAccountEdit();
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getEmployeeForm());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void remove(){
+        if (App.getAccountEdit() != null) {
+            DatabaseWrapper.delLoginSR(App.getAccountEdit().getUserName());
+            update();
+        }
+    }
+
+    @FXML
+    public void backToAdmin(){
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdmin());
+        App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    protected void update(){
+        employeeTable.setItems(arrayToOBList());
+    }
+
+    private ObservableList<Account> arrayToOBList() {
+        ObservableList<Account> accounts = FXCollections.observableArrayList();
+        ArrayList<Account> temp = new ArrayList<Account>();
+        DatabaseWrapper.getAccounts(temp);
+
+        if(temp != null){
+            for (Account a: temp) {
+                System.out.println(a.getCred() + a.getNumber());
+                accounts.add(a);
+            }
+        }
+        return accounts;
     }
 
     @FXML
     private void initialize(){
+        remove_button.setDisable(true);
+        edit_button.setDisable(true);
+        userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
 
+        firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        cred.setCellValueFactory(new PropertyValueFactory<>("cred"));
+
+        number.setCellValueFactory(new PropertyValueFactory<>("number"));
+
+        update();
     }
 }

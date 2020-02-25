@@ -4,9 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import java.awt.event.MouseEvent;
 import java.net.UnknownHostException;
-import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -57,6 +55,9 @@ public class LoginScreenController {
     }
   }
 
+  /**
+   * function used to enter the verification form
+   */
   @FXML
   private void enterVerification() {
     usernameTried = usernameField.getText();
@@ -65,10 +66,10 @@ public class LoginScreenController {
       clearFields();
       usernameField.setStyle("-fx-border-color: red");
       passwordField.setStyle("-fx-border-color: red");
-    } else if(whoTried.getCred().equals("ADMIN")){
+    } else {
 //      App.getPopup().getContent().clear();
 
-      App.getVerificationController().startProcess(whoTried.getUserName(), "+17603358848");
+      App.getVerificationController().startProcess(whoTried.getUserName(), whoTried.getNumber());
       App.getPopup().getContent().add(App.getVerification());
       App.getPopup().show(App.getPrimaryStage());
       clearFields();
@@ -85,6 +86,9 @@ public class LoginScreenController {
     App.getPopup().getContent().clear();
   }
 
+  /**
+   * function used to clear all the fields back to default
+   */
   private void clearFields() {
     usernameField.clear();
     passwordField.clear();
@@ -99,7 +103,7 @@ public class LoginScreenController {
    * function will change to home screen if user failed
    * or change to admin screen
    */
-  private void changeScene() {
+  public void changeScene() {
     App.getPopup().getContent().clear();
     if (didFail) {
       App.getHome().setOpacity(1);

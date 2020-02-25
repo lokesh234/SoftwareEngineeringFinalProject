@@ -29,7 +29,6 @@
 }
 
 .root{
-
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI";
     -fx-base: rgb(0, 0, 0);
@@ -74,7 +73,6 @@
     -fx-background-color: -color-4;
     -fx-background-radius: 50px;
     -fx-background-insets: 0px;
-    -fx-font-weight: bold;
 }
 
 .jfx-chip-view{
@@ -89,15 +87,9 @@
 }
 
 
-
 .jfx-alert-content-container{
     -fx-background-color: WHITE;
 }
-
-.jfx-button:armed,
-.jfx-button:hover,
-.jfx-button:focused,
-
 
 .jfx-check-box {
     -jfx-unchecked-color: -color-3;
@@ -605,12 +597,17 @@
 
 .buttonGrid .jfx-button{
     -fx-background-radius: 5px;
-    -fx-font-size: 14pt;
 }
 
 .buttonGrid .gridPane{
     -fx-border-width: 0px 0px 0px 0px;
 }
+
+.bbox {
+    -fx-font-size: 48;
+    -fx-font-family: "Segoe UI Bold";
+}
+
 
 .windowScreen{
     -fx-background-color: -color-1;
