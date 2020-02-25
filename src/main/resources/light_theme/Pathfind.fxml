@@ -122,7 +122,7 @@
                      <children>
                         <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
                            <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
+                              <Font name="Segoe UI Bold" size="36.0" />
                            </font>
                         </JFXButton>
                         <Label fx:id="floorLabel" text="4">
@@ -132,21 +132,21 @@
                         </Label>
                         <JFXButton fx:id="downButton" onAction="#clickDown" text="V">
                            <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
+                              <Font name="Segoe UI Bold" size="36.0" />
                            </font>
                         </JFXButton>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                      <children>
                         <JFXButton fx:id="plus" onAction="#zoomIn" text="+">
                            <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
+                              <Font name="Segoe UI Bold" size="36.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="minus" onAction="#zoomOut" text="-">
+                        <JFXButton fx:id="minus" onAction="#zoomOut" prefHeight="75.0" prefWidth="74.0" text="-">
                            <font>
-                              <Font name="Segoe UI Bold" size="48.0" />
+                              <Font name="Segoe UI Bold" size="36.0" />
                            </font>
                         </JFXButton>
                      </children>
@@ -180,11 +180,11 @@
                                     <Font name="Segoe UI Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <VBox spacing="20.0" VBox.vgrow="ALWAYS" fx:id="radioBox">
+                              <VBox fx:id="radioBox" spacing="20.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <JFXRadioButton text="Fastest (Default)" fx:id="fast" />
-                                    <JFXRadioButton text="Elevator" fx:id="elev" />
-                                    <JFXRadioButton text="Stairs" fx:id="stai" />
+                                    <JFXRadioButton fx:id="fast" text="Fastest (Default)" />
+                                    <JFXRadioButton fx:id="elev" text="Elevator" />
+                                    <JFXRadioButton fx:id="stai" text="Stairs" />
                                  </children>
                                  <padding>
                                     <Insets left="20.0" />
