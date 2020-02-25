@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminBacklogController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="View Backlog" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font></Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+         </top>
+         <center>
+            <TableView fx:id="recordTable"  BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="userName" prefWidth="75.0" text="Username" />
+                  <TableColumn fx:id="time" prefWidth="75.0" text="Time" />
+                  <TableColumn fx:id="type" prefWidth="75.0" text="lastName" />
+                  <TableColumn fx:id="operation" prefWidth="75.0" text="Operation" />
+                  <TableColumn fx:id="info" prefWidth="75.0" text="Additional Info" />
+               </columns>
+               </TableView>
+         </center>
+         <left>
+            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" styleClass="sideBar" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="107.0" prefWidth="140.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="20.0" spacing="10.0" styleClass="side">
+                           <children>
+                              <Label text="Locate File">
+                                 <font>
+                                    <Font name="Segoe UI" size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton prefHeight="30.0" prefWidth="32.0" text=". . ." />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <!--                             <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export"/>-->
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
