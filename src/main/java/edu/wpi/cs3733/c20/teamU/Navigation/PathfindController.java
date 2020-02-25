@@ -754,6 +754,35 @@ public class PathfindController {
                 pathe.getElements().add(line);
                 pathe.setStroke(Color.web("#7851a9"));
                 pathe.setStrokeWidth(10.0);
+                pathe.getStrokeDashArray().addAll(15d, 15d);
+                pathe.setStrokeLineCap(StrokeLineCap.ROUND);
+                pathe.setStrokeDashOffset(10);
+                final double maxOffset =
+                        pathe.getStrokeDashArray().stream()
+                                .reduce(
+                                        0d,
+                                        (a, b) -> a + b
+                                );
+                Timeline timeline = new Timeline(
+                        new KeyFrame(
+                                Duration.ZERO,
+                                new KeyValue(
+                                        pathe.strokeDashOffsetProperty(),
+                                        0,
+                                        Interpolator.LINEAR
+                                )
+                        ),
+                        new KeyFrame(
+                                Duration.seconds(2),
+                                new KeyValue(
+                                        pathe.strokeDashOffsetProperty(),
+                                        maxOffset,
+                                        Interpolator.LINEAR
+                                )
+                        )
+                );
+                timeline.setCycleCount(Timeline.INDEFINITE);
+                timeline.play();
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
             }
