@@ -114,7 +114,7 @@ public class App<loadedAdminRequests> extends Application {
   private static EmployeeFormController employeeFormController;
   private static ReligiousController religiousController;
   private static ExtTransportController extTransportController;
-  private static IntTransportController intTranspoerController;
+  private static IntTransportController intTransportController;
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
   private static LanguageController languageController;
@@ -244,6 +244,64 @@ public class App<loadedAdminRequests> extends Application {
     }
   };
 
+  private static EventHandler<KeyEvent> loginconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        loginScreenController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> addnodeconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        addNodeScreenController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> employeeformconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        employeeFormController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> exttransportconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        extTransportController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> inttransportconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        intTransportController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> languageconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        languageController.keyConfirm();
+      }
+    }
+  };
+
+
+
+
+
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
   public static Pane getHome() { return home; }
@@ -327,7 +385,7 @@ public class App<loadedAdminRequests> extends Application {
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
   public static ExtTransportController getExtTransportController() {return  extTransportController;}
-  public static IntTransportController getIntTransportController() { return intTranspoerController; } //marcus
+  public static IntTransportController getIntTransportController() { return intTransportController; } //marcus
   public static ReligiousController getReligiousController() { return religiousController; }
   public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
   public static SanRequestController getSanRequestController() {return sanRequestController;}
@@ -514,6 +572,9 @@ public class App<loadedAdminRequests> extends Application {
         export.setOnKeyPressed(fireKey);
         request.setOnKeyPressed(fireKey);
         login.setOnKeyPressed(fireKey);
+        login.setOnKeyPressed(loginconfirmKey);
+        employeeF.setOnKeyPressed(employeeformconfirmKey);
+
 
         verificationController = verificationLoader.getController();
         adminScreenController = adminLoader.getController();
@@ -610,6 +671,9 @@ public class App<loadedAdminRequests> extends Application {
         externalTransport.setOnKeyPressed(fireKey);
 
         loadedExtTransport = true;
+
+        externalTransport.setOnKeyPressed(exttransportconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -624,9 +688,10 @@ public class App<loadedAdminRequests> extends Application {
 
         internalTransport = intTransportLoader.load();
 
-        intTranspoerController = intTransportLoader.getController(); //marcus
+        intTransportController = intTransportLoader.getController(); //marcus
 
         internalTransport.setOnKeyPressed(fireKey);
+        internalTransport.setOnKeyPressed(inttransportconfirmKey);
 
         loadedIntTransport = true;
       }
@@ -684,6 +749,8 @@ public class App<loadedAdminRequests> extends Application {
         languageSR.setOnKeyPressed(fireKey);
 
         loadedLanguage = true;
+
+        languageSR.setOnKeyPressed(languageconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -803,6 +870,7 @@ public class App<loadedAdminRequests> extends Application {
         adminNodeScene = new Scene(adminNode);
 
         loadedAdminGraph = true;
+        addNode.setOnKeyPressed(addnodeconfirmKey);
       }
       catch (IOException e) {
         return;

@@ -34,6 +34,10 @@ public class AddNodeScreenController {
     nodeViewScreenController = nodeViewScreenController1;
   }
 
+  public void keyConfirm(){
+    confirm.fire();
+  }
+
   /**
    * Change scene when this is called...
    */
