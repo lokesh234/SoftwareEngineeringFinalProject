@@ -58,7 +58,7 @@ public class AdminBacklogController {
     private ObservableList<UserBacklog> arrayToOBList() {
         ObservableList<UserBacklog> records = FXCollections.observableArrayList();
         ArrayList<UserBacklog> temp = new ArrayList<UserBacklog>();
-//        DatabaseWrapper.getRecords(temp);
+        DatabaseWrapper.getAllUserBacklog(temp);
 
         if(temp != null){
             for (UserBacklog r: temp) {
@@ -77,7 +77,7 @@ public class AdminBacklogController {
 
     @FXML
     private void initialize(){
-        userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        userName.setCellValueFactory(new PropertyValueFactory<>("username"));
 
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
@@ -85,7 +85,7 @@ public class AdminBacklogController {
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
-        operation.setCellValueFactory(new PropertyValueFactory<>("operation"));
+        operation.setCellValueFactory(new PropertyValueFactory<>("operations"));
 
         info.setCellValueFactory(new PropertyValueFactory<>("info"));
 

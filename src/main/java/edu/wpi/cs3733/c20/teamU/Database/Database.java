@@ -1134,8 +1134,8 @@ public class Database {
 
     private static void createUserBacklogTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(5), operations VARCHAR(200), addInfo VARCHAR(200), " +
-                    "CONSTRAINT UB_TY CHECK (serviceType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(10), operations VARCHAR(200), addInfo VARCHAR(200), " +
+                    "CONSTRAINT UB_TY CHECK (serviceType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT', 'EMPLOYEE', 'NODE', 'EDGE')))";
 
             stmt.executeUpdate(slqCreate);
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
@@ -1221,11 +1221,10 @@ public class Database {
         }
     }
 
-    public static ArrayList<UserBacklog> getAllUserBacklog(){
+    public static void getAllUserBacklog(ArrayList<UserBacklog> userBacklogs){
         Connection conn = null;
         Statement stmt = null;
         String tableName = "UserBacklogDB";
-        ArrayList<UserBacklog> userBRet = new ArrayList<>();
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
@@ -1242,17 +1241,17 @@ public class Database {
                 String info = results.getString(6);
 
                 UserBacklog newUserB = new UserBacklog(username, date, time, position, operation, info);
-                userBRet.add(newUserB);
+                userBacklogs.add(newUserB);
             }
 
             results.close();
             stmt.close();
             conn.close();
-            return userBRet;
+            return;
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return null;
+            return;
         }
     }
 
