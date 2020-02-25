@@ -277,9 +277,14 @@ public class DatabaseWrapper {
    * @param operations operations string
    * @param info general info string
    * @return true if tuple was created
+   *
+   * Optional: insert Date and Time if you dont want time/date to be auto implemented
    */
     public static boolean addUserBacklog(String username, String serviceType, String operations, String info){
       return Database.addUserBacklog(username, serviceType, operations, info);
+    }
+    public static boolean addUserBacklog(String username, String dateCompleted, String timeCompleted, String serviceType, String operations, String info){
+      return Database.addUserBacklog(username, dateCompleted, timeCompleted, serviceType, operations, info);
     }
 
     /**

@@ -1134,7 +1134,7 @@ public class Database {
 
     private static void createUserBacklogTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, serviceType VARCHAR(5), operations VARCHAR(200), addInfo VARCHAR(200), " +
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(5), operations VARCHAR(200), addInfo VARCHAR(200), " +
                     "CONSTRAINT UB_TY CHECK (serviceType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT')))";
 
             stmt.executeUpdate(slqCreate);
@@ -1158,10 +1158,11 @@ public class Database {
 
                         String username = csvString[0];
                         String dateComp = csvString[1];
-                        String SType = csvString[2];
-                        String operations = csvString[3];
-                        String info = csvString[4];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + dateComp + "', '" + SType + "', '" + operations + "', '" + info + "')");
+                        String timeComp = csvString[2];
+                        String SType = csvString[3];
+                        String operations = csvString[4];
+                        String info = csvString[5];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + dateComp + "', '" + timeComp + "', '" + SType + "', '" + operations + "', '" + info + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -1183,11 +1184,32 @@ public class Database {
         Connection conn = null;
         Statement stmt = null;
         String date = ServiceDatabase.getCurrentDate();
+        String time = ServiceDatabase.getCurrentTime();
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
 
-            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + date + "', '" + serviceType + "', '" + operations + "', '" + info + "')");
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + date + "', '" + time + "', '" + serviceType + "', '" + operations + "', '" + info + "')");
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("couldn't update employee table");
+            return false;
+        }
+    }
+
+    public static boolean addUserBacklog(String username, String dateCompleted, String timeCompleted, String serviceType, String operations, String info){
+        String tableName = "UserBacklogDB";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + username + "', '" + dateCompleted + "', '" + timeCompleted + "', '" + serviceType + "', '" + operations + "', '" + info + "')");
             CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
@@ -1214,11 +1236,12 @@ public class Database {
             while (results.next()) {
                 String username = results.getString(1);
                 String date = results.getString(2);
-                String position = results.getString(3);
-                String operation = results.getString(4);
-                String info = results.getString(4);
+                String time = results.getString(3);
+                String position = results.getString(4);
+                String operation = results.getString(5);
+                String info = results.getString(6);
 
-                UserBacklog newUserB = new UserBacklog(username, date, position, operation, info);
+                UserBacklog newUserB = new UserBacklog(username, date, time, position, operation, info);
                 userBRet.add(newUserB);
             }
 

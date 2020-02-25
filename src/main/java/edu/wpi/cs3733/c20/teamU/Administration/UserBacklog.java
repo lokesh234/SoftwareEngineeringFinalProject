@@ -8,6 +8,7 @@ import lombok.Setter;
 public class UserBacklog {
     private String username;
     private String dateCompleted;
+    private String timeCompleted;
     private String serviceType;
     private String operations;
     private String info;
