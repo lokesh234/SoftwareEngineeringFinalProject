@@ -59,18 +59,18 @@ public class AdminScreenController {
         App.getPopup().show(App.getPrimaryStage());
     }
 
-    /**
-     * Admin access
-     */
-    @FXML
-    private void editEdges() {
-        App.getPopup().getContent().clear();
-        App.getPrimaryStage().setScene(App.getAdminNodeScene());
-        App.getPrimaryStage().setOpacity(1);
-        App.getGraphEditController().exitNodeMode();
-        App.getHome().setDisable(false);
-        App.getPopup().hide();
-    }
+//    /**
+//     * Admin access
+//     */
+//    @FXML
+//    private void editEdges() {
+//        App.getPopup().getContent().clear();
+//        App.getPrimaryStage().setScene(App.getAdminNodeScene());
+//        App.getPrimaryStage().setOpacity(1);
+//        App.getGraphEditController().exitNodeMode();
+//        App.getHome().setDisable(false);
+//        App.getPopup().hide();
+//    }
 
     /**
      * global user access
@@ -83,26 +83,10 @@ public class AdminScreenController {
 
     }
 
-    /**
-     * TODO: implement a better system.
-     * enables certain access based on user credentials
-     * @param user name of the user
-     */
-    public void enableBasedOnCred(String user) {
-        switch (user) {
-            case "MEDIC":
-                editedges.setDisable(true);
-                exportButton.setDisable(true);
-                editnodes.setDisable(true);
-                break;
-            case "SECUR":
-                editedges.setDisable(true);
-                exportButton.setDisable(true);
-                editnodes.setDisable(true);
-                break;
-            default:
-                break;
-        }
+    @FXML
+    private void goToTimeout() {
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getTimeout());
     }
 
     @FXML

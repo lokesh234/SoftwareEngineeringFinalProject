@@ -63,6 +63,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane PathChoose;
   private static Pane giftDelivery;
   private static Pane verification;
+  private static Pane timeout;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -90,6 +91,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene languageSRScene;
   private static Scene PathChooseScene;
   private static Scene giftScene;
+  private static Scene timeoutScene;
 
 
   private static LoginScreenController loginScreenController;
@@ -121,6 +123,7 @@ public class App<loadedAdminRequests> extends Application {
   private static FireController fireController;
   private static AddNodeScreenController addNodeScreenController;
   private static SanRequestController sanRequestController;
+  private static TimeoutController timeoutController;
 
   private static boolean didChange = false;
   private static long time;
@@ -152,6 +155,7 @@ public class App<loadedAdminRequests> extends Application {
 
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
+  private static long timeoutValue = 60000; // variable for timeout. 1000 = 1s
   private static Service service;
   private static Account user;
   private static Account accountEdit;
@@ -185,6 +189,8 @@ public class App<loadedAdminRequests> extends Application {
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getLocation() { return location;}
   public static void setLocation(edu.wpi.cs3733.c20.teamU.Database.Node n) { location = n;}
+  public static void setTimeoutValue(long timeoutDesire) { timeoutValue = timeoutDesire; }
+  public static long getTimeoutValue() {return timeoutValue;}
 
   public static void setColor(edu.wpi.cs3733.c20.teamU.Database.Node n, Circle c) {
     switch (n.getNodeType()) {
@@ -266,6 +272,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getGiftDelivery() {return giftDelivery;}
   public static Pane getPathChoose() { return PathChoose; }
   public static Pane getVerification() { return verification;}
+  public static Pane getTimeout() {return timeout;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -294,6 +301,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getLanguageSRScene() {return languageSRScene;}
   public static Scene getPathChooseScene() {return PathChooseScene; }
   public static Scene getGiftScene() {return giftScene;}
+  public static Scene getTimeoutScene() {return timeoutScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -319,6 +327,7 @@ public class App<loadedAdminRequests> extends Application {
   public static ChoosePathController getChoosePathController() {return choosePathController; }
   public static GiftDeliveryController getGiftDeliveryController() {return giftDeliveryController;}
   public static VerificationController getVerificationController() {return verificationController;}
+  public static TimeoutController getTimeoutController() {return timeoutController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -466,6 +475,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader requestLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestMenu.fxml"));
         FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/light_theme/LoginForm.fxml"));
         FXMLLoader verificationLoader = new FXMLLoader(App.class.getResource("/light_theme/VerificationForm.fxml"));
+        FXMLLoader timeoutLoader = new FXMLLoader(App.class.getResource("/light_theme/TimeoutForm.fxml"));
 
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
@@ -477,6 +487,7 @@ public class App<loadedAdminRequests> extends Application {
         request = requestLoader.load();
         login = loginLoader.load();
         verification = verificationLoader.load();
+        timeout = timeoutLoader.load();
 
         admin.setOnKeyPressed(fireKey);
         adminRequest.setOnKeyPressed(fireKey);
@@ -497,6 +508,7 @@ public class App<loadedAdminRequests> extends Application {
         requestScreenController = RRLoader.getController();
         requestController = requestLoader.getController();
         loginScreenController = loginLoader.getController();
+        timeoutController = timeoutLoader.getController();
 
         requestScreenController.setAttributes(adminRequestController);
         adminRequestController.setAttributes(requestScreenController);
