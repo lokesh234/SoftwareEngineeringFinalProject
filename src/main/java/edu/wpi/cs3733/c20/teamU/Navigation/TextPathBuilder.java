@@ -11,9 +11,9 @@ public class TextPathBuilder {
     private String directions;
     private String distanceUnit;
 
-    private double turnThreshold = 5;
-    private double pixelsPerMeter = 10;
-    private double pixelsPerFoot = 10;
+    private double turnThreshold;
+    private double pixelsPerMeter;
+    private double pixelsPerFoot;
 
     public TextPathBuilder(){
         this.chunks = new LinkedList<TextPathChunk>();
@@ -30,8 +30,13 @@ public class TextPathBuilder {
         this.pixelsPerMeter = 10;
         this.pixelsPerFoot = 10;
     }
+    // should use THIS constructor in production (not for tests)
+    // ppf = 3.5
+    // ppm = 11.5
     public TextPathBuilder(int turn, int ppm, int ppf){
-
+        this.turnThreshold = turn;
+        this.pixelsPerFoot = ppf;
+        this.pixelsPerMeter = ppm;
     }
 
     private ArrayList<Node> getNodes(){
