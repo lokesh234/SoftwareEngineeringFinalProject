@@ -340,7 +340,7 @@ public class App<loadedAdminRequests> extends Application {
     loadHome();
 
     primaryStage.setScene(startScene);
-    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wwong2.jpg")));
+    primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wongPFP.png")));
     primaryStage.show();
 //    FoodRequest foodRequest = new FoodRequest();
 //    foodRequest.run(800, 800, 800, 800, null, "something", "something");
