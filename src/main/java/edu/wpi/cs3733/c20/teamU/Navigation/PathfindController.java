@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -93,6 +90,7 @@ public class PathfindController {
     PathfindTextController pathfindTextController = new PathfindTextController();
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
+    private Circle wong = new Circle();
 
     @FXML private VBox radioBox;
 
@@ -733,12 +731,14 @@ public class PathfindController {
     }
     private void drawPath() {
         clearPath();
+        Path pathe = new Path();
         if (path.size() == 0){
             displayingPath = true;
             updateStatus();
             return; //No path to draw
         }
        // System.out.println("a");
+ //       for(int i = path.size() - 1; i >=0 ; i--)
         for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
@@ -749,7 +749,6 @@ public class PathfindController {
 
                 MoveTo move = new MoveTo(n1.getX(), n1.getY());
                 LineTo line = new LineTo(n2.getX(), n2.getY());
-                Path pathe = new Path();
                 pathe.getElements().add(move);
                 pathe.getElements().add(line);
                 pathe.setStroke(Color.web("#7851a9"));
@@ -773,7 +772,7 @@ public class PathfindController {
                                 )
                         ),
                         new KeyFrame(
-                                Duration.seconds(2),
+                                Duration.seconds(7),
                                 new KeyValue(
                                         pathe.strokeDashOffsetProperty(),
                                         maxOffset,
@@ -814,9 +813,19 @@ public class PathfindController {
                 addToPath(c, n1.getFloor());
                 addToPath(c2, n2.getFloor());
             }
-
         }
+        PathTransition pathTransition = new PathTransition();
+        wong.setCenterX(start.getX());
+        wong.setCenterY(start.getY());
+        wong.setRadius(15);
+        pathTransition.setNode(wong);
+        pathTransition.setDuration(Duration.seconds(7));
+        pathTransition.setPath(pathe);
+        pathTransition.setCycleCount(PathTransition.INDEFINITE);
+        pathTransition.setAutoReverse(true);
+        pathTransition.play();
         displayingPath = true;
+        addToPath(wong, start.getFloor());
         updateStatus();
     }
 

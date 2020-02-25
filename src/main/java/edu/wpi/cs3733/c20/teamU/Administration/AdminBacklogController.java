@@ -26,17 +26,19 @@ public class AdminBacklogController {
 //                  <TableColumn fx:id="shortName" prefWidth="76.0" text="ShortName" />
 
     @FXML
-    TableView<Record> recordTable;
+    TableView<UserBacklog> recordTable;
     @FXML
-    TableColumn<Record, String> userName;
+    TableColumn<UserBacklog, String> userName;
     @FXML
-    TableColumn<Record, String> time;
+    TableColumn<UserBacklog, String> date;
     @FXML
-    TableColumn<Record, String> type;
+    TableColumn<UserBacklog, String> time;
     @FXML
-    TableColumn<Record, String> operation;
+    TableColumn<UserBacklog, String> type;
     @FXML
-    TableColumn<Record, String> info;
+    TableColumn<UserBacklog, String> operation;
+    @FXML
+    TableColumn<UserBacklog, String> info;
 
 // <children>
 //                        <JFXButton fx:id="startNode" buttonType="RAISED" onAction="#save" text="Add" />
@@ -53,28 +55,37 @@ public class AdminBacklogController {
         recordTable.setItems(arrayToOBList());
     }
 
-    private ObservableList<Record> arrayToOBList() {
-        ObservableList<Record> records = FXCollections.observableArrayList();
-        ArrayList<Record> temp = new ArrayList<Record>();
-//        DatabaseWrapper.getRecords(temp);
+    private ObservableList<UserBacklog> arrayToOBList() {
+        ObservableList<UserBacklog> records = FXCollections.observableArrayList();
+        ArrayList<UserBacklog> temp = new ArrayList<UserBacklog>();
+        DatabaseWrapper.getAllUserBacklog(temp);
 
         if(temp != null){
-            for (Record r: temp) {
+            for (UserBacklog r: temp) {
                 records.add(r);
             }
         }
+
         return records;
+    }
+    @FXML
+    public void backToAdmin(){
+        App.getPopup().getContent().clear();
+        App.getPopup().getContent().add(App.getAdmin());
+        App.getPopup().show(App.getPrimaryStage());
     }
 
     @FXML
     private void initialize(){
-        userName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        userName.setCellValueFactory(new PropertyValueFactory<>("username"));
+
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
-        operation.setCellValueFactory(new PropertyValueFactory<>("operation"));
+        operation.setCellValueFactory(new PropertyValueFactory<>("operations"));
 
         info.setCellValueFactory(new PropertyValueFactory<>("info"));
 

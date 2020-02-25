@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import java.util.ArrayList;
 import javafx.beans.binding.BooleanBinding;
@@ -75,6 +76,7 @@ public class EmployeeFormController {
     } else if (user.equals(userOG)) {
       employeeIdText.setStyle("-fx-border-color: red");
     } else if (edit) {
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Edit", oldUsername);
       DatabaseWrapper.delLoginSR(oldUsername);
       DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
       returnToAdminEmployee();
@@ -86,6 +88,7 @@ public class EmployeeFormController {
       accountDetails.add(last);
       accountDetails.add(position);
       accountDetails.add(number);
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Add", user);
       App.getPopup().getContent().add(App.getVerification());
       App.getVerificationController().setAccountDetails(accountDetails);
       App.getVerificationController().setAtAdmin(false);

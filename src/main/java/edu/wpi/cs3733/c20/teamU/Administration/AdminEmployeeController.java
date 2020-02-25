@@ -102,6 +102,7 @@ public class AdminEmployeeController {
     @FXML
     public void remove(){
         if (App.getAccountEdit() != null) {
+            DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Remove", App.getAccountEdit().getUserName());
             DatabaseWrapper.delLoginSR(App.getAccountEdit().getUserName());
             update();
         }

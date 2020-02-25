@@ -161,10 +161,12 @@ public class GraphEditController {
   @FXML
   protected void remove() {
     if (nodeMode) { //Remove node
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "NODE", "Remove", selectedNode.getID());
       DatabaseWrapper.delNode(selectedNode.getID());
     }
     else { //Remove edge
-      DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
+     DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EDGE", "Remove", DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
+     DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
     }
     update();
   }
