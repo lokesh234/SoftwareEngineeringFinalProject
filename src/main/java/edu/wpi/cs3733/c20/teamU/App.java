@@ -389,6 +389,8 @@ public class App<loadedAdminRequests> extends Application {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("UHALL01404"));
+    CSSFileEditor c = new CSSFileEditor(App.class.getResource("/light_theme/light.css").toString());
+    c.createCSS();
 
     popup.getContent().addAll();
     securityPop.getContent().addAll();
