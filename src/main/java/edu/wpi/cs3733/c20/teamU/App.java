@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
@@ -584,7 +585,6 @@ public class App<loadedAdminRequests> extends Application {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
-
 
     popup.getContent().addAll();
     securityPop.getContent().addAll();
