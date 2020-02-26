@@ -426,6 +426,9 @@ public class PathfindController {
         DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         clearPath();
+        for (Map.Entry<Circle, Node> pair : circles.entrySet()) {
+            removeFromAll(pair.getKey());
+        }
         circles.clear();
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
