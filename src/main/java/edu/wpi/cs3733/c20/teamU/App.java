@@ -183,6 +183,10 @@ public class App<loadedAdminRequests> extends Application {
     else return "meters";
   }
 
+  public static void resetLoad() {
+    loadedAdminRequests = false;
+  }
+
   public static void setPixFoo(double x) { pixFoo = x;}
   public static void setPixMet(double x) { pixMet = x;}
   public static void setUseFeet(boolean x) { useFeet = x;}

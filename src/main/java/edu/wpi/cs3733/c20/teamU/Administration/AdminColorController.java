@@ -78,7 +78,14 @@ public class AdminColorController {
       fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", "rgb(20, 29, 38)");
     }
 
-//    String theme = App.class.getResource("/light_theme/light.css").toExternalForm();
+    String theme = App.class.getResource("/light_theme/light.css").toExternalForm();
+    App.getHomeScene().getStylesheets().add(theme);
+    App.getHomeController().needThis();
+
+//    App.resetLoad();
+//    App.getLoadedAdminRequest();
+//    App.getHome().getStylesheets().add(theme);
+
     Notifications.create().text("Color Scheme Changed!").show();
     cancel.fire();
 

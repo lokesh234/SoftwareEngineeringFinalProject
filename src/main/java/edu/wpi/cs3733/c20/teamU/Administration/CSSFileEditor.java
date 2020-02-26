@@ -12,7 +12,11 @@ import com.steadystate.css.format.CSSFormat;
 import com.steadystate.css.parser.CSSOMParser;
 import com.steadystate.css.parser.SACParserCSS3;
 import edu.wpi.cs3733.c20.teamU.App;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URI;
@@ -42,6 +46,24 @@ public class CSSFileEditor {
 
   }
 
+  public void returnFileToOriginal() {
+    try {
+      FileReader original = new FileReader(getClass().getResource("/light_theme/lightCopy.css").toString());
+      BufferedReader bufferedReader = new BufferedReader(original);
+      FileWriter fileWriter = new FileWriter(path.toString(), true);
+      String s;
+      while (((s = bufferedReader.readLine()) != null)) {
+        fileWriter.write(s);
+        fileWriter.flush();
+      }
+      bufferedReader.close();
+      fileWriter.close();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
   /**
    * getter for a specific declaration in CSS file
    * @param selector declaration
@@ -79,9 +101,9 @@ public class CSSFileEditor {
   public void writeCSSProperty(String selector, String property, String newValue)
       throws URISyntaxException, IOException {
     Property property1 = getProperty(selector, property);
-    System.out.println(newValue);
+//    System.out.println(newValue);
     if(property1 != null) {
-      System.out.println("made it for: " + newValue);
+//      System.out.println("made it for: " + newValue);
       CSSValueImpl val = new CSSValueImpl();
       val.setCssText(newValue);
 //      System.out.println(property1.getValue());
