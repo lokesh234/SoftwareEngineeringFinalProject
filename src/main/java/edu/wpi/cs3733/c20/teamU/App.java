@@ -66,6 +66,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane verification;
   private static Pane timeout;
   private static Pane treeView;
+  private static Pane analytics;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -96,6 +97,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene giftScene;
   private static Scene timeoutScene;
   private static Scene treeViewScene;
+  private static Scene analyticsScene;
 
 
   private static LoginScreenController loginScreenController;
@@ -132,6 +134,7 @@ public class App<loadedAdminRequests> extends Application {
   private static TreeViewController treeViewController;
   private static FlowerController flowerController;
   private static ITController itController;
+  private static AnalyticsController analyticsController;
 
 
   private static boolean didChange = false;
@@ -439,6 +442,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getVerification() { return verification;}
   public static Pane getTimeout() {return timeout;}
   public static Pane getTreeView() {return treeView;}
+  public static Pane getAnalytics() {return analytics;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -469,6 +473,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getPathChooseScene() {return PathChooseScene; }
   public static Scene getGiftScene() {return giftScene;}
   public static Scene getTimeoutScene() {return timeoutScene;}
+  public static Scene getAnalyticsScene() {return analyticsScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -497,6 +502,7 @@ public class App<loadedAdminRequests> extends Application {
   public static VerificationController getVerificationController() {return verificationController;}
   public static TreeViewController getTreeViewController() {return treeViewController;}
   public static TimeoutController getTimeoutController() {return timeoutController;}
+  public static AnalyticsController getAnalyticsController() {return analyticsController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -645,6 +651,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader adminRequestLoader = new FXMLLoader((App.class.getResource("/light_theme/Request.fxml")));
         FXMLLoader adminEmployeeLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminEmployee.fxml")));
         FXMLLoader adminBacklogLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminBacklog.fxml")));
+        FXMLLoader analyticsLoader = new FXMLLoader((App.class.getResource("/light_theme/Analytics.fxml")));
         FXMLLoader choosePathLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminPathForm.fxml"));
         FXMLLoader employeeFormLoader = new FXMLLoader(App.class.getResource("/light_theme/EmployeeForm.fxml"));
         FXMLLoader exportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExportForm.fxml"));
@@ -666,8 +673,10 @@ public class App<loadedAdminRequests> extends Application {
         login = loginLoader.load();
         verification = verificationLoader.load();
         timeout = timeoutLoader.load();
+        analytics = analyticsLoader.load();
 
         admin.setOnKeyPressed(fireKey);
+        analytics.setOnKeyPressed(fireKey);
         adminRequest.setOnKeyPressed(fireKey);
         adminEmployee.setOnKeyPressed(fireKey);
         employeeF.setOnKeyPressed(fireKey);
@@ -686,6 +695,7 @@ public class App<loadedAdminRequests> extends Application {
         adminRequestController = adminRequestLoader.getController();
         adminEmployeeController = adminEmployeeLoader.getController();
         adminBacklogController = adminBacklogLoader.getController();
+        analyticsController = analyticsLoader.getController();
         employeeFormController = employeeFormLoader.getController();
         choosePathController = choosePathLoader.getController();
         requestScreenController = RRLoader.getController();

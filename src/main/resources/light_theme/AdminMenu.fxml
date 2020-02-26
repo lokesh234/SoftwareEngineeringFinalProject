@@ -103,7 +103,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="analytics" contentDisplay="TOP" ellipsisString="" prefHeight="96.0" prefWidth="184.0" text="Analytics" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <JFXButton fx:id="analytics" contentDisplay="TOP" ellipsisString="" prefHeight="96.0" prefWidth="184.0" text="Analytics" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#analytics">
                      <font>
                         <Font name="Segoe UI Bold" size="12.0" />
                      </font>

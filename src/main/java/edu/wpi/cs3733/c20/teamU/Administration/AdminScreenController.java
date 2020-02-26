@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 
 import edu.wpi.cs3733.c20.teamU.App;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -126,5 +127,12 @@ public class AdminScreenController {
     String cred = App.getUser().getCred();
     String firstName = App.getUser().getFirstName();
     String lastName = App.getUser().getLastName();
+  }
+
+  @FXML
+  public void analytics(ActionEvent event) {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAnalytics());
+    App.getPopup().show(App.getPrimaryStage());
   }
 }
