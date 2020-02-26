@@ -1068,6 +1068,10 @@ public class App<loadedAdminRequests> extends Application {
     }
   }
 
+  private static boolean isDark = false;
+  public static void setIsDark(boolean state) {
+    isDark = state;
+  }
   public static void setTheme(String theme) {
     if(!loadedTreeView) {
       loadTreeView();
@@ -1105,7 +1109,18 @@ public class App<loadedAdminRequests> extends Application {
     if(!loadedMedicine) {
       loadMedicine();
     }
+    if(!loadedReligious) {
+      loadReligious();
+    }
+    if(!loadedFlower) {
+      loadFlower();
+    }
+    if(!loadedSan) {
+      loadSan();
+    }
     if(resolveRequest.getStylesheets().contains(theme)){
+      if(isDark) loginScreenController.setDarkSetting();
+      else loginScreenController.setDefaultSetting();
       resolveRequest.getStylesheets().remove(theme);
       home.getStylesheets().remove(theme);
       login.getStylesheets().remove(theme);
@@ -1115,8 +1130,8 @@ public class App<loadedAdminRequests> extends Application {
       security.getStylesheets().remove(theme);
       request.getStylesheets().remove(theme);
       medicine.getStylesheets().remove(theme);
-      editEdge.getStylesheets().remove(theme);
-      adminEdge.getStylesheets().remove(theme);
+//      editEdge.getStylesheets().remove(theme);
+//      adminEdge.getStylesheets().remove(theme);
       adminRequest.getStylesheets().remove(theme);
       adminEmployee.getStylesheets().remove(theme);
       adminBacklog.getStylesheets().remove(theme);
@@ -1159,8 +1174,8 @@ public class App<loadedAdminRequests> extends Application {
     request.getStylesheets().add(theme);
     medicine.getStylesheets().add(theme);
     edit.getStylesheets().add(theme);
-    editEdge.getStylesheets().add(theme);
-    adminEdge.getStylesheets().add(theme);
+//    editEdge.getStylesheets().add(theme);
+//    adminEdge.getStylesheets().add(theme);
     adminRequest.getStylesheets().add(theme);
     adminEmployee.getStylesheets().add(theme);
     adminBacklog.getStylesheets().add(theme);

@@ -86,17 +86,13 @@ public class AdminColorController {
       fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", main5);
       theme = App.class.getResource("/light_theme/faker.css").toExternalForm();
       App.setTheme(theme);
-
+      App.setIsDark(false);
     } else if(dark.isSelected()) {
-//      fileEditor.writeCSSProperty("*", "-color-1: rgb(255, 249, 233)", "rgb(36, 52, 71)");
-//      fileEditor.writeCSSProperty("*", "-color-2: rgb(150, 150, 150)", "rgb(255, 255, 255)");
-//      fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", "rgb(255, 255, 255)");
-//      fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", "rgb(20, 29, 38)");
-//      fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", "rgb(20, 29, 38)");
-//      theme = App.class.getResource("/light_theme/dark.css").toExternalForm();
+      App.setIsDark(true);
       App.setTheme(themeDark);
 
     } else if(light.isSelected()) {
+      App.setIsDark(false);
       App.setTheme(themeLight);
     }
 
