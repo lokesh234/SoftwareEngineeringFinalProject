@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
+import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 
 import java.lang.reflect.Array;
@@ -11,26 +12,19 @@ public class TextPathBuilder {
     private ArrayList<Node> nodes;
     private LinkedList<TextPathChunk> chunks;
     private String directions;
-    private String distanceUnit;
 
     private double turnThreshold;
-    private double pixelsPerMeter;
-    private double pixelsPerFoot;
 
     public TextPathBuilder(){
         this.chunks = new LinkedList<TextPathChunk>();
-        this.distanceUnit = "feet"; //SAE units by default
+
         this.turnThreshold = 5;
-        this.pixelsPerMeter = 10;
-        this.pixelsPerFoot = 10;
+
     }
     public TextPathBuilder(ArrayList<Node> nodes){
         this.chunks = new LinkedList<TextPathChunk>();
         this.nodes = nodes;
-        this.distanceUnit = "feet"; //SAE units by default
         this.turnThreshold = 5;
-        this.pixelsPerMeter = 10;
-        this.pixelsPerFoot = 10;
     }
     // should use THIS constructor in production (not for tests)
     // turn = ???
@@ -39,9 +33,6 @@ public class TextPathBuilder {
 
     public TextPathBuilder(double turn, double ppm, double ppf, String units){
         this.turnThreshold = turn;
-        this.pixelsPerFoot = ppf;
-        this.pixelsPerMeter = ppm;
-        this.distanceUnit = units;
     }
 
     private ArrayList<Node> getNodes(){
@@ -60,13 +51,6 @@ public class TextPathBuilder {
     }
 
 
-    //...admin sets the units here...
-    public void setDistanceUnit(String unitType){
-        this.distanceUnit = unitType;
-    }
-    public String getDistanceUnit(){
-        return this.distanceUnit;
-    }
 
     public String getTextDirections(){
         return this.directions;
@@ -144,11 +128,11 @@ public class TextPathBuilder {
     }
 
     public double getHumanDistance(double pixelDistance){
-        switch(getDistanceUnit()){//this.distanceUnit
+        switch(App.getUnit()){//this.distanceUnit
             case "feet":
-                return (int)(pixelDistance/this.pixelsPerFoot);
+                return (int)(pixelDistance/App.getPixFoo());
             case "meters":
-                return (int)(pixelDistance/this.pixelsPerMeter);
+                return (int)(pixelDistance/App.getPixMet());
         }
         return -999.99; //something bad...
     }

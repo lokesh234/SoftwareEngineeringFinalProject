@@ -100,6 +100,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="55.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
+                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Directory" textAlignment="CENTER" wrapText="true" onAction="#openTreeView"/>
                   <JFXButton fx:id="voice" contentDisplay="TOP" prefHeight="86.0" prefWidth="73.0" text="Voice" textFill="WHITE" textOverrun="CLIP">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">

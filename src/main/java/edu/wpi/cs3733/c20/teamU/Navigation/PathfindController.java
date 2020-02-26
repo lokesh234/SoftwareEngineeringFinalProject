@@ -1035,4 +1035,12 @@ public class PathfindController {
         NodesPane4.getChildren().remove(e);
         NodesPane5.getChildren().remove(e);
     }
+
+    @FXML
+    public void openTreeView(ActionEvent event) {
+        App.loadTreeView();
+        App.getTreeViewPop().getContent().clear();
+        App.getTreeViewPop().getContent().add(App.getTreeView());
+        App.getTreeViewPop().show(App.getPrimaryStage());
+    }
 }

@@ -19,7 +19,6 @@ public class ClownController {
     @FXML private JFXDatePicker dateField;
     @FXML private JFXButton backToRequest;
     @FXML private JFXButton submit;
-    @FXML private JFXComboBox comboBox = new JFXComboBox();
     @FXML private AnchorPane clownParent;
 
     public void keyConfirm(){
@@ -28,12 +27,23 @@ public class ClownController {
 
     @FXML
     private void getSubmission() {
-        String location = locationField.getText();
-        String nClowns = nClownsField.getText();
-        String rName = rNameField.getText();
-        String date = dateField.getValue().toString();
+        String location, rName, date;
+        int nClowns;
+        try {
+            location = locationField.getText();
+            nClowns = Integer.parseInt(nClownsField.getText());
+            rName = rNameField.getText();
+            date = dateField.getValue().toString();
+        }
+        catch (Exception e) {
+            locationField.setStyle("-fx-border-color: red");
+            nClownsField.setStyle("-fx-border-color: red");
+            rNameField.setStyle("-fx-border-color: red");
+            dateField.setStyle("-fx-border-color: red");
+            return;
+        }
 
-        if(rName.isEmpty() || location.isEmpty() || date.isEmpty() || nClowns.isEmpty()) {
+        if(rName.isEmpty() || location.isEmpty() || date.isEmpty() || nClownsField.getText().isEmpty()) {
             locationField.setStyle("-fx-border-color: red");
             nClownsField.setStyle("-fx-border-color: red");
             rNameField.setStyle("-fx-border-color: red");
@@ -43,7 +53,7 @@ public class ClownController {
             nClownsField.setStyle("-fx-border-color:  #FFEEC9");
             rNameField.setStyle("-fx-border-color:  #FFEEC9");
             dateField.setStyle("-fx-border-color:  #FFEEC9");
-            DatabaseWrapper.ClownDeliverySRAdd(location,Integer.parseInt(nClowns),rName,date);
+            DatabaseWrapper.ClownDeliverySRAdd(location,nClowns,rName,date);
             Notifications.create().text("Clown will be sent!").show();
             clearField();
             backToRequest.fire();
@@ -95,12 +105,12 @@ public class ClownController {
                         "Make A Wish Foundation Visit",
                         "Other"
                 );
-        comboBox.getItems().addAll(deliveryOptions);
 
         submit.setDisable(true);
         BooleanBinding blockCheckBox = (nClownsField.textProperty().isEmpty())
-                .or(locationField.textProperty().isEmpty()).or(rNameField.textProperty().isEmpty())
-                .or(comboBox.getSelectionModel().selectedItemProperty().isNull());
+                .or(locationField.textProperty().isEmpty())
+                .or(rNameField.textProperty().isEmpty())
+                .or(dateField.getEditor().textProperty().isEmpty());
         submit.disableProperty().bind(blockCheckBox);
         //comboBox.setOnAction(otherHandler);
 ///        otherField.setDisable(true);

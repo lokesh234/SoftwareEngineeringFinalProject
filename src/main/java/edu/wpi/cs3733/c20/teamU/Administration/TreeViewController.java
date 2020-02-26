@@ -6,6 +6,7 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,14 +50,13 @@ public class TreeViewController {
 
     @FXML
     public void back(ActionEvent event) {
+        App.loadPathfinding();
+        //App.getGraph().update();
+        DatabaseWrapper.updateGraph();
+        //App.getPathfindController().drawNodes();
         App.getTreeViewPop().getContent().clear();
-        App.loadAdminGraph();
-        App.getPopup().getContent().clear();
-        App.getPrimaryStage().setScene(App.getAdminNodeScene());
-        App.getPrimaryStage().setOpacity(1);
-        App.getGraphEditController().enterNodeMode();
-        App.getHome().setDisable(false);
-        App.getPopup().hide();
+        ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
+        App.getPrimaryStage().setScene(App.getPathScene());
     }
 }
 

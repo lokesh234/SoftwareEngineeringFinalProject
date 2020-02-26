@@ -1,60 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AnalyticsController" >
+<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AnalyticsController">
    <children>
-      <VBox layoutX="111.0" layoutY="38.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="600.0" styleClass="titleBar">
+      <BorderPane styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_RIGHT" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="back" contentDisplay="CENTER"  prefHeight="18.0" prefWidth="20.0" style="-fx-background-color: red;" text="X" textFill="WHITE" onAction="#backToAdmin">
-                     <font>
-                        <Font name="Segoe UI Bold" size="18.0" />
-                     </font>
+                  <HBox alignment="CENTER_LEFT" prefHeight="141.0" prefWidth="711.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Analytics" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="20.0" />
+                           </font></Label>
+                     </children>
                      <HBox.margin>
-                        <Insets right="20.0" top="20.0" />
+                        <Insets />
                      </HBox.margin>
-                  </JFXButton>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="BOTTOM_RIGHT" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="124.0">
+                           <children>
+                              <JFXButton fx:id="backButton" onAction="#backToAdmin" text="Back" textFill="WHITE">
+                                 <font>
+                                    <Font name="Segoe UI" size="18.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="179.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
+                           <children>
+                              <Label text="Logged in as: " />
+                              <Label text="Label">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </VBox>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0" styleClass="titleBar">
+         </top>
+         <left>
+            <VBox alignment="CENTER" spacing="10.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="71.0" prefWidth="180.0" text="Data Analytics" />
+                  <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
+                  <!--                           <children>-->
+                  <!--                              <Label text="Browse for file" />-->
+                  <!--                              <Button mnemonicParsing="false" text="..." />-->
+                  <!--                           </children>-->
+                  <!--                           <VBox.margin>-->
+                  <!--                              <Insets />-->
+                  <!--                           </VBox.margin>-->
+                  <!--                        </HBox>--><HBox alignment="CENTER_LEFT" spacing="10.0">
+                  <children>
+                     <Label fx:id="label" text="Data Type as:" />
+                  </children>
+               </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <JFXComboBox fx:id="comboBox" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                  </HBox>
+                  <!--                  <JFXButton fx:id="close1" onAction="#closeRequest" style="-fx-background-color: #474338;" text="View" textFill="WHITE">-->
+                  <!--                     <font>-->
+                  <!--                        <Font name="Segoe UI" size="18.0" />-->
+                  <!--                     </font>-->
+                  <!--                  </JFXButton>-->
+                  <!--                        <HBox prefHeight="100.0" prefWidth="200.0">-->
+                  <!--                           <children>-->
+                  <!--                              <Button mnemonicParsing="false" text="Export to CSV..." onAction="#exportScreen"/>-->
+                  <!--                           </children>-->
+                  <!--                        </HBox>-->
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <PieChart fx:id="pieChart" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <LineChart fx:id="lineChart">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </LineChart>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-         </children>
-      </VBox>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </VBox>
+         </left>
+         <center>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFEEC9;">
+                           <children>
+                              <PieChart fx:id="pieChart" />
+                           </children>
+                        </AnchorPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
