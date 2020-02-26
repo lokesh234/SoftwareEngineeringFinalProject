@@ -12,4 +12,5 @@ public class Colors {
     private String thirdColor;
     private String fourthColor;
     private String fifthColor;
+    private String textColor;
 }

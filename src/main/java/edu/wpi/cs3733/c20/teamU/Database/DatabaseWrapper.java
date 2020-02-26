@@ -305,8 +305,8 @@ public class DatabaseWrapper {
      * @param color5
      * @return true if color list was added
      */
-      public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5){
-          return Database.addColor(colorName, color1, color2, color3, color4, color5);
+      public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5, String textColor){
+          return Database.addColor(colorName, color1, color2, color3, color4, color5, textColor);
       }
 
       /**
