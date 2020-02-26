@@ -746,6 +746,8 @@ public class PathfindController {
         int startX = 0;
         int startY = 0;
         int startFloor = 1;
+        floorsInPath.add(start.getFloor());
+        floorsInPath.add(end.getFloor());
         while (i < path.size() - 1) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
@@ -847,14 +849,17 @@ public class PathfindController {
             pathTransition.setDuration(Duration.seconds(7));
             pathTransition.setPath(pathe);
             pathTransition.setCycleCount(PathTransition.INDEFINITE);
-            pathTransition.setAutoReverse(true);
-            pathTransition.jumpTo(Duration.seconds(7));
+            pathTransition.setAutoReverse(false);
+            pathTransition.playFrom("end");
+            pathTransition.setRate(-1);
+            pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
             pathTransition.play();
-            displayingPath = true;
+
             addToPath(wong, startFloor);
             wongs.add(wong);
         }
 
+        displayingPath = true;
         updateStatus();
     }
     //path is an arraylist of nodes
