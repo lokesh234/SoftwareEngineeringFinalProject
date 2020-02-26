@@ -74,18 +74,18 @@ public class TextPathChunk {
 
         //@TODO currently assuming you're only taking all stairs or all elevator
         // if node 1 was stairs/elevator and we're not on it, we're exiting them
-        if((firstIsStair && secondIsElev) && !thirdIsStair){
-            answer += "Exit the stairs at floor " + this.node3.getFloor();
+        if((firstIsStair && secondIsStair) && !thirdIsStair){
+            answer += "Exit the stairs at floor " + this.node3.getFloor() + "\n";
         }
 
         if((firstIsElev && secondIsElev) && !thirdIsElev){
-            answer += "Exit the elevator at floor " + this.node3.getFloor();
+            answer += "Exit the elevator at floor " + this.node3.getFloor() + "\n";
         }
 
 
         //@TODO we assume elevators/stairs are perfectly aligned
         if(getHumanDist() > 0.0){
-            answer = "Go " + getHumanDist() + " " + tpb.getDistanceUnit();
+            answer += "Go " + getHumanDist() + " " + tpb.getDistanceUnit();
         }
 
         // we only want to say turn if its neither straight or diagonal or error
