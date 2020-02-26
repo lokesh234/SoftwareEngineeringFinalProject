@@ -197,12 +197,12 @@ public class Database {
             //parses through csv file and creates a new row in the database for each row
 
             try {
-                BufferedReader br = getBR(tableName);
+                    BufferedReader br = getBR(tableName);
 
-            //try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+                    //try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
 
-                int starter = 0;
-                while ((line = br.readLine()) != null) {
+                    int starter = 0;
+                    while ((line = br.readLine()) != null) {
 
                     String[] csvString = line.split(csvSplit);
                     if (starter == 0){

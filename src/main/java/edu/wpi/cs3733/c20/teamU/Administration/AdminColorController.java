@@ -4,8 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXRadioButton;
 import edu.wpi.cs3733.c20.teamU.App;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
+
 import javafx.beans.binding.BooleanBinding;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -43,7 +47,13 @@ public class AdminColorController {
   @FXML
   private void confirm() throws IOException, URISyntaxException {
     String main1, main2, main3, main4, main5;
-    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"));
+    String APath = System.getProperty("user.dir");
+    String cssFile = APath + "/CSS/faker.css";
+    // System.out.println(cssF);
+    System.out.println(cssFile);
+    System.out.println(App.class.getResource("/light_theme/faker.css"));
+    //CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"));
+    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"), cssFile);
     String theme = "";
     System.out.println(App.getHomeScene().getStylesheets());
 //    App.getHomeScene().getStylesheets().clear();
@@ -85,7 +95,8 @@ public class AdminColorController {
       fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", main3);
       fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", main4);
       fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", main5);
-      theme = App.class.getResource("/light_theme/faker.css").toExternalForm();
+      //theme = App.class.getResource("/light_theme/faker.css").toExternalForm();
+      theme = cssFile;
       App.setTheme(theme);
       App.setIsDark(false);
     } else if(dark.isSelected()) {
