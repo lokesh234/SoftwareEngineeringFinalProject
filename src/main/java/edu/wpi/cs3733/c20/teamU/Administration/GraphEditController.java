@@ -65,6 +65,14 @@ public class GraphEditController {
   public void zoomOut(ActionEvent event) {
   }
 
+  @FXML
+  public void openTreeView(ActionEvent event) {
+    App.loadTreeView();
+    App.getTreeViewPop().getContent().clear();
+    App.getTreeViewPop().getContent().add(App.getTreeView());
+    App.getTreeViewPop().show(App.getPrimaryStage());
+  }
+
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode;
   }

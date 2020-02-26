@@ -221,7 +221,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Table View" textAlignment="CENTER" wrapText="true" />
+                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Directory" textAlignment="CENTER" wrapText="true" onAction="#openTreeView"/>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
