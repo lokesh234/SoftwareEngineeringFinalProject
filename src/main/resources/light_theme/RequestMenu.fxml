@@ -35,7 +35,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: #302D26;">
                            <children>
-                              <JFXButton fx:id="mealService" contentDisplay="TOP" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
+                              <JFXButton fx:id="mealService" onAction="#openMealService" contentDisplay="TOP" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

@@ -1,8 +1,10 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import edu.wpi.cs3733.c20.teamU.App;
+import foodRequest.ServiceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import foodRequest.FoodRequest;
 
 public class RequestController {
 
@@ -95,6 +97,15 @@ public class RequestController {
         App.getRequestPop().getContent().clear();
         App.getPopup().getContent().add(App.getGiftDelivery());
         App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    private void openMealService() throws ServiceException {
+        App.getRequestPop().getContent().clear();
+        App.getHome().setOpacity(1);
+        App.getHome().setDisable(false);
+        FoodRequest foodRequest = new FoodRequest();
+        foodRequest.run(0, 0, 1080, 1920, null, null, null);
     }
 
 }
