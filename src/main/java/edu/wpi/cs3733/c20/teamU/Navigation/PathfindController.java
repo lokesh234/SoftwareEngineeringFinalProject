@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
@@ -92,7 +94,9 @@ public class PathfindController {
     PathfindTextController pathfindTextController = new PathfindTextController();
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
-    private ArrayList<Circle> wongs = new ArrayList<>();
+
+    private ArrayList<Rectangle> wongs = new ArrayList<>();
+    //private ArrayList<Circle> wongs = new ArrayList<>();
     private Label startNodeLabel = new Label();
     private Label endNodeLabel = new Label();
     private ArrayList<Label> nodeLabels = new ArrayList<>();
@@ -746,7 +750,7 @@ public class PathfindController {
         for (Map.Entry<Circle, Node> pair : interFloorPaths.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue().getFloor());
         }
-        for (Circle wong : wongs) {
+        for (Rectangle wong : wongs) {
             removeFromAll(wong);
         }
         for (Label l : nodeLabels) {
@@ -952,12 +956,21 @@ public class PathfindController {
             }
 
             PathTransition pathTransition = new PathTransition();
-            Circle wong = new Circle();
-            wong.setCenterX(startX);
-            wong.setCenterY(startY);
-            wong.setRadius(15);
+            //Circle wong = new Circle();
+            Rectangle wong = new Rectangle();
+            Image imageWong = new Image("png_files/gif/frontFly.gif");
+            ImagePattern imagePattern = new ImagePattern(imageWong);
+            //wong.setX(start.getX());
+            //wong.setY(start.getY());
+            //wong.setX(n2.getX());
+            //wong.setY(n2.getY());
+            wong.setX(-10000);
+            wong.setY(-10000);
+            wong.setHeight(80);
+            wong.setWidth(80);
+            wong.setFill(imagePattern);
             pathTransition.setNode(wong);
-            pathTransition.setDuration(Duration.seconds(7));
+            pathTransition.setDuration(Duration.seconds(25));
             pathTransition.setPath(pathe);
             pathTransition.setCycleCount(PathTransition.INDEFINITE);
             pathTransition.setAutoReverse(false);
@@ -969,7 +982,6 @@ public class PathfindController {
             addToPath(wong, startFloor);
             wongs.add(wong);
         }
-
         displayingPath = true;
         updateStatus();
     }
