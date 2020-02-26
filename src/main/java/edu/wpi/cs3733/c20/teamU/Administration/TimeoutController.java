@@ -13,6 +13,11 @@ public class TimeoutController {
   @FXML private JFXTextField newTime;
   @FXML private Label currentSetting;
 
+  public void keyConfirm(){
+    confirm.fire();
+  }
+
+
   @FXML
   private void updateTimeout() {
     long userTime = 0;

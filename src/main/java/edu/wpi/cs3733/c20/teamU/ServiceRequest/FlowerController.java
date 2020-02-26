@@ -27,6 +27,10 @@ public class FlowerController {
     @FXML private JFXChipView flowerChip = new JFXChipView();
     @FXML private JFXTextField room;
 
+    public void keyConfirm(){
+        submit.fire();
+    }
+
     @FXML
     private void flowerTypeAdd() {
         if (!flowerCombo.getSelectionModel().isEmpty()) {

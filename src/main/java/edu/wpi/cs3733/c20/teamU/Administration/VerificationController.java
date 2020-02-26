@@ -17,6 +17,10 @@ public class VerificationController {
   private TwoFactorSecurity twoFactorSecurity;
   private ArrayList<String> accountDetails;
 
+  public void keyConfirm(){
+    confirm.fire();
+  }
+
   /**
    * function used to check if the user put in the correct verification code
    */

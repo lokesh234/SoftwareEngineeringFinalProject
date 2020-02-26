@@ -24,6 +24,10 @@ public class MedicineController {
     @FXML private JFXButton submit;
     @FXML private JFXComboBox comboBox = new JFXComboBox();
 
+    public void keyConfirm(){
+        submit.fire();
+    }
+
     @FXML
     private void getSubmission() {
         String userLast = last.getText();

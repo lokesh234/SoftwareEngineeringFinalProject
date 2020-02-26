@@ -20,6 +20,10 @@ public class ReligiousController {
     @FXML private JFXButton cancel;
     @FXML private JFXButton confirm;
 
+    public void keyConfirm(){
+        confirm.fire();
+    }
+
     @FXML
     private void getSubmission() {
         String userLast = lastName.getText();        String userComment = comments.getText();

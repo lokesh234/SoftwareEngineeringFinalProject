@@ -20,6 +20,10 @@ public class ITController {
   @FXML private Button submit;
   @FXML private ComboBox comboBox = new ComboBox();
 
+  public void keyConfirm(){
+    submit.fire();
+  }
+
   @FXML
   private void getSubmission() {
     String userLast = last.getText();

@@ -18,6 +18,10 @@ public class GiftDeliveryController {
   @FXML private JFXButton submit;
   @FXML private JFXButton back;
 
+  public void keyConfirm(){
+    submit.fire();
+  }
+
   @FXML
   private void setSubmit() {
     String userFirst = first.getText();
