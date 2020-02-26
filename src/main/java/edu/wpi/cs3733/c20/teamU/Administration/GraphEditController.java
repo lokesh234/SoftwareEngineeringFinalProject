@@ -4,17 +4,21 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import javafx.animation.Interpolator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
 import java.io.IOException;
@@ -54,6 +58,11 @@ public class GraphEditController {
   private Node selectedNode;
   private Node selectedStartNode;
   private Node selectedEndNode;
+  @FXML private GesturePane MapGes1;
+  @FXML private GesturePane MapGes2;
+  @FXML private GesturePane MapGes3;
+  @FXML private GesturePane MapGes4;
+  @FXML private GesturePane MapGes5;
   private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
@@ -100,6 +109,21 @@ public class GraphEditController {
     NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
     NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
     NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
+    MapGes1.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+    MapGes2.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+    MapGes3.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+    MapGes4.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+    MapGes5.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
   }
 
 
@@ -605,7 +629,7 @@ public class GraphEditController {
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
       App.setColor(circles.get(source), source);
-      getFloorGes(floor).setGestureEnabled(true);
+       getFloorGes(floor).setGestureEnabled(true);
 
       if (state == State.neutral) {
         Node n = circles.get(source);
