@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" fx:id="something" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane fx:id="something" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -112,7 +112,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="info" contentDisplay="TOP" prefHeight="109.0" prefWidth="131.0" text="Info" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="info" onAction="#openInformationScene" contentDisplay="TOP" prefHeight="109.0" prefWidth="131.0" text="Info" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -213,18 +213,33 @@
                                       </ImageView>
                                   </graphic>
                               </JFXButton>
-                        <JFXButton fx:id="voice" contentDisplay="TOP" prefHeight="59.0" prefWidth="73.0" text="Voice" textFill="WHITE" textOverrun="CLIP">
-                           <graphic>
-                              <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../png_files/Microphone.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Segoe UI" size="0.01" />
-                           </font>
-                        </JFXButton>
+                              <JFXButton fx:id="voice" onAction="#startListening" contentDisplay="TOP" prefHeight="59.0" prefWidth="73.0" text="Voice" textFill="WHITE" textOverrun="CLIP">
+                                  <graphic>
+                                      <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../png_files/Microphone.png" />
+                                          </image>
+                                      </ImageView>
+                                  </graphic>
+                                  <font>
+                                      <Font name="Segoe UI" size="0.01" />
+                                  </font>
+                              </JFXButton>
+                              <Label fx:id="voiceLabel" text="">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="12.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="voiceLabelstart" text="">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="12.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="voiceLabelend" text="">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="12.0" />
+                                  </font>
+                              </Label>
                           </children>
                           <VBox.margin>
                               <Insets />

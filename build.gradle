@@ -18,6 +18,7 @@ repositories {
     maven {
         url 'https://apisite.crmyers.dev/maven'
     }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 dependencies {
@@ -34,12 +35,14 @@ dependencies {
             // You may comment out the database dependency you do not use
             [group: 'org.xerial', name: 'sqlite-jdbc', version: '3.30.1'],
             [group: 'org.apache.derby',name: 'derby', version: '10.14.2.0'],
-            [group: 'org.controlsfx', name: 'controlsfx', version: '8.40.16']
+            [group: 'org.controlsfx', name: 'controlsfx', version: '8.40.16'],
+            [group: 'com.google.cloud', name: 'google-cloud-speech', version: '0.80.0-beta'],
+            [group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'],
+            [group: 'org.slf4j', name: 'slf4j-simple', version:'1.6.4']
     )
-
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    compile 'net.sourceforge.cssparser:cssparser:0.9.27'
     compile 'com.warrenstrange:googleauth:1.4.0'
+    compile 'net.sourceforge.cssparser:cssparser:0.9.27'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
     compileOnly(
             [group: 'org.projectlombok', name: 'lombok', version: '1.18.8']
@@ -86,8 +89,8 @@ jacocoTestCoverageVerification {
                 minimum = 1.0
             }
             excludes = [
-              'edu.wpi.cs3733.c20.teamU.App',
-              'edu.wpi.cs3733.c20.teamU.Main'
+                    'edu.wpi.cs3733.c20.teamU.App',
+                    'edu.wpi.cs3733.c20.teamU.Main'
             ]
         }
 
