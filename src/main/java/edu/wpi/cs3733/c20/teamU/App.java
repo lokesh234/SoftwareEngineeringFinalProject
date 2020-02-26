@@ -1068,6 +1068,125 @@ public class App<loadedAdminRequests> extends Application {
     }
   }
 
+  public static void setTheme(String theme) {
+    if(!loadedTreeView) {
+      loadTreeView();
+    }
+    if(!loadedAdminGraph) {
+      loadAdminGraph();
+    }
+    if(!loadedAdminRequests) {
+      loadAdminRequests();
+    }
+    if(!loadedPathfinding) {
+      loadPathfinding();
+    }
+    if(!loadedIT) {
+      loadIT();
+    }
+    if(!loadedIntTransport) {
+      loadIntTransport();
+    }
+    if(!loadedExtTransport) {
+      loadExtTransport();
+    }
+    if(!loadedClown) {
+      loadClown();
+    }
+    if(!loadedGift) {
+      loadGift();
+    }
+    if(!loadedImages) {
+      loadImages();
+    }
+    if(!loadedLanguage) {
+      loadLanguage();
+    }
+    if(!loadedMedicine) {
+      loadMedicine();
+    }
+    if(resolveRequest.getStylesheets().contains(theme)){
+      resolveRequest.getStylesheets().remove(theme);
+      home.getStylesheets().remove(theme);
+      login.getStylesheets().remove(theme);
+      start.getStylesheets().remove(theme);
+      path.getStylesheets().remove(theme);
+      admin.getStylesheets().remove(theme);
+      security.getStylesheets().remove(theme);
+      request.getStylesheets().remove(theme);
+      medicine.getStylesheets().remove(theme);
+      edit.getStylesheets().remove(theme);
+      editEdge.getStylesheets().remove(theme);
+      adminEdge.getStylesheets().remove(theme);
+      adminRequest.getStylesheets().remove(theme);
+      adminEmployee.getStylesheets().remove(theme);
+      adminBacklog.getStylesheets().remove(theme);
+      export.getStylesheets().remove(theme);
+      edit.getStylesheets().remove(theme);
+      addNode.getStylesheets().remove(theme);
+      adminNode.getStylesheets().remove(theme);
+      fire.getStylesheets().remove(theme);
+      weather.getStylesheets().remove(theme);
+      IT.getStylesheets().remove(theme);
+      externalTransport.getStylesheets().remove(theme);
+      internalTransport.getStylesheets().remove(theme);
+      pathFindText.getStylesheets().remove(theme);
+      religious.getStylesheets().remove(theme);
+      employeeF.getStylesheets().remove(theme);
+      flower.getStylesheets().remove(theme);
+      clown.getStylesheets().remove(theme);
+      sanRequest.getStylesheets().remove(theme);
+      languageSR.getStylesheets().remove(theme);
+      giftDelivery.getStylesheets().remove(theme);
+      PathChoose.getStylesheets().remove(theme);
+      verification.getStylesheets().remove(theme);
+      timeout.getStylesheets().remove(theme);
+      treeView.getStylesheets().remove(theme);
+      analytics.getStylesheets().remove(theme);
+      scale.getStylesheets().remove(theme);
+      color.getStylesheets().remove(theme);
+    }
+    resolveRequest.getStylesheets().add(theme);
+    home.getStylesheets().add(theme);
+    login.getStylesheets().add(theme);
+    start.getStylesheets().add(theme);
+    path.getStylesheets().add(theme);
+    admin.getStylesheets().add(theme);
+    security.getStylesheets().add(theme);
+    request.getStylesheets().add(theme);
+    medicine.getStylesheets().add(theme);
+    edit.getStylesheets().add(theme);
+    editEdge.getStylesheets().add(theme);
+    adminEdge.getStylesheets().add(theme);
+    adminRequest.getStylesheets().add(theme);
+    adminEmployee.getStylesheets().add(theme);
+    adminBacklog.getStylesheets().add(theme);
+    export.getStylesheets().add(theme);
+    edit.getStylesheets().add(theme);
+    addNode.getStylesheets().add(theme);
+    adminNode.getStylesheets().add(theme);
+    fire.getStylesheets().add(theme);
+    weather.getStylesheets().add(theme);
+    IT.getStylesheets().add(theme);
+    externalTransport.getStylesheets().add(theme);
+    internalTransport.getStylesheets().add(theme);
+    pathFindText.getStylesheets().add(theme);
+    religious.getStylesheets().add(theme);
+    employeeF.getStylesheets().add(theme);
+    flower.getStylesheets().add(theme);
+    clown.getStylesheets().add(theme);
+    sanRequest.getStylesheets().add(theme);
+    languageSR.getStylesheets().add(theme);
+    giftDelivery.getStylesheets().add(theme);
+    PathChoose.getStylesheets().add(theme);
+    verification.getStylesheets().add(theme);
+    timeout.getStylesheets().add(theme);
+    treeView.getStylesheets().add(theme);
+    analytics.getStylesheets().add(theme);
+    scale.getStylesheets().add(theme);
+    color.getStylesheets().add(theme);
+  }
+
   public static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane
     path.getChildren().add(e);
   }

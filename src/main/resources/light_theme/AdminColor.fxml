@@ -24,7 +24,7 @@
             <HBox alignment="BOTTOM_RIGHT" style="-fx-background-color: #969696;" styleClass="subtitleBar">
                <children>
                   <Label text="Logged in as: " />
-                  <Label text="Label">
+                  <Label fx:id="user" text="Label">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>

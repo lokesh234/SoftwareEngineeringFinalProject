@@ -11,6 +11,8 @@ import javafx.beans.binding.BooleanBinding;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import org.controlsfx.control.Notifications;
 
 public class AdminColorController {
@@ -24,17 +26,27 @@ public class AdminColorController {
   @FXML private JFXColorPicker color4;
   @FXML private JFXColorPicker color5;
   @FXML private JFXButton cancel;
+  @FXML private Label user;
   private int color1R, color1G, color1B;
   private int color2R, color2G, color2B;
   private int color3R, color3G, color3B;
   private int color4R, color4G, color4B;
   private int color5R, color5G, color5B;
+  private String themeLight = App.class.getResource("/light_theme/lightBackup.css").toExternalForm();
+  private String themeDark = App.class.getResource("/light_theme/dark.css").toExternalForm();
 
+
+  public void setUser(String user) {
+    this.user.setText(user);
+  }
   @FXML
   private void confirm() throws IOException, URISyntaxException {
     String main1, main2, main3, main4, main5;
     CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"));
-    String theme = null;
+    String theme = "";
+    System.out.println(App.getHomeScene().getStylesheets());
+//    App.getHomeScene().getStylesheets().clear();
+    System.out.println(App.getHomeScene().getStylesheets());
 
     if (custom.isSelected()) {
       color1R = (int) (color1.getValue().getRed() * 255);
@@ -73,6 +85,7 @@ public class AdminColorController {
       fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", main4);
       fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", main5);
       theme = App.class.getResource("/light_theme/faker.css").toExternalForm();
+      App.setTheme(theme);
 
     } else if(dark.isSelected()) {
 //      fileEditor.writeCSSProperty("*", "-color-1: rgb(255, 249, 233)", "rgb(36, 52, 71)");
@@ -80,16 +93,13 @@ public class AdminColorController {
 //      fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", "rgb(255, 255, 255)");
 //      fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", "rgb(20, 29, 38)");
 //      fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", "rgb(20, 29, 38)");
-      theme = App.class.getResource("/light_theme/dark.css").toExternalForm();
+//      theme = App.class.getResource("/light_theme/dark.css").toExternalForm();
+      App.setTheme(themeDark);
 
     } else if(light.isSelected()) {
-      theme = App.class.getResource("/light_theme/light.css").toExternalForm();
+      App.setTheme(themeLight);
     }
 
-    App.getHomeScene().getStylesheets().add(theme);
-    App.getHomeController().needThis();
-
-    Notifications.create().text("Color Scheme Changed!").show();
     cancel.fire();
   }
 
