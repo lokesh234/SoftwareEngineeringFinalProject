@@ -80,6 +80,8 @@ public class HomeController {
   private int checker;
   private Speech speech = new Speech();
   private volatile boolean runThread = true;
+  @FXML
+  private Label voiceLabel, voiceLabelstart, voiceLabelend;
 
 
   public void setWeatherData(WeatherController weatherController1) {
@@ -183,13 +185,22 @@ public class HomeController {
   @FXML
   private void startListening(){
     System.out.println("Listening started");
+    if(startT.isAlive()) {
+      voiceLabel.setText("Listening");
+    }
+    if(!startT.isAlive()){
+      //voiceLabelstart.setText(App.getSpokenWords().get(0));
+      voiceLabel.setText("Done");
+    }
     App.getSpokenWords().clear();
     speech.startlistening();
+    //voiceLabel.setText("Listening");
   }
 
   @FXML
   private void openHelpSceneSpeechB(){
     runThread = true;
+    voiceLabel.setText("Listening");
     Thread startT = new Thread(new Runnable() {
       @Override
       public void run() {
@@ -234,6 +245,10 @@ public class HomeController {
         }
       }
     });
+    for(int i =0; i < App.getSpokenWords().size(); i++) {
+      voiceLabelend.setText(App.getSpokenWords().get(i));
+    }
+
     startT.setDaemon(runThread);
     startT.start();
   }
