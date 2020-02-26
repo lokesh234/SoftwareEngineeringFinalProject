@@ -17,6 +17,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import org.controlsfx.control.Notifications;
 
 public class AdminRequestController {
   @FXML private TableView<Service> serviceTable1;
@@ -58,6 +59,7 @@ public class AdminRequestController {
     App.getPopup().getContent().clear();
     App.getPopup().getContent().add(App.getResolveRequest());
     App.getPopup().show(App.getPrimaryStage());
+    Notifications.create().text("Request has been closed!").show();
   }
 
   @FXML

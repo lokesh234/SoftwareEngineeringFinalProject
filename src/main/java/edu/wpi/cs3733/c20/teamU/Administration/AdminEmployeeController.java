@@ -24,6 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import org.controlsfx.control.Notifications;
 
 public class AdminEmployeeController {
 //
@@ -102,6 +103,8 @@ public class AdminEmployeeController {
     @FXML
     public void remove(){
         if (App.getAccountEdit() != null) {
+            Notifications.create().text(App.getUser().getUserName() + " has been deleted!").show();
+            DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Remove", App.getAccountEdit().getUserName());
             DatabaseWrapper.delLoginSR(App.getAccountEdit().getUserName());
             update();
         }

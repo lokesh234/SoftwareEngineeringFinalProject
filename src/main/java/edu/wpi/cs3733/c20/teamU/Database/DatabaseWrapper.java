@@ -291,8 +291,8 @@ public class DatabaseWrapper {
      * return all values in userBacklog table
      * @return returns array list of userbacklog class. containing all items from database
      */
-    public static ArrayList<UserBacklog> getAllUserBacklog(){
-          return Database.getAllUserBacklog();
+    public static void getAllUserBacklog( ArrayList<UserBacklog> a){
+          Database.getAllUserBacklog(a);
       }
 
     /**
@@ -468,5 +468,8 @@ public class DatabaseWrapper {
       graph.update();
   }
 
+  public static void getNodesByFloor(ArrayList<Node> nodes, int floor){
+      Database.getNodesByFloor(nodes, floor);
+  }
 
 }

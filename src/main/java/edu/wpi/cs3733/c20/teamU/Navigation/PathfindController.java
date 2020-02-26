@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -93,6 +90,7 @@ public class PathfindController {
     PathfindTextController pathfindTextController = new PathfindTextController();
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
+    private ArrayList<Circle> wongs = new ArrayList<>();
 
     @FXML private VBox radioBox;
 
@@ -102,7 +100,6 @@ public class PathfindController {
     Label startLabel, endLabel, statusLabel;
     @FXML
     TextField SearchBox;
-
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -429,6 +426,9 @@ public class PathfindController {
         DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
         clearPath();
+        for (Map.Entry<Circle, Node> pair : circles.entrySet()) {
+            removeFromAll(pair.getKey());
+        }
         circles.clear();
         for (Node n : nodes) {
             //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
@@ -725,12 +725,75 @@ public class PathfindController {
         for (Map.Entry<Circle, Node> pair : interFloorPaths.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue().getFloor());
         }
+        for (Circle wong : wongs) {
+            removeFromAll(wong);
+        }
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
         interFloorPaths.clear();
+        wongs.clear();
         updateStatus();
     }
+
+    private void fastestTo(String nodeType) {
+        ArrayList<Node> nodesOfType = DatabaseWrapper.getGraph().getByType(nodeType);
+        int pathLen = -1;
+        ArrayList<Node> finalPath = new ArrayList<>();
+        Node finalNode = null;
+        for (Node n : nodesOfType) {
+            if (!App.getLocation().getID().equals(n.getID())) {
+                NavigationWrapper.pathfind(App.getLocation(), n);
+                ArrayList<Node> p = NavigationWrapper.getPath();
+                if ((pathLen < 0 || getLen(p) < pathLen)) {
+                    pathLen = getLen(p);
+                    finalPath.clear();
+                    finalPath.addAll(p);
+                    finalNode = n;
+                }
+            }
+        }
+
+        start = App.getLocation();
+        end = finalNode;
+        endReady = true;
+        startReady = true;
+
+        startLabel.setText(start.getLongName());
+        endLabel.setText(end.getLongName());
+        updateStatus();
+        pathfind();
+    }
+
+    @FXML
+    private void nearestBathroom() {
+        fastestTo("REST");
+    }
+
+    @FXML
+    private void nearestStairs() {
+        fastestTo("STAI");
+    }
+
+    @FXML
+    private void nearestElevator() {
+        fastestTo("ELEV");
+    }
+
+    @FXML
+    private void nearestFood() {
+        fastestTo("RETL");
+    }
+
+    @FXML
+    private void nearestExit() {
+        fastestTo("EXIT");
+    }
+
+    private int getLen(ArrayList<Node> p) { //Length of the path - for now just the number of nodes in the path
+        return p.size();
+    }
+
     private void drawPath() {
         clearPath();
         if (path.size() == 0){
@@ -739,18 +802,33 @@ public class PathfindController {
             return; //No path to draw
         }
        // System.out.println("a");
-        for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
+ //       for(int i = path.size() - 1; i >=0 ; i--)
+        //The path can be modeled as a long string of nodes on the same floor, over which we want a circle to travel, broken up by pairs of nodes on different floors
+        int i = 0;
+        int startX = 0;
+        int startY = 0;
+        int startFloor = 1;
+        floorsInPath.add(start.getFloor());
+        floorsInPath.add(end.getFloor());
+        while (i < path.size() - 1) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
+            i++;
             if (!floorsInPath.contains(n1.getFloor()) && (i == 0 || (!n1.getNodeType().equals("STAI") && !n1.getNodeType().equals("ELEV")))) floorsInPath.add(n1.getFloor());
             if (!floorsInPath.contains(n2.getFloor()) && (i+2 == path.size() || (!n2.getNodeType().equals("STAI") && !n2.getNodeType().equals("ELEV")))) floorsInPath.add(n2.getFloor());
 
-            if (n1.getFloor() == n2.getFloor()) {
-
-                MoveTo move = new MoveTo(n1.getX(), n1.getY());
+            Path pathe = new Path();
+            boolean firstTime = true;
+            while (n1.getFloor() == n2.getFloor()) {
+                MoveTo move;
+                if (firstTime) {
+                    startX = n1.getX();
+                    startY = n1.getY();
+                    startFloor = n1.getFloor();
+                    move = new MoveTo(startX, startY);
+                    pathe.getElements().add(move);
+                }
                 LineTo line = new LineTo(n2.getX(), n2.getY());
-                Path pathe = new Path();
-                pathe.getElements().add(move);
                 pathe.getElements().add(line);
                 pathe.setStroke(Color.web("#7851a9"));
                 pathe.setStrokeWidth(10.0);
@@ -773,7 +851,7 @@ public class PathfindController {
                                 )
                         ),
                         new KeyFrame(
-                                Duration.seconds(2),
+                                Duration.seconds(7),
                                 new KeyValue(
                                         pathe.strokeDashOffsetProperty(),
                                         maxOffset,
@@ -785,8 +863,18 @@ public class PathfindController {
                 timeline.play();
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
+                i++;
+
+                if (i + 1 < path.size()) { //If we've not reached the end of the given path, we need to keep going
+                    n1 = path.get(i);
+                    n2 = path.get(i+1);
+                    firstTime = false;
+                }
+                else {
+                    break;
+                }
             }
-            else {
+            if (i + 1 < path.size()) { //If we're out here and we still have room to go, it's because there's a multi-floor path
                 Circle c = new Circle();
                 Circle c2 = new Circle();
                 c.setCenterX(n1.getX());
@@ -798,13 +886,12 @@ public class PathfindController {
                 if (n1.getFloor() < n2.getFloor()) {
                     c.setStroke(Color.DARKGREEN);
                     c2.setStroke(Color.ORCHID);
-                }
-                else {
+                } else {
                     c.setStroke(Color.ORCHID);
                     c2.setStroke(Color.DARKGREEN);
                 }
-                c.setRadius(App.getNodeSize()+5);
-                c2.setRadius(App.getNodeSize()+5);
+                c.setRadius(App.getNodeSize() + 5);
+                c2.setRadius(App.getNodeSize() + 5);
                 c.setStrokeWidth(10);
                 c2.setStrokeWidth(10);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorPathHandler);
@@ -815,52 +902,72 @@ public class PathfindController {
                 addToPath(c2, n2.getFloor());
             }
 
+            PathTransition pathTransition = new PathTransition();
+            Circle wong = new Circle();
+            wong.setCenterX(startX);
+            wong.setCenterY(startY);
+            wong.setRadius(15);
+            pathTransition.setNode(wong);
+            pathTransition.setDuration(Duration.seconds(7));
+            pathTransition.setPath(pathe);
+            pathTransition.setCycleCount(PathTransition.INDEFINITE);
+            pathTransition.setAutoReverse(false);
+            pathTransition.playFrom("end");
+            pathTransition.setRate(-1);
+            pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+            pathTransition.play();
+
+            addToPath(wong, startFloor);
+            wongs.add(wong);
         }
+
         displayingPath = true;
         updateStatus();
     }
-
+    //path is an arraylist of nodes
     private void getTextPath() {
         if (path.size() == 0) {
             return;
         }
         App.getTextpath().clear();
-//        String pathWay = "";
-//        Node n2 = path.get(path.size() - 1);
-//        for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path
-//            Node n1 = path.get(i);
-//            if (i != path.size() - 2) {
-//                pathWay = getDirection(path.get(i), path.get(i + 1));
-//                System.out.println(pathWay);
-//            }
-//            App.getTextpath().add(pathWay + ": " + n1.getLongName());
-//        }
-        String direction = "";
-        boolean didContinue = false;
-        for(int i = path.size() - 1; i >= 0; i--) {
-            String name = path.get(i).getLongName();
-//            System.out.println(path.get(i).getID().substring(1, 5));
-            if(i == 0) {
-//                App.getTextpath().add(getDirection(path.get(i + 1), path.get(i)) + path.get(i + 1).getLongName());
-                App.getTextpath().add("Arrived at: " + name);
-                continue;
-            }
-            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
-                if(!didContinue) {
-                    App.getTextpath().add("Continue through " + name);
-                    didContinue = true;
-                }
-                continue;
-            }
-            didContinue = false;
-            direction = getDirection(path.get(i), path.get(i - 1));
-//            System.out.println(nodeType);
-            App.getTextpath().add(direction + name);
+
+        TextPathBuilder tpb = new TextPathBuilder(20,11.5,3.5, "feet");
+        // the path is given in the reverse order...
+        ArrayList<Node> reversedPath = new ArrayList<Node>();
+        for(int index = path.size()-1; index >= 0; index --){
+            Node n = path.get(index);
+            reversedPath.add(n);
         }
-//        App.getTextpath().add("Arrived at: " + n2.getLongName());
-//        Collections.reverse(App.getTextpath());
+
+
+        tpb.setNodes(reversedPath);
+        tpb.generateTextDirections();
+        String directions = tpb.getCleanTextDirections();
+        App.getTextpath().add(directions);
+
+//
+//        String direction = "";
+//        boolean didContinue = false;
+//        for(int i = path.size() - 1; i >= 0; i--) {
+//            String name = path.get(i).getLongName();
+//            if(i == 0) {
+//                App.getTextpath().add("Arrived at: " + name);
+//                continue;
+//            }
+//            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
+//                if(!didContinue) {
+//                    App.getTextpath().add("Continue through " + name);
+//                    didContinue = true;
+//                }
+//                continue;
+//            }
+//            didContinue = false;
+//            direction = getDirection(path.get(i), path.get(i - 1));
+//            App.getTextpath().add(direction + name);
+//        }
     }
 
+    // this function will be deprecated
     private String getDirection(Node one, Node two) {
         int x = one.getX() - two.getX();
 //        System.out.println(x);
@@ -920,5 +1027,12 @@ public class PathfindController {
                 if (NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().remove(e);
                 break;
         }
+    }
+    private void removeFromAll(javafx.scene.Node e) {
+        NodesPane1.getChildren().remove(e);
+        NodesPane2.getChildren().remove(e);
+        NodesPane3.getChildren().remove(e);
+        NodesPane4.getChildren().remove(e);
+        NodesPane5.getChildren().remove(e);
     }
 }

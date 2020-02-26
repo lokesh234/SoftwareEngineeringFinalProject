@@ -4,6 +4,7 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 
 public class SecurityController {
@@ -16,6 +17,7 @@ public class SecurityController {
     }
 
     public void addRequest() {
+        Notifications.create().text("SERCURITY WILL ARRIVE AT KIOSK!").showWarning();
         ServiceDatabase.securitySRAdd();
     }
 

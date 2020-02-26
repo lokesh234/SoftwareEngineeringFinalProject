@@ -65,6 +65,8 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane giftDelivery;
   private static Pane verification;
   private static Pane timeout;
+  private static Pane treeView;
+  private static Pane analytics;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -94,6 +96,8 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene PathChooseScene;
   private static Scene giftScene;
   private static Scene timeoutScene;
+  private static Scene treeViewScene;
+  private static Scene analyticsScene;
 
 
   private static LoginScreenController loginScreenController;
@@ -114,7 +118,7 @@ public class App<loadedAdminRequests> extends Application {
   private static EmployeeFormController employeeFormController;
   private static ReligiousController religiousController;
   private static ExtTransportController extTransportController;
-  private static IntTransportController intTranspoerController;
+  private static IntTransportController intTransportController;
   private static PathfindTextController pathfindTextController;
   private static ClownController clownController;
   private static LanguageController languageController;
@@ -127,6 +131,11 @@ public class App<loadedAdminRequests> extends Application {
   private static AddNodeScreenController addNodeScreenController;
   private static SanRequestController sanRequestController;
   private static TimeoutController timeoutController;
+  private static TreeViewController treeViewController;
+  private static FlowerController flowerController;
+  private static ITController itController;
+  private static AnalyticsController analyticsController;
+
 
   private static boolean didChange = false;
   private static long time;
@@ -149,6 +158,7 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedLanguage = false;
   private static boolean loadedGift = false;
   private static boolean loadedIT = false;
+  private static boolean loadedTreeView = false;
 
   public static boolean getLoadedAdminRequest() {return loadedAdminRequests;}
   public static boolean getLoadedAdminEmployee() {return loadedAdminEmployee;}
@@ -166,7 +176,6 @@ public class App<loadedAdminRequests> extends Application {
   private static Account accountEdit;
   private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
-  private static edu.wpi.cs3733.c20.teamU.Database.Node currentLocation;
 
   private static Popup popup = new Popup();
   private static Popup securityPop = new Popup();
@@ -183,6 +192,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Popup languageSRPop = new Popup();
   private static Popup ChoosePathPop = new Popup();
   private static Popup weatherPop = new Popup();
+  private static Popup treeViewPop = new Popup();
 
   private static Image floor1;
   private static Image floor2;
@@ -244,6 +254,157 @@ public class App<loadedAdminRequests> extends Application {
     }
   };
 
+  private static EventHandler<KeyEvent> loginconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        loginScreenController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> addnodeconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        addNodeScreenController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> employeeformconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        employeeFormController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> exttransportconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        extTransportController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> inttransportconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        intTransportController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> languageconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        languageController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> nodeeditconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        editController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> religiousconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        religiousController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> clownconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        clownController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> flowerconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        flowerController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> giftconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        giftDeliveryController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> itconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        itController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> medicineconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        medicineController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> sanitationconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        sanRequestController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> timeoutconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        timeoutController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> verificationconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        verificationController.keyConfirm();
+
+      }
+    }
+  };
+
+
   public static Stage getPrimaryStage() { return primaryStage; }
   public static Pane getResolveRequest() {return resolveRequest;}
   public static Pane getHome() { return home; }
@@ -279,6 +440,8 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getPathChoose() { return PathChoose; }
   public static Pane getVerification() { return verification;}
   public static Pane getTimeout() {return timeout;}
+  public static Pane getTreeView() {return treeView;}
+  public static Pane getAnalytics() {return analytics;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -309,6 +472,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getPathChooseScene() {return PathChooseScene; }
   public static Scene getGiftScene() {return giftScene;}
   public static Scene getTimeoutScene() {return timeoutScene;}
+  public static Scene getAnalyticsScene() {return analyticsScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -327,7 +491,7 @@ public class App<loadedAdminRequests> extends Application {
   public static NodeEditController getEditController() { return editController;}
   public static EmployeeFormController getEmployeeFormController() { return employeeFormController; }
   public static ExtTransportController getExtTransportController() {return  extTransportController;}
-  public static IntTransportController getIntTransportController() { return intTranspoerController; } //marcus
+  public static IntTransportController getIntTransportController() { return intTransportController; } //marcus
   public static ReligiousController getReligiousController() { return religiousController; }
   public static PathfindTextController getPathfindTextController() {return pathfindTextController;}
   public static SanRequestController getSanRequestController() {return sanRequestController;}
@@ -335,7 +499,9 @@ public class App<loadedAdminRequests> extends Application {
   public static ChoosePathController getChoosePathController() {return choosePathController; }
   public static GiftDeliveryController getGiftDeliveryController() {return giftDeliveryController;}
   public static VerificationController getVerificationController() {return verificationController;}
+  public static TreeViewController getTreeViewController() {return treeViewController;}
   public static TimeoutController getTimeoutController() {return timeoutController;}
+  public static AnalyticsController getAnalyticsController() {return analyticsController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -348,8 +514,6 @@ public class App<loadedAdminRequests> extends Application {
   public static void setServiceEdit(Service serviceSel) { service = serviceSel; }
   public static void setAccountEdit(Account accountSel) { accountEdit = accountSel; }
   public static Service getService() { return service; }
-  public static edu.wpi.cs3733.c20.teamU.Database.Node getCurrentLocation() { return currentLocation; }
-  public static void setCurrentLocation(edu.wpi.cs3733.c20.teamU.Database.Node node) { currentLocation = node;}
 
   public static void change(boolean hey) { didChange = hey; }
   public static boolean getChange() { return didChange; }
@@ -376,6 +540,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Popup getLanguageSRPop() {return languageSRPop;}
   public static Popup getChoosePathPop() { return ChoosePathPop; }
   public static Popup getWeatherPop() { return weatherPop; }
+  public static Popup getTreeViewPop() { return treeViewPop; }
 
   public static Image getFloor1() { return floor1;}
   public static Image getFloor2() { return floor2;}
@@ -388,9 +553,8 @@ public class App<loadedAdminRequests> extends Application {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
-    setLocation(DatabaseWrapper.getGraph().getNode("UHALL01404"));
-    CSSFileEditor c = new CSSFileEditor(App.class.getResource("/light_theme/light.css").toString());
-    c.createCSS();
+    setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
+
 
     popup.getContent().addAll();
     securityPop.getContent().addAll();
@@ -404,6 +568,7 @@ public class App<loadedAdminRequests> extends Application {
     sanRequestPop.getContent().addAll();
     languageSRPop.getContent().addAll();
     ChoosePathPop.getContent().addAll();
+    treeViewPop.getContent().addAll();
 
     loadHome();
 
@@ -484,6 +649,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader adminRequestLoader = new FXMLLoader((App.class.getResource("/light_theme/Request.fxml")));
         FXMLLoader adminEmployeeLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminEmployee.fxml")));
         FXMLLoader adminBacklogLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminBacklog.fxml")));
+        FXMLLoader analyticsLoader = new FXMLLoader((App.class.getResource("/light_theme/Analytics.fxml")));
         FXMLLoader choosePathLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminPathForm.fxml"));
         FXMLLoader employeeFormLoader = new FXMLLoader(App.class.getResource("/light_theme/EmployeeForm.fxml"));
         FXMLLoader exportLoader = new FXMLLoader(App.class.getResource("/light_theme/ExportForm.fxml"));
@@ -505,8 +671,10 @@ public class App<loadedAdminRequests> extends Application {
         login = loginLoader.load();
         verification = verificationLoader.load();
         timeout = timeoutLoader.load();
+        analytics = analyticsLoader.load();
 
         admin.setOnKeyPressed(fireKey);
+        analytics.setOnKeyPressed(fireKey);
         adminRequest.setOnKeyPressed(fireKey);
         adminEmployee.setOnKeyPressed(fireKey);
         employeeF.setOnKeyPressed(fireKey);
@@ -516,12 +684,16 @@ public class App<loadedAdminRequests> extends Application {
         export.setOnKeyPressed(fireKey);
         request.setOnKeyPressed(fireKey);
         login.setOnKeyPressed(fireKey);
+        login.setOnKeyPressed(loginconfirmKey);
+        employeeF.setOnKeyPressed(employeeformconfirmKey);
+
 
         verificationController = verificationLoader.getController();
         adminScreenController = adminLoader.getController();
         adminRequestController = adminRequestLoader.getController();
         adminEmployeeController = adminEmployeeLoader.getController();
         adminBacklogController = adminBacklogLoader.getController();
+        analyticsController = analyticsLoader.getController();
         employeeFormController = employeeFormLoader.getController();
         choosePathController = choosePathLoader.getController();
         requestScreenController = RRLoader.getController();
@@ -537,6 +709,9 @@ public class App<loadedAdminRequests> extends Application {
         adminScene = new Scene(admin);
 
         loadedAdminRequests = true;
+
+        timeout.setOnKeyPressed(timeoutconfirmKey);
+        verification.setOnKeyPressed(verificationconfirmKey);
 
       }
       catch (IOException e) {
@@ -557,6 +732,8 @@ public class App<loadedAdminRequests> extends Application {
         medicine.setOnKeyPressed(fireKey);
 
         loadedMedicine = true;
+
+        medicine.setOnKeyPressed(medicineconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -574,6 +751,8 @@ public class App<loadedAdminRequests> extends Application {
         flower.setOnKeyPressed(fireKey);
 
         loadedFlower = true;
+
+        flower.setOnKeyPressed(flowerconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -593,6 +772,8 @@ public class App<loadedAdminRequests> extends Application {
         religious.setOnKeyPressed(fireKey);
 
         loadedReligious = true;
+
+        religious.setOnKeyPressed(religiousconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -612,6 +793,9 @@ public class App<loadedAdminRequests> extends Application {
         externalTransport.setOnKeyPressed(fireKey);
 
         loadedExtTransport = true;
+
+        externalTransport.setOnKeyPressed(exttransportconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -626,9 +810,10 @@ public class App<loadedAdminRequests> extends Application {
 
         internalTransport = intTransportLoader.load();
 
-        intTranspoerController = intTransportLoader.getController(); //marcus
+        intTransportController = intTransportLoader.getController(); //marcus
 
         internalTransport.setOnKeyPressed(fireKey);
+        internalTransport.setOnKeyPressed(inttransportconfirmKey);
 
         loadedIntTransport = true;
       }
@@ -650,6 +835,8 @@ public class App<loadedAdminRequests> extends Application {
         clown.setOnKeyPressed(fireKey);
 
         loadedClown = true;
+
+        clown.setOnKeyPressed(clownconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -667,6 +854,8 @@ public class App<loadedAdminRequests> extends Application {
         sanRequest.setOnKeyPressed(fireKey);
 
         loadedSan = true;
+
+        sanRequest.setOnKeyPressed(sanitationconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -686,6 +875,8 @@ public class App<loadedAdminRequests> extends Application {
         languageSR.setOnKeyPressed(fireKey);
 
         loadedLanguage = true;
+
+        languageSR.setOnKeyPressed(languageconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -705,6 +896,9 @@ public class App<loadedAdminRequests> extends Application {
         giftDelivery.setOnKeyPressed(fireKey);
 
         loadedGift = true;
+
+        giftDelivery.setOnKeyPressed(giftconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -722,6 +916,9 @@ public class App<loadedAdminRequests> extends Application {
         IT.setOnKeyPressed(fireKey);
 
         loadedIT = true;
+
+        IT.setOnKeyPressed(itconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -805,6 +1002,28 @@ public class App<loadedAdminRequests> extends Application {
         adminNodeScene = new Scene(adminNode);
 
         loadedAdminGraph = true;
+        addNode.setOnKeyPressed(addnodeconfirmKey);
+        edit.setOnKeyPressed(nodeeditconfirmKey);
+
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadTreeView() {
+    if (!loadedTreeView) {
+      try {
+        FXMLLoader treeViewLoader = new FXMLLoader(App.class.getResource("/light_theme/TreeView.fxml"));
+
+        treeView = treeViewLoader.load();
+
+        treeViewController = treeViewLoader.getController();
+
+        treeView.setOnKeyPressed(fireKey);
+
+        loadedTreeView = true;
       }
       catch (IOException e) {
         return;

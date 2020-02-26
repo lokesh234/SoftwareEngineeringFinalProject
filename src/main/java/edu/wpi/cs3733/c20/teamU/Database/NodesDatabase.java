@@ -163,6 +163,14 @@ public class NodesDatabase {
         return neighbors;
     }
 
+    public ArrayList<Node> getByType(String type) {
+        ArrayList<Node> n = new ArrayList<>();
+        for (Map.Entry<String, Node> pair : nodes.entrySet()) {
+            if (pair.getValue().getNodeType().equals(type)) n.add(pair.getValue());
+        }
+        return n;
+    }
+
     public ArrayList<Node> getNeighborNodes(Node n) {
         /*
         Similar behavior to getNeighbors(), but returns list of nodes and not edges

@@ -7,6 +7,8 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import java.net.UnknownHostException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
+
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 public class LoginScreenController {
@@ -27,6 +29,10 @@ public class LoginScreenController {
     employeeFormController = attribute;
   }
 
+  public void keyConfirm(){
+    loginEnter.fire();
+  }
+
 
   /**
    * checks whether the user entered the correct credentials
@@ -38,6 +44,7 @@ public class LoginScreenController {
     whoTried = DatabaseWrapper.checkCred(usernameTried, passwordField.getText());
     if (whoTried == null) {
       if (trackLoginCount == 3) {
+        Notifications.create().text("All attempts tried...").show();
         trackLoginCount = 0;
         changeScene();
         return;
@@ -51,6 +58,7 @@ public class LoginScreenController {
     } else {
       trackLoginCount = 0;
       didFail = false;
+      Notifications.create().text("Logged in as: " + whoTried.getUserName()).show();
       changeScene();
     }
   }

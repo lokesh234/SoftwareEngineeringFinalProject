@@ -8,6 +8,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
+import org.controlsfx.control.Notifications;
 
 //import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 
@@ -22,6 +23,9 @@ public class IntTransportController {
     @FXML private JFXButton cancel;
     @FXML private JFXButton confirm;
 
+    public void keyConfirm(){
+        confirm.fire();
+    }
 
     @FXML
     private void getSubmission() {
@@ -33,7 +37,6 @@ public class IntTransportController {
 
 
 
-        //TODO: specify which textfield to write in if empty
         if(userFirst.isEmpty() || userLast.isEmpty() || userStart.isEmpty() || userEnd.isEmpty() || (!wheelchair.isSelected() && !crutches.isSelected())) {
             // will print out some text eventually, right now nothing
             firstNameText.setStyle("-fx-border-color: red");
@@ -56,6 +59,7 @@ public class IntTransportController {
                 userEquipment = "Crutches";
             }
             DatabaseWrapper.intTransportSRAdd(userLast, userFirst, userStart, userEnd, userEquipment);
+            Notifications.create().text("Internal Transport Request has been submitted!").show();
             //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             clearField();
             cancel.fire();

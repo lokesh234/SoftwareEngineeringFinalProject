@@ -103,9 +103,11 @@ public class EdgeEditController {
       //Database.editEdge(selectedEdge.getID(), selectedStartNode.getNodeID(), selectedEndNode.getNodeID());
       DatabaseWrapper.editEdge(selectedEdge.getID(), DatabaseWrapper.getNodeID(selectedStartNode), DatabaseWrapper.getNodeID(selectedEndNode));
       update();
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EDGE", "Edit", selectedEdge.getID());
     }
     else if (selectedEndNode != null && selectedStartNode != null) {
       DatabaseWrapper.addEdge(selectedStartNode.getID(), selectedEndNode.getID());
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EDGE", "Add", selectedStartNode.getID() + "_" + selectedEndNode.getID());
       update();
     }
     else { //Not ready to save, don't do anything

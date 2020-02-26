@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import org.controlsfx.control.Notifications;
 
 public class FlowerController {
     LocalDate today;
@@ -26,6 +27,10 @@ public class FlowerController {
     @FXML private JFXDatePicker datePick;
     @FXML private JFXChipView flowerChip = new JFXChipView();
     @FXML private JFXTextField room;
+
+    public void keyConfirm(){
+        submit.fire();
+    }
 
     @FXML
     private void flowerTypeAdd() {
@@ -86,6 +91,7 @@ public class FlowerController {
             datePick.setStyle("-fx-border-color: red");
             room.setStyle("-fx-border-color: red");
         } else {
+            Notifications.create().text("Flower Request has been submitted!").show();
 
 //            ServiceDatabase.flowerSRAdd(userLast, userFirst, hasRoses, hasTulips, hasLillies, userOccasion, userDate, userNote, userRoom);
             DatabaseWrapper.FlowersSRAdd(userFirst,userLast,hasRoses,hasTulips,hasLillies,userOccasion,userDate,userNote,userRoom);

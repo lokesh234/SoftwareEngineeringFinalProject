@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 import com.jfoenix.controls.JFXRadioButton;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.NavigationWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
@@ -42,6 +43,7 @@ public class ChoosePathController {
             case "DJI":
                 djikstra.setSelected(true);
         }
+        DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "PATH", "CHANGE", NavigationWrapper.getPathType());
     }
 
     @FXML

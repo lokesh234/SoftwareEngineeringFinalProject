@@ -5,12 +5,14 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import java.util.ArrayList;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -32,6 +34,10 @@ public class EmployeeFormController {
   private AdminEmployeeController master;
   private ArrayList<String> accountDetails;
   boolean edit = false;
+
+  public void keyConfirm(){
+    confirm.fire();
+  }
 
   public EmployeeFormController() {
   }
@@ -71,8 +77,10 @@ public class EmployeeFormController {
     } else if (user.equals(userOG)) {
       employeeIdText.setStyle("-fx-border-color: red");
     } else if (edit) {
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Edit", oldUsername);
       DatabaseWrapper.delLoginSR(oldUsername);
       DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
+      Notifications.create().text(first + " " + last + " has been edited!").show();
       returnToAdminEmployee();
     } else {
       accountDetails = new ArrayList<>();
@@ -82,6 +90,7 @@ public class EmployeeFormController {
       accountDetails.add(last);
       accountDetails.add(position);
       accountDetails.add(number);
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Add", user);
       App.getPopup().getContent().add(App.getVerification());
       App.getVerificationController().setAccountDetails(accountDetails);
       App.getVerificationController().setAtAdmin(false);
