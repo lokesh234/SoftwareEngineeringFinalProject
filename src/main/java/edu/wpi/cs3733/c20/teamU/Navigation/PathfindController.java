@@ -970,7 +970,9 @@ public class PathfindController {
             wong.setWidth(80);
             wong.setFill(imagePattern);
             pathTransition.setNode(wong);
-            pathTransition.setDuration(Duration.seconds(25));
+      System.out.println("size: " + (path.size() + (path.size() / 4)));
+      //25 is an alright value
+            pathTransition.setDuration(Duration.seconds(path.size() + (path.size() / 4)));
             pathTransition.setPath(pathe);
             pathTransition.setCycleCount(PathTransition.INDEFINITE);
             pathTransition.setAutoReverse(false);
