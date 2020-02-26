@@ -820,6 +820,7 @@ public class PathfindController {
     }
 
     private void drawPath() {
+        System.out.println();
         clearPath();
         if (path.size() == 0){
             displayingPath = true;
@@ -846,12 +847,17 @@ public class PathfindController {
             boolean firstTime = true;
             while (n1.getFloor() == n2.getFloor()) {
                 MoveTo move;
+                LineTo move2;
                 if (firstTime) {
                     startX = n1.getX();
                     startY = n1.getY();
                     startFloor = n1.getFloor();
                     move = new MoveTo(startX, startY);
                     pathe.getElements().add(move);
+                }
+                else {
+                    move2 = new LineTo(n1.getX(), n2.getY());
+                    pathe.getElements().add(move2);
                 }
                 LineTo line = new LineTo(n2.getX(), n2.getY());
                 pathe.getElements().add(line);
@@ -888,7 +894,7 @@ public class PathfindController {
                 timeline.play();
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
-                i++;
+                if (!firstTime) i++;
 
                 if (i + 1 < path.size()) { //If we've not reached the end of the given path, we need to keep going
                     n1 = path.get(i);
