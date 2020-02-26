@@ -109,56 +109,6 @@ public class GraphEditController {
     NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
     NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
     NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
-    MapGes1.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes1.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes2.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes2.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes2.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes3.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes3.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes3.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes4.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes4.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes4.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes5.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes5.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes5.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
-      }
-    });
     MapGes1.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -679,7 +629,7 @@ public class GraphEditController {
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
       App.setColor(circles.get(source), source);
-      getFloorGes(floor).setGestureEnabled(true);
+       getFloorGes(floor).setGestureEnabled(true);
 
       if (state == State.neutral) {
         Node n = circles.get(source);
