@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Database;
 
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindAStar;
 
 import java.util.ArrayList;
 
@@ -14,8 +15,11 @@ public class NodesDatabase {
     private HashMap<String, Node> nodes;
     private HashMap<String, Edge> edges;
 
-    private static NodesDatabase _graph = new NodesDatabase();
-    protected static NodesDatabase getGraph() { return _graph;}
+    protected static NodesDatabase getGraph() { return s._graph;}
+
+    private static class s {
+        private static final NodesDatabase _graph = new NodesDatabase();
+    }
 
     private NodesDatabase() { //TODO: add relevant database stuff
         /*

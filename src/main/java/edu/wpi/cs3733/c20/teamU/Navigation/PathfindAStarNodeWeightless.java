@@ -8,10 +8,13 @@ import java.util.*;
 public class PathfindAStarNodeWeightless implements PathfinderInterface {
     private ArrayList<Node> latestPath = new ArrayList<>();
     private int latestCost = -999999;
-    private static PathfindAStarNodeWeightless _pathfinder = new PathfindAStarNodeWeightless();
     private PathfindAStarNodeWeightless() {}
     public static PathfindAStarNodeWeightless getInstance() {
-        return _pathfinder;
+        return s._pathfinder;
+    }
+
+    private static class s {
+        private static final PathfindAStarNodeWeightless _pathfinder = new PathfindAStarNodeWeightless();
     }
 
     public int getLatestCost() {
