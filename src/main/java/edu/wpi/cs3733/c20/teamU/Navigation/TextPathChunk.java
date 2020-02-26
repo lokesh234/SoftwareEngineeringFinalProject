@@ -90,7 +90,7 @@ public class TextPathChunk {
 
         // we only want to say turn if its neither straight or diagonal or error
         if(((!(getDir() == TextPathBuilder.RelativeDirection.STRAIGHT)) && !(getDir() == TextPathBuilder.RelativeDirection.DIAGONALLY)) && !(getDir() == TextPathBuilder.RelativeDirection.ERROR)){
-            answer += "\nTurn " + getDir();
+            answer += "\nTurn " + getDir() + " at " + this.node2.getLongName();
         }
 
         // if node 2 is stairs/elevator, and node 1 WASNT stairs/elevator we're entering them
