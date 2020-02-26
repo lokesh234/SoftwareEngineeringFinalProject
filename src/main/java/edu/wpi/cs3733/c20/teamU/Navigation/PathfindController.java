@@ -11,12 +11,14 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
@@ -90,7 +92,8 @@ public class PathfindController {
     PathfindTextController pathfindTextController = new PathfindTextController();
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
-    private Circle wong = new Circle();
+    //private Circle wong = new Circle();
+    private Rectangle wong = new Rectangle();
 
     @FXML private VBox radioBox;
 
@@ -815,11 +818,18 @@ public class PathfindController {
             }
         }
         PathTransition pathTransition = new PathTransition();
-        wong.setCenterX(start.getX());
-        wong.setCenterY(start.getY());
-        wong.setRadius(15);
+        //wong.setCenterX(start.getX());
+        //wong.setCenterY(start.getY());
+        //wong.setRadius(15);
+        Image imageWong = new Image("png_files/gif/rightFly.gif");
+        ImagePattern imagePattern = new ImagePattern(imageWong);
+        wong.setX(start.getX());
+        wong.setY(start.getY());
+        wong.setHeight(80);
+        wong.setWidth(80);
+        wong.setFill(imagePattern);
         pathTransition.setNode(wong);
-        pathTransition.setDuration(Duration.seconds(7));
+        pathTransition.setDuration(Duration.seconds(30));
         pathTransition.setPath(pathe);
         pathTransition.setCycleCount(PathTransition.INDEFINITE);
         pathTransition.setAutoReverse(true);
