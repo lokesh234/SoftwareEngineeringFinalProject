@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 public class ReligiousController {
 
@@ -28,11 +29,8 @@ public class ReligiousController {
         if(comboBox.getValue() == null) userBox = "";
         else userBox = comboBox.getValue().toString();
 
-        //TODO: specify which textfield to write in if empty
         if (userFreq.isEmpty() || userLast.isEmpty() || userBox.isEmpty() || userComment.isEmpty()) {
-            // will print out some text eventually, right now nothing
             lastName.setStyle("-fx-border-color: red");
-//            comments.setStyle("-fx-border-color: red");
             comments.setStyle("-fx-border-color: red");
             firstName.setStyle("-fx-border-color: red");
             comboBox.setStyle("-fx-border-color: red");
@@ -44,7 +42,7 @@ public class ReligiousController {
             //TODO:
             String name = userFreq + " " + userLast;
             DatabaseWrapper.ReligionSRAdd(name,userBox,userComment);
-            //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            Notifications.create().text("Religious Request has been submitted!").show();
             clearField();
             cancel.fire();
         }

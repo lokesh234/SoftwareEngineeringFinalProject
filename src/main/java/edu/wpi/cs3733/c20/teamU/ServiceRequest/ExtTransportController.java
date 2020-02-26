@@ -8,6 +8,7 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 public class ExtTransportController {
 
@@ -36,7 +37,6 @@ public class ExtTransportController {
     //TODO: specify which textfield to write in if empty
     if (dest.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || numOfPas.isEmpty() || d
         .isEmpty() || t.isEmpty()) {
-      // will print out some text eventually, right now nothing
       lastNameText.setStyle("-fx-border-color: red");
       confirmPassText.setStyle("-fx-border-color: red");
       firstNameText.setStyle("-fx-border-color: red");
@@ -48,9 +48,10 @@ public class ExtTransportController {
       confirmPassText.setStyle("-fx-border-color:  #FFEEC9");
       firstNameText.setStyle("-fx-border-color:  #FFEEC9");
       passwordText.setStyle("-fx-border-color:  #FFEEC9");
-      System.out.println(Integer.parseInt(numOfPas));
+//      System.out.println(Integer.parseInt(numOfPas));
       DatabaseWrapper
           .extTransportSRAdd(userLast, userFirst, dest, t, d, Integer.parseInt(numOfPas));
+      Notifications.create().text("External Transport Request has been submitted!").show();
       clearField();
       cancel.fire();
     }

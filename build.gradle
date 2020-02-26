@@ -38,6 +38,7 @@ dependencies {
     )
 
     compile 'com.warrenstrange:googleauth:1.4.0'
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
     compileOnly(
             [group: 'org.projectlombok', name: 'lombok', version: '1.18.8']
     )

@@ -4,6 +4,7 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
+import org.controlsfx.control.Notifications;
 
 public class TwoFactorSecurity {
 
@@ -47,8 +48,10 @@ public class TwoFactorSecurity {
    */
   public boolean checkKey(String userKey) {
     if (userKey.equals(String.valueOf(code))) {
+      Notifications.create().text("Verification accepted!").show();
       return true;
     } else {
+      Notifications.create().text("Verification rejected!").show();
       return false;
     }
   }
