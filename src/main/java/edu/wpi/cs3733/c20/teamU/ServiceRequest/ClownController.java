@@ -22,6 +22,10 @@ public class ClownController {
     @FXML private JFXComboBox comboBox = new JFXComboBox();
     @FXML private AnchorPane clownParent;
 
+    public void keyConfirm(){
+        submit.fire();
+    }
+
     @FXML
     private void getSubmission() {
         String location = locationField.getText();

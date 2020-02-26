@@ -130,6 +130,9 @@ public class App<loadedAdminRequests> extends Application {
   private static SanRequestController sanRequestController;
   private static TimeoutController timeoutController;
   private static TreeViewController treeViewController;
+  private static FlowerController flowerController;
+  private static ITController itController;
+
 
   private static boolean didChange = false;
   private static long time;
@@ -303,8 +306,101 @@ public class App<loadedAdminRequests> extends Application {
     }
   };
 
+  private static EventHandler<KeyEvent> nodeeditconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        editController.keyConfirm();
+      }
+    }
+  };
 
+  private static EventHandler<KeyEvent> religiousconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        religiousController.keyConfirm();
+      }
+    }
+  };
 
+  private static EventHandler<KeyEvent> clownconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        clownController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> flowerconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        flowerController.keyConfirm();
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> giftconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        giftDeliveryController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> itconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        itController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> medicineconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        medicineController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> sanitationconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        sanRequestController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> timeoutconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        timeoutController.keyConfirm();
+
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> verificationconfirmKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.ENTER) {
+        verificationController.keyConfirm();
+
+      }
+    }
+  };
 
 
   public static Stage getPrimaryStage() { return primaryStage; }
@@ -606,6 +702,9 @@ public class App<loadedAdminRequests> extends Application {
 
         loadedAdminRequests = true;
 
+        timeout.setOnKeyPressed(timeoutconfirmKey);
+        verification.setOnKeyPressed(verificationconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -625,6 +724,8 @@ public class App<loadedAdminRequests> extends Application {
         medicine.setOnKeyPressed(fireKey);
 
         loadedMedicine = true;
+
+        medicine.setOnKeyPressed(medicineconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -642,6 +743,8 @@ public class App<loadedAdminRequests> extends Application {
         flower.setOnKeyPressed(fireKey);
 
         loadedFlower = true;
+
+        flower.setOnKeyPressed(flowerconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -661,6 +764,8 @@ public class App<loadedAdminRequests> extends Application {
         religious.setOnKeyPressed(fireKey);
 
         loadedReligious = true;
+
+        religious.setOnKeyPressed(religiousconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -722,6 +827,8 @@ public class App<loadedAdminRequests> extends Application {
         clown.setOnKeyPressed(fireKey);
 
         loadedClown = true;
+
+        clown.setOnKeyPressed(clownconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -739,6 +846,8 @@ public class App<loadedAdminRequests> extends Application {
         sanRequest.setOnKeyPressed(fireKey);
 
         loadedSan = true;
+
+        sanRequest.setOnKeyPressed(sanitationconfirmKey);
       }
       catch (IOException e) {
         return;
@@ -779,6 +888,9 @@ public class App<loadedAdminRequests> extends Application {
         giftDelivery.setOnKeyPressed(fireKey);
 
         loadedGift = true;
+
+        giftDelivery.setOnKeyPressed(giftconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -796,6 +908,9 @@ public class App<loadedAdminRequests> extends Application {
         IT.setOnKeyPressed(fireKey);
 
         loadedIT = true;
+
+        IT.setOnKeyPressed(itconfirmKey);
+
       }
       catch (IOException e) {
         return;
@@ -880,6 +995,8 @@ public class App<loadedAdminRequests> extends Application {
 
         loadedAdminGraph = true;
         addNode.setOnKeyPressed(addnodeconfirmKey);
+        edit.setOnKeyPressed(nodeeditconfirmKey);
+
       }
       catch (IOException e) {
         return;

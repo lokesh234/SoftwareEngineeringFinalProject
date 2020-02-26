@@ -25,6 +25,11 @@ public class SanRequestController {
     @FXML private Button back;
     @FXML private Button confirm;
 
+    public void keyConfirm(){
+        confirm.fire();
+    }
+
+
     @FXML
     private void getSubmission() {
         String SanService = a.getText();
