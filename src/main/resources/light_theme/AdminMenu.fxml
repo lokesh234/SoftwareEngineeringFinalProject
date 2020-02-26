@@ -134,7 +134,7 @@
                      <graphic>
                         <ImageView fitHeight="43.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../png_files/Icons/paintbrush.png" />
+                              <Image url="@../png_files/palette-solid.png" />
                            </image>
                         </ImageView>
                      </graphic>
