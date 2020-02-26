@@ -580,7 +580,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) throws IOException, URISyntaxException {
+  public void start(Stage primaryStage) {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
@@ -1115,7 +1115,6 @@ public class App<loadedAdminRequests> extends Application {
       security.getStylesheets().remove(theme);
       request.getStylesheets().remove(theme);
       medicine.getStylesheets().remove(theme);
-      edit.getStylesheets().remove(theme);
       editEdge.getStylesheets().remove(theme);
       adminEdge.getStylesheets().remove(theme);
       adminRequest.getStylesheets().remove(theme);
@@ -1125,7 +1124,6 @@ public class App<loadedAdminRequests> extends Application {
       edit.getStylesheets().remove(theme);
       addNode.getStylesheets().remove(theme);
       adminNode.getStylesheets().remove(theme);
-      fire.getStylesheets().remove(theme);
       weather.getStylesheets().remove(theme);
       IT.getStylesheets().remove(theme);
       externalTransport.getStylesheets().remove(theme);
@@ -1145,6 +1143,11 @@ public class App<loadedAdminRequests> extends Application {
       analytics.getStylesheets().remove(theme);
       scale.getStylesheets().remove(theme);
       color.getStylesheets().remove(theme);
+      homeScene.getStylesheets().remove(theme);
+      startScene.getStylesheets().remove(theme);
+      pathScene.getStylesheets().remove(theme);
+      adminScene.getStylesheets().remove(theme);
+      adminNodeScene.getStylesheets().remove(theme);
     }
     resolveRequest.getStylesheets().add(theme);
     home.getStylesheets().add(theme);
@@ -1162,7 +1165,6 @@ public class App<loadedAdminRequests> extends Application {
     adminEmployee.getStylesheets().add(theme);
     adminBacklog.getStylesheets().add(theme);
     export.getStylesheets().add(theme);
-    edit.getStylesheets().add(theme);
     addNode.getStylesheets().add(theme);
     adminNode.getStylesheets().add(theme);
     fire.getStylesheets().add(theme);
@@ -1185,6 +1187,11 @@ public class App<loadedAdminRequests> extends Application {
     analytics.getStylesheets().add(theme);
     scale.getStylesheets().add(theme);
     color.getStylesheets().add(theme);
+    homeScene.getStylesheets().add(theme);
+    startScene.getStylesheets().add(theme);
+    pathScene.getStylesheets().add(theme);
+    adminScene.getStylesheets().add(theme);
+    adminNodeScene.getStylesheets().add(theme);
   }
 
   public static void addToPath(Node e) {//Adds a javaFX node to the pathfinding pane

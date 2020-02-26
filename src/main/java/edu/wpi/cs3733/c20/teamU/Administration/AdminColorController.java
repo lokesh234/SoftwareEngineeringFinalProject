@@ -11,6 +11,7 @@ import javafx.beans.binding.BooleanBinding;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.Notifications;
@@ -34,7 +35,6 @@ public class AdminColorController {
   private int color5R, color5G, color5B;
   private String themeLight = App.class.getResource("/light_theme/lightBackup.css").toExternalForm();
   private String themeDark = App.class.getResource("/light_theme/dark.css").toExternalForm();
-
 
   public void setUser(String user) {
     this.user.setText(user);
@@ -119,6 +119,7 @@ public class AdminColorController {
     custom.setSelected(true);
     light.setDisable(true);
     dark.setDisable(true);
+
     custom.addEventHandler(MOUSE_CLICKED, event -> {
       if (custom.isSelected()) {
         light.setDisable(true);
