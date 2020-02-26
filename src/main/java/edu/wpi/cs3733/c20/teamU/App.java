@@ -176,7 +176,6 @@ public class App<loadedAdminRequests> extends Application {
   private static Account accountEdit;
   private static String usernameTried;
   private static int nodeSize = 10; //Radius in pixels of clickable node object
-  private static edu.wpi.cs3733.c20.teamU.Database.Node currentLocation;
 
   private static Popup popup = new Popup();
   private static Popup securityPop = new Popup();
@@ -515,8 +514,6 @@ public class App<loadedAdminRequests> extends Application {
   public static void setServiceEdit(Service serviceSel) { service = serviceSel; }
   public static void setAccountEdit(Account accountSel) { accountEdit = accountSel; }
   public static Service getService() { return service; }
-  public static edu.wpi.cs3733.c20.teamU.Database.Node getCurrentLocation() { return currentLocation; }
-  public static void setCurrentLocation(edu.wpi.cs3733.c20.teamU.Database.Node node) { currentLocation = node;}
 
   public static void change(boolean hey) { didChange = hey; }
   public static boolean getChange() { return didChange; }
@@ -556,7 +553,7 @@ public class App<loadedAdminRequests> extends Application {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
-    setLocation(DatabaseWrapper.getGraph().getNode("UHALL01404"));
+    setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
 
     popup.getContent().addAll();
     securityPop.getContent().addAll();

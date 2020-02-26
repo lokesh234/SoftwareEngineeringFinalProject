@@ -735,6 +735,65 @@ public class PathfindController {
         wongs.clear();
         updateStatus();
     }
+
+    private void fastestTo(String nodeType) {
+        ArrayList<Node> nodesOfType = DatabaseWrapper.getGraph().getByType(nodeType);
+        int pathLen = -1;
+        ArrayList<Node> finalPath = new ArrayList<>();
+        Node finalNode = null;
+        for (Node n : nodesOfType) {
+            if (!App.getLocation().getID().equals(n.getID())) {
+                NavigationWrapper.pathfind(App.getLocation(), n);
+                ArrayList<Node> p = NavigationWrapper.getPath();
+                if ((pathLen < 0 || getLen(p) < pathLen)) {
+                    pathLen = getLen(p);
+                    finalPath.clear();
+                    finalPath.addAll(p);
+                    finalNode = n;
+                }
+            }
+        }
+
+        start = App.getLocation();
+        end = finalNode;
+        endReady = true;
+        startReady = true;
+
+        startLabel.setText(start.getLongName());
+        endLabel.setText(end.getLongName());
+        updateStatus();
+        pathfind();
+    }
+
+    @FXML
+    private void nearestBathroom() {
+        fastestTo("REST");
+    }
+
+    @FXML
+    private void nearestStairs() {
+        fastestTo("STAI");
+    }
+
+    @FXML
+    private void nearestElevator() {
+        fastestTo("ELEV");
+    }
+
+    @FXML
+    private void nearestFood() {
+        fastestTo("RETL");
+    }
+
+    @FXML
+    private void nearestExit() {
+        fastestTo("EXIT");
+    }
+
+    private int getLen(ArrayList<Node> p) { //Length of the path - for now just the number of nodes in the path
+        return p.size();
+    }
+
     private void drawPath() {
         clearPath();
         if (path.size() == 0){

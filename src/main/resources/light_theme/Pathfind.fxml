@@ -275,15 +275,15 @@
                                     </Label>
                                     <HBox alignment="CENTER" spacing="10.0">
                                        <children>
-                                          <JFXButton fx:id="quickRest" text="Restroom" />
-                                          <JFXButton fx:id="quickStair" text="Stairs" />
-                                          <JFXButton fx:id="quickElev" text="Elevator" />
+                                          <JFXButton fx:id="quickRest" text="Restroom" onAction="#nearestBathroom" />
+                                          <JFXButton fx:id="quickStair" text="Stairs" onAction="#nearestStairs"/>
+                                          <JFXButton fx:id="quickElev" text="Elevator" onAction="#nearestElevator" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" spacing="10.0">
                                        <children>
-                                          <JFXButton fx:id="quickFood" text="Food" />
-                                          <JFXButton fx:id="QuickExit" text="Exit" />
+                                          <JFXButton fx:id="quickFood" text="Food" onAction="#nearestFood" />
+                                          <JFXButton fx:id="QuickExit" text="Exit" onAction="#nearestExit" />
                                        </children>
                                     </HBox>
                                  </children>
