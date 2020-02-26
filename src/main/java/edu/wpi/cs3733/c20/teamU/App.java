@@ -208,39 +208,42 @@ public class App<loadedAdminRequests> extends Application {
   public static long getTimeoutValue() {return timeoutValue;}
 
   public static void setColor(edu.wpi.cs3733.c20.teamU.Database.Node n, Circle c) {
-    switch (n.getNodeType()) {
+    if (n.getID().equals(location.getID())) {
+      c.setFill(new Color(214/255., 48/255., 49/255.,1.0)); //Chi-Gong
+    }
+    else switch (n.getNodeType()) {
       case "HALL":
-        c.setFill(Color.GRAY);
+        c.setFill(new Color(223/255., 230/255., 233/255.,1.0)); //City Lights
         break;
       case "DEPT":
-        c.setFill(Color.BLACK);
+        c.setFill(new Color(45/255., 52/255., 54/255.,1.0)); //Dracula Orchid
         break;
       case "CONF":
-        c.setFill(Color.DARKSLATEGRAY);
+        c.setFill(new Color(99/255., 110/255., 114/255.,1.0)); //America River
         break;
       case "REST":
-        c.setFill(Color.PURPLE);
+        c.setFill(new Color(108/255., 92/255., 231/255.,1.0)); //Exodus Fruit
         break;
       case "STAI":
-        c.setFill(Color.LIGHTSEAGREEN);
+        c.setFill(new Color(85/255., 239/255., 196/255.,1.0)); //Light Greenish Blue
         break;
       case "ELEV":
-        c.setFill(Color.CORNFLOWERBLUE);
+        c.setFill(new Color(129/255., 236/255., 236/255.,1.0)); //Faded Poster
         break;
       case "LABS":
-        c.setFill(Color.BLUEVIOLET);
+        c.setFill(new Color(116/255., 185/255., 255/255.,1.0)); //Green Darner Tail
         break;
       case "INFO":
-        c.setFill(Color.BLUE);
+        c.setFill(new Color(9/255., 132/255., 227/255.,1.0)); //Electron Blue
         break;
       case "EXIT":
-        c.setFill(Color.RED);
+        c.setFill(new Color(225/255., 112/255., 85/255.,1.0)); //Orangeville
         break;
       case "RETL":
-        c.setFill(Color.DARKGOLDENROD);
+        c.setFill(new Color(253/255., 121/255., 168/255.,1.0)); //Pico-8 Pink
         break;
       case "SERV":
-        c.setFill(Color.GOLD);
+        c.setFill(new Color(253/255., 203/255., 110/255.,1.0)); //Bright Yarrow
         break;
     }
   }
