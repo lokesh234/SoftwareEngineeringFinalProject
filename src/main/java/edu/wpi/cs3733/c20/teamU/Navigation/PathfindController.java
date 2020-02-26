@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -91,6 +93,9 @@ public class PathfindController {
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
     private ArrayList<Circle> wongs = new ArrayList<>();
+    private Label startNodeLabel = new Label();
+    private Label endNodeLabel = new Label();
+    private ArrayList<Label> nodeLabels = new ArrayList<>();
 
     @FXML private VBox radioBox;
 
@@ -375,6 +380,8 @@ public class PathfindController {
 
 
     private void updateStatus() {
+        removeFromAll(startNodeLabel);
+        removeFromAll(endNodeLabel);
         if (state == State.NEUTRAL) {
             if (displayingPath && path.size() == 0) statusLabel.setText("No path found :(");
             else if (displayingPath) statusLabel.setText("Click 'Clear' to Remove This Path");
@@ -394,6 +401,13 @@ public class PathfindController {
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
             addToPath(startSelect, start.getFloor());
+
+            startNodeLabel.setText(start.getLongName());
+            startNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+            startNodeLabel.setTextFill(Color.BLACK);
+            startNodeLabel.setLayoutX(start.getX() + 30);
+            startNodeLabel.setLayoutY(start.getY() - 30);
+            addToPath(startNodeLabel, start.getFloor());
         }
         else if (start != null) {
             removeFromPath(startSelect, start.getFloor());
@@ -408,6 +422,13 @@ public class PathfindController {
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
             addToPath(endSelect, end.getFloor());
+
+            endNodeLabel.setText(end.getLongName());
+            endNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+            endNodeLabel.setTextFill(Color.BLACK);
+            endNodeLabel.setLayoutX(end.getX() + 30);
+            endNodeLabel.setLayoutY(end.getY() - 30);
+            addToPath(endNodeLabel, end.getFloor());
         }
         else if (end != null) {
             removeFromPath(endSelect, end.getFloor());
@@ -728,11 +749,15 @@ public class PathfindController {
         for (Circle wong : wongs) {
             removeFromAll(wong);
         }
+        for (Label l : nodeLabels) {
+            removeFromAll(l);
+        }
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
         interFloorPaths.clear();
         wongs.clear();
+        nodeLabels.clear();
         updateStatus();
     }
 
@@ -795,6 +820,7 @@ public class PathfindController {
     }
 
     private void drawPath() {
+        System.out.println();
         clearPath();
         if (path.size() == 0){
             displayingPath = true;
@@ -821,12 +847,17 @@ public class PathfindController {
             boolean firstTime = true;
             while (n1.getFloor() == n2.getFloor()) {
                 MoveTo move;
+                LineTo move2;
                 if (firstTime) {
                     startX = n1.getX();
                     startY = n1.getY();
                     startFloor = n1.getFloor();
                     move = new MoveTo(startX, startY);
                     pathe.getElements().add(move);
+                }
+                else {
+                    move2 = new LineTo(n1.getX(), n2.getY());
+                    pathe.getElements().add(move2);
                 }
                 LineTo line = new LineTo(n2.getX(), n2.getY());
                 pathe.getElements().add(line);
@@ -863,7 +894,7 @@ public class PathfindController {
                 timeline.play();
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
-                i++;
+                if (!firstTime) i++;
 
                 if (i + 1 < path.size()) { //If we've not reached the end of the given path, we need to keep going
                     n1 = path.get(i);
@@ -900,6 +931,24 @@ public class PathfindController {
                 interFloorPaths.put(c2, n2);
                 addToPath(c, n1.getFloor());
                 addToPath(c2, n2.getFloor());
+
+                Label l = new Label();
+                l.setText(n1.getLongName());
+                l.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+                l.setTextFill(Color.BLACK);
+                l.setLayoutX(n1.getX() + 30);
+                l.setLayoutY(n1.getY() - 30);
+                addToPath(l, n1.getFloor());
+                nodeLabels.add(l);
+
+                Label l2 = new Label();
+                l2.setText(n2.getLongName());
+                l2.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+                l2.setTextFill(Color.BLACK);
+                l2.setLayoutX(n2.getX() + 30);
+                l2.setLayoutY(n2.getY() - 30);
+                addToPath(l2, n2.getFloor());
+                nodeLabels.add(l2);
             }
 
             PathTransition pathTransition = new PathTransition();

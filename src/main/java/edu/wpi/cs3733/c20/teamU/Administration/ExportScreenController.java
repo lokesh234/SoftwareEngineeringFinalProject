@@ -20,7 +20,7 @@ public class ExportScreenController {
 
   @FXML private JFXButton cancel;
   @FXML private JFXButton save;
-  @FXML private JFXTextField location1;
+  @FXML private JFXTextField location1, location2;
   @FXML private JFXButton browse;
   private Stage scene;
   public ExportScreenController() {}
@@ -39,15 +39,22 @@ public class ExportScreenController {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Choose path to save");
     fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("csv file", "*.csv"));
+            new FileChooser.ExtensionFilter("Nodes file", "*.csv"));
     File selectedFile = fileChooser.showSaveDialog(scene);
     location1.setText(selectedFile.getAbsolutePath());
+
+    FileChooser fileChooser2 = new FileChooser();
+    fileChooser2.setTitle("Choose path to save");
+    fileChooser2.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Edges file", "*.csv"));
+    File selectedFile2 = fileChooser.showSaveDialog(scene);
+    location2.setText(selectedFile2.getAbsolutePath());
   }
 
   @FXML
   public void save() throws IOException {
       File file = new File(location1.getText());
-
+      File file2 = new File(location2.getText());
     Connection conn = null;
     Statement stmt = null;
     try {
@@ -55,6 +62,7 @@ public class ExportScreenController {
       stmt = conn.createStatement();
       //getting UBDatabase
       DatabaseWrapper.createCSV(stmt,"MapNodesU", file.toString());
+      DatabaseWrapper.createCSV(stmt,"MapEdgesU", file2.toString());
       stmt.close();
       conn.close();
     }
@@ -67,5 +75,6 @@ public class ExportScreenController {
   @FXML
   public void initialize() {
     location1.setText(System.getProperty("user.dir"));
+    location2.setText(System.getProperty("user.dir"));
   }
 }

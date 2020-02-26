@@ -9,9 +9,12 @@ public class PathfindDFS implements PathfinderInterface {
     private ArrayList<Node> latestPath = new ArrayList<>();
     private int latestCost = -999999;
     private PathfindDFS() {}
-    private static PathfindDFS _pathfinder = new PathfindDFS();
     public static PathfindDFS getInstance() {
-        return _pathfinder;
+        return s._pathfinder;
+    }
+
+    private static class s {
+        private static final PathfindDFS _pathfinder = new PathfindDFS();
     }
 
     public int getLatestCost() {

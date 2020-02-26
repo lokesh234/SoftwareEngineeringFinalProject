@@ -10,8 +10,11 @@ public class PathfindBFS implements PathfinderInterface {
     private ArrayList<Node> latestPath = new ArrayList<>();
     private int latestCost = -999999;
     private PathfindBFS() {}
-    private static PathfindBFS _pathfinder = new PathfindBFS();
-    public static PathfindBFS getInstance() { return _pathfinder;}
+    public static PathfindBFS getInstance() { return s._pathfinder;}
+
+    private static class s {
+        private static final PathfindBFS _pathfinder = new PathfindBFS();
+    }
 
     public int getLatestCost() {
         /*
