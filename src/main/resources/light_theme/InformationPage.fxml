@@ -1,67 +1,67 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<?xml version="1.0" encoding="UTF-8"?>
 
-<!--<?import com.jfoenix.controls.JFXButton?>-->
-<!--<?import javafx.geometry.Insets?>-->
-<!--<?import javafx.scene.control.Label?>-->
-<!--<?import javafx.scene.control.ScrollPane?>-->
-<!--<?import javafx.scene.layout.AnchorPane?>-->
-<!--<?import javafx.scene.layout.HBox?>-->
-<!--<?import javafx.scene.layout.VBox?>-->
-<!--<?import javafx.scene.text.Font?>-->
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.SecurityController">-->
-<!--   <children>-->
-<!--      <VBox layoutX="-2.0" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">-->
-<!--         <children>-->
-<!--            <HBox fx:id="cancelSecurity" alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="600.0" styleClass="titleBar">-->
-<!--               <children>-->
-<!--                  <JFXButton onAction="#closeHelpScreen" style="-fx-background-color: #eb4034;" text=" X " textFill="WHITE">-->
-<!--                     <font>-->
-<!--                        <Font name="Segoe UI Bold" size="14.0" />-->
-<!--                     </font>-->
-<!--                  </JFXButton>-->
-<!--               </children>-->
-<!--               <VBox.margin>-->
-<!--                  <Insets />-->
-<!--               </VBox.margin>-->
-<!--               <padding>-->
-<!--                  <Insets right="20.0" top="6.0" />-->
-<!--               </padding>-->
-<!--            </HBox>-->
-<!--            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="titleBar">-->
-<!--               <children>-->
-<!--                  <Label text="Information">-->
-<!--                     <HBox.margin>-->
-<!--                        <Insets />-->
-<!--                     </HBox.margin>-->
-<!--                  </Label>-->
-<!--               </children>-->
-<!--            </HBox>-->
-<!--            <ScrollPane prefHeight="365.0" prefWidth="600.0" VBox.vgrow="ALWAYS">-->
-<!--              <content>-->
-<!--                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1023.0" prefWidth="750.0">-->
-<!--                     <children>-->
-<!--                        <VBox layoutX="103.0" layoutY="28.0" prefHeight="200.0" prefWidth="668.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">-->
-<!--                           <children>-->
-<!--                              <Label prefHeight="335.0" prefWidth="756.0" text="This application is the result of student collaboration from the Worcester Polytechnic Institute. Visiting a hospital can be stressful and confusing for individuals during a time when all that should be on their mind is getting well. The project was made with the aim to alleviate this stress by assisting new visitors to Brigham and Women's Faulkner Hospital with navigating throughout the building. Built on the expertise and experience of members of the WPI Computer Science Department, this program uses path finding algorithms to show the user the best route to their destination. This way they can spend less time wandering around the hospital and more time with medical staff and loved ones. This project could not have been possible without the help and support of Andrew Shinn and all the staff of Brigham and Women’s Hospital who generously offered their time and knowledge to the software developers. Additional acknowledgment needs to be given to the following individuals from the CS3733-C20 Software Engineering class who contributed to the development of this application:" wrapText="true" />-->
-<!--                              <Label text="Lokesh Gangaramaney - Lead Software Engineer" />-->
-<!--                              <Label text="Alek Lewis - Assistant Lead Software Engineer" />-->
-<!--                              <Label text="Baian Ou - Assistant Lead Software Engineer" />-->
-<!--                              <Label text="Marcus Chalmers - Lead Software Engineer" />-->
-<!--                              <Label text="Tae Hyun Je - Project Manager" />-->
-<!--                              <Label text=" Jonathan Sanchez - Project Owner" />-->
-<!--                              <Label text="Anirban Mukherjee - Scrum Master" />-->
-<!--                              <Label text="Mielynn Charter - Test Engineer" />-->
-<!--                              <Label text="Matthew Ferreira - Documentation Analyst" />-->
-<!--                              <Label text="Timothy Winters - Team Coach" />-->
-<!--                              <Label text="Professor  - Wilson Wong" />-->
-<!--                           </children>-->
-<!--                        </VBox>-->
-<!--                     </children>-->
-<!--                  </AnchorPane>-->
-<!--              </content>-->
-<!--            </ScrollPane>-->
-<!--         </children>-->
-<!--      </VBox>-->
-<!--   </children>-->
-<!--</AnchorPane>-->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.InformationController">
+   <children>
+      <VBox layoutX="-2.0" prefHeight="200.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox fx:id="cancelSecurity" alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="600.0" styleClass="titleBar">
+               <children>
+                  <JFXButton onAction="#closeHelpScreen" style="-fx-background-color: #eb4034;" text=" X " textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="20.0" top="6.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="titleBar">
+               <children>
+                  <Label text="Information">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="365.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1023.0" prefWidth="750.0">
+                     <children>
+                        <VBox layoutX="103.0" layoutY="28.0" prefHeight="200.0" prefWidth="668.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label prefHeight="335.0" prefWidth="756.0" text="This application is the result of student collaboration from the Worcester Polytechnic Institute. Visiting a hospital can be stressful and confusing for individuals during a time when all that should be on their mind is getting well. The project was made with the aim to alleviate this stress by assisting new visitors to Brigham and Women's Faulkner Hospital with navigating throughout the building. Built on the expertise and experience of members of the WPI Computer Science Department, this program uses path finding algorithms to show the user the best route to their destination. This way they can spend less time wandering around the hospital and more time with medical staff and loved ones. This project could not have been possible without the help and support of Andrew Shinn and all the staff of Brigham and Women’s Hospital who generously offered their time and knowledge to the software developers. Additional acknowledgment needs to be given to the following individuals from the CS3733-C20 Software Engineering class who contributed to the development of this application:" wrapText="true" />
+                              <Label text="Lokesh Gangaramaney - Lead Software Engineer" />
+                              <Label text="Alek Lewis - Assistant Lead Software Engineer" />
+                              <Label text="Baian Ou - Assistant Lead Software Engineer" />
+                              <Label text="Marcus Chalmers - Lead Software Engineer" />
+                              <Label text="Tae Hyun Je - Project Manager" />
+                              <Label text=" Jonathan Sanchez - Project Owner" />
+                              <Label text="Anirban Mukherjee - Scrum Master" />
+                              <Label text="Mielynn Charter - Test Engineer" />
+                              <Label text="Matthew Ferreira - Documentation Analyst" />
+                              <Label text="Timothy Winters - Team Coach" />
+                              <Label text="Professor  - Wilson Wong" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

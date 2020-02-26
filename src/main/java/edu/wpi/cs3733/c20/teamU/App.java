@@ -71,6 +71,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane analytics;
   private static Pane scale;
   private static Pane color;
+  private static Pane information;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -103,6 +104,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene treeViewScene;
   private static Scene analyticsScene;
   private static Scene colorScene;
+  private static Scene informationScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -141,6 +143,7 @@ public class App<loadedAdminRequests> extends Application {
   private static AnalyticsController analyticsController;
   private static AdminScaleController scaleController;
   private static AdminColorController colorController;
+  private static InformationController informationController;
 
 
   private static boolean didChange = false;
@@ -218,6 +221,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Popup ChoosePathPop = new Popup();
   private static Popup weatherPop = new Popup();
   private static Popup treeViewPop = new Popup();
+  private static Popup informationPopUp = new Popup();
 
   private static Image floor1;
   private static Image floor2;
@@ -472,6 +476,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getAnalytics() {return analytics;}
   public static Pane getScale() { return scale;}
   public static Pane getColor() { return color;}
+  public static Pane getInformation() {return information;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -502,6 +507,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getTimeoutScene() {return timeoutScene;}
   public static Scene getAnalyticsScene() {return analyticsScene;}
   public static Scene getColorScene() {return colorScene;}
+  public static Scene getInformationScene() {return informationScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -533,6 +539,7 @@ public class App<loadedAdminRequests> extends Application {
   public static AnalyticsController getAnalyticsController() {return analyticsController;}
   public static AdminScaleController getScaleController() { return scaleController;}
   public static AdminColorController getColorController() {return colorController;}
+  public static InformationController getInformationController() {return informationController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -572,6 +579,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Popup getChoosePathPop() { return ChoosePathPop; }
   public static Popup getWeatherPop() { return weatherPop; }
   public static Popup getTreeViewPop() { return treeViewPop; }
+  public static Popup getInformationPopUp() {return informationPopUp;}
 
   public static Image getFloor1() { return floor1;}
   public static Image getFloor2() { return floor2;}
@@ -599,6 +607,7 @@ public class App<loadedAdminRequests> extends Application {
     languageSRPop.getContent().addAll();
     ChoosePathPop.getContent().addAll();
     treeViewPop.getContent().addAll();
+    informationPopUp.getContent().addAll();
 
     loadHome();
 
@@ -637,6 +646,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader fireLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindEmergency.fxml"));
         FXMLLoader securityLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestSecurityForm.fxml"));
         FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("/light_theme/WeatherWindow.fxml"));
+        FXMLLoader informationLoader = new FXMLLoader(App.class.getResource("/light_theme/InformationPage.fxml"));
 
 
         home = homeLoader.load();
@@ -644,18 +654,21 @@ public class App<loadedAdminRequests> extends Application {
         fire = fireLoader.load();
         security = securityLoader.load();
         weather = weatherLoader.load();
+        information = informationLoader.load();
 
 
         home.setOnKeyPressed(fireKey);
         start.setOnKeyPressed(fireKey);
         security.setOnKeyPressed(fireKey);
         weather.setOnKeyPressed(fireKey);
+        information.setOnKeyPressed(fireKey);
 
 
         homeController = homeLoader.getController();
         fireController = fireLoader.getController();
         securityController = securityLoader.getController();
         weatherController = weatherLoader.getController();
+        informationController = informationLoader.getController();
 
         homeController.setWeatherData(weatherController);
         fireController.setAttributes(fire);

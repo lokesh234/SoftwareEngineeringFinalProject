@@ -112,7 +112,7 @@
                   </HBox>
                   <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="info" contentDisplay="TOP" prefHeight="109.0" prefWidth="131.0" text="Info" textFill="WHITE" HBox.hgrow="ALWAYS">
+                        <JFXButton fx:id="info" onAction="#openInformationScene" contentDisplay="TOP" prefHeight="109.0" prefWidth="131.0" text="Info" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
