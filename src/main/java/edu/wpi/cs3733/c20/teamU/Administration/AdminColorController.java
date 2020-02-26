@@ -13,6 +13,7 @@ import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.Notifications;
 
@@ -115,6 +116,11 @@ public class AdminColorController {
     custom.setSelected(true);
     light.setDisable(true);
     dark.setDisable(true);
+
+    ToggleGroup colorGroup = new ToggleGroup();
+    light.setToggleGroup(colorGroup);
+    dark.setToggleGroup(colorGroup);
+    colorGroup.selectToggle(null);
 
     custom.addEventHandler(MOUSE_CLICKED, event -> {
       if (custom.isSelected()) {
