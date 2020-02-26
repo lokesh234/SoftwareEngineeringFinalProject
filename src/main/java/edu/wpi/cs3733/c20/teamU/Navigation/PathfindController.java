@@ -90,7 +90,7 @@ public class PathfindController {
     PathfindTextController pathfindTextController = new PathfindTextController();
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
-    private Circle wong = new Circle();
+    private ArrayList<Circle> wongs = new ArrayList<>();
 
     @FXML private VBox radioBox;
 
@@ -722,10 +722,14 @@ public class PathfindController {
         for (Map.Entry<Circle, Node> pair : interFloorPaths.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue().getFloor());
         }
+        for (Circle wong : wongs) {
+            removeFromAll(wong);
+        }
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
         interFloorPaths.clear();
+        wongs.clear();
         updateStatus();
     }
     private void drawPath() {
@@ -814,6 +818,7 @@ public class PathfindController {
             }
         }
         PathTransition pathTransition = new PathTransition();
+        Circle wong = new Circle();
         wong.setCenterX(start.getX());
         wong.setCenterY(start.getY());
         wong.setRadius(15);
@@ -822,9 +827,11 @@ public class PathfindController {
         pathTransition.setPath(pathe);
         pathTransition.setCycleCount(PathTransition.INDEFINITE);
         pathTransition.setAutoReverse(true);
+        pathTransition.jumpTo(Duration.seconds(7));
         pathTransition.play();
         displayingPath = true;
         addToPath(wong, start.getFloor());
+        wongs.add(wong);
         updateStatus();
     }
     //path is an arraylist of nodes
@@ -930,5 +937,12 @@ public class PathfindController {
                 if (NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().remove(e);
                 break;
         }
+    }
+    private void removeFromAll(javafx.scene.Node e) {
+        NodesPane1.getChildren().remove(e);
+        NodesPane2.getChildren().remove(e);
+        NodesPane3.getChildren().remove(e);
+        NodesPane4.getChildren().remove(e);
+        NodesPane5.getChildren().remove(e);
     }
 }
