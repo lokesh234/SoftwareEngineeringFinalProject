@@ -117,6 +117,15 @@ public class HomeController {
   }
 
   @FXML
+  private void openInformationScene(ActionEvent e){
+    App.getInformationPopUp().getContent().add(App.getInformation());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getInformationPopUp().show(App.getPrimaryStage());
+  }
+
+
+  @FXML
   private void openHelpScene(ActionEvent e) {
     App.getSecurityPop().getContent().add(App.getSecurity());
     App.getHome().setOpacity(.5);
