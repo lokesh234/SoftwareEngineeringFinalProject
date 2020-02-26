@@ -101,7 +101,7 @@ public class Speech {
                 if (audio.read(data) == -1) {
                     System.err.println("didn't read anythin");
                 }
-                if (estimatedTime > 30000) { // 60 seconds
+                if (estimatedTime > 10000) { // 60 seconds
                     System.out.println("Stop speaking.");
                     targetDataLine.stop();
                     targetDataLine.close();
