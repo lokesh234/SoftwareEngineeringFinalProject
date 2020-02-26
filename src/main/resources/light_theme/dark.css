@@ -20,23 +20,25 @@
 /** defining custom colors */
 *{
     -color-1: #243447; /* white */
-    -color-2: #ffffff; /*gray*/
-    -color-3: #ffffff; /*cream*/
-    -color-4: #243447; /*light-brown*/
+    -color-2: #4e4e4e; /*gray*/
+    -color-3: #b0b0b0; /*cream*/
+    -color-4: #3d4f63; /*light-brown*/
     -color-5: #141d26; /*dark-gray*/
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
+    -body-text: WHITE;
 }
 
 .root{
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI";
-    -fx-base: rgb(0, 0, 0);
+    -fx-text-fill: -body-text;
     -fx-background: -color-1;
 }
 
 .titleBar{
     -fx-background-color: -color-2;
+    -fx-text-fill: -body-text;
     /*-fx-background-color: red;*/
 }
 .titleBar .label{
@@ -63,7 +65,7 @@
 }
 
 .sideBar .label{
-    -fx-text-fill: black;
+    -fx-text-fill: -body-text;
 }
 
 .border-pane{
@@ -82,6 +84,7 @@
     -fx-background-color: -color-4;
     -fx-background-radius: 50px;
     -fx-background-insets: 0px;
+    -fx-text-fill: -body-text
 }
 
 .jfx-chip-view{
@@ -266,6 +269,7 @@
     -jfx-focus-color: -color-4;
     -jfx-unfocus-color: -color-3;
     -fx-padding: 0.33em 1em 0.33em 1em;
+    -fx-text-fill: -body-text;
 }
 
 .jfx-password-field,
@@ -364,6 +368,7 @@
 .jfx-text-area {
     -jfx-focus-color: -color-4;
     -jfx-unfocus-color: -color-3;
+    -fx-text-fill: WHITE;
 }
 
 .jfx-text-area,
@@ -401,6 +406,7 @@
     -jfx-focus-color: -color-4;
     -jfx-unfocus-color: -color-3;
     -fx-padding: 0.33em 1em 0.33em 1em;
+    -fx-text-fill: WHITE;
 }
 
 .jfx-text-field,
@@ -614,6 +620,7 @@
 
 .buttonGrid .gridPane{
     -fx-border-width: 0px 0px 0px 0px;
+    -fx-border-color: TRANSPARENT TRANSPARENT TRANSPARENT TRANSPARENT
 }
 
 .bbox {
