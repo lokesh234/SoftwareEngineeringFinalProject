@@ -2090,7 +2090,7 @@ public class Database {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = connection.createStatement();
 
-            String sql1 = "SELECT * FROM " + tableName + " WHERE floor = " + floor + "";
+            String sql1 = "SELECT * FROM " + tableName + " WHERE floor = " + floor + " AND nodeType <> 'HALL'";
             ResultSet results = stmt.executeQuery(sql1);
             ResultSetMetaData rsmd = results.getMetaData();
             int columns = rsmd.getColumnCount();

@@ -18,7 +18,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="64.0" prefWidth="600.0" styleClass="titleBar">
                <children>
-                  <JFXButton fx:id="back" contentDisplay="CENTER"  prefHeight="18.0" prefWidth="20.0" style="-fx-background-color: red;" text="X" textFill="WHITE">
+                  <JFXButton fx:id="back" contentDisplay="CENTER"  prefHeight="18.0" prefWidth="20.0" style="-fx-background-color: red;" text="X" textFill="WHITE" onAction="#backToAdmin">
                      <font>
                         <Font name="Segoe UI Bold" size="18.0" />
                      </font>
