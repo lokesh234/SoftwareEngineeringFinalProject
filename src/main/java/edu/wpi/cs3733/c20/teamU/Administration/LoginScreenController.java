@@ -6,7 +6,10 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import java.net.UnknownHostException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import org.controlsfx.control.Notifications;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -17,7 +20,11 @@ public class LoginScreenController {
   @FXML private TextField passwordField;
   @FXML private JFXButton loginEnter;
   @FXML private JFXButton test;
+  @FXML private JFXButton cancel;
+  @FXML private Label title;
   @FXML private JFXCheckBox robotCheck;
+  @FXML private Label userName;
+  @FXML private Label password;
 
   private int trackLoginCount;
   private boolean didFail;
@@ -133,7 +140,26 @@ public class LoginScreenController {
     }
     clearFields();
   }
-
+  public void setDefaultSetting() {
+    userName.setStyle("-fx-border-color: #FFEEC9");
+    password.setStyle("-fx-border-color: #FFEEC9");
+    usernameField.setFont(Font.font("Black", 20));
+    passwordField.setFont(Font.font("Black", 20));
+    robotCheck.setStyle("-fx-border-color: #FFEEC9");
+    cancel.setStyle("-fx-border-color: #FFEEC9");
+    loginEnter.setStyle("-fx-border-color: #FFEEC9");
+    title.setStyle("-fx-border-color: #FFEEC9");
+  }
+  public void setDarkSetting() {
+    userName.setStyle("-fx-border-color: white");
+    password.setStyle("-fx-border-color: white");
+    usernameField.setFont(Font.font("White", 20));
+    passwordField.setFont(Font.font("White", 20));
+    robotCheck.setStyle("-fx-border-color: white");
+    cancel.setStyle("-fx-border-color: white");
+    loginEnter.setStyle("-fx-border-color: white");
+    title.setStyle("-fx-border-color: white");
+  }
   @FXML
   private void initialize() {
     loginEnter.setDisable(false);
