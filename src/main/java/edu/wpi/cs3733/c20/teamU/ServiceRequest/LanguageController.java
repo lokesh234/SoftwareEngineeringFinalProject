@@ -19,6 +19,11 @@ public class LanguageController {
     @FXML
     JFXRadioButton Japenese, Russian, Hindi, Spanish, Chinese, Ethiopian;
 
+
+    public void keyConfirm(){
+        confirm.fire();
+    }
+
     @FXML
     private void cancelExt(){
         clearField();

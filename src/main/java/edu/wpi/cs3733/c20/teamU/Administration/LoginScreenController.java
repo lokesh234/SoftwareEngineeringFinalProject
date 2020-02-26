@@ -27,6 +27,10 @@ public class LoginScreenController {
     employeeFormController = attribute;
   }
 
+  public void keyConfirm(){
+    loginEnter.fire();
+  }
+
 
   /**
    * checks whether the user entered the correct credentials

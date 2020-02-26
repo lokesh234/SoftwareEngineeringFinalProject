@@ -102,10 +102,10 @@ public class WeatherController {
     low1.setText(getTempString(returnF(weather.get(8).getWeatherInfo().getMinimumTemperature())) + "\u00B0" + "F");
     day1.setEffect(setEffect((int)returnF(weather.get(4).getWeatherInfo().getMaximumTemperature())));
 
-    day2.setImage(new Image(App.class.getResource(getWeather(weather.get(15).getWeatherStates().toString())).toString()));
-    hi2.setText(getTempString(returnF(weather.get(15).getWeatherInfo().getMaximumTemperature())) + "\u00B0" + "F");
-    low2.setText(getTempString(returnF(weather.get(9).getWeatherInfo().getMinimumTemperature())) + "\u00B0" + "F");
-    day2.setEffect(setEffect((int)returnF(weather.get(15).getWeatherInfo().getMaximumTemperature())));
+    //day2.setImage(new Image(App.class.getResource(getWeather(weather.get(15).getWeatherStates().toString())).toString()));
+    //hi2.setText(getTempString(returnF(weather.get(15).getWeatherInfo().getMaximumTemperature())) + "\u00B0" + "F");
+    //low2.setText(getTempString(returnF(weather.get(9).getWeatherInfo().getMinimumTemperature())) + "\u00B0" + "F");
+    //day2.setEffect(setEffect((int)returnF(weather.get(15).getWeatherInfo().getMaximumTemperature())));
 
     day3.setImage(new Image(App.class.getResource(getWeather(weather.get(23).getWeatherStates().toString())).toString()));
     hi3.setText(getTempString(returnF(weather.get(23).getWeatherInfo().getMaximumTemperature())) + "\u00B0" + "F");

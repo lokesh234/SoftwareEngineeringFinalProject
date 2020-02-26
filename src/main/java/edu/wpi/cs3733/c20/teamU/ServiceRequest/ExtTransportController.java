@@ -20,6 +20,10 @@ public class ExtTransportController {
   @FXML private JFXButton cancel;
   @FXML private JFXButton confirm;
 
+  public void keyConfirm() {
+    confirm.fire();
+  }
+
   @FXML
   private void getSubmission() {
     String userLast = lastNameText.getText();

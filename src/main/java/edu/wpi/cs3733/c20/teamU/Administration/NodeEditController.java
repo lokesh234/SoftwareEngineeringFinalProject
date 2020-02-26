@@ -19,6 +19,10 @@ public class NodeEditController {
   private String ID, x, y, floor, build, type, shortName, longName;
   GraphEditController nodeViewScreenController;
 
+  public void keyConfirm(){
+    confirm.fire();
+  }
+
   public NodeEditController() {}
 
   /**
@@ -72,6 +76,7 @@ public class NodeEditController {
     if(userShortName.isEmpty()) userShortName = shortName;
 
     DatabaseWrapper.editNode(ID, (int) Double.parseDouble(userX), (int) Double.parseDouble(userY), (int) Double.parseDouble(userFloor), userBuild, userType, userLongName, userShortName);
+    DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "NODE", "Edit", ID);
     text2.clear();
     text3.clear();
     text4.clear();

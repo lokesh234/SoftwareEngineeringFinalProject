@@ -91,6 +91,8 @@ public class RequestScreenController {
                 DatabaseWrapper.languageSRDel(Integer.parseInt(date), userName, "LANGE");
                 break;
         }
+
+        DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), name, "Resolved", " ");
         //adminRequestController.update();
         AdministrationWrapper.adminRequestControllerUpdate(adminRequestController);
         backButton.fire();
