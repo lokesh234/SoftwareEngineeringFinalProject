@@ -213,6 +213,18 @@
                                       </ImageView>
                                   </graphic>
                               </JFXButton>
+                              <JFXButton fx:id="voice" onAction="#startListening" contentDisplay="TOP" prefHeight="59.0" prefWidth="73.0" text="Voice" textFill="WHITE" textOverrun="CLIP">
+                                  <graphic>
+                                      <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../png_files/Microphone.png" />
+                                          </image>
+                                      </ImageView>
+                                  </graphic>
+                                  <font>
+                                      <Font name="Segoe UI" size="0.01" />
+                                  </font>
+                              </JFXButton>
                           </children>
                           <VBox.margin>
                               <Insets />

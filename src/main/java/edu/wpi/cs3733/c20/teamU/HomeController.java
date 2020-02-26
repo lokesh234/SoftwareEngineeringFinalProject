@@ -78,6 +78,8 @@ public class HomeController {
   private int m;
   private int s;
   private int checker;
+  private Speech speech = new Speech();
+  private volatile boolean runThread = true;
 
 
   public void setWeatherData(WeatherController weatherController1) {
@@ -102,6 +104,14 @@ public class HomeController {
   }
 
   @FXML
+  private void openLoginSceneSound() {
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getPopup().getContent().add(App.getLogin());
+    App.getPopup().show(App.getPrimaryStage());
+  }
+
+  @FXML
   private void openStartScene() {
     App.getPrimaryStage().setScene(App.getStartScene());
   }
@@ -117,11 +127,47 @@ public class HomeController {
   }
 
   @FXML
+  private void openHelpSceneSound(){
+    App.getSecurityPop().getContent().add(App.getSecurity());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getSecurityController().addRequest();
+    App.getSecurityPop().show(App.getPrimaryStage());
+  }
+
+  @FXML
   private void openInformationScene(ActionEvent e){
     App.getInformationPopUp().getContent().add(App.getInformation());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getInformationPopUp().show(App.getPrimaryStage());
+  }
+
+  @FXML
+  private void openInformationSound(){
+    App.getInformationPopUp().getContent().add(App.getInformation());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getInformationPopUp().show(App.getPrimaryStage());
+  }
+
+  @FXML
+  private void openRequestSound(){
+    App.loadAdminRequests();
+    App.getRequestPop().getContent().add(App.getRequest());
+    App.getHome().setOpacity(.5);
+    App.getHome().setDisable(true);
+    App.getRequestPop().show(App.getPrimaryStage());
+  }
+
+  @FXML
+  private void openNavSceneSpeech(){
+    System.out.println("List contains nav");
+    App.loadPathfinding();
+    DatabaseWrapper.updateGraph();
+    //App.getPathfindController().drawNodes();
+    ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
+    App.getPrimaryStage().setScene(App.getPathScene());
   }
 
 
@@ -132,6 +178,64 @@ public class HomeController {
     App.getHome().setDisable(true);
     App.getSecurityController().addRequest();
     App.getSecurityPop().show(App.getPrimaryStage());
+  }
+
+  @FXML
+  private void startListening(){
+    System.out.println("Listening started");
+    App.getSpokenWords().clear();
+    speech.startlistening();
+  }
+
+  @FXML
+  private void openHelpSceneSpeechB(){
+    runThread = true;
+    Thread startT = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        Runnable runTask = new Runnable() {
+          @Override
+          public void run() {
+            if(App.getSpokenWords().contains("help") || App.getSpokenWords().contains("help") || App.getSpokenWords().contains("  help") || App.getSpokenWords().contains(" help") || App.getSpokenWords().contains("help help help") || App.getSpokenWords().contains("help help") || App.getSpokenWords().contains("help help help help")) {
+              System.out.println("List contains help");
+              openHelpSceneSound();
+              App.getSpokenWords().clear();
+            }
+            if (App.getSpokenWords().contains(" requests") || App.getSpokenWords().contains("requests") || App.getSpokenWords().contains("  requests") || App.getSpokenWords().contains("request") || App.getSpokenWords().contains("  requestt" )){
+              openRequestSound();
+              App.getSpokenWords().clear();
+            }
+            if(App.getSpokenWords().contains("nav") || App.getSpokenWords().contains("  nav") || App.getSpokenWords().contains(" nav")){
+              openNavSceneSpeech();
+              App.getSpokenWords().clear();
+            }
+            if(App.getSpokenWords().contains("information") || App.getSpokenWords().contains("  info") || App.getSpokenWords().contains(" information") || App.getSpokenWords().contains("inforamtion info") || App.getSpokenWords().contains("info")){
+              openInformationSound();
+              App.getSpokenWords().clear();
+            }
+            if(App.getSpokenWords().contains("login") || App.getSpokenWords().contains("  login") || App.getSpokenWords().contains(" login") || App.getSpokenWords().contains("login login") || App.getSpokenWords().contains("login login login")){
+              openLoginSceneSound();
+              App.getSpokenWords().clear();
+            }
+            if(App.getSpokenWords().contains("weather") || App.getSpokenWords().contains("  weather") || App.getSpokenWords().contains(" wea") || App.getSpokenWords().contains("weather weather") || App.getSpokenWords().contains("weather weather weather")){
+              openWeather();
+              App.getSpokenWords().clear();
+            }
+          }
+        };
+        while (runThread) {
+          try {
+            Thread.sleep(1000);
+//            System.out.println(App.getTimeoutValue());
+          } catch (InterruptedException ex) {
+            ex.printStackTrace();
+          }
+          Platform.runLater(runTask);
+        }
+      }
+    });
+    startT.setDaemon(runThread);
+    startT.start();
   }
 
   @FXML
@@ -239,6 +343,9 @@ public class HomeController {
     App.getWeatherPop().show(App.getPrimaryStage());
   }
 
+
+
+
   @FXML
   private void openRequestScene(ActionEvent e) {
     App.loadAdminRequests();
@@ -259,6 +366,7 @@ public class HomeController {
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
+    openHelpSceneSpeechB();
     startC.setDaemon(true);
     startC.start();
     MapGes1.setOnMouseClicked(e -> {
