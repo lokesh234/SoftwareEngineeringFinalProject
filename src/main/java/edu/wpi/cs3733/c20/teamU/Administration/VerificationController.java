@@ -7,6 +7,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import java.util.ArrayList;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 public class VerificationController {
 
@@ -30,6 +31,7 @@ public class VerificationController {
       if (twoFactorSecurity.checkKey(code.getText())) {
         if (atAdmin) {
           App.getLoginScreenController().changeScene();
+          Notifications.create().text("User created!").show();
         } else {
           DatabaseWrapper
               .addLoginSR(accountDetails.get(0), accountDetails.get(1), accountDetails.get(2),
@@ -99,6 +101,7 @@ public class VerificationController {
   public void startProcess(String userName, String number) {
     twoFactorSecurity = new TwoFactorSecurity(userName, number);
     twoFactorSecurity.sendOutSMS();
+    Notifications.create().text("Verification number sent!").show();
   }
 
   @FXML

@@ -90,7 +90,7 @@ public class PathfindController {
     PathfindTextController pathfindTextController = new PathfindTextController();
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
-    private Circle wong = new Circle();
+    private ArrayList<Circle> wongs = new ArrayList<>();
 
     @FXML private VBox radioBox;
 
@@ -100,7 +100,6 @@ public class PathfindController {
     Label startLabel, endLabel, statusLabel;
     @FXML
     TextField SearchBox;
-
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -723,10 +722,14 @@ public class PathfindController {
         for (Map.Entry<Circle, Node> pair : interFloorPaths.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue().getFloor());
         }
+        for (Circle wong : wongs) {
+            removeFromAll(wong);
+        }
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
         interFloorPaths.clear();
+        wongs.clear();
         updateStatus();
     }
     private void drawPath() {
@@ -815,6 +818,7 @@ public class PathfindController {
             }
         }
         PathTransition pathTransition = new PathTransition();
+        Circle wong = new Circle();
         wong.setCenterX(start.getX());
         wong.setCenterY(start.getY());
         wong.setRadius(15);
@@ -823,53 +827,57 @@ public class PathfindController {
         pathTransition.setPath(pathe);
         pathTransition.setCycleCount(PathTransition.INDEFINITE);
         pathTransition.setAutoReverse(true);
+        pathTransition.jumpTo(Duration.seconds(7));
         pathTransition.play();
         displayingPath = true;
         addToPath(wong, start.getFloor());
+        wongs.add(wong);
         updateStatus();
     }
-
+    //path is an arraylist of nodes
     private void getTextPath() {
         if (path.size() == 0) {
             return;
         }
         App.getTextpath().clear();
-//        String pathWay = "";
-//        Node n2 = path.get(path.size() - 1);
-//        for (int i = 0; i < path.size() - 1; i++) { //Iterate over every adjacent pair in the path
-//            Node n1 = path.get(i);
-//            if (i != path.size() - 2) {
-//                pathWay = getDirection(path.get(i), path.get(i + 1));
-//                System.out.println(pathWay);
-//            }
-//            App.getTextpath().add(pathWay + ": " + n1.getLongName());
-//        }
-        String direction = "";
-        boolean didContinue = false;
-        for(int i = path.size() - 1; i >= 0; i--) {
-            String name = path.get(i).getLongName();
-//            System.out.println(path.get(i).getID().substring(1, 5));
-            if(i == 0) {
-//                App.getTextpath().add(getDirection(path.get(i + 1), path.get(i)) + path.get(i + 1).getLongName());
-                App.getTextpath().add("Arrived at: " + name);
-                continue;
-            }
-            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
-                if(!didContinue) {
-                    App.getTextpath().add("Continue through " + name);
-                    didContinue = true;
-                }
-                continue;
-            }
-            didContinue = false;
-            direction = getDirection(path.get(i), path.get(i - 1));
-//            System.out.println(nodeType);
-            App.getTextpath().add(direction + name);
+
+        TextPathBuilder tpb = new TextPathBuilder(20,11.5,3.5, "feet");
+        // the path is given in the reverse order...
+        ArrayList<Node> reversedPath = new ArrayList<Node>();
+        for(int index = path.size()-1; index >= 0; index --){
+            Node n = path.get(index);
+            reversedPath.add(n);
         }
-//        App.getTextpath().add("Arrived at: " + n2.getLongName());
-//        Collections.reverse(App.getTextpath());
+
+
+        tpb.setNodes(reversedPath);
+        tpb.generateTextDirections();
+        String directions = tpb.getCleanTextDirections();
+        App.getTextpath().add(directions);
+
+//
+//        String direction = "";
+//        boolean didContinue = false;
+//        for(int i = path.size() - 1; i >= 0; i--) {
+//            String name = path.get(i).getLongName();
+//            if(i == 0) {
+//                App.getTextpath().add("Arrived at: " + name);
+//                continue;
+//            }
+//            if(direction.equals(getDirection(path.get(i), path.get(i - 1)))) {
+//                if(!didContinue) {
+//                    App.getTextpath().add("Continue through " + name);
+//                    didContinue = true;
+//                }
+//                continue;
+//            }
+//            didContinue = false;
+//            direction = getDirection(path.get(i), path.get(i - 1));
+//            App.getTextpath().add(direction + name);
+//        }
     }
 
+    // this function will be deprecated
     private String getDirection(Node one, Node two) {
         int x = one.getX() - two.getX();
 //        System.out.println(x);
@@ -929,5 +937,12 @@ public class PathfindController {
                 if (NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().remove(e);
                 break;
         }
+    }
+    private void removeFromAll(javafx.scene.Node e) {
+        NodesPane1.getChildren().remove(e);
+        NodesPane2.getChildren().remove(e);
+        NodesPane3.getChildren().remove(e);
+        NodesPane4.getChildren().remove(e);
+        NodesPane5.getChildren().remove(e);
     }
 }

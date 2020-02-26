@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.controlsfx.control.Notifications;
 
 public class TimeoutController {
 
@@ -31,6 +32,7 @@ public class TimeoutController {
       newTime.setStyle("-fx-border-color: red");
     } else {
       App.setTimeoutValue(userTime * 1000);
+      Notifications.create().text("Timeout set to: " + userTime + "s").show();
       clearFields();
       cancel.fire();
     }

@@ -12,6 +12,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
@@ -79,6 +80,7 @@ public class EmployeeFormController {
       DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Edit", oldUsername);
       DatabaseWrapper.delLoginSR(oldUsername);
       DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
+      Notifications.create().text(first + " " + last + " has been edited!").show();
       returnToAdminEmployee();
     } else {
       accountDetails = new ArrayList<>();

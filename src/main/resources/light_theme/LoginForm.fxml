@@ -7,15 +7,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.LoginScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.LoginScreenController">
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" styleClass="titleBar" stylesheets="@light.css">
+        <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+                <HBox alignment="CENTER" prefHeight="78.0" prefWidth="600.0" styleClass="titleBar" stylesheets="@light.css" BorderPane.alignment="CENTER">
                     <padding>
                         <Insets right="18.0" top="7.0" />
                     </padding>
@@ -23,87 +28,59 @@
                   <Label text="Admin Login Screen" />
                </children>
                 </HBox>
-                <VBox alignment="CENTER" prefHeight="288.0" prefWidth="600.0" styleClass="windowScreen">
-                    <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                            <children>
-                                <Label text="Username">
-                                    <HBox.margin>
-                                        <Insets right="38.0" />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="Segoe UI" size="30.0" />
-                                    </font>
-                                </Label>
-                        <JFXTextField fx:id="usernameField" focusColor="BLACK" prefHeight="44.0" prefWidth="369.0">
-                           <font>
-                              <Font name="Segoe UI" size="30.0" />
-                           </font>
-                        </JFXTextField>
-                            </children>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
-                            <children>
-                                <Label text="Password">
-                                    <HBox.margin>
-                                        <Insets right="50.0" />
-                                    </HBox.margin>
-                                    <font>
-                                        <Font name="Segoe UI" size="30.0" />
-                                    </font>
-                                </Label>
-                        <JFXPasswordField fx:id="passwordField" prefHeight="36.0" prefWidth="367.0">
-                           <font>
-                              <Font name="Segoe UI" size="30.0" />
-                           </font>
-                        </JFXPasswordField>
-                            </children>
-                            <opaqueInsets>
-                                <Insets />
-                            </opaqueInsets>
-                            <VBox.margin>
-                                <Insets />
-                            </VBox.margin>
-                            <padding>
-                                <Insets top="14.0" />
-                            </padding>
-                        </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <JFXCheckBox fx:id="robotCheck" text="Test Two-Factor Verification Feature" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                     <children>
-                        <JFXButton fx:id="loginEnter" buttonType="RAISED" onAction="#isAuthorized" prefHeight="49.0" prefWidth="131.0" text="Confirm">
-                           <font>
-                              <Font name="Segoe UI" size="25.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="cancel" buttonType="RAISED" onAction="#exitPopup" prefHeight="49.0" prefWidth="131.0" text="Cancel">
-                           <font>
-                              <Font name="Segoe UI" size="25.0" />
-                           </font>
-                        </JFXButton>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <JFXButton fx:id="test" onAction="#enterVerification" text="Test" />
-                     </children>
-                  </HBox>
-                    </children>
-                    <padding>
-                        <Insets top="1.0" />
-                    </padding>
-                </VBox>
-            </children>
-        </VBox>
+         </top>
+         <center>
+            <GridPane hgap="20.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                          <Label text="Username">
+                              <font>
+                                  <Font name="Segoe UI" size="30.0" />
+                              </font>
+                          </Label>
+                  <JFXTextField fx:id="usernameField" focusColor="BLACK" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="Segoe UI" size="30.0" />
+                     </font>
+                  </JFXTextField>
+                          <Label text="Password" GridPane.rowIndex="1">
+                              <font>
+                                  <Font name="Segoe UI" size="30.0" />
+                              </font>
+                          </Label>
+                  <JFXPasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Segoe UI" size="30.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <JFXCheckBox fx:id="robotCheck" text="Test Two-Factor Verification Feature" GridPane.rowIndex="2" />
+                  <JFXButton fx:id="loginEnter" buttonType="RAISED" onAction="#isAuthorized" prefHeight="49.0" prefWidth="131.0" text="Confirm" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Segoe UI" size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="cancel" buttonType="RAISED" onAction="#exitPopup" prefHeight="49.0" prefWidth="131.0" text="Cancel" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Segoe UI" size="25.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="test" onAction="#enterVerification" text="Test" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </GridPane>
+         </center>
+      </BorderPane>
     </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 public class SanRequestController {
 
@@ -47,8 +48,7 @@ public class SanRequestController {
             b.setStyle("-fx-border-color:  #FFEEC9");
             c.setStyle("-fx-border-color:  #FFEEC9");
             d.setStyle("-fx-border-color:  #FFEEC9");
-            //DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
-            //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            Notifications.create().text("Sanitation Request has been submitted!").show();
             DatabaseWrapper.SanitarySRAdd(SanService,location,nature,comment);
             clearField();
             back.fire();

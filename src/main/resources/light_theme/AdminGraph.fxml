@@ -30,7 +30,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="PathGes2">
                         <AnchorPane fx:id="NodesPane2">
 
                         </AnchorPane>
@@ -39,7 +39,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="PathGes3">
                         <AnchorPane fx:id="NodesPane3">
 
                         </AnchorPane>
@@ -48,7 +48,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane fx:id="PathGes" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane fx:id="PathGes4" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" >
                         <AnchorPane fx:id="NodesPane4">
 
                         </AnchorPane>
@@ -57,7 +57,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="PathGes5">
                         <AnchorPane fx:id="NodesPane5">
 
                         </AnchorPane>
@@ -83,7 +83,10 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="backButton" onAction="#backToAdmin" text="Back" textFill="WHITE" />
+                        <JFXButton fx:id="backButton" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="80.0" text="Back" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin></JFXButton>
                      </children>
                   </HBox>
                </children>
@@ -218,6 +221,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
+                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Directory" textAlignment="CENTER" wrapText="true" onAction="#openTreeView"/>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
