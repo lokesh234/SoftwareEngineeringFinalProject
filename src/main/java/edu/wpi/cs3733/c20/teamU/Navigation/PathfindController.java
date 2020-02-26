@@ -734,7 +734,6 @@ public class PathfindController {
     }
     private void drawPath() {
         clearPath();
-        Path pathe = new Path();
         if (path.size() == 0){
             displayingPath = true;
             updateStatus();
@@ -742,17 +741,30 @@ public class PathfindController {
         }
        // System.out.println("a");
  //       for(int i = path.size() - 1; i >=0 ; i--)
-        for (int i = 0; i < path.size()-1; i++) { //Iterate over every adjacent pair in the path
+        //The path can be modeled as a long string of nodes on the same floor, over which we want a circle to travel, broken up by pairs of nodes on different floors
+        int i = 0;
+        int startX = 0;
+        int startY = 0;
+        int startFloor = 1;
+        while (i < path.size() - 1) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
+            i++;
             if (!floorsInPath.contains(n1.getFloor()) && (i == 0 || (!n1.getNodeType().equals("STAI") && !n1.getNodeType().equals("ELEV")))) floorsInPath.add(n1.getFloor());
             if (!floorsInPath.contains(n2.getFloor()) && (i+2 == path.size() || (!n2.getNodeType().equals("STAI") && !n2.getNodeType().equals("ELEV")))) floorsInPath.add(n2.getFloor());
 
-            if (n1.getFloor() == n2.getFloor()) {
-
-                MoveTo move = new MoveTo(n1.getX(), n1.getY());
+            Path pathe = new Path();
+            boolean firstTime = true;
+            while (n1.getFloor() == n2.getFloor()) {
+                MoveTo move;
+                if (firstTime) {
+                    startX = n1.getX();
+                    startY = n1.getY();
+                    startFloor = n1.getFloor();
+                    move = new MoveTo(startX, startY);
+                    pathe.getElements().add(move);
+                }
                 LineTo line = new LineTo(n2.getX(), n2.getY());
-                pathe.getElements().add(move);
                 pathe.getElements().add(line);
                 pathe.setStroke(Color.web("#7851a9"));
                 pathe.setStrokeWidth(10.0);
@@ -787,8 +799,18 @@ public class PathfindController {
                 timeline.play();
                 pathes.put(pathe, n1.getFloor());
                 addToPath(pathe, n1.getFloor());
+                i++;
+
+                if (i + 1 < path.size()) { //If we've not reached the end of the given path, we need to keep going
+                    n1 = path.get(i);
+                    n2 = path.get(i+1);
+                    firstTime = false;
+                }
+                else {
+                    break;
+                }
             }
-            else {
+            if (i + 1 < path.size()) { //If we're out here and we still have room to go, it's because there's a multi-floor path
                 Circle c = new Circle();
                 Circle c2 = new Circle();
                 c.setCenterX(n1.getX());
@@ -800,13 +822,12 @@ public class PathfindController {
                 if (n1.getFloor() < n2.getFloor()) {
                     c.setStroke(Color.DARKGREEN);
                     c2.setStroke(Color.ORCHID);
-                }
-                else {
+                } else {
                     c.setStroke(Color.ORCHID);
                     c2.setStroke(Color.DARKGREEN);
                 }
-                c.setRadius(App.getNodeSize()+5);
-                c2.setRadius(App.getNodeSize()+5);
+                c.setRadius(App.getNodeSize() + 5);
+                c2.setRadius(App.getNodeSize() + 5);
                 c.setStrokeWidth(10);
                 c2.setStrokeWidth(10);
                 c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorPathHandler);
@@ -816,22 +837,24 @@ public class PathfindController {
                 addToPath(c, n1.getFloor());
                 addToPath(c2, n2.getFloor());
             }
+
+            PathTransition pathTransition = new PathTransition();
+            Circle wong = new Circle();
+            wong.setCenterX(startX);
+            wong.setCenterY(startY);
+            wong.setRadius(15);
+            pathTransition.setNode(wong);
+            pathTransition.setDuration(Duration.seconds(7));
+            pathTransition.setPath(pathe);
+            pathTransition.setCycleCount(PathTransition.INDEFINITE);
+            pathTransition.setAutoReverse(true);
+            pathTransition.jumpTo(Duration.seconds(7));
+            pathTransition.play();
+            displayingPath = true;
+            addToPath(wong, startFloor);
+            wongs.add(wong);
         }
-        PathTransition pathTransition = new PathTransition();
-        Circle wong = new Circle();
-        wong.setCenterX(start.getX());
-        wong.setCenterY(start.getY());
-        wong.setRadius(15);
-        pathTransition.setNode(wong);
-        pathTransition.setDuration(Duration.seconds(7));
-        pathTransition.setPath(pathe);
-        pathTransition.setCycleCount(PathTransition.INDEFINITE);
-        pathTransition.setAutoReverse(true);
-        pathTransition.jumpTo(Duration.seconds(7));
-        pathTransition.play();
-        displayingPath = true;
-        addToPath(wong, start.getFloor());
-        wongs.add(wong);
+
         updateStatus();
     }
     //path is an arraylist of nodes
