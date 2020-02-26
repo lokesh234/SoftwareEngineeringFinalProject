@@ -8,6 +8,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
+import org.controlsfx.control.Notifications;
 
 public class LanguageController {
 
@@ -41,11 +42,8 @@ public class LanguageController {
         String userPass = passwordText.getText();
         String userLanguage = "";
 
-        //TODO: specify which textfield to write in if empty
         if (userFirst.isEmpty() || userLast.isEmpty() || userPass.isEmpty() || (!Japenese.isSelected() && !Russian.isSelected() && !Hindi.isSelected() && !Spanish.isSelected() && !Chinese.isSelected() && !Ethiopian.isSelected())) {
-            // will print out some text eventually, right now nothing
             firstNameText.setStyle("-fx-border-color: red");
-//            comments.setStyle("-fx-border-color: red");
             lastNameText.setStyle("-fx-border-color: red");
             passwordText.setStyle("-fx-border-color: red");
             Japenese.setStyle("-fx-border-color: red");
@@ -82,10 +80,8 @@ public class LanguageController {
             if (Ethiopian.isSelected()){
                 userLanguage = "Ethiopian";
             }
-
-            //TODO:
-            //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
             DatabaseWrapper.languageSRAdd(userLast,userFirst,userLanguage, userPass);
+            Notifications.create().text("Language Request has been submitted!").show();
             clearField();
             cancel.fire();
         }

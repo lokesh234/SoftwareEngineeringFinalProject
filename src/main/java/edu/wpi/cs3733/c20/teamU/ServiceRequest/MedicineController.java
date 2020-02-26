@@ -10,6 +10,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 //import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 
@@ -24,6 +25,10 @@ public class MedicineController {
     @FXML private JFXButton submit;
     @FXML private JFXComboBox comboBox = new JFXComboBox();
 
+    public void keyConfirm(){
+        submit.fire();
+    }
+
     @FXML
     private void getSubmission() {
         String userLast = last.getText();
@@ -35,9 +40,7 @@ public class MedicineController {
         if(comboBox.getValue() == null) userDelivery = "";
         else userDelivery = comboBox.getValue().toString();
 
-        //TODO: specify which textfield to write in if empty
         if(userFreq.isEmpty() || userLast.isEmpty() || userFirst.isEmpty() || userDrug.isEmpty() || userDelivery.isEmpty() || userComment.isEmpty()) {
-            // will print out some text eventually, right now nothing
             last.setStyle("-fx-border-color: red");
             comments.setStyle("-fx-border-color: red");
             frequency.setStyle("-fx-border-color: red");
@@ -52,7 +55,7 @@ public class MedicineController {
             comboBox.setStyle("-fx-border-color:  #FFEEC9");
             first.setStyle("-fx-border-color:  #FFEEC9");
             DatabaseWrapper.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
-            //ServiceDatabase.medicineSRAdd(userFirst, userLast, userDrug, userFreq, userDelivery, userComment);
+            Notifications.create().text("Medicine Request has been submitted!").show();
             clearField();
             backToRequest.fire();
         }

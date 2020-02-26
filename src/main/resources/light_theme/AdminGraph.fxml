@@ -21,7 +21,7 @@
             <VBox fx:id="oppo" prefHeight="3240">
                <children>
                   <AnchorPane fx:id="N1" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane fx:id="PathGes1" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane fx:id="MapGes1" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                         <AnchorPane fx:id="NodesPane1">
 
                         </AnchorPane>
@@ -30,7 +30,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="MapGes2">
                         <AnchorPane fx:id="NodesPane2">
 
                         </AnchorPane>
@@ -39,7 +39,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="MapGes3">
                         <AnchorPane fx:id="NodesPane3">
 
                         </AnchorPane>
@@ -48,7 +48,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane fx:id="PathGes" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" >
                         <AnchorPane fx:id="NodesPane4">
 
                         </AnchorPane>
@@ -57,7 +57,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
+                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="MapGes5">
                         <AnchorPane fx:id="NodesPane5">
 
                         </AnchorPane>
@@ -221,7 +221,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Table View" textAlignment="CENTER" wrapText="true" />
+                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Directory" textAlignment="CENTER" wrapText="true" onAction="#openTreeView"/>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">

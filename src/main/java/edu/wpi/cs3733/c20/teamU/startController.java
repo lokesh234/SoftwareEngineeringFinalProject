@@ -4,6 +4,7 @@ import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 public class startController {
 
@@ -106,6 +107,7 @@ public class startController {
     App.getSanRequestPop().getContent().clear();
     App.getLanguageSRPop().getContent().clear();
     App.getChoosePathPop().getContent().clear();
+    Notifications.create().text("Kiosk has timed out!").show();
   }
   @FXML
   private void initialize() {

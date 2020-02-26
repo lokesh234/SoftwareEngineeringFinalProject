@@ -4,17 +4,22 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import javafx.animation.Interpolator;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.util.Duration;
+import net.kurobako.gesturefx.GesturePane;
 
 import java.io.IOException;
 import java.util.*;
@@ -53,8 +58,15 @@ public class GraphEditController {
   private Node selectedNode;
   private Node selectedStartNode;
   private Node selectedEndNode;
+  @FXML private GesturePane MapGes1;
+  @FXML private GesturePane MapGes2;
+  @FXML private GesturePane MapGes3;
+  @FXML private GesturePane MapGes4;
+  @FXML private GesturePane MapGes5;
   private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
+
+  @FXML private GesturePane PathGes1, PathGes2, PathGes3, PathGes4, PathGes5;
 
   private Circle startSelect = new Circle();
   private Circle endSelect = new Circle();
@@ -63,6 +75,14 @@ public class GraphEditController {
   }
 
   public void zoomOut(ActionEvent event) {
+  }
+
+  @FXML
+  public void openTreeView(ActionEvent event) {
+    App.loadTreeView();
+    App.getTreeViewPop().getContent().clear();
+    App.getTreeViewPop().getContent().add(App.getTreeView());
+    App.getTreeViewPop().show(App.getPrimaryStage());
   }
 
   private enum State {
@@ -89,6 +109,71 @@ public class GraphEditController {
     NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
     NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
     NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
+    MapGes1.setOnMouseClicked(e -> {
+      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
+                .orElse(MapGes1.targetPointAtViewportCentre());
+        // increment of scale makes more sense exponentially instead of linearly
+        MapGes1.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
+      }
+    });
+    MapGes2.setOnMouseClicked(e -> {
+      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        Point2D pivotOnTarget = MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
+                .orElse(MapGes2.targetPointAtViewportCentre());
+        // increment of scale makes more sense exponentially instead of linearly
+        MapGes2.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
+      }
+    });
+    MapGes3.setOnMouseClicked(e -> {
+      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        Point2D pivotOnTarget = MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
+                .orElse(MapGes3.targetPointAtViewportCentre());
+        // increment of scale makes more sense exponentially instead of linearly
+        MapGes3.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
+      }
+    });
+    MapGes4.setOnMouseClicked(e -> {
+      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        Point2D pivotOnTarget = MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
+                .orElse(MapGes4.targetPointAtViewportCentre());
+        // increment of scale makes more sense exponentially instead of linearly
+        MapGes4.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
+      }
+    });
+    MapGes5.setOnMouseClicked(e -> {
+      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+        Point2D pivotOnTarget = MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
+                .orElse(MapGes5.targetPointAtViewportCentre());
+        // increment of scale makes more sense exponentially instead of linearly
+        MapGes5.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
+      }
+    });
+    MapGes1.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+    MapGes2.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+    MapGes3.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+    MapGes4.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+    MapGes5.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
   }
 
 
@@ -264,9 +349,9 @@ public class GraphEditController {
   private void updateButtons() {
     removeFromAll(startSelect);
     removeFromAll(endSelect);
-    for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
-      removeFromAll(pair.getValue());
-    }
+//    for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
+//      removeFromAll(pair.getValue());
+//    }
     for (Map.Entry<Circle, Integer> pair : extraFloorPaths.entrySet()) {
       removeFromAll(pair.getKey());
     }
@@ -399,8 +484,10 @@ public class GraphEditController {
         Path c = pair.getValue();
         removeFromPath(c, pair.getKey().getStart().getFloor());
       }
+    }
+    if (interFloorPaths.size() > 0) {
       for (Map.Entry<Node, Circle> pair : interFloorPaths.entrySet()) {
-        removeFromPath(pair.getValue(), pair.getKey().getFloor());
+        removeFromAll(pair.getValue());
       }
     }
     interFloorPaths.clear();
@@ -433,7 +520,7 @@ public class GraphEditController {
         addToPath(pathe, e.getStart().getFloor());
         lines.put(e, pathe);
       }
-      else {
+      else if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) {
         Circle c = new Circle();
         Circle c2 = new Circle();
         c.setCenterX(n1.getX());
@@ -460,7 +547,14 @@ public class GraphEditController {
         interFloorPaths.put(n2, c2);
         addToPath(c, n1.getFloor());
         addToPath(c2, n2.getFloor());
+
+//        c.toFront();
+//        c2.toFront();
       }
+    }
+
+    for (Map.Entry<Circle, Node> pair : circles.entrySet()) {
+      pair.getKey().toFront(); //Ensure that all nodes are drawn above the edges
     }
   }
 
@@ -528,6 +622,7 @@ public class GraphEditController {
       c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
       c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
       c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
+      c.setOnMouseDragged(event -> drag(event));
       App.setColor(n, c);
       circles.put(c, n);
     }
@@ -539,7 +634,7 @@ public class GraphEditController {
     @Override
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
-      source.setFill(Color.YELLOW);
+      if (state != State.neutral) source.setFill(Color.YELLOW);
     }
   };
 
@@ -584,17 +679,32 @@ public class GraphEditController {
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
       App.setColor(circles.get(source), source);
+      getFloorGes(floor).setGestureEnabled(true);
+
+      if (state == State.neutral) {
+        Node n = circles.get(source);
+        DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
+        update();
+      }
     }
   };
 
-  EventHandler<MouseEvent> circleDragHandler = new EventHandler<MouseEvent>(){
-    @Override
-    public void handle(MouseEvent event) {
-      Circle source = (Circle) event.getSource();
-      Node n = circles.get(source);
-      DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
+  public void drag(MouseEvent event) {
+    if (state == State.neutral) {
+      Circle c = (Circle) event.getSource();
+      getFloorGes(floor).setGestureEnabled(false);
+      c.setCenterX(event.getX());
+      c.setCenterY(event.getY());
+
+      Node n = circles.get(c);
+
+      if (!nodeMode) {
+        DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
+        clearEdges();
+        drawEdges();
+      }
     }
-  };
+  }
 
   EventHandler<MouseEvent> interFloorHandler = new EventHandler<MouseEvent>() {
     @Override
@@ -684,6 +794,36 @@ public class GraphEditController {
       case 5:
         NodesPane5.getChildren().remove(e);
         break;
+    }
+  }
+
+  private AnchorPane getFloor(int floor) {
+    switch (floor) {
+      case 1:
+        return NodesPane1;
+      case 2:
+        return NodesPane2;
+      case 3:
+        return NodesPane3;
+      case 4:
+        return NodesPane4;
+      default:
+        return NodesPane5;
+    }
+  }
+
+  private GesturePane getFloorGes(int floor) {
+    switch (floor) {
+      case 1:
+        return PathGes1;
+      case 2:
+        return PathGes2;
+      case 3:
+        return PathGes3;
+      case 4:
+        return PathGes4;
+      default:
+        return PathGes5;
     }
   }
 

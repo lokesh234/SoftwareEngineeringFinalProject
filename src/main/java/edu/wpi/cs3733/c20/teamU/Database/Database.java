@@ -2080,4 +2080,49 @@ public class Database {
             return false;
         }
     }
+
+    public static void getNodesByFloor(ArrayList<Node> nodes, int floor){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "MapNodesU";
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            String sql1 = "SELECT * FROM " + tableName + " WHERE floor = " + floor + "";
+            ResultSet results = stmt.executeQuery(sql1);
+            ResultSetMetaData rsmd = results.getMetaData();
+            int columns = rsmd.getColumnCount();
+            for (int i = 1; i <= columns; i++) {
+                //no need to print Column Names
+                //System.out.print(rsmd.getColumnLabel(i) + "\t\t\t");
+            }
+            System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            //for each line, create a node and add it to hash map
+            while (results.next()) {
+                String _nodeID = results.getString(1);
+                int _xcoord = results.getInt(2);
+                int _ycoord = results.getInt(3);
+                int _floor = results.getInt(4);
+                String _building = results.getString(5);
+                String _nodeType = results.getString(6);
+                String _longName = results.getString(7);
+                String _shortName = results.getString(8);
+                Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
+                nodes.add(node);
+            }
+
+            results.close();
+            stmt.close();
+            connection.close();
+            return;
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
 }

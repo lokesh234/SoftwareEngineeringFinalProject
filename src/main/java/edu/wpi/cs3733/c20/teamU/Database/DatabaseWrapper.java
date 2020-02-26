@@ -468,5 +468,8 @@ public class DatabaseWrapper {
       graph.update();
   }
 
+  public static void getNodesByFloor(ArrayList<Node> nodes, int floor){
+      Database.getNodesByFloor(nodes, floor);
+  }
 
 }

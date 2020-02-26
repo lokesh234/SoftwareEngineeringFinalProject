@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import org.controlsfx.control.Notifications;
 
 public class ClownController {
 
@@ -21,36 +22,29 @@ public class ClownController {
     @FXML private JFXComboBox comboBox = new JFXComboBox();
     @FXML private AnchorPane clownParent;
 
+    public void keyConfirm(){
+        submit.fire();
+    }
+
     @FXML
     private void getSubmission() {
         String location = locationField.getText();
         String nClowns = nClownsField.getText();
         String rName = rNameField.getText();
-        //String other = otherField.getText();
         String date = dateField.getValue().toString();
-        //String userDelivery;
-        //if(comboBox.getValue() == null) userDelivery = "";
-        //else userDelivery = comboBox.getValue().toString();
 
-        //TODO: specify which textfield to write in if empty
         if(rName.isEmpty() || location.isEmpty() || date.isEmpty() || nClowns.isEmpty()) {
-            // will print out some text eventually, right now nothing
             locationField.setStyle("-fx-border-color: red");
             nClownsField.setStyle("-fx-border-color: red");
             rNameField.setStyle("-fx-border-color: red");
-            //if (!otherField.isDisable()) otherField.setStyle("-fx-border-color: red");
-            //else otherField.setStyle("-fx-border-color:  #FFEEC9");
-            //comboBox.setStyle("-fx-border-color: red");
             dateField.setStyle("-fx-border-color: red");
         } else {
             locationField.setStyle("-fx-border-color:  #FFEEC9");
             nClownsField.setStyle("-fx-border-color:  #FFEEC9");
             rNameField.setStyle("-fx-border-color:  #FFEEC9");
-            //otherField.setStyle("-fx-border-color:  #FFEEC9");
-            //comboBox.setStyle("-fx-border-color:  #FFEEC9");
             dateField.setStyle("-fx-border-color:  #FFEEC9");
-            //DatabaseWrapper.clownAdd();
             DatabaseWrapper.ClownDeliverySRAdd(location,Integer.parseInt(nClowns),rName,date);
+            Notifications.create().text("Clown will be sent!").show();
             clearField();
             backToRequest.fire();
         }

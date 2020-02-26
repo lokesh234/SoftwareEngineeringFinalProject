@@ -252,7 +252,7 @@
 .jfx-password-field {
     -jfx-focus-color: -color-4;
     -jfx-unfocus-color: -color-3;
-    -fx-padding: 0.333333em 0 0.333333em 0;
+    -fx-padding: 0.33em 1em 0.33em 1em;
 }
 
 .jfx-password-field,
