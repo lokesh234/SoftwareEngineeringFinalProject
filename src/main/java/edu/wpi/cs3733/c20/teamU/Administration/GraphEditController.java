@@ -163,14 +163,14 @@ public class GraphEditController {
           App.getEditController().selectedNodeVal(selectedNode);
         }
         editScreen();
-        update();
+        updateButtons();
       }
       else { //We're adding a node!
         if (pos != null) { //Adding a node with preset position
           App.getAddNodeScreenController().setDefaultPos(pos.x, pos.y);
         }
         addNodeScreen();
-        update();
+        updateButtons();
       }
     }
     else { //Add edge
@@ -179,7 +179,7 @@ public class GraphEditController {
       for (Map.Entry<Circle, Integer> pair : extraFloorPaths.entrySet()) {
         removeFromPath(pair.getKey(), pair.getValue());
       }
-      update();
+      updateButtons();
     }
   }
 
@@ -193,7 +193,7 @@ public class GraphEditController {
      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EDGE", "Remove", DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
      DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
     }
-    update();
+    updateButtons();
   }
 
   @FXML
@@ -427,6 +427,7 @@ public class GraphEditController {
     }
     interFloorPaths.clear();
     lines.clear();
+    selectedEdge = null;
   }
 
   private void clearNodes() {
@@ -479,16 +480,19 @@ public class GraphEditController {
           c2.setStrokeWidth(5);
           c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
           c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+
+        if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) { //If either ends already have one rendered, don't stack them visually
+          addToPath(c, n1.getFloor());
+          addToPath(c2, n2.getFloor());
+        }
+
           interFloorPaths.put(n1, c);
           interFloorPaths.put(n2, c2);
 
 
 //        c.toFront();
 //        c2.toFront();
-        if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) { //If either ends already have one rendered, don't stack them visually
-          addToPath(c, n1.getFloor());
-          addToPath(c2, n2.getFloor());
-        }
+
 
       }
     }
