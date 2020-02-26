@@ -40,8 +40,9 @@ dependencies {
             [group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'],
             [group: 'org.slf4j', name: 'slf4j-simple', version:'1.6.4']
     )
-
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile 'com.warrenstrange:googleauth:1.4.0'
+    compile 'net.sourceforge.cssparser:cssparser:0.9.27'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
     compileOnly(
             [group: 'org.projectlombok', name: 'lombok', version: '1.18.8']
