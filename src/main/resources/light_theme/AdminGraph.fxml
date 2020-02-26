@@ -14,7 +14,7 @@
 
 <!--<?import net.kurobako.gesturefx.GesturePane?>-->
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.GraphEditController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.GraphEditController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -30,7 +30,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N2" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="MapGes2">
+                     <GesturePane fx:id="MapGes2" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                         <AnchorPane fx:id="NodesPane2">
 
                         </AnchorPane>
@@ -39,7 +39,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N3" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="MapGes3">
+                     <GesturePane fx:id="MapGes3" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                         <AnchorPane fx:id="NodesPane3">
 
                         </AnchorPane>
@@ -48,7 +48,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N4" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" >
+                     <GesturePane fx:id="MapGes4" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                         <AnchorPane fx:id="NodesPane4">
 
                         </AnchorPane>
@@ -57,7 +57,7 @@
                </children>
                <children>
                   <AnchorPane fx:id="N5" prefHeight="1080" prefWidth="1920" BorderPane.alignment="CENTER">
-                     <GesturePane AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d" fx:id="MapGes5">
+                     <GesturePane fx:id="MapGes5" AnchorPane.bottomAnchor="0d" AnchorPane.leftAnchor="0d" AnchorPane.rightAnchor="0d" AnchorPane.topAnchor="0d">
                         <AnchorPane fx:id="NodesPane5">
 
                         </AnchorPane>
@@ -81,14 +81,22 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="490.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="153.0" spacing="20.0">
                      <children>
-                        <JFXButton fx:id="backButton" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="80.0" text="Back" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin></JFXButton>
+                        <HBox alignment="CENTER" />
+                        <JFXButton fx:id="backButton" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="80.0" text="Back" textFill="WHITE" />
+                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="127.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
+                           <children>
+                              <Label text="Logged in as: " />
+                              <Label text="Label" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
                <padding>
                   <Insets right="10.0" />
@@ -221,7 +229,7 @@
          <right>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="tableButton" prefHeight="84.0" prefWidth="71.0" text="Directory" textAlignment="CENTER" wrapText="true" onAction="#openTreeView"/>
+                  <JFXButton fx:id="tableButton" onAction="#openTreeView" prefHeight="84.0" prefWidth="71.0" text="Directory" textAlignment="CENTER" wrapText="true" />
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminEmployeeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminEmployeeController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -28,15 +28,22 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="153.0" spacing="20.0">
                      <children>
-                        <JFXButton buttonType="RAISED" fx:id="back_button" onAction="#backToAdmin" prefHeight="37.0" prefWidth="90.0" text="Back">
-                           <HBox.margin>
-                              <Insets right="26.0" />
-                           </HBox.margin>
-                        </JFXButton>
+                        <JFXButton fx:id="back_button" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="90.0" text="Back" />
+                        <HBox alignment="CENTER" />
+                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="127.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
+                           <children>
+                              <Label text="Logged in as: " />
+                              <Label text="Label" />
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
                <padding>
                   <Insets left="10.0" right="10.0" />

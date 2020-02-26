@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminScreenController">
+<AnchorPane stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminScreenController">
     <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -103,7 +103,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="analytics" contentDisplay="TOP" ellipsisString="" prefHeight="96.0" prefWidth="184.0" text="Analytics" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#analytics">
+                  <JFXButton fx:id="analytics" contentDisplay="TOP" ellipsisString="" onAction="#analytics" prefHeight="96.0" prefWidth="184.0" text="Analytics" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Segoe UI Bold" size="12.0" />
                      </font>
@@ -178,6 +178,16 @@
                               </Label>
                           </children>
                       </HBox>
+                  <HBox alignment="BOTTOM_RIGHT" style="-fx-background-color: #969696;" styleClass="subtitleBar">
+                     <children>
+                        <Label text="Logged in as: " />
+                        <Label text="Label">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
                 </VBox>
          </top>
