@@ -32,6 +32,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Stage primaryStage;
 
   private static ArrayList<String> textpath = new ArrayList<>();
+  private static ArrayList<String> spokenWords = new ArrayList<>();
 
   private static Pane home;
   private static Pane login;
@@ -552,6 +553,7 @@ public class App<loadedAdminRequests> extends Application {
   public static void setServiceEdit(Service serviceSel) { service = serviceSel; }
   public static void setAccountEdit(Account accountSel) { accountEdit = accountSel; }
   public static Service getService() { return service; }
+  public static ArrayList<String> getSpokenWords() {return spokenWords;}
 
   public static void change(boolean hey) { didChange = hey; }
   public static boolean getChange() { return didChange; }

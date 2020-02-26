@@ -46,9 +46,9 @@ public class Speech {
                                 SpeechRecognitionAlternative alternative = result.getAlternativesList().get(0);
                                 System.out.printf("Transcript : %s\n", alternative.getTranscript());
                                 alternative.getTranscript().trim();
-                                App.getSpokenwords().add(alternative.getTranscript());
+                                App.getSpokenWords().add(alternative.getTranscript());
                             }
-                            System.out.println(App.getSpokenwords());
+                            System.out.println(App.getSpokenWords());
                         }
 
                         public void onError(Throwable t) {
