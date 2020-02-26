@@ -63,7 +63,7 @@ public class LanguageController {
             Chinese.setStyle("-fx-border-color: #FFEEC9");
             Ethiopian.setStyle("-fx-border-color: #FFEEC9");
             if (Japenese.isSelected()){
-                userLanguage = "Japense";
+                userLanguage = "Japanese";
             }
             if (Russian.isSelected()){
                 userLanguage = "Russian";

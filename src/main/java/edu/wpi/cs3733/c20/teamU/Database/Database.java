@@ -2128,7 +2128,7 @@ public class Database {
     }
 
 
-    public static void getDataAnalytics(ArrayList<Integer> frequency, String type){
+    public static ArrayList<String> getDataAnalytics(ArrayList<Integer> frequency, String type){
         ArrayList<String> types = new ArrayList<String>(Arrays.asList("SECUR",
                 "MEDIC",
                 "FLOWR",
@@ -2148,6 +2148,7 @@ public class Database {
         if (type.equals("employee")) {
             tableName = "LoginDB";
             dataType = "position";
+            types.add("ADMIN");
         }
         else if (type.equals("service")){
             tableName = "ServiceRequest";
@@ -2172,7 +2173,7 @@ public class Database {
                 int columns = rsmd.getColumnCount();
                 //for each line, create a node and add it to hash map
                 while (results.next()) {
-                    System.out.println("temp");
+                    //System.out.println("temp");
                     temp++;
                 }
                 frequency.add(temp);
@@ -2180,11 +2181,11 @@ public class Database {
             }
             stmt.close();
             connection.close();
-            return;
+            return types;
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return;
+            return null;
         }
     }
 

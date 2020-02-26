@@ -50,12 +50,14 @@ public class AnalyticsController {
     private ObservableList<PieChart.Data> arrayToPie(){
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
         ArrayList<Integer> temp = new ArrayList<Integer>();
-        DatabaseWrapper.getDataAnalytics(temp, type);
+        types = DatabaseWrapper.getDataAnalytics(temp, type);
 
         if(temp != null) {
             for(int i =0; i < types.size(); i++) {
                 System.out.println(types.get(i) + " " + temp.get(i));
-                pieChartData.add(new PieChart.Data(types.get(i), temp.get(i)));
+            if (temp.get(i) > 0) {
+              pieChartData.add(new PieChart.Data(types.get(i) + " (" + temp.get(i) + ")", temp.get(i)));
+                    }
             }
         }
         return pieChartData;
