@@ -27,7 +27,7 @@ import java.util.*;
 public class GraphEditController {
 
   @FXML private Button backButton, nodeModeButton, edgeModeButton, addButton, editButton, removeButton, startButton, endButton;
-  @FXML private Label startLabel, endLabel, statusLabel, statusLabel1, floorLabel;
+  @FXML private Label startLabel, endLabel, statusLabel, statusLabel1, floorLabel, locLabel;
   @FXML
   private AnchorPane N1;
   @FXML
@@ -84,7 +84,7 @@ public class GraphEditController {
   }
 
   private enum State {
-    neutral, selectStart, selectEnd, selectPos, selectNode;
+    neutral, selectStart, selectEnd, selectPos, selectNode, selectLocation;
   }
 
 
@@ -233,6 +233,13 @@ public class GraphEditController {
     updateButtons();
   }
 
+  @FXML
+  protected void locationState() {
+    state = State.selectLocation;
+    updateButtons();
+    locLabel.setText("None Selected");
+  }
+
   protected void update() {
     stateMachine(floor);
     updateButtons();
@@ -242,6 +249,9 @@ public class GraphEditController {
     selectedStartNode = null;
     extraLine = null;
     selectedEdge = null;
+    if (App.getLocation() != null) {
+      locLabel.setText(App.getLocation().getLongName());
+    }
     if (nodeMode) {
       startButton.setText("Select Node");
       endButton.setText("Select Position");
@@ -596,6 +606,11 @@ public class GraphEditController {
         state = State.neutral;
         startLabel.setText(selectedStartNode.getID() + ", " + selectedStartNode.getFloor());
         updateButtons();
+      }
+      else if (state == State.selectLocation) {
+        App.setLocation(circles.get(event.getSource()));
+        state = State.neutral;
+        locLabel.setText(App.getLocation().getLongName());
       }
     }
   };
