@@ -37,6 +37,8 @@ dependencies {
             [group: 'org.controlsfx', name: 'controlsfx', version: '8.40.16']
     )
 
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile 'net.sourceforge.cssparser:cssparser:0.9.27'
     compile 'com.warrenstrange:googleauth:1.4.0'
     compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
     compileOnly(

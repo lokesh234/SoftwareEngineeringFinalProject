@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
@@ -549,7 +550,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) throws IOException {
+  public void start(Stage primaryStage) throws IOException, URISyntaxException {
 
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();

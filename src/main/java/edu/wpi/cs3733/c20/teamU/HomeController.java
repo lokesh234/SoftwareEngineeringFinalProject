@@ -1,10 +1,14 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXButton;
+import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -80,8 +84,18 @@ public class HomeController {
         weatherController = weatherController1;
     }
 
+    @FXML private AnchorPane something;
     @FXML
-    private void openLoginScene() {
+    private void openLoginScene() throws IOException, URISyntaxException {
+        CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/light.css"));
+//        fileEditor.writeCSSProperty("*", "-color-2: rgb(150, 150, 150)", "rgb(0, 0, 0)");
+//        fileEditor.writeCSSProperty("*", "-color-1: rgb(255, 249, 233)", "rgb(0, 0, 0)");
+//        fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", "rgb(0, 0, 0)");
+//        fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", "rgb(0, 0, 0)");
+//        App.getHomeScene().getStylesheets().add(getClass().getResource("/light_theme/lightCopy.css").toString());
+        String theme = App.class.getResource("/light_theme/light.css").toExternalForm();
+        App.getHomeScene().getStylesheets().add(theme);
+        App.getHome().getStylesheets().add(theme);
         App.loadAdminRequests();
         App.getHome().setOpacity(.5);
         App.getHome().setDisable(true);
