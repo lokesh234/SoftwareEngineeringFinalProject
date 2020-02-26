@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 public class ITController {
 
@@ -32,7 +33,6 @@ public class ITController {
       userDelivery = comboBox.getValue().toString();
     }
 
-    //TODO: specify which textfield to write in if empty
     if (userLast.isEmpty() || userFirst.isEmpty() || userDelivery.isEmpty() || userComment
         .isEmpty()) {
       // will print out some text eventually, right now nothing
@@ -45,7 +45,7 @@ public class ITController {
       comboBox.setStyle("-fx-border-color:  #FFEEC9");
       first.setStyle("-fx-border-color:  #FFEEC9");
       DatabaseWrapper.ITSRAdd(userLast, userFirst, userDelivery, userComment);
-      //ServiceDatabase.ITSRAdd(userFirst, userLast, issueType, userComment); TODO:Add method in database class
+      Notifications.create().text("IT Service Request has been submitted!").show();
       clearField();
       goBack();
     }

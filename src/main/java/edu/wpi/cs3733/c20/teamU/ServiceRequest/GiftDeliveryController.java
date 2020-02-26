@@ -9,6 +9,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.controlsfx.control.Notifications;
 
 public class GiftDeliveryController {
   @FXML private JFXTextField first;
@@ -25,12 +26,10 @@ public class GiftDeliveryController {
     String userRoom = room.getText();
     String userGift = gift.getSelectionModel().getSelectedItem().toString();
     if(!checkFields()) {
-      // add to database
       DatabaseWrapper.deliverySRAdd(userLast,userFirst,userGift,userRoom);
+      Notifications.create().text("Gift Request has been submitted!").show();
       back.fire();
     }
-    //add to database
-    //back.fire();
   }
 
   @FXML
