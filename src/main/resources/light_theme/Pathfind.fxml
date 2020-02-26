@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
+<AnchorPane prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -213,7 +213,7 @@
                            </children>
                         </VBox>
                         <Line endX="100.0" startX="-100.0" />
-                        <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                        <VBox alignment="TOP_CENTER" prefHeight="273.0" prefWidth="350.0" VBox.vgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER">
                                  <children>
@@ -266,6 +266,28 @@
                                     </JFXButton>
                                  </children>
                               </HBox>
+                              <VBox alignment="CENTER" prefHeight="88.0" prefWidth="350.0" spacing="5.0">
+                                 <children>
+                                    <Label fx:id="quickLabel" text="Quick Select" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <JFXButton fx:id="quickRest" text="Restroom" />
+                                          <JFXButton fx:id="quickStair" text="Stairs" />
+                                          <JFXButton fx:id="quickElev" text="Elevator" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <JFXButton fx:id="quickFood" text="Food" />
+                                          <JFXButton fx:id="QuickExit" text="Exit" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
                         </VBox>
                         <Line endX="100.0" startX="-100.0" />
