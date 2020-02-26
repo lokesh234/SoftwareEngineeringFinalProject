@@ -66,8 +66,6 @@ public class GraphEditController {
   private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
-  @FXML private GesturePane PathGes1, PathGes2, PathGes3, PathGes4, PathGes5;
-
   private Circle startSelect = new Circle();
   private Circle endSelect = new Circle();
 
@@ -217,7 +215,7 @@ public class GraphEditController {
       state = State.selectStart;
     }
     startLabel.setText("None selected");
-    updateStatus();
+    updateButtons();
   }
 
   @FXML
@@ -232,11 +230,12 @@ public class GraphEditController {
       endLabel.setText("(X, Y)");
       pos = null;
     }
-    updateStatus();
+    updateButtons();
   }
 
   protected void update() {
     stateMachine(floor);
+    updateButtons();
     selectedNode = null;
     pos = null;
     selectedEndNode = null;
@@ -253,8 +252,7 @@ public class GraphEditController {
 
       editButton.setVisible(true);
       statusLabel.setText("Node Mode");
-      clearEdges();
-      clearNodes();
+      redraw(false);
     }
     else {
       startButton.setText("Select Start");
@@ -266,35 +264,19 @@ public class GraphEditController {
 
       editButton.setVisible(false);
       statusLabel.setText("Edge Mode");
-      clearEdges();
-      clearNodes();
-      drawEdges();
+      redraw(true);
     }
-    drawNodes();
-    updateButtons();
+
   }
 
-  private void updateStatus() { //Updates only the statusLabel1 text
-    updateButtons();
-//    switch (state) {
-//      case neutral:
-//        if (nodeMode) statusLabel1.setText("SEARCH");
-//        else statusLabel1.setText("SEARCH");
-//        break;
-//      case selectEnd:
-//        statusLabel1.setText("Select Endpoint Of Edge");
-//        break;
-//      case selectPos:
-//        statusLabel1.setText("Select Position Of New Node");
-//        break;
-//      case selectNode:
-//        statusLabel1.setText("Select Node");
-//        break;
-//      case selectStart:
-//        statusLabel1.setText("Select Startpoint Of Edge");
-//        break;
-//    }
+  protected void redraw(boolean edges) {
+    clearEdges();
+    clearNodes();
+    if (edges) drawEdges();
+    drawNodes();
   }
+
+
 
   private void updateButtons() {
     removeFromAll(startSelect);
@@ -428,6 +410,7 @@ public class GraphEditController {
   }
 
   private void clearEdges() {
+    System.out.println("no dont");
     clearExtraLine();
     if (lines.size() > 0) {
       for (Map.Entry<Edge, Path> pair : lines.entrySet()) {
@@ -470,36 +453,41 @@ public class GraphEditController {
         addToPath(pathe, e.getStart().getFloor());
         lines.put(e, pathe);
       }
-      else if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) {
-        Circle c = new Circle();
-        Circle c2 = new Circle();
-        c.setCenterX(n1.getX());
-        c.setCenterY(n1.getY());
-        c2.setCenterY(n2.getY());
-        c2.setCenterX(n2.getX());
-        c.setFill(Color.TRANSPARENT);
-        c2.setFill(Color.TRANSPARENT);
-        if (n1.getFloor() < n2.getFloor()) {
-          c.setStroke(Color.DARKGREEN);
-          c2.setStroke(Color.ORCHID);
-        }
-        else {
-          c2.setStroke(Color.DARKGREEN);
-          c.setStroke(Color.ORCHID);
-        }
-        c.setRadius(App.getNodeSize()+5);
-        c2.setRadius(App.getNodeSize()+5);
-        c.setStrokeWidth(5);
-        c2.setStrokeWidth(5);
-        c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
-        c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
-        interFloorPaths.put(n1, c);
-        interFloorPaths.put(n2, c2);
-        addToPath(c, n1.getFloor());
-        addToPath(c2, n2.getFloor());
+      else { //Inter-floor path!
+
+          Circle c = new Circle();
+          Circle c2 = new Circle();
+          c.setCenterX(n1.getX());
+          c.setCenterY(n1.getY());
+          c2.setCenterY(n2.getY());
+          c2.setCenterX(n2.getX());
+          c.setFill(Color.TRANSPARENT);
+          c2.setFill(Color.TRANSPARENT);
+          if (n1.getFloor() < n2.getFloor()) {
+            c.setStroke(Color.DARKGREEN);
+            c2.setStroke(Color.ORCHID);
+          }
+          else {
+            c2.setStroke(Color.DARKGREEN);
+            c.setStroke(Color.ORCHID);
+          }
+          c.setRadius(App.getNodeSize()+5);
+          c2.setRadius(App.getNodeSize()+5);
+          c.setStrokeWidth(5);
+          c2.setStrokeWidth(5);
+          c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+          c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+          interFloorPaths.put(n1, c);
+          interFloorPaths.put(n2, c2);
+
 
 //        c.toFront();
 //        c2.toFront();
+        if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) { //If either ends already have one rendered, don't stack them visually
+          addToPath(c, n1.getFloor());
+          addToPath(c2, n2.getFloor());
+        }
+
       }
     }
 
@@ -595,19 +583,19 @@ public class GraphEditController {
         selectedNode = circles.get(event.getSource());
         state = State.neutral;
         startLabel.setText(selectedNode.getID());
-        updateStatus();
+        updateButtons();
       }
       else if (state == State.selectEnd) {
         selectedEndNode = circles.get(event.getSource());
         state = State.neutral;
         endLabel.setText(selectedEndNode.getID() + ", " + selectedEndNode.getFloor());
-        updateStatus();
+        updateButtons();
       }
       else if (state == State.selectStart) {
         selectedStartNode = circles.get(event.getSource());
         state = State.neutral;
         startLabel.setText(selectedStartNode.getID() + ", " + selectedStartNode.getFloor());
-        updateStatus();
+        updateButtons();
       }
     }
   };
@@ -618,7 +606,7 @@ public class GraphEditController {
       if (state == State.selectPos) {
         pos = new Pos((int) event.getX(), (int) event.getY());
         state = State.neutral;
-        updateStatus();
+        updateButtons();
         endLabel.setText(pos.toString());
       }
     }
@@ -634,7 +622,7 @@ public class GraphEditController {
       if (state == State.neutral) {
         Node n = circles.get(source);
         DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
-        update();
+        updateButtons();
       }
     }
   };
@@ -765,15 +753,15 @@ public class GraphEditController {
   private GesturePane getFloorGes(int floor) {
     switch (floor) {
       case 1:
-        return PathGes1;
+        return MapGes1;
       case 2:
-        return PathGes2;
+        return MapGes2;
       case 3:
-        return PathGes3;
+        return MapGes3;
       case 4:
-        return PathGes4;
+        return MapGes4;
       default:
-        return PathGes5;
+        return MapGes5;
     }
   }
 
