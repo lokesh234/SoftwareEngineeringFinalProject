@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
+import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 
 public class TextPathChunk {
@@ -85,7 +86,7 @@ public class TextPathChunk {
 
         //@TODO we assume elevators/stairs are perfectly aligned
         if(getHumanDist() > 0.0){
-            answer += "Go " + getHumanDist() + " " + tpb.getDistanceUnit();
+            answer += "Go " + getHumanDist() + " " + App.getUnit();
         }
 
         // we only want to say turn if its neither straight or diagonal or error
@@ -121,7 +122,7 @@ public class TextPathChunk {
         dist = Math.floor(dist*100)/100;
         int intDist = (int)dist;
         if(intDist > 0.0){
-            answer += "Go " + intDist + " " + tpb.getDistanceUnit();
+            answer += "Go " + intDist + " " + App.getUnit();
         }
 
         return answer;

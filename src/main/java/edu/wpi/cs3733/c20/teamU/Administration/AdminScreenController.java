@@ -89,6 +89,13 @@ public class AdminScreenController {
     App.getPopup().getContent().add(App.getTimeout());
   }
 
+  @FXML private void goToScale() {
+    App.getPopup().getContent().clear();
+    App.getScaleController().update();
+    App.getPopup().getContent().add(App.getScale());
+    App.getPopup().show(App.getPrimaryStage());
+  }
+
   @FXML
   private void backlog() {
     App.getPopup().getContent().clear();

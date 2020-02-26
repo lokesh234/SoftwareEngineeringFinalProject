@@ -67,6 +67,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane timeout;
   private static Pane treeView;
   private static Pane analytics;
+  private static Pane scale;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -135,6 +136,7 @@ public class App<loadedAdminRequests> extends Application {
   private static FlowerController flowerController;
   private static ITController itController;
   private static AnalyticsController analyticsController;
+  private static AdminScaleController scaleController;
 
 
   private static boolean didChange = false;
@@ -160,12 +162,27 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedIT = false;
   private static boolean loadedTreeView = false;
 
+  private static double pixFoo = 10;
+  private static double pixMet = 10;
+  private static boolean useFeet = true;
+
   public static boolean getLoadedAdminRequest() {return loadedAdminRequests;}
   public static boolean getLoadedAdminEmployee() {return loadedAdminEmployee;}
   public static boolean getLoadedAdminBacklog() {return loadedAdminBacklog;}
   public static boolean getLoadedPathFinding() {return loadedPathfinding;}
   public static boolean getLoadedWeather() {return loadedWeather;}
   public static boolean getLoadedAdminGraph() {return loadedAdminGraph;}
+
+  public static double getPixFoo() { return pixFoo;}
+  public static double getPixMet() { return pixMet;}
+  public static String getUnit() {
+    if (useFeet) return "feet";
+    else return "meters";
+  }
+
+  public static void setPixFoo(double x) { pixFoo = x;}
+  public static void setPixMet(double x) { pixMet = x;}
+  public static void setUseFeet(boolean x) { useFeet = x;}
 
 
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
@@ -445,6 +462,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getTimeout() {return timeout;}
   public static Pane getTreeView() {return treeView;}
   public static Pane getAnalytics() {return analytics;}
+  public static Pane getScale() { return scale;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -505,6 +523,7 @@ public class App<loadedAdminRequests> extends Application {
   public static TreeViewController getTreeViewController() {return treeViewController;}
   public static TimeoutController getTimeoutController() {return timeoutController;}
   public static AnalyticsController getAnalyticsController() {return analyticsController;}
+  public static AdminScaleController getScaleController() { return scaleController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -660,6 +679,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader loginLoader = new FXMLLoader(App.class.getResource("/light_theme/LoginForm.fxml"));
         FXMLLoader verificationLoader = new FXMLLoader(App.class.getResource("/light_theme/VerificationForm.fxml"));
         FXMLLoader timeoutLoader = new FXMLLoader(App.class.getResource("/light_theme/TimeoutForm.fxml"));
+        FXMLLoader scaleLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminScaleForm.fxml"));
 
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
@@ -674,6 +694,7 @@ public class App<loadedAdminRequests> extends Application {
         verification = verificationLoader.load();
         timeout = timeoutLoader.load();
         analytics = analyticsLoader.load();
+        scale = scaleLoader.load();
 
         admin.setOnKeyPressed(fireKey);
         analytics.setOnKeyPressed(fireKey);
@@ -688,6 +709,7 @@ public class App<loadedAdminRequests> extends Application {
         login.setOnKeyPressed(fireKey);
         login.setOnKeyPressed(loginconfirmKey);
         employeeF.setOnKeyPressed(employeeformconfirmKey);
+        scale.setOnKeyPressed(fireKey);
 
 
         verificationController = verificationLoader.getController();
@@ -702,6 +724,7 @@ public class App<loadedAdminRequests> extends Application {
         requestController = requestLoader.getController();
         loginScreenController = loginLoader.getController();
         timeoutController = timeoutLoader.getController();
+        scaleController = scaleLoader.getController();
 
         requestScreenController.setAttributes(adminRequestController);
         adminRequestController.setAttributes(requestScreenController);
