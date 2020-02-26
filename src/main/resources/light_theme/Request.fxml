@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
+<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
    <children>
       <BorderPane styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -34,18 +34,28 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="80.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" spacing="20.0">
                      <children>
                         <JFXButton fx:id="backButton" onAction="#backToAdmin" text="Back" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font>
                         </JFXButton>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="127.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
+                           <children>
+                              <Label text="Logged in as: " />
+                              <Label text="Label">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </HBox>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </VBox>
                </children>
             </HBox>
          </top>
