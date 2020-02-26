@@ -960,8 +960,12 @@ public class PathfindController {
             Rectangle wong = new Rectangle();
             Image imageWong = new Image("png_files/gif/frontFly.gif");
             ImagePattern imagePattern = new ImagePattern(imageWong);
-            wong.setX(start.getX());
-            wong.setY(start.getY());
+            //wong.setX(start.getX());
+            //wong.setY(start.getY());
+            //wong.setX(n2.getX());
+            //wong.setY(n2.getY());
+            wong.setX(-10000);
+            wong.setY(-10000);
             wong.setHeight(80);
             wong.setWidth(80);
             wong.setFill(imagePattern);
