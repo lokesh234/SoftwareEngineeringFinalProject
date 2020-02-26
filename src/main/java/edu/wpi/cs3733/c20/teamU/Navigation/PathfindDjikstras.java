@@ -9,14 +9,17 @@ import java.util.PriorityQueue;
 
 public class PathfindDjikstras extends PathfindAStarTemplate {
 
-    private static PathfindDjikstras _pathfinder = new PathfindDjikstras();
 
     private PathfindDjikstras() {
 
     }
 
     public static PathfindDjikstras getPathfinder() {
-        return _pathfinder;
+        return s._pathfinder;
+    }
+
+    private static class s {
+        private static final PathfindDjikstras _pathfinder = new PathfindDjikstras();
     }
 
     protected int heuristic(Node n, Node end) {

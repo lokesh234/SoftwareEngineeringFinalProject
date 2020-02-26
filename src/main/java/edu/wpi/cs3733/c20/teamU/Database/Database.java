@@ -11,6 +11,7 @@ import org.omg.PortableInterceptor.ServerRequestInfo;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -2090,7 +2091,7 @@ public class Database {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = connection.createStatement();
 
-            String sql1 = "SELECT * FROM " + tableName + " WHERE floor = " + floor + "";
+            String sql1 = "SELECT * FROM " + tableName + " WHERE floor = " + floor + " AND nodeType <> 'HALL'";
             ResultSet results = stmt.executeQuery(sql1);
             ResultSetMetaData rsmd = results.getMetaData();
             int columns = rsmd.getColumnCount();
@@ -2125,4 +2126,66 @@ public class Database {
             return;
         }
     }
+
+
+    public static void getDataAnalytics(ArrayList<Integer> frequency, String type){
+        ArrayList<String> types = new ArrayList<String>(Arrays.asList("SECUR",
+                "MEDIC",
+                "FLOWR",
+                "DELIV",
+                "ITRAN",
+                "ETRAN",
+                "CLOWN",
+                "RELIG",
+                "SANIT",
+                "LANGE",
+                "INTEC"));
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName;
+        String dataType;
+
+        if (type.equals("employee")) {
+            tableName = "LoginDB";
+            dataType = "position";
+        }
+        else if (type.equals("service")){
+            tableName = "ServiceRequest";
+            dataType = "types";
+        }
+        else {
+            tableName = "ServiceFinished";
+            dataType = "reqType";
+        }
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            for(int i = 0; i < types.size(); i++) {
+                int temp =0;
+                String category = types.get(i);
+                String sql1 = "SELECT * FROM " + tableName + " WHERE " + dataType + " = '" + category + "'";
+                System.out.println(sql1);
+                ResultSet results = stmt.executeQuery(sql1);
+                ResultSetMetaData rsmd = results.getMetaData();
+                int columns = rsmd.getColumnCount();
+                //for each line, create a node and add it to hash map
+                while (results.next()) {
+                    System.out.println("temp");
+                    temp++;
+                }
+                frequency.add(temp);
+                results.close();
+            }
+            stmt.close();
+            connection.close();
+            return;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+        }
+    }
+
 }

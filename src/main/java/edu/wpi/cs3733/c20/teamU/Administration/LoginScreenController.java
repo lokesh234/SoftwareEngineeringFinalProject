@@ -39,7 +39,7 @@ public class LoginScreenController {
    * @return false if incorrect, true if correct
    */
   @FXML
-  private void isAuthorized() throws UnknownHostException {
+  private void isAuthorized() {
     usernameTried = usernameField.getText();
     whoTried = DatabaseWrapper.checkCred(usernameTried, passwordField.getText());
     if (whoTried == null) {

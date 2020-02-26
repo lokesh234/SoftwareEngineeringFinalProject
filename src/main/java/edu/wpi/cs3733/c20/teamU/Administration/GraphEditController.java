@@ -27,7 +27,7 @@ import java.util.*;
 public class GraphEditController {
 
   @FXML private Button backButton, nodeModeButton, edgeModeButton, addButton, editButton, removeButton, startButton, endButton;
-  @FXML private Label startLabel, endLabel, statusLabel, statusLabel1, floorLabel;
+  @FXML private Label startLabel, endLabel, statusLabel, statusLabel1, floorLabel, locLabel;
   @FXML
   private AnchorPane N1;
   @FXML
@@ -66,8 +66,6 @@ public class GraphEditController {
   private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
 
-  @FXML private GesturePane PathGes1, PathGes2, PathGes3, PathGes4, PathGes5;
-
   private Circle startSelect = new Circle();
   private Circle endSelect = new Circle();
 
@@ -77,16 +75,8 @@ public class GraphEditController {
   public void zoomOut(ActionEvent event) {
   }
 
-  @FXML
-  public void openTreeView(ActionEvent event) {
-    App.loadTreeView();
-    App.getTreeViewPop().getContent().clear();
-    App.getTreeViewPop().getContent().add(App.getTreeView());
-    App.getTreeViewPop().show(App.getPrimaryStage());
-  }
-
   private enum State {
-    neutral, selectStart, selectEnd, selectPos, selectNode;
+    neutral, selectStart, selectEnd, selectPos, selectNode, selectLocation;
   }
 
 
@@ -109,56 +99,6 @@ public class GraphEditController {
     NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
     NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
     NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
-    MapGes1.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes1.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes2.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes2.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes2.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes3.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes3.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes3.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes4.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes4.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes4.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes5.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
-                .orElse(MapGes5.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes5.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
-      }
-    });
     MapGes1.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
             .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -223,14 +163,14 @@ public class GraphEditController {
           App.getEditController().selectedNodeVal(selectedNode);
         }
         editScreen();
-        update();
+        updateButtons();
       }
       else { //We're adding a node!
         if (pos != null) { //Adding a node with preset position
           App.getAddNodeScreenController().setDefaultPos(pos.x, pos.y);
         }
         addNodeScreen();
-        update();
+        updateButtons();
       }
     }
     else { //Add edge
@@ -239,7 +179,7 @@ public class GraphEditController {
       for (Map.Entry<Circle, Integer> pair : extraFloorPaths.entrySet()) {
         removeFromPath(pair.getKey(), pair.getValue());
       }
-      update();
+      updateButtons();
     }
   }
 
@@ -253,7 +193,7 @@ public class GraphEditController {
      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EDGE", "Remove", DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
      DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
     }
-    update();
+    updateButtons();
   }
 
   @FXML
@@ -267,7 +207,7 @@ public class GraphEditController {
       state = State.selectStart;
     }
     startLabel.setText("None selected");
-    updateStatus();
+    updateButtons();
   }
 
   @FXML
@@ -282,17 +222,28 @@ public class GraphEditController {
       endLabel.setText("(X, Y)");
       pos = null;
     }
-    updateStatus();
+    updateButtons();
+  }
+
+  @FXML
+  protected void locationState() {
+    state = State.selectLocation;
+    updateButtons();
+    locLabel.setText("None Selected");
   }
 
   protected void update() {
     stateMachine(floor);
+    updateButtons();
     selectedNode = null;
     pos = null;
     selectedEndNode = null;
     selectedStartNode = null;
     extraLine = null;
     selectedEdge = null;
+    if (App.getLocation() != null) {
+      locLabel.setText(App.getLocation().getLongName());
+    }
     if (nodeMode) {
       startButton.setText("Select Node");
       endButton.setText("Select Position");
@@ -303,8 +254,7 @@ public class GraphEditController {
 
       editButton.setVisible(true);
       statusLabel.setText("Node Mode");
-      clearEdges();
-      clearNodes();
+      redraw(false);
     }
     else {
       startButton.setText("Select Start");
@@ -316,35 +266,19 @@ public class GraphEditController {
 
       editButton.setVisible(false);
       statusLabel.setText("Edge Mode");
-      clearEdges();
-      clearNodes();
-      drawEdges();
+      redraw(true);
     }
-    drawNodes();
-    updateButtons();
+
   }
 
-  private void updateStatus() { //Updates only the statusLabel1 text
-    updateButtons();
-//    switch (state) {
-//      case neutral:
-//        if (nodeMode) statusLabel1.setText("SEARCH");
-//        else statusLabel1.setText("SEARCH");
-//        break;
-//      case selectEnd:
-//        statusLabel1.setText("Select Endpoint Of Edge");
-//        break;
-//      case selectPos:
-//        statusLabel1.setText("Select Position Of New Node");
-//        break;
-//      case selectNode:
-//        statusLabel1.setText("Select Node");
-//        break;
-//      case selectStart:
-//        statusLabel1.setText("Select Startpoint Of Edge");
-//        break;
-//    }
+  protected void redraw(boolean edges) {
+    clearEdges();
+    clearNodes();
+    if (edges) drawEdges();
+    drawNodes();
   }
+
+
 
   private void updateButtons() {
     removeFromAll(startSelect);
@@ -478,6 +412,7 @@ public class GraphEditController {
   }
 
   private void clearEdges() {
+    System.out.println("no dont");
     clearExtraLine();
     if (lines.size() > 0) {
       for (Map.Entry<Edge, Path> pair : lines.entrySet()) {
@@ -492,6 +427,7 @@ public class GraphEditController {
     }
     interFloorPaths.clear();
     lines.clear();
+    selectedEdge = null;
   }
 
   private void clearNodes() {
@@ -520,36 +456,44 @@ public class GraphEditController {
         addToPath(pathe, e.getStart().getFloor());
         lines.put(e, pathe);
       }
-      else if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) {
-        Circle c = new Circle();
-        Circle c2 = new Circle();
-        c.setCenterX(n1.getX());
-        c.setCenterY(n1.getY());
-        c2.setCenterY(n2.getY());
-        c2.setCenterX(n2.getX());
-        c.setFill(Color.TRANSPARENT);
-        c2.setFill(Color.TRANSPARENT);
-        if (n1.getFloor() < n2.getFloor()) {
-          c.setStroke(Color.DARKGREEN);
-          c2.setStroke(Color.ORCHID);
+      else { //Inter-floor path!
+
+          Circle c = new Circle();
+          Circle c2 = new Circle();
+          c.setCenterX(n1.getX());
+          c.setCenterY(n1.getY());
+          c2.setCenterY(n2.getY());
+          c2.setCenterX(n2.getX());
+          c.setFill(Color.TRANSPARENT);
+          c2.setFill(Color.TRANSPARENT);
+          if (n1.getFloor() < n2.getFloor()) {
+            c.setStroke(Color.DARKGREEN);
+            c2.setStroke(Color.ORCHID);
+          }
+          else {
+            c2.setStroke(Color.DARKGREEN);
+            c.setStroke(Color.ORCHID);
+          }
+          c.setRadius(App.getNodeSize()+5);
+          c2.setRadius(App.getNodeSize()+5);
+          c.setStrokeWidth(5);
+          c2.setStrokeWidth(5);
+          c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+          c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
+
+        if (!(interFloorPaths.containsKey(n1) || interFloorPaths.containsKey(n2))) { //If either ends already have one rendered, don't stack them visually
+          addToPath(c, n1.getFloor());
+          addToPath(c2, n2.getFloor());
         }
-        else {
-          c2.setStroke(Color.DARKGREEN);
-          c.setStroke(Color.ORCHID);
-        }
-        c.setRadius(App.getNodeSize()+5);
-        c2.setRadius(App.getNodeSize()+5);
-        c.setStrokeWidth(5);
-        c2.setStrokeWidth(5);
-        c.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
-        c2.addEventHandler(MouseEvent.MOUSE_CLICKED, interFloorHandler);
-        interFloorPaths.put(n1, c);
-        interFloorPaths.put(n2, c2);
-        addToPath(c, n1.getFloor());
-        addToPath(c2, n2.getFloor());
+
+          interFloorPaths.put(n1, c);
+          interFloorPaths.put(n2, c2);
+
 
 //        c.toFront();
 //        c2.toFront();
+
+
       }
     }
 
@@ -645,19 +589,24 @@ public class GraphEditController {
         selectedNode = circles.get(event.getSource());
         state = State.neutral;
         startLabel.setText(selectedNode.getID());
-        updateStatus();
+        updateButtons();
       }
       else if (state == State.selectEnd) {
         selectedEndNode = circles.get(event.getSource());
         state = State.neutral;
         endLabel.setText(selectedEndNode.getID() + ", " + selectedEndNode.getFloor());
-        updateStatus();
+        updateButtons();
       }
       else if (state == State.selectStart) {
         selectedStartNode = circles.get(event.getSource());
         state = State.neutral;
         startLabel.setText(selectedStartNode.getID() + ", " + selectedStartNode.getFloor());
-        updateStatus();
+        updateButtons();
+      }
+      else if (state == State.selectLocation) {
+        App.setLocation(circles.get(event.getSource()));
+        state = State.neutral;
+        locLabel.setText(App.getLocation().getLongName());
       }
     }
   };
@@ -668,7 +617,7 @@ public class GraphEditController {
       if (state == State.selectPos) {
         pos = new Pos((int) event.getX(), (int) event.getY());
         state = State.neutral;
-        updateStatus();
+        updateButtons();
         endLabel.setText(pos.toString());
       }
     }
@@ -679,12 +628,12 @@ public class GraphEditController {
     public void handle(MouseEvent event) {
       Circle source = (Circle) event.getSource();
       App.setColor(circles.get(source), source);
-      getFloorGes(floor).setGestureEnabled(true);
+       getFloorGes(floor).setGestureEnabled(true);
 
       if (state == State.neutral) {
         Node n = circles.get(source);
         DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
-        update();
+        updateButtons();
       }
     }
   };
@@ -815,15 +764,15 @@ public class GraphEditController {
   private GesturePane getFloorGes(int floor) {
     switch (floor) {
       case 1:
-        return PathGes1;
+        return MapGes1;
       case 2:
-        return PathGes2;
+        return MapGes2;
       case 3:
-        return PathGes3;
+        return MapGes3;
       case 4:
-        return PathGes4;
+        return MapGes4;
       default:
-        return PathGes5;
+        return MapGes5;
     }
   }
 

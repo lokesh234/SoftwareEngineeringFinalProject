@@ -472,4 +472,8 @@ public class DatabaseWrapper {
       Database.getNodesByFloor(nodes, floor);
   }
 
+  public static void getDataAnalytics(ArrayList<Integer> fre, String type){
+      Database.getDataAnalytics(fre, type);
+  }
+
 }

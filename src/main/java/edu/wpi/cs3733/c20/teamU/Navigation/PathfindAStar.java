@@ -8,14 +8,17 @@ import java.util.*;
 
 public class PathfindAStar extends PathfindAStarTemplate  {
 
-    private static PathfindAStar _pathfinder = new PathfindAStar();
 
     private PathfindAStar() {
     }
 
+    private static class s {
+        private static final PathfindAStar _pathfinder = new PathfindAStar();
+    }
+
 
     public static PathfindAStar getPathfinder() {
-        return _pathfinder;
+        return s._pathfinder;
     }
 
 

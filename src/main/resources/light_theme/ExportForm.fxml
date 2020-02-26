@@ -25,9 +25,20 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="127.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
+               <children>
+                  <Label text="Logged in as: " />
+                  <Label text="Label">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="0.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <JFXTextField fx:id="location1" prefHeight="37.0" prefWidth="367.0" promptText="Please Specify Path" />
+                  <JFXTextField fx:id="location2" prefHeight="37.0" prefWidth="367.0" promptText="Please Specify Path" />
                   <JFXButton fx:id="browse" onAction="#browse" prefHeight="29.0" prefWidth="55.0" text=". . ." />
                </children>
                <VBox.margin>

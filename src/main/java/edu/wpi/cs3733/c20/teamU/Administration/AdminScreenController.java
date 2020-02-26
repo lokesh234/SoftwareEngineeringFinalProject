@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 
 
 import edu.wpi.cs3733.c20.teamU.App;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -88,6 +89,13 @@ public class AdminScreenController {
     App.getPopup().getContent().add(App.getTimeout());
   }
 
+  @FXML private void goToScale() {
+    App.getPopup().getContent().clear();
+    App.getScaleController().update();
+    App.getPopup().getContent().add(App.getScale());
+    App.getPopup().show(App.getPrimaryStage());
+  }
+
   @FXML
   private void backlog() {
     App.getPopup().getContent().clear();
@@ -107,6 +115,12 @@ public class AdminScreenController {
     App.getChoosePathPop().show(App.getPrimaryStage());
   }
 
+  @FXML
+  private void openColor() {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getColor());
+    App.getPopup().show(App.getPrimaryStage());
+  }
 
   @FXML
   private void initialize() {
@@ -126,5 +140,12 @@ public class AdminScreenController {
     String cred = App.getUser().getCred();
     String firstName = App.getUser().getFirstName();
     String lastName = App.getUser().getLastName();
+  }
+
+  @FXML
+  public void analytics(ActionEvent event) {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getAnalytics());
+    App.getPopup().show(App.getPrimaryStage());
   }
 }
