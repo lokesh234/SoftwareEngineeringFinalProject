@@ -115,6 +115,12 @@ public class AdminScreenController {
     App.getChoosePathPop().show(App.getPrimaryStage());
   }
 
+  @FXML
+  private void openColor() {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getColor());
+    App.getPopup().show(App.getPrimaryStage());
+  }
 
   @FXML
   private void initialize() {

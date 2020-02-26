@@ -69,6 +69,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane treeView;
   private static Pane analytics;
   private static Pane scale;
+  private static Pane color;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -100,7 +101,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene timeoutScene;
   private static Scene treeViewScene;
   private static Scene analyticsScene;
-
+  private static Scene colorScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -138,6 +139,7 @@ public class App<loadedAdminRequests> extends Application {
   private static ITController itController;
   private static AnalyticsController analyticsController;
   private static AdminScaleController scaleController;
+  private static AdminColorController colorController;
 
 
   private static boolean didChange = false;
@@ -464,6 +466,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getTreeView() {return treeView;}
   public static Pane getAnalytics() {return analytics;}
   public static Pane getScale() { return scale;}
+  public static Pane getColor() { return color;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -485,9 +488,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getWeatherScene() {return weatherScene; }
   public static Scene getEmployeeFormScene() {return employeeFormScene; }
   public static Scene getExtTransportScene() {return extTransportScene;}
-  public static Scene getReligiousScene() {
-        return religiousScene;
-    }
+  public static Scene getReligiousScene() { return religiousScene; }
   public static Scene getIntTransportScene() { return intTransportScene; }
   public static Scene getPathFindTextScene() {return pathFindTextScene;}
   public static Scene getLanguageSRScene() {return languageSRScene;}
@@ -495,6 +496,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getGiftScene() {return giftScene;}
   public static Scene getTimeoutScene() {return timeoutScene;}
   public static Scene getAnalyticsScene() {return analyticsScene;}
+  public static Scene getColorScene() {return colorScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -525,6 +527,7 @@ public class App<loadedAdminRequests> extends Application {
   public static TimeoutController getTimeoutController() {return timeoutController;}
   public static AnalyticsController getAnalyticsController() {return analyticsController;}
   public static AdminScaleController getScaleController() { return scaleController;}
+  public static AdminColorController getColorController() {return colorController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -682,6 +685,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader verificationLoader = new FXMLLoader(App.class.getResource("/light_theme/VerificationForm.fxml"));
         FXMLLoader timeoutLoader = new FXMLLoader(App.class.getResource("/light_theme/TimeoutForm.fxml"));
         FXMLLoader scaleLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminScaleForm.fxml"));
+        FXMLLoader colorLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminColor.fxml"));
 
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
@@ -697,6 +701,7 @@ public class App<loadedAdminRequests> extends Application {
         timeout = timeoutLoader.load();
         analytics = analyticsLoader.load();
         scale = scaleLoader.load();
+        color = colorLoader.load();
 
         admin.setOnKeyPressed(fireKey);
         analytics.setOnKeyPressed(fireKey);
@@ -727,6 +732,7 @@ public class App<loadedAdminRequests> extends Application {
         loginScreenController = loginLoader.getController();
         timeoutController = timeoutLoader.getController();
         scaleController = scaleLoader.getController();
+        colorController = colorLoader.getController();
 
         requestScreenController.setAttributes(adminRequestController);
         adminRequestController.setAttributes(requestScreenController);

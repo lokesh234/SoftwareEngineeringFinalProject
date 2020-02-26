@@ -42,16 +42,6 @@ public class CSSFileEditor {
 
   }
 
-  public boolean createCSS() throws IOException {
-
-//    URI from = getClass().getResource(path).toURI();
-//    URI to = getClass().getResource("/light_theme/lightCopy.css").toURI();
-//    Path fromMain = Paths.get(from);
-//    Path toMain = Paths.get(to);
-//    Files.copy(fromMain, toMain, REPLACE_EXISTING);
-    return true;
-  }
-
   /**
    * getter for a specific declaration in CSS file
    * @param selector declaration
@@ -76,32 +66,31 @@ public class CSSFileEditor {
       CSSStyleDeclarationImpl style = (CSSStyleDeclarationImpl) rule.getStyle();
       List props = style.getProperties();
       for(Object p : props) {
-//        System.out.println(p.toString());
         if(p.toString().equals(property)) {
-//          System.out.println(true);
+//          System.out.println(p.toString());
           return (Property) p;
         }
       }
     }
-    System.out.println("can't find property");
+//    System.out.println("can't find property");
     return retProp;
   }
 
   public void writeCSSProperty(String selector, String property, String newValue)
       throws URISyntaxException, IOException {
     Property property1 = getProperty(selector, property);
+    System.out.println(newValue);
     if(property1 != null) {
+      System.out.println("made it for: " + newValue);
       CSSValueImpl val = new CSSValueImpl();
       val.setCssText(newValue);
 //      System.out.println(property1.getValue());
       property1.setValue(val);
 //      System.out.println(property1.getValue());
-//      System.out.println("here");
       CSSFormat format = new CSSFormat();
       format.setRgbAsHex(true);
-//      File output = new File(path.toURI());
       FileUtils.writeStringToFile(new File(path.toURI()), this.styleSheet.getCssText(format));
-//      App.getHomeScene().getStylesheets().add(getClass().getResource("/light_theme/light.css").toString())
     }
+//    System.out.println("Failed to edit...");
   }
 }
