@@ -33,7 +33,9 @@ public class AdminColorController {
   @FXML
   private void confirm() throws IOException, URISyntaxException {
     String main1, main2, main3, main4, main5;
-    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/light.css"));
+    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"));
+    String theme = null;
+
     if (custom.isSelected()) {
       color1R = (int) (color1.getValue().getRed() * 255);
       color1B = (int) (color1.getValue().getBlue() * 255);
@@ -70,25 +72,25 @@ public class AdminColorController {
       fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", main3);
       fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", main4);
       fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", main5);
+      theme = App.class.getResource("/light_theme/faker.css").toExternalForm();
+
     } else if(dark.isSelected()) {
-      fileEditor.writeCSSProperty("*", "-color-1: rgb(255, 249, 233)", "rgb(36, 52, 71)");
-      fileEditor.writeCSSProperty("*", "-color-2: rgb(150, 150, 150)", "rgb(255, 255, 255)");
-      fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", "rgb(255, 255, 255)");
-      fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", "rgb(20, 29, 38)");
-      fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", "rgb(20, 29, 38)");
+//      fileEditor.writeCSSProperty("*", "-color-1: rgb(255, 249, 233)", "rgb(36, 52, 71)");
+//      fileEditor.writeCSSProperty("*", "-color-2: rgb(150, 150, 150)", "rgb(255, 255, 255)");
+//      fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", "rgb(255, 255, 255)");
+//      fileEditor.writeCSSProperty("*", "-color-4: rgb(184, 154, 140)", "rgb(20, 29, 38)");
+//      fileEditor.writeCSSProperty("*", "-color-5: rgb(77, 77, 77)", "rgb(20, 29, 38)");
+      theme = App.class.getResource("/light_theme/dark.css").toExternalForm();
+
+    } else if(light.isSelected()) {
+      theme = App.class.getResource("/light_theme/light.css").toExternalForm();
     }
 
-    String theme = App.class.getResource("/light_theme/light.css").toExternalForm();
     App.getHomeScene().getStylesheets().add(theme);
     App.getHomeController().needThis();
 
-//    App.resetLoad();
-//    App.getLoadedAdminRequest();
-//    App.getHome().getStylesheets().add(theme);
-
     Notifications.create().text("Color Scheme Changed!").show();
     cancel.fire();
-
   }
 
   @FXML

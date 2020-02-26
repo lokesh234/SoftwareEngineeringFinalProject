@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
-
 import com.steadystate.css.dom.CSSRuleListImpl;
 import com.steadystate.css.dom.CSSStyleDeclarationImpl;
 import com.steadystate.css.dom.CSSStyleRuleImpl;
@@ -11,7 +9,6 @@ import com.steadystate.css.dom.Property;
 import com.steadystate.css.format.CSSFormat;
 import com.steadystate.css.parser.CSSOMParser;
 import com.steadystate.css.parser.SACParserCSS3;
-import edu.wpi.cs3733.c20.teamU.App;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,10 +16,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringReader;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.*;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.w3c.css.sac.ErrorHandler;
