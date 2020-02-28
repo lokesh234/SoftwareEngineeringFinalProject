@@ -80,6 +80,7 @@
                      <children>
                         <JFXTextField />
                         <JFXComboBox />
+                        <JFXButton text="Delete" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="30.0">
