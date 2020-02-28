@@ -1134,8 +1134,8 @@ public class App<loadedAdminRequests> extends Application {
       loadSan();
     }
     if(resolveRequest.getStylesheets().contains(theme)){
-      if(isDark) loginScreenController.setDarkSetting();
-      else loginScreenController.setDefaultSetting();
+//      if(isDark) loginScreenController.setDarkSetting();
+//      else loginScreenController.setDefaultSetting();
       resolveRequest.getStylesheets().remove(theme);
       home.getStylesheets().remove(theme);
       login.getStylesheets().remove(theme);

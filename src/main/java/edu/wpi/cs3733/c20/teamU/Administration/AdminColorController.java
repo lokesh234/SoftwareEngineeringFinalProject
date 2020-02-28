@@ -4,82 +4,83 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXRadioButton;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import javafx.beans.binding.BooleanBinding;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
+import java.util.ArrayList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Pane;
-import org.controlsfx.control.Notifications;
 
 public class AdminColorController {
 
-  @FXML private JFXRadioButton light;
-  @FXML private JFXRadioButton dark;
-  @FXML private JFXRadioButton custom;
-  @FXML private JFXColorPicker color1;
-  @FXML private JFXColorPicker color2;
-  @FXML private JFXColorPicker color3;
-  @FXML private JFXColorPicker color4;
-  @FXML private JFXColorPicker color5;
-  @FXML private JFXButton cancel;
-  @FXML private Label user;
+  @FXML
+  private JFXRadioButton light, dark, custom;
+  @FXML
+  private JFXColorPicker color1, color2, color3, color4, color5;
+  @FXML
+  private JFXButton cancel;
+  @FXML
+  private Label user;
   private int color1R, color1G, color1B;
   private int color2R, color2G, color2B;
   private int color3R, color3G, color3B;
   private int color4R, color4G, color4B;
   private int color5R, color5G, color5B;
-  private String themeLight = App.class.getResource("/light_theme/lightBackup.css").toExternalForm();
+  private String themeLight = App.class.getResource("/light_theme/lightBackup.css")
+      .toExternalForm();
   private String themeDark = App.class.getResource("/light_theme/dark.css").toExternalForm();
+  private String themeCustom = "themeCustom";
 
   public void setUser(String user) {
     this.user.setText(user);
   }
+
   @FXML
   private void confirm() throws IOException, URISyntaxException {
     String main1, main2, main3, main4, main5;
-    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"));
+    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/light.css"));
     String theme = "";
-    System.out.println(App.getHomeScene().getStylesheets());
-//    App.getHomeScene().getStylesheets().clear();
-    System.out.println(App.getHomeScene().getStylesheets());
-
+//    ArrayList<String> oldScheme = getCurrentColor("Dark");
     if (custom.isSelected()) {
-      color1R = (int) (color1.getValue().getRed() * 255);
-      color1B = (int) (color1.getValue().getBlue() * 255);
-      color1G = (int) (color1.getValue().getGreen() * 255);
-      main1 = RGBFormatter(color1B, color1R, color1G);
+//      color1R = (int) (color1.getValue().getRed() * 255);
+//      color1B = (int) (color1.getValue().getBlue() * 255);
+//      color1G = (int) (color1.getValue().getGreen() * 255);
+//      main1 = RGBFormatter(color1R, color1G, color1B);
+//
+//      color2R = (int) (color2.getValue().getRed() * 255);
+//      color2B = (int) (color2.getValue().getBlue() * 255);
+//      color2G = (int) (color2.getValue().getGreen() * 255);
+//      main2 = RGBFormatter(color2R, color2G, color2B);
+//
+//      color3R = (int) (color3.getValue().getRed() * 255);
+//      color3B = (int) (color3.getValue().getBlue() * 255);
+//      color3G = (int) (color3.getValue().getGreen() * 255);
+//      main3 = RGBFormatter(color3R, color3G, color3B);
+//
+//      color4R = (int) (color4.getValue().getRed() * 255);
+//      color4B = (int) (color4.getValue().getBlue() * 255);
+//      color4G = (int) (color4.getValue().getGreen() * 255);
+//      main4 = RGBFormatter(color4R, color4G, color4B);
+//
+//      color5R = (int) (color5.getValue().getRed() * 255);
+//      color5B = (int) (color5.getValue().getBlue() * 255);
+//      color5G = (int) (color5.getValue().getGreen() * 255);
+//      main5 = RGBFormatter(color5R, color5G, color5B);
+      main1 = formatter(color1);
+      main2 = formatter(color2);
+      main3 = formatter(color3);
+      main4 = formatter(color4);
+      main5 = formatter(color5);
 
-      color2R = (int) (color2.getValue().getRed() * 255);
-      color2B = (int) (color2.getValue().getBlue() * 255);
-      color2G = (int) (color2.getValue().getGreen() * 255);
-      main2 = RGBFormatter(color2B, color2R, color2G);
+      DatabaseWrapper.addColor(themeCustom, convertRGBToHex(color1),
+          convertRGBToHex(color2), convertRGBToHex(color3),
+          convertRGBToHex(color4), convertRGBToHex(color5), "000000");
 
-      color3R = (int) (color3.getValue().getRed() * 255);
-      color3B = (int) (color3.getValue().getBlue() * 255);
-      color3G = (int) (color3.getValue().getGreen() * 255);
-      main3 = RGBFormatter(color3B, color3R, color3G);
-
-      color4R = (int) (color4.getValue().getRed() * 255);
-      color4B = (int) (color4.getValue().getBlue() * 255);
-      color4G = (int) (color4.getValue().getGreen() * 255);
-      main4 = RGBFormatter(color4B, color4R, color4G);
-
-      color5R = (int) (color5.getValue().getRed() * 255);
-      color5B = (int) (color5.getValue().getBlue() * 255);
-      color5G = (int) (color5.getValue().getGreen() * 255);
-      main5 = RGBFormatter(color5B, color5R, color5G);
-
-//      System.out.println(main1);
-//      System.out.println(main2);
-//      System.out.println(main3);
-//      System.out.println(main4);
-//      System.out.println(main5);
       fileEditor.writeCSSProperty("*", "-color-1: rgb(255, 249, 233)", main1);
       fileEditor.writeCSSProperty("*", "-color-2: rgb(150, 150, 150)", main2);
       fileEditor.writeCSSProperty("*", "-color-3: rgb(219, 198, 179)", main3);
@@ -88,16 +89,29 @@ public class AdminColorController {
       theme = App.class.getResource("/light_theme/faker.css").toExternalForm();
       App.setTheme(theme);
       App.setIsDark(false);
-    } else if(dark.isSelected()) {
+    } else if (dark.isSelected()) {
       App.setIsDark(true);
       App.setTheme(themeDark);
 
-    } else if(light.isSelected()) {
+    } else if (light.isSelected()) {
       App.setIsDark(false);
       App.setTheme(themeLight);
     }
 
     cancel.fire();
+  }
+
+  /**
+   * function returns formatted RGB string to find in CSS based on JFXColorPicker
+   *
+   * @param cc color choice
+   * @return String: rgb(255, 255, 255)
+   */
+  private String formatter(JFXColorPicker cc) {
+    int ccR = (int) (cc.getValue().getRed() * 255);
+    int ccG = (int) (cc.getValue().getBlue() * 255);
+    int ccB = (int) (cc.getValue().getGreen() * 255);
+    return RGBFormatter(ccR, ccG, ccB);
   }
 
   @FXML
@@ -107,8 +121,61 @@ public class AdminColorController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  private String RGBFormatter(int blue, int red, int green) {
+  /**
+   * formats RGB values into a string to extrapolate data from css
+   *
+   * @param red   red value
+   * @param green green value
+   * @param blue  blue value
+   * @return String: rgb(255, 255, 255)
+   */
+  private String RGBFormatter(int red, int green, int blue) {
     return "rgb(" + red + ", " + green + ", " + blue + ")";
+  }
+
+  /**
+   * returns list of selectors to find in CSS file
+   * @param theme theme to search for in color database
+   * @return list of String. Ex: (1) -color-1: rgb(255, 255, 255)
+   */
+  private ArrayList<String> getCurrentColor(String theme) {
+    ArrayList<String> arrayListColors = new ArrayList<>();
+    Colors colors = DatabaseWrapper.getColor(theme);
+    String color1 = colors.getFirstColor();
+    String color2 = colors.getSecondColor();
+    String color3 = colors.getThirdColor();
+    String color4 = colors.getFourthColor();
+    String color5 = colors.getFifthColor();
+    arrayListColors.add("-color-1: " + convertHexToRGB(color1));
+    arrayListColors.add("-color-2: " + convertHexToRGB(color2));
+    arrayListColors.add("-color-3: " + convertHexToRGB(color3));
+    arrayListColors.add("-color-4: " + convertHexToRGB(color4));
+    arrayListColors.add("-color-5: " + convertHexToRGB(color5));
+    return arrayListColors;
+  }
+
+  /**
+   * converts HEX to INT for red, blue, and green
+   * @param color FFFFFF
+   * @return rgb(255, 255, 255)
+   */
+  private String convertHexToRGB(String color) {
+    int red = Color.decode(color).getRed();
+    int green = Color.decode(color).getBlue();
+    int blue = Color.decode(color).getGreen();
+    return RGBFormatter(red, green, blue);
+  }
+
+  /**
+   * converts RGB(red, green, blue) to HEX values
+   * @param cc selected color value on JFXColorPicker
+   * @return R: FF G: FF B: FF == FFFFFF
+   */
+  private String convertRGBToHex(JFXColorPicker cc) {
+    String R = Integer.toHexString((int) cc.getValue().getRed());
+    String G = Integer.toHexString((int) cc.getValue().getGreen());
+    String B = Integer.toHexString((int) cc.getValue().getGreen());
+    return R + G + B;
   }
 
   @FXML
