@@ -80,7 +80,7 @@
                      <children>
                         <JFXTextField fx:id="themeName" />
                         <JFXComboBox fx:id="listTheme"/>
-                        <JFXButton text="Delete" />
+                        <JFXButton fx:id="delete" onAction="#deleteColor" text="Delete" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="30.0">
