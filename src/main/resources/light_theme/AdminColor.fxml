@@ -78,8 +78,8 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="43.0" prefWidth="800.0" spacing="30.0">
                      <children>
-                        <JFXTextField />
-                        <JFXComboBox />
+                        <JFXTextField fx:id="themeName" />
+                        <JFXComboBox fx:id="listTheme"/>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="30.0">
