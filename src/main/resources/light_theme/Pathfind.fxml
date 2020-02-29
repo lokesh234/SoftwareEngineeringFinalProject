@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXNodesList?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -17,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
+<AnchorPane prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
    <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -289,18 +290,6 @@
                            </image>
                         </ImageView>
                      </graphic></JFXButton>
-                  <JFXButton fx:id="quickRest" contentDisplay="GRAPHIC_ONLY" onAction="#nearestBathroom" text="Restroom" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/restroom.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
                   <JFXButton fx:id="quickFood" contentDisplay="GRAPHIC_ONLY" onAction="#nearestFood" text="Food">
                      <graphic>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
@@ -310,29 +299,45 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="quickStair" contentDisplay="GRAPHIC_ONLY" onAction="#nearestStairs" text="Stairs">
+                  <JFXNodesList rotate="180" spacing="20.0">
+                     <children>
+                        <JFXButton fx:id="QuickExit" contentDisplay="GRAPHIC_ONLY" onAction="#nearestExit" text="Exit">
+                           <graphic>
+                              <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/exit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="quickElev" contentDisplay="GRAPHIC_ONLY" onAction="#nearestElevator" text="Elevator">
+                           <graphic>
+                              <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/elevator.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="quickStair" contentDisplay="GRAPHIC_ONLY" onAction="#nearestStairs" text="Stairs">
+                           <graphic>
+                              <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../png_files/stairs.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                  </JFXNodesList>
+                  <JFXButton fx:id="quickRest" contentDisplay="GRAPHIC_ONLY" onAction="#nearestBathroom" text="Restroom" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="18.0" />
+                     </font>
                      <graphic>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../png_files/stairs.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="quickElev" contentDisplay="GRAPHIC_ONLY" onAction="#nearestElevator" text="Elevator">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/elevator.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="QuickExit" contentDisplay="GRAPHIC_ONLY" onAction="#nearestExit" text="Exit">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/exit.png" />
+                              <Image url="@../png_files/restroom.png" />
                            </image>
                         </ImageView>
                      </graphic>
