@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PathfindController {
+
     private enum State {
         NEUTRAL, START, END;
     }
@@ -419,6 +420,9 @@ public class PathfindController {
             removeFromPath(startSelect, start.getFloor());
             startLabel.setText("None Selected");
         }
+        else {
+            startLabel.setText("None Selected");
+        }
 
         if (endReady) {
             removeFromPath(endSelect, end.getFloor());
@@ -439,6 +443,9 @@ public class PathfindController {
         }
         else if (end != null) {
             removeFromPath(endSelect, end.getFloor());
+            endLabel.setText("None Selected");
+        }
+        else {
             endLabel.setText("None Selected");
         }
     }
@@ -762,6 +769,7 @@ public class PathfindController {
         }
         removeFromAll(startNodeLabel);
         removeFromAll(endNodeLabel);
+
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
@@ -1109,7 +1117,12 @@ public class PathfindController {
         App.loadTreeView();
         App.getTreeViewPop().getContent().clear();
         App.getTreeViewPop().getContent().add(App.getTreeView());
+        App.getTreeViewController().setMaster(this);
         App.getTreeViewPop().show(App.getPrimaryStage());
+    }
+
+    public void getSelectionFromDir(String longName) {
+        SearchBox.setText(longName);
     }
 
     @FXML

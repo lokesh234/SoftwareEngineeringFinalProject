@@ -31,7 +31,11 @@ import javafx.util.Duration;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import lombok.SneakyThrows;
 import net.kurobako.gesturefx.GesturePane;
+
+import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
+import static javafx.scene.input.MouseEvent.MOUSE_RELEASED;
 
 public class HomeController {
 
@@ -71,15 +75,10 @@ public class HomeController {
   @FXML
   private GesturePane MapGes1;
 
-  @FXML
-  private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
-  @FXML
-  private JFXButton upButton, downButton;
-  @FXML
-  private JFXButton upArrow, downArrow, leftArrow, rightArrow;
-
-  @FXML
-  private JFXButton hamburger, navButton, services, info, help;
+  @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
+  @FXML private JFXButton upButton, downButton;
+  @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
+  @FXML private JFXButton hamburger, navButton, services, info, help;
 
   private WeatherController weatherController;
   private long startTime;
@@ -91,20 +90,10 @@ public class HomeController {
   private int checker;
   private Speech speech = new Speech();
   private volatile boolean runThread = true;
-  @FXML
-  private Label voiceLabel, voiceLabelstart, voiceLabelend;
-
+  @FXML private Label voiceLabel, voiceLabelstart, voiceLabelend;
 
   public void setWeatherData(WeatherController weatherController1) {
     weatherController = weatherController1;
-  }
-
-  /**
-   * DON'T DELETE
-   */
-  public void needThis() {
-    App.getPopup().getContent().add(App.getLogin());
-    App.getPopup().show(App.getPrimaryStage());
   }
 
   @FXML
@@ -116,137 +105,172 @@ public class HomeController {
     App.getPopup().show(App.getPrimaryStage());
   }
 
-  EventHandler<MouseEvent> leftClick = new EventHandler<MouseEvent>() {
-    @Override
-    public void handle(MouseEvent event) {
-      switch (floor) {
-        case 1:
-          Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() - 20),
-                  MapGes1.targetPointAtViewportCentre().getY());
-          MapGes1.centreOn(point2Dleft1);
-          break;
-        case 2:
-          Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() - 20),
-                  MapGes2.targetPointAtViewportCentre().getY());
-          MapGes2.centreOn(point2Dleft2);
-          break;
-        case 3:
-          Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() - 20),
-                  MapGes3.targetPointAtViewportCentre().getY());
-          MapGes3.centreOn(point2Dleft3);
-          break;
-        case 4:
-          Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() - 20),
-                  MapGes4.targetPointAtViewportCentre().getY());
-          MapGes4.centreOn(point2Dleft4);
-          break;
-        case 5:
-          Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() - 20),
-                  MapGes5.targetPointAtViewportCentre().getY());
-          MapGes5.centreOn(point2Dleft5);
-          break;
-      }
-    }
-  };
-
-    EventHandler<MouseEvent> upClick = new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        switch (floor) {
-          case 1:
-            Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(),
-                    (MapGes1.targetPointAtViewportCentre().getY() - 20));
-            MapGes1.centreOn(point2Dleft1);
-            break;
-          case 2:
-            Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(),
-                    (MapGes2.targetPointAtViewportCentre().getY() - 20));
-            MapGes2.centreOn(point2Dleft2);
-            break;
-          case 3:
-            Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(),
-                    (MapGes3.targetPointAtViewportCentre().getY() - 20));
-            MapGes3.centreOn(point2Dleft3);
-            break;
-          case 4:
-            Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(),
-                    (MapGes4.targetPointAtViewportCentre().getY() - 20));
-            MapGes4.centreOn(point2Dleft4);
-            break;
-          case 5:
-            Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(),
-                    (MapGes5.targetPointAtViewportCentre().getY() - 20));
-            MapGes5.centreOn(point2Dleft5);
-            break;
-        }
-      }
-    };
-
-      EventHandler<MouseEvent> downClick = new EventHandler<MouseEvent>() {
+  EventHandler<MouseEvent> leftClick =
+      new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
+
           switch (floor) {
             case 1:
-              Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(),
-                      (MapGes1.targetPointAtViewportCentre().getY() + 20));
+              Point2D point2Dleft1 =
+                  new Point2D(
+                      (MapGes1.targetPointAtViewportCentre().getX() - 20),
+                      MapGes1.targetPointAtViewportCentre().getY());
               MapGes1.centreOn(point2Dleft1);
               break;
             case 2:
-              Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(),
-                      (MapGes2.targetPointAtViewportCentre().getY() + 20));
+              Point2D point2Dleft2 =
+                  new Point2D(
+                      (MapGes2.targetPointAtViewportCentre().getX() - 20),
+                      MapGes2.targetPointAtViewportCentre().getY());
               MapGes2.centreOn(point2Dleft2);
               break;
             case 3:
-              Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(),
-                      (MapGes3.targetPointAtViewportCentre().getY() + 20));
+              Point2D point2Dleft3 =
+                  new Point2D(
+                      (MapGes3.targetPointAtViewportCentre().getX() - 20),
+                      MapGes3.targetPointAtViewportCentre().getY());
               MapGes3.centreOn(point2Dleft3);
               break;
             case 4:
-              Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(),
-                      (MapGes4.targetPointAtViewportCentre().getY() + 20));
+              Point2D point2Dleft4 =
+                  new Point2D(
+                      (MapGes4.targetPointAtViewportCentre().getX() - 20),
+                      MapGes4.targetPointAtViewportCentre().getY());
               MapGes4.centreOn(point2Dleft4);
               break;
             case 5:
-              Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(),
-                      (MapGes5.targetPointAtViewportCentre().getY() + 20));
+              Point2D point2Dleft5 =
+                  new Point2D(
+                      (MapGes5.targetPointAtViewportCentre().getX() - 20),
+                      MapGes5.targetPointAtViewportCentre().getY());
               MapGes5.centreOn(point2Dleft5);
               break;
           }
         }
       };
 
+  EventHandler<MouseEvent> upClick =
+      new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+          switch (floor) {
+            case 1:
+              Point2D point2Dleft1 =
+                  new Point2D(
+                      MapGes1.targetPointAtViewportCentre().getX(),
+                      (MapGes1.targetPointAtViewportCentre().getY() - 20));
+              MapGes1.centreOn(point2Dleft1);
+              break;
+            case 2:
+              Point2D point2Dleft2 =
+                  new Point2D(
+                      MapGes2.targetPointAtViewportCentre().getX(),
+                      (MapGes2.targetPointAtViewportCentre().getY() - 20));
+              MapGes2.centreOn(point2Dleft2);
+              break;
+            case 3:
+              Point2D point2Dleft3 =
+                  new Point2D(
+                      MapGes3.targetPointAtViewportCentre().getX(),
+                      (MapGes3.targetPointAtViewportCentre().getY() - 20));
+              MapGes3.centreOn(point2Dleft3);
+              break;
+            case 4:
+              Point2D point2Dleft4 =
+                  new Point2D(
+                      MapGes4.targetPointAtViewportCentre().getX(),
+                      (MapGes4.targetPointAtViewportCentre().getY() - 20));
+              MapGes4.centreOn(point2Dleft4);
+              break;
+            case 5:
+              Point2D point2Dleft5 =
+                  new Point2D(
+                      MapGes5.targetPointAtViewportCentre().getX(),
+                      (MapGes5.targetPointAtViewportCentre().getY() - 20));
+              MapGes5.centreOn(point2Dleft5);
+              break;
+          }
+        }
+      };
 
-      @FXML
-              private void one(){
-        oppo.getChildren().clear();
-        oppo.getChildren().add(N1);
-        floor = 1;
-        floorLabel.setText("1");
-        MapGes1.animate(Duration.millis(200))
-                .interpolateWith(Interpolator.EASE_BOTH)
-                .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
-      }
+  EventHandler<MouseEvent> downClick =
+      new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+
+            switch (floor) {
+              case 1:
+                Point2D point2Dleft1 =
+                    new Point2D(
+                        MapGes1.targetPointAtViewportCentre().getX(),
+                        (MapGes1.targetPointAtViewportCentre().getY() + 20));
+                MapGes1.centreOn(point2Dleft1);
+                break;
+              case 2:
+                Point2D point2Dleft2 =
+                    new Point2D(
+                        MapGes2.targetPointAtViewportCentre().getX(),
+                        (MapGes2.targetPointAtViewportCentre().getY() + 20));
+                MapGes2.centreOn(point2Dleft2);
+                break;
+              case 3:
+                Point2D point2Dleft3 =
+                    new Point2D(
+                        MapGes3.targetPointAtViewportCentre().getX(),
+                        (MapGes3.targetPointAtViewportCentre().getY() + 20));
+                MapGes3.centreOn(point2Dleft3);
+                break;
+              case 4:
+                Point2D point2Dleft4 =
+                    new Point2D(
+                        MapGes4.targetPointAtViewportCentre().getX(),
+                        (MapGes4.targetPointAtViewportCentre().getY() + 20));
+                MapGes4.centreOn(point2Dleft4);
+                break;
+              case 5:
+                Point2D point2Dleft5 =
+                    new Point2D(
+                        MapGes5.targetPointAtViewportCentre().getX(),
+                        (MapGes5.targetPointAtViewportCentre().getY() + 20));
+                MapGes5.centreOn(point2Dleft5);
+                break;
+            }
+          }
+
+      };
 
   @FXML
-  private void two(){
+  private void one() {
+    oppo.getChildren().clear();
+    oppo.getChildren().add(N1);
+    floor = 1;
+    floorLabel.setText("1");
+    MapGes1.animate(Duration.millis(200))
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+  }
+
+  @FXML
+  private void two() {
     oppo.getChildren().clear();
     oppo.getChildren().add(N2);
     floor = 2;
     floorLabel.setText("2");
     MapGes2.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
   }
 
   @FXML
-  private void three(){
+  private void three() {
     oppo.getChildren().clear();
     oppo.getChildren().add(N3);
     floor = 3;
     floorLabel.setText("3");
     MapGes3.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
   }
 
   @FXML
@@ -256,57 +280,66 @@ public class HomeController {
     floor = 4;
     floorLabel.setText("4");
     MapGes4.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
   }
 
   @FXML
-  private void five(){
+  private void five() {
     oppo.getChildren().clear();
     oppo.getChildren().add(N5);
     floor = 5;
     floorLabel.setText("5");
     MapGes5.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+        .interpolateWith(Interpolator.EASE_BOTH)
+        .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
   }
 
+  EventHandler<MouseEvent> rightClick =
+      new EventHandler<MouseEvent>() {
 
+        @Override
+        public void handle(MouseEvent event) {
 
-        EventHandler<MouseEvent> rightClick = new EventHandler<MouseEvent>() {
-    @Override
-    public void handle(MouseEvent event) {
-      switch (floor) {
-        case 1:
-          Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() + 20),
-                  MapGes1.targetPointAtViewportCentre().getY());
-          MapGes1.centreOn(point2Dleft1);
-          break;
-        case 2:
-          Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() + 20),
-                  MapGes2.targetPointAtViewportCentre().getY());
-          MapGes2.centreOn(point2Dleft2);
-          break;
-        case 3:
-          Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() + 20),
-                  MapGes3.targetPointAtViewportCentre().getY());
-          MapGes3.centreOn(point2Dleft3);
-          break;
-        case 4:
-          Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() + 20),
-                  MapGes4.targetPointAtViewportCentre().getY());
-          MapGes4.centreOn(point2Dleft4);
-          break;
-        case 5:
-          Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() + 20),
-                  MapGes5.targetPointAtViewportCentre().getY());
-          MapGes5.centreOn(point2Dleft5);
-          break;
-      }
-
-    }
-  };
-
+          switch (floor) {
+            case 1:
+              Point2D point2Dleft1 =
+                  new Point2D(
+                      (MapGes1.targetPointAtViewportCentre().getX() + 20),
+                      MapGes1.targetPointAtViewportCentre().getY());
+              MapGes1.centreOn(point2Dleft1);
+              break;
+            case 2:
+              Point2D point2Dleft2 =
+                  new Point2D(
+                      (MapGes2.targetPointAtViewportCentre().getX() + 20),
+                      MapGes2.targetPointAtViewportCentre().getY());
+              MapGes2.centreOn(point2Dleft2);
+              break;
+            case 3:
+              Point2D point2Dleft3 =
+                  new Point2D(
+                      (MapGes3.targetPointAtViewportCentre().getX() + 20),
+                      MapGes3.targetPointAtViewportCentre().getY());
+              MapGes3.centreOn(point2Dleft3);
+              break;
+            case 4:
+              Point2D point2Dleft4 =
+                  new Point2D(
+                      (MapGes4.targetPointAtViewportCentre().getX() + 20),
+                      MapGes4.targetPointAtViewportCentre().getY());
+              MapGes4.centreOn(point2Dleft4);
+              break;
+            case 5:
+              Point2D point2Dleft5 =
+                  new Point2D(
+                      (MapGes5.targetPointAtViewportCentre().getX() + 20),
+                      MapGes5.targetPointAtViewportCentre().getY());
+              MapGes5.centreOn(point2Dleft5);
+              break;
+          }
+        }
+      };
 
   @FXML
   private void openLoginSceneSound() {
@@ -324,15 +357,15 @@ public class HomeController {
   @FXML
   private void openNavScene(ActionEvent e) {
     App.loadPathfinding();
-    //App.getGraph().update();
+    // App.getGraph().update();
     DatabaseWrapper.updateGraph();
-    //App.getPathfindController().drawNodes();
+    // App.getPathfindController().drawNodes();
     ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
     App.getPrimaryStage().setScene(App.getPathScene());
   }
 
   @FXML
-  private void openHelpSceneSound(){
+  private void openHelpSceneSound() {
     App.getSecurityPop().getContent().add(App.getSecurity());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
@@ -349,7 +382,7 @@ public class HomeController {
   }
 
   @FXML
-  private void openInformationSound(){
+  private void openInformationSound() {
     App.getInformationPopUp().getContent().add(App.getInformation());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
@@ -357,7 +390,7 @@ public class HomeController {
   }
 
   @FXML
-  private void openRequestSound(){
+  private void openRequestSound() {
     App.loadAdminRequests();
     App.getRequestPop().getContent().add(App.getRequest());
     App.getHome().setOpacity(.5);
@@ -366,15 +399,14 @@ public class HomeController {
   }
 
   @FXML
-  private void openNavSceneSpeech(){
+  private void openNavSceneSpeech() {
     System.out.println("List contains nav");
     App.loadPathfinding();
     DatabaseWrapper.updateGraph();
-    //App.getPathfindController().drawNodes();
+    // App.getPathfindController().drawNodes();
     ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
     App.getPrimaryStage().setScene(App.getPathScene());
   }
-
 
   @FXML
   private void openHelpScene(ActionEvent e) {
@@ -386,69 +418,96 @@ public class HomeController {
   }
 
   @FXML
-  private void startListening(){
+  private void startListening() {
     System.out.println("Listening started");
-    if(startT.isAlive()) {
-      voiceLabel.setText("Listening");
-    }
-    if(!startT.isAlive()){
-      //voiceLabelstart.setText(App.getSpokenWords().get(0));
-      voiceLabel.setText("Done");
-    }
+//    if (startT.isAlive()) {
+//      voiceLabel.setText("Listening");
+//    }
+//    if (!startT.isAlive()) {
+//      // voiceLabelstart.setText(App.getSpokenWords().get(0));
+//      voiceLabel.setText("Done");
+//    }
     App.getSpokenWords().clear();
     speech.startlistening();
-    //voiceLabel.setText("Listening");
+    // voiceLabel.setText("Listening");
   }
 
   @FXML
-  private void openHelpSceneSpeechB(){
+  private void openHelpSceneSpeechB() {
     runThread = true;
     voiceLabel.setText("Listening");
-    Thread startT = new Thread(new Runnable() {
-      @Override
-      public void run() {
-        Runnable runTask = new Runnable() {
-          @Override
-          public void run() {
-            if(App.getSpokenWords().contains("help") || App.getSpokenWords().contains("help") || App.getSpokenWords().contains("  help") || App.getSpokenWords().contains(" help") || App.getSpokenWords().contains("help help help") || App.getSpokenWords().contains("help help") || App.getSpokenWords().contains("help help help help")) {
-              System.out.println("List contains help");
-              openHelpSceneSound();
-              App.getSpokenWords().clear();
-            }
-            if (App.getSpokenWords().contains(" requests") || App.getSpokenWords().contains("requests") || App.getSpokenWords().contains("  requests") || App.getSpokenWords().contains("request") || App.getSpokenWords().contains("  requestt" )){
-              openRequestSound();
-              App.getSpokenWords().clear();
-            }
-            if(App.getSpokenWords().contains("nav") || App.getSpokenWords().contains("  nav") || App.getSpokenWords().contains(" nav")){
-              openNavSceneSpeech();
-              App.getSpokenWords().clear();
-            }
-            if(App.getSpokenWords().contains("information") || App.getSpokenWords().contains("  info") || App.getSpokenWords().contains(" information") || App.getSpokenWords().contains("inforamtion info") || App.getSpokenWords().contains("info")){
-              openInformationSound();
-              App.getSpokenWords().clear();
-            }
-            if(App.getSpokenWords().contains("login") || App.getSpokenWords().contains("  login") || App.getSpokenWords().contains(" login") || App.getSpokenWords().contains("login login") || App.getSpokenWords().contains("login login login")){
-              openLoginSceneSound();
-              App.getSpokenWords().clear();
-            }
-            if(App.getSpokenWords().contains("weather") || App.getSpokenWords().contains("  weather") || App.getSpokenWords().contains(" wea") || App.getSpokenWords().contains("weather weather") || App.getSpokenWords().contains("weather weather weather")){
-              openWeather();
-              App.getSpokenWords().clear();
-            }
-          }
-        };
-        while (runThread) {
-          try {
-            Thread.sleep(1000);
-//            System.out.println(App.getTimeoutValue());
-          } catch (InterruptedException ex) {
-            ex.printStackTrace();
-          }
-          Platform.runLater(runTask);
-        }
-      }
-    });
-    for(int i =0; i < App.getSpokenWords().size(); i++) {
+    Thread startT =
+        new Thread(
+            new Runnable() {
+              @Override
+              public void run() {
+                Runnable runTask =
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        if (App.getSpokenWords().contains("help")
+                            || App.getSpokenWords().contains("help")
+                            || App.getSpokenWords().contains("  help")
+                            || App.getSpokenWords().contains(" help")
+                            || App.getSpokenWords().contains("help help help")
+                            || App.getSpokenWords().contains("help help")
+                            || App.getSpokenWords().contains("help help help help")) {
+                          System.out.println("List contains help");
+                          openHelpSceneSound();
+                          App.getSpokenWords().clear();
+                        }
+                        if (App.getSpokenWords().contains(" requests")
+                            || App.getSpokenWords().contains("requests")
+                            || App.getSpokenWords().contains("  requests")
+                            || App.getSpokenWords().contains("request")
+                            || App.getSpokenWords().contains("  requestt")) {
+                          openRequestSound();
+                          App.getSpokenWords().clear();
+                        }
+                        if (App.getSpokenWords().contains("nav")
+                            || App.getSpokenWords().contains("  nav")
+                            || App.getSpokenWords().contains(" nav")) {
+                          openNavSceneSpeech();
+                          App.getSpokenWords().clear();
+                        }
+                        if (App.getSpokenWords().contains("information")
+                            || App.getSpokenWords().contains("  info")
+                            || App.getSpokenWords().contains(" information")
+                            || App.getSpokenWords().contains("inforamtion info")
+                            || App.getSpokenWords().contains("info")) {
+                          openInformationSound();
+                          App.getSpokenWords().clear();
+                        }
+                        if (App.getSpokenWords().contains("login")
+                            || App.getSpokenWords().contains("  login")
+                            || App.getSpokenWords().contains(" login")
+                            || App.getSpokenWords().contains("login login")
+                            || App.getSpokenWords().contains("login login login")) {
+                          openLoginSceneSound();
+                          App.getSpokenWords().clear();
+                        }
+                        if (App.getSpokenWords().contains("weather")
+                            || App.getSpokenWords().contains("  weather")
+                            || App.getSpokenWords().contains(" wea")
+                            || App.getSpokenWords().contains("weather weather")
+                            || App.getSpokenWords().contains("weather weather weather")) {
+                          openWeather();
+                          App.getSpokenWords().clear();
+                        }
+                      }
+                    };
+                while (runThread) {
+                  try {
+                    Thread.sleep(1000);
+                    //            System.out.println(App.getTimeoutValue());
+                  } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                  }
+                  Platform.runLater(runTask);
+                }
+              }
+            });
+    for (int i = 0; i < App.getSpokenWords().size(); i++) {
       voiceLabelend.setText(App.getSpokenWords().get(i));
     }
 
@@ -456,67 +515,29 @@ public class HomeController {
     startT.start();
   }
 
-  @FXML
-  private void openHomeScene() {
-//        App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-//                    startTime = System.currentTimeMillis();
-//        });
-    App.getPrimaryStage().setScene(App.getStartScene());
-  }
-
-  Thread startT = new Thread(new Runnable() {
-    @Override
-    public void run() {
-      Runnable runTask = new Runnable() {
-        @Override
-        public void run() {
-          if (App.getChange()) {
-            currentTime = System.currentTimeMillis();
-//            System.out.println(currentTime - startTime);
-            if ((currentTime - startTime)
-                > 60000) { // will go to openStartScene if the screen has not been touched within 60 secs
-              openStartScene();
+  Thread startC =
+      new Thread(
+          new Runnable() {
+            @Override
+            public void run() {
+              Runnable incrementTime =
+                  new Runnable() {
+                    @Override
+                    public void run() {
+                      //          System.out.println(setTime());
+                      time.setText(setClock());
+                    }
+                  };
+              while (true) {
+                try {
+                  Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                  ex.printStackTrace();
+                }
+                Platform.runLater(incrementTime);
+              }
             }
-          }
-        }
-      };
-      while (true) {
-        try {
-          Thread.sleep(1);
-        } catch (InterruptedException ex) {
-          ex.printStackTrace();
-        }
-        if (!App.getChange()) {
-          Platform.runLater(() -> setTime());
-          App.change(true);
-        } else {
-          Platform.runLater(runTask);
-        }
-
-      }
-    }
-  });
-
-  Thread startC = new Thread(new Runnable() {
-    @Override
-    public void run() {
-      Runnable incrementTime = new Runnable() {
-        @Override
-        public void run() {
-//          System.out.println(setTime());
-          time.setText(setClock());
-        }
-      };
-      while (true) {
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-          ex.printStackTrace();
-        }
-        Platform.runLater(incrementTime);
-      }
-    }
-  });
+          });
 
 
   /**
@@ -561,9 +582,6 @@ public class HomeController {
     App.getWeatherPop().show(App.getPrimaryStage());
   }
 
-
-
-
   @FXML
   private void openRequestScene(ActionEvent e) {
     App.loadAdminRequests();
@@ -577,12 +595,12 @@ public class HomeController {
   private void initialize() {
     // add stuff to the menu items now
       menuOptions.getChildren().clear();
-    menuOptions.addAnimatedNode(hamburger);
-    menuOptions.addAnimatedNode(navButton);
-    menuOptions.addAnimatedNode(services);
-    menuOptions.addAnimatedNode(info);
-    menuOptions.addAnimatedNode(help);
-    menuOptions.setSpacing(20.0);
+      menuOptions.addAnimatedNode(hamburger);
+      menuOptions.addAnimatedNode(navButton);
+      menuOptions.addAnimatedNode(services);
+      menuOptions.addAnimatedNode(info);
+      menuOptions.addAnimatedNode(help);
+      menuOptions.setSpacing(20.0);
 
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
@@ -590,67 +608,77 @@ public class HomeController {
     NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
     NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
 
-    leftArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, leftClick);
-    rightArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, rightClick);
-    upArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, upClick);
-    downArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, downClick);
+    leftArrow.addEventHandler(MOUSE_PRESSED, leftClick);
+    rightArrow.addEventHandler(MOUSE_PRESSED, rightClick);
+    upArrow.addEventHandler(MOUSE_PRESSED, upClick);
+    downArrow.addEventHandler(MOUSE_PRESSED, downClick);
 
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
-    openHelpSceneSpeechB();
+    //    openHelpSceneSpeechB();
     startC.setDaemon(true);
     startC.start();
-    MapGes1.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
-            .orElse(MapGes1.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes1.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes2.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
-            .orElse(MapGes2.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes2.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes3.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
-            .orElse(MapGes3.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes3.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes4.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
-            .orElse(MapGes4.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes4.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
-      }
-    });
-    MapGes5.setOnMouseClicked(e -> {
-      if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-        Point2D pivotOnTarget = MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
-            .orElse(MapGes5.targetPointAtViewportCentre());
-        // increment of scale makes more sense exponentially instead of linearly
-        MapGes5.animate(Duration.millis(200))
-            .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
-      }
-    });
+    MapGes1.setOnMouseClicked(
+        e -> {
+          if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+            Point2D pivotOnTarget =
+                MapGes1.targetPointAt(new Point2D(e.getX(), e.getY()))
+                    .orElse(MapGes1.targetPointAtViewportCentre());
+            // increment of scale makes more sense exponentially instead of linearly
+            MapGes1.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes1.getCurrentScale(), pivotOnTarget);
+          }
+        });
+    MapGes2.setOnMouseClicked(
+        e -> {
+          if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+            Point2D pivotOnTarget =
+                MapGes2.targetPointAt(new Point2D(e.getX(), e.getY()))
+                    .orElse(MapGes2.targetPointAtViewportCentre());
+            // increment of scale makes more sense exponentially instead of linearly
+            MapGes2.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes2.getCurrentScale(), pivotOnTarget);
+          }
+        });
+    MapGes3.setOnMouseClicked(
+        e -> {
+          if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+            Point2D pivotOnTarget =
+                MapGes3.targetPointAt(new Point2D(e.getX(), e.getY()))
+                    .orElse(MapGes3.targetPointAtViewportCentre());
+            // increment of scale makes more sense exponentially instead of linearly
+            MapGes3.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes3.getCurrentScale(), pivotOnTarget);
+          }
+        });
+    MapGes4.setOnMouseClicked(
+        e -> {
+          if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+            Point2D pivotOnTarget =
+                MapGes4.targetPointAt(new Point2D(e.getX(), e.getY()))
+                    .orElse(MapGes4.targetPointAtViewportCentre());
+            // increment of scale makes more sense exponentially instead of linearly
+            MapGes4.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes4.getCurrentScale(), pivotOnTarget);
+          }
+        });
+    MapGes5.setOnMouseClicked(
+        e -> {
+          if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
+            Point2D pivotOnTarget =
+                MapGes5.targetPointAt(new Point2D(e.getX(), e.getY()))
+                    .orElse(MapGes5.targetPointAtViewportCentre());
+            // increment of scale makes more sense exponentially instead of linearly
+            MapGes5.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes5.getCurrentScale(), pivotOnTarget);
+          }
+        });
     MapGes1.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -669,12 +697,9 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N4);
 
-//    startT.setDaemon(true);
-//    startT.start();
+    //    startT.setDaemon(true);
+    //    startT.start();
   }
-
-
-
 
   @FXML
   private void stateMachine(int floor) {
@@ -812,15 +837,15 @@ public class HomeController {
     switch (floor) {
       case 1:
         if (zoomCounter < 5 && zoomCounter >= 0) {
-//          System.out.println(MapGes1.getCurrentScale());
+          //          System.out.println(MapGes1.getCurrentScale());
           MapGes1.animate(Duration.millis(200))
               .interpolateWith(Interpolator.EASE_BOTH)
               .zoomTo(zoomed / 2, MapGes1.targetPointAtViewportCentre());
           zoomed /= 2;
-          //System.out.println(zoomed/2);
+          // System.out.println(zoomed/2);
           zoomCounter++;
         }
-//        System.out.println(MapGes1.getCurrentScale() - 5);
+        //        System.out.println(MapGes1.getCurrentScale() - 5);
         break;
       case 2:
         MapGes2.animate(Duration.millis(200))
@@ -852,7 +877,6 @@ public class HomeController {
         break;
     }
   }
-
 
   @FXML
   private void zoomOut() {
