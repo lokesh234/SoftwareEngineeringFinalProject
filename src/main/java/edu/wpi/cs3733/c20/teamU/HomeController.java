@@ -209,6 +209,62 @@ public class HomeController {
       };
 
 
+      @FXML
+              private void one(){
+        oppo.getChildren().clear();
+        oppo.getChildren().add(N1);
+        floor = 1;
+        floorLabel.setText("1");
+        MapGes1.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+      }
+
+  @FXML
+  private void two(){
+    oppo.getChildren().clear();
+    oppo.getChildren().add(N2);
+    floor = 2;
+    floorLabel.setText("2");
+    MapGes2.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+  }
+
+  @FXML
+  private void three(){
+    oppo.getChildren().clear();
+    oppo.getChildren().add(N3);
+    floor = 3;
+    floorLabel.setText("3");
+    MapGes3.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+  }
+
+  @FXML
+  private void four(){
+    oppo.getChildren().clear();
+    oppo.getChildren().add(N4);
+    floor = 4;
+    floorLabel.setText("4");
+    MapGes4.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+  }
+
+  @FXML
+  private void five(){
+    oppo.getChildren().clear();
+    oppo.getChildren().add(N5);
+    floor = 5;
+    floorLabel.setText("5");
+    MapGes5.animate(Duration.millis(200))
+            .interpolateWith(Interpolator.EASE_BOTH)
+            .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+  }
+
+
 
         EventHandler<MouseEvent> rightClick = new EventHandler<MouseEvent>() {
     @Override
@@ -240,6 +296,7 @@ public class HomeController {
           MapGes5.centreOn(point2Dleft5);
           break;
       }
+
     }
   };
 
