@@ -69,14 +69,6 @@
             </VBox>
             <VBox alignment="CENTER" maxWidth="200.0" styleClass="transparentSideBar" StackPane.alignment="CENTER_RIGHT">
                <children>
-                  <JFXButton fx:id="tableButton" contentDisplay="GRAPHIC_ONLY" onAction="#openTreeView" prefHeight="84.0" prefWidth="71.0" text=" " textAlignment="CENTER" wrapText="true">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/navbook.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></JFXButton>
                   <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="0.0">
@@ -287,6 +279,14 @@
             </HBox>
             <HBox alignment="CENTER" maxHeight="200.0" maxWidth="600.0" prefHeight="200.0" prefWidth="600.0" spacing="50.0" styleClass="transparentSideBar" StackPane.alignment="BOTTOM_CENTER">
                <children>
+                  <JFXButton fx:id="tableButton" contentDisplay="GRAPHIC_ONLY" onAction="#openTreeView" text=" " textAlignment="CENTER" wrapText="true">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/navbook.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
                   <JFXButton fx:id="quickRest" contentDisplay="GRAPHIC_ONLY" onAction="#nearestBathroom" text="Restroom" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="18.0" />
@@ -295,6 +295,15 @@
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../png_files/restroom.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="quickFood" contentDisplay="GRAPHIC_ONLY" onAction="#nearestFood" text="Food">
+                     <graphic>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/food.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -313,15 +322,6 @@
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../png_files/elevator.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="quickFood" contentDisplay="GRAPHIC_ONLY" onAction="#nearestFood" text="Food">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../png_files/food.png" />
                            </image>
                         </ImageView>
                      </graphic>
