@@ -32,8 +32,10 @@ public class startController {
             }
 //            System.out.println(initialLocation);
             if ((currentTime - startTime)
-                > App.getTimeoutValue()) { // will go to openStartScene if the screen has not been touched within 60 secs
+                > 5000 && runThread) { // will go to openStartScene if the screen has not been touched within 60 secs
               App.getPrimaryStage().setScene(App.getStartScene());
+              clearPop();
+              Notifications.create().text("Kiosk has timed out!").show();
               runThread = false;
 //              System.out.println("hello");
             }
@@ -73,7 +75,8 @@ public class startController {
     App.getSanRequestPop().getContent().clear();
     App.getLanguageSRPop().getContent().clear();
     App.getChoosePathPop().getContent().clear();
-    Notifications.create().text("Kiosk has timed out!").show();
+    App.getWeatherPop().getContent().clear();
+
   }
   @FXML
   private void initialize() {
