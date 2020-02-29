@@ -77,7 +77,7 @@ public class EmployeeFormController {
     } else if (user.equals(userOG)) {
       employeeIdText.setStyle("-fx-border-color: red");
     } else if (edit) {
-      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Edit", oldUsername);
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "Edit Employee", oldUsername);
       DatabaseWrapper.delLoginSR(oldUsername);
       DatabaseWrapper.addLoginSR(user, pass, first, last, position, number);
       Notifications.create().text(first + " " + last + " has been edited!").show();
@@ -90,7 +90,7 @@ public class EmployeeFormController {
       accountDetails.add(last);
       accountDetails.add(position);
       accountDetails.add(number);
-      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Add", user);
+      DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "Add Employee", user);
       App.getPopup().getContent().add(App.getVerification());
       App.getVerificationController().setAccountDetails(accountDetails);
       App.getVerificationController().setAtAdmin(false);

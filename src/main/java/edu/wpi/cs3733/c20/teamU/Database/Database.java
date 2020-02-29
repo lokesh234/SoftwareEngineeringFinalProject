@@ -1137,7 +1137,7 @@ public class Database {
     private static void createUserBacklogTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(10), operations VARCHAR(200), addInfo VARCHAR(200), " +
-                    "CONSTRAINT UB_TY CHECK (serviceType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT', 'EMPLOYEE', 'NODE', 'EDGE')))";
+                    "CONSTRAINT UB_TY CHECK (serviceType in ('ADMIN', 'MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT', 'EMPLOYEE', 'NODE', 'EDGE')))";
 
             stmt.executeUpdate(slqCreate);
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
@@ -1198,7 +1198,7 @@ public class Database {
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("couldn't update employee table");
+            System.out.println("couldn't update User Backlog table");
             return false;
         }
     }

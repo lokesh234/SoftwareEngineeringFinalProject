@@ -102,17 +102,21 @@ public class AdminColorController {
     } else if (preset.equals("Standard")) {
       color = DatabaseWrapper.getColor("Standard");
     } else color = DatabaseWrapper.getColor(preset);
+
     color1 = convertHexToRGB(color.getFirstColor());
     color2 = convertHexToRGB(color.getSecondColor());
     color3 = convertHexToRGB(color.getThirdColor());
     color4 = convertHexToRGB(color.getFourthColor());
     color5 = convertHexToRGB(color.getFifthColor());
+    System.out.println("Colors: " + color1 + color2 + color3 + color4 + color5);
+    System.out.println("===================================================================");
 
     fileEditor.writeCSSProperty("*", old.get(0), color1);
     fileEditor.writeCSSProperty("*", old.get(1), color2);
     fileEditor.writeCSSProperty("*", old.get(2), color3);
     fileEditor.writeCSSProperty("*", old.get(3), color4);
     fileEditor.writeCSSProperty("*", old.get(4), color5);
+    cancel();
   }
 
   @FXML

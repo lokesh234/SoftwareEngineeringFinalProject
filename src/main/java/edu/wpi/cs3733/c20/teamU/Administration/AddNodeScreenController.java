@@ -92,7 +92,7 @@ public class AddNodeScreenController {
               (int) Double.parseDouble(userFloor), userBuild, userType, userLongName,
               userShortName)) System.out.println("oh no 2"); // THIS IS FAILING
 
-    DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "NODE", "ADD", userID);
+    DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "ADD NODE", userID);
       //System.out.println("something");
 
 //    if (boo) {
