@@ -994,7 +994,8 @@ public class PathfindController {
         }
         App.getTextpath().clear();
 
-        TextPathBuilder tpb = new TextPathBuilder(20,11.5,3.5, "feet");
+        TextPathBuilder tpb = new TextPathBuilder(20,App.getPixMet(),App.getPixFoo(), App.getUnit());
+
         // the path is given in the reverse order...
         ArrayList<Node> reversedPath = new ArrayList<Node>();
         for(int index = path.size()-1; index >= 0; index --){

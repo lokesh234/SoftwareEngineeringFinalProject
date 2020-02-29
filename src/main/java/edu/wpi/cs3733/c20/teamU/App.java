@@ -172,8 +172,8 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedIT = false;
   private static boolean loadedTreeView = false;
 
-  private static double pixFoo = 10;
-  private static double pixMet = 10;
+  private static double pixFoo = 3.5;
+  private static double pixMet = 11.5;
   private static boolean useFeet = true;
 
   public static boolean getLoadedAdminRequest() {return loadedAdminRequests;}

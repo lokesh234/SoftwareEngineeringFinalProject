@@ -52,7 +52,7 @@
                <children>
                   <Label text="Pixels per Meter" />
                   <Label text="Pixels per Foot" GridPane.rowIndex="1" />
-                  <Label text="Default Units" GridPane.rowIndex="2" />
+                  <Label text="Distance Units" GridPane.rowIndex="2" />
                   <JFXComboBox promptText="feet" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="options"/>
                   <JFXTextField text="11.5" GridPane.columnIndex="1" fx:id="pixMet" />
                   <JFXTextField text="3.5" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="pixFoo" />

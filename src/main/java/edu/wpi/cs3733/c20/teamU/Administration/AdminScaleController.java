@@ -51,5 +51,12 @@ public class AdminScaleController {
         pixMet.setStyle("-fx-border-color:  #FFEEC9");
         options.getItems().clear();
         options.getItems().addAll("feet", "meters");
+        if(App.getUnit().equals("feet")){
+            options.setValue("feet");
+        }
+        else{
+            options.setValue("meters");
+        }
+
     }
 }
