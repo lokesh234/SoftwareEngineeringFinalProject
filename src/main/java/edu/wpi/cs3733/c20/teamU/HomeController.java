@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU;
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -69,6 +71,8 @@ public class HomeController {
   private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
   @FXML
   private JFXButton upButton, downButton;
+  @FXML
+  private JFXButton upArrow, downArrow, leftArrow, rightArrow;
 
   private WeatherController weatherController;
   private long startTime;
@@ -104,6 +108,141 @@ public class HomeController {
     App.getPopup().getContent().add(App.getLogin());
     App.getPopup().show(App.getPrimaryStage());
   }
+
+  EventHandler<MouseEvent> leftClick = new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+      switch (floor) {
+        case 1:
+          Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() - 20),
+                  MapGes1.targetPointAtViewportCentre().getY());
+          MapGes1.centreOn(point2Dleft1);
+          break;
+        case 2:
+          Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() - 20),
+                  MapGes2.targetPointAtViewportCentre().getY());
+          MapGes2.centreOn(point2Dleft2);
+          break;
+        case 3:
+          Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() - 20),
+                  MapGes3.targetPointAtViewportCentre().getY());
+          MapGes3.centreOn(point2Dleft3);
+          break;
+        case 4:
+          Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() - 20),
+                  MapGes4.targetPointAtViewportCentre().getY());
+          MapGes4.centreOn(point2Dleft4);
+          break;
+        case 5:
+          Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() - 20),
+                  MapGes5.targetPointAtViewportCentre().getY());
+          MapGes5.centreOn(point2Dleft5);
+          break;
+      }
+    }
+  };
+
+    EventHandler<MouseEvent> upClick = new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent event) {
+        switch (floor) {
+          case 1:
+            Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(),
+                    (MapGes1.targetPointAtViewportCentre().getY() - 20));
+            MapGes1.centreOn(point2Dleft1);
+            break;
+          case 2:
+            Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(),
+                    (MapGes2.targetPointAtViewportCentre().getY() - 20));
+            MapGes2.centreOn(point2Dleft2);
+            break;
+          case 3:
+            Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(),
+                    (MapGes3.targetPointAtViewportCentre().getY() - 20));
+            MapGes3.centreOn(point2Dleft3);
+            break;
+          case 4:
+            Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(),
+                    (MapGes4.targetPointAtViewportCentre().getY() - 20));
+            MapGes4.centreOn(point2Dleft4);
+            break;
+          case 5:
+            Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(),
+                    (MapGes5.targetPointAtViewportCentre().getY() - 20));
+            MapGes5.centreOn(point2Dleft5);
+            break;
+        }
+      }
+    };
+
+      EventHandler<MouseEvent> downClick = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+          switch (floor) {
+            case 1:
+              Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(),
+                      (MapGes1.targetPointAtViewportCentre().getY() + 20));
+              MapGes1.centreOn(point2Dleft1);
+              break;
+            case 2:
+              Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(),
+                      (MapGes2.targetPointAtViewportCentre().getY() + 20));
+              MapGes2.centreOn(point2Dleft2);
+              break;
+            case 3:
+              Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(),
+                      (MapGes3.targetPointAtViewportCentre().getY() + 20));
+              MapGes3.centreOn(point2Dleft3);
+              break;
+            case 4:
+              Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(),
+                      (MapGes4.targetPointAtViewportCentre().getY() + 20));
+              MapGes4.centreOn(point2Dleft4);
+              break;
+            case 5:
+              Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(),
+                      (MapGes5.targetPointAtViewportCentre().getY() + 20));
+              MapGes5.centreOn(point2Dleft5);
+              break;
+          }
+        }
+      };
+
+
+
+        EventHandler<MouseEvent> rightClick = new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+      switch (floor) {
+        case 1:
+          Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() + 20),
+                  MapGes1.targetPointAtViewportCentre().getY());
+          MapGes1.centreOn(point2Dleft1);
+          break;
+        case 2:
+          Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() + 20),
+                  MapGes2.targetPointAtViewportCentre().getY());
+          MapGes2.centreOn(point2Dleft2);
+          break;
+        case 3:
+          Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() + 20),
+                  MapGes3.targetPointAtViewportCentre().getY());
+          MapGes3.centreOn(point2Dleft3);
+          break;
+        case 4:
+          Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() + 20),
+                  MapGes4.targetPointAtViewportCentre().getY());
+          MapGes4.centreOn(point2Dleft4);
+          break;
+        case 5:
+          Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() + 20),
+                  MapGes5.targetPointAtViewportCentre().getY());
+          MapGes5.centreOn(point2Dleft5);
+          break;
+      }
+    }
+  };
+
 
   @FXML
   private void openLoginSceneSound() {
@@ -378,6 +517,11 @@ public class HomeController {
     NodesPane4.getChildren().add(new ImageView(App.getFloor4()));
     NodesPane5.getChildren().add(new ImageView(App.getFloor5()));
 
+    leftArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, leftClick);
+    rightArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, rightClick);
+    upArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, upClick);
+    downArrow.addEventHandler(MouseEvent.MOUSE_PRESSED, downClick);
+
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
@@ -456,25 +600,7 @@ public class HomeController {
 //    startT.start();
   }
 
-  @FXML
-  private void MapLeft() {
-    MoveLeftMachine(floor);
-  }
 
-  @FXML
-  private void MapRight() {
-    MoveRightMachine(floor);
-  }
-
-  @FXML
-  private void MapUp() {
-    MoveUpMachine(floor);
-  }
-
-  @FXML
-  private void MapDown() {
-    MoveDownMachine(floor);
-  }
 
 
   @FXML
@@ -605,126 +731,6 @@ public class HomeController {
             .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
         zoomed = MapGes5.getCurrentScale();
         zoomCounter--;
-        break;
-    }
-  }
-
-  private void MoveLeftMachine(int floor) {
-    switch (floor) {
-      case 1:
-        Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() - 20),
-            MapGes1.targetPointAtViewportCentre().getY());
-        MapGes1.centreOn(point2Dleft1);
-        break;
-      case 2:
-        Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() - 20),
-            MapGes2.targetPointAtViewportCentre().getY());
-        MapGes2.centreOn(point2Dleft2);
-        break;
-      case 3:
-        Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() - 20),
-            MapGes3.targetPointAtViewportCentre().getY());
-        MapGes3.centreOn(point2Dleft3);
-        break;
-      case 4:
-        Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() - 20),
-            MapGes4.targetPointAtViewportCentre().getY());
-        MapGes4.centreOn(point2Dleft4);
-        break;
-      case 5:
-        Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() - 20),
-            MapGes5.targetPointAtViewportCentre().getY());
-        MapGes5.centreOn(point2Dleft5);
-        break;
-    }
-  }
-
-  private void MoveRightMachine(int floor) {
-    switch (floor) {
-      case 1:
-        Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() + 20),
-            MapGes1.targetPointAtViewportCentre().getY());
-        MapGes1.centreOn(point2Dleft1);
-        break;
-      case 2:
-        Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() + 20),
-            MapGes2.targetPointAtViewportCentre().getY());
-        MapGes2.centreOn(point2Dleft2);
-        break;
-      case 3:
-        Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() + 20),
-            MapGes3.targetPointAtViewportCentre().getY());
-        MapGes3.centreOn(point2Dleft3);
-        break;
-      case 4:
-        Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() + 20),
-            MapGes4.targetPointAtViewportCentre().getY());
-        MapGes4.centreOn(point2Dleft4);
-        break;
-      case 5:
-        Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() + 20),
-            MapGes5.targetPointAtViewportCentre().getY());
-        MapGes5.centreOn(point2Dleft5);
-        break;
-    }
-  }
-
-  private void MoveUpMachine(int floor) {
-    switch (floor) {
-      case 1:
-        Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(),
-            (MapGes1.targetPointAtViewportCentre().getY() - 20));
-        MapGes1.centreOn(point2Dleft1);
-        break;
-      case 2:
-        Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(),
-            (MapGes2.targetPointAtViewportCentre().getY() - 20));
-        MapGes2.centreOn(point2Dleft2);
-        break;
-      case 3:
-        Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(),
-            (MapGes3.targetPointAtViewportCentre().getY() - 20));
-        MapGes3.centreOn(point2Dleft3);
-        break;
-      case 4:
-        Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(),
-            (MapGes4.targetPointAtViewportCentre().getY() - 20));
-        MapGes4.centreOn(point2Dleft4);
-        break;
-      case 5:
-        Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(),
-            (MapGes5.targetPointAtViewportCentre().getY() - 20));
-        MapGes5.centreOn(point2Dleft5);
-        break;
-    }
-  }
-
-  private void MoveDownMachine(int floor) {
-    switch (floor) {
-      case 1:
-        Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(),
-            (MapGes1.targetPointAtViewportCentre().getY() + 20));
-        MapGes1.centreOn(point2Dleft1);
-        break;
-      case 2:
-        Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(),
-            (MapGes2.targetPointAtViewportCentre().getY() + 20));
-        MapGes2.centreOn(point2Dleft2);
-        break;
-      case 3:
-        Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(),
-            (MapGes3.targetPointAtViewportCentre().getY() + 20));
-        MapGes3.centreOn(point2Dleft3);
-        break;
-      case 4:
-        Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(),
-            (MapGes4.targetPointAtViewportCentre().getY() + 20));
-        MapGes4.centreOn(point2Dleft4);
-        break;
-      case 5:
-        Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(),
-            (MapGes5.targetPointAtViewportCentre().getY() + 20));
-        MapGes5.centreOn(point2Dleft5);
         break;
     }
   }

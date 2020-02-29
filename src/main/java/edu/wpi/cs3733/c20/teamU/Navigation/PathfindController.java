@@ -99,6 +99,8 @@ public class PathfindController {
     //private ArrayList<Circle> wongs = new ArrayList<>();
     private Label startNodeLabel = new Label();
     private Label endNodeLabel = new Label();
+    private Label l = new Label();
+    private Label l2 = new Label();
     private ArrayList<Label> nodeLabels = new ArrayList<>();
 
     @FXML private VBox radioBox;
@@ -415,6 +417,7 @@ public class PathfindController {
         }
         else if (start != null) {
             removeFromPath(startSelect, start.getFloor());
+            startLabel.setText("None Selected");
         }
 
         if (endReady) {
@@ -436,6 +439,7 @@ public class PathfindController {
         }
         else if (end != null) {
             removeFromPath(endSelect, end.getFloor());
+            endLabel.setText("None Selected");
         }
     }
 
@@ -936,7 +940,6 @@ public class PathfindController {
                 addToPath(c, n1.getFloor());
                 addToPath(c2, n2.getFloor());
 
-                Label l = new Label();
                 l.setText(n1.getLongName());
                 l.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
                 l.setTextFill(Color.BLACK);
@@ -945,7 +948,6 @@ public class PathfindController {
                 addToPath(l, n1.getFloor());
                 nodeLabels.add(l);
 
-                Label l2 = new Label();
                 l2.setText(n2.getLongName());
                 l2.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
                 l2.setTextFill(Color.BLACK);

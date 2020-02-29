@@ -20,9 +20,9 @@
 /** defining custom colors */
 *{
     -color-1: #FFF9E9; /* white */
-    -color-2: #969696; /*gray*/
-    -color-3: #DBC6B3; /*cream*/
-    -color-4: #B89A8C; /*light-brown*/
+    -color-2: #000000; /*gray*/
+    -color-3: #dc143c; /*cream*/
+    -color-4: #dc143c; /*light-brown*/
     -color-5: #4d4d4d; /*dark-gray*/
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
@@ -55,7 +55,7 @@
 }
 
 .sideBar{
-    -fx-background-color: -color-1;
+    -fx-background-color: -color-3;
 }
 
 .sideBar .jfx-button{
@@ -83,11 +83,11 @@
 }
 
 .h-box{
-    -fx-background-color: -color-1;
+    -fx-background-color: -color-3;
 }
 
 .v-box{
-    -fx-background-color: -color-1;
+    -fx-background-color: -color-3;
 }
 
 .jfx-button {
@@ -322,7 +322,7 @@
 
 .jfx-slider {
     -jfx-default-thumb: -color-green;
-    -jfx-default-track: -color-1;
+    -jfx-default-track: -color-3;
 }
 
 .jfx-slider .track,
@@ -348,7 +348,7 @@
 }
 
 .jfx-slider .slider-value {
-    -fx-stroke: -color-1;
+    -fx-stroke: -color-3;
     -fx-font-size: 10;
 }
 
@@ -617,7 +617,7 @@
 }
 
 .buttonGrid {
-    -fx-background-color: -color-1;
+    -fx-background-color: -color-3;
 }
 
 .buttonGrid .jfx-button{
