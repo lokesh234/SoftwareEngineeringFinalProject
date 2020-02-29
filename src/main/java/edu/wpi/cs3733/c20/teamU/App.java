@@ -1,8 +1,6 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
@@ -11,6 +9,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Edge;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindTextController;
+import edu.wpi.cs3733.c20.teamU.Navigation.TreeViewController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;

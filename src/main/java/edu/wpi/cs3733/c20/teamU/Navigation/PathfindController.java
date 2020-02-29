@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PathfindController {
+
     private enum State {
         NEUTRAL, START, END;
     }
@@ -1116,7 +1117,12 @@ public class PathfindController {
         App.loadTreeView();
         App.getTreeViewPop().getContent().clear();
         App.getTreeViewPop().getContent().add(App.getTreeView());
+        App.getTreeViewController().setMaster(this);
         App.getTreeViewPop().show(App.getPrimaryStage());
+    }
+
+    public void getSelectionFromDir(String longName) {
+        SearchBox.setText(longName);
     }
 
     @FXML
