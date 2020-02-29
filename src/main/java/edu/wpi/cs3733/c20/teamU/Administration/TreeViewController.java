@@ -1,28 +1,21 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import com.jfoenix.controls.JFXTreeCell;
 import com.jfoenix.controls.JFXTreeView;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class TreeViewController {
     @FXML
     private JFXTreeView<String> tree;
+
+
 
     private TreeItem fillTreeItem(String name, int floor){
         TreeItem<String> result = new TreeItem(name);
@@ -35,6 +28,7 @@ public class TreeViewController {
         }
         return result;
     }
+
     @FXML
     private void initialize(){
         TreeItem rootItem = new TreeItem("Location Directories");
@@ -46,6 +40,7 @@ public class TreeViewController {
         rootItem.getChildren().add(fillTreeItem("Fifth Floor", 5));
 
         tree.setRoot(rootItem);
+
     }
 
     @FXML
@@ -59,4 +54,5 @@ public class TreeViewController {
         App.getPrimaryStage().setScene(App.getPathScene());
     }
 }
+
 
