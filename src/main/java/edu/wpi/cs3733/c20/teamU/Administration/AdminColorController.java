@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
@@ -13,6 +15,7 @@ import java.awt.Color;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 
+import java.net.URL;
 import java.util.ArrayList;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
@@ -53,18 +56,15 @@ public class AdminColorController {
   @FXML
   private void confirm() throws IOException, URISyntaxException {
     String main1, main2, main3, main4, main5;
-//    String APath = System.getProperty("user.dir");
-//    String cssFile = APath + "/CSS/faker.css";
-//    // System.out.println(cssF);
-//    System.out.println(cssFile);
-//    System.out.println(App.class.getResource("/light_theme/faker.css"));
-//    //CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"));
-//    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/faker.css"), cssFile);
-//    String theme = "";
-//    System.out.println(App.getHomeScene().getStylesheets());
 
-    CSSFileEditor fileEditor = new CSSFileEditor(App.class.getResource("/light_theme/light.css"));
+    String cssFilePath = System.getProperty("user.dir") + "/CSS/light.css";
+    File cssFile = new File(cssFilePath);
+    URL urlCss = null;
+    urlCss = cssFile.toURL();
+    System.out.println(urlCss);
+    CSSFileEditor fileEditor = new CSSFileEditor(urlCss);
     ArrayList<String> oldScheme = getCurrentColor(theme);
+
     if (custom.isSelected()) {
 
       main1 = formatter(color1);
@@ -84,15 +84,33 @@ public class AdminColorController {
         theme = listTheme.getSelectionModel().getSelectedItem().toString();
       }
       selectPreset(oldScheme, theme, fileEditor);
+
+
     } else if (dark.isSelected()) {
+      Colors dark = DatabaseWrapper.getColor("Dark");
+      main1 = dark.getFirstColor();
+      main2 = dark.getSecondColor();
+      main3 = dark.getThirdColor();
+      main4 = dark.getFourthColor();
+      main5 = dark.getFifthColor();
+      System.out.println("Dark Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5);
+
       selectPreset(oldScheme, "Dark", fileEditor);
       theme = "Dark";
 
     } else if (light.isSelected()) {
+      Colors stnd = DatabaseWrapper.getColor("Standard");
+      main1 = stnd.getFirstColor();
+      main2 = stnd.getSecondColor();
+      main3 = stnd.getThirdColor();
+      main4 = stnd.getFourthColor();
+      main5 = stnd.getFifthColor();
+      System.out.println("Standard Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5);
+
       selectPreset(oldScheme, "Standard", fileEditor);
       theme = "Standard";
     }
-    App.setTheme(App.class.getResource("/light_theme/light.css").toExternalForm());
+    App.setTheme(urlCss.toExternalForm());
     update();
   }
 
@@ -121,6 +139,7 @@ public class AdminColorController {
     color5 = convertHexToRGB(color.getFifthColor());
     System.out.println("Colors: " + color1 + color2 + color3 + color4 + color5);
     System.out.println("===================================================================");
+    System.out.println("Old Colors: " + old.get(0) + old.get(1) + old.get(2) + old.get(3) + old.get(4));
 
     fileEditor.writeCSSProperty("*", old.get(0), color1);
     fileEditor.writeCSSProperty("*", old.get(1), color2);

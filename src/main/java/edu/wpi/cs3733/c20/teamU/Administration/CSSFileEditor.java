@@ -27,27 +27,10 @@ import org.w3c.css.sac.InputSource;
 public class CSSFileEditor {
 
   URL path;
-  String SPath;
   private InputSource inputSource;
   private CSSOMParser parser;
   CSSStyleSheetImpl styleSheet;
 
-//  public CSSFileEditor(URL path, String SPath) throws IOException, URISyntaxException {
-//    this.path = path;
-//    this.SPath = SPath;
-//    URL url = path;
-//    File urPath = new File(SPath);
-//    URI uriPath = urPath.toURI();
-//    System.out.println(uriPath);
-//    //inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(url.toURI()), "UTF-8")));
-//    inputSource = new InputSource(new StringReader(SPath));
-//    //inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(uriPath),"UTF-8")));
-//    parser = new CSSOMParser((new SACParserCSS3()));
-//    ErrorHandler errorHandler = new MyErrorHandler();
-//    parser.setErrorHandler(errorHandler);
-//    styleSheet = (CSSStyleSheetImpl) parser.parseStyleSheet(inputSource, null, null);
-//
-//  }
 public CSSFileEditor(URL path) throws IOException, URISyntaxException {
   this.path = path;
   URL url = path;
@@ -115,22 +98,22 @@ public CSSFileEditor(URL path) throws IOException, URISyntaxException {
   public void writeCSSProperty(String selector, String property, String newValue)
       throws URISyntaxException, IOException {
     Property property1 = getProperty(selector, property);
-    System.out.println(selector);
-    System.out.println(property);
-    System.out.println(newValue);
-    System.out.println(property1);
+//    System.out.println("selector " + selector);
+//    System.out.println("property" + property);
+//    System.out.println("newVal" + newValue);
+//    System.out.println("property" + property1);
     if(property1 != null) {
-      System.out.println("made it for: " + newValue);
+     // System.out.println("made it for: " + newValue);
       CSSValueImpl val = new CSSValueImpl();
       val.setCssText(newValue);
-      System.out.println(property1.getValue());
+      //System.out.println(property1.getValue());
       property1.setValue(val);
-      System.out.println(property1.getValue());
+     // System.out.println(property1.getValue());
       CSSFormat format = new CSSFormat();
       format.setRgbAsHex(true);
       System.out.println("HERE : " + this.styleSheet.getCssText(format));
-      FileUtils.writeStringToFile(new File(SPath), this.styleSheet.getCssText(format));
-      //FileUtils.writeStringToFile(new File(path.toURI()), this.styleSheet.getCssText(format));
+      //FileUtils.writeStringToFile(new File(SPath), this.styleSheet.getCssText(format));
+      FileUtils.writeStringToFile(new File(path.toURI()), this.styleSheet.getCssText(format));
     }
 //    System.out.println("Failed to edit...");
   }

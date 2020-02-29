@@ -14,8 +14,7 @@ public class Main {
 
   public static void main(String[] args) throws MalformedURLException {
     DatabaseWrapper.Initializer();
-    AdministrationWrapper.CreateCSS("faker", null, "faker.css");
-    AdministrationWrapper.CreateCSS("dark", null, "dark.css");
+    //color initializer v
     AdministrationWrapper.CreateCSS("light", null, "light.css");
     App.launch(App.class, args);
   }
