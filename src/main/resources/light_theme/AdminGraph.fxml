@@ -298,17 +298,17 @@
                   <Font name="Segoe UI Bold" size="18.0" />
                </font>
             </Label>
-            <Label text="Department">
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../png_files/black.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+            <Label text="Restroom">
                <font>
                   <Font name="Segoe UI" size="12.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../png_files/purple.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Label>
             <Label text="Stairs">
                <graphic>
@@ -322,6 +322,18 @@
                   <Font name="Segoe UI" size="12.0" />
                </font>
             </Label>
+            <Label text="Elevator">
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../png_files/teal.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
             <Label text="Info desk">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -334,17 +346,29 @@
                   <Font name="Segoe UI" size="12.0" />
                </font>
             </Label>
-            <Label text="Exit">
+            <Label text="Department">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/orange.png" />
+                        <Image url="@../png_files/black.png" />
                      </image>
                   </ImageView>
                </graphic>
                <font>
                   <Font name="Segoe UI" size="12.0" />
                </font>
+            </Label>
+            <Label text="Lab">
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../png_files/skyBlue.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Label>
             <Label text="Retail">
                <graphic>
@@ -358,30 +382,6 @@
                   <Font name="Segoe UI" size="12.0" />
                </font>
             </Label>
-            <Label text="Restroom">
-               <font>
-                  <Font name="Segoe UI" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../png_files/purple.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
-            <Label text="Elevator">
-               <font>
-                  <Font name="Segoe UI" size="12.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../png_files/teal.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Label>
             <Label text="Services">
                <font>
                   <Font name="Segoe UI" size="12.0" />
@@ -394,17 +394,17 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label text="Labs">
-               <font>
-                  <Font name="Segoe UI" size="12.0" />
-               </font>
+            <Label text="Exit">
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/skyBlue.png" />
+                        <Image url="@../png_files/orange.png" />
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
             </Label>
             <Label text="Hallway">
                <font>
