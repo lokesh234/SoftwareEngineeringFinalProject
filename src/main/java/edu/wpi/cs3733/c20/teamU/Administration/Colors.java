@@ -34,6 +34,7 @@ public class Colors {
             // if there isn't a dir create one and then return false
             return false;
         } else if(! file.exists()){
+            System.out.println("file.exists doesnt exist");
             return false;
         } else{
             return true;
@@ -44,7 +45,9 @@ public class Colors {
     public static boolean CreateCSS(String cssName, String pathTo, String pathFrom){
         try {
             String CSSPath;
-            getFileDir("CSS");
+            boolean fileExist;
+            fileExist = getFileDir("light.css");
+            System.out.println("fileExist : " + fileExist);
             //determine the destination path
             if(pathTo == null) {
                 String APath = System.getProperty("user.dir");
@@ -53,22 +56,24 @@ public class Colors {
             else {
                 CSSPath = pathTo;
             }
-
-            String line = "";
-            PrintWriter pw = new PrintWriter(new File(CSSPath));
-            StringBuilder sb = new StringBuilder();
-            BufferedReader br;
-            InputStream cssStream = Colors.class.getResourceAsStream("/light_theme/" + pathFrom);
-            br = new BufferedReader(new InputStreamReader(cssStream));
-      // try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-                sb.append("\n");
-            }
-            //FileUtils.copyFile(src, des);
-            pw.write(sb.toString());
-            pw.close();
-            return true;
+          if (!fileExist) {
+                String line = "";
+                PrintWriter pw = new PrintWriter(new File(CSSPath));
+                StringBuilder sb = new StringBuilder();
+                BufferedReader br;
+                InputStream cssStream = Colors.class.getResourceAsStream("/light_theme/" + pathFrom);
+                br = new BufferedReader(new InputStreamReader(cssStream));
+                // try (BufferedReader br = new BufferedReader(new InputStreamReader(csvFile))) {
+                while ((line = br.readLine()) != null) {
+                  sb.append(line);
+                  sb.append("\n");
+                }
+                // FileUtils.copyFile(src, des);
+                pw.write(sb.toString());
+                pw.close();
+                return true;
+          }
+          else return true;
         } catch (Exception e){
             System.out.println("Print Writer did not work");
             return false;

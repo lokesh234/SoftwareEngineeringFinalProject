@@ -10,6 +10,8 @@ import edu.wpi.cs3733.c20.teamU.App;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import java.awt.Color;
 
@@ -47,7 +49,7 @@ public class AdminColorController {
   private int color5R, color5G, color5B;
   ObservableList<String> themes =
       FXCollections.observableArrayList();
-  String theme = "Standard";
+  String theme = "Startup";
 
   public void setUser(String user) {
     this.user.setText(user);
@@ -63,6 +65,15 @@ public class AdminColorController {
     urlCss = cssFile.toURL();
     System.out.println(urlCss);
     CSSFileEditor fileEditor = new CSSFileEditor(urlCss);
+    Colors startup = null;
+    startup =  DatabaseWrapper.getColor("Startup");
+    System.out.println("START UP VALUE: " + startup);
+    if (startup == null){
+      DatabaseWrapper.addColor("Startup", "FFF9E9", "000000", "dc143c", "dc143c", "4d4d4d", "000000" );
+      startup =  DatabaseWrapper.getColor("Startup");
+    }
+    System.out.println("START UP VALUE: " + startup);
+
     ArrayList<String> oldScheme = getCurrentColor(theme);
 
     if (custom.isSelected()) {
@@ -83,6 +94,7 @@ public class AdminColorController {
       } else {
         theme = listTheme.getSelectionModel().getSelectedItem().toString();
       }
+      createStartup(theme);
       selectPreset(oldScheme, theme, fileEditor);
 
 
@@ -95,8 +107,10 @@ public class AdminColorController {
       main5 = dark.getFifthColor();
       System.out.println("Dark Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5);
 
+
       selectPreset(oldScheme, "Dark", fileEditor);
       theme = "Dark";
+      createStartup(theme);
 
     } else if (light.isSelected()) {
       Colors stnd = DatabaseWrapper.getColor("Standard");
@@ -109,6 +123,7 @@ public class AdminColorController {
 
       selectPreset(oldScheme, "Standard", fileEditor);
       theme = "Standard";
+      createStartup(theme);
     }
     App.setTheme(urlCss.toExternalForm());
     update();
@@ -147,6 +162,12 @@ public class AdminColorController {
     fileEditor.writeCSSProperty("*", old.get(3), color4);
     fileEditor.writeCSSProperty("*", old.get(4), color5);
     cancel();
+  }
+
+  private void createStartup(String theme){
+    DatabaseWrapper.delColor("Startup");
+    Colors startUpColors = DatabaseWrapper.getColor(theme);
+    DatabaseWrapper.addColor("Startup", startUpColors.getFirstColor(), startUpColors.getSecondColor(), startUpColors.getThirdColor(), startUpColors.getFourthColor(), startUpColors.getFifthColor(), "000000");
   }
 
   @FXML
@@ -300,7 +321,7 @@ public class AdminColorController {
     for (int i = 0; i < colors.size(); i++) {
       String theme = colors.get(i).getColorTheme();
       if (theme.equals("Dark") || theme.equals("Standard") || theme.equals("New") || theme
-          .equals("Colorblind")) {
+          .equals("Colorblind") || theme.equals("Startup")) {
         continue;
       }
       listTheme.getItems().add(theme);
