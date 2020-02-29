@@ -66,6 +66,18 @@
     -fx-text-fill: black;
 }
 
+.transparentSideBar{
+    -fx-background-color: TRANSPARENT;
+}
+
+.transparentSideBar .jfx-button{
+    -fx-background-radius: 5px;
+}
+
+.transparentSideBar .label{
+    -fx-text-fill: black;
+}
+
 .border-pane{
     -fx-background-color: -color-3;
 }

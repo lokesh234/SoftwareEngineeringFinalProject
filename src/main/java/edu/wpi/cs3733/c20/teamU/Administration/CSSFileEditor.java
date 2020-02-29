@@ -32,22 +32,32 @@ public class CSSFileEditor {
   private CSSOMParser parser;
   CSSStyleSheetImpl styleSheet;
 
-  public CSSFileEditor(URL path, String SPath) throws IOException, URISyntaxException {
-    this.path = path;
-    this.SPath = SPath;
-    URL url = path;
-    File urPath = new File(SPath);
-    URI uriPath = urPath.toURI();
-    System.out.println(uriPath);
-    //inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(url.toURI()), "UTF-8")));
-    inputSource = new InputSource(new StringReader(SPath));
-    //inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(uriPath),"UTF-8")));
-    parser = new CSSOMParser((new SACParserCSS3()));
-    ErrorHandler errorHandler = new MyErrorHandler();
-    parser.setErrorHandler(errorHandler);
-    styleSheet = (CSSStyleSheetImpl) parser.parseStyleSheet(inputSource, null, null);
+//  public CSSFileEditor(URL path, String SPath) throws IOException, URISyntaxException {
+//    this.path = path;
+//    this.SPath = SPath;
+//    URL url = path;
+//    File urPath = new File(SPath);
+//    URI uriPath = urPath.toURI();
+//    System.out.println(uriPath);
+//    //inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(url.toURI()), "UTF-8")));
+//    inputSource = new InputSource(new StringReader(SPath));
+//    //inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(uriPath),"UTF-8")));
+//    parser = new CSSOMParser((new SACParserCSS3()));
+//    ErrorHandler errorHandler = new MyErrorHandler();
+//    parser.setErrorHandler(errorHandler);
+//    styleSheet = (CSSStyleSheetImpl) parser.parseStyleSheet(inputSource, null, null);
+//
+//  }
+public CSSFileEditor(URL path) throws IOException, URISyntaxException {
+  this.path = path;
+  URL url = path;
+  inputSource = new InputSource(new StringReader(FileUtils.readFileToString(new File(url.toURI()), "UTF-8")));
+  parser = new CSSOMParser((new SACParserCSS3()));
+  ErrorHandler errorHandler = new MyErrorHandler();
+  parser.setErrorHandler(errorHandler);
+  styleSheet = (CSSStyleSheetImpl) parser.parseStyleSheet(inputSource, null, null);
 
-  }
+}
 
   public void returnFileToOriginal() {
     try {

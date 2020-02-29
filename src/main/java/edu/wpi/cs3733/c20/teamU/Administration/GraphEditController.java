@@ -241,6 +241,7 @@ public class GraphEditController {
     selectedStartNode = null;
     extraLine = null;
     selectedEdge = null;
+    clearExtraLine();
     if (App.getLocation() != null) {
       locLabel.setText(App.getLocation().getLongName());
     }

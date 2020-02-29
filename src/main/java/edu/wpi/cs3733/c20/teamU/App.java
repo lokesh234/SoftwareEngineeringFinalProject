@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import edu.wpi.cs3733.c20.teamR.Appointment;
+import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -170,8 +172,8 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedIT = false;
   private static boolean loadedTreeView = false;
 
-  private static double pixFoo = 10;
-  private static double pixMet = 10;
+  private static double pixFoo = 3.5;
+  private static double pixMet = 11.5;
   private static boolean useFeet = true;
 
   public static boolean getLoadedAdminRequest() {return loadedAdminRequests;}
@@ -199,7 +201,7 @@ public class App<loadedAdminRequests> extends Application {
 
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
-  private static long timeoutValue = 60000; // variable for timeout. 1000 = 1s
+  private static long timeoutValue = 180000; // variable for timeout. 1000 = 1s, default 3 minutes
   private static Service service;
   private static Account user;
   private static Account accountEdit;
@@ -591,7 +593,6 @@ public class App<loadedAdminRequests> extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
@@ -1083,10 +1084,6 @@ public class App<loadedAdminRequests> extends Application {
     }
   }
 
-  private static boolean isDark = false;
-  public static void setIsDark(boolean state) {
-    isDark = state;
-  }
   public static void setTheme(String theme) {
     if(!loadedTreeView) {
       loadTreeView();
@@ -1134,8 +1131,6 @@ public class App<loadedAdminRequests> extends Application {
       loadSan();
     }
     if(resolveRequest.getStylesheets().contains(theme)){
-      if(isDark) loginScreenController.setDarkSetting();
-      else loginScreenController.setDefaultSetting();
       resolveRequest.getStylesheets().remove(theme);
       home.getStylesheets().remove(theme);
       login.getStylesheets().remove(theme);
@@ -1145,8 +1140,6 @@ public class App<loadedAdminRequests> extends Application {
       security.getStylesheets().remove(theme);
       request.getStylesheets().remove(theme);
       medicine.getStylesheets().remove(theme);
-//      editEdge.getStylesheets().remove(theme);
-//      adminEdge.getStylesheets().remove(theme);
       adminRequest.getStylesheets().remove(theme);
       adminEmployee.getStylesheets().remove(theme);
       adminBacklog.getStylesheets().remove(theme);
@@ -1189,8 +1182,6 @@ public class App<loadedAdminRequests> extends Application {
     request.getStylesheets().add(theme);
     medicine.getStylesheets().add(theme);
     edit.getStylesheets().add(theme);
-//    editEdge.getStylesheets().add(theme);
-//    adminEdge.getStylesheets().add(theme);
     adminRequest.getStylesheets().add(theme);
     adminEmployee.getStylesheets().add(theme);
     adminBacklog.getStylesheets().add(theme);
