@@ -26,6 +26,8 @@
     -color-5: #4d4d4d; /*dark-gray*/
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
+    -body-text: black;
+    -containter-text: white;
 }
 
 .root{
@@ -76,6 +78,14 @@
 
 .transparentSideBar .label{
     -fx-text-fill: black;
+}
+
+.weatherBox{
+    -fx-text-fill: -body-text;
+}
+
+.weatherBox .label{
+    -fx-text-fill: -body-text;
 }
 
 .border-pane{

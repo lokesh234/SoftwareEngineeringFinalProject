@@ -419,6 +419,9 @@ public class PathfindController {
             removeFromPath(startSelect, start.getFloor());
             startLabel.setText("None Selected");
         }
+        else {
+            startLabel.setText("None Selected");
+        }
 
         if (endReady) {
             removeFromPath(endSelect, end.getFloor());
@@ -439,6 +442,9 @@ public class PathfindController {
         }
         else if (end != null) {
             removeFromPath(endSelect, end.getFloor());
+            endLabel.setText("None Selected");
+        }
+        else {
             endLabel.setText("None Selected");
         }
     }
@@ -760,6 +766,9 @@ public class PathfindController {
         for (Label l : nodeLabels) {
             removeFromAll(l);
         }
+        removeFromAll(startNodeLabel);
+        removeFromAll(endNodeLabel);
+
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
