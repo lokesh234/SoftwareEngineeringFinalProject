@@ -1,7 +1,5 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import edu.wpi.cs3733.c20.teamR.Appointment;
-import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
