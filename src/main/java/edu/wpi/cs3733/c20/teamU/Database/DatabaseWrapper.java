@@ -270,6 +270,10 @@ public class DatabaseWrapper {
         return r;
     }
 
+    public static boolean addDestination(String startNode, String destNode){
+      return Database.addDestination(startNode, destNode);
+    }
+
   /**
    * adds a row to the userBacklog table
    * @param username input username
@@ -459,6 +463,9 @@ public class DatabaseWrapper {
       return (ServiceDatabase.serviceRequestDel(reqID, adminsName, user, tableName, jobType));
     }
 
+   public static String getCurrentDate(){
+      return ServiceDatabase.getCurrentDate();
+   }
 
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static NodesDatabase getGraph() {

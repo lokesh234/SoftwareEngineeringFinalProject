@@ -43,6 +43,7 @@ public class Database {
             //connect to UDB
 
             dropTable(stmt, "MapEdgesU");
+            dropTable(stmt, "DestinationsDB");
             dropTable(stmt, "MapNodesU");
             dropTable(stmt, "UserBacklogDB");
             dropTable(stmt, "LoginDB");
@@ -66,6 +67,7 @@ public class Database {
 
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
+            createDestinationsTable(stmt, "DestinationsDB");
             createLoginTable(stmt, "LoginDB");
             createUserBacklogTable(stmt, "UserBacklogDB");
             createColorTable(stmt, "ColorsDB");
@@ -89,6 +91,7 @@ public class Database {
 
             printTable(stmt, "MapNodesU");
             printTable(stmt, "MapEdgesU");
+            printTable(stmt, "DestinationsDB");
             printTable(stmt, "LoginDB");
             printTable(stmt, "UserBacklogDB");
             printTable(stmt, "ColorsDB");
@@ -282,6 +285,42 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
+    private static void createDestinationsTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (date DATE, startNode VARCHAR(10) REFERENCES MapNodesU (nodeID), destNode VARCHAR(10) REFERENCES MapNodesU (nodeID))";
+
+            stmt.executeUpdate(slqCreate);
+            String line = "";
+            String csvSplit = ",";
+
+            try {
+                BufferedReader br = getBR(tableName);
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String date = csvString[0];
+                        String startNode = csvString[1];
+                        String destNode = csvString[2];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + date + "', '" + startNode + "', '" + destNode + "')");
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+        CreateCSV(stmt, tableName, null);
+    }
     /**
      *
      * TODO：finish commenting
@@ -2066,7 +2105,6 @@ public class Database {
         Statement stmt = null;
         String tableName = "MapEdgesU";
 
-        //prints out the whole table
         try {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
@@ -2074,6 +2112,31 @@ public class Database {
 
             int result = stmt.executeUpdate(sql1);
             System.out.println(result);
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean addDestination(String startNode, String destNode){
+        Connection conn = null;
+        Statement stmt = null;
+        String tableName = "DestinationsDB";
+        String date = DatabaseWrapper.getCurrentDate();
+
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            String sql1 = "INSERT INTO " + tableName + " VALUES ('" + date + "', '" + startNode + "', '" + destNode + "')";
+
+            int result = stmt.executeUpdate(sql1);
+            //System.out.println(result);
+            CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
             return true;

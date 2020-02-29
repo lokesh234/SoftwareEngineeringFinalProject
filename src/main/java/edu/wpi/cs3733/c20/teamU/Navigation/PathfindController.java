@@ -746,6 +746,7 @@ public class PathfindController {
             // ln(path.size());
             drawPath();
             getTextPath();
+            DatabaseWrapper.addDestination(start.getID(),end.getID());
         }
         updateStatus();
         //pathfindTextController.Directions = new Label();
