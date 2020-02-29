@@ -84,6 +84,8 @@
     -fx-text-fill: -body-text;
 }
 
+.jfx-nodes-list{}
+
 .weatherBox .label{
     -fx-text-fill: -body-text;
 }

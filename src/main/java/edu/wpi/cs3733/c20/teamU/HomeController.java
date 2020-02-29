@@ -5,6 +5,7 @@ import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
+import com.jfoenix.controls.JFXNodesList;
 
 import java.io.IOException;
 import java.net.URI;
@@ -35,9 +36,12 @@ import net.kurobako.gesturefx.GesturePane;
 public class HomeController {
 
   @FXML
-  private JFXButton login;
+  private JFXNodesList menuOptions;
+
   @FXML
-  private Button navButton;
+  private JFXButton login;
+//  @FXML
+//  private Button navButton;
   @FXML
   private VBox oppo;
   @FXML
@@ -73,6 +77,9 @@ public class HomeController {
   private JFXButton upButton, downButton;
   @FXML
   private JFXButton upArrow, downArrow, leftArrow, rightArrow;
+
+  @FXML
+  private JFXButton hamburger, navButton, services, info, help;
 
   private WeatherController weatherController;
   private long startTime;
@@ -568,6 +575,15 @@ public class HomeController {
 
   @FXML
   private void initialize() {
+    // add stuff to the menu items now
+      menuOptions.getChildren().clear();
+    menuOptions.addAnimatedNode(hamburger);
+    menuOptions.addAnimatedNode(navButton);
+    menuOptions.addAnimatedNode(services);
+    menuOptions.addAnimatedNode(info);
+    menuOptions.addAnimatedNode(help);
+    menuOptions.setSpacing(20.0);
+
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
     NodesPane3.getChildren().add(new ImageView(App.getFloor3()));
