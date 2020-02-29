@@ -166,7 +166,7 @@
                               </Label>
                               <VBox fx:id="radioBox" spacing="20.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <JFXRadioButton fx:id="fast" text="Fastest (Default)" />
+                                    <JFXRadioButton fx:id="fast" text="Elevator or Stairs" />
                                     <JFXRadioButton fx:id="elev" text="Elevator" />
                                     <JFXRadioButton fx:id="stai" text="Stairs" />
                                  </children>
