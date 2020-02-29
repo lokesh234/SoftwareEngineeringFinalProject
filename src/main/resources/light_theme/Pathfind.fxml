@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -250,31 +253,7 @@
                                     </JFXButton>
                                  </children>
                               </HBox>
-                              <VBox alignment="CENTER" prefHeight="88.0" prefWidth="350.0" spacing="5.0">
-                                 <children>
-                                    <Label fx:id="quickLabel" text="Quick Select" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox alignment="CENTER" spacing="10.0">
-                                       <children>
-                                          <JFXButton fx:id="quickRest" onAction="#nearestBathroom" text="Restroom" textFill="WHITE">
-                                             <font>
-                                                <Font name="Segoe UI" size="18.0" />
-                                             </font></JFXButton>
-                                          <JFXButton fx:id="quickStair" onAction="#nearestStairs" text="Stairs" />
-                                          <JFXButton fx:id="quickElev" onAction="#nearestElevator" text="Elevator" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" spacing="10.0">
-                                       <children>
-                                          <JFXButton fx:id="quickFood" onAction="#nearestFood" text="Food" />
-                                          <JFXButton fx:id="QuickExit" onAction="#nearestExit" text="Exit" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
+                              <JFXComboBox promptText="Common Locations" />
                            </children>
                         </VBox>
                         <Line endX="100.0" startX="-100.0" />
@@ -297,6 +276,57 @@
                </children>
             </HBox>
          </left>
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton fx:id="quickStair" contentDisplay="GRAPHIC_ONLY" onAction="#nearestStairs" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/stairs.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="quickElev" contentDisplay="GRAPHIC_ONLY" onAction="#nearestElevator" prefHeight="38.0" prefWidth="9.0" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/elevator.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="quickFood" contentDisplay="GRAPHIC_ONLY" onAction="#nearestFood" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/food.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="quickRest" contentDisplay="GRAPHIC_ONLY" onAction="#nearestBathroom" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../Downloads/restroom.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="QuickExit" contentDisplay="GRAPHIC_ONLY" onAction="#nearestExit" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="109.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
