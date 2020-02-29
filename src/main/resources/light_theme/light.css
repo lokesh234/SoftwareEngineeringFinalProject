@@ -112,6 +112,22 @@
 
 }
 
+.sessionBanner{
+    -fx-background-color: TRANSPARENT;
+}
+
+.sessionBanner .label{
+    -fx-text-fill: -body-text;
+}
+
+.sessionBanner .circle{
+    -fx-fill: -color-3;
+}
+
+#profileCircle{
+    -fx-fill: -color-3;
+}
+
 /** end **/
 
 .jfx-alert-overlay{
