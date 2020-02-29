@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import edu.wpi.cs3733.c20.teamU.Administration.*;
@@ -589,7 +592,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) {
+  public void start(Stage primaryStage) throws MalformedURLException {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
@@ -614,6 +617,7 @@ public class App<loadedAdminRequests> extends Application {
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wongPFP.png")));
     primaryStage.show();
+    AdministrationWrapper.setFirstTheme();
 //    FoodRequest foodRequest = new FoodRequest();
 //    foodRequest.run(800, 800, 800, 800, null, "something", "something");
 

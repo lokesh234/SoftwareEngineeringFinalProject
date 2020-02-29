@@ -1341,8 +1341,7 @@ public class Database {
             conn.close();
             return newColor;
         } catch (SQLException e) {
-            System.out.println("Connection failed. Check output console.");
-            e.printStackTrace();
+            //color not found
             return null;
         }
     }
