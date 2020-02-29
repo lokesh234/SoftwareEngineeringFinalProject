@@ -104,7 +104,7 @@ public class AdminEmployeeController {
     public void remove(){
         if (App.getAccountEdit() != null) {
             Notifications.create().text(App.getUser().getUserName() + " has been deleted!").show();
-            DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "EMPLOYEE", "Remove", App.getAccountEdit().getUserName());
+            DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "Remove Employee", App.getAccountEdit().getUserName());
             DatabaseWrapper.delLoginSR(App.getAccountEdit().getUserName());
             update();
         }

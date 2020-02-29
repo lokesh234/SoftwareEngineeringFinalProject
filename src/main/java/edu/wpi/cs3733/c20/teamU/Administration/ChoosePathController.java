@@ -43,7 +43,7 @@ public class ChoosePathController {
             case "DJI":
                 djikstra.setSelected(true);
         }
-        DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), "PATH", "CHANGE", NavigationWrapper.getPathType());
+        DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "CHANGE PATH", NavigationWrapper.getPathType());
     }
 
     @FXML

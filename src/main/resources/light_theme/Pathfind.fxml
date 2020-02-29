@@ -98,27 +98,27 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                  <children>
-                                    <JFXButton fx:id="upButton1" onAction="#clickUp" text="5">
+                                    <JFXButton fx:id="upButton1" onAction="#five" text="5">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton1" onAction="#clickDown" prefHeight="30.0" prefWidth="0.0" text="4">
+                                    <JFXButton fx:id="downButton1" onAction="#four" prefHeight="30.0" prefWidth="0.0" text="4">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton11" onAction="#clickDown" prefHeight="30.0" prefWidth="0.0" text="3">
+                                    <JFXButton fx:id="downButton11" onAction="#three" prefHeight="30.0" prefWidth="0.0" text="3">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton12" onAction="#clickDown" prefHeight="30.0" prefWidth="0.0" text="2">
+                                    <JFXButton fx:id="downButton12" onAction="#two" prefHeight="30.0" prefWidth="0.0" text="2">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton13" onAction="#clickDown" prefHeight="30.0" prefWidth="0.0" text="1">
+                                    <JFXButton fx:id="downButton13" onAction="#one" prefHeight="30.0" prefWidth="0.0" text="1">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
