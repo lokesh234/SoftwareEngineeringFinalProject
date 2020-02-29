@@ -5,6 +5,7 @@ import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
+import com.jfoenix.controls.JFXNodesList;
 
 import java.io.IOException;
 import java.net.URI;
@@ -38,26 +39,46 @@ import static javafx.scene.input.MouseEvent.MOUSE_RELEASED;
 
 public class HomeController {
 
-  @FXML private JFXButton login;
-  @FXML private Button navButton;
-  @FXML private VBox oppo;
-  @FXML private Label floorLabel;
-  @FXML private Label time;
-  @FXML private JFXButton weather;
-  @FXML private AnchorPane N1;
-  @FXML private AnchorPane N2;
-  @FXML private AnchorPane N3;
-  @FXML private AnchorPane N4;
-  @FXML private AnchorPane N5;
-  @FXML private GesturePane MapGes2;
-  @FXML private GesturePane MapGes3;
-  @FXML private GesturePane MapGes4;
-  @FXML private GesturePane MapGes5;
-  @FXML private GesturePane MapGes1;
+  @FXML
+  private JFXNodesList menuOptions;
+
+  @FXML
+  private JFXButton login;
+//  @FXML
+//  private Button navButton;
+  @FXML
+  private VBox oppo;
+  @FXML
+  private Label floorLabel;
+  @FXML
+  private Label time;
+  @FXML
+  private JFXButton weather;
+  @FXML
+  private AnchorPane N1;
+  @FXML
+  private AnchorPane N2;
+  @FXML
+  private AnchorPane N3;
+  @FXML
+  private AnchorPane N4;
+  @FXML
+  private AnchorPane N5;
+  @FXML
+  private GesturePane MapGes2;
+  @FXML
+  private GesturePane MapGes3;
+  @FXML
+  private GesturePane MapGes4;
+  @FXML
+  private GesturePane MapGes5;
+  @FXML
+  private GesturePane MapGes1;
 
   @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
   @FXML private JFXButton upButton, downButton;
   @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
+  @FXML private JFXButton hamburger, navButton, services, info, help;
 
   private WeatherController weatherController;
   private long startTime;
@@ -253,7 +274,7 @@ public class HomeController {
   }
 
   @FXML
-  private void four() {
+  private void four(){
     oppo.getChildren().clear();
     oppo.getChildren().add(N4);
     floor = 4;
@@ -353,7 +374,7 @@ public class HomeController {
   }
 
   @FXML
-  private void openInformationScene(ActionEvent e) {
+  private void openInformationScene(ActionEvent e){
     App.getInformationPopUp().getContent().add(App.getInformation());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
@@ -518,6 +539,7 @@ public class HomeController {
             }
           });
 
+
   /**
    * increments the time by 1 Adjusts for hours, mins, secs
    *
@@ -539,6 +561,17 @@ public class HomeController {
     return String.format("%1$02d:%2$02d:%3$02d", hr, m, s);
   }
 
+  private void setTime() {
+    startTime = System.currentTimeMillis();
+  }
+
+  @FXML
+  private void checkTime(ActionEvent event) {
+//    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
+//      startTime = System.currentTimeMillis();
+//      System.out.println(startTime);
+//    });
+  }
 
   @FXML
   private void openWeather() {
@@ -560,6 +593,15 @@ public class HomeController {
 
   @FXML
   private void initialize() {
+    // add stuff to the menu items now
+      menuOptions.getChildren().clear();
+      menuOptions.addAnimatedNode(hamburger);
+      menuOptions.addAnimatedNode(navButton);
+      menuOptions.addAnimatedNode(services);
+      menuOptions.addAnimatedNode(info);
+      menuOptions.addAnimatedNode(help);
+      menuOptions.setSpacing(20.0);
+
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
     NodesPane3.getChildren().add(new ImageView(App.getFloor3()));

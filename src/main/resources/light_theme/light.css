@@ -84,6 +84,8 @@
     -fx-text-fill: -body-text;
 }
 
+.jfx-nodes-list{}
+
 .weatherBox .label{
     -fx-text-fill: -body-text;
 }
@@ -108,6 +110,22 @@
 
 .jfx-chip-view{
 
+}
+
+.sessionBanner{
+    -fx-background-color: TRANSPARENT;
+}
+
+.sessionBanner .label{
+    -fx-text-fill: -body-text;
+}
+
+.sessionBanner .circle{
+    -fx-fill: -color-3;
+}
+
+#profileCircle{
+    -fx-fill: -color-3;
 }
 
 /** end **/
