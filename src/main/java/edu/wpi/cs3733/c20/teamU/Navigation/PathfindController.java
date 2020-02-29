@@ -769,11 +769,6 @@ public class PathfindController {
         removeFromAll(startNodeLabel);
         removeFromAll(endNodeLabel);
 
-        start = null;
-        end = null;
-        startReady = false;
-        endReady = false;
-
         displayingPath = false;
         floorsInPath.clear();
         pathes.clear();
