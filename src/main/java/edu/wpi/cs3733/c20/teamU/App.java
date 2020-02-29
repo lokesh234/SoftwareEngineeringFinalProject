@@ -1,5 +1,7 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import edu.wpi.cs3733.c20.teamR.Appointment;
+import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -199,7 +201,7 @@ public class App<loadedAdminRequests> extends Application {
 
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeEdit;
   private static edu.wpi.cs3733.c20.teamU.Database.Node nodeAdd;
-  private static long timeoutValue = 60000; // variable for timeout. 1000 = 1s
+  private static long timeoutValue = 180000; // variable for timeout. 1000 = 1s, default 3 minutes
   private static Service service;
   private static Account user;
   private static Account accountEdit;
@@ -591,7 +593,6 @@ public class App<loadedAdminRequests> extends Application {
 
   @Override
   public void start(Stage primaryStage) {
-
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
