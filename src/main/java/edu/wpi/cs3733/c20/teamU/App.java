@@ -619,6 +619,13 @@ public class App<loadedAdminRequests> extends Application {
 
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wongPFP.png")));
+    try {
+      Speech.authExplicit("../../../resources/key.json");
+    }
+    catch (Exception e){
+      System.out.println(e);
+    }
+
     primaryStage.show();
     AdministrationWrapper.setFirstTheme();
 //    FoodRequest foodRequest = new FoodRequest();
