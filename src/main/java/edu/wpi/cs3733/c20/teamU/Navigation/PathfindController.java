@@ -97,10 +97,10 @@ public class PathfindController {
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
 
-    private Image wongFront = new Image("png_files/gif/frontTRAN.gif");
-    private Image wongBack = new Image("png_files/gif/backTRAN.gif");
-    private Image wongLeft = new Image("png_files/gif/leftTRAN.gif");
-    private Image wongRight = new Image("png_files/gif/rightTRAN.gif");
+    private Image wongFront = new Image("png_files/gif/frontFly.gif");
+    private Image wongBack = new Image("png_files/gif/backFly.gif");
+    private Image wongLeft = new Image("png_files/gif/leftFly.gif");
+    private Image wongRight = new Image("png_files/gif/rightFly.gif");
 
     private Thread wongThread;
 
