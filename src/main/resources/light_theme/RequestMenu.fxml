@@ -35,7 +35,7 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <JFXButton fx:id="mealService" onAction="#openMealService" contentDisplay="TOP" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
+                              <JFXButton fx:id="mealService" contentDisplay="TOP" onAction="#openMealService" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -254,6 +254,22 @@
                                     <Font size="10.0" />
                                  </font>
                               </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <JFXButton contentDisplay="TOP" onAction="#openFlowerForm" prefHeight="166.0" prefWidth="193.0" text="Make Appointment" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fx:id="makeAppointment" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/Icons/appointment.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="18.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </VBox>
                      </children>
