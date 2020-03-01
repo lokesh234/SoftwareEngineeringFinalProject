@@ -171,6 +171,7 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedGift = false;
   private static boolean loadedIT = false;
   private static boolean loadedTreeView = false;
+  public static boolean SpeechComplete = false;
 
   private static double pixFoo = 3.5;
   private static double pixMet = 11.5;

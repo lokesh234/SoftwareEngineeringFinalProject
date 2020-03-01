@@ -105,6 +105,7 @@ public class Speech {
                     System.out.println("Stop speaking.");
                     targetDataLine.stop();
                     targetDataLine.close();
+//                    App.SpeechComplete = true;
                     break;
                 }
                 request =

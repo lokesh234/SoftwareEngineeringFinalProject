@@ -420,15 +420,16 @@ public class HomeController {
   @FXML
   private void startListening() {
     System.out.println("Listening started");
-//    if (startT.isAlive()) {
-//      voiceLabel.setText("Listening");
-//    }
+    if (!runThread){
+      voiceLabel.setText("Done");
+    }
 //    if (!startT.isAlive()) {
 //      // voiceLabelstart.setText(App.getSpokenWords().get(0));
 //      voiceLabel.setText("Done");
 //    }
     App.getSpokenWords().clear();
     speech.startlistening();
+    openHelpSceneSpeechB();
     // voiceLabel.setText("Listening");
   }
 
@@ -436,6 +437,9 @@ public class HomeController {
   private void openHelpSceneSpeechB() {
     runThread = true;
     voiceLabel.setText("Listening");
+    if (App.SpeechComplete){
+      runThread = false;
+    }
     Thread startT =
         new Thread(
             new Runnable() {
@@ -455,6 +459,7 @@ public class HomeController {
                           System.out.println("List contains help");
                           openHelpSceneSound();
                           App.getSpokenWords().clear();
+                          runThread  = false;
                         }
                         if (App.getSpokenWords().contains(" requests")
                             || App.getSpokenWords().contains("requests")
@@ -463,12 +468,14 @@ public class HomeController {
                             || App.getSpokenWords().contains("  requestt")) {
                           openRequestSound();
                           App.getSpokenWords().clear();
+                          runThread = false;
                         }
                         if (App.getSpokenWords().contains("nav")
                             || App.getSpokenWords().contains("  nav")
                             || App.getSpokenWords().contains(" nav")) {
                           openNavSceneSpeech();
                           App.getSpokenWords().clear();
+                          runThread = false;
                         }
                         if (App.getSpokenWords().contains("information")
                             || App.getSpokenWords().contains("  info")
@@ -477,6 +484,7 @@ public class HomeController {
                             || App.getSpokenWords().contains("info")) {
                           openInformationSound();
                           App.getSpokenWords().clear();
+                          runThread = false;
                         }
                         if (App.getSpokenWords().contains("login")
                             || App.getSpokenWords().contains("  login")
@@ -485,6 +493,8 @@ public class HomeController {
                             || App.getSpokenWords().contains("login login login")) {
                           openLoginSceneSound();
                           App.getSpokenWords().clear();
+                          runThread = false;
+                          System.out.println(runThread);
                         }
                         if (App.getSpokenWords().contains("weather")
                             || App.getSpokenWords().contains("  weather")
@@ -493,16 +503,20 @@ public class HomeController {
                             || App.getSpokenWords().contains("weather weather weather")) {
                           openWeather();
                           App.getSpokenWords().clear();
+                          runThread = false;
+                        }
+                        if (App.getSpokenWords().isEmpty()){
+                         runThread = false;
                         }
                       }
                     };
                 while (runThread) {
                   try {
                     Thread.sleep(1000);
-                    //            System.out.println(App.getTimeoutValue());
                   } catch (InterruptedException ex) {
                     ex.printStackTrace();
                   }
+                  System.out.println("I am running");
                   Platform.runLater(runTask);
                 }
               }
@@ -510,7 +524,6 @@ public class HomeController {
     for (int i = 0; i < App.getSpokenWords().size(); i++) {
       voiceLabelend.setText(App.getSpokenWords().get(i));
     }
-
     startT.setDaemon(runThread);
     startT.start();
   }
@@ -616,7 +629,6 @@ public class HomeController {
     hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
     m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
     s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
-    //    openHelpSceneSpeechB();
     startC.setDaemon(true);
     startC.start();
     MapGes1.setOnMouseClicked(
@@ -785,6 +797,7 @@ public class HomeController {
 
   @FXML
   private void zoomIn() {
+    System.out.println(runThread);
     ZoomInMachine(floor);
   }
 
