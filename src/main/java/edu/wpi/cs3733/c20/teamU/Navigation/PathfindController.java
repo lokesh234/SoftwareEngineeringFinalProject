@@ -779,33 +779,13 @@ public class PathfindController {
         oppo.getChildren().add(N4);
 
         // construct the menu drawer
-//        menuDrawer.getChildren().clear();
-//        menuDrawer.getChildren().add(menuBurgerContainer);
+
         menuDrawer.setSidePane(menuBurgerContainer);
-        menuDrawer.setDefaultDrawerSize(100);
-        menuDrawer.setDirection(DrawerDirection.RIGHT);
+        menuDrawer.setDefaultDrawerSize(200);
+        menuDrawer.setDirection(DrawerDirection.LEFT);
 
-//        menuDrawer.close();
-
-//        menuDrawer.setOnDrawerOpening(e -> {
-//            final Transition animation = menuBurger.getAnimation();
-//            System.out.println("here");
-////            burgerTooltip.setText("Close drawer");
-//            menuDrawer.setDirection(DrawerDirection.RIGHT);
-////            animation.setRate(1);
-////            animation.play();
-//        });
-//        menuDrawer.setOnDrawerClosing(e -> {
-//            final Transition animation = menuBurger.getAnimation();
-//            menuDrawer.setDirection(DrawerDirection.LEFT);
-//            System.out.println("here1");
-////            burgerTooltip.setText("Open drawer");
-////            animation.setRate(-1);
-////            animation.play();
-//        });
-//        menuDrawer.getChildren().get(0).setVisible(false);
         menuBurger.setOnMouseClicked(e -> {
-            System.out.println("clicked button");
+//            System.out.println("clicked button");
             menuDrawer.toggle();
         });
     }
