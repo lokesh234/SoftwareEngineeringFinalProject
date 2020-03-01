@@ -48,7 +48,7 @@ public class TreeViewController {
 
     @FXML
     public void back(ActionEvent event) {
-        if (tree.getSelectionModel().getSelectedItem().getValue() != null){
+        if (tree.getSelectionModel().getSelectedItem() != null && tree.getSelectionModel().getSelectedItem().getValue() != null){
             master.getSelectionFromDir(tree.getSelectionModel().getSelectedItem().getValue());
         }
         App.loadPathfinding();
