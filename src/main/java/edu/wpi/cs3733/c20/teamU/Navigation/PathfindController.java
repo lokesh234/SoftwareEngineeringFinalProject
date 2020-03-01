@@ -27,6 +27,7 @@ import net.kurobako.gesturefx.GesturePane;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import java.awt.image.ImagingOpException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -96,7 +97,16 @@ public class PathfindController {
     private ArrayList<String> AllNodeNames= new ArrayList<String>();
     private int checker;
 
+    private Image wongFront = new Image("png_files/gif/frontTRAN.gif");
+    private Image wongBack = new Image("png_files/gif/backTRAN.gif");
+    private Image wongLeft = new Image("png_files/gif/leftTRAN.gif");
+    private Image wongRight = new Image("png_files/gif/rightTRAN.gif");
+
+    private Thread wongThread;
+
     private ArrayList<Rectangle> wongs = new ArrayList<>();
+    private HashMap<Rectangle, ArrayList<Node>> pathChunks = new HashMap<>();
+    private HashMap<Rectangle, Node> nextNode = new HashMap<>();
     //private ArrayList<Circle> wongs = new ArrayList<>();
     private Label startNodeLabel = new Label();
     private Label endNodeLabel = new Label();
@@ -625,6 +635,56 @@ public class PathfindController {
 
     @FXML
     private void initialize() {
+
+        wongThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    for (Rectangle wong : wongs) {
+                        Node now = nextNode.get(wong);
+                        //System.out.println("Wong is at X: " + (wong.getX() + wong.getTranslateX() + (wong.getWidth()/2)) + ", Y: " + (wong.getY() + wong.getTranslateY() + (wong.getHeight()/2)) + ". Target node, " + now.getID() + ", is at X: " + now.getX() + ", Y: " + now.getY());
+                        if (hasReached(wong, now)) { //Rectangle has reached its destination, time to update its angle
+                            Node next;
+                            if (pathChunks.get(wong).indexOf(now) == 0) { //The node we just reached is the first one, so we wrap around to the last
+                                next = pathChunks.get(wong).get(pathChunks.get(wong).size() - 1);
+                            }
+                            else {
+                                next = pathChunks.get(wong).get(pathChunks.get(wong).indexOf(now) - 1);
+                                if (now.getX() == next.getX() && now.getY() == next.getY()) { //Nodes are at the same place
+                                    goRight(wong);
+                                } else {
+                                    double angle = Math.atan2(now.getX() - next.getX(), now.getY() - next.getY());
+                                    double pi4 = Math.PI / 4;
+                                    double pi34 = pi4 * 3;
+                                    if (pi34 >= angle && pi4 <= angle) {
+                                        goLeft(wong);
+                                    } else if (-pi34 <= angle && -pi4 >= angle) {
+                                        goRight(wong);
+                                    } else if ((-Math.PI <= angle && -pi34 >= angle) || (Math.PI >= angle && angle >= pi34)) {
+                                        goDown(wong);
+                                    } else {
+                                        goUp(wong);
+                                    }
+                                }
+                            }
+                            //We now need to get our direction
+
+
+                            nextNode.replace(wong, next);
+                        }
+                    }
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+        wongThread.setDaemon(true);
+        wongThread.start();
+
         fast.setToggleGroup(group);
         stai.setToggleGroup(group);
         elev.setToggleGroup(group);
@@ -756,6 +816,8 @@ public class PathfindController {
 
     @FXML
     private void clearPath() {
+
+
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
             removeFromPath(pair.getKey(), pair.getValue());
         }
@@ -777,6 +839,8 @@ public class PathfindController {
         interFloorPaths.clear();
         wongs.clear();
         nodeLabels.clear();
+        nextNode.clear();
+        pathChunks.clear();
         updateStatus();
     }
 
@@ -855,6 +919,7 @@ public class PathfindController {
         int startFloor = 1;
         floorsInPath.add(start.getFloor());
         floorsInPath.add(end.getFloor());
+        System.out.println(path);
         while (i < path.size() - 1) { //Iterate over every adjacent pair in the path
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
@@ -864,7 +929,10 @@ public class PathfindController {
 
             Path pathe = new Path();
             boolean firstTime = true;
+            ArrayList<Node> pathChunk = new ArrayList<>();
+            System.out.println("N1: " + n1.getID() + ", N2: " + n2.getID());
             while (n1.getFloor() == n2.getFloor()) {
+                System.out.println(n1.getFloor());
                 MoveTo move;
                 LineTo move2;
                 if (firstTime) {
@@ -873,13 +941,16 @@ public class PathfindController {
                     startFloor = n1.getFloor();
                     move = new MoveTo(startX, startY);
                     pathe.getElements().add(move);
+                    pathChunk.add(n1);
                 }
                 else {
                     move2 = new LineTo(n1.getX(), n2.getY());
                     pathe.getElements().add(move2);
+                    if (!pathChunk.contains(n1)) pathChunk.add(n1);
                 }
                 LineTo line = new LineTo(n2.getX(), n2.getY());
                 pathe.getElements().add(line);
+                if (!pathChunk.contains(n2)) pathChunk.add(n2);
                 pathe.setStroke(Color.web("#7851a9"));
                 pathe.setStrokeWidth(10.0);
                 pathe.getStrokeDashArray().addAll(15d, 15d);
@@ -968,38 +1039,69 @@ public class PathfindController {
                 nodeLabels.add(l2);
             }
 
-            PathTransition pathTransition = new PathTransition();
-            //Circle wong = new Circle();
-            Rectangle wong = new Rectangle();
-            Image imageWong = new Image("png_files/gif/frontFly.gif");
-            ImagePattern imagePattern = new ImagePattern(imageWong);
-            //wong.setX(start.getX());
-            //wong.setY(start.getY());
-            //wong.setX(n2.getX());
-            //wong.setY(n2.getY());
-            wong.setX(-10000);
-            wong.setY(-10000);
-            wong.setHeight(80);
-            wong.setWidth(80);
-            wong.setFill(imagePattern);
-            pathTransition.setNode(wong);
-      //System.out.println("size: " + (path.size() + (path.size() / 4)));
-      //25 is an alright value
-            pathTransition.setDuration(Duration.seconds(path.size() + (path.size() / 4)));
-            pathTransition.setPath(pathe);
-            pathTransition.setCycleCount(PathTransition.INDEFINITE);
-            pathTransition.setAutoReverse(false);
-            pathTransition.playFrom("end");
-            pathTransition.setRate(-1);
-            pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-            pathTransition.play();
+            if (pathChunk.size() > 0) { //If we've touched the inner while loop, we wanna run this
+                PathTransition pathTransition = new PathTransition();
+                //Circle wong = new Circle();
+                Rectangle wong = new Rectangle();
+                ImagePattern imagePattern = new ImagePattern(wongFront);
+                //wong.setX(start.getX());
+                //wong.setY(start.getY());
+                //wong.setX(n2.getX());
+                //wong.setY(n2.getY());
+                wong.setX(-10000);
+                wong.setY(-10000);
+                wong.setHeight(80);
+                wong.setWidth(80);
+                wong.setFill(imagePattern);
+                pathTransition.setNode(wong);
+                //System.out.println("size: " + (path.size() + (path.size() / 4)));
+                //25 is an alright value
 
-            addToPath(wong, startFloor);
-            wongs.add(wong);
+                pathTransition.setDuration(Duration.seconds(pathChunk.size() * 0.8));
+                pathTransition.setCycleCount(PathTransition.INDEFINITE);
+
+                pathTransition.setPath(pathe);
+                pathTransition.setAutoReverse(false);
+                pathTransition.setRate(-1);
+
+
+                pathChunks.put(wong, pathChunk);
+                System.out.println(pathChunk);
+                nextNode.put(wong, pathChunks.get(wong).get(pathChunks.get(wong).size() - 1));
+                wongs.add(wong);
+                addToPath(wong, startFloor);
+                pathTransition.play();
+//            pathTransition.jumpTo("end");
+            }
+
         }
+
         displayingPath = true;
+        floor = start.getFloor();
+        stateMachine(floor);
         updateStatus();
     }
+
+    private boolean hasReached(Rectangle wong, Node dest) {
+        return Math.abs(wong.getTranslateX() + wong.getX() + (wong.getWidth()/2) - dest.getX()) < 5 && Math.abs(wong.getTranslateY() + wong.getY() + (wong.getHeight()/2) - dest.getY()) < 5;
+    }
+
+    private void goRight(Rectangle wong) {
+        wong.setFill(new ImagePattern(wongRight));
+    }
+
+    private void goDown(Rectangle wong) {
+        wong.setFill(new ImagePattern(wongFront));
+    }
+
+    private void goUp(Rectangle wong) {
+        wong.setFill(new ImagePattern(wongBack));
+    }
+
+    private void goLeft(Rectangle wong) {
+        wong.setFill(new ImagePattern(wongLeft));
+    }
+
     //path is an arraylist of nodes
     private void getTextPath() {
         if (path.size() == 0) {
