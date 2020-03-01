@@ -1084,6 +1084,15 @@ public class PathfindController {
         updateStatus();
     }
 
+    @FXML
+    private void swap() {
+        Node buf = start;
+        start = end;
+        end = start;
+        updateStatus();
+    }
+
+
     private boolean hasReached(Rectangle wong, Node dest) {
         return Math.abs(wong.getTranslateX() + wong.getX() + (wong.getWidth()/2) - dest.getX()) < 5 && Math.abs(wong.getTranslateY() + wong.getY() + (wong.getHeight()/2) - dest.getY()) < 5;
     }
