@@ -1077,8 +1077,10 @@ public class PathfindController {
         }
 
         displayingPath = true;
-        floor = start.getFloor();
-        stateMachine(floor);
+        if (floor != start.getFloor()) {
+            floor = start.getFloor();
+            stateMachine(floor);
+        }
         updateStatus();
     }
 
