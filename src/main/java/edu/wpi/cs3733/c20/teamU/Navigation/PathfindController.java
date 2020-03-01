@@ -1,6 +1,9 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXDrawersStack;
+import com.jfoenix.controls.JFXHamburger;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
@@ -15,10 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.*;
@@ -41,6 +41,14 @@ public class PathfindController {
 
     private Parent root;
     int floor = 4;
+
+
+    @FXML private JFXDrawer menuDrawer;
+    @FXML private StackPane menuBurgerContainer;
+    @FXML private JFXHamburger menuBurger;
+
+    @FXML
+    private StackPane navPane;
 
     @FXML
     private JFXButton upButton, downButton;
@@ -633,9 +641,9 @@ public class PathfindController {
         }
     };
 
+
     @FXML
     private void initialize() {
-
         wongThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -767,6 +775,25 @@ public class PathfindController {
         Auto();
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
+
+        // construct the menu drawer
+        menuDrawer.getChildren().clear();
+        menuDrawer.getChildren().add(menuBurgerContainer);
+        menuDrawer.setOnDrawerOpening(e -> {
+            final Transition animation = menuBurger.getAnimation();
+//            burgerTooltip.setText("Close drawer");
+            animation.setRate(1);
+            animation.play();
+        });
+        menuDrawer.setOnDrawerClosing(e -> {
+            final Transition animation = menuBurger.getAnimation();
+//            burgerTooltip.setText("Open drawer");
+            animation.setRate(-1);
+            animation.play();
+        });
+        menuBurgerContainer.setOnMouseClicked(e -> {
+            menuDrawer.toggle();
+        });
     }
 
     private void Populate(){
