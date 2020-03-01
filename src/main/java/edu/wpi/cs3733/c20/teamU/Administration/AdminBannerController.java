@@ -39,6 +39,8 @@ public class AdminBannerController {
             adminBannerController.update();
 
             adminBannerPop.getContent().clear();
+            adminBannerPop.setX(App.getPrimaryStage().getX() + 1500);
+            adminBannerPop.setY(App.getPrimaryStage().getY() + 40);
             adminBannerPop.getContent().add(adminBanner);
             adminBannerPop.show(App.getPrimaryStage());
         }
