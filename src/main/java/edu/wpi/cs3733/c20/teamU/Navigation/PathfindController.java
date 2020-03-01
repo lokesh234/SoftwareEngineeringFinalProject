@@ -72,6 +72,11 @@ public class PathfindController {
 
     private Circle startSelect = new Circle();
     private Circle endSelect = new Circle();
+    private ImageView startView = new ImageView();
+    private ImageView endView = new ImageView();
+    private Image startMarker = new Image("png_file/start.png");
+    private Image endMarker = new Image("png_file/end.png");
+
 
 
     public void setAttributes(Parent root) {
@@ -411,13 +416,18 @@ public class PathfindController {
 
         if (startReady) {
             removeFromPath(startSelect, start.getFloor());
+            removeFromPath(startView, start.getFloor());
             startSelect.setCenterX(start.getX());
             startSelect.setCenterY(start.getY());
             startSelect.setFill(Color.TRANSPARENT);
             startSelect.setStroke(Color.YELLOW);
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
+            startView.setImage(startMarker);
+            startView.setX(start.getX());
+            startView.setY(start.getY());
             addToPath(startSelect, start.getFloor());
+            addToPath(startView, start.getFloor());
 
             startNodeLabel.setText(start.getLongName());
             startNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -436,13 +446,18 @@ public class PathfindController {
 
         if (endReady) {
             removeFromPath(endSelect, end.getFloor());
+            removeFromPath(endView, end.getFloor());
             endSelect.setCenterX(end.getX());
             endSelect.setCenterY(end.getY());
             endSelect.setFill(Color.TRANSPARENT);
             endSelect.setStroke(Color.ORANGE);
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
+            endView.setImage(endMarker);
+            endView.setX(end.getX());
+            endView.setY(end.getY());
             addToPath(endSelect, end.getFloor());
+            addToPath(endView, end.getFloor());
 
             endNodeLabel.setText(end.getLongName());
             endNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
