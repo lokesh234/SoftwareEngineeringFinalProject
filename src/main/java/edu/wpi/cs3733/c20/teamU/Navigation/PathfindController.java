@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.Navigation;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXDrawer.DrawerDirection;
 import com.jfoenix.controls.JFXDrawersStack;
 import com.jfoenix.controls.JFXHamburger;
 import edu.wpi.cs3733.c20.teamU.App;
@@ -12,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -777,21 +779,33 @@ public class PathfindController {
         oppo.getChildren().add(N4);
 
         // construct the menu drawer
-        menuDrawer.getChildren().clear();
-        menuDrawer.getChildren().add(menuBurgerContainer);
-        menuDrawer.setOnDrawerOpening(e -> {
-            final Transition animation = menuBurger.getAnimation();
-//            burgerTooltip.setText("Close drawer");
-            animation.setRate(1);
-            animation.play();
-        });
-        menuDrawer.setOnDrawerClosing(e -> {
-            final Transition animation = menuBurger.getAnimation();
-//            burgerTooltip.setText("Open drawer");
-            animation.setRate(-1);
-            animation.play();
-        });
-        menuBurgerContainer.setOnMouseClicked(e -> {
+//        menuDrawer.getChildren().clear();
+//        menuDrawer.getChildren().add(menuBurgerContainer);
+        menuDrawer.setSidePane(menuBurgerContainer);
+        menuDrawer.setDefaultDrawerSize(100);
+        menuDrawer.setDirection(DrawerDirection.RIGHT);
+
+//        menuDrawer.close();
+
+//        menuDrawer.setOnDrawerOpening(e -> {
+//            final Transition animation = menuBurger.getAnimation();
+//            System.out.println("here");
+////            burgerTooltip.setText("Close drawer");
+//            menuDrawer.setDirection(DrawerDirection.RIGHT);
+////            animation.setRate(1);
+////            animation.play();
+//        });
+//        menuDrawer.setOnDrawerClosing(e -> {
+//            final Transition animation = menuBurger.getAnimation();
+//            menuDrawer.setDirection(DrawerDirection.LEFT);
+//            System.out.println("here1");
+////            burgerTooltip.setText("Open drawer");
+////            animation.setRate(-1);
+////            animation.play();
+//        });
+//        menuDrawer.getChildren().get(0).setVisible(false);
+        menuBurger.setOnMouseClicked(e -> {
+            System.out.println("clicked button");
             menuDrawer.toggle();
         });
     }
