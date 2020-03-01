@@ -505,7 +505,7 @@ public class HomeController {
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
-                        if (App.getSpokenWords().isEmpty()){
+                        else {
                          runThread = false;
                         }
                       }
