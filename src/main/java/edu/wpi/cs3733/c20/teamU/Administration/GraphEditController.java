@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -65,6 +66,7 @@ public class GraphEditController {
   @FXML private GesturePane MapGes5;
   private HashMap<Node, Circle> interFloorPaths = new HashMap<>();
   private HashMap<Circle, Integer> extraFloorPaths = new HashMap<>();
+  private HashMap<ImageView, Node> hitboxes = new HashMap<>();
 
   private Circle startSelect = new Circle();
   private Circle endSelect = new Circle();
@@ -557,19 +559,28 @@ public class GraphEditController {
   private void drawNodes() {
     ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
     for (Node n : nodes) {
-      //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-      if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-      Circle c = new Circle();
-      c.setCenterX(n.getX());
-      c.setCenterY(n.getY());
-      c.setRadius(App.getNodeSize());
-      addToPath(c, n.getFloor());
-      c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
-      c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-      c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
-      c.setOnMouseDragged(event -> drag(event));
-      App.setColor(n, c);
-      circles.put(c, n);
+      try {
+        ImageView i = new ImageView();
+        i.setImage(new Image("png_files/" + n.getID() + ".png"));
+        i.setOnMouseClicked(hitboxClickHandler);
+        addToPath(i, n.getFloor());
+        hitboxes.put(i, n);
+        i.setOnMouseDragged(event -> dragHitbox(event));
+      } catch (Exception e) {
+        //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+        if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+        Circle c = new Circle();
+        c.setCenterX(n.getX());
+        c.setCenterY(n.getY());
+        c.setRadius(App.getNodeSize());
+        addToPath(c, n.getFloor());
+        c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+        c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
+        c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
+        c.setOnMouseDragged(event -> drag(event));
+        App.setColor(n, c);
+        circles.put(c, n);
+      }
     }
   }
 
@@ -584,6 +595,35 @@ public class GraphEditController {
   };
 
   EventHandler<MouseEvent> circleSelectHandler = new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+      if (state == State.selectNode) {
+        selectedNode = circles.get(event.getSource());
+        state = State.neutral;
+        startLabel.setText(selectedNode.getID());
+        updateButtons();
+      }
+      else if (state == State.selectEnd) {
+        selectedEndNode = circles.get(event.getSource());
+        state = State.neutral;
+        endLabel.setText(selectedEndNode.getID() + ", " + selectedEndNode.getFloor());
+        updateButtons();
+      }
+      else if (state == State.selectStart) {
+        selectedStartNode = circles.get(event.getSource());
+        state = State.neutral;
+        startLabel.setText(selectedStartNode.getID() + ", " + selectedStartNode.getFloor());
+        updateButtons();
+      }
+      else if (state == State.selectLocation) {
+        App.setLocation(circles.get(event.getSource()));
+        state = State.neutral;
+        locLabel.setText(App.getLocation().getLongName());
+      }
+    }
+  };
+
+  EventHandler<MouseEvent> hitboxClickHandler = new EventHandler<MouseEvent>() {
     @Override
     public void handle(MouseEvent event) {
       if (state == State.selectNode) {
@@ -639,7 +679,7 @@ public class GraphEditController {
     }
   };
 
-  public void drag(MouseEvent event) {
+  private void drag(MouseEvent event) {
     if (state == State.neutral) {
       Circle c = (Circle) event.getSource();
       getFloorGes(floor).setGestureEnabled(false);
@@ -647,6 +687,23 @@ public class GraphEditController {
       c.setCenterY(event.getY());
 
       Node n = circles.get(c);
+
+      if (!nodeMode) {
+        DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());
+        clearEdges();
+        drawEdges();
+      }
+    }
+  }
+
+  private void dragHitbox(MouseEvent event) {
+    if (state == State.neutral) {
+      ImageView c = (ImageView) event.getSource();
+      getFloorGes(floor).setGestureEnabled(false);
+      c.setX(event.getX());
+      c.setY(event.getY());
+
+      Node n = hitboxes.get(c);
 
       if (!nodeMode) {
         DatabaseWrapper.editNode(n.getID(), (int) event.getX(), (int) event.getY(), n.getFloor(), n.getBuilding(), n.getNodeType(), n.getLongName(), n.getShortName());

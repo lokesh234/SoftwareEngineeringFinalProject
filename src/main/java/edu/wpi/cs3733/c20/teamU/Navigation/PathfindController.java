@@ -88,6 +88,7 @@ public class PathfindController {
     private boolean endReady = false;
     private boolean displayingPath = false;
     private HashMap<Circle, Node> circles = new HashMap<>();
+    private HashMap<ImageView, Node> hitboxes= new HashMap<>();
     private HashMap<Path, Integer> pathes = new HashMap<>();
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
@@ -139,6 +140,31 @@ public class PathfindController {
             }
             else if (state == State.END) { //We're going to select an ending node!
                 end = circles.get(event.getSource());
+                endReady = (end != null) || endReady;
+                if (endReady) endLabel.setText(end.getLongName());
+                if (endReady) SearchBox.setText(end.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+        }
+    };
+
+    EventHandler<MouseEvent> hitboxClickHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            updateStatus();
+            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
+            else if (state == State.START) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = hitboxes.get(event.getSource());
+                startReady = (start != null) || startReady;
+                if (startReady) startLabel.setText(start.getLongName());
+                if (startReady) SearchBox.setText(start.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+            else if (state == State.END) { //We're going to select an ending node!
+                end = hitboxes.get(event.getSource());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
@@ -476,20 +502,32 @@ public class PathfindController {
             removeFromAll(pair.getKey());
         }
         circles.clear();
+        for (Map.Entry<ImageView, Node> pair : hitboxes.entrySet()) {
+            removeFromAll(pair.getKey());
+        }
+        hitboxes.clear();
         for (Node n : nodes) {
-            //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (isDrawableNode(n)) {
-                Circle c = new Circle();
-                c.setCenterX(n.getX());
-                c.setCenterY(n.getY());
-                c.setRadius(App.getNodeSize());
-                addToPath(c, n.getFloor());
-                c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
-                c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-                c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
-                App.setColor(n, c);
-                circles.put(c, n);
+            try {
+                ImageView i = new ImageView();
+                i.setImage(new Image("png_files/"+n.getID()+".png"));
+                i.setOnMouseClicked(hitboxClickHandler);
+                addToPath(i, n.getFloor());
+                hitboxes.put(i, n);
+            } catch (Exception e) {
+                //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+                if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+                if (isDrawableNode(n)) {
+                    Circle c = new Circle();
+                    c.setCenterX(n.getX());
+                    c.setCenterY(n.getY());
+                    c.setRadius(App.getNodeSize());
+                    addToPath(c, n.getFloor());
+                    c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+                    c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
+                    c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                    App.setColor(n, c);
+                    circles.put(c, n);
+                }
             }
         }
     }
