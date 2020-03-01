@@ -6,6 +6,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
@@ -593,10 +594,11 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) throws MalformedURLException {
+  public void start(Stage primaryStage) throws Exception {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
+//    AppointmentRequest.run(0, 0, 1900, 1000, null, "hello", "hello");
 
     popup.getContent().addAll();
     securityPop.getContent().addAll();
