@@ -82,6 +82,11 @@ public class PathfindController {
 
     private Circle startSelect = new Circle();
     private Circle endSelect = new Circle();
+    private ImageView startView = new ImageView();
+    private ImageView endView = new ImageView();
+    private Image startMarker = new Image("png_files/start.png");
+    private Image endMarker = new Image("png_files/end.png");
+
 
 
     public void setAttributes(Parent root) {
@@ -98,6 +103,7 @@ public class PathfindController {
     private boolean endReady = false;
     private boolean displayingPath = false;
     private HashMap<Circle, Node> circles = new HashMap<>();
+    private HashMap<ImageView, Node> hitboxes= new HashMap<>();
     private HashMap<Path, Integer> pathes = new HashMap<>();
     private int drawnFloor = 4;
     final ToggleGroup group = new ToggleGroup();
@@ -149,6 +155,31 @@ public class PathfindController {
             }
             else if (state == State.END) { //We're going to select an ending node!
                 end = circles.get(event.getSource());
+                endReady = (end != null) || endReady;
+                if (endReady) endLabel.setText(end.getLongName());
+                if (endReady) SearchBox.setText(end.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+        }
+    };
+
+    EventHandler<MouseEvent> hitboxClickHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            updateStatus();
+            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
+            else if (state == State.START) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = hitboxes.get(event.getSource());
+                startReady = (start != null) || startReady;
+                if (startReady) startLabel.setText(start.getLongName());
+                if (startReady) SearchBox.setText(start.getLongName());
+                state = State.NEUTRAL;
+                updateStatus();
+            }
+            else if (state == State.END) { //We're going to select an ending node!
+                end = hitboxes.get(event.getSource());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
@@ -421,13 +452,18 @@ public class PathfindController {
 
         if (startReady) {
             removeFromPath(startSelect, start.getFloor());
+            removeFromPath(startView, start.getFloor());
             startSelect.setCenterX(start.getX());
             startSelect.setCenterY(start.getY());
             startSelect.setFill(Color.TRANSPARENT);
             startSelect.setStroke(Color.YELLOW);
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
+            startView.setImage(startMarker);
+            startView.setX(start.getX() - 10);
+            startView.setY(start.getY() - 53);
             addToPath(startSelect, start.getFloor());
+            addToPath(startView, start.getFloor());
 
             startNodeLabel.setText(start.getLongName());
             startNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -446,13 +482,18 @@ public class PathfindController {
 
         if (endReady) {
             removeFromPath(endSelect, end.getFloor());
+            removeFromPath(endView, end.getFloor());
             endSelect.setCenterX(end.getX());
             endSelect.setCenterY(end.getY());
             endSelect.setFill(Color.TRANSPARENT);
             endSelect.setStroke(Color.ORANGE);
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
+            endView.setImage(endMarker);
+            endView.setX(end.getX() - 17);
+            endView.setY(end.getY() - 53);
             addToPath(endSelect, end.getFloor());
+            addToPath(endView, end.getFloor());
 
             endNodeLabel.setText(end.getLongName());
             endNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -486,20 +527,32 @@ public class PathfindController {
             removeFromAll(pair.getKey());
         }
         circles.clear();
+        for (Map.Entry<ImageView, Node> pair : hitboxes.entrySet()) {
+            removeFromAll(pair.getKey());
+        }
+        hitboxes.clear();
         for (Node n : nodes) {
-            //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-            if (isDrawableNode(n)) {
-                Circle c = new Circle();
-                c.setCenterX(n.getX());
-                c.setCenterY(n.getY());
-                c.setRadius(App.getNodeSize());
-                addToPath(c, n.getFloor());
-                c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
-                c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-                c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
-                App.setColor(n, c);
-                circles.put(c, n);
+            try {
+                ImageView i = new ImageView();
+                i.setImage(new Image("png_files/"+n.getID()+".png"));
+                i.setOnMouseClicked(hitboxClickHandler);
+                addToPath(i, n.getFloor());
+                hitboxes.put(i, n);
+            } catch (Exception e) {
+                //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+                if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+                if (isDrawableNode(n)) {
+                    Circle c = new Circle();
+                    c.setCenterX(n.getX());
+                    c.setCenterY(n.getY());
+                    c.setRadius(App.getNodeSize());
+                    addToPath(c, n.getFloor());
+                    c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+                    c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
+                    c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                    App.setColor(n, c);
+                    circles.put(c, n);
+                }
             }
         }
     }
@@ -835,7 +888,6 @@ public class PathfindController {
     }
 
 
-    @FXML
     private void clearPath() {
 
 
@@ -863,6 +915,19 @@ public class PathfindController {
         nextNode.clear();
         pathChunks.clear();
         updateStatus();
+    }
+
+    @FXML
+    private void clearSelect() {
+        start = null;
+        end = null;
+        startReady = false;
+        endReady = false;
+        removeFromAll(startSelect);
+        removeFromAll(endSelect);
+        removeFromAll(startView);
+        removeFromAll(endView);
+        clearPath();
     }
 
     private void fastestTo(String nodeType) {
@@ -1098,10 +1163,21 @@ public class PathfindController {
         }
 
         displayingPath = true;
-        floor = start.getFloor();
-        stateMachine(floor);
+        if (floor != start.getFloor()) {
+            floor = start.getFloor();
+            stateMachine(floor);
+        }
         updateStatus();
     }
+
+    @FXML
+    private void swap() {
+        Node buf = start;
+        start = end;
+        end = start;
+        updateStatus();
+    }
+
 
     private boolean hasReached(Rectangle wong, Node dest) {
         return Math.abs(wong.getTranslateX() + wong.getX() + (wong.getWidth()/2) - dest.getX()) < 5 && Math.abs(wong.getTranslateY() + wong.getY() + (wong.getHeight()/2) - dest.getY()) < 5;
@@ -1188,6 +1264,7 @@ public class PathfindController {
     }
     @FXML
     private void backHome() {
+        clearSelect();
         App.getPrimaryStage().setScene(App.getHomeScene());
     }
     private void addToPath(javafx.scene.Node e, int floor) {

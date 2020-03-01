@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
+import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.App;
 import foodRequest.ServiceException;
 import javafx.event.ActionEvent;
@@ -106,6 +107,15 @@ public class RequestController {
         App.getHome().setDisable(false);
         FoodRequest foodRequest = new FoodRequest();
         foodRequest.run(0, 0, 1080, 1920, null, null, null);
+    }
+
+    @FXML
+    private void openAppointment() throws Exception {
+        App.getRequestPop().getContent().clear();
+        App.getHome().setOpacity(1);
+        App.getHome().setDisable(false);
+//        FoodRequest foodRequest = new FoodRequest();
+        AppointmentRequest.run(0, 0, 1080, 1920, "/light_theme/light.css", null, null);
     }
 
 }

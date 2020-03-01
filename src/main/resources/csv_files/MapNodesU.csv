@@ -1,4 +1,4 @@
-﻿NODEID,XCOORD,YCOORD,FLOOR,BUILDING,NODETYPE,LONGNAME,SHORTNAME,TEAMASSIGNED
+NODEID,XCOORD,YCOORD,FLOOR,BUILDING,NODETYPE,LONGNAME,SHORTNAME,TEAMASSIGNED
 UDEPT00104,1115,436,4,Faulkner,DEPT,Cardiology,DEPT U0104,Team U
 UDEPT00204,2114,1154,4,Faulkner,DEPT,Foot and Ankle Center,DEPT U0204,Team U
 UDEPT00304,1312,241,4,Faulkner,DEPT,Gastroenterology Associates,DEPT U0304,Team U
@@ -52,7 +52,7 @@ UHALL02404,1255,1040,4,Faulkner,HALL,Hallway Intersection 24 Level 04 Main Hall,
 UHALL02504,1255,1001,4,Faulkner,HALL,Hallway Intersection 25 Level 04 Main Hall,Hallway U2504,Team U
 UHALL02604,1255,966,4,Faulkner,HALL,Hallway Intersection 26 Level 04 Main Hall,Hallway U2604,Team U
 UHALL02704,1255,849,4,Faulkner,HALL,Hallway Intersection 27 Level 04 Main Hall,Hallway U2704,Team U
-UHALL02804,1255,768,4,Faulkner,HALL,Hallway Intersection 28 Level 04 Main Hall,Hallway U2804,Team U
+UHALL02804,1249,791,4,Faulkner,HALL,Hallway Intersection 28 Level 04 Main Hall,Hallway U2804,Team U
 UHALL02904,1255,689,4,Faulkner,HALL,Hallway Intersection 29 Level 04 Main Hall,Hallway U2904,Team U
 UHALL03004,1255,642,4,Faulkner,HALL,Hallway Intersection 30 Level 04 Main Hall,Hallway U3004,Team U
 UHALL03104,1255,608,4,Faulkner,HALL,Hallway Intersection 31 Level 04 Main Hall,Hallway U3104,Team U
@@ -115,7 +115,7 @@ RSTAI00301,1320,415,1,Faulkner,STAI,Stairway Hallway 04 7,RSTAIR2512,TeamR
 RSTAI00401,2340,1220,1,Faulkner,STAI,Emergency Stairs,RSTAIR2312,TeamR
 SDEPT00102,1203,1250,2,Faulkner,DEPT,Psych/Addiction Care,psy_room,TeamS
 SHALL00102,1203,1214,2,Faulkner,HALL,2nd Floor Hillside Hallway,2hs_hall,TeamS
-SELEV00102,1203,1152,2,Faulkner,ELEV,2nd Floor Hillside Elevators,2hs_elev,TeamS
+SELEV00102,1153,1150,2,Faulkner,ELEV,2nd Floor Hillside Elevators,2hs_elev,TeamS
 SHALL00202,1258,1214,2,Faulkner,HALL,2nd Floor Hillside Hallway East,2hs_hall_east,TeamS
 SHALL00302,1437,1214,2,Faulkner,HALL,Physical Therapy Intersection Hallway,pt_int_hall,TeamS
 SHALL02002,1437,1145,2,Faulkner,HALL,2nd Floor Elevator Hallway,2main_elev_hall,TeamS
@@ -126,7 +126,7 @@ SDEPT00202,1462,880,2,Faulkner,DEPT,Physical Therapy,pt_room,TeamS
 SHALL00502,1437,509,2,Faulkner,HALL,Physical Therapy Hallway North,pt_hall_north,TeamS
 SHALL00602,1359,509,2,Faulkner,HALL,Plastic Surgery Hallway South,ps_hall_south,TeamS
 SHALL00702,1359,380,2,Faulkner,HALL,Plastic Surgery Hallway,ps_hall,TeamS
-SREST00202,1400,380,2,Faulkner,REST,Plastic Surgery Bathroom,ps_bath,TeamS
+SREST00202,1432,380,2,Faulkner,REST,Plastic Surgery Bathroom,ps_bath,TeamS
 SHALL00802,1359,293,2,Faulkner,HALL,Plastic Surgey Lobby Hallway ,ps_hall_lob,TeamS
 SDEPT00302,1379,293,2,Faulkner,DEPT,Plastic Surgery,ps_room,TeamS
 SHALL00902,1260,293,2,Faulkner,HALL,2nd Floor Atrium Hallway North,2atr_hall_north,TeamS
@@ -152,15 +152,15 @@ SSERV00302,774,893,2,Faulkner,SERV,Central Sterile Supply,css,TeamS
 SRETL00202,1359,524,2,Faulkner,RETL,Food Services,food_ser,TeamS
 SHALL01802,1437,1076,2,Faulkner,HALL,Occupational Therapy Hallway,occ_ther_hall,TeamS
 SDEPT00702,1469,1076,2,Faulkner,DEPT,Occupational Therapy,occ_ther,TeamS
-TRETL00103,872,669,3,Faulkner,RETL,Cafeteria,Cafe,TeamT
+TRETL00103,1313,675,3,Faulkner,RETL,Cafeteria,Cafe,TeamT
 TSERV00103,1132,1324,3,Faulkner,SERV,Chapel,Chap,TeamT
 TINFO00103,1167,502,3,Faulkner,INFO,Family/Patient Resources,Resources,TeamT
 TRETL00203,1219,935,3,Faulkner,RETL,Gift Shop,Gifts,TeamT
 TDEPT00103,1325,228,3,Faulkner,DEPT,Gynocology & Oncology,Gyno & Onco,TeamT
 TCONF00103,1148,722,3,Faulkner,CONF,Huvos Auditorium,Huvos,TeamT
-TINFO00203,1287,1263,3,Faulkner,INFO,Information,Info,TeamT
+TINFO00203,1326,1259,3,Faulkner,INFO,Information,Info,TeamT
 TDEPT00203,1390,269,3,Faulkner,DEPT,Obstetrics and Gynecology Associates,OBGYN Assoc,TeamT
-TRETL00303,1465,690,3,Faulkner,RETL,Outdoor Dining Terrace,Dining Terr,TeamT
+TRETL00303,1476,864,3,Faulkner,RETL,Outdoor Dining Terrace,Dining Terr,TeamT
 TDEPT00303,1190,224,3,Faulkner,DEPT,Roslindale Pediatric Associates,Rosindale,TeamT
 TSERV00203,1252,1368,3,Faulkner,SERV,Shuttle Pickup,Shuttle,TeamT
 TSERV00303,1374,1311,3,Faulkner,SERV,Volunteer Services,Vol Service,TeamT
@@ -168,16 +168,14 @@ TREST00103,1108,655,3,Faulkner,REST,Restrooms,Rest,TeamT
 TSTAI00103,1235,1081,3,Faulkner,STAI,Hillside Staircase,Hillside Stair,TeamT
 TSTAI00203,1329,377,3,Faulkner,STAI,Atrium Staircase,Atrium Stair,TeamT
 TELEV00103,1187,377,3,Faulkner,ELEV,Atrium Elevator,Atrium Elev,TeamT
-TELEV00203,1253,1163,3,Faulkner,ELEV,Hillside Elevator,Hillside Elev,TeamT
-THALL00103,1252,1324,3,Faulkner,HALL,Shuttle Hallway,Shuttle Hall,TeamT
-THALL00203,1252,1311,3,Faulkner,HALL,Volunteer Hallway,Volunteer Hall,TeamT
-THALL00303,1252,1263,3,Faulkner,HALL,Information Hallway,Info Hall,TeamT
+TELEV00203,1350,1155,3,Faulkner,ELEV,Hillside Elevator,Hillside Elev,TeamT
+THALL00203,1256,1307,3,Faulkner,HALL,Volunteer Hallway,Volunteer Hall,TeamT
+THALL00303,1252,1158,3,Faulkner,HALL,Information Hallway,Info Hall,TeamT
 THALL00403,1252,1081,3,Faulkner,HALL,Hillside Hallway 1,Hillside Hall 1,TeamT
 THALL00503,1252,925,3,Faulkner,HALL,Hillside Hallway 2,Hillside Hall 2,TeamT
 THALL00603,1219,925,3,Faulkner,HALL,Hillside Staircase Hallway,Hillside Stair Hall,TeamT
-THALL00703,1252,693,3,Faulkner,HALL,Cafeteria Hallway 1,Cafe Hall 1,TeamT
 THALL00803,1208,693,3,Faulkner,HALL,Cafeteria Hallway 2,Cafe Hall 2,TeamT
-THALL00903,1148,693,3,Faulkner,HALL,Huvos Hallway,Huvos Hall,TeamT
+THALL00903,1148,695,3,Faulkner,HALL,Huvos Hallway,Huvos Hall,TeamT
 THALL01003,1097,693,3,Faulkner,HALL,Restroom Hallway 1,Restroom Hall 2,TeamT
 THALL01103,1097,655,3,Faulkner,HALL,Restroom Hallway 2,Restroom Hall 2,TeamT
 THALL01203,1252,669,3,Faulkner,HALL,Cafeteria Hallway 3,Cafe Hall 3,TeamT
@@ -214,7 +212,7 @@ VINFO00105,1431,1214,5,Faulkner,INFO,Right Wing Info,RW Info,Team V
 VHALL01005,1332,1214,5,Faulkner,HALL,Right Wing Door (Hall 10),RW Dr,Team V
 VHALL01105,1208,1214,5,Faulkner,HALL,Main to Left Wing (Hall 11),Mn2LW,Team V
 VHALL01205,1296,1214,5,Faulkner,HALL,Main to Right Wing (Hall 12),Mn2RW,Team V
-VHALL01305,1253,1154,5,Faulkner,HALL,Main Elevator-Restroom Intersection (Hall 13),Mn Intr,Team V
+VHALL01305,1252,1174,5,Faulkner,HALL,Main Elevator-Restroom Intersection (Hall 13),Mn Intr,Team V
 VHALL01505,1252,1112,5,Faulkner,HALL,Main Upper (Hall 15),Mn Up,Team V
 VHALL01605,1293,1112,5,Faulkner,HALL,Main Upper Right (Hall 16),Mn Up,Team V
 VDEPT00405,616,1214,5,Faulkner,DEPT,Intensive Care Unit ,ICU,Team V
@@ -247,7 +245,7 @@ VDEPT01305,1381,338,5,Faulkner,DEPT,5D Lower - Surgical Specialties,5D Lwr,Team 
 VHALL03005,1334,297,5,Faulkner,HALL,5D Upper Door (Hall 30),5D Up Dr,Team V
 VDEPT01405,1351,274,5,Faulkner,DEPT,5D Upper - Surgical Specialties,5D Up,Team V
 VHALL03105,1252,284,5,Faulkner,HALL,Atrium Upper (Hall 31),Atr Up,Team V
-VDEPT01505,1246,259,5,Faulkner,DEPT,5C Left - Orthopaedic Associates,5C L,Team V
+VDEPT01505,1243,259,5,Faulkner,DEPT,5C Left - Orthopaedic Associates,5C L,Team V
 VHALL03205,1147,343,5,Faulkner,HALL,5A Upper Door (Hall 32),5A Up Dr,Team V
 VDEPT01605,1126,343,5,Faulkner,DEPT,5A Upper - Suites,5A Up,Team V
 VHALL03305,1147,309,5,Faulkner,HALL,5B Left Door (Hall 33),5B L Dr,Team V
@@ -263,3 +261,5 @@ UDEPT00103,1403,369,3,Faulkner,DEPT,Division of Gynocology,GYNDIV,Team U
 UHALL00101,1402,1115,1,Faulkner,HALL,Hall,Hall,Team U
 UHALL00201,2284,1114,1,Faulkner,HALL,Hall,Hall,Team U
 USTAI00105,1782,1267,5,Faulkner,STAI,Stairs 5th Floor,stai,Team U
+UHALL00202,1205,1150,2,Faulkner,HALL,Hall for elevator,Hall 2 Elev,Team U
+UELEV00103,1156,1168,3,Faulkner,ELEV,Left most elevator 3,ELEV Left 3,Team U
