@@ -814,7 +814,6 @@ public class PathfindController {
     }
 
 
-    @FXML
     private void clearPath() {
 
 
@@ -842,6 +841,17 @@ public class PathfindController {
         nextNode.clear();
         pathChunks.clear();
         updateStatus();
+    }
+
+    @FXML
+    private void clearSelect() {
+        start = null;
+        end = null;
+        startReady = false;
+        endReady = false;
+        removeFromAll(startSelect);
+        removeFromAll(endSelect);
+        clearPath();
     }
 
     private void fastestTo(String nodeType) {
@@ -1178,6 +1188,7 @@ public class PathfindController {
     }
     @FXML
     private void backHome() {
+        clearSelect();
         App.getPrimaryStage().setScene(App.getHomeScene());
     }
     private void addToPath(javafx.scene.Node e, int floor) {
