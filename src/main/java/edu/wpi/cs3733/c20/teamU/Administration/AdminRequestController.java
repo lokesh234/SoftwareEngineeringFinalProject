@@ -15,9 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Popup;
+import org.controlsfx.control.Notifications;
 
 import java.util.ArrayList;
-import org.controlsfx.control.Notifications;
 
 public class AdminRequestController {
   @FXML private TableView<Service> serviceTable1;
@@ -37,6 +39,7 @@ public class AdminRequestController {
   RequestScreenController requestScreenController;
   private boolean pending = true;
   private String cred = "";
+  private AdminBannerController adminBannerController;
 
   public void setAttributes(RequestScreenController requestScreenController1) {
     requestScreenController = requestScreenController1;
@@ -169,7 +172,12 @@ public class AdminRequestController {
     else {
       App.getHome().setDisable(false);
       App.getHome().setOpacity(1);
+      adminBannerController.kill();
       App.getPrimaryStage().setScene(App.getHomeScene());
     }
+  }
+
+  public void setBanner(AdminBannerController adminBannerController) {
+    this.adminBannerController = adminBannerController;
   }
 }

@@ -15,6 +15,7 @@ public class AdminScreenController {
   @FXML private Button reqPow;
   @FXML private Button editedges;
   @FXML private Button exportButton;
+  private AdminBannerController adminBannerController;
 
   /**
    * Admin + general users... TODO: make it more specific to user credentials
@@ -80,7 +81,7 @@ public class AdminScreenController {
     App.getHome().setOpacity(1);
     App.getHome().setDisable(false);
     App.getPopup().getContent().clear();
-
+    adminBannerController.kill();
   }
 
   @FXML
@@ -148,4 +149,8 @@ public class AdminScreenController {
     App.getPopup().getContent().add(App.getAnalytics());
     App.getPopup().show(App.getPrimaryStage());
   }
+
+    public void setBanner(AdminBannerController adminBannerController) {
+      this.adminBannerController = adminBannerController;
+    }
 }

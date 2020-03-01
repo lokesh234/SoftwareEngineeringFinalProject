@@ -4,12 +4,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import java.net.UnknownHostException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import javafx.scene.layout.Pane;
+import javafx.stage.Popup;
 import org.controlsfx.control.Notifications;
 
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -26,11 +25,15 @@ public class LoginScreenController {
   @FXML private Label userName;
   @FXML private Label password;
 
+
+  private Pane adminBanner;
+  private Popup adminBannerPop;
   private int trackLoginCount;
   private boolean didFail;
   private Account whoTried;
   private String usernameTried;
   private EmployeeFormController employeeFormController;
+  protected AdminBannerController adminBannerController;
 
   public void setAttributes(EmployeeFormController attribute) {
     employeeFormController = attribute;
@@ -67,6 +70,9 @@ public class LoginScreenController {
       didFail = false;
       App.getColorController().setUser(whoTried.getUserName());
       Notifications.create().text("Logged in as: " + whoTried.getUserName()).show();
+
+      adminBannerController = new AdminBannerController();
+      adminBannerController.loadAdminBanner();
       changeScene();
     }
   }
@@ -131,11 +137,13 @@ public class LoginScreenController {
       if(whoTried.getCred().equals("ADMIN")) {
 //        System.out.println("here");
         App.getPopup().getContent().add(App.getAdmin());
+        App.getAdminScreenController().setBanner(adminBannerController);
       }
       else App.getPopup().getContent().add(App.getAdminRequest());
       App.getAdminScreenController().cred();
       App.getAdminRequestController().cred();
       App.getAdminRequestController().update();
+      App.getAdminRequestController().setBanner(adminBannerController);
       App.getPopup().show(App.getPrimaryStage());
     }
     clearFields();
@@ -177,4 +185,5 @@ public class LoginScreenController {
 //    BooleanBinding bind = robotCheck.selectedProperty().not();
 //    loginEnter.disableProperty().bind(bind);
   }
+
 }
