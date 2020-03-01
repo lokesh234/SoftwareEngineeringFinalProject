@@ -887,7 +887,7 @@ public class PathfindController {
         //pathfindTextController.Directions = new Label();
     }
 
-
+    @FXML
     private void clearPath() {
 
 
