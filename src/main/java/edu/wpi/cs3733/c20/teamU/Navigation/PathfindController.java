@@ -74,8 +74,8 @@ public class PathfindController {
     private Circle endSelect = new Circle();
     private ImageView startView = new ImageView();
     private ImageView endView = new ImageView();
-    private Image startMarker = new Image("png_file/start.png");
-    private Image endMarker = new Image("png_file/end.png");
+    private Image startMarker = new Image("png_files/start.png");
+    private Image endMarker = new Image("png_files/end.png");
 
 
 
@@ -424,8 +424,8 @@ public class PathfindController {
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
             startView.setImage(startMarker);
-            startView.setX(start.getX());
-            startView.setY(start.getY());
+            startView.setX(start.getX() - 10);
+            startView.setY(start.getY() - 53);
             addToPath(startSelect, start.getFloor());
             addToPath(startView, start.getFloor());
 
@@ -454,8 +454,8 @@ public class PathfindController {
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
             endView.setImage(endMarker);
-            endView.setX(end.getX());
-            endView.setY(end.getY());
+            endView.setX(end.getX() - 17);
+            endView.setY(end.getY() - 53);
             addToPath(endSelect, end.getFloor());
             addToPath(endView, end.getFloor());
 
@@ -866,6 +866,8 @@ public class PathfindController {
         endReady = false;
         removeFromAll(startSelect);
         removeFromAll(endSelect);
+        removeFromAll(startView);
+        removeFromAll(endView);
         clearPath();
     }
 
