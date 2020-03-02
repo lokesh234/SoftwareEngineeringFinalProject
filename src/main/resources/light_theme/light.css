@@ -88,6 +88,11 @@
     -fx-fill: -color-4;
 }
 
+.navBar{}
+.navBar .jfx-button{
+    -jfx-button-type: FLAT;
+}
+
 .jfx-nodes-list{}
 
 .jfx-drawer{
@@ -159,15 +164,15 @@
 
 .hotbar{}
 .hotbar .jfx-button{
-    -fx-min-height: 120;
-    -fx-min-height: 120;
+    -fx-min-height: 100;
+    -fx-min-height: 100;
     -fx-background-radius: 5;
 
 }
 .hotbar .jfx-button:hover{
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
-    -fx-scale-z: 1.1;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
 
 }
 /** end **/
