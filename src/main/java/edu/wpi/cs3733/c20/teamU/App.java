@@ -17,6 +17,7 @@ import edu.wpi.cs3733.c20.teamU.Navigation.TreeViewController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.*;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -77,6 +78,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane scale;
   private static Pane color;
   private static Pane information;
+  private static Pane credit;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -110,6 +112,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene analyticsScene;
   private static Scene colorScene;
   private static Scene informationScene;
+  private static Scene creditScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -149,6 +152,7 @@ public class App<loadedAdminRequests> extends Application {
   private static AdminScaleController scaleController;
   private static AdminColorController colorController;
   private static InformationController informationController;
+  private static CreditController creditController;
 
 
   private static boolean didChange = false;
@@ -228,6 +232,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Popup weatherPop = new Popup();
   private static Popup treeViewPop = new Popup();
   private static Popup informationPopUp = new Popup();
+  private static Popup creditPop = new Popup();
 
   private static Image floor1;
   private static Image floor2;
@@ -315,6 +320,18 @@ public class App<loadedAdminRequests> extends Application {
     public void handle(javafx.scene.input.KeyEvent event) {
       if (event.getCode() == KeyCode.F) {
         App.getPrimaryStage().setScene(App.getFireScene());
+      }
+    }
+  };
+
+  private static EventHandler<KeyEvent> creditKey = new EventHandler<javafx.scene.input.KeyEvent>() {
+    @Override
+    public void handle(javafx.scene.input.KeyEvent event) {
+      if (event.getCode() == KeyCode.C) {
+        App.getHome().setOpacity(.5);
+        App.getHome().setDisable(true);
+        App.getCreditPop().getContent().add(App.getCredit());
+        App.getCreditPop().show(App.getPrimaryStage());
       }
     }
   };
@@ -510,6 +527,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getScale() { return scale;}
   public static Pane getColor() { return color;}
   public static Pane getInformation() {return information;}
+  public static Pane getCredit() {return credit;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -541,6 +559,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getAnalyticsScene() {return analyticsScene;}
   public static Scene getColorScene() {return colorScene;}
   public static Scene getInformationScene() {return informationScene;}
+  public static Scene getCreditScene() {return creditScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -573,6 +592,7 @@ public class App<loadedAdminRequests> extends Application {
   public static AdminScaleController getScaleController() { return scaleController;}
   public static AdminColorController getColorController() {return colorController;}
   public static InformationController getInformationController() {return informationController;}
+  public static CreditController getCreditController() {return creditController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -614,6 +634,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Popup getWeatherPop() { return weatherPop; }
   public static Popup getTreeViewPop() { return treeViewPop; }
   public static Popup getInformationPopUp() {return informationPopUp;}
+  public static Popup getCreditPop() {return creditPop;}
 
   public static Image getFloor1() { return floor1;}
   public static Image getFloor2() { return floor2;}
@@ -689,6 +710,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader securityLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestSecurityForm.fxml"));
         FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("/light_theme/WeatherWindow.fxml"));
         FXMLLoader informationLoader = new FXMLLoader(App.class.getResource("/light_theme/InformationPage.fxml"));
+        FXMLLoader creditLoader = new FXMLLoader(App.class.getResource("/light_theme/Credit.fxml"));
 
 
         home = homeLoader.load();
@@ -697,13 +719,17 @@ public class App<loadedAdminRequests> extends Application {
         security = securityLoader.load();
         weather = weatherLoader.load();
         information = informationLoader.load();
+        credit = creditLoader.load();
 
 
-        home.setOnKeyPressed(fireKey);
-        start.setOnKeyPressed(fireKey);
-        security.setOnKeyPressed(fireKey);
-        weather.setOnKeyPressed(fireKey);
-        information.setOnKeyPressed(fireKey);
+        home.addEventHandler(KeyEvent.KEY_RELEASED, fireKey);
+        start.addEventHandler(KeyEvent.KEY_RELEASED, fireKey);
+        security.addEventHandler(KeyEvent.KEY_RELEASED, fireKey);
+        weather.addEventHandler(KeyEvent.KEY_RELEASED, fireKey);
+        information.addEventHandler(KeyEvent.KEY_RELEASED, fireKey);
+
+        home.addEventHandler(KeyEvent.KEY_RELEASED, creditKey);
+        start.addEventHandler(KeyEvent.KEY_RELEASED, creditKey);
 
 
         homeController = homeLoader.getController();
@@ -718,6 +744,7 @@ public class App<loadedAdminRequests> extends Application {
         homeScene = new Scene(home);
         startScene = new Scene(start);
         fireScene = new Scene(fire);
+        creditScene = new Scene(credit);
 
       }
       catch (IOException e) {
@@ -776,6 +803,8 @@ public class App<loadedAdminRequests> extends Application {
         login.setOnKeyPressed(loginconfirmKey);
         employeeF.setOnKeyPressed(employeeformconfirmKey);
         scale.setOnKeyPressed(fireKey);
+
+
 
 
         verificationController = verificationLoader.getController();
