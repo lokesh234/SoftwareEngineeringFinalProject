@@ -545,6 +545,9 @@ public class PathfindController {
                 //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
                 if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
                 if (isDrawableNode(n)) {
+                    ImageView imageView = new ImageView();
+                    imageView.setY(n.getY() - 8);
+                    imageView.setX(n.getX() - 8);
                     Circle c = new Circle();
                     c.setCenterX(n.getX());
                     c.setCenterY(n.getY());
@@ -554,6 +557,8 @@ public class PathfindController {
                     c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
                     c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
                     App.setColor(n, c);
+                    App.setIcon(n, imageView);
+                    addToPath(imageView, n.getFloor());
                     circles.put(c, n);
                 }
             }
