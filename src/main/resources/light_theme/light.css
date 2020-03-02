@@ -26,8 +26,8 @@
     -color-5: #4d4d4d; /*dark-gray*/
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
-    -body-text: black;
-    -containter-text: white;
+    -body-text: #000000;
+    -containter-text: #FFFFFF;
 }
 
 .root{
@@ -65,7 +65,7 @@
 }
 
 .sideBar .label{
-    -fx-text-fill: black;
+    -fx-text-fill: -body-text;
 }
 
 .transparentSideBar{
@@ -77,7 +77,7 @@
 }
 
 .transparentSideBar .label{
-    -fx-text-fill: black;
+    -fx-text-fill: -body-text;
 }
 
 .weatherBox{
@@ -272,7 +272,7 @@
 }
 
 .jfx-dialog-layout{
-    -fx-text-fill: rgba(0, 0, 0, 0.87);
+    -fx-text-fill: -body-text;
 }
 
 .jfx-dialog-layout .jfx-layout-heading {
@@ -301,7 +301,7 @@
 }
 
 .jfx-dialog-layout .jfx-layout-body .label{
-    -fx-text-fill: #757575;
+    -fx-text-fill: -body-text;
     -fx-font-size: 16.0;
     -fx-wrap-text: true;
 }
@@ -540,11 +540,11 @@
 .tree-table-view:focused .tree-table-row-cell:selected{
     -fx-background-color: -fx-tree-table-color;
     -fx-table-cell-border-color: -fx-tree-table-color;
-    -fx-text-fill: BLACK;
+    -fx-text-fill: -body-text;
 }
 
 .tree-table-view:focused .tree-table-row-cell:selected .tree-table-cell {
-    -fx-text-fill: BLACK;
+    -fx-text-fill: -body-text;
 }
 
 .tree-table-view .column-header,
@@ -559,7 +559,7 @@
 }
 
 .tree-table-view .column-header .label {
-    -fx-text-fill: #949494;
+    -fx-text-fill: -body-text;
     -fx-padding: 16 0 16 0;
 }
 

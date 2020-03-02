@@ -145,7 +145,7 @@ public class PathfindController {
     @FXML
     TextField SearchBox;
 
-    EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() { //Handles selecting a node via clicking on a circle
+    EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             updateStatus();
@@ -170,7 +170,7 @@ public class PathfindController {
         }
     };
 
-    EventHandler<MouseEvent> hitboxClickHandler = new EventHandler<MouseEvent>() { //Above, but oriented to work on hitboxes
+    EventHandler<MouseEvent> hitboxClickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             updateStatus();
@@ -195,7 +195,7 @@ public class PathfindController {
         }
     };
 
-    EventHandler<MouseEvent> circleClickHandler = new EventHandler<MouseEvent>() { //Makes the source bigger while being clicked
+    EventHandler<MouseEvent> circleClickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             ImageView source = (ImageView) event.getSource();
@@ -204,7 +204,7 @@ public class PathfindController {
         }
     };
 
-    EventHandler<MouseEvent> circleMouseReleaseHandler = new EventHandler<MouseEvent>() { //Resets back to normal size
+    EventHandler<MouseEvent> circleMouseReleaseHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             ImageView source = (ImageView) event.getSource();
@@ -213,7 +213,7 @@ public class PathfindController {
         }
     };
 
-    EventHandler<MouseEvent> interFloorPathHandler = new EventHandler<MouseEvent>() { //Handles clicking on an inter-floor path
+    EventHandler<MouseEvent> interFloorPathHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) { //We know that one of the adjacent nodes is on a different floor (might be both of them, but then we can go to either)
             Node n1 = interFloorPaths.get(event.getSource());
@@ -231,19 +231,19 @@ public class PathfindController {
 
 
 
-    @FXML private void clickUp(ActionEvent e){ //Click the up floor button
+    @FXML private void clickUp(ActionEvent e){
         Collections.sort(floorsInPath);
-        if (displayingPath && floorsInPath.contains(floor)) { //If we're displaying the path and we're on a floor where there's a path...
-            if (floorsInPath.indexOf(floor) < (floorsInPath.size()-1)) floor = floorsInPath.get(floorsInPath.indexOf(floor)+1); //If we can go up, do so
-            else return; //Else do nothing
+        if (displayingPath && floorsInPath.contains(floor)) {
+            if (floorsInPath.indexOf(floor) < (floorsInPath.size()-1)) floor = floorsInPath.get(floorsInPath.indexOf(floor)+1);
+            else return;
         }
-        else { //Otherwise, if we can go up, do so
+        else {
             floor++;
             if(floor > 5) {
                 floor = 5;
             }
         }
-        stateMachine(floor); //Render the floor change
+        stateMachine(floor);
         checker = 1;
     }
 
@@ -285,7 +285,7 @@ public class PathfindController {
         });
     }
 
-    @FXML private void stateMachine(int floor){ //Change the rendered floor to match the given argument
+    @FXML private void stateMachine(int floor){
         switch (floor){
             case 1:
                 oppo.getChildren().clear();
@@ -346,12 +346,16 @@ public class PathfindController {
         }
     }
 
-    @FXML private void zoomIn() { //Zooms in on the floor we're on
+    @FXML private void centerOut(){
+        ZoomCenterMachine(floor);
+    }
+
+    @FXML private void zoomIn() {
         ZoomInMachine(floor);
     }
     private int zoomCounter = 5;
     private double zoomed = 0;
-    private void ZoomInMachine(int floor) { //machine that zooms
+    private void ZoomInMachine(int floor) {
         switch (floor) {
             case 1:
                 if(zoomCounter <= 5 && zoomCounter > 0) {
@@ -393,8 +397,38 @@ public class PathfindController {
         }
     }
 
+    private void ZoomCenterMachine(int floor) {
+        switch (floor) {
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+                break;
+            case 4:
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+                break;
+        }
+    }
 
-    private void ZoomOutMachine(int floor) { //zoom that machine
+
+    private void ZoomOutMachine(int floor) {
         switch (floor) {
             case 1:
                 if(zoomCounter < 5 && zoomCounter >= 0 ) {
@@ -445,7 +479,7 @@ public class PathfindController {
     }
 
 
-    private void updateStatus() { //Updates the status text
+    private void updateStatus() {
         removeFromAll(startNodeLabel);
         removeFromAll(endNodeLabel);
         if (state == State.NEUTRAL) {
@@ -458,7 +492,7 @@ public class PathfindController {
         else if (state == State.END) statusLabel.setText("Click on a Node to Set Destination");
         else statusLabel.setText("Click on a Node to Set Start Position");
 
-        if (startReady) { //Update the selection indication, if necessary
+        if (startReady) {
             removeFromPath(startSelect, start.getFloor());
             removeFromPath(startView, start.getFloor());
             removeFromPath(startViewselect, start.getFloor());
@@ -481,12 +515,12 @@ public class PathfindController {
             startNodeLabel.setLayoutY(start.getY() - 30);
             addToPath(startNodeLabel, start.getFloor());
         }
-        else if (start != null) { //We want to make sure the selection indication is not duplicated
+        else if (start != null) {
             removeFromPath(startSelect, start.getFloor());
             removeFromPath(startViewselect, start.getFloor());
             startLabel.setText("None Selected");
         }
-        else { //We want to be *very* sure
+        else {
             startLabel.setText("None Selected");
         }
 
@@ -524,7 +558,7 @@ public class PathfindController {
         }
     }
 
-    public void drawNodes() { //Clears the entire screen, then renders the nodes
+    public void drawNodes() {
         state = State.NEUTRAL;
         start = null;
         end = null;
@@ -645,6 +679,8 @@ public class PathfindController {
                     }
                 }
             };
+
+
 
 
     EventHandler<MouseEvent> leftClick =
@@ -790,8 +826,6 @@ public class PathfindController {
     @FXML
     private void initialize() {
         wongThread = new Thread(new Runnable() {
-            //NOTE: this thread assumes that for every entry in wongs there is a corresponding entry in pathChunks and nextNode. If you're messing with those hashmaps, delete from wongs *before* deleting from the other two, and add to wongs *after* adding to the other two
-            //This only runs at 20 hz, so doing things in the wrong order shouldn't be an issue 99% of the time, but that's such bad practice it'll give you at least a few months of bad luck
             @Override
             public void run() {
                 while (true) {
@@ -837,7 +871,7 @@ public class PathfindController {
 
             }
         });
-        wongThread.setDaemon(true); //Setting the thread to daemon means it doesn't ever need to be terminated - java takes care of that once the main thread (and all other non-daemon threads) have been closed
+        wongThread.setDaemon(true);
         wongThread.start();
 
         leftArrow.addEventHandler(MOUSE_PRESSED, leftClick);
@@ -948,7 +982,7 @@ public class PathfindController {
     }
 
     @FXML
-    private void selectStart() { //Sets state to start state
+    private void selectStart() {
         state = State.START;
         updateStatus();
     }
@@ -961,13 +995,13 @@ public class PathfindController {
     }
 
     @FXML
-    private void selectEnd() { //sets state to end state
+    private void selectEnd() {
         state = State.END;
         updateStatus();
     }
 
     @FXML
-    private void pathfind() { //Generates a path and draws it
+    private void pathfind() {
         if (startReady && endReady) {
             clearPath();
             //System.out.println("PathfindPress");
@@ -985,7 +1019,8 @@ public class PathfindController {
         //pathfindTextController.Directions = new Label();
     }
 
-    private void clearPath() { //Removes the path from the screen
+    @FXML
+    private void clearPath() {
 
 
         for (Map.Entry<Path, Integer> pair : pathes.entrySet()) {
@@ -1015,7 +1050,7 @@ public class PathfindController {
     }
 
     @FXML
-    private void clearSelect() { //Nukes the path *and* the selected nodes
+    private void clearSelect() {
         start = null;
         end = null;
         startReady = false;
@@ -1029,7 +1064,7 @@ public class PathfindController {
         clearPath();
     }
 
-    private void fastestTo(String nodeType) { //Finds and renders the fastest path from the current location to the given location type
+    private void fastestTo(String nodeType) {
         ArrayList<Node> nodesOfType = DatabaseWrapper.getGraph().getByType(nodeType);
         int pathLen = -1;
         ArrayList<Node> finalPath = new ArrayList<>();
@@ -1087,8 +1122,7 @@ public class PathfindController {
         return p.size();
     }
 
-    private void drawPath() { //Draws the path
-        //buckle up boyos
+    private void drawPath() {
         System.out.println();
         clearPath();
         if (path.size() == 0){
@@ -1110,22 +1144,18 @@ public class PathfindController {
             Node n1 = path.get(i);
             Node n2 = path.get(i+1);
             i++;
-            //We want floorsInPath to contain every floor the path goes over that does not consist only of stair or elevator nodes
-            //We can simplify this to: add every floor we have not already been on, as long as our node isn't a stair or elevator
             if (!floorsInPath.contains(n1.getFloor()) && (i == 0 || (!n1.getNodeType().equals("STAI") && !n1.getNodeType().equals("ELEV")))) floorsInPath.add(n1.getFloor());
             if (!floorsInPath.contains(n2.getFloor()) && (i+2 == path.size() || (!n2.getNodeType().equals("STAI") && !n2.getNodeType().equals("ELEV")))) floorsInPath.add(n2.getFloor());
 
-            //Now we gotta generate "pathChunks"
-            //A pathChunk is a chunk of the path where all nodes are on the same floor (for paths that only go on one floor, this pathChunk is the entire path)
-            //For every pathChunk we want to set an animation and put a Wong on it
             Path pathe = new Path();
             boolean firstTime = true;
             ArrayList<Node> pathChunk = new ArrayList<>();
             System.out.println("N1: " + n1.getID() + ", N2: " + n2.getID());
-            while (n1.getFloor() == n2.getFloor()) { //Iterate over every adjacent pair in the path where the pair share the same floor
+            while (n1.getFloor() == n2.getFloor()) {
+                System.out.println(n1.getFloor());
                 MoveTo move;
                 LineTo move2;
-                if (firstTime) { //Our first path element must be a MoveTo
+                if (firstTime) {
                     startX = n1.getX();
                     startY = n1.getY();
                     startFloor = n1.getFloor();
@@ -1133,7 +1163,7 @@ public class PathfindController {
                     pathe.getElements().add(move);
                     pathChunk.add(n1);
                 }
-                else { //All other elements should be LineTos
+                else {
                     move2 = new LineTo(n1.getX(), n2.getY());
                     pathe.getElements().add(move2);
                     if (!pathChunk.contains(n1)) pathChunk.add(n1);
@@ -1152,7 +1182,7 @@ public class PathfindController {
                                         0d,
                                         (a, b) -> a + b
                                 );
-                Timeline timeline = new Timeline( //do the cool dotted line animation
+                Timeline timeline = new Timeline(
                         new KeyFrame(
                                 Duration.ZERO,
                                 new KeyValue(
@@ -1176,7 +1206,7 @@ public class PathfindController {
                 addToPath(pathe, n1.getFloor());
                 if (!firstTime) i++;
 
-                if (i + 1 < path.size()) { //If we've not reached the end of the path, we need to keep going
+                if (i + 1 < path.size()) { //If we've not reached the end of the given path, we need to keep going
                     n1 = path.get(i);
                     n2 = path.get(i+1);
                     firstTime = false;
@@ -1229,7 +1259,7 @@ public class PathfindController {
                 nodeLabels.add(l2);
             }
 
-            if (pathChunk.size() > 0) { //If we've touched the inner while loop, we wanna run this to generate our Wong on the pathChunk we just created
+            if (pathChunk.size() > 0) { //If we've touched the inner while loop, we wanna run this
                 PathTransition pathTransition = new PathTransition();
                 //Circle wong = new Circle();
                 Rectangle wong = new Rectangle();
@@ -1275,7 +1305,7 @@ public class PathfindController {
     }
 
     @FXML
-    private void swap() { //swaps the start and end destinations
+    private void swap() {
         Node buf = start;
         start = end;
         end = start;
@@ -1283,7 +1313,7 @@ public class PathfindController {
     }
 
 
-    private boolean hasReached(Rectangle wong, Node dest) { //Has our wong reached the node yet?
+    private boolean hasReached(Rectangle wong, Node dest) {
         return Math.abs(wong.getTranslateX() + wong.getX() + (wong.getWidth()/2) - dest.getX()) < 5 && Math.abs(wong.getTranslateY() + wong.getY() + (wong.getHeight()/2) - dest.getY()) < 5;
     }
 

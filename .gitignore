@@ -19,6 +19,9 @@ derby.log
 # UDB Folder
 /UDB
 
+#myDB Folder
+/myDB
+
 # CSS Folder
 /CSS
 
