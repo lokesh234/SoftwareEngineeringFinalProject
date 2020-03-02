@@ -145,7 +145,7 @@
                   <Insets top="10.0" />
                </padding>
             </VBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: TRANSPARENT;" styleClass="transparentSideBar">
+            <HBox maxWidth="400.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: TRANSPARENT;" styleClass="transparentSideBar" StackPane.alignment="CENTER_LEFT">
                <children>
                   <JFXDrawer fx:id="menuDrawer" maxWidth="200.0">
                      <children>
