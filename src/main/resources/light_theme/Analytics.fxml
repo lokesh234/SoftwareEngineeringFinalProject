@@ -110,8 +110,8 @@
                   <HBox alignment="CENTER_LEFT" spacing="10.0" />
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                   </HBox>
-                  <JFXDatePicker fx:id="from" />
-                  <JFXDatePicker fx:id="to" />
+                  <JFXDatePicker/>
+                  <JFXDatePicker/>
                   <!--                  <JFXButton fx:id="close1" onAction="#closeRequest" style="-fx-background-color: #474338;" text="View" textFill="WHITE">-->
                   <!--                     <font>-->
                   <!--                        <Font name="Segoe UI" size="18.0" />-->
