@@ -157,6 +157,19 @@
     -fx-fill: -color-3;
 }
 
+.hotbar{}
+.hotbar .jfx-button{
+    -fx-min-height: 120;
+    -fx-min-height: 120;
+    -fx-background-radius: 5;
+
+}
+.hotbar .jfx-button:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-scale-z: 1.1;
+
+}
 /** end **/
 
 .jfx-alert-overlay{
