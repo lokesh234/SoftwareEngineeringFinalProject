@@ -1311,6 +1311,7 @@ public class PathfindController {
         start = end;
         end = start;
         updateStatus();
+        pathfind();
     }
 
 
