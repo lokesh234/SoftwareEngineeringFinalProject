@@ -27,7 +27,7 @@
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
     -body-text: #000000;
-    -containter-text: #FFFFFF;
+    -container-text: #FFFFFF;
 }
 
 .root{
@@ -89,6 +89,19 @@
 }
 
 .jfx-nodes-list{}
+
+.jfx-drawer{
+    -fx-background-color: TRANSPARENT;
+}
+
+.legend{
+    -fx-background-color: TRANSPARENT;
+}
+
+.legend .label{
+    -fx-text-fill: -body-text;
+}
+
 
 .weatherBox .label{
     -fx-text-fill: -body-text;

@@ -47,9 +47,10 @@ public class PathfindController {
     int floor = 4;
 
 
-    @FXML private JFXDrawer menuDrawer;
-    @FXML private StackPane menuBurgerContainer;
+    @FXML private JFXDrawer menuDrawer, legendDrawer;
+    @FXML private StackPane menuBurgerContainer, legendPane;
     @FXML private JFXHamburger menuBurger;
+    @FXML private VBox legendContent;
 
     @FXML
     private StackPane navPane;
@@ -969,9 +970,17 @@ public class PathfindController {
         menuDrawer.setDefaultDrawerSize(200);
         menuDrawer.setDirection(DrawerDirection.LEFT);
 
+        legendDrawer.setSidePane(legendPane);
+        legendDrawer.setDefaultDrawerSize(200);
+        legendDrawer.setDirection(DrawerDirection.LEFT);
+        legendDrawer.setBackground(Background.EMPTY);
+        legendPane.setBackground(Background.EMPTY);
+        legendContent.setBackground(Background.EMPTY);
+
         menuBurger.setOnMouseClicked(e -> {
 //            System.out.println("clicked button");
             menuDrawer.toggle();
+            legendDrawer.toggle();
         });
     }
 
