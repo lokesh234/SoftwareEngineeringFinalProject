@@ -22,7 +22,8 @@ public class Colors {
     private String thirdColor;
     private String fourthColor;
     private String fifthColor;
-    private String textColor;
+    private String firstTextColor;
+    private String secondTextColor;
 
     private static boolean getFileDir(String cssName){
         String directoryName = "CSS";
