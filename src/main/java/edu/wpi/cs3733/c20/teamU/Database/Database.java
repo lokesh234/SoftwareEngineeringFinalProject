@@ -10,8 +10,11 @@ import org.omg.PortableInterceptor.ServerRequestInfo;
 
 import java.io.*;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 
 
@@ -287,7 +290,7 @@ public class Database {
 
     private static void createDestinationsTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (date DATE, startNode VARCHAR(10) REFERENCES MapNodesU (nodeID), destNode VARCHAR(10) REFERENCES MapNodesU (nodeID))";
+            String slqCreate = "CREATE TABLE " + tableName + " (dateSearched DATE, startNode VARCHAR(10) REFERENCES MapNodesU (nodeID), destNode VARCHAR(10) REFERENCES MapNodesU (nodeID))";
 
             stmt.executeUpdate(slqCreate);
             String line = "";
@@ -1453,7 +1456,6 @@ public class Database {
                         else {
                             sb.append(results.getString(i) + "\n");
                         }
-
                     }
 
                 }
@@ -2261,6 +2263,149 @@ public class Database {
         Connection connection = null;
         Statement stmt = null;
         String tableName = "DestinationsDB";
+        String tableNodes = "MapNodesU";
+        String sql = null;
+        ArrayList<Node> nodeList = new ArrayList<>();
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            if (dateType.equals("day")) {
+                sql = "SELECT * FROM " + tableName + " WHERE dateSearched = '" + year + "-" + month + "-" + day + "'";
+            }
+            else if (dateType.equals("month")) {
+                sql = "SELECT * FROM " + tableName + " WHERE MONTH(dateSearched) = " + month + " AND YEAR(dateSearched) = " + year;
+            }
+            else if (dateType.equals("year")){
+                sql = "SELECT * FROM " + tableName + " WHERE YEAR(dateSearched) = " + year;
+            }
+            else { return null; }
+            ResultSet results = stmt.executeQuery(sql);
+
+            ArrayList<String> stringList = new ArrayList<>();
+            while (results.next()) {
+                String destNode = results.getString(3);
+                stringList.add(destNode);
+            }
+            results.close();
+
+            for (int i = 0; i < stringList.size(); i++){
+                ResultSet resultNode = stmt.executeQuery("SELECT * FROM " + tableNodes + " WHERE nodeID = '" + stringList.get(i) + "'");
+                while (resultNode.next()){
+                    String _nodeID = resultNode.getString(1);
+                    int _xcoord = resultNode.getInt(2);
+                    int _ycoord = resultNode.getInt(3);
+                    int _floor = resultNode.getInt(4);
+                    String _building = resultNode.getString(5);
+                    String _nodeType = resultNode.getString(6);
+                    String _longName = resultNode.getString(7);
+                    String _shortName = resultNode.getString(8);
+                    Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
+                    nodeList.add(node);
+                }
+                resultNode.close();
+            }
+            stmt.close();
+            connection.close();
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+        return nodeList;
+    }
+
+    public static ArrayList<Node> getDestinationAmountRange(String startDate, String endDate){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "DestinationsDB";
+        String tableNodes = "MapNodesU";
+        String sql = null;
+        ArrayList<Node> nodeList = new ArrayList<>();
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            sql = "SELECT * FROM " + tableName + " WHERE dateSearched >= '" + startDate + "' AND dateSearched <= '" + endDate + "'";
+            ResultSet results = stmt.executeQuery(sql);
+
+            ArrayList<String> stringList = new ArrayList<>();
+            while (results.next()) {
+                String destNode = results.getString(3);
+                stringList.add(destNode);
+            }
+            results.close();
+
+            for (int i = 0; i < stringList.size(); i++){
+                ResultSet resultNode = stmt.executeQuery("SELECT * FROM " + tableNodes + " WHERE nodeID = '" + stringList.get(i) + "'");
+                while (resultNode.next()){
+                    String _nodeID = resultNode.getString(1);
+                    int _xcoord = resultNode.getInt(2);
+                    int _ycoord = resultNode.getInt(3);
+                    int _floor = resultNode.getInt(4);
+                    String _building = resultNode.getString(5);
+                    String _nodeType = resultNode.getString(6);
+                    String _longName = resultNode.getString(7);
+                    String _shortName = resultNode.getString(8);
+                    Node node = new Node(_nodeID, _xcoord, _ycoord, _floor, _building, _nodeType, _longName, _shortName);
+                    nodeList.add(node);
+                }
+                resultNode.close();
+            }
+            stmt.close();
+            connection.close();
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+        return nodeList;
+    }
+
+    public static ArrayList<Node> getDARToday(){
+        String date = DatabaseWrapper.getCurrentDate();
+        return getDestinationAmountRange(date, date);
+    }
+    public static ArrayList<Node> getDARLastWeek(){
+        String dateNow = DatabaseWrapper.getCurrentDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -7);
+        String datePast = dateFormat.format(cal.getTime());
+
+        return getDestinationAmountRange(datePast, dateNow);
+    }
+    public static ArrayList<Node> getDARLastMonth(){
+        String dateNow = DatabaseWrapper.getCurrentDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        String datePast = dateFormat.format(cal.getTime());
+
+        return getDestinationAmountRange(datePast, dateNow);
+    }
+    public static ArrayList<Node> getDARLastYear(){
+        String dateNow = DatabaseWrapper.getCurrentDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -1);
+        String datePast = dateFormat.format(cal.getTime());
+
+        return getDestinationAmountRange(datePast, dateNow);
+    }
+
+
+    public static int getEmployeeCount(String EmployeeType){
+        int retNumber = 0;
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "LoginDB";
         String sql = null;
 
 
@@ -2268,23 +2413,11 @@ public class Database {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = connection.createStatement();
 
-            if (dateType.equals("day")) {
-                sql = "SELECT * FROM " + tableName + " WHERE dateReq = '" + year + "-" + month + "-" + day + "'";
-            }
-            else if (dateType.equals("month")) {
-                sql = "SELECT * FROM " + tableName + " WHERE MONTH(dateReq) = " + month + " AND YEAR(dateReq) = " + year;
-            }
-            else if (dateType.equals("year")){
-                sql = "SELECT * FROM " + tableName + " WHERE YEAR(dateReq) = " + year;
-            }
+            sql = "SELECT * FROM " + tableName + " WHERE position = '"+ EmployeeType + "'";
+
             ResultSet results = stmt.executeQuery(sql);
-
-
             while (results.next()) {
-//                String requestID = results.getString(1);
-//                String date = results.getString(2);
-//                String requestType = results.getString(3);
-//                System.out.println("Tuple: " + requestID + " " + date + " " + requestType);
+                retNumber++;
                 //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
             }
             results.close();
@@ -2295,9 +2428,8 @@ public class Database {
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
-            return null;
+            return 0;
         }
-        return null;
+        return retNumber;
     }
-
 }

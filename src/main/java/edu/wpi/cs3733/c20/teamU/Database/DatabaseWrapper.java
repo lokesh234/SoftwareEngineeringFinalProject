@@ -338,6 +338,66 @@ public class DatabaseWrapper {
       public static boolean delColor(String colorName){
                 return Database.delColor(colorName);
           }
+
+  /**
+   * Get an array list of Nodes for a given time frame
+   * @param dateType ONE OF 3 types "day" "month" "year" (selects what value is most important)
+   * @param day if dateType is day eneter date as shown: "01" | "12" |  "03" ...
+   * @param month if date type is day or month enter month as: "01" ...
+   * @param year enter year as: "2000" ...
+   * @return returns an array list of nodes for a given time frame
+   *  Examples:
+   *    DatabaseWrapper.getDestinationAmount("day", "31", "12", "1999") - for just one day
+   *    DatabaseWrapper.getDestinationAmount("month", null, "12", "1999") - for the whole month of dec in 1999
+   *    DatabaseWrapper.getDestinationAmount("year", null, null, "1999") - for the whole year of 1999
+   */
+  public static ArrayList<Node> getDestinationAmount(String dateType, String day, String month, String year){
+        return Database.getDestinationAmount(dateType, day, month, year);
+      }
+
+  /**
+   * Function takes in a date range and returns an array list of nodes for that given time frame (includes that day)
+   * @param startDate Starting date ( stndrd date format) this is the earlier date
+   * @param endDate Ending date this is the later date
+   * @return returns an array list of nodes
+   * EX:
+   *  DatabaseWrapper.getDestinationAmountRange("3/2/2020", "3/2/2020");
+   *  DatabaseWrapper.getDestinationAmountRange("2/22/2020", "3/22/2020");
+   */
+  public static ArrayList<Node> getDestinationAmountRange(String startDate, String endDate){
+    return Database.getDestinationAmountRange(startDate, endDate);
+  }
+
+
+  /**
+   * ALL THESE FUNCTIONS BEHAVE THE SAME WAY (self explanatory)
+   * @return arraylist of nodes for the given time frame (day week month year) goes based off of current date
+   * if you want to get the past (day week month or year use these functions)
+   */
+  public static ArrayList<Node> getDARToday(){
+    return Database.getDARToday();
+  }
+  public static ArrayList<Node> getDARLastWeek(){
+    return Database.getDARLastWeek();
+  }
+  public static ArrayList<Node> getDARLastMonth(){
+    return Database.getDARLastMonth();
+  }
+  public static ArrayList<Node> getDARLastYear(){
+    return Database.getDARLastYear();
+  }
+
+  /**
+   *  Get the number of employees that have a certian job type
+   * @param EmployeeType String of job type (only "ADMIN" , "MEDIC" , "CLOWN", "ITRAN" ...)
+   * @return returns int number of current employees with that job type
+   * ex:
+   *    DatabaseWrapper.getEmployeeCount("ETRAN");
+   */
+  public static int getEmployeeCount(String EmployeeType){
+    return Database.getEmployeeCount(EmployeeType);
+  }
+
   // SERVICE DATABASE
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

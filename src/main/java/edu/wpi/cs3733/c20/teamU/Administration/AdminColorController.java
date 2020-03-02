@@ -68,10 +68,10 @@ public class AdminColorController {
     Colors startup = null;
     startup =  DatabaseWrapper.getColor("Startup");
     System.out.println("START UP VALUE: " + startup);
-    if (startup == null){
-      DatabaseWrapper.addColor("Startup", "FFF9E9", "000000", "dc143c", "dc143c", "4d4d4d", "000000", "FFFFFF");
-      startup =  DatabaseWrapper.getColor("Startup");
-    }
+//    if (startup == null){
+//      DatabaseWrapper.addColor("Startup", "FFF9E9", "000000", "dc143c", "dc143c", "4d4d4d", "000000", "FFFFFF");
+//      startup =  DatabaseWrapper.getColor("Startup");
+//    }
     System.out.println("START UP VALUE: " + startup);
 
     ArrayList<String> oldScheme = getCurrentColor(theme);
