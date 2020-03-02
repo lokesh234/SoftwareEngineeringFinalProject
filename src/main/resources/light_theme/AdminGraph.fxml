@@ -305,7 +305,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/purple.png" />
+                        <Image url="@../png_files/restroom15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -314,7 +314,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/green.png" />
+                        <Image url="@../png_files/stairs15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -329,7 +329,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/teal.png" />
+                        <Image url="@../png_files/elevator15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -338,7 +338,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/blue.png" />
+                        <Image url="@../png_files/info15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -350,7 +350,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/black.png" />
+                        <Image url="@../png_files/department15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -365,7 +365,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/skyBlue.png" />
+                        <Image url="@../png_files/Lab15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -374,7 +374,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/pink.png" />
+                        <Image url="@../png_files/retail15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -389,7 +389,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/yellow.png" />
+                        <Image url="@../png_files/service15.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -398,7 +398,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/orange.png" />
+                        <Image url="@../png_files/exit15.png" />
                      </image>
                   </ImageView>
                </graphic>
