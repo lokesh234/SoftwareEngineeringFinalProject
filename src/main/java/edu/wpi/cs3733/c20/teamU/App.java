@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -281,6 +282,33 @@ public class App<loadedAdminRequests> extends Application {
         break;
     }
   }
+
+  public static void setIcon(edu.wpi.cs3733.c20.teamU.Database.Node n, ImageView imageView) {
+    switch (n.getNodeType()) {
+      case "DEPT":
+        imageView.setImage(new Image("/png_files/department15.png"));
+        break;
+      case "CONF":
+        imageView.setImage(new Image("/png_files/restroom15.png"));        break;
+      case "REST":
+        imageView.setImage(new Image("/png_files/restroom15.png"));        break;
+      case "STAI":
+        imageView.setImage(new Image("/png_files/stairs15.png"));        break;
+      case "ELEV":
+        imageView.setImage(new Image("/png_files/elevator15.png"));        break;
+      case "LABS":
+        imageView.setImage(new Image("/png_files/Lab15.png"));        break;
+      case "INFO":
+        imageView.setImage(new Image("/png_files/info15.png"));        break;
+      case "EXIT":
+        imageView.setImage(new Image("/png_files/exit15.png"));        break;
+      case "RETL":
+        imageView.setImage(new Image("/png_files/retail15.png"));        break;
+      case "SERV":
+        imageView.setImage(new Image("/png_files/service15.png"));        break;
+    }
+  }
+
 
   private static EventHandler<KeyEvent> fireKey = new EventHandler<javafx.scene.input.KeyEvent>() {
     @Override
