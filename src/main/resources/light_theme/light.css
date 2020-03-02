@@ -88,6 +88,11 @@
     -fx-fill: -color-4;
 }
 
+.navBar{}
+.navBar .jfx-button{
+    -jfx-button-type: FLAT;
+}
+
 .jfx-nodes-list{}
 
 .jfx-drawer{
@@ -157,6 +162,19 @@
     -fx-fill: -color-3;
 }
 
+.hotbar{}
+.hotbar .jfx-button{
+    -fx-min-height: 100;
+    -fx-min-height: 100;
+    -fx-background-radius: 5;
+
+}
+.hotbar .jfx-button:hover{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+
+}
 /** end **/
 
 .jfx-alert-overlay{

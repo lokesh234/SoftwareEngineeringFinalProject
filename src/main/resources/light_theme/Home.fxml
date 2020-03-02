@@ -307,91 +307,91 @@
                   <Insets left="140.0" />
                </StackPane.margin>
             </VBox>
-            <HBox alignment="CENTER" maxHeight="100.0" maxWidth="250.0" spacing="20.0" style="-fx-background-color: TRANSPARENT;" styleClass="sideBar" StackPane.alignment="BOTTOM_RIGHT">
-               <children>
-                  <StackPane styleClass="navCircle" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Circle fx:id="navCircle" radius="80.0" styleClass="navCircle" />
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <JFXButton fx:id="upArrow" text="Λ" GridPane.columnIndex="1">
-                                  <font>
-                                      <Font name="Segoe UI" size="24.0" />
-                                  </font>
-                              </JFXButton>
-                              <JFXButton fx:id="downArrow" text="V" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                               <font>
-                                   <Font name="Segoe UI" size="24.0" />
-                               </font>
-                              </JFXButton>
-                              <JFXButton fx:id="leftArrow" text="&lt;" GridPane.rowIndex="1">
-                                <font>
-                                    <Font name="Segoe UI" size="24.0" />
-                                </font>
-                              </JFXButton>
-                              <JFXButton fx:id="rightArrow" text="&gt;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                  <font>
-                                    <Font name="Segoe UI" size="24.0" />
-                                  </font>
-                              </JFXButton>
-                              <JFXButton fx:id="upArrow1" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Segoe UI" size="24.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </StackPane>
-                  <StackPane styleClass="navCircle" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Circle fx:id="navCircle" radius="80.0" />
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                                    <JFXButton fx:id="plus" alignment="CENTER" contentDisplay="CENTER" onAction="#zoomIn" text="+" GridPane.columnIndex="1">
-                                        <font>
-                                            <Font name="Segoe UI" size="24.0" />
-                                        </font>
-                                    </JFXButton>
-                                    <JFXButton fx:id="minus" onAction="#zoomOut" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                        <font>
-                                            <Font name="Segoe UI" size="24.0" />
-                                        </font>
-                                    </JFXButton>
-                              <JFXButton fx:id="plus1" alignment="CENTER" contentDisplay="CENTER" onAction="#centerOut" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font name="Segoe UI" size="24.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </GridPane>
-                     </children>
-                  </StackPane>
-               </children>
-               <StackPane.margin>
-                  <Insets bottom="20.0" right="50.0" />
-               </StackPane.margin>
-            </HBox>
+             <HBox alignment="CENTER" maxHeight="100.0" maxWidth="250.0" spacing="20.0" style="-fx-background-color: TRANSPARENT;" styleClass="navBar" StackPane.alignment="BOTTOM_RIGHT">
+                 <children>
+                     <StackPane styleClass="navCircle" HBox.hgrow="ALWAYS">
+                         <children>
+                             <Circle fx:id="navCircle" radius="60.0" styleClass="navCircle" />
+                             <GridPane>
+                                 <columnConstraints>
+                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                     <JFXButton fx:id="upArrow" text="Λ" GridPane.columnIndex="1">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                     <JFXButton fx:id="downArrow" text="V" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                     <JFXButton fx:id="leftArrow" text="&lt;" GridPane.rowIndex="1">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                     <JFXButton fx:id="rightArrow" text="&gt;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                     <JFXButton fx:id="upArrow1" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                 </children>
+                             </GridPane>
+                         </children>
+                     </StackPane>
+                     <StackPane styleClass="navCircle" HBox.hgrow="ALWAYS">
+                         <children>
+                             <Circle fx:id="navCircle" radius="60.0" />
+                             <GridPane>
+                                 <columnConstraints>
+                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                     <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                     <JFXButton fx:id="plus" alignment="CENTER" contentDisplay="CENTER" onAction="#zoomIn" text="+" GridPane.columnIndex="1">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                     <JFXButton fx:id="minus" onAction="#zoomOut" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                     <JFXButton fx:id="minus1" onAction="#centerOut" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                         <font>
+                                             <Font name="Segoe UI" size="18.0" />
+                                         </font>
+                                     </JFXButton>
+                                 </children>
+                             </GridPane>
+                         </children>
+                     </StackPane>
+                 </children>
+                 <StackPane.margin>
+                     <Insets bottom="20.0" right="50.0" />
+                 </StackPane.margin>
+             </HBox>
          </children>
       </StackPane>
     </children>
