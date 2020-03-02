@@ -5,16 +5,15 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import java.util.ArrayList;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import org.controlsfx.control.Notifications;
 
-import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+import java.util.ArrayList;
 
 public class EmployeeFormController {
 
@@ -171,18 +170,7 @@ public class EmployeeFormController {
     employeeNumber.setPromptText("+09998887777");
     ObservableList<String> employee =
         FXCollections.observableArrayList(
-            "ADMIN",
-            "MEDIC",
-            "SECUR",
-            "FLOWR",
-            "DELIV",
-            "ITRAN",
-            "ETRAN",
-            "CLOWN",
-            "RELIG",
-            "SANIT",
-            "LANGE",
-            "INTEC"
+                ServiceRequestWrapper.getAllServiceType()
         );
     employeeCombo.getItems().addAll(employee);
     checkBox.setDisable(true);

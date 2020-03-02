@@ -6,6 +6,7 @@ import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestScreenController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -15,8 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
-import javafx.stage.Popup;
 import org.controlsfx.control.Notifications;
 
 import java.util.ArrayList;
@@ -146,18 +145,7 @@ public class AdminRequestController {
 
     ObservableList<String> deliveryOptions =
             FXCollections.observableArrayList(
-                    "ADMIN",
-                    "SECUR",
-                    "MEDIC",
-                    "FLOWR",
-                    "DELIV",
-                    "ITRAN",
-                    "ETRAN",
-                    "CLOWN",
-                    "RELIG",
-                    "SANIT",
-                    "LANGE",
-                    "INTEC"
+                    ServiceRequestWrapper.getAllServiceType()
             );
     comboBox.getItems().addAll(deliveryOptions);
   }
