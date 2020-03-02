@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,21 +12,10 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AnalyticsController {
     String type = "employee";
-    ArrayList<String> types = new ArrayList<String>(Arrays.asList("SECUR",
-            "MEDIC",
-            "FLOWR",
-            "DELIV",
-            "ITRAN",
-            "ETRAN",
-            "CLOWN",
-            "RELIG",
-            "SANIT",
-            "LANGE",
-            "INTEC"));
+    ArrayList<String> types = ServiceRequestWrapper.getAllServiceType();
     @FXML
     JFXComboBox comboBox;
     @FXML
