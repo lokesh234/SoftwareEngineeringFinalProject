@@ -149,7 +149,7 @@
                <children>
                   <StackPane fx:id="menuBurgerContainer" alignment="TOP_CENTER">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="sideBar" StackPane.alignment="CENTER">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="SOMETIMES">
                                  <children>
@@ -203,7 +203,7 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <VBox fx:id="radioBox">
+                                                <VBox fx:id="radioBox" spacing="20.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                                    <children>
                                                       <JFXRadioButton fx:id="fast" text="Elevator or Stairs" />
                                                       <JFXRadioButton fx:id="elev" text="Elevator" />
@@ -229,7 +229,7 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <JFXButton fx:id="startButton" onAction="#selectStart" text="Select Start" textFill="WHITE" GridPane.rowIndex="1">
+                                                <JFXButton fx:id="startButton" onAction="#selectStart" text="From" textFill="WHITE" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
@@ -239,7 +239,7 @@
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <JFXButton fx:id="endButton" onAction="#selectEnd" text="Select End" textFill="WHITE" GridPane.rowIndex="2">
+                                                <JFXButton fx:id="endButton" onAction="#selectEnd" text="To" textFill="WHITE" GridPane.rowIndex="2">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
@@ -255,7 +255,7 @@
                                                    </font>
                                                 </JFXButton>
                                                 <JFXComboBox promptText="Common Locations" unFocusColor="WHITE" GridPane.rowIndex="4" />
-                                                <Label fx:id="statusLabel" text="Label" />
+                                                <Label fx:id="statusLabel" text="statusLabel" />
                                              </children>
                                           </GridPane>
                                        </content>
@@ -287,7 +287,7 @@
                   </StackPane>
                </children>
                <StackPane.margin>
-                  <Insets top="100.0" />
+                  <Insets top="80.0" />
                </StackPane.margin>
             </JFXDrawer>
             <HBox maxHeight="80.0" prefHeight="100.0" styleClass="titleBar" StackPane.alignment="TOP_CENTER">
