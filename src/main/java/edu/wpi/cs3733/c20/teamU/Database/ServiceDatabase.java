@@ -2,12 +2,14 @@ package edu.wpi.cs3733.c20.teamU.Database;
 
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 
+import java.awt.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ServiceDatabase {
@@ -408,6 +410,7 @@ public class ServiceDatabase {
         return curTime;
     }
 
+
     //ServiceDatabase.medicineSRAdd("Marcus", "Chalmers", "Sadness", "Everyday", "Oral", "sad boi hours"); Example
     public static boolean medicineSRAdd(String patentFirstName, String patentLastName, String drugName, String frequency, String deliveryMethod, String comment){
         int reqID;
@@ -666,6 +669,74 @@ public class ServiceDatabase {
             return 0;
         }
         return retNumber;
+    }
+
+    public static int getServiceRequestAmountRange(String serviceRequestType, String startDate, String endDate){
+        int retNumber = 0;
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "ServiceRequest";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            sql = "SELECT * FROM " + tableName + " WHERE types = '"+ serviceRequestType + "' AND dateReq >= '" + startDate + "' AND dateReq <= '" + endDate + "'";
+
+            ResultSet results = stmt.executeQuery(sql);
+            while (results.next()) {
+                String requestID = results.getString(1);
+                String date = results.getString(2);
+                String requestType = results.getString(3);
+                System.out.println("Tuple: " + requestID + " " + date + " " + requestType);
+                retNumber++;
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return 0;
+        }
+        return retNumber;
+    }
+
+    public static int getSRAToday(String serviceRequestType){
+        String date = getCurrentDate();
+        return getServiceRequestAmountRange(serviceRequestType, date, date);
+    }
+    public static int getSRALastWeek(String serviceRequestType){
+        String dateNow = getCurrentDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -7);
+        String datePast = dateFormat.format(cal.getTime());
+
+        return getServiceRequestAmountRange(serviceRequestType, datePast, dateNow);
+    }
+    public static int getSRALastMonth(String serviceRequestType){
+        String dateNow = getCurrentDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        String datePast = dateFormat.format(cal.getTime());
+
+        return getServiceRequestAmountRange(serviceRequestType, datePast, dateNow);
+    }
+    public static int getSRALastYear(String serviceRequestType){
+        String dateNow = getCurrentDate();
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -1);
+        String datePast = dateFormat.format(cal.getTime());
+
+        return getServiceRequestAmountRange(serviceRequestType, datePast, dateNow);
     }
 
 }

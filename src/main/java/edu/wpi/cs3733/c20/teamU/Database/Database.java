@@ -2195,7 +2195,7 @@ public class Database {
         }
     }
 
-
+    //Shouldn't really be used anymore?
     public static ArrayList<String> getDataAnalytics(ArrayList<Integer> frequency, String type){
         ArrayList<String> types = new ArrayList<String>(Arrays.asList("SECUR",
                 "MEDIC",
@@ -2255,6 +2255,49 @@ public class Database {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static ArrayList<Node> getDestinationAmount(String dateType, String day, String month, String year){
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "DestinationsDB";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            if (dateType.equals("day")) {
+                sql = "SELECT * FROM " + tableName + " WHERE dateReq = '" + year + "-" + month + "-" + day + "'";
+            }
+            else if (dateType.equals("month")) {
+                sql = "SELECT * FROM " + tableName + " WHERE MONTH(dateReq) = " + month + " AND YEAR(dateReq) = " + year;
+            }
+            else if (dateType.equals("year")){
+                sql = "SELECT * FROM " + tableName + " WHERE YEAR(dateReq) = " + year;
+            }
+            ResultSet results = stmt.executeQuery(sql);
+
+
+            while (results.next()) {
+//                String requestID = results.getString(1);
+//                String date = results.getString(2);
+//                String requestType = results.getString(3);
+//                System.out.println("Tuple: " + requestID + " " + date + " " + requestType);
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return null;
+        }
+        return null;
     }
 
 }

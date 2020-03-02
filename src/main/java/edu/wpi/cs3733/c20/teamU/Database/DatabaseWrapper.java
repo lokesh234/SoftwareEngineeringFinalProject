@@ -362,6 +362,37 @@ public class DatabaseWrapper {
   }
 
   /**
+   * Function takes in a date range and a type of service request and displays the number of times a request happened in that time frame
+   * @param serviceRequestType String ONLY REQUEST TYPES ("SECUR", "MEDIC" ...)
+   * @param startDate date format only! String for the earlier date
+   * @param endDate date format only! String of the date that is later in time.
+   * @return int ( number of service requests for that time frame )
+   * Ex: DatabaseWrapper.getServiceRequestAmountRange("SECUR", "2/22/2020", "3/1/2020");
+   */
+  public static int getServiceRequestAmountRange(String serviceRequestType, String startDate, String endDate){
+    return ServiceDatabase.getServiceRequestAmountRange(serviceRequestType, startDate, endDate);
+  }
+
+  /**
+   * ALL THESE FUNCTIONS BEHAVE THE SAME WAY (self explanatory)
+   * @param serviceRequestType STRING ONLY SERVICE REQUEST KEYS ALLOWED ("MEDIC" , "SECUR" ..)
+   * @return Int that shows the number of instances of the given service request
+   * if you want to get the past (day week month or year use these functions)
+   */
+  public static int getSRAToday(String serviceRequestType){
+    return ServiceDatabase.getSRAToday(serviceRequestType);
+  }
+  public static int getSRALastWeek(String serviceRequestType){
+    return ServiceDatabase.getSRALastWeek(serviceRequestType);
+  }
+  public static int getSRALastMonth(String serviceRequestType){
+    return ServiceDatabase.getSRALastMonth(serviceRequestType);
+  }
+  public static int getSRALastYear(String serviceRequestType){
+    return ServiceDatabase.getSRALastYear(serviceRequestType);
+  }
+
+  /**
    * Add a value to the Servie Finished DatabaseTable
    * @param timeFinished String of DATE
    * @param reqType String of type (ie MEDIC)
@@ -424,43 +455,43 @@ public class DatabaseWrapper {
     }
 
     public static boolean languageSRDel(int reqID, String adminsName, String user) {
-      return  (ServiceDatabase.languageSRDel(reqID, adminsName, user));
+      return ServiceDatabase.languageSRDel(reqID, adminsName, user);
     }
 
     public static boolean intTransportSRAdd(String patentLastName, String patentFirstName, String startLocation, String endLocation, String equipment){
-      return (ServiceDatabase.intTransportSRAdd(patentLastName, patentFirstName, startLocation, endLocation, equipment));
+      return ServiceDatabase.intTransportSRAdd(patentLastName, patentFirstName, startLocation, endLocation, equipment);
     }
 
   public static boolean extTransportSRAdd(String patentLastName, String patentFirstName, String destination, String departureTime, String departureDate, int nPassengers){
-      return (ServiceDatabase.extTransportSRAdd(patentLastName, patentFirstName, destination, departureTime, departureDate, nPassengers));
+      return ServiceDatabase.extTransportSRAdd(patentLastName, patentFirstName, destination, departureTime, departureDate, nPassengers);
   }
 
   public static boolean deliverySRAdd(String patentLastName, String patentFirstName, String gift, String room){
-      return (ServiceDatabase.deliverySRAdd(patentLastName, patentFirstName, gift, room));
+      return ServiceDatabase.deliverySRAdd(patentLastName, patentFirstName, gift, room);
   }
 
   public static boolean ClownDeliverySRAdd(String location, int nClowns, String recipientName, String deliveryDate){
-      return (ServiceDatabase.ClownDeliverySRAdd(location, nClowns, recipientName, deliveryDate));
+      return ServiceDatabase.ClownDeliverySRAdd(location, nClowns, recipientName, deliveryDate);
   }
 
   public static boolean FlowersSRAdd(String lastName, String firstName, boolean roses, boolean tulips, boolean lilies, String occasion, String deliveryDate, String giftNote, String room){
-      return (ServiceDatabase.FlowersSRAdd(lastName,firstName,roses,tulips,lilies,occasion,deliveryDate,giftNote,room));
+      return ServiceDatabase.FlowersSRAdd(lastName,firstName,roses,tulips,lilies,occasion,deliveryDate,giftNote,room);
   }
 
   public static boolean ITSRAdd(String patentLastName, String patentFirstName, String helpType, String comments){
-      return (ServiceDatabase.ITSRAdd(patentLastName,patentFirstName,helpType,comments));
+      return ServiceDatabase.ITSRAdd(patentLastName,patentFirstName,helpType,comments);
   }
 
   public static boolean ReligionSRAdd(String patentName, String religiousAffiliation, String explanation){
-      return (ServiceDatabase.ReligionSRAdd(patentName,religiousAffiliation,explanation));
+      return ServiceDatabase.ReligionSRAdd(patentName,religiousAffiliation,explanation);
   }
 
   public static boolean SanitarySRAdd(String service, String location, String nature, String info){
-      return (ServiceDatabase.SanitarySRAdd(service,location,nature,info));
+      return ServiceDatabase.SanitarySRAdd(service,location,nature,info);
   }
 
     public static boolean serviceRequestDel(int reqID, String adminsName, String user, String tableName, String jobType){
-      return (ServiceDatabase.serviceRequestDel(reqID, adminsName, user, tableName, jobType));
+      return ServiceDatabase.serviceRequestDel(reqID, adminsName, user, tableName, jobType);
     }
 
    public static String getCurrentDate(){
