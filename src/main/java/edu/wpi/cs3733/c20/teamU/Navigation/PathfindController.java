@@ -35,7 +35,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
+import static javafx.scene.input.MouseEvent.*;
 
 public class PathfindController {
 
@@ -85,6 +85,8 @@ public class PathfindController {
 
     private Circle startSelect = new Circle();
     private Circle endSelect = new Circle();
+    private ImageView startViewselect = new ImageView();
+    private ImageView endViewselect = new ImageView();
     private ImageView startView = new ImageView();
     private ImageView endView = new ImageView();
     private Image startMarker = new Image("png_files/start.png");
@@ -106,6 +108,7 @@ public class PathfindController {
     private boolean endReady = false;
     private boolean displayingPath = false;
     private HashMap<Circle, Node> circles = new HashMap<>();
+    private HashMap<ImageView, Node> IconMap = new HashMap<>();
     private HashMap<ImageView, Node> hitboxes= new HashMap<>();
     private HashMap<Path, Integer> pathes = new HashMap<>();
     private int drawnFloor = 4;
@@ -149,7 +152,7 @@ public class PathfindController {
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START) { //We're going to select a starting node!
                 //System.out.println("Start Click");
-                start = circles.get(event.getSource());
+                start = IconMap.get(event.getSource());
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
                 if (startReady) SearchBox.setText(start.getLongName());
@@ -157,7 +160,7 @@ public class PathfindController {
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
-                end = circles.get(event.getSource());
+                end = IconMap.get(event.getSource());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
@@ -195,16 +198,18 @@ public class PathfindController {
     EventHandler<MouseEvent> circleClickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            Circle source = (Circle) event.getSource();
-            source.setFill(Color.YELLOW);
+            ImageView source = (ImageView) event.getSource();
+            source.setFitHeight(19);
+            source.setFitWidth(19);
         }
     };
 
     EventHandler<MouseEvent> circleMouseReleaseHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
-            Circle source = (Circle) event.getSource();
-            App.setColor(circles.get(source), source);
+            ImageView source = (ImageView) event.getSource();
+            source.setFitWidth(16);
+            source.setFitWidth(16);
         }
     };
 
@@ -456,10 +461,11 @@ public class PathfindController {
         if (startReady) {
             removeFromPath(startSelect, start.getFloor());
             removeFromPath(startView, start.getFloor());
+            removeFromPath(startViewselect, start.getFloor());
             startSelect.setCenterX(start.getX());
             startSelect.setCenterY(start.getY());
             startSelect.setFill(Color.TRANSPARENT);
-            startSelect.setStroke(Color.YELLOW);
+            startSelect.setStroke(Color.GREEN);
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
             startView.setImage(startMarker);
@@ -477,6 +483,7 @@ public class PathfindController {
         }
         else if (start != null) {
             removeFromPath(startSelect, start.getFloor());
+            removeFromPath(startViewselect, start.getFloor());
             startLabel.setText("None Selected");
         }
         else {
@@ -486,10 +493,11 @@ public class PathfindController {
         if (endReady) {
             removeFromPath(endSelect, end.getFloor());
             removeFromPath(endView, end.getFloor());
+            removeFromPath(endViewselect, end.getFloor());
             endSelect.setCenterX(end.getX());
             endSelect.setCenterY(end.getY());
             endSelect.setFill(Color.TRANSPARENT);
-            endSelect.setStroke(Color.ORANGE);
+            endSelect.setStroke(Color.RED);
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
             endView.setImage(endMarker);
@@ -497,6 +505,7 @@ public class PathfindController {
             endView.setY(end.getY() - 53);
             addToPath(endSelect, end.getFloor());
             addToPath(endView, end.getFloor());
+            addToPath(endViewselect, end.getFloor());
 
             endNodeLabel.setText(end.getLongName());
             endNodeLabel.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -507,6 +516,7 @@ public class PathfindController {
         }
         else if (end != null) {
             removeFromPath(endSelect, end.getFloor());
+            removeFromPath(endViewselect, end.getFloor());
             endLabel.setText("None Selected");
         }
         else {
@@ -530,6 +540,10 @@ public class PathfindController {
             removeFromAll(pair.getKey());
         }
         circles.clear();
+        for (Map.Entry<ImageView, Node> pair : IconMap.entrySet()) {
+            removeFromAll(pair.getKey());
+        }
+        IconMap.clear();
         for (Map.Entry<ImageView, Node> pair : hitboxes.entrySet()) {
             removeFromAll(pair.getKey());
         }
@@ -553,139 +567,21 @@ public class PathfindController {
                     c.setCenterY(n.getY());
                     c.setRadius(App.getNodeSize());
                     addToPath(c, n.getFloor());
-                    c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
-                    c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-                    c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+                    imageView.addEventHandler(MOUSE_PRESSED, circleClickHandler);
+                    imageView.addEventHandler(MOUSE_CLICKED, clickHandler);
+                    imageView.addEventHandler(MOUSE_RELEASED, circleMouseReleaseHandler);
+//                    c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+//                    c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
+//                    c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
                     App.setColor(n, c);
                     App.setIcon(n, imageView);
                     addToPath(imageView, n.getFloor());
+                    IconMap.put(imageView, n);
                     circles.put(c, n);
                 }
             }
         }
     }
-
-    @FXML
-    private void MapLeft(){
-        MoveLeftMachine(floor);
-    }
-
-    @FXML
-    private void MapRight(){
-        MoveRightMachine(floor);
-    }
-
-    @FXML
-    private void MapUp(){
-        MoveUpMachine(floor);
-    }
-
-    @FXML
-    private void MapDown(){
-        MoveDownMachine(floor);
-    }
-
-
-    private void MoveLeftMachine(int floor){
-        switch (floor) {
-            case 1:
-                Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() - 20), MapGes1.targetPointAtViewportCentre().getY());
-                MapGes1.centreOn(point2Dleft1);
-                break;
-            case 2:
-                Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() - 20), MapGes2.targetPointAtViewportCentre().getY());
-                MapGes2.centreOn(point2Dleft2);
-                break;
-            case 3:
-                Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() - 20), MapGes3.targetPointAtViewportCentre().getY());
-                MapGes3.centreOn(point2Dleft3);
-                break;
-            case 4:
-                Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() - 20), MapGes4.targetPointAtViewportCentre().getY());
-                MapGes4.centreOn(point2Dleft4);
-                break;
-            case 5:
-                Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() - 20), MapGes5.targetPointAtViewportCentre().getY());
-                MapGes5.centreOn(point2Dleft5);
-                break;
-        }
-    }
-
-    private void MoveRightMachine(int floor){
-        switch (floor) {
-            case 1:
-                Point2D point2Dleft1 = new Point2D((MapGes1.targetPointAtViewportCentre().getX() + 20), MapGes1.targetPointAtViewportCentre().getY());
-                MapGes1.centreOn(point2Dleft1);
-                break;
-            case 2:
-                Point2D point2Dleft2 = new Point2D((MapGes2.targetPointAtViewportCentre().getX() + 20), MapGes2.targetPointAtViewportCentre().getY());
-                MapGes2.centreOn(point2Dleft2);
-                break;
-            case 3:
-                Point2D point2Dleft3 = new Point2D((MapGes3.targetPointAtViewportCentre().getX() + 20), MapGes3.targetPointAtViewportCentre().getY());
-                MapGes3.centreOn(point2Dleft3);
-                break;
-            case 4:
-                Point2D point2Dleft4 = new Point2D((MapGes4.targetPointAtViewportCentre().getX() + 20), MapGes4.targetPointAtViewportCentre().getY());
-                MapGes4.centreOn(point2Dleft4);
-                break;
-            case 5:
-                Point2D point2Dleft5 = new Point2D((MapGes5.targetPointAtViewportCentre().getX() + 20), MapGes5.targetPointAtViewportCentre().getY());
-                MapGes5.centreOn(point2Dleft5);
-                break;
-        }
-    }
-
-    private void MoveUpMachine(int floor){
-        switch (floor) {
-            case 1:
-                Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(), (MapGes1.targetPointAtViewportCentre().getY() - 20));
-                MapGes1.centreOn(point2Dleft1);
-                break;
-            case 2:
-                Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(), (MapGes2.targetPointAtViewportCentre().getY() - 20));
-                MapGes2.centreOn(point2Dleft2);
-                break;
-            case 3:
-                Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(), (MapGes3.targetPointAtViewportCentre().getY() - 20));
-                MapGes3.centreOn(point2Dleft3);
-                break;
-            case 4:
-                Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(), (MapGes4.targetPointAtViewportCentre().getY() - 20));
-                MapGes4.centreOn(point2Dleft4);
-                break;
-            case 5:
-                Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(), (MapGes5.targetPointAtViewportCentre().getY() - 20));
-                MapGes5.centreOn(point2Dleft5);
-                break;
-        }
-    }
-
-    private void MoveDownMachine(int floor){
-        switch (floor) {
-            case 1:
-                Point2D point2Dleft1 = new Point2D(MapGes1.targetPointAtViewportCentre().getX(), (MapGes1.targetPointAtViewportCentre().getY() + 20));
-                MapGes1.centreOn(point2Dleft1);
-                break;
-            case 2:
-                Point2D point2Dleft2 = new Point2D(MapGes2.targetPointAtViewportCentre().getX(), (MapGes2.targetPointAtViewportCentre().getY() + 20));
-                MapGes2.centreOn(point2Dleft2);
-                break;
-            case 3:
-                Point2D point2Dleft3 = new Point2D(MapGes3.targetPointAtViewportCentre().getX(), (MapGes3.targetPointAtViewportCentre().getY() + 20));
-                MapGes3.centreOn(point2Dleft3);
-                break;
-            case 4:
-                Point2D point2Dleft4 = new Point2D(MapGes4.targetPointAtViewportCentre().getX(), (MapGes4.targetPointAtViewportCentre().getY() + 20));
-                MapGes4.centreOn(point2Dleft4);
-                break;
-            case 5:
-                Point2D point2Dleft5 = new Point2D(MapGes5.targetPointAtViewportCentre().getX(), (MapGes5.targetPointAtViewportCentre().getY() + 20));
-                MapGes5.centreOn(point2Dleft5);
-                break;
-        }
-    }
-
 
 
     private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
@@ -1124,8 +1020,10 @@ public class PathfindController {
         startReady = false;
         endReady = false;
         removeFromAll(startSelect);
-        removeFromAll(endSelect);
+        removeFromAll(startViewselect);
         removeFromAll(startView);
+        removeFromAll(endSelect);
+        removeFromAll(endViewselect);
         removeFromAll(endView);
         clearPath();
     }
