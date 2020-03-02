@@ -35,6 +35,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
+
 public class PathfindController {
 
     private enum State {
@@ -77,6 +79,7 @@ public class PathfindController {
     @FXML private GesturePane MapGes3;
     @FXML private GesturePane MapGes4;
     @FXML private GesturePane MapGes5;
+    @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
 
     @FXML private RadioButton fast, elev, stai;
 
@@ -696,6 +699,192 @@ public class PathfindController {
         }
     };
 
+    EventHandler<MouseEvent> rightClick =
+            new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent event) {
+
+                    switch (floor) {
+                        case 1:
+                            Point2D point2Dleft1 =
+                                    new Point2D(
+                                            (MapGes1.targetPointAtViewportCentre().getX() + 20),
+                                            MapGes1.targetPointAtViewportCentre().getY());
+                            MapGes1.centreOn(point2Dleft1);
+                            break;
+                        case 2:
+                            Point2D point2Dleft2 =
+                                    new Point2D(
+                                            (MapGes2.targetPointAtViewportCentre().getX() + 20),
+                                            MapGes2.targetPointAtViewportCentre().getY());
+                            MapGes2.centreOn(point2Dleft2);
+                            break;
+                        case 3:
+                            Point2D point2Dleft3 =
+                                    new Point2D(
+                                            (MapGes3.targetPointAtViewportCentre().getX() + 20),
+                                            MapGes3.targetPointAtViewportCentre().getY());
+                            MapGes3.centreOn(point2Dleft3);
+                            break;
+                        case 4:
+                            Point2D point2Dleft4 =
+                                    new Point2D(
+                                            (MapGes4.targetPointAtViewportCentre().getX() + 20),
+                                            MapGes4.targetPointAtViewportCentre().getY());
+                            MapGes4.centreOn(point2Dleft4);
+                            break;
+                        case 5:
+                            Point2D point2Dleft5 =
+                                    new Point2D(
+                                            (MapGes5.targetPointAtViewportCentre().getX() + 20),
+                                            MapGes5.targetPointAtViewportCentre().getY());
+                            MapGes5.centreOn(point2Dleft5);
+                            break;
+                    }
+                }
+            };
+
+
+    EventHandler<MouseEvent> leftClick =
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    switch (floor) {
+                        case 1:
+                            Point2D point2Dleft1 =
+                                    new Point2D(
+                                            (MapGes1.targetPointAtViewportCentre().getX() - 20),
+                                            MapGes1.targetPointAtViewportCentre().getY());
+                            MapGes1.centreOn(point2Dleft1);
+                            break;
+                        case 2:
+                            Point2D point2Dleft2 =
+                                    new Point2D(
+                                            (MapGes2.targetPointAtViewportCentre().getX() - 20),
+                                            MapGes2.targetPointAtViewportCentre().getY());
+                            MapGes2.centreOn(point2Dleft2);
+                            break;
+                        case 3:
+                            Point2D point2Dleft3 =
+                                    new Point2D(
+                                            (MapGes3.targetPointAtViewportCentre().getX() - 20),
+                                            MapGes3.targetPointAtViewportCentre().getY());
+                            MapGes3.centreOn(point2Dleft3);
+                            break;
+                        case 4:
+                            Point2D point2Dleft4 =
+                                    new Point2D(
+                                            (MapGes4.targetPointAtViewportCentre().getX() - 20),
+                                            MapGes4.targetPointAtViewportCentre().getY());
+                            MapGes4.centreOn(point2Dleft4);
+                            break;
+                        case 5:
+                            Point2D point2Dleft5 =
+                                    new Point2D(
+                                            (MapGes5.targetPointAtViewportCentre().getX() - 20),
+                                            MapGes5.targetPointAtViewportCentre().getY());
+                            MapGes5.centreOn(point2Dleft5);
+                            break;
+                    }
+                }
+            };
+
+
+    EventHandler<MouseEvent> upClick =
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    switch (floor) {
+                        case 1:
+                            Point2D point2Dleft1 =
+                                    new Point2D(
+                                            MapGes1.targetPointAtViewportCentre().getX(),
+                                            (MapGes1.targetPointAtViewportCentre().getY() - 20));
+                            MapGes1.centreOn(point2Dleft1);
+                            break;
+                        case 2:
+                            Point2D point2Dleft2 =
+                                    new Point2D(
+                                            MapGes2.targetPointAtViewportCentre().getX(),
+                                            (MapGes2.targetPointAtViewportCentre().getY() - 20));
+                            MapGes2.centreOn(point2Dleft2);
+                            break;
+                        case 3:
+                            Point2D point2Dleft3 =
+                                    new Point2D(
+                                            MapGes3.targetPointAtViewportCentre().getX(),
+                                            (MapGes3.targetPointAtViewportCentre().getY() - 20));
+                            MapGes3.centreOn(point2Dleft3);
+                            break;
+                        case 4:
+                            Point2D point2Dleft4 =
+                                    new Point2D(
+                                            MapGes4.targetPointAtViewportCentre().getX(),
+                                            (MapGes4.targetPointAtViewportCentre().getY() - 20));
+                            MapGes4.centreOn(point2Dleft4);
+                            break;
+                        case 5:
+                            Point2D point2Dleft5 =
+                                    new Point2D(
+                                            MapGes5.targetPointAtViewportCentre().getX(),
+                                            (MapGes5.targetPointAtViewportCentre().getY() - 20));
+                            MapGes5.centreOn(point2Dleft5);
+                            break;
+                    }
+                }
+            };
+
+    EventHandler<MouseEvent> downClick =
+            new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+
+                    switch (floor) {
+                        case 1:
+                            Point2D point2Dleft1 =
+                                    new Point2D(
+                                            MapGes1.targetPointAtViewportCentre().getX(),
+                                            (MapGes1.targetPointAtViewportCentre().getY() + 20));
+                            MapGes1.centreOn(point2Dleft1);
+                            break;
+                        case 2:
+                            Point2D point2Dleft2 =
+                                    new Point2D(
+                                            MapGes2.targetPointAtViewportCentre().getX(),
+                                            (MapGes2.targetPointAtViewportCentre().getY() + 20));
+                            MapGes2.centreOn(point2Dleft2);
+                            break;
+                        case 3:
+                            Point2D point2Dleft3 =
+                                    new Point2D(
+                                            MapGes3.targetPointAtViewportCentre().getX(),
+                                            (MapGes3.targetPointAtViewportCentre().getY() + 20));
+                            MapGes3.centreOn(point2Dleft3);
+                            break;
+                        case 4:
+                            Point2D point2Dleft4 =
+                                    new Point2D(
+                                            MapGes4.targetPointAtViewportCentre().getX(),
+                                            (MapGes4.targetPointAtViewportCentre().getY() + 20));
+                            MapGes4.centreOn(point2Dleft4);
+                            break;
+                        case 5:
+                            Point2D point2Dleft5 =
+                                    new Point2D(
+                                            MapGes5.targetPointAtViewportCentre().getX(),
+                                            (MapGes5.targetPointAtViewportCentre().getY() + 20));
+                            MapGes5.centreOn(point2Dleft5);
+                            break;
+                    }
+                }
+
+            };
+
+
+
+
 
     @FXML
     private void initialize() {
@@ -747,6 +936,12 @@ public class PathfindController {
         });
         wongThread.setDaemon(true);
         wongThread.start();
+
+        leftArrow.addEventHandler(MOUSE_PRESSED, leftClick);
+        rightArrow.addEventHandler(MOUSE_PRESSED, rightClick);
+        upArrow.addEventHandler(MOUSE_PRESSED, upClick);
+        downArrow.addEventHandler(MOUSE_PRESSED, downClick);
+
 
         fast.setToggleGroup(group);
         stai.setToggleGroup(group);
