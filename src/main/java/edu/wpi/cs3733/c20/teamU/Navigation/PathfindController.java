@@ -346,6 +346,10 @@ public class PathfindController {
         }
     }
 
+    @FXML private void centerOut(){
+        ZoomCenterMachine(floor);
+    }
+
     @FXML private void zoomIn() {
         ZoomInMachine(floor);
     }
@@ -389,6 +393,36 @@ public class PathfindController {
                         .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
                 zoomed = MapGes5.getCurrentScale();
                 zoomCounter--;
+                break;
+        }
+    }
+
+    private void ZoomCenterMachine(int floor) {
+        switch (floor) {
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+                break;
+            case 4:
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
                 break;
         }
     }
@@ -645,6 +679,8 @@ public class PathfindController {
                     }
                 }
             };
+
+
 
 
     EventHandler<MouseEvent> leftClick =
