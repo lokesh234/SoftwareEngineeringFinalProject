@@ -123,10 +123,14 @@
     -fx-background-color: -color-4;
     -fx-background-radius: 50px;
     -fx-background-insets: 0px;
+    -jfx-button-type: RAISED;
 }
 
 .jfx-chip-view{
+}
 
+.jfx-hamburger{
+    -fx-background-color: -color-4;
 }
 
 .sessionBanner{
@@ -134,7 +138,13 @@
 }
 
 .sessionBanner .label{
-    -fx-text-fill: -body-text;
+    -fx-text-fill: -container-text;
+    -fx-font-weight: BOLD;
+}
+#profileRectangle{
+    -fx-fill: -color-4;
+    -fx-stroke: TRANSPARENT;
+
 }
 
 .sessionBanner .circle{

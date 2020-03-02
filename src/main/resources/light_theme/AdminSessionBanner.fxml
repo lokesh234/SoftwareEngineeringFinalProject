@@ -9,31 +9,37 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="100.0" prefWidth="300.0" styleClass="sessionBanner" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminBannerController">
+<AnchorPane prefHeight="100.0" prefWidth="300.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminBannerController">
    <children>
-      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="sessionBanner" stylesheets="@light.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <StackPane>
+            <Rectangle fx:id="profileRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="250.0" StackPane.alignment="CENTER_RIGHT" />
+            <HBox>
                <children>
-                  <Circle fx:id="profileCircle" radius="50.0" />
-                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../png_files/user.png" />
-                     </image>
-                  </ImageView>
+                  <StackPane>
+                     <children>
+                        <Circle fx:id="profileCircle" radius="50.0" />
+                        <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/user.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Logged in as" />
+                        <Label fx:id="userName" text=" " />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </VBox>
                </children>
-            </StackPane>
-            <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-               <children>
-                  <Label text="Logged in as" />
-                  <Label fx:id="userName" text=" "/>
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </VBox>
+            </HBox>
          </children>
-      </HBox>
+      </StackPane>
    </children>
 </AnchorPane>
