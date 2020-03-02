@@ -101,7 +101,7 @@ public class PathfindController {
         this.updateStatus();
     }
 
-    private State state = State.NEUTRAL;
+    private State state = State.START;
     private Node start;
     private Node end;
     private ArrayList<Node> path = new ArrayList<>();
@@ -157,7 +157,7 @@ public class PathfindController {
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
                 if (startReady) SearchBox.setText(start.getLongName());
-                state = State.NEUTRAL;
+                state = State.END;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
@@ -165,7 +165,7 @@ public class PathfindController {
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
-                state = State.NEUTRAL;
+                state = State.START;
                 updateStatus();
             }
         }
@@ -182,7 +182,7 @@ public class PathfindController {
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
                 if (startReady) SearchBox.setText(start.getLongName());
-                state = State.NEUTRAL;
+                state = State.END;
                 updateStatus();
             }
             else if (state == State.END) { //We're going to select an ending node!
@@ -190,7 +190,7 @@ public class PathfindController {
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
-                state = State.NEUTRAL;
+                state = State.START;
                 updateStatus();
             }
         }
@@ -273,14 +273,14 @@ public class PathfindController {
                 start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
-                state = State.NEUTRAL;
+                state = State.END;
                 updateStatus();
             }
             else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
                 end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
-                state = State.NEUTRAL;
+                state = State.START;
                 updateStatus();
             }
         });
@@ -560,7 +560,7 @@ public class PathfindController {
     }
 
     public void drawNodes() {
-        state = State.NEUTRAL;
+        state = State.START;
         start = null;
         end = null;
         startReady = false;
@@ -592,28 +592,29 @@ public class PathfindController {
                 hitboxes.put(i, n);
             } catch (Exception e) {
                 //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-                if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-                if (isDrawableNode(n)) {
-                    ImageView imageView = new ImageView();
-                    imageView.setY(n.getY() - 8);
-                    imageView.setX(n.getX() - 8);
-                    Circle c = new Circle();
-                    c.setCenterX(n.getX());
-                    c.setCenterY(n.getY());
-                    c.setRadius(App.getNodeSize());
-                    addToPath(c, n.getFloor());
-                    imageView.addEventHandler(MOUSE_PRESSED, circleClickHandler);
-                    imageView.addEventHandler(MOUSE_CLICKED, clickHandler);
-                    imageView.addEventHandler(MOUSE_RELEASED, circleMouseReleaseHandler);
+
+            }
+            if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+            if (isDrawableNode(n)) {
+                ImageView imageView = new ImageView();
+                imageView.setY(n.getY() - 8);
+                imageView.setX(n.getX() - 8);
+                Circle c = new Circle();
+                c.setCenterX(n.getX());
+                c.setCenterY(n.getY());
+                c.setRadius(App.getNodeSize());
+                addToPath(c, n.getFloor());
+                imageView.addEventHandler(MOUSE_PRESSED, circleClickHandler);
+                imageView.addEventHandler(MOUSE_CLICKED, clickHandler);
+                imageView.addEventHandler(MOUSE_RELEASED, circleMouseReleaseHandler);
 //                    c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
 //                    c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
 //                    c.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
-                    App.setColor(n, c);
-                    App.setIcon(n, imageView);
-                    addToPath(imageView, n.getFloor());
-                    IconMap.put(imageView, n);
-                    circles.put(c, n);
-                }
+                App.setColor(n, c);
+                App.setIcon(n, imageView);
+                addToPath(imageView, n.getFloor());
+                IconMap.put(imageView, n);
+                circles.put(c, n);
             }
         }
     }
