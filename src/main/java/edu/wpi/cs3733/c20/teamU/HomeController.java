@@ -341,6 +341,40 @@ public class HomeController {
         }
       };
 
+  @FXML private void centerOut(){
+    ZoomCenterMachine(floor);
+  }
+
+  private void ZoomCenterMachine(int floor) {
+    switch (floor) {
+      case 1:
+        MapGes1.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
+        break;
+      case 2:
+        MapGes2.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
+        break;
+      case 3:
+        MapGes3.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
+        break;
+      case 4:
+        MapGes4.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
+        break;
+      case 5:
+        MapGes5.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
+        break;
+    }
+  }
+
   @FXML
   private void openLoginSceneSound() {
     App.getHome().setOpacity(.5);
