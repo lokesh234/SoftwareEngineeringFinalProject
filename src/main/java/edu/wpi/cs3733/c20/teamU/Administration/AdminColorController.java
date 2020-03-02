@@ -62,7 +62,7 @@ public class AdminColorController {
     String cssFilePath = System.getProperty("user.dir") + "/CSS/light.css";
     File cssFile = new File(cssFilePath);
     URL urlCss = null;
-    urlCss = cssFile.toURL();
+    urlCss = new URL(("file:///" +cssFilePath).trim().replace(" ", "%20"));
     System.out.println(urlCss);
     CSSFileEditor fileEditor = new CSSFileEditor(urlCss);
     Colors startup = null;
