@@ -24,7 +24,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane fx:id="baseAnchor" prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
+<AnchorPane fx:id="baseAnchor" prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
    <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -195,7 +195,7 @@
                                   </TitledPane>
                                   <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="ROUTE PREFERENCES">
                                        <content>
-                                          <GridPane fx:id="radioBox">
+                                          <GridPane>
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
