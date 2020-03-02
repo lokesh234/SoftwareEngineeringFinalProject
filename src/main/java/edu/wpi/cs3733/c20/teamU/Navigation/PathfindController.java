@@ -826,6 +826,7 @@ public class PathfindController {
     @FXML
     private void initialize() {
         wongThread = new Thread(new Runnable() {
+            //Thread to orient the wongs
             @Override
             public void run() {
                 while (true) {
@@ -1151,7 +1152,7 @@ public class PathfindController {
             boolean firstTime = true;
             ArrayList<Node> pathChunk = new ArrayList<>();
             System.out.println("N1: " + n1.getID() + ", N2: " + n2.getID());
-            while (n1.getFloor() == n2.getFloor()) {
+            while (n1.getFloor() == n2.getFloor()) { //Iterate over every adjacent pair in our pathChunk
                 System.out.println(n1.getFloor());
                 MoveTo move;
                 LineTo move2;
@@ -1259,7 +1260,7 @@ public class PathfindController {
                 nodeLabels.add(l2);
             }
 
-            if (pathChunk.size() > 0) { //If we've touched the inner while loop, we wanna run this
+            if (pathChunk.size() > 0) { //If we've touched the inner while loop, we wanna run this to animate wong on our pathChunk
                 PathTransition pathTransition = new PathTransition();
                 //Circle wong = new Circle();
                 Rectangle wong = new Rectangle();
@@ -1310,6 +1311,7 @@ public class PathfindController {
         start = end;
         end = start;
         updateStatus();
+        pathfind();
     }
 
 
