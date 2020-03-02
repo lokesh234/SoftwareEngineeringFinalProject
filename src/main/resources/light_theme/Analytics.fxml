@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXChipView?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AnalyticsController">
+<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AnalyticsController">
    <children>
       <BorderPane styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -66,6 +74,25 @@
          <left>
             <VBox alignment="CENTER" spacing="10.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
+                  <Accordion prefHeight="111.0" prefWidth="41.0">
+                    <panes>
+                      <TitledPane animated="false" text="untitled 1">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="untitled 2">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                      <TitledPane animated="false" text="untitled 3">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </content>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
                   <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
                   <!--                           <children>-->
                   <!--                              <Label text="Browse for file" />-->
@@ -106,6 +133,51 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFEEC9;">
                            <children>
                               <PieChart fx:id="pieChart" />
+                  <VBox layoutX="224.0" layoutY="87.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="subtitleBar">
+                           <children>
+                              <JFXComboBox />
+                              <JFXButton text="Add" />
+                              <JFXButton text="Remove" />
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <JFXChipView />
+                                 </children>
+                              </VBox>
+                              <JFXButton text="Add All" />
+                              <JFXButton text="Remove All" />
+                           </children>
+                        </HBox>
+                        <TabPane prefHeight="359.0" prefWidth="770.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Pie">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <PieChart layoutX="14.0" layoutY="-149.0" />
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Bar">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="770.0">
+                                       <children>
+                                          <BarChart>
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </VBox>
                            </children>
                         </AnchorPane>
          </center>
