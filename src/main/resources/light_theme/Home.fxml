@@ -344,6 +344,11 @@
                                     <Font name="Segoe UI" size="24.0" />
                                   </font>
                               </JFXButton>
+                              <JFXButton fx:id="upArrow1" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </GridPane>
                      </children>
@@ -373,6 +378,11 @@
                                             <Font name="Segoe UI" size="24.0" />
                                         </font>
                                     </JFXButton>
+                              <JFXButton fx:id="plus1" alignment="CENTER" contentDisplay="CENTER" onAction="#zoomIn" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
                            </children>
                         </GridPane>
                      </children>
