@@ -1128,7 +1128,7 @@ public class Database {
 
     private static void createColorTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (colorTheme VARCHAR(20), firstColor VARCHAR(6), secondColor VARCHAR(6), thirdColor VARCHAR(6), fourthColor VARCHAR(6), fifthColor VARCHAR(6), textColor VARCHAR(6), PRIMARY KEY (colorTheme))";
+            String slqCreate = "CREATE TABLE " + tableName + " (colorTheme VARCHAR(20), firstColor VARCHAR(6), secondColor VARCHAR(6), thirdColor VARCHAR(6), fourthColor VARCHAR(6), fifthColor VARCHAR(6), firstTextColor VARCHAR(6), secondTextColor VARCHAR(6), PRIMARY KEY (colorTheme))";
 
             stmt.executeUpdate(slqCreate);
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
@@ -1155,8 +1155,9 @@ public class Database {
                         String color3 = csvString[3];
                         String color4 = csvString[4];
                         String color5 = csvString[5];
-                        String colorTxt = csvString[6];
-                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorTheme + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "', '" + colorTxt + "')");
+                        String colorTxt1 = csvString[6];
+                        String colorTxt2 = csvString[7];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorTheme + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "', '" + colorTxt1 + "', '" + colorTxt2 + "')");
                     }
                 }
                 //INSERT INTO TABLENAME VALUES ('STRING', '...
@@ -1296,7 +1297,7 @@ public class Database {
         }
     }
 
-    public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5, String textColor){
+    public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5, String textColor1, String textColor2){
         String tableName = "ColorsDB";
         Connection conn = null;
         Statement stmt = null;
@@ -1304,7 +1305,7 @@ public class Database {
             conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = conn.createStatement();
 
-            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorName + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "', '" + textColor + "')");
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + colorName + "', '" + color1 + "', '" + color2 + "', '" + color3 + "', '" + color4 + "', '" + color5 + "', '" + textColor1 + "', '" + textColor2 + "')");
             CreateCSV(stmt, tableName, null);
             stmt.close();
             conn.close();
@@ -1335,9 +1336,10 @@ public class Database {
                 String c3 = results.getString(4);
                 String c4 = results.getString(5);
                 String c5 = results.getString(6);
-                String ct = results.getString(7);
+                String ct1 = results.getString(7);
+                String ct2 = results.getString(8);
 
-                Colors newColor = new Colors(colorTheme, c1, c2, c3, c4, c5, ct);
+                Colors newColor = new Colors(colorTheme, c1, c2, c3, c4, c5, ct1, ct2);
                 colorArr.add(newColor);
             }
 
@@ -1370,9 +1372,10 @@ public class Database {
                 String c3 = results.getString(4);
                 String c4 = results.getString(5);
                 String c5 = results.getString(6);
-                String ct = results.getString(7);
+                String ct1 = results.getString(7);
+                String ct2 = results.getString(8);
 
-                newColor = new Colors(colorTheme, c1, c2, c3, c4, c5, ct);
+                newColor = new Colors(colorTheme, c1, c2, c3, c4, c5, ct1, ct2);
             }
 
             results.close();

@@ -1,4 +1,4 @@
-colorTheme,firstColor,secondColor,thirdColor,fourthColor,fifthColor,textColor
-Standard,FFF9E9,000000,dc143c,dc143c,4d4d4d,000000
-Dark,243447,4e4e4e,b0b0b0,3d4f63,141d26,FFFFFF
-Colorblind,FFFFFF,FFFFFF,FFFFFF,FFFFFF,FFFFFF,FFFFFF
+colorTheme,firstColor,secondColor,thirdColor,fourthColor,fifthColor,firstTextColor,secondTextColor
+Standard,FFF9E9,000000,dc143c,dc143c,4d4d4d,000000,FFFFFF
+Dark,243447,4e4e4e,b0b0b0,3d4f63,141d26,FFFFFF,000000
+Colorblind,FFFFFF,FFFFFF,FFFFFF,FFFFFF,FFFFFF,000000,000000

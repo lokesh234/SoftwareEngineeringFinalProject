@@ -29,9 +29,9 @@ import javafx.scene.control.ToggleGroup;
 public class AdminColorController {
 
   @FXML
-  private JFXRadioButton light, dark, custom;
+  private JFXRadioButton light, dark, colorblind, custom;
   @FXML
-  private JFXColorPicker color1, color2, color3, color4, color5;
+  private JFXColorPicker color1, color2, color3, color4, color5, tcolor1, tcolor2;
   @FXML
   private JFXButton cancel;
   @FXML
@@ -57,7 +57,7 @@ public class AdminColorController {
 
   @FXML
   private void confirm() throws IOException, URISyntaxException {
-    String main1, main2, main3, main4, main5;
+    String main1, main2, main3, main4, main5, text1, text2;
 
     String cssFilePath = System.getProperty("user.dir") + "/CSS/light.css";
     File cssFile = new File(cssFilePath);
@@ -69,7 +69,7 @@ public class AdminColorController {
     startup =  DatabaseWrapper.getColor("Startup");
     System.out.println("START UP VALUE: " + startup);
     if (startup == null){
-      DatabaseWrapper.addColor("Startup", "FFF9E9", "000000", "dc143c", "dc143c", "4d4d4d", "000000" );
+      DatabaseWrapper.addColor("Startup", "FFF9E9", "000000", "dc143c", "dc143c", "4d4d4d", "000000", "FFFFFF");
       startup =  DatabaseWrapper.getColor("Startup");
     }
     System.out.println("START UP VALUE: " + startup);
@@ -83,14 +83,16 @@ public class AdminColorController {
       main3 = formatter(color3);
       main4 = formatter(color4);
       main5 = formatter(color5);
-      System.out.println("Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5);
+      text1 = formatter(tcolor1);
+      text2 = formatter(tcolor2);
+      System.out.println("Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5 + " " + text1 + " " + text2);
 
       if (listTheme.getSelectionModel().getSelectedItem().toString().equals("New")) {
         if(themeName.getText().isEmpty()) return;
         theme = themeName.getText();
         DatabaseWrapper.addColor(theme, convertRGBToHex(color1),
             convertRGBToHex(color2), convertRGBToHex(color3),
-            convertRGBToHex(color4), convertRGBToHex(color5), "000000");
+            convertRGBToHex(color4), convertRGBToHex(color5), convertRGBToHex(tcolor1), convertRGBToHex(tcolor2));
       } else {
         theme = listTheme.getSelectionModel().getSelectedItem().toString();
       }
@@ -105,7 +107,9 @@ public class AdminColorController {
       main3 = dark.getThirdColor();
       main4 = dark.getFourthColor();
       main5 = dark.getFifthColor();
-      System.out.println("Dark Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5);
+      text1 = dark.getFirstTextColor();
+      text2 = dark.getSecondTextColor();
+      System.out.println("Dark Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5 + " " + text1 + " " + text2);
 
 
       selectPreset(oldScheme, "Dark", fileEditor);
@@ -119,12 +123,29 @@ public class AdminColorController {
       main3 = stnd.getThirdColor();
       main4 = stnd.getFourthColor();
       main5 = stnd.getFifthColor();
-      System.out.println("Standard Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5);
+      text1 = stnd.getFirstTextColor();
+      text2 = stnd.getSecondTextColor();
+      System.out.println("Standard Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5 + " " + text1 + " " + text2);
 
       selectPreset(oldScheme, "Standard", fileEditor);
       theme = "Standard";
       createStartup(theme);
-    }
+    } else if (colorblind.isSelected()) {
+      Colors clbd = DatabaseWrapper.getColor("Colorblind");
+      main1 = clbd.getFirstColor();
+      main2 = clbd.getSecondColor();
+      main3 = clbd.getThirdColor();
+      main4 = clbd.getFourthColor();
+      main5 = clbd.getFifthColor();
+      text1 = clbd.getFirstTextColor();
+      text2 = clbd.getSecondTextColor();
+      System.out.println("Colorblind Colors: " + main1 + " " + main2 + " " + main3 + " " + main4 + " " + main5 + " " + text1 + " " + text2);
+
+      selectPreset(oldScheme, "Colorblind", fileEditor);
+      theme = "Colorblind";
+      createStartup(theme);
+      }
+
     App.setTheme(urlCss.toExternalForm());
     update();
   }
@@ -140,11 +161,13 @@ public class AdminColorController {
   private void selectPreset(ArrayList<String> old, String preset, CSSFileEditor fileEditor)
       throws IOException, URISyntaxException {
     Colors color = null;
-    String color1, color2, color3, color4, color5;
+    String color1, color2, color3, color4, color5, colorT1, colorT2;
     if (preset.equals("Dark")) {
       color = DatabaseWrapper.getColor("Dark");
     } else if (preset.equals("Standard")) {
       color = DatabaseWrapper.getColor("Standard");
+    }else if (preset.equals("Colorblind")) {
+      color = DatabaseWrapper.getColor("Colorblind");
     } else color = DatabaseWrapper.getColor(preset);
 
     color1 = convertHexToRGB(color.getFirstColor());
@@ -152,22 +175,26 @@ public class AdminColorController {
     color3 = convertHexToRGB(color.getThirdColor());
     color4 = convertHexToRGB(color.getFourthColor());
     color5 = convertHexToRGB(color.getFifthColor());
-    System.out.println("Colors: " + color1 + color2 + color3 + color4 + color5);
+    colorT1 = convertHexToRGB(color.getFirstTextColor());
+    colorT2 = convertHexToRGB(color.getSecondColor());
+    System.out.println("Colors: " + color1 + color2 + color3 + color4 + color5 + colorT1 + colorT2);
     System.out.println("===================================================================");
-    System.out.println("Old Colors: " + old.get(0) + old.get(1) + old.get(2) + old.get(3) + old.get(4));
+    System.out.println("Old Colors: " + old.get(0) + old.get(1) + old.get(2) + old.get(3) + old.get(4) + old.get(5) + old.get(6));
 
     fileEditor.writeCSSProperty("*", old.get(0), color1);
     fileEditor.writeCSSProperty("*", old.get(1), color2);
     fileEditor.writeCSSProperty("*", old.get(2), color3);
     fileEditor.writeCSSProperty("*", old.get(3), color4);
     fileEditor.writeCSSProperty("*", old.get(4), color5);
+    fileEditor.writeCSSProperty("*", old.get(5), colorT1);
+    fileEditor.writeCSSProperty("*", old.get(6), colorT2);
     cancel();
   }
 
   private void createStartup(String theme){
     DatabaseWrapper.delColor("Startup");
     Colors startUpColors = DatabaseWrapper.getColor(theme);
-    DatabaseWrapper.addColor("Startup", startUpColors.getFirstColor(), startUpColors.getSecondColor(), startUpColors.getThirdColor(), startUpColors.getFourthColor(), startUpColors.getFifthColor(), "000000");
+    DatabaseWrapper.addColor("Startup", startUpColors.getFirstColor(), startUpColors.getSecondColor(), startUpColors.getThirdColor(), startUpColors.getFourthColor(), startUpColors.getFifthColor(), startUpColors.getFirstTextColor(), startUpColors.getSecondTextColor());
   }
 
   @FXML
@@ -182,10 +209,12 @@ public class AdminColorController {
     custom.setSelected(true);
     light.setDisable(true);
     dark.setDisable(true);
+    colorblind.setDisable(true);
 
     ToggleGroup colorGroup = new ToggleGroup();
     light.setToggleGroup(colorGroup);
     dark.setToggleGroup(colorGroup);
+    colorblind.setToggleGroup(colorGroup);
     colorGroup.selectToggle(null);
 
 //    BooleanBinding bind = listTheme.getSelectionModel().selectedItemProperty().isNotEqualTo("New");
@@ -197,6 +226,7 @@ public class AdminColorController {
         listTheme.setDisable(false);
         light.setDisable(true);
         dark.setDisable(true);
+        colorblind.setDisable(true);
         color1.setDisable(false);
         color2.setDisable(false);
         color3.setDisable(false);
@@ -217,6 +247,7 @@ public class AdminColorController {
         color5.setDisable(true);
         light.setDisable(false);
         dark.setDisable(false);
+        colorblind.setDisable(false);
       }
     });
     update();
@@ -248,12 +279,18 @@ public class AdminColorController {
     String color3 = colors.getThirdColor();
     String color4 = colors.getFourthColor();
     String color5 = colors.getFifthColor();
+    String colorT1 = colors.getFirstTextColor();
+    String colorT2 = colors.getSecondColor();
+
 
     arrayListColors.add("-color-1: " + convertHexToRGB(color1));
     arrayListColors.add("-color-2: " + convertHexToRGB(color2));
     arrayListColors.add("-color-3: " + convertHexToRGB(color3));
     arrayListColors.add("-color-4: " + convertHexToRGB(color4));
     arrayListColors.add("-color-5: " + convertHexToRGB(color5));
+    arrayListColors.add("-body-text: " + convertHexToRGB(colorT1));
+    arrayListColors.add("-containter-text: " + convertHexToRGB(colorT2));
+
     return arrayListColors;
   }
 
