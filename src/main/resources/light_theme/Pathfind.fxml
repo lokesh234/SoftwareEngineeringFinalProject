@@ -156,9 +156,9 @@
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="SOMETIMES">
                                        <children>
                                           <Label text="SEARCH" />
-                                          <JFXTextField promptText="From" />
+                                          <JFXTextField promptText="From" fx:id="startBox" />
                                           <JFXButton onAction="#swap" text="switch" />
-                                          <JFXTextField promptText="To" />
+                                          <JFXTextField promptText="To" fx:id="endBox" />
                                           <HBox alignment="CENTER" spacing="20.0">
                                              <children>
                                                 <JFXButton fx:id="clearButton" onAction="#clearPath" text="Clear" textFill="WHITE">

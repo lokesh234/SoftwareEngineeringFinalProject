@@ -1,10 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.Navigation;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXDrawer.DrawerDirection;
-import com.jfoenix.controls.JFXDrawersStack;
-import com.jfoenix.controls.JFXHamburger;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
@@ -81,6 +78,7 @@ public class PathfindController {
     @FXML private GesturePane MapGes4;
     @FXML private GesturePane MapGes5;
     @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
+    @FXML private JFXTextField startBox, endBox;
 
     @FXML private RadioButton fast, elev, stai;
 
@@ -157,6 +155,7 @@ public class PathfindController {
                 startReady = (start != null) || startReady;
                 if (startReady) startLabel.setText(start.getLongName());
                 if (startReady) SearchBox.setText(start.getLongName());
+                if (startReady) startBox.setText(start.getLongName());
                 state = State.END;
                 updateStatus();
             }
@@ -165,6 +164,7 @@ public class PathfindController {
                 endReady = (end != null) || endReady;
                 if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
+                if (endReady) endBox.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
             }
@@ -1319,7 +1319,7 @@ public class PathfindController {
     private void swap() {
         Node buf = start;
         start = end;
-        end = start;
+        end = buf;
         updateStatus();
         pathfind();
     }
