@@ -1,9 +1,9 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
 import edu.wpi.cs3733.c20.teamU.App;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 
@@ -13,21 +13,15 @@ public class AdminBannerController {
 //    @FXML private Label wilsonWong;
     private Pane adminBanner;
     private Popup adminBannerPop;
+    @FXML
+    Label userName;
 
-    protected void update(){
-//        wilsonWong.setText(App.getUser().getUserName());
+    @FXML
+    protected void update(String username){
+        this.userName.setText(username);
     }
 
-
-    public void back(ActionEvent event) {
-        App.loadHome();
-        //App.getPathfindController().drawNodes();
-        App.getTreeViewPop().getContent().clear();
-        ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
-        App.getPrimaryStage().setScene(App.getPathScene());
-    }
-
-    public void loadAdminBanner() {
+    public void loadAdminBanner(String username) {
         try {
             adminBanner = new Pane();
             adminBannerPop = new Popup();
@@ -36,7 +30,7 @@ public class AdminBannerController {
 
             AdminBannerController adminBannerController = new AdminBannerController();
             adminBannerController = adminBannerLoader.getController();
-            adminBannerController.update();
+            adminBannerController.update(username);
 
             adminBannerPop.getContent().clear();
             adminBannerPop.setX(App.getPrimaryStage().getX() + 1500);

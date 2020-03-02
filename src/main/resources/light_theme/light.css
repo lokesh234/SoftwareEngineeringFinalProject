@@ -84,6 +84,10 @@
     -fx-text-fill: -body-text;
 }
 
+#navCircle{
+    -fx-fill: -color-4;
+}
+
 .jfx-nodes-list{}
 
 .weatherBox .label{
