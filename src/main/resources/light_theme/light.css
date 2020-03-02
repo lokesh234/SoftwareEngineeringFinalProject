@@ -144,6 +144,8 @@
 #profileRectangle{
     -fx-fill: -color-4;
     -fx-stroke: TRANSPARENT;
+    -fx-arc-height: 50px;
+    -fx-arc-width: 50px;
 
 }
 

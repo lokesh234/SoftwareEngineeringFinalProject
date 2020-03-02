@@ -15,7 +15,7 @@
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="sessionBanner" stylesheets="@light.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Rectangle fx:id="profileRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="BLACK" strokeType="INSIDE" width="250.0" StackPane.alignment="CENTER_RIGHT" />
+            <Rectangle fx:id="profileRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="100.0" stroke="TRANSPARENT" strokeType="INSIDE" width="270.0" StackPane.alignment="CENTER_RIGHT" />
             <HBox>
                <children>
                   <StackPane>
