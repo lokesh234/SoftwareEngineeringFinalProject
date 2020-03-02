@@ -72,8 +72,8 @@ public class LoginScreenController {
       Notifications.create().text("Logged in as: " + whoTried.getUserName()).show();
 
       adminBannerController = new AdminBannerController();
-      adminBannerController.loadAdminBanner();
       changeScene();
+      adminBannerController.loadAdminBanner(App.getUser().getUserName());
     }
   }
 
