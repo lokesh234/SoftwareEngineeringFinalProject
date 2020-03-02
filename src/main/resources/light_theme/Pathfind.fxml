@@ -7,7 +7,9 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +21,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
@@ -146,130 +147,151 @@
             </VBox>
             <JFXDrawer fx:id="menuDrawer" maxWidth="200.0" StackPane.alignment="CENTER_LEFT">
                <children>
-                  <StackPane fx:id="menuBurgerContainer" prefHeight="150.0" prefWidth="200.0">
+                  <StackPane fx:id="menuBurgerContainer" alignment="TOP_CENTER">
                      <children>
-                        <HBox alignment="CENTER" maxWidth="200.0" styleClass="sideBar">
+                        <VBox prefHeight="200.0" prefWidth="100.0" StackPane.alignment="CENTER">
                            <children>
-                              <VBox alignment="CENTER" prefWidth="350.0" spacing="20.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="SOMETIMES">
                                  <children>
-                                    <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
+                                    <Label text="SEARCH" />
+                                    <JFXTextField text="From" />
+                                    <JFXButton text="switch" />
+                                    <JFXTextField text="To" />
+                                    <HBox alignment="CENTER" spacing="20.0">
                                        <children>
-                                          <Label fx:id="statusLabel1" text="SEARCH" textFill="WHITE">
+                                          <JFXButton fx:id="clearButton" onAction="#clearPath" text="Clear" textFill="WHITE">
                                              <font>
-                                                <Font name="Segoe UI Bold" size="18.0" />
+                                                <Font name="Segoe UI" size="18.0" />
                                              </font>
-                                          </Label>
-                                          <JFXTextField fx:id="SearchBox" />
+                                          </JFXButton>
+                                          <JFXButton fx:id="goButton1" onAction="#pathfind" text="Go!" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="18.0" />
+                                             </font>
+                                          </JFXButton>
                                        </children>
                                        <padding>
-                                          <Insets left="10.0" right="10.0" />
+                                          <Insets bottom="10.0" top="10.0" />
                                        </padding>
-                                    </VBox>
-                                    <Line endX="100.0" startX="-100.0" />
-                                    <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label fx:id="statusLabel11" text="ROUTE PREFERENCES" textFill="WHITE">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <VBox fx:id="radioBox" spacing="20.0" VBox.vgrow="ALWAYS">
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Accordion VBox.vgrow="ALWAYS">
+                                <panes>
+                                  <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="SEARCH">
+                                       <content>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <JFXTextField fx:id="SearchBox" />
+                                             </children>
+                                          </GridPane>
+                                       </content>
+                                  </TitledPane>
+                                  <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="ROUTE PREFERENCES">
+                                       <content>
+                                          <GridPane fx:id="radioBox">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
                                                 <JFXRadioButton fx:id="fast" text="Elevator or Stairs" />
-                                                <JFXRadioButton fx:id="elev" text="Elevator" />
-                                                <JFXRadioButton fx:id="stai" text="Stairs" />
+                                                <JFXRadioButton fx:id="elev" text="Elevator" GridPane.rowIndex="1" />
+                                                <JFXRadioButton fx:id="stai" text="Stairs" GridPane.rowIndex="2" />
                                              </children>
-                                             <padding>
-                                                <Insets left="20.0" />
-                                             </padding>
-                                          </VBox>
-                                       </children>
-                                    </VBox>
-                                    <Line endX="100.0" startX="-100.0" />
-                                    <VBox alignment="TOP_CENTER" prefHeight="273.0" prefWidth="350.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <HBox alignment="CENTER">
-                                             <children>
-                                                <Label fx:id="statusLabel" text="NAVIGATE" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Segoe UI Bold" size="18.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </HBox>
-                                          <VBox alignment="CENTER" maxHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
+                                          </GridPane>
+                                       </content>
+                                  </TitledPane>
+                                  <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="NAVIGATE">
+                                       <content>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
                                                 <JFXButton fx:id="startButton" onAction="#selectStart" text="Select Start" textFill="WHITE">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <Label fx:id="startLabel" text="LongName" textFill="WHITE">
+                                                <Label fx:id="startLabel" text="LongName" textFill="WHITE" GridPane.columnIndex="1">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
                                                 </Label>
-                                             </children>
-                                          </VBox>
-                                          <VBox alignment="CENTER" maxHeight="50.0" spacing="10.0" VBox.vgrow="ALWAYS">
-                                             <children>
-                                                <JFXButton fx:id="endButton" onAction="#selectEnd" text="Select End" textFill="WHITE">
+                                                <JFXButton fx:id="endButton" onAction="#selectEnd" text="Select End" textFill="WHITE" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
                                                 </JFXButton>
-                                                <Label fx:id="endLabel" text="LongName" textFill="WHITE">
+                                                <Label fx:id="endLabel" text="LongName" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
                                                 </Label>
+                                                <JFXButton fx:id="goButton" onAction="#pathfind" text="Go!" textFill="WHITE" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font name="Segoe UI" size="18.0" />
+                                                   </font>
+                                                </JFXButton>
+                                                <JFXComboBox promptText="Common Locations" unFocusColor="WHITE" GridPane.rowIndex="3" />
                                              </children>
-                                          </VBox>
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                          </GridPane>
+                                       </content>
+                                  </TitledPane>
+                                    <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="TEXT DIRECTIONS">
+                                       <content>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
                                              <children>
-                                                <JFXButton fx:id="goButton" onAction="#pathfind" text="Go!" textFill="WHITE">
-                                                   <font>
-                                                      <Font name="Segoe UI" size="18.0" />
-                                                   </font>
-                                                </JFXButton>
-                                                <JFXButton fx:id="clearButton" onAction="#clearPath" text="Clear" textFill="WHITE">
+                                                <JFXButton fx:id="textDirections" onAction="#textPopUp" text="GET" textFill="WHITE">
                                                    <font>
                                                       <Font name="Segoe UI" size="18.0" />
                                                    </font>
                                                 </JFXButton>
                                              </children>
-                                          </HBox>
-                                          <JFXComboBox promptText="Common Locations" unFocusColor="WHITE" />
-                                       </children>
-                                    </VBox>
-                                    <Line endX="100.0" startX="-100.0" />
-                                    <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Label fx:id="statusLabel2" text="TEXT DIRECTIONS" textFill="WHITE">
-                                             <font>
-                                                <Font name="Segoe UI Bold" size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <JFXButton fx:id="textDirections" onAction="#textPopUp" text="GET" textFill="WHITE">
-                                             <font>
-                                                <Font name="Segoe UI" size="18.0" />
-                                             </font>
-                                          </JFXButton>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </VBox>
+                                          </GridPane>
+                                       </content>
+                                    </TitledPane>
+                                </panes>
+                              </Accordion>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
                   </StackPane>
                </children>
+               <StackPane.margin>
+                  <Insets top="100.0" />
+               </StackPane.margin>
             </JFXDrawer>
             <HBox maxHeight="80.0" prefHeight="100.0" styleClass="titleBar" StackPane.alignment="TOP_CENTER">
                <children>
-                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" spacing="20.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Get Directions" textFill="WHITE">
+                        <JFXHamburger fx:id="menuBurger" maxHeight="50.0" maxWidth="50.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS" />
+                        <Label text="Get Directions" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Segoe UI Bold" size="36.0" />
                            </font>
@@ -473,13 +495,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <StackPane.margin>
-                  <Insets left="200.0" top="100.0" />
+                  <Insets left="250.0" top="100.0" />
                </StackPane.margin>
             </VBox>
-            <JFXHamburger fx:id="menuBurger" maxHeight="50.0" maxWidth="50.0" style="-fx-background-color: white;" StackPane.alignment="TOP_LEFT">
-               <StackPane.margin>
-                  <Insets left="250.0" top="10.0" />
-               </StackPane.margin></JFXHamburger>
             <HBox alignment="CENTER" maxHeight="100.0" maxWidth="250.0" spacing="20.0" style="-fx-background-color: TRANSPARENT;" styleClass="sideBar" StackPane.alignment="BOTTOM_RIGHT">
                <children>
                   <StackPane styleClass="navCircle" HBox.hgrow="ALWAYS">
