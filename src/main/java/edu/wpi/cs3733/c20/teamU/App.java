@@ -80,6 +80,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane color;
   private static Pane information;
   private static Pane credit;
+  private static Pane generic;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -155,6 +156,7 @@ public class App<loadedAdminRequests> extends Application {
   private static AddCustomRequestController customController;
   private static InformationController informationController;
   private static CreditController creditController;
+  private static GenericRequest genericController;
 
 
   private static boolean didChange = false;
@@ -178,6 +180,7 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedLanguage = false;
   private static boolean loadedGift = false;
   private static boolean loadedIT = false;
+  private static boolean loadedGeneric = false;
   private static boolean loadedTreeView = false;
   public static boolean SpeechComplete = false;
 
@@ -531,6 +534,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getColor() { return color;}
   public static Pane getInformation() {return information;}
   public static Pane getCredit() {return credit;}
+  public static Pane getGeneric() { return generic;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -597,6 +601,7 @@ public class App<loadedAdminRequests> extends Application {
   public static AdminColorController getColorController() {return colorController;}
   public static InformationController getInformationController() {return informationController;}
   public static CreditController getCreditController() {return creditController;}
+  public static GenericRequest getGenericController() { return genericController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -1047,6 +1052,27 @@ public class App<loadedAdminRequests> extends Application {
         loadedIT = true;
 
         IT.setOnKeyPressed(itconfirmKey);
+
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadGeneric() {
+    if (!loadedGeneric) {
+      try {
+        FXMLLoader genericLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestGeneric.fxml"));
+
+        generic = genericLoader.load();
+
+        generic.setOnKeyPressed(fireKey);
+
+        genericController = genericLoader.getController();
+
+        loadedGeneric = true;
+
 
       }
       catch (IOException e) {

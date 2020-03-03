@@ -70,10 +70,15 @@ public class RequestController {
 
     @FXML
     public void openClownRequest() {
-        App.loadClown();
-        App.getRequestPop().getContent().remove(0);
-        App.getClownPop().getContent().add(App.getClown());
-        App.getClownPop().show(App.getPrimaryStage());
+//        App.loadClown();
+//        App.getRequestPop().getContent().remove(0);
+//        App.getClownPop().getContent().add(App.getClown());
+//        App.getClownPop().show(App.getPrimaryStage());
+        App.loadGeneric();
+        App.getRequestPop().getContent().clear();
+        App.getRequestPop().getContent().add(App.getGeneric());
+        App.getGenericController().setType("test");
+        App.getRequestPop().show(App.getPrimaryStage());
     }
 
     @FXML
