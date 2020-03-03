@@ -1,10 +1,12 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Map;
 
 import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
@@ -669,7 +671,20 @@ public class App<loadedAdminRequests> extends Application {
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wongPFP.png")));
     try {
-      Speech.authExplicit("../../../resources/key.json");
+      ProcessBuilder processBuilder = new ProcessBuilder();
+      processBuilder.redirectErrorStream(true);
+      Map<String, String> env = processBuilder.environment();
+      URL url = getClass().getResource("/key.json");
+      String keyPath = url.getPath();
+      keyPath = keyPath.replaceFirst("/","");
+      keyPath = keyPath.replace("/", "\\");
+      System.out.println("\\");
+      System.out.println(keyPath);
+      env.put("GOOGLE_APPLICATION_CREDENTIALS", keyPath);
+      System.out.println("=====================================================================================================");
+      for (String envName : env.keySet()) {
+        System.out.format("%s=%s%n", envName, env.get(envName));
+      }
     }
     catch (Exception e){
       System.out.println(e);
