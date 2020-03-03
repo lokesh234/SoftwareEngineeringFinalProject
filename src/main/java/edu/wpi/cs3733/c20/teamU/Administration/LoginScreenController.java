@@ -69,7 +69,6 @@ public class LoginScreenController {
     } else {
       trackLoginCount = 0;
       didFail = false;
-      App.getColorController().setUser(whoTried.getUserName());
       Notifications.create().text("Logged in as: " + whoTried.getUserName()).show();
 
       adminBannerController = new AdminBannerController();
