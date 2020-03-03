@@ -34,8 +34,8 @@ public class AnalyticsController {
 //    JFXComboBox comboBox;
     @FXML
     PieChart pieChart;
-    @FXML
-    private LineChart lineChart;
+//    @FXML
+//    private LineChart lineChart;
     @FXML
     private BarChart barChart;
     @FXML
@@ -47,6 +47,10 @@ public class AnalyticsController {
     private LocalDate startTime, endTime;
     @FXML
     private JFXButton generate;
+    @FXML
+    private CategoryAxis xA;
+    @FXML
+    private NumberAxis yA;
 
 
     @FXML
@@ -59,26 +63,33 @@ public class AnalyticsController {
 
         pieChart.setData(arrayToPie());
         pieChart.setTitle(type);
+        fillBarChart();
     }
 
 
-    private void fillLineChart(){
-        NumberAxis xAxis = new NumberAxis(1960, 2020, 10);
-        xAxis.setLabel("Years");
-        NumberAxis yAxis = new NumberAxis(0, 350, 50);
-        yAxis.setLabel("Number");
-    }
+//    private void fillLineChart(){
+//        NumberAxis xAxis = new NumberAxis(1960, 2020, 10);
+//        xAxis.setLabel("Time");
+//        NumberAxis yAxis = new NumberAxis(0, 350, 50);
+//        yAxis.setLabel("Number");
+//
+//        lineChart = new LineChart(xAxis,yAxis);
+//    }
 
 
-    private void fillBarChart(){
+    private void fillBarChart() {
+        barChart.getData().clear();
         XYChart.Series dataSeries1 = new XYChart.Series();
-        dataSeries1.setName("2014");
 
-        dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
-        dataSeries1.getData().add(new XYChart.Data("Phone"  , 65));
-        dataSeries1.getData().add(new XYChart.Data("Tablet"  , 23));
-
-
+        dataSeries1.setName("Numbers");
+        for (String s : types) {
+            if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")) {
+                dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getEmployeeCount(s)));
+                System.out.println("Bar:" + s + ":" + DatabaseWrapper.getEmployeeCount(s));
+            } else {
+                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceRequestAmountRange(s, startTime.toString(), endTime.toString())));
+            }
+        }
         barChart.getData().add(dataSeries1);
     }
 
@@ -156,13 +167,13 @@ public class AnalyticsController {
         });
 
 
-        CategoryAxis xAxis    = new CategoryAxis();
-        xAxis.setLabel("Services");
+        xA = new CategoryAxis();
+        xA.setLabel("Services");
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Numbers");
+        yA = new NumberAxis();
+        yA.setLabel("Numbers");
 
-        barChart = new BarChart(xAxis, yAxis);
+//        barChart = new BarChart(xAxis, yAxis);
     }
 
 

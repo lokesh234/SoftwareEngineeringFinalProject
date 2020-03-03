@@ -163,12 +163,12 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="770.0">
                                        <children>
-                                          <BarChart>
+                                          <BarChart fx:id="barChart">
                                             <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
+                                              <CategoryAxis side="BOTTOM" fx:id="xA"/>
                                             </xAxis>
                                             <yAxis>
-                                              <NumberAxis side="LEFT" />
+                                              <NumberAxis side="LEFT" fx:id="yA"/>
                                             </yAxis>
                                           </BarChart>
                                        </children></AnchorPane>
