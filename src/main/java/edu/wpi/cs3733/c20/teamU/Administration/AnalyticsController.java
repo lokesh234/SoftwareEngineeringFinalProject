@@ -166,10 +166,11 @@ public class AnalyticsController {
             if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
                 number = DatabaseWrapper.getEmployeeCount(types.get(i));
             }else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
-                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i), startTime.toString(), endTime.toString());
+                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i), fromDP.getValue().toString(), toDP.getValue().toString());
             }
             else {
-                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i), startTime.toString(), endTime.toString());
+                System.out.println(fromDP.getValue().toString());
+                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i), fromDP.getValue().toString(), toDP.getValue().toString());
             }
 
             if (number > 0) {
@@ -205,7 +206,7 @@ public class AnalyticsController {
                         "Last Month",
                         "Last Year"
                 );
-        quickSelection.getItems().addAll(majorTypes);
+        quickSelection.getItems().addAll(quick);
 
         majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
