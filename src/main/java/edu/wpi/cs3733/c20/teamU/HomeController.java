@@ -841,13 +841,11 @@ public class HomeController {
   private void ZoomInMachine(int floor) {
     switch (floor) {
       case 1:
-        if (zoomCounter <= 5 && zoomCounter > 0) {
           MapGes1.animate(Duration.millis(200))
               .interpolateWith(Interpolator.EASE_BOTH)
               .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
           zoomed = MapGes1.getCurrentScale();
           zoomCounter--;
-        }
         break;
       case 2:
         MapGes2.animate(Duration.millis(200))
@@ -883,43 +881,41 @@ public class HomeController {
   private void ZoomOutMachine(int floor) {
     switch (floor) {
       case 1:
-        if (zoomCounter < 5 && zoomCounter >= 0) {
-          //          System.out.println(MapGes1.getCurrentScale());
+        //          System.out.println(MapGes1.getCurrentScale());
           MapGes1.animate(Duration.millis(200))
               .interpolateWith(Interpolator.EASE_BOTH)
-              .zoomTo(zoomed / 2, MapGes1.targetPointAtViewportCentre());
-          zoomed /= 2;
+              .zoomTo(zoomed / 1.5, MapGes1.targetPointAtViewportCentre());
+          zoomed /= 1.5;
           // System.out.println(zoomed/2);
           zoomCounter++;
-        }
         //        System.out.println(MapGes1.getCurrentScale() - 5);
         break;
       case 2:
         MapGes2.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomTo(zoomed / 2, MapGes2.targetPointAtViewportCentre());
-        zoomed /= 2;
+            .zoomTo(zoomed / 1.5, MapGes2.targetPointAtViewportCentre());
+        zoomed /= 1.5;
         zoomCounter++;
         break;
       case 3:
         MapGes3.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomTo(zoomed / 2, MapGes3.targetPointAtViewportCentre());
-        zoomed /= 2;
+            .zoomTo(zoomed / 1.5, MapGes3.targetPointAtViewportCentre());
+        zoomed /= 1.5;
         zoomCounter++;
         break;
       case 4:
         MapGes4.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomTo(zoomed / 2, MapGes4.targetPointAtViewportCentre());
-        zoomed /= 2;
+            .zoomTo(zoomed / 1.5, MapGes4.targetPointAtViewportCentre());
+        zoomed /= 1.5;
         zoomCounter++;
         break;
       case 5:
         MapGes5.animate(Duration.millis(200))
             .interpolateWith(Interpolator.EASE_BOTH)
-            .zoomTo(zoomed / 2, MapGes5.targetPointAtViewportCentre());
-        zoomed /= 2;
+            .zoomTo(zoomed / 1.5, MapGes5.targetPointAtViewportCentre());
+        zoomed /= 1.5;
         zoomCounter++;
         break;
     }
