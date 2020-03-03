@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class AnalyticsController {
     String type = "employee";
     ArrayList<String> types = ServiceRequestWrapper.getAllServiceType();
-    @FXML
-    JFXComboBox comboBox;
+//    @FXML
+//    JFXComboBox comboBox;
     @FXML
     PieChart pieChart;
     @FXML
@@ -71,22 +71,22 @@ public class AnalyticsController {
 
     @FXML
     private void initialize(){
-        comboBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                    type = comboBox.getSelectionModel().getSelectedItem().toString();
-                    update();
-//                System.out.println("changes");
-            }
-        });
-
-        ObservableList<String> deliveryOptions =
-                FXCollections.observableArrayList(
-                        "employee",
-                        "service",
-                        "serviceFinished"
-                );
-        comboBox.getItems().addAll(deliveryOptions);
+//        comboBox.valueProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                    type = comboBox.getSelectionModel().getSelectedItem().toString();
+//                    update();
+////                System.out.println("changes");
+//            }
+//        });
+//
+//        ObservableList<String> deliveryOptions =
+//                FXCollections.observableArrayList(
+//                        "employee",
+//                        "service",
+//                        "serviceFinished"
+//                );
+//        comboBox.getItems().addAll(deliveryOptions);
 
 
         CategoryAxis xAxis    = new CategoryAxis();

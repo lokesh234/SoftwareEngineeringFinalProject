@@ -190,12 +190,17 @@ public class GraphEditController {
     if (nodeMode) { //Remove node
       DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "Remove Node", selectedNode.getID());
       DatabaseWrapper.delNode(selectedNode.getID());
+      selectedNode = null;
     }
     else { //Remove edge
-     DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "Remove Node", DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
-     DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
+     DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), App.getUser().getCred(), "Remove Edge", DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID());
+     if (!DatabaseWrapper.delEdge(DatabaseWrapper.getGraph().getEdge(selectedStartNode, selectedEndNode).getID())) System.out.println("oh no");
+     selectedEdge = null;
+     selectedStartNode = null;
+     selectedEndNode = null;
     }
     updateButtons();
+    redraw(!nodeMode);
   }
 
   @FXML
@@ -271,7 +276,7 @@ public class GraphEditController {
       statusLabel.setText("Edge Mode");
       redraw(true);
     }
-
+    updateButtons();
   }
 
   protected void redraw(boolean edges) {
@@ -341,7 +346,7 @@ public class GraphEditController {
       }
       if (selectedStartNode != null && selectedEndNode != null) {
         clearExtraLine();
-        if (!DatabaseWrapper.getGraph().getNeighborNodes(DatabaseWrapper.getGraph().getNode(selectedStartNode.getID())).contains(selectedEndNode)) { //ya like ()?
+        if (!DatabaseWrapper.getGraph().getNeighborNodes(selectedStartNode).contains(selectedEndNode)) { //ya like ()?
           if (selectedStartNode.getFloor() == selectedEndNode.getFloor()) {
             extraLine = new Path(); //This is an edge that doesn't exist, so let's highlight it in green!
             extraLineFloor = selectedStartNode.getFloor();
@@ -648,6 +653,25 @@ public class GraphEditController {
         App.setLocation(circles.get(event.getSource()));
         state = State.neutral;
         locLabel.setText(App.getLocation().getLongName());
+      }
+    }
+  };
+
+  EventHandler<MouseEvent> lineClickHandler = new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+      if (!nodeMode) {
+        for (Map.Entry<Edge, Path> pair : lines.entrySet()) {
+          if (pair.getValue().equals(event.getSource())) {
+            selectedStartNode = pair.getKey().getStart();
+            selectedEndNode = pair.getKey().getEnd();
+            state = State.neutral;
+            endLabel.setText(selectedEndNode.getID() + ", " + selectedEndNode.getFloor());
+            startLabel.setText(selectedStartNode.getID() + ", " + selectedStartNode.getFloor());
+            updateButtons();
+            break;
+          }
+        }
       }
     }
   };

@@ -88,6 +88,11 @@
     -fx-fill: -color-4;
 }
 
+.navBar{}
+.navBar .jfx-button{
+    -jfx-button-type: FLAT;
+}
+
 .jfx-nodes-list{}
 
 .jfx-drawer{
@@ -123,10 +128,14 @@
     -fx-background-color: -color-4;
     -fx-background-radius: 50px;
     -fx-background-insets: 0px;
+    -jfx-button-type: RAISED;
 }
 
 .jfx-chip-view{
+}
 
+.jfx-hamburger{
+    -fx-background-color: -color-4;
 }
 
 .sessionBanner{
@@ -134,7 +143,15 @@
 }
 
 .sessionBanner .label{
-    -fx-text-fill: -body-text;
+    -fx-text-fill: -container-text;
+    -fx-font-weight: BOLD;
+}
+#profileRectangle{
+    -fx-fill: -color-4;
+    -fx-stroke: TRANSPARENT;
+    -fx-arc-height: 50px;
+    -fx-arc-width: 50px;
+
 }
 
 .sessionBanner .circle{
@@ -145,6 +162,19 @@
     -fx-fill: -color-3;
 }
 
+.hotbar{}
+.hotbar .jfx-button{
+    -fx-min-height: 100;
+    -fx-min-height: 100;
+    -fx-background-radius: 5;
+
+}
+.hotbar .jfx-button:hover{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-scale-z: 1.2;
+
+}
 /** end **/
 
 .jfx-alert-overlay{
