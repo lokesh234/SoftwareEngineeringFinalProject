@@ -88,12 +88,6 @@
                      <children>
                         <HBox alignment="CENTER" />
                         <JFXButton fx:id="backButton" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="80.0" text="Back" textFill="WHITE" />
-                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="127.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
-                           <children>
-                              <Label text="Logged in as: " />
-                              <Label text="Label" />
-                           </children>
-                        </HBox>
                      </children>
                      <padding>
                         <Insets bottom="10.0" right="10.0" top="10.0" />
@@ -393,6 +387,18 @@
                      </image>
                   </ImageView>
                </graphic>
+            </Label>
+            <Label text="Conference Room">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../png_files/Conference.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
             </Label>
             <Label text="Exit">
                <graphic>
