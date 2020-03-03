@@ -288,11 +288,11 @@
                         </StackPane>
                      </children>
                   </JFXDrawer>
-                  <JFXDrawer fx:id="legendDrawer" maxHeight="400.0" styleClass="legend"  style="-fx-background-color: TRANSPARENT;">
+                  <JFXDrawer fx:id="legendDrawer" maxHeight="400.0" style="-fx-background-color: TRANSPARENT;" styleClass="legend">
                      <children>
-                        <StackPane fx:id="legendPane" style="-fx-background-color: TRANSPARENT;" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
+                        <StackPane fx:id="legendPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: TRANSPARENT;">
                            <children>
-                              <VBox fx:id="legendContent" style="-fx-background-color: TRANSPARENT;" spacing="10.0" StackPane.alignment="CENTER_LEFT">
+                              <VBox fx:id="legendContent" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="CENTER_LEFT">
                                  <children>
                                     <Label text="Node color key">
                                        <font>
@@ -370,6 +370,18 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
+                                    </Label>
+                                    <Label text="Conference Room">
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/Conference.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI" size="12.0" />
+                                       </font>
                                     </Label>
                                     <Label text="Retail">
                                        <graphic>

@@ -16,7 +16,7 @@
 
 <!--<?import net.kurobako.gesturefx.GesturePane?>-->
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.GraphEditController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.GraphEditController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -387,6 +387,18 @@
                      </image>
                   </ImageView>
                </graphic>
+            </Label>
+            <Label text="Conference Room">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../png_files/Conference.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Segoe UI" size="12.0" />
+               </font>
             </Label>
             <Label text="Exit">
                <graphic>
