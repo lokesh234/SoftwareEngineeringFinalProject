@@ -1319,6 +1319,8 @@ public class PathfindController {
         Node buf = start;
         start = end;
         end = buf;
+        startBox.setText(start.getLongName());
+        endBox.setText(end.getLongName());
         updateStatus();
         pathfind();
     }
