@@ -45,7 +45,6 @@ public class FlowerController {
 
             flowerChip.getChips().add(flowerCombo.getSelectionModel().getSelectedItem());
 
-            System.out.println(flowerChip.getChips().size());
             flowerCombo.getSelectionModel().clearSelection();
         } else {
             flowerCombo.setStyle("-fx-border-color: red");
@@ -139,6 +138,7 @@ public class FlowerController {
 
     @FXML
     public void initialize() {
+
 //        flowerChip = new JFXChipView<>();
         //first set what today is, then dont touch it
         LocalDate today = retrieveDate();

@@ -39,6 +39,7 @@ dependencies {
             [group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'],
             [group: 'org.slf4j', name: 'slf4j-simple', version:'1.6.4']
     )
+
     compile 'com.jfoenix:jfoenix:8.0.8'
     compile 'com.google.cloud:google-cloud-storage:1.105.0'
 //    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.2'
