@@ -23,12 +23,15 @@ import javafx.scene.control.Tab;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class AnalyticsController {
+    private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd.MM.yyyy") ;
     String type = "employee";
     ArrayList<String> types = new ArrayList<String>();
 //    @FXML
@@ -72,6 +75,7 @@ public class AnalyticsController {
 
 
     private void fillLineChart(){
+        lineChart.getData().clear();
         int lowB = 0;
         int highB = 0;
         String unit = "";
@@ -92,7 +96,7 @@ public class AnalyticsController {
             unit = "day";
         }
 
-        NumberAxis xAxis = new NumberAxis(fromDP.getValue().getYear(), 2020, (highB-lowB)/10);
+        NumberAxis xAxis = new NumberAxis(lowB, highB, (highB-lowB)/10);
         xAxis.setLabel("Time");
         NumberAxis yAxis = new NumberAxis(0, 50, 10);
         yAxis.setLabel("Number");
@@ -116,11 +120,11 @@ public class AnalyticsController {
 
                 if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
                     series.getData().add(new XYChart.Data(end,
-                        ServiceDatabase.getServiceRequestAmountRange(s, start.toString(), end.toString())));
+                        ServiceDatabase.getServiceRequestAmountRange(s, start.format(DF), end.format(DF))));
                 }
                 else {
                     series.getData().add(new XYChart.Data(end,
-                            ServiceDatabase.getServiceFinishedAmountRange(s, start.toString(), end.toString())));
+                            ServiceDatabase.getServiceFinishedAmountRange(s, start.format(DF), end.format(DF))));
                 }
             }
             lineChart.getData().add(series);
@@ -148,10 +152,13 @@ public class AnalyticsController {
                 dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getEmployeeCount(s)));
                 System.out.println("Bar:" + s + ":" + DatabaseWrapper.getEmployeeCount(s));
             } else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
-                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceRequestAmountRange(s, startTime.toString(), endTime.toString())));
+                dataSeries1.getData().add(new XYChart.Data(s,
+                        ServiceDatabase.getServiceRequestAmountRange(s, fromDP.getValue().format(DF),
+                                toDP.getValue().format(DF))));
             }
             else {
-                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceFinishedAmountRange(s, startTime.toString(), endTime.toString())));
+                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceFinishedAmountRange(s, fromDP.getValue().format(DF),
+                        toDP.getValue().format(DF))));
             }
         }
         barChart.getData().add(dataSeries1);
@@ -166,11 +173,15 @@ public class AnalyticsController {
             if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
                 number = DatabaseWrapper.getEmployeeCount(types.get(i));
             }else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
-                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i), fromDP.getValue().toString(), toDP.getValue().toString());
+                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i),
+                        fromDP.getValue().format(DF),
+                        toDP.getValue().format(DF));
             }
             else {
                 System.out.println(fromDP.getValue().toString());
-                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i), fromDP.getValue().toString(), toDP.getValue().toString());
+                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i),
+                        fromDP.getValue().format(DF),
+                        toDP.getValue().format(DF));
             }
 
             if (number > 0) {
@@ -208,7 +219,7 @@ public class AnalyticsController {
                 );
         quickSelection.getItems().addAll(quick);
 
-        majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
+        quickSelection.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 String selection = quickSelection.getSelectionModel().getSelectedItem().toString();
@@ -225,6 +236,9 @@ public class AnalyticsController {
                 else if (selection.equals("Last Year")){
                     currentTime = currentTime.minusYears(1);
                 }
+
+                fromDP.setValue(currentTime);
+                toDP.setValue(LocalDate.now());
             }
         });
 //
