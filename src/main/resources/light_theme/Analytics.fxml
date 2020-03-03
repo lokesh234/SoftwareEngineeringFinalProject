@@ -136,12 +136,12 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="subtitleBar">
                            <children>
-                              <JFXComboBox />
-                              <JFXButton text="Add" />
-                              <JFXButton text="Remove" />
+                              <JFXComboBox fx:id="typesComboBox"/>
+                              <JFXButton text="Add" onAction="#addSRType"/>
+                              <JFXButton text="Remove" onAction="#removeSRType"/>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <JFXChipView />
+                                    <JFXChipView fx:id="typesChip"/>
                                  </children>
                               </VBox>
                               <JFXButton text="Add All" />

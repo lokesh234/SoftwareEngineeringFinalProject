@@ -1,13 +1,16 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXChipView;
 import com.jfoenix.controls.JFXComboBox;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 
@@ -24,6 +27,10 @@ public class AnalyticsController {
     private LineChart lineChart;
     @FXML
     private BarChart barChart;
+    @FXML
+    private JFXComboBox typesComboBox;
+    @FXML
+    private JFXChipView typesChip;
 
 
     private void update(){
@@ -71,6 +78,11 @@ public class AnalyticsController {
 
     @FXML
     private void initialize(){
+        ObservableList<String> serviceTypes =
+                FXCollections.observableArrayList(
+                        ServiceRequestWrapper.getAllServiceType()
+                );
+        typesComboBox.getItems().addAll(serviceTypes);
 //        comboBox.valueProperty().addListener(new ChangeListener<String>() {
 //            @Override
 //            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -105,6 +117,32 @@ public class AnalyticsController {
         App.getPopup().getContent().clear();
         App.getPopup().getContent().add(App.getAdmin());
         App.getPopup().show(App.getPrimaryStage());
+    }
+
+    @FXML
+    public void addSRType(ActionEvent event) {
+        if (!typesComboBox.getSelectionModel().isEmpty() &&
+        !typesChip.getChips().contains(typesComboBox.getSelectionModel().getSelectedItem())) {
+//            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
+
+            typesChip.getChips().add(typesComboBox.getSelectionModel().getSelectedItem());
+            typesComboBox.getSelectionModel().clearSelection();
+        } else {
+            typesComboBox.setStyle("-fx-border-color: red");
+        }
+    }
+
+    @FXML
+    public void removeSRType(ActionEvent event) {
+        if (!typesComboBox.getSelectionModel().isEmpty() &&
+                !typesChip.getChips().contains(typesComboBox.getSelectionModel().getSelectedItem())) {
+//            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
+
+            typesChip.getChips().remove(typesComboBox.getSelectionModel().getSelectedItem());
+            typesComboBox.getSelectionModel().clearSelection();
+        } else {
+            typesComboBox.setStyle("-fx-border-color: red");
+        }
     }
 }
 
