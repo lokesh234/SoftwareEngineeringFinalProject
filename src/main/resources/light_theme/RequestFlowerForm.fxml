@@ -90,7 +90,7 @@
                               </JFXTextArea>
                            </children>
                         </VBox>
-                        <JFXChipView fx:id="flowerChip" disable="false" GridPane.rowIndex="2" />
+                        <JFXChipView promptText="hello" fx:id="flowerChip" prefHeight="200.0" prefWidth="300.0" GridPane.rowIndex="2" />
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label text="Room " />
