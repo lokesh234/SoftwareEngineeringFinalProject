@@ -103,15 +103,16 @@
                   <!--                              <Insets />-->
                   <!--                           </VBox.margin>-->
                   <!--                        </HBox>--><HBox alignment="CENTER_LEFT" spacing="10.0">
-                  <children>
-                     <Label fx:id="label" text="Data Type as:" />
-                  </children>
+<!--                  <children>-->
+<!--                     <Label fx:id="label" text="Data Type as:" />-->
+<!--                  </children>-->
                </HBox>
                   <HBox alignment="CENTER_LEFT" spacing="10.0" />
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                   </HBox>
-                  <JFXDatePicker/>
-                  <JFXDatePicker/>
+                  <JFXDatePicker fx:id="fromDP"/>
+                  <JFXDatePicker fx:id="toDP"/>
+                   <JFXButton onAction="#update" text="Generate" fx:id="generate"/>
                   <!--                  <JFXButton fx:id="close1" onAction="#closeRequest" style="-fx-background-color: #474338;" text="View" textFill="WHITE">-->
                   <!--                     <font>-->
                   <!--                        <Font name="Segoe UI" size="18.0" />-->
@@ -136,9 +137,9 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="subtitleBar">
                            <children>
+                               <JFXComboBox fx:id="majorTypesComboBox"/>
                               <JFXComboBox fx:id="typesComboBox"/>
                               <JFXButton text="Add" onAction="#addSRType"/>
-                              <JFXButton text="Remove" onAction="#removeSRType"/>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
                                     <JFXChipView fx:id="typesChip"/>

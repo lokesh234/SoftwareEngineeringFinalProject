@@ -1,11 +1,16 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXChipView;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.twilio.rest.api.v2010.account.usage.record.Today;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -14,11 +19,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class AnalyticsController {
     String type = "employee";
-    ArrayList<String> types = ServiceRequestWrapper.getAllServiceType();
+    ArrayList<String> types = new ArrayList<String>();
 //    @FXML
 //    JFXComboBox comboBox;
     @FXML
@@ -28,12 +39,24 @@ public class AnalyticsController {
     @FXML
     private BarChart barChart;
     @FXML
-    private JFXComboBox typesComboBox;
+    private JFXComboBox typesComboBox, majorTypesComboBox;
     @FXML
     private JFXChipView typesChip;
+    @FXML
+    private JFXDatePicker fromDP, toDP;
+    private LocalDate startTime, endTime;
+    @FXML
+    private JFXButton generate;
 
 
+    @FXML
     private void update(){
+        types = new ArrayList<String>();
+
+        for (Object s: typesChip.getChips().toArray()) {
+            types.add((String) s);
+        }
+
         pieChart.setData(arrayToPie());
         pieChart.setTitle(type);
     }
@@ -61,15 +84,19 @@ public class AnalyticsController {
 
     private ObservableList<PieChart.Data> arrayToPie(){
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        ArrayList<Integer> temp = new ArrayList<Integer>();
-        types = DatabaseWrapper.getDataAnalytics(temp, type);
 
-        if(temp != null) {
-            for(int i =0; i < types.size(); i++) {
-                System.out.println(types.get(i) + " " + temp.get(i));
-            if (temp.get(i) > 0) {
-              pieChartData.add(new PieChart.Data(types.get(i) + " (" + temp.get(i) + ")", temp.get(i)));
-                    }
+        if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+            for (int i = 0; i < types.size(); i++) {
+                System.out.println(types.get(i) + DatabaseWrapper.getEmployeeCount(types.get(i)));
+                if (DatabaseWrapper.getEmployeeCount(types.get(i)) > 0) {
+                    pieChartData.add(new PieChart.Data(types.get(i) + " (" + DatabaseWrapper.getEmployeeCount(types.get(i)) + ")", DatabaseWrapper.getEmployeeCount(types.get(i))));
+                }
+            }
+        }
+        else {
+            for (int i = 0; i < types.size(); i++) {
+                int number = ServiceDatabase.getServiceRequestAmountRange(types.get(i), startTime.toString(), endTime.toString());
+                pieChartData.add(new PieChart.Data(types.get(i) + " (" + number + ")", number));
             }
         }
         return pieChartData;
@@ -83,14 +110,15 @@ public class AnalyticsController {
                         ServiceRequestWrapper.getAllServiceType()
                 );
         typesComboBox.getItems().addAll(serviceTypes);
-//        comboBox.valueProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-//                    type = comboBox.getSelectionModel().getSelectedItem().toString();
-//                    update();
-////                System.out.println("changes");
-//            }
-//        });
+
+
+        ObservableList<String> majorTypes =
+                FXCollections.observableArrayList(
+                        "employee",
+                        "service",
+                        "serviceFinished"
+                );
+        majorTypesComboBox.getItems().addAll(majorTypes);
 //
 //        ObservableList<String> deliveryOptions =
 //                FXCollections.observableArrayList(
@@ -99,6 +127,33 @@ public class AnalyticsController {
 //                        "serviceFinished"
 //                );
 //        comboBox.getItems().addAll(deliveryOptions);
+
+
+        generate.setDisable(true);
+        BooleanBinding blockCheckBox =
+                (typesChip.converterProperty().isNull())
+                .or(majorTypesComboBox.getSelectionModel().selectedItemProperty().isNull())
+                .or(fromDP.getEditor().textProperty().isEmpty())
+                .or(toDP.getEditor().textProperty().isEmpty());
+        generate.disableProperty().bind(blockCheckBox);
+
+        fromDP.setDisable(true);
+        toDP.setDisable(true);
+        majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+                    fromDP.setValue(LocalDate.now());
+                    toDP.setValue(LocalDate.now());
+                    fromDP.setDisable(true);
+                    toDP.setDisable(true);
+                }
+                else {
+                    fromDP.setDisable(false);
+                    toDP.setDisable(false);
+                }
+            }
+        });
 
 
         CategoryAxis xAxis    = new CategoryAxis();
@@ -126,19 +181,6 @@ public class AnalyticsController {
 //            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
 
             typesChip.getChips().add(typesComboBox.getSelectionModel().getSelectedItem());
-            typesComboBox.getSelectionModel().clearSelection();
-        } else {
-            typesComboBox.setStyle("-fx-border-color: red");
-        }
-    }
-
-    @FXML
-    public void removeSRType(ActionEvent event) {
-        if (!typesComboBox.getSelectionModel().isEmpty() &&
-                !typesChip.getChips().contains(typesComboBox.getSelectionModel().getSelectedItem())) {
-//            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
-
-            typesChip.getChips().remove(typesComboBox.getSelectionModel().getSelectedItem());
             typesComboBox.getSelectionModel().clearSelection();
         } else {
             typesComboBox.setStyle("-fx-border-color: red");
