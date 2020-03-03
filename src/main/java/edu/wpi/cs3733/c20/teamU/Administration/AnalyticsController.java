@@ -144,6 +144,18 @@ public class AnalyticsController {
             typesComboBox.setStyle("-fx-border-color: red");
         }
     }
+
+    @FXML
+    public void  addAllSRType(ActionEvent event){
+        typesChip.getChips().clear();
+        typesChip.getChips().addAll(ServiceRequestWrapper.getAllServiceType());
+    }
+
+    @FXML
+    public void  removeAllSRType(ActionEvent event){
+        typesChip.getChips().clear();
+    }
+
 }
 
 //    //Defining X axis

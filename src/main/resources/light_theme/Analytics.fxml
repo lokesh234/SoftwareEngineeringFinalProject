@@ -144,8 +144,8 @@
                                     <JFXChipView fx:id="typesChip"/>
                                  </children>
                               </VBox>
-                              <JFXButton text="Add All" />
-                              <JFXButton text="Remove All" />
+                              <JFXButton text="Add All" onAction="#addAllSRType"/>
+                              <JFXButton text="Remove All" onAction="#removeAllSRType"/>
                            </children>
                         </HBox>
                         <TabPane prefHeight="359.0" prefWidth="770.0" tabClosingPolicy="UNAVAILABLE">
