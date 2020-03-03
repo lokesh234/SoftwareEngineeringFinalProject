@@ -34,6 +34,7 @@ public class LoginScreenController {
   private String usernameTried;
   private EmployeeFormController employeeFormController;
   protected AdminBannerController adminBannerController;
+  private Popup bannerPop;
 
   public void setAttributes(EmployeeFormController attribute) {
     employeeFormController = attribute;
@@ -108,6 +109,9 @@ public class LoginScreenController {
     App.getPopup().getContent().clear();
   }
 
+  public Popup getPop() {
+    return adminBannerController.getPop();
+  }
   /**
    * function used to clear all the fields back to default
    */

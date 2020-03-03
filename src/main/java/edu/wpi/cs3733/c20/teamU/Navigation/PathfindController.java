@@ -1325,6 +1325,7 @@ public class PathfindController {
     @FXML
     private void swap() {
         Node buf = start;
+        if(buf == null) return;
         start = end;
         end = buf;
         startBox.setText(start.getLongName());

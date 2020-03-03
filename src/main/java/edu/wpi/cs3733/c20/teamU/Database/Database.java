@@ -454,9 +454,9 @@ public class Database {
      * @param stmt
      * @param tableName
      */
-    private static void createServiceFinishedTable(Statement stmt, String tableName){
+    private static void createServiceFinishedTable(Statement stmt, String tableName) {
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
+            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(20), info VARCHAR(255), "+
                     "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'FLOWR', 'CLOWN', 'ETRAN', 'INTEC', 'RELIG', 'SANIT', 'DELIV')))";
 
             stmt.executeUpdate(slqCreate);
@@ -613,7 +613,7 @@ public class Database {
       String slqCreate =
           "CREATE TABLE "
               + tableName
-              + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(30), religiousAffiliation VARCHAR(30), explanation VARCHAR(200), "
+              + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, name VARCHAR(50), religiousAffiliation VARCHAR(30), explanation VARCHAR(200), "
               + "CONSTRAINT RRSR_CK CHECK (religiousAffiliation in ('Protestantism', 'Catholicism', 'Judaism', 'Mormonism', 'Islam', 'Other', 'No Religion')))";
 
             stmt.executeUpdate(slqCreate);
@@ -626,7 +626,7 @@ public class Database {
         }
     }
 
-    private static void createFlowersSRTable(Statement stmt, String tableName){
+    private static void createFlowersSRTable(Statement stmt, String tableName) {
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, lastName VARCHAR(20), firstName VARCHAR(20), roses BOOLEAN, tulips BOOLEAN, lilies BOOLEAN, occasion VARCHAR(20), "+
                     "deliveryDate DATE, giftNote VARCHAR(200), room VARCHAR(30), CONSTRAINT FSR_CK CHECK (occasion in ('Happy','Sad', 'Anytime')))";

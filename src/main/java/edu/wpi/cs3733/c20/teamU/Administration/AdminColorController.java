@@ -313,7 +313,7 @@ public class AdminColorController {
    * @param cc selected color value on JFXColorPicker
    * @return R: FF G: FF B: FF == FFFFFF
    */
-  private String convertRGBToHex(JFXColorPicker cc) {
+  static String convertRGBToHex(JFXColorPicker cc) {
 //    System.out.println((int) (cc.getValue().getRed() * 255));
 //    System.out.println((int) (cc.getValue().getBlue() * 255));
 //    System.out.println(((int) (cc.getValue().getGreen() * 255)) + "\n");
