@@ -196,7 +196,7 @@ public class PathfindController {
                 start = hitboxes.get(event.getSource());
                 startReady = (start != null) || startReady;
 //                if (startReady) startLabel.setText(start.getLongName());
-                if (startReady) SearchBox.setText(start.getLongName());
+                if (startReady) startBox.setText(start.getLongName());
                 state = State.END;
                 updateStatus();
             }
@@ -204,7 +204,7 @@ public class PathfindController {
                 end = hitboxes.get(event.getSource());
                 endReady = (end != null) || endReady;
 //                if (endReady) endLabel.setText(end.getLongName());
-                if (endReady) SearchBox.setText(end.getLongName());
+                if (endReady) endBox.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
             }
@@ -668,7 +668,9 @@ public class PathfindController {
             try {
                 ImageView i = new ImageView();
                 i.setImage(new Image("png_files/"+n.getID()+".png"));
-                i.setOnMouseClicked(hitboxClickHandler);
+                i.addEventFilter(MOUSE_CLICKED, hitboxClickHandler);
+                i.setX(n.getX());
+                i.setY(n.getY());
                 addToPath(i, n.getFloor());
                 hitboxes.put(i, n);
             } catch (Exception e) {
