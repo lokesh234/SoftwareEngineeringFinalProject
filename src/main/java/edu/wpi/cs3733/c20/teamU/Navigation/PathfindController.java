@@ -481,6 +481,10 @@ public class PathfindController {
     private void updateStatus() {
         removeFromAll(startNodeLabel);
         removeFromAll(endNodeLabel);
+        removeFromAll(startView);
+        removeFromAll(startSelect);
+        removeFromAll(endView);
+        removeFromAll(endViewselect);
         if (state == State.NEUTRAL) {
 //            if (displayingPath && path.size() == 0) statusLabel.setText("No path found :(");
 //            else if (displayingPath) statusLabel.setText("Click 'Clear' to Remove This Path");
@@ -1069,6 +1073,8 @@ public class PathfindController {
         removeFromAll(endSelect);
         removeFromAll(endViewselect);
         removeFromAll(endView);
+        startBox.setText("");
+        endBox.setText("");
         clearPath();
     }
 
