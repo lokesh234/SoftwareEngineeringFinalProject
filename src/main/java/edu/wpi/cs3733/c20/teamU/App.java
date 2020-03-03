@@ -76,6 +76,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane treeView;
   private static Pane analytics;
   private static Pane scale;
+  private static Pane custom;
   private static Pane color;
   private static Pane information;
   private static Pane credit;
@@ -151,6 +152,7 @@ public class App<loadedAdminRequests> extends Application {
   private static AnalyticsController analyticsController;
   private static AdminScaleController scaleController;
   private static AdminColorController colorController;
+  private static AddCustomRequestController customController;
   private static InformationController informationController;
   private static CreditController creditController;
 
@@ -502,6 +504,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getAdminRequest() { return adminRequest; }
   public static Pane getAdminEmployee() { return adminEmployee; }
   public static Pane getAdminBacklog() { return adminBacklog; }
+  public static Pane getCustom() { return custom;}
   public static Pane getExport() { return export; }
   public static Pane getEdit() { return edit;}
   public static Pane getAddNode() { return addNode; }
@@ -572,6 +575,7 @@ public class App<loadedAdminRequests> extends Application {
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static AdminEmployeeController getAdminEmployeeController() { return adminEmployeeController;}
   public static AdminBacklogController getAdminBacklogController() { return adminBacklogController;}
+  public static AddCustomRequestController getCustomController() { return customController;}
   public static FireController getFireController(){return fireController;}
   public static GraphEditController getGraphEditController() { return graphEditController;}
   public static WeatherController weatherController() {return weatherController; }
@@ -772,6 +776,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader timeoutLoader = new FXMLLoader(App.class.getResource("/light_theme/TimeoutForm.fxml"));
         FXMLLoader scaleLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminScaleForm.fxml"));
         FXMLLoader colorLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminColor.fxml"));
+        FXMLLoader customLoader = new FXMLLoader(App.class.getResource("/light_theme/CreateServiceForm.fxml"));
 
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
@@ -788,6 +793,7 @@ public class App<loadedAdminRequests> extends Application {
         analytics = analyticsLoader.load();
         scale = scaleLoader.load();
         color = colorLoader.load();
+        custom = customLoader.load();
 
         admin.setOnKeyPressed(fireKey);
         analytics.setOnKeyPressed(fireKey);
@@ -803,6 +809,7 @@ public class App<loadedAdminRequests> extends Application {
         login.setOnKeyPressed(loginconfirmKey);
         employeeF.setOnKeyPressed(employeeformconfirmKey);
         scale.setOnKeyPressed(fireKey);
+        custom.setOnKeyPressed(fireKey);
 
 
 
@@ -821,6 +828,7 @@ public class App<loadedAdminRequests> extends Application {
         timeoutController = timeoutLoader.getController();
         scaleController = scaleLoader.getController();
         colorController = colorLoader.getController();
+        customController = customLoader.getController();
 
         requestScreenController.setAttributes(adminRequestController);
         adminRequestController.setAttributes(requestScreenController);
