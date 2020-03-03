@@ -142,7 +142,7 @@ public class PathfindController {
     @FXML
     Label startLabel, endLabel, statusLabel;
     @FXML
-    TextField SearchBox;
+    JFXTextField SearchBox;
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -264,8 +264,8 @@ public class PathfindController {
         checker = 2;
     }
 
-    private void Auto(){
-        TextFields.bindAutoCompletion(SearchBox, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+    private void Auto(JFXTextField autocomplete){
+        TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
@@ -285,6 +285,9 @@ public class PathfindController {
             }
         });
     }
+
+
+
 
     @FXML private void stateMachine(int floor){
         switch (floor){
@@ -962,7 +965,10 @@ public class PathfindController {
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         Populate();
-        Auto();
+        Auto(SearchBox);
+        Auto(startBox);
+        Auto(endBox);
+
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
 
