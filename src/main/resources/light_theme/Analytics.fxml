@@ -77,25 +77,26 @@
          <left>
             <VBox alignment="CENTER" spacing="10.0" styleClass="sideBar" BorderPane.alignment="CENTER">
                <children>
-                  <Accordion prefHeight="111.0" prefWidth="41.0">
-                    <panes>
-                      <TitledPane animated="false" text="untitled 1">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </TitledPane>
-                      <TitledPane animated="false" text="untitled 2">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </TitledPane>
-                      <TitledPane animated="false" text="untitled 3">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </TitledPane>
-                    </panes>
-                  </Accordion>
+<!--                  <Accordion prefHeight="111.0" prefWidth="41.0">-->
+<!--                    <panes>-->
+<!--                      <TitledPane animated="false" text="untitled 1">-->
+<!--                        <content>-->
+<!--                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />-->
+<!--                        </content>-->
+<!--                      </TitledPane>-->
+<!--                      <TitledPane animated="false" text="untitled 2">-->
+<!--                        <content>-->
+<!--                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />-->
+<!--                        </content>-->
+<!--                      </TitledPane>-->
+<!--                      <TitledPane animated="false" text="untitled 3">-->
+<!--                        <content>-->
+<!--                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />-->
+<!--                        </content>-->
+<!--                      </TitledPane>-->
+<!--                    </panes>-->
+<!--                  </Accordion>-->
+                   <JFXComboBox fx:id="quickSelection"/>
                   <!--                        <HBox prefHeight="20.0" spacing="10.0">-->
                   <!--                           <children>-->
                   <!--                              <Label text="Browse for file" />-->

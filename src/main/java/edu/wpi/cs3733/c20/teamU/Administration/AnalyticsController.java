@@ -40,7 +40,7 @@ public class AnalyticsController {
     @FXML
     private BarChart barChart;
     @FXML
-    private JFXComboBox typesComboBox, majorTypesComboBox;
+    private JFXComboBox typesComboBox, majorTypesComboBox, quickSelection;
     @FXML
     private JFXChipView typesChip;
     @FXML
@@ -102,19 +102,26 @@ public class AnalyticsController {
             XYChart.Series series = new XYChart.Series();
             series.setName(s);
             for(int i = 0; i < (highB-lowB); i++) {
-                LocalDate temp = fromDP.getValue();
+                LocalDate start = fromDP.getValue();
+                LocalDate end;
                 if (unit.equals("year")) {
-                    temp = temp.plusYears(1);
+                    end = start.plusYears(1);
                 }
                 else if(unit.equals("month")){
-                    temp = temp.plusMonths(1);
+                    end = start.plusMonths(1);
                 }
                 else {
-                    temp = temp.plusDays(1);
+                    end = start.plusDays(1);
                 }
-                series.getData().add(new XYChart.Data(
-                        temp,
-                        ServiceDatabase.getServiceRequestAmountRange(s, fromDP.getValue().toString(), temp.toString())));
+
+                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+                    series.getData().add(new XYChart.Data(end,
+                        ServiceDatabase.getServiceRequestAmountRange(s, start.toString(), end.toString())));
+                }
+                else {
+                    series.getData().add(new XYChart.Data(end,
+                            ServiceDatabase.getServiceFinishedAmountRange(s, start.toString(), end.toString())));
+                }
             }
             lineChart.getData().add(series);
         }
@@ -140,8 +147,11 @@ public class AnalyticsController {
             if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")) {
                 dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getEmployeeCount(s)));
                 System.out.println("Bar:" + s + ":" + DatabaseWrapper.getEmployeeCount(s));
-            } else {
+            } else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
                 dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceRequestAmountRange(s, startTime.toString(), endTime.toString())));
+            }
+            else {
+                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceFinishedAmountRange(s, startTime.toString(), endTime.toString())));
             }
         }
         barChart.getData().add(dataSeries1);
@@ -150,20 +160,23 @@ public class AnalyticsController {
     private ObservableList<PieChart.Data> arrayToPie(){
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
-        if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
-            for (int i = 0; i < types.size(); i++) {
-                System.out.println(types.get(i) + DatabaseWrapper.getEmployeeCount(types.get(i)));
-                if (DatabaseWrapper.getEmployeeCount(types.get(i)) > 0) {
-                    pieChartData.add(new PieChart.Data(types.get(i) + " (" + DatabaseWrapper.getEmployeeCount(types.get(i)) + ")", DatabaseWrapper.getEmployeeCount(types.get(i))));
-                }
+        for (int i = 0; i < types.size(); i++) {
+            int number = 0;
+
+            if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+                number = DatabaseWrapper.getEmployeeCount(types.get(i));
+            }else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
+                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i), startTime.toString(), endTime.toString());
             }
-        }
-        else {
-            for (int i = 0; i < types.size(); i++) {
-                int number = ServiceDatabase.getServiceRequestAmountRange(types.get(i), startTime.toString(), endTime.toString());
+            else {
+                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i), startTime.toString(), endTime.toString());
+            }
+
+            if (number > 0) {
                 pieChartData.add(new PieChart.Data(types.get(i) + " (" + number + ")", number));
             }
         }
+
         return pieChartData;
     }
 
@@ -184,6 +197,35 @@ public class AnalyticsController {
                         "serviceFinished"
                 );
         majorTypesComboBox.getItems().addAll(majorTypes);
+
+        ObservableList<String> quick =
+                FXCollections.observableArrayList(
+                        "Last Day",
+                        "Last Week",
+                        "Last Month",
+                        "Last Year"
+                );
+        quickSelection.getItems().addAll(majorTypes);
+
+        majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String selection = quickSelection.getSelectionModel().getSelectedItem().toString();
+                LocalDate currentTime = LocalDate.now();
+                if(selection.equals("Last Day")){
+                    currentTime = currentTime.minusDays(1);
+                }
+                else if(selection.equals("Last Week")){
+                    currentTime = currentTime.minusWeeks(1);
+                }
+                else if (selection.equals("Last Month")){
+                    currentTime = currentTime.minusMonths(1);
+                }
+                else if (selection.equals("Last Year")){
+                    currentTime = currentTime.minusYears(1);
+                }
+            }
+        });
 //
 //        ObservableList<String> deliveryOptions =
 //                FXCollections.observableArrayList(
@@ -205,6 +247,7 @@ public class AnalyticsController {
         fromDP.setDisable(true);
         toDP.setDisable(true);
         lineTab.setDisable(true);
+        quickSelection.setDisable(true);
         majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -214,11 +257,13 @@ public class AnalyticsController {
                     fromDP.setDisable(true);
                     toDP.setDisable(true);
                     lineTab.setDisable(true);
+                    quickSelection.setDisable(true);
                 }
                 else {
                     fromDP.setDisable(false);
                     toDP.setDisable(false);
                     lineTab.setDisable(false);
+                    quickSelection.setDisable(false);
                 }
             }
         });
