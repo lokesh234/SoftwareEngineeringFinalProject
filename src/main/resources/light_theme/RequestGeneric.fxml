@@ -61,7 +61,7 @@
             <bottom>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" text="Submit" />
+                        <JFXButton fx:id="submit" onAction="#getVals" text="Submit" />
                         <JFXButton fx:id="backToRequest" onAction="#goBack" text="Back" />
                     </children>
                 </HBox>

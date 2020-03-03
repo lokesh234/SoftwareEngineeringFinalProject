@@ -839,6 +839,7 @@ public class App<loadedAdminRequests> extends Application {
         adminRequestController.setAttributes(requestScreenController);
         adminEmployeeController.setAttributes(employeeFormController);
         loginScreenController.setAttributes(employeeFormController);
+        requestController.updateButtons();
 
         adminScene = new Scene(admin);
 

@@ -126,6 +126,7 @@ public class AddCustomRequestController {
             }
             System.out.println(output);
             saveFile(output, shortName.getText());
+            App.getRequestController().updateButtons();
             back();
         }
     }
@@ -145,7 +146,8 @@ public class AddCustomRequestController {
 
     private boolean isValidRequest(String sname, String lname, ObservableList<Component> comps) {
         if (sname.length() == 0 || lname.length() == 0 || comps.size() == 0) return false;
-        if (sname.contains("'") || sname.contains("\"") || sname.contains(",") || sname.contains(";") || sname.contains("(") || sname.contains(")")) return false;
+        if (lname.contains("\n")) return false;
+        if (sname.contains("'") || sname.contains("\"") || sname.contains(",") || sname.contains(";") || sname.contains("(") || sname.contains(")") || sname.contains(".")) return false;
         //if (databaseWrapper.hasRequestType(sname)) return false;
         for (Component c : comps) {
             if (!isValidComp(c)) return false;

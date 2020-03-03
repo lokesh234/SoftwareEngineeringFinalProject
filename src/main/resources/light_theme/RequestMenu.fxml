@@ -38,7 +38,7 @@
             </HBox>
          </top>
          <center>
-            <JFXMasonryPane HSpacing="10.0" VSpacing="10.0" cellHeight="100.0" cellWidth="100.0" styleClass="buttonGrid" BorderPane.alignment="CENTER">
+            <JFXMasonryPane HSpacing="10.0" VSpacing="10.0" cellHeight="100.0" cellWidth="100.0" styleClass="buttonGrid" BorderPane.alignment="CENTER" fx:id="masonry">
                <children>
                   <VBox alignment="CENTER">
                      <children>
