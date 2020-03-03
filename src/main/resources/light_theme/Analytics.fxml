@@ -312,6 +312,7 @@
                                                             <JFXRadioButton text="Last month" />
                                                             <JFXRadioButton text="Last year" />
                                                             <JFXRadioButton text="All Time" />
+                                                            <JFXComboBox fx:id="quickSelection" />
                                                          </children>
                                                       </VBox>
                                                    </content>
