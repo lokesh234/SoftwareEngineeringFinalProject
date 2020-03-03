@@ -79,6 +79,7 @@ public class PathfindController {
     @FXML private GesturePane MapGes5;
     @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
     @FXML private JFXTextField startBox, endBox;
+    @FXML private JFXButton centerOut;
 
     @FXML private RadioButton fast, elev, stai;
 
@@ -167,6 +168,20 @@ public class PathfindController {
                 if (endReady) endBox.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
+            }
+        }
+    };
+
+    EventHandler<MouseEvent> PathZOOOOM = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (start == null){
+                System.out.println("++++++++++++++++++++++++++++++++++++++++");
+                return;
+            }
+            else {
+                System.out.println("----------------------------------------------//////////////////");
+                startZoomMachine(floor);
             }
         }
     };
@@ -395,6 +410,42 @@ public class PathfindController {
                         .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
                 zoomed = MapGes5.getCurrentScale();
                 zoomCounter--;
+                break;
+        }
+    }
+
+    private void startZoomMachine(int floor) {
+        Point2D focus = new Point2D(start.getX(), start.getY());
+        switch (floor) {
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes1.getCurrentScale() + 1.25 , focus);
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes2.getCurrentScale() + 1.25 , focus);
+
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes3.getCurrentScale() + 1.25 , focus);
+
+                break;
+            case 4:
+                System.out.println(focus);
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes4.getCurrentScale() + 1.25 , focus);
+
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes5.getCurrentScale() + 1.25, focus);
+
                 break;
         }
     }
@@ -884,6 +935,7 @@ public class PathfindController {
         rightArrow.addEventHandler(MOUSE_PRESSED, rightClick);
         upArrow.addEventHandler(MOUSE_PRESSED, upClick);
         downArrow.addEventHandler(MOUSE_PRESSED, downClick);
+        centerOut.addEventHandler(MOUSE_PRESSED, PathZOOOOM );
 
 
         fast.setToggleGroup(group);

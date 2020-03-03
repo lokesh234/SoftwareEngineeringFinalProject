@@ -288,11 +288,11 @@
                         </StackPane>
                      </children>
                   </JFXDrawer>
-                  <JFXDrawer fx:id="legendDrawer" maxHeight="400.0" styleClass="legend">
+                  <JFXDrawer fx:id="legendDrawer" maxHeight="400.0" styleClass="legend"  style="-fx-background-color: TRANSPARENT;">
                      <children>
-                        <StackPane fx:id="legendPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
+                        <StackPane fx:id="legendPane" style="-fx-background-color: TRANSPARENT;" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <VBox fx:id="legendContent" spacing="10.0" StackPane.alignment="CENTER_LEFT">
+                              <VBox fx:id="legendContent" style="-fx-background-color: TRANSPARENT;" spacing="10.0" StackPane.alignment="CENTER_LEFT">
                                  <children>
                                     <Label text="Node color key">
                                        <font>
@@ -563,7 +563,7 @@
                                     <Font name="Segoe UI" size="18.0" />
                                  </font>
                               </JFXButton>
-                              <JFXButton fx:id="upArrow1" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <JFXButton fx:id="centerOut" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Segoe UI" size="18.0" />
                                  </font>
