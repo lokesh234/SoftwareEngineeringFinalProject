@@ -106,7 +106,7 @@ public class RequestController {
         App.getHome().setOpacity(1);
         App.getHome().setDisable(false);
         FoodRequest foodRequest = new FoodRequest();
-        foodRequest.run(0, 0, 1080, 1920, null, null, null);
+        foodRequest.run(0, 0, 1080, 1920, "/ight_theme/light.css", null, null);
     }
 
     @FXML
