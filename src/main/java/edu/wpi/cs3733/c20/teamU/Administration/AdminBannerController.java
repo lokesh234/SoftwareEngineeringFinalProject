@@ -33,7 +33,7 @@ public class AdminBannerController {
             adminBannerController.update(username);
 
             adminBannerPop.getContent().clear();
-            adminBannerPop.setX(App.getPrimaryStage().getX() + 1500);
+            adminBannerPop.setX(App.getPrimaryStage().getX() + 1450);
             adminBannerPop.setY(App.getPrimaryStage().getY() + 40);
             adminBannerPop.getContent().add(adminBanner);
             adminBannerPop.show(App.getPrimaryStage());
@@ -47,5 +47,9 @@ public class AdminBannerController {
 //            App.loadHome();
             adminBannerPop.getContent().clear();
             adminBannerPop.show(App.getPrimaryStage());
+    }
+
+    public Popup getPop() {
+        return this.adminBannerPop;
     }
 }
