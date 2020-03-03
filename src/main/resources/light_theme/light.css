@@ -697,6 +697,12 @@
 
 .buttonGrid .jfx-button{
     -fx-background-radius: 5px;
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+    -fx-preferred-width: 100;
+    -fx-preferred-height: 100;
+    -jfx-button-type: FLAT;
+
 }
 
 .buttonGrid .gridPane{
