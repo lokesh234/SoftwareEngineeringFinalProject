@@ -19,14 +19,14 @@
  */
 /** defining custom colors */
 *{
-    -color-1: #FFF9E9; /* white */
-    -color-2: #000000; /*gray*/
-    -color-3: #dc143c; /*cream*/
-    -color-4: #dc143c; /*light-brown*/
-    -color-5: #4d4d4d; /*dark-gray*/
+    -color-1: #FFFFFF; /*root color*/
+    -color-2: #445577; /*title bar background color*/
+    -color-3: #BBDDFF; /*side bar color*/
+    -color-4: #445577; /*button color*/
+    -color-5: #DDDDDD; /*unselected text field*/
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
-    -body-text: #000000;
+    -body-text: #212121;
     -container-text: #FFFFFF;
 }
 
