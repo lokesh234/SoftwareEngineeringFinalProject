@@ -229,6 +229,26 @@ public class PathfindController {
         }
     };
 
+    EventHandler<MouseEvent> startClearSelect = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            start = null;
+            startReady = false;
+            state = State.START;
+            updateStatus();
+        }
+    };
+
+    EventHandler<MouseEvent> endClearSelect = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            end = null;
+            endReady = false;
+            state = State.END;
+            updateStatus();
+        }
+    };
+
     EventHandler<MouseEvent> interFloorPathHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) { //We know that one of the adjacent nodes is on a different floor (might be both of them, but then we can go to either)
@@ -562,6 +582,7 @@ public class PathfindController {
         removeFromAll(endNodeLabel);
         removeFromAll(startView);
         removeFromAll(startSelect);
+        removeFromAll(endSelect);
         removeFromAll(endView);
         removeFromAll(endViewselect);
         if (state == State.NEUTRAL) {
@@ -584,9 +605,11 @@ public class PathfindController {
             startSelect.setStroke(Color.GREEN);
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
+            startSelect.setOnMouseClicked(startClearSelect);
             startView.setImage(startMarker);
             startView.setX(start.getX() - 10);
             startView.setY(start.getY() - 53);
+            startView.setOnMouseClicked(startClearSelect);
             addToPath(startSelect, start.getFloor());
             addToPath(startView, start.getFloor());
 
@@ -616,9 +639,11 @@ public class PathfindController {
             endSelect.setStroke(Color.RED);
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
+            endSelect.setOnMouseClicked(endClearSelect);
             endView.setImage(endMarker);
             endView.setX(end.getX() - 17);
             endView.setY(end.getY() - 53);
+            endView.setOnMouseClicked(endClearSelect);
             addToPath(endSelect, end.getFloor());
             addToPath(endView, end.getFloor());
             addToPath(endViewselect, end.getFloor());
