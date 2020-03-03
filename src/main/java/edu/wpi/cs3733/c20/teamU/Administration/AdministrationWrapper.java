@@ -1,5 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
+import com.jfoenix.controls.JFXColorPicker;
 import edu.wpi.cs3733.c20.teamU.App;
 
 import java.io.File;
@@ -25,6 +26,10 @@ public class AdministrationWrapper {
 
     public static boolean CreateCSS(String cssName, String pathTo, String pathFrom){
         return Colors.CreateCSS(cssName, pathTo, pathFrom);
+    }
+
+    static String convertRGBToHex(JFXColorPicker cc) {
+        return AdminColorController.convertRGBToHex(cc);
     }
 
 }

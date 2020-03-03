@@ -257,7 +257,7 @@ public class ServiceDatabase {
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
             reqID = rs.getInt(1);
-            stmt.executeUpdate("INSERT INTO " + CDSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + location + "', '" + nClowns + "', '" + recipientName + "', '" + deliveryDate + "')");
+            stmt.executeUpdate("INSERT INTO " + CDSRTableName + " VALUES (" + reqID + ",'" + timeReq + "', '" + location + "', " + nClowns + ", '" + recipientName + "', '" + deliveryDate + "')");
 
             rs.close();
             Database.CreateCSV(stmt, CDSRTableName, null);
