@@ -34,6 +34,7 @@ public class LoginScreenController {
   private String usernameTried;
   private EmployeeFormController employeeFormController;
   protected AdminBannerController adminBannerController;
+  private Popup bannerPop;
 
   public void setAttributes(EmployeeFormController attribute) {
     employeeFormController = attribute;
@@ -108,6 +109,10 @@ public class LoginScreenController {
     App.getPopup().getContent().clear();
   }
 
+  public Popup getPop() {
+    if(adminBannerController != null) return adminBannerController.getPop();
+    else return new Popup();
+  }
   /**
    * function used to clear all the fields back to default
    */
@@ -148,26 +153,7 @@ public class LoginScreenController {
     }
     clearFields();
   }
-//  public void setDefaultSetting() {
-//    userName.setStyle("-fx-border-color: #FFEEC9");
-//    password.setStyle("-fx-border-color: #FFEEC9");
-//    usernameField.setFont(Font.font("Black", 20));
-//    passwordField.setFont(Font.font("Black", 20));
-//    robotCheck.setStyle("-fx-border-color: #FFEEC9");
-//    cancel.setStyle("-fx-border-color: #FFEEC9");
-//    loginEnter.setStyle("-fx-border-color: #FFEEC9");
-//    title.setStyle("-fx-border-color: #FFEEC9");
-//  }
-//  public void setDarkSetting() {
-//    userName.setStyle("-fx-border-color: white");
-//    password.setStyle("-fx-border-color: white");
-//    usernameField.setFont(Font.font("White", 20));
-//    passwordField.setFont(Font.font("White", 20));
-//    robotCheck.setStyle("-fx-border-color: white");
-//    cancel.setStyle("-fx-border-color: white");
-//    loginEnter.setStyle("-fx-border-color: white");
-//    title.setStyle("-fx-border-color: white");
-//  }
+
   @FXML
   private void initialize() {
     loginEnter.setDisable(false);

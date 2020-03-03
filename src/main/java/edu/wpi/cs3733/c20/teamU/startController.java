@@ -2,9 +2,11 @@ package edu.wpi.cs3733.c20.teamU;
 
 import static javafx.scene.input.MouseEvent.MOUSE_MOVED;
 
+import com.sun.webkit.dom.KeyboardEventImpl;
 import java.awt.MouseInfo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyEvent;
 import org.controlsfx.control.Notifications;
 
 public class startController {
@@ -54,6 +56,9 @@ public class startController {
     });
     initialLocation = MouseInfo.getPointerInfo().getLocation().getX();
     newLocation = MouseInfo.getPointerInfo().getLocation().getX();
+    App.getPrimaryStage().addEventHandler(KeyEvent.KEY_TYPED, event -> {
+      startTime = System.currentTimeMillis();
+    });
     startTime = System.currentTimeMillis();
     App.getPrimaryStage().setScene(App.getHomeScene());
     App.getHome().setDisable(false);
@@ -76,7 +81,8 @@ public class startController {
     App.getLanguageSRPop().getContent().clear();
     App.getChoosePathPop().getContent().clear();
     App.getWeatherPop().getContent().clear();
-
+    if(App.getLoginScreenController() != null) App.getLoginScreenController().getPop().getContent().clear();
+    App.getPathfindController().clearSelect();
   }
   @FXML
   private void initialize() {
