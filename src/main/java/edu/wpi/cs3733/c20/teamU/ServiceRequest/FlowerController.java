@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXChipView;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
@@ -11,6 +12,8 @@ import javafx.fxml.FXML;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+
+import javafx.scene.layout.Background;
 import org.controlsfx.control.Notifications;
 
 public class FlowerController {
@@ -25,18 +28,24 @@ public class FlowerController {
     @FXML private JFXComboBox flowerCombo = new JFXComboBox();
     @FXML private JFXComboBox occasionCombo = new JFXComboBox();
     @FXML private JFXDatePicker datePick;
-    @FXML private JFXChipView flowerChip = new JFXChipView();
+    @FXML private JFXChipView flowerChip;
     @FXML private JFXTextField room;
 
     public void keyConfirm(){
         submit.fire();
     }
 
+    public FlowerController() {
+    }
+
     @FXML
     private void flowerTypeAdd() {
         if (!flowerCombo.getSelectionModel().isEmpty()) {
-            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
+//            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
+
             flowerChip.getChips().add(flowerCombo.getSelectionModel().getSelectedItem());
+
+            System.out.println(flowerChip.getChips().size());
             flowerCombo.getSelectionModel().clearSelection();
         } else {
             flowerCombo.setStyle("-fx-border-color: red");
@@ -130,6 +139,7 @@ public class FlowerController {
 
     @FXML
     public void initialize() {
+//        flowerChip = new JFXChipView<>();
         //first set what today is, then dont touch it
         LocalDate today = retrieveDate();
         setToday(today);
@@ -158,17 +168,6 @@ public class FlowerController {
                 .or(occasionCombo.getSelectionModel().selectedItemProperty().isNull())
                 .or(datePick.getEditor().textProperty().isEmpty());
         submit.disableProperty().bind(blockCheckBox);
-
-//        @FXML private JFXTextField first;
-//        @FXML private JFXTextField last;
-//        @FXML private JFXTextArea giftNote;
-//        @FXML private JFXButton backToRequest;
-//        @FXML private JFXButton submit;
-//        @FXML private JFXComboBox flowerCombo = new JFXComboBox();
-//        @FXML private JFXComboBox occasionCombo = new JFXComboBox();
-//        @FXML private JFXDatePicker datePick;
-//        @FXML private JFXChipView flowerChip = new JFXChipView();
-//        @FXML private JFXTextField room;
     }
 
     private void setSelected(LocalDate date){

@@ -27,7 +27,7 @@ dependencies {
             [group: "com.twilio.sdk", name: "twilio", version: "7.42.0"],
             [group: 'com.github.prominence', name: 'openweathermap-api', version: '1.0'],
             [group: 'net.kurobako', name: 'gesturefx', version: '0.5.0'],
-            [group: 'com.jfoenix', name: 'jfoenix', version: '8.0.9'],
+//            [group: 'com.jfoenix', name: 'jfoenix', version: '8.0.9'],
             [group: 'edu.wpi.cs3733.c20.teamR', name: 'AppointmentRequest', version:'1.0.3'],
 
             // You may comment out the database dependency you do not use
@@ -39,13 +39,13 @@ dependencies {
             [group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'],
             [group: 'org.slf4j', name: 'slf4j-simple', version:'1.6.4']
     )
-
+    compile 'com.jfoenix:jfoenix:8.0.8'
     compile 'com.google.cloud:google-cloud-storage:1.105.0'
-    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.2'
+//    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.2'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile 'com.warrenstrange:googleauth:1.4.0'
     compile 'net.sourceforge.cssparser:cssparser:0.9.27'
-    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
+//    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
     compileOnly(
             [group: 'org.projectlombok', name: 'lombok', version: '1.18.8']
     )

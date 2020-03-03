@@ -643,7 +643,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Image getFloor5() { return floor5;}
 
   @Override
-  public void start(Stage primaryStage) throws Exception {
+  public void start(Stage primaryStage) {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
     setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
@@ -676,7 +676,7 @@ public class App<loadedAdminRequests> extends Application {
     }
 
     primaryStage.show();
-    AdministrationWrapper.setFirstTheme();
+//    AdministrationWrapper.setFirstTheme();
 //    FoodRequest foodRequest = new FoodRequest();
 //    foodRequest.run(800, 800, 800, 800, null, "something", "something");
 

@@ -985,7 +985,6 @@ public class PathfindController {
             legendDrawer.toggle();
         });
     }
-
     private void Populate(){
         for (int i = 0; i < DatabaseWrapper.getGraph().getNodes().size(); i++){
             AllNodeNames.add(DatabaseWrapper.getGraph().getNodes().get(i).getLongName());
