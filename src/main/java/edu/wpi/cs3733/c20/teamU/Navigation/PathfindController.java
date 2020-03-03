@@ -301,6 +301,33 @@ public class PathfindController {
         });
     }
 
+    private void AutoStart(JFXTextField autocomplete){
+        TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+            updateStatus();
+            if (DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText()) != null) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText());
+                startReady = (start != null) || startReady;
+//                if (startReady) startLabel.setText(start.getLongName());
+                state = State.END;
+                updateStatus();
+            }
+        });
+    }
+
+    private void AutoEnd(JFXTextField autocomplete){
+        TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+            updateStatus();
+           if (DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText()) != null) { //We're going to select an ending node!
+                end = DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText());
+                endReady = (end != null) || endReady;
+//                if (endReady) endLabel.setText(end.getLongName());
+                state = State.START;
+                updateStatus();
+            }
+        });
+    }
+
 
 
 
@@ -1018,8 +1045,8 @@ public class PathfindController {
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         Populate();
         Auto(SearchBox);
-        Auto(startBox);
-        Auto(endBox);
+        AutoStart(startBox);
+        AutoEnd(endBox);
 
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
