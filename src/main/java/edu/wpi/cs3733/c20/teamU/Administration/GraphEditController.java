@@ -71,11 +71,7 @@ public class GraphEditController {
   private Circle startSelect = new Circle();
   private Circle endSelect = new Circle();
 
-  public void zoomIn(ActionEvent event) {
-  }
 
-  public void zoomOut(ActionEvent event) {
-  }
 
   private enum State {
     neutral, selectStart, selectEnd, selectPos, selectNode, selectLocation;
@@ -184,6 +180,100 @@ public class GraphEditController {
       updateButtons();
     }
   }
+
+  @FXML private void zoomIn() {
+    ZoomInMachine(floor);
+  }
+  private int zoomCounter = 5;
+  private double zoomed = 0;
+  private void ZoomInMachine(int floor) {
+    switch (floor) {
+      case 1:
+          MapGes1.animate(Duration.millis(200))
+                  .interpolateWith(Interpolator.EASE_BOTH)
+                  .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
+          zoomed = MapGes1.getCurrentScale();
+          zoomCounter--;
+        break;
+      case 2:
+        MapGes2.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes2.getCurrentScale(), MapGes2.targetPointAtViewportCentre());
+        zoomed = MapGes2.getCurrentScale();
+        zoomCounter--;
+        break;
+      case 3:
+        MapGes3.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes3.getCurrentScale(), MapGes3.targetPointAtViewportCentre());
+        zoomed = MapGes3.getCurrentScale();
+        zoomCounter--;
+        break;
+      case 4:
+        MapGes4.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes4.getCurrentScale(), MapGes4.targetPointAtViewportCentre());
+        zoomed = MapGes4.getCurrentScale();
+        zoomCounter--;
+        break;
+      case 5:
+        MapGes5.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomBy(MapGes5.getCurrentScale(), MapGes5.targetPointAtViewportCentre());
+        zoomed = MapGes5.getCurrentScale();
+        zoomCounter--;
+        break;
+    }
+  }
+
+  private void ZoomOutMachine(int floor) {
+    switch (floor) {
+      case 1:
+        //          System.out.println(MapGes1.getCurrentScale());
+        MapGes1.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomTo(zoomed / 1.5, MapGes1.targetPointAtViewportCentre());
+        zoomed /= 1.5;
+        // System.out.println(zoomed/2);
+        zoomCounter++;
+        //        System.out.println(MapGes1.getCurrentScale() - 5);
+        break;
+      case 2:
+        MapGes2.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomTo(zoomed / 1.5, MapGes2.targetPointAtViewportCentre());
+        zoomed /= 1.5;
+        zoomCounter++;
+        break;
+      case 3:
+        MapGes3.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomTo(zoomed / 1.5, MapGes3.targetPointAtViewportCentre());
+        zoomed /= 1.5;
+        zoomCounter++;
+        break;
+      case 4:
+        MapGes4.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomTo(zoomed / 1.5, MapGes4.targetPointAtViewportCentre());
+        zoomed /= 1.5;
+        zoomCounter++;
+        break;
+      case 5:
+        MapGes5.animate(Duration.millis(200))
+                .interpolateWith(Interpolator.EASE_BOTH)
+                .zoomTo(zoomed / 1.5, MapGes5.targetPointAtViewportCentre());
+        zoomed /= 1.5;
+        zoomCounter++;
+        break;
+    }
+  }
+
+
+  @FXML private void zoomOut(){
+    ZoomOutMachine(floor);
+  }
+
 
   @FXML
   protected void remove() {

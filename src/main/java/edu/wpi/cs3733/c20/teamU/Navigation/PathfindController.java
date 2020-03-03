@@ -359,13 +359,11 @@ public class PathfindController {
     private void ZoomInMachine(int floor) {
         switch (floor) {
             case 1:
-                if(zoomCounter <= 5 && zoomCounter > 0) {
                     MapGes1.animate(Duration.millis(200))
                             .interpolateWith(Interpolator.EASE_BOTH)
                             .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
                     zoomed = MapGes1.getCurrentScale();
                     zoomCounter--;
-                }
                 break;
             case 2:
                 MapGes2.animate(Duration.millis(200))
