@@ -12,6 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -24,24 +27,34 @@ public class AddCustomRequestController {
     @FXML private TableColumn<Component, String> contCol;
     @FXML private JFXButton addButton, removeButton, submitButton, backButton;
 
-    private class Component {
+    public class Component {
         private String name, type;
         private ArrayList<String> components = new ArrayList<>();
         public String getName() { return name;}
         public String getType() { return type;}
         public String getComponents() { return components.toString();}
         public ArrayList<String> getComponents2() { return components;}
+        private String getComps() {
+            String s = "";
+            for (int i = 0; i < components.size()-1; i++) {
+                s += components.get(i);
+                s += ",";
+            }
+            s += components.get(components.size()-1);
+            return s;
+        }
         public Component(String n, String t, Collection<String> c) {
             name = n;
             type = t;
             components.addAll(c);
         }
+        public String toString() {
+            if (components.size() > 0) return name+":"+type+":"+getComps();
+            else return name+":"+type;
+        }
     }
 
-    @FXML
-    private void TESTCHIPVIEW() {
-        contents.getChips().add(fieldType.getSelectionModel().getSelectedItem());
-    }
+
     @FXML
     private void initialize() {
         fieldType.getItems().addAll("Text Field", "Text Area", "Combo Box", "Check Box", "Radio Buttons", "Date Picker", "Time Picker", "Color Picker");
@@ -52,7 +65,36 @@ public class AddCustomRequestController {
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         contCol.setCellValueFactory(new PropertyValueFactory<>("components"));
-        contents.getChips().add("Hello");
+        //contents.getChips().add("Hello");
+
+        fileSetup();
+    }
+
+    private void fileSetup() { //Checks if the CustomRequests folder exists, and creates it if it doesn't
+        File dir = new File("CustomRequests");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+    }
+
+    private void saveFile(String output, String dest) {
+        File file = new File("CustomRequests/"+dest+".txt");
+        try {
+            if (!file.createNewFile()) {
+                file.delete();
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter fw = new FileWriter("CustomRequests/"+dest+".txt");
+            fw.write(output);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -72,8 +114,40 @@ public class AddCustomRequestController {
         }
     }
 
-    private boolean isValidComp(String name, String type, ObservableList<String> contents) {
+    @FXML
+    private void addRequest() {
+        if (isValidRequest(shortName.getText(), formName.getText(), components.getItems())) {
+            //Do database things!
+            String output = formName.getText()+"\n";
+            for (Component c : components.getItems()) {
+                output += c.toString() + "\n";
+            }
+            System.out.println(output);
+            saveFile(output, shortName.getText());
+            back();
+        }
+    }
+
+    private boolean isValidComp(String name, String type, Collection<String> contents) {
         if ((type.equals("Combo Box") || type.equals("Radio Buttons")) && contents.size() == 0) return false;
+        if (name.contains(":") || type.contains(":")) return false;
+        for (String s : contents) {
+            if (s.contains(",")) return false;
+        }
+        return true;
+    }
+
+    private boolean isValidComp(Component c) {
+        return isValidComp(c.name, c.type, c.components);
+    }
+
+    private boolean isValidRequest(String sname, String lname, ObservableList<Component> comps) {
+        if (sname.length() == 0 || lname.length() == 0 || comps.size() == 0) return false;
+        if (sname.contains("'") || sname.contains("\"") || sname.contains(",") || sname.contains(";") || sname.contains("(") || sname.contains(")")) return false;
+        //if (databaseWrapper.hasRequestType(sname)) return false;
+        for (Component c : comps) {
+            if (!isValidComp(c)) return false;
+        }
         return true;
     }
 
@@ -85,6 +159,7 @@ public class AddCustomRequestController {
         shortName.clear();
         fieldName.clear();
         contents.getChips().clear();
+        components.getItems().clear();
         fieldType.setValue("Text Field");
     }
 
