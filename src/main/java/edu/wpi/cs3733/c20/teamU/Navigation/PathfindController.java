@@ -1060,7 +1060,7 @@ public class PathfindController {
     }
 
     @FXML
-    private void clearSelect() {
+    public void clearSelect() {
         start = null;
         end = null;
         startReady = false;
@@ -1071,8 +1071,8 @@ public class PathfindController {
         removeFromAll(endSelect);
         removeFromAll(endViewselect);
         removeFromAll(endView);
-        startBox.setText("");
-        endBox.setText("");
+        startBox.clear();
+        endBox.clear();
         clearPath();
     }
 

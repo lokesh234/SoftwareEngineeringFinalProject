@@ -81,8 +81,8 @@ public class startController {
     App.getLanguageSRPop().getContent().clear();
     App.getChoosePathPop().getContent().clear();
     App.getWeatherPop().getContent().clear();
-    App.getLoginScreenController().getPop().getContent().clear();
-
+    if(App.getLoginScreenController() != null) App.getLoginScreenController().getPop().getContent().clear();
+    App.getPathfindController().clearSelect();
   }
   @FXML
   private void initialize() {
