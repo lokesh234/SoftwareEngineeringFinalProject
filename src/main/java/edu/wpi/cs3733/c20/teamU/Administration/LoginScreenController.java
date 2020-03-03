@@ -108,7 +108,7 @@ public class LoginScreenController {
     App.getHome().setDisable(false);
     App.getPopup().getContent().clear();
   }
-  
+
   public Popup getPop() {
     return adminBannerController.getPop();
   }
