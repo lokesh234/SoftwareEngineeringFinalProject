@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
+import javafx.scene.control.Tab;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,14 +35,16 @@ public class AnalyticsController {
 //    JFXComboBox comboBox;
     @FXML
     PieChart pieChart;
-//    @FXML
-//    private LineChart lineChart;
+    @FXML
+    private LineChart lineChart;
     @FXML
     private BarChart barChart;
     @FXML
     private JFXComboBox typesComboBox, majorTypesComboBox;
     @FXML
     private JFXChipView typesChip;
+    @FXML
+    private Tab lineTab;
     @FXML
     private JFXDatePicker fromDP, toDP;
     private LocalDate startTime, endTime;
@@ -50,7 +53,7 @@ public class AnalyticsController {
     @FXML
     private CategoryAxis xA;
     @FXML
-    private NumberAxis yA;
+    private NumberAxis yA, lineYA, lineXA;
 
 
     @FXML
@@ -64,17 +67,68 @@ public class AnalyticsController {
         pieChart.setData(arrayToPie());
         pieChart.setTitle(type);
         fillBarChart();
+        fillLineChart();
     }
 
 
-//    private void fillLineChart(){
-//        NumberAxis xAxis = new NumberAxis(1960, 2020, 10);
-//        xAxis.setLabel("Time");
-//        NumberAxis yAxis = new NumberAxis(0, 350, 50);
-//        yAxis.setLabel("Number");
+    private void fillLineChart(){
+        int lowB = 0;
+        int highB = 0;
+        String unit = "";
+
+        if((fromDP.getValue().getYear()- toDP.getValue().getYear() >= 5)){
+            lowB = fromDP.getValue().getYear();
+            highB = toDP.getValue().getYear();
+            unit = "year";
+        }
+        else if ((fromDP.getValue().getMonthValue() - toDP.getValue().getMonthValue()) >= 3){
+            lowB = fromDP.getValue().getMonthValue();
+            highB = toDP.getValue().getMonthValue();
+            unit = "month";
+        }
+        else {
+            lowB = fromDP.getValue().getDayOfYear();
+            highB = toDP.getValue().getDayOfYear();
+            unit = "day";
+        }
+
+        NumberAxis xAxis = new NumberAxis(fromDP.getValue().getYear(), 2020, (highB-lowB)/10);
+        xAxis.setLabel("Time");
+        NumberAxis yAxis = new NumberAxis(0, 50, 10);
+        yAxis.setLabel("Number");
+
+
+        for (String s: types) {
+            XYChart.Series series = new XYChart.Series();
+            series.setName(s);
+            for(int i = 0; i < (highB-lowB); i++) {
+                LocalDate temp = fromDP.getValue();
+                if (unit.equals("year")) {
+                    temp = temp.plusYears(1);
+                }
+                else if(unit.equals("month")){
+                    temp = temp.plusMonths(1);
+                }
+                else {
+                    temp = temp.plusDays(1);
+                }
+                series.getData().add(new XYChart.Data(
+                        temp,
+                        ServiceDatabase.getServiceRequestAmountRange(s, fromDP.getValue().toString(), temp.toString())));
+            }
+            lineChart.getData().add(series);
+        }
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("No of schools in an year");
 //
-//        lineChart = new LineChart(xAxis,yAxis);
-//    }
+//        series.getData().add(new XYChart.Data(1970, 15));
+//        series.getData().add(new XYChart.Data(1980, 30));
+//        series.getData().add(new XYChart.Data(1990, 60));
+//        series.getData().add(new XYChart.Data(2000, 120));
+//        series.getData().add(new XYChart.Data(2013, 240));
+//        series.getData().add(new XYChart.Data(2014, 300));
+
+    }
 
 
     private void fillBarChart() {
@@ -150,6 +204,7 @@ public class AnalyticsController {
 
         fromDP.setDisable(true);
         toDP.setDisable(true);
+        lineTab.setDisable(true);
         majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -158,13 +213,17 @@ public class AnalyticsController {
                     toDP.setValue(LocalDate.now());
                     fromDP.setDisable(true);
                     toDP.setDisable(true);
+                    lineTab.setDisable(true);
                 }
                 else {
                     fromDP.setDisable(false);
                     toDP.setDisable(false);
+                    lineTab.setDisable(false);
                 }
             }
         });
+
+
 
 
         xA = new CategoryAxis();
@@ -173,6 +232,11 @@ public class AnalyticsController {
         yA = new NumberAxis();
         yA.setLabel("Numbers");
 
+        lineXA = new NumberAxis();
+        lineXA.setLabel("Services");
+
+        lineYA = new NumberAxis();
+        lineYA.setLabel("Numbers");
 //        barChart = new BarChart(xAxis, yAxis);
     }
 
