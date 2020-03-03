@@ -73,15 +73,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="Field Name" />
                         <Label text="Field Type" GridPane.rowIndex="1" />
-                        <Label text="Data Type" GridPane.rowIndex="2" />
                         <JFXTextField GridPane.columnIndex="1" />
                         <JFXComboBox GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXComboBox GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <HBox VBox.vgrow="SOMETIMES">
