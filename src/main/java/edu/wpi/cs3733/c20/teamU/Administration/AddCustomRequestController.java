@@ -57,7 +57,7 @@ public class AddCustomRequestController {
 
     @FXML
     private void initialize() {
-        fieldType.getItems().addAll("Text Field", "Text Area", "Combo Box", "Check Box", "Radio Buttons", "Date Picker", "Time Picker", "Color Picker");
+        fieldType.getItems().addAll("Text Field", "Text Area", "Combo Box", "Check Box", "Radio Buttons", "Date Picker", "Time Picker", "Color Picker", "Label");
         fieldType.setValue("Text Field");
         typeCol.setSortable(false);
         nameCol.setSortable(false);
@@ -104,6 +104,8 @@ public class AddCustomRequestController {
         }
         else {
             components.getItems().add(new Component(fieldName.getText(), fieldType.getValue(), contents.getChips()));
+            fieldName.setText("");
+            contents.getChips().clear();
         }
     }
 
