@@ -398,6 +398,23 @@ public class DatabaseWrapper {
     return Database.getEmployeeCount(EmployeeType);
   }
 
+  //add a type (auto converts to CAPS)
+  public static boolean addType(String typeName){
+    return Database.addType(typeName);
+  }
+
+  //remove a type (from every DB)
+  public static boolean delType(String typeName){
+    return Database.delType(typeName);
+  }
+
+  /**
+   * @return returns a list of the Types (Strings)
+   */
+  public static ArrayList<String> getTypes(){
+    return Database.getTypes();
+  }
+
   // SERVICE DATABASE
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
