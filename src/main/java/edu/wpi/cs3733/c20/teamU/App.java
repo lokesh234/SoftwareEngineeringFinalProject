@@ -680,7 +680,7 @@ public class App<loadedAdminRequests> extends Application {
     }
 
     primaryStage.show();
-    AdministrationWrapper.setFirstTheme();
+//    AdministrationWrapper.setFirstTheme();
 //    FoodRequest foodRequest = new FoodRequest();
 //    foodRequest.run(800, 800, 800, 800, null, "something", "something");
 

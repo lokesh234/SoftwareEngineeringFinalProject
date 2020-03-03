@@ -39,6 +39,10 @@ public class AddCustomRequestController {
     }
 
     @FXML
+    private void TESTCHIPVIEW() {
+        contents.getChips().add(fieldType.getSelectionModel().getSelectedItem());
+    }
+    @FXML
     private void initialize() {
         fieldType.getItems().addAll("Text Field", "Text Area", "Combo Box", "Check Box", "Radio Buttons", "Date Picker", "Time Picker", "Color Picker");
         fieldType.setValue("Text Field");
@@ -48,6 +52,7 @@ public class AddCustomRequestController {
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         contCol.setCellValueFactory(new PropertyValueFactory<>("components"));
+        contents.getChips().add("Hello");
     }
 
     @FXML

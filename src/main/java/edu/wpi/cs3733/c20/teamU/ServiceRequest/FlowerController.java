@@ -29,7 +29,6 @@ public class FlowerController {
     @FXML private JFXDatePicker datePick;
     @FXML private JFXChipView flowerChip;
     @FXML private JFXTextField room;
-    boolean x = false;
 
     public void keyConfirm(){
         submit.fire();
@@ -41,16 +40,10 @@ public class FlowerController {
     @FXML
     private void flowerTypeAdd() {
         if (!flowerCombo.getSelectionModel().isEmpty()) {
-            if(!x) {
-                x = true;
-                App.getHome().getChildren().add(flowerChip);
-            }
 //            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
 
-//            flowerChip.getChips().add(flowerCombo.getSelectionModel().getSelectedItem());
-            flowerChip.getChips().add("HELLO");
+            flowerChip.getChips().add(flowerCombo.getSelectionModel().getSelectedItem());
 
-            System.out.println(flowerChip.getChips().size());
             flowerCombo.getSelectionModel().clearSelection();
         } else {
             flowerCombo.setStyle("-fx-border-color: red");
@@ -144,9 +137,6 @@ public class FlowerController {
 
     @FXML
     public void initialize() {
-        flowerChip = new JFXChipView();
-        flowerChip.toFront();
-        flowerChip.setStyle("-fx-text-fill: Black");
 
         //first set what today is, then dont touch it
         LocalDate today = retrieveDate();
@@ -167,8 +157,6 @@ public class FlowerController {
                 );
         flowerCombo.getItems().addAll(flowerOptions);
         occasionCombo.getItems().addAll(occasionOptions);
-        flowerCombo.setStyle("-fx-text-fill: Black");
-        occasionCombo.setStyle("-fx-text-fill: Black");
 
         submit.setDisable(true);
         BooleanBinding blockCheckBox = (first.textProperty().isEmpty())
