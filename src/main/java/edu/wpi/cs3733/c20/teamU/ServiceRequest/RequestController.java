@@ -159,24 +159,29 @@ public class RequestController {
         File dir = new File("CustomRequests");
         if (dir.exists()) {
             for (File f : dir.listFiles()) {
-                String reqType = f.getName().split("\\.")[0];
-                JFXButton bu = new JFXButton();
-                Scanner s = null;
-                try {
-                    s = new Scanner(f);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                System.out.println(f.getName());
+                System.out.println(f.getName().contains("InputTypes.txt"));
+                System.out.println();
+                if (!f.getName().contains("InputTypes.txt")) {
+                    String reqType = f.getName().split("\\.")[0];
+                    JFXButton bu = new JFXButton();
+                    Scanner s = null;
+                    try {
+                        s = new Scanner(f);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    String longName = s.nextLine();
+                    bu.setText(longName);
+                    ImageView im = new ImageView(new Image("png_files/cart-plus.png"));
+                    im.setFitHeight(125);
+                    im.setFitWidth(125);
+                    bu.setGraphic(im);
+                    bu.setFont(new Font("Segoe UI Bold", 14));
+                    bu.setOnMouseClicked(customRequestHandler);
+                    addToPath(bu);
+                    customButtons.put(bu, reqType);
                 }
-                String longName = s.nextLine();
-                bu.setText(longName);
-                ImageView im = new ImageView(new Image("png_files/cart-plus.png"));
-                im.setFitHeight(125);
-                im.setFitWidth(125);
-                bu.setGraphic(im);
-                bu.setFont(new Font("Segoe UI Bold", 14));
-                bu.setOnMouseClicked(customRequestHandler);
-                addToPath(bu);
-                customButtons.put(bu, reqType);
             }
         }
         //Get list of services from the database

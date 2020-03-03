@@ -97,6 +97,26 @@ public class AddCustomRequestController {
         }
     }
 
+    private void saveFileInput(String output, String dest) {
+        File file = new File("CustomRequests/"+dest+"InputTypes.txt");
+        try {
+            if (!file.createNewFile()) {
+                file.delete();
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter fw = new FileWriter("CustomRequests/"+dest+"InputTypes.txt");
+            fw.write(output);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void addComponent() {
         if (fieldName.getText().length() == 0 || !isValidComp(fieldName.getText(), fieldType.getValue(), contents.getChips())) {
@@ -121,11 +141,28 @@ public class AddCustomRequestController {
         if (isValidRequest(shortName.getText(), formName.getText(), components.getItems())) {
             //Do database things!
             String output = formName.getText()+"\n";
+            ArrayList<String> inputTypes = new ArrayList<>();
             for (Component c : components.getItems()) {
                 output += c.toString() + "\n";
+                if (c.type.equals("Date Picker")) inputTypes.add("DATE");
+                else if (c.type.equals("Time Picker")) inputTypes.add("TIME");
+                else inputTypes.add("STRING");
             }
+            String inputTypesString = "";
+            for (int i = 0; i < inputTypes.size()-1; i++) {
+                inputTypesString += inputTypes.get(i);
+                inputTypesString += ",";
+            }
+            inputTypesString += inputTypes.get(inputTypes.size()-1);
             System.out.println(output);
-            saveFile(output, shortName.getText());
+            saveFile(output, shortName.getText().toUpperCase());
+            saveFileInput(inputTypesString, shortName.getText().toUpperCase());
+
+            ArrayList<String> componentNames = new ArrayList<>();
+            for (Component c : components.getItems()) {
+                componentNames.add(c.name);
+            }
+
             App.getRequestController().updateButtons();
             back();
         }
@@ -134,6 +171,7 @@ public class AddCustomRequestController {
     private boolean isValidComp(String name, String type, Collection<String> contents) {
         if ((type.equals("Combo Box") || type.equals("Radio Buttons")) && contents.size() == 0) return false;
         if (name.contains(":") || type.contains(":")) return false;
+        if (components.getItems().size() > 5) return false; //Size limit!
         for (String s : contents) {
             if (s.contains(",")) return false;
         }
@@ -147,6 +185,7 @@ public class AddCustomRequestController {
     private boolean isValidRequest(String sname, String lname, ObservableList<Component> comps) {
         if (sname.length() == 0 || lname.length() == 0 || comps.size() == 0) return false;
         if (lname.contains("\n")) return false;
+        if (sname.length() != 5) return false;
         if (sname.contains("'") || sname.contains("\"") || sname.contains(",") || sname.contains(";") || sname.contains("(") || sname.contains(")") || sname.contains(".")) return false;
         //if (databaseWrapper.hasRequestType(sname)) return false;
         for (Component c : comps) {
