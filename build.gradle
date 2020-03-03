@@ -42,11 +42,11 @@ dependencies {
 
     compile 'com.jfoenix:jfoenix:8.0.8'
     compile 'com.google.cloud:google-cloud-storage:1.105.0'
-    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.2'
+//    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.2'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile 'com.warrenstrange:googleauth:1.4.0'
     compile 'net.sourceforge.cssparser:cssparser:0.9.27'
-    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
+//    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.12'
     compileOnly(
             [group: 'org.projectlombok', name: 'lombok', version: '1.18.8']
     )

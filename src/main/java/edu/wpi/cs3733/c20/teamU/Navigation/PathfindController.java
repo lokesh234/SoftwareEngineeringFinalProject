@@ -153,7 +153,7 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = IconMap.get(event.getSource());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getLongName());
+//                if (startReady) startLabel.setText(start.getLongName());
                 if (startReady) SearchBox.setText(start.getLongName());
                 if (startReady) startBox.setText(start.getLongName());
                 state = State.END;
@@ -162,7 +162,7 @@ public class PathfindController {
             else if (state == State.END) { //We're going to select an ending node!
                 end = IconMap.get(event.getSource());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getLongName());
+//                if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
                 if (endReady) endBox.setText(end.getLongName());
                 state = State.START;
@@ -180,7 +180,7 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = hitboxes.get(event.getSource());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getLongName());
+//                if (startReady) startLabel.setText(start.getLongName());
                 if (startReady) SearchBox.setText(start.getLongName());
                 state = State.END;
                 updateStatus();
@@ -188,7 +188,7 @@ public class PathfindController {
             else if (state == State.END) { //We're going to select an ending node!
                 end = hitboxes.get(event.getSource());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getLongName());
+//                if (endReady) endLabel.setText(end.getLongName());
                 if (endReady) SearchBox.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
@@ -272,14 +272,14 @@ public class PathfindController {
                 //System.out.println("Start Click");
                 start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
                 startReady = (start != null) || startReady;
-                if (startReady) startLabel.setText(start.getLongName());
+//                if (startReady) startLabel.setText(start.getLongName());
                 state = State.END;
                 updateStatus();
             }
             else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
                 end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
                 endReady = (end != null) || endReady;
-                if (endReady) endLabel.setText(end.getLongName());
+//                if (endReady) endLabel.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
             }
@@ -359,13 +359,11 @@ public class PathfindController {
     private void ZoomInMachine(int floor) {
         switch (floor) {
             case 1:
-                if(zoomCounter <= 5 && zoomCounter > 0) {
                     MapGes1.animate(Duration.millis(200))
                             .interpolateWith(Interpolator.EASE_BOTH)
                             .zoomBy(MapGes1.getCurrentScale(), MapGes1.targetPointAtViewportCentre());
                     zoomed = MapGes1.getCurrentScale();
                     zoomCounter--;
-                }
                 break;
             case 2:
                 MapGes2.animate(Duration.millis(200))
@@ -432,43 +430,41 @@ public class PathfindController {
     private void ZoomOutMachine(int floor) {
         switch (floor) {
             case 1:
-                if(zoomCounter < 5 && zoomCounter >= 0 ) {
-//          System.out.println(MapGes1.getCurrentScale());
-                    MapGes1.animate(Duration.millis(200))
-                            .interpolateWith(Interpolator.EASE_BOTH)
-                            .zoomTo(zoomed/2, MapGes1.targetPointAtViewportCentre());
-                    zoomed /= 2;
-                    //System.out.println(zoomed/2);
-                    zoomCounter++;
-                }
-//        System.out.println(MapGes1.getCurrentScale() - 5);
+                //          System.out.println(MapGes1.getCurrentScale());
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(zoomed / 1.5, MapGes1.targetPointAtViewportCentre());
+                zoomed /= 1.5;
+                // System.out.println(zoomed/2);
+                zoomCounter++;
+                //        System.out.println(MapGes1.getCurrentScale() - 5);
                 break;
             case 2:
                 MapGes2.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(zoomed/2, MapGes2.targetPointAtViewportCentre());
-                zoomed /= 2;
+                        .zoomTo(zoomed / 1.5, MapGes2.targetPointAtViewportCentre());
+                zoomed /= 1.5;
                 zoomCounter++;
                 break;
             case 3:
                 MapGes3.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(zoomed/2, MapGes3.targetPointAtViewportCentre());
-                zoomed /= 2;
+                        .zoomTo(zoomed / 1.5, MapGes3.targetPointAtViewportCentre());
+                zoomed /= 1.5;
                 zoomCounter++;
                 break;
             case 4:
                 MapGes4.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(zoomed/2, MapGes4.targetPointAtViewportCentre());
-                zoomed /= 2;
+                        .zoomTo(zoomed / 1.5, MapGes4.targetPointAtViewportCentre());
+                zoomed /= 1.5;
                 zoomCounter++;
                 break;
             case 5:
                 MapGes5.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(zoomed/2, MapGes5.targetPointAtViewportCentre());
-                zoomed /= 2;
+                        .zoomTo(zoomed / 1.5, MapGes5.targetPointAtViewportCentre());
+                zoomed /= 1.5;
                 zoomCounter++;
                 break;
         }
@@ -483,15 +479,19 @@ public class PathfindController {
     private void updateStatus() {
         removeFromAll(startNodeLabel);
         removeFromAll(endNodeLabel);
+        removeFromAll(startView);
+        removeFromAll(startSelect);
+        removeFromAll(endView);
+        removeFromAll(endViewselect);
         if (state == State.NEUTRAL) {
-            if (displayingPath && path.size() == 0) statusLabel.setText("No path found :(");
-            else if (displayingPath) statusLabel.setText("Click 'Clear' to Remove This Path");
-            else if (!startReady) statusLabel.setText("Click 'Start' to Set Start Position");
-            else if (startReady && !endReady) statusLabel.setText("Click 'End' to Set Destination");
-            else if (startReady && endReady) statusLabel.setText("Click 'Go!' to Display Path");
+//            if (displayingPath && path.size() == 0) statusLabel.setText("No path found :(");
+//            else if (displayingPath) statusLabel.setText("Click 'Clear' to Remove This Path");
+//            else if (!startReady) statusLabel.setText("Click 'Start' to Set Start Position");
+//            else if (startReady && !endReady) statusLabel.setText("Click 'End' to Set Destination");
+//            else if (startReady && endReady) statusLabel.setText("Click 'Go!' to Display Path");
         }
-        else if (state == State.END) statusLabel.setText("Click on a Node to Set Destination");
-        else statusLabel.setText("Click on a Node to Set Start Position");
+//        else if (state == State.END) statusLabel.setText("Click on a Node to Set Destination");
+//        else statusLabel.setText("Click on a Node to Set Start Position");
 
         if (startReady) {
             removeFromPath(startSelect, start.getFloor());
@@ -519,10 +519,10 @@ public class PathfindController {
         else if (start != null) {
             removeFromPath(startSelect, start.getFloor());
             removeFromPath(startViewselect, start.getFloor());
-            startLabel.setText("None Selected");
+//            startLabel.setText("None Selected");
         }
         else {
-            startLabel.setText("None Selected");
+//            startLabel.setText("None Selected");
         }
 
         if (endReady) {
@@ -552,10 +552,10 @@ public class PathfindController {
         else if (end != null) {
             removeFromPath(endSelect, end.getFloor());
             removeFromPath(endViewselect, end.getFloor());
-            endLabel.setText("None Selected");
+//            endLabel.setText("None Selected");
         }
         else {
-            endLabel.setText("None Selected");
+//            endLabel.setText("None Selected");
         }
     }
 
@@ -565,8 +565,8 @@ public class PathfindController {
         end = null;
         startReady = false;
         endReady = false;
-        startLabel.setText("None Selected");
-        endLabel.setText("None Selected");
+//        startLabel.setText("None Selected");
+//        endLabel.setText("None Selected");
         //ArrayList<Node> nodes = App.getGraph().getNodes();
         DatabaseWrapper.updateGraph();
         ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
@@ -1071,6 +1071,8 @@ public class PathfindController {
         removeFromAll(endSelect);
         removeFromAll(endViewselect);
         removeFromAll(endView);
+        startBox.setText("");
+        endBox.setText("");
         clearPath();
     }
 
@@ -1097,8 +1099,8 @@ public class PathfindController {
         endReady = true;
         startReady = true;
 
-        startLabel.setText(start.getLongName());
-        endLabel.setText(end.getLongName());
+//        startLabel.setText(start.getLongName());
+//        endLabel.setText(end.getLongName());
         updateStatus();
         pathfind();
     }
@@ -1317,8 +1319,11 @@ public class PathfindController {
     @FXML
     private void swap() {
         Node buf = start;
+        if(buf == null) return;
         start = end;
         end = buf;
+        startBox.setText(start.getLongName());
+        endBox.setText(end.getLongName());
         updateStatus();
         pathfind();
     }

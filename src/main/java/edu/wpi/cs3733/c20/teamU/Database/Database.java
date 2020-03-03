@@ -8,6 +8,7 @@ import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import org.omg.CORBA.CODESET_INCOMPATIBLE;
 import org.omg.PortableInterceptor.ServerRequestInfo;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
@@ -65,15 +66,17 @@ public class Database {
             dropTable(stmt, "ITSR");
 
             dropTable(stmt, "ServiceRequest");
+            dropTable(stmt, "TypesSR");
             // drops database tables if they currently exist
             System.out.println("Dropped tables");
 
             createNodeTable(stmt, "MapNodesU");
             createEdgesTable(stmt, "MapEdgesU");
             createDestinationsTable(stmt, "DestinationsDB");
+            createColorTable(stmt, "ColorsDB");
+            createTypesTable(stmt, "TypesSR");
             createLoginTable(stmt, "LoginDB");
             createUserBacklogTable(stmt, "UserBacklogDB");
-            createColorTable(stmt, "ColorsDB");
             createServiceRequestTable(stmt,"ServiceRequest");
             createServiceFinishedTable(stmt, "ServiceFinished");
             createMedicineSRTable(stmt, "MedicineSR");
@@ -98,6 +101,7 @@ public class Database {
             printTable(stmt, "LoginDB");
             printTable(stmt, "UserBacklogDB");
             printTable(stmt, "ColorsDB");
+            printTable(stmt, "TypesSR");
             printTable(stmt, "ServiceRequest");
             printTable(stmt, "ServiceFinished");
             printTable(stmt, "MedicineSR");
@@ -164,12 +168,7 @@ public class Database {
         return null;
     }
 
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
+
     private static void dropTable(Statement stmt, String tableName) {
         try{
             String sqldel = "DROP TABLE " + tableName;
@@ -180,12 +179,8 @@ public class Database {
         }
     }
 
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
+
+
     private static void createNodeTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (nodeID VARCHAR(10), xcoord INTEGER, ycoord INTEGER, floor INTEGER, building VARCHAR(20), nodeType VARCHAR(4), longName VARCHAR(80), shortName VARCHAR(30), teamAssigned VARCHAR(6), PRIMARY KEY (nodeID), " +
@@ -240,12 +235,6 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
     private static void createEdgesTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (edgeID VARCHAR(21), startNode VARCHAR(10) REFERENCES MapNodesU (nodeID), endNode VARCHAR(10) REFERENCES MapNodesU (nodeID), PRIMARY KEY (edgeID))";
@@ -324,16 +313,45 @@ public class Database {
         }
         CreateCSV(stmt, tableName, null);
     }
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
+
+    private static void createTypesTable(Statement stmt, String tableName){
+        try{
+            String slqCreate = "CREATE TABLE " + tableName + " (typeName VARCHAR(5), PRIMARY KEY (typeName))";
+
+            stmt.executeUpdate(slqCreate);
+            String line = "";
+            String csvSplit = ",";
+
+            try {
+                BufferedReader br = getBR(tableName);
+                int starter = 0;
+                while ((line = br.readLine()) != null) {
+
+                    String[] csvString = line.split(csvSplit);
+                    if (starter == 0){
+                        starter = 1;
+                    }
+                    else{
+                        String typeName = csvString[0];
+                        stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + typeName + "')");
+                    }
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return;
+
+        }
+        CreateCSV(stmt, tableName, null);
+    }
+
     private static void createServiceRequestTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, types VARCHAR(5), info VARCHAR(255), PRIMARY KEY (reqID), " +
-                    "CONSTRAINT SR_TY CHECK (types in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (reqID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), dateReq DATE, types VARCHAR(5) REFERENCES TypesSR (typeName), info VARCHAR(255), PRIMARY KEY (reqID))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -344,12 +362,6 @@ public class Database {
         }
     }
 
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
     private static void populateServiceRequestTable(Statement stmt, String tableName){
         //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
         //InputStream csvFile = Database.class.getResourceAsStream("/csv_files/ServiceRequest.csv");
@@ -448,16 +460,9 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
-    private static void createServiceFinishedTable(Statement stmt, String tableName){
+    private static void createServiceFinishedTable(Statement stmt, String tableName) {
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5), completedBy VARCHAR(10), info VARCHAR(255), "+
-                    "CONSTRAINT SF_RT CHECK (reqType in ('MEDIC','SECUR', 'LANGE', 'ITRAN', 'FLOWR', 'CLOWN', 'ETRAN', 'INTEC', 'RELIG', 'SANIT', 'DELIV')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (timeFinished DATE, reqType VARCHAR(5) REFERENCES TypesSR (typeName), completedBy VARCHAR(20), info VARCHAR(255))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -497,11 +502,6 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
-    /**
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
     private static void createMedicineSRTable(Statement stmt, String tableName){
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, patentFirstName VARCHAR(20), patentLastName VARCHAR(20), drugName VARCHAR(20), "+
@@ -613,7 +613,7 @@ public class Database {
       String slqCreate =
           "CREATE TABLE "
               + tableName
-              + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, firstName VARCHAR(30), religiousAffiliation VARCHAR(30), explanation VARCHAR(200), "
+              + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, name VARCHAR(50), religiousAffiliation VARCHAR(30), explanation VARCHAR(200), "
               + "CONSTRAINT RRSR_CK CHECK (religiousAffiliation in ('Protestantism', 'Catholicism', 'Judaism', 'Mormonism', 'Islam', 'Other', 'No Religion')))";
 
             stmt.executeUpdate(slqCreate);
@@ -626,7 +626,7 @@ public class Database {
         }
     }
 
-    private static void createFlowersSRTable(Statement stmt, String tableName){
+    private static void createFlowersSRTable(Statement stmt, String tableName) {
         try{
             String slqCreate = "CREATE TABLE " + tableName + " (reqID int REFERENCES ServiceRequest (reqID), timeReq DATE, lastName VARCHAR(20), firstName VARCHAR(20), roses BOOLEAN, tulips BOOLEAN, lilies BOOLEAN, occasion VARCHAR(20), "+
                     "deliveryDate DATE, giftNote VARCHAR(200), room VARCHAR(30), CONSTRAINT FSR_CK CHECK (occasion in ('Happy','Sad', 'Anytime')))";
@@ -1076,15 +1076,10 @@ public class Database {
     }
 
 
-    /**
-     *
-     * TODO：finish commenting
-     * @param stmt
-     * @param tableName
-     */
+
     private static void createLoginTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5), number VARCHAR(20), PRIMARY KEY (username), CONSTRAINT LI_PO CHECK (position in ('ADMIN','MEDIC','SECUR', 'LANGE', 'FLOWR', 'DELIV', 'ITRAN', 'ETRAN', 'CLOWN', 'RELIG', 'SANIT', 'INTEC')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10), password VARCHAR(20), firstName VARCHAR(20), lastName VARCHAR(20), position VARCHAR(5) REFERENCES TypesSR (typeName), number VARCHAR(20), PRIMARY KEY (username))";
 
             stmt.executeUpdate(slqCreate);
 
@@ -1224,6 +1219,8 @@ public class Database {
         CreateCSV(stmt, tableName, null);
     }
 
+
+
     public static boolean addUserBacklog(String username, String serviceType, String operations, String info){
         String tableName = "UserBacklogDB";
         Connection conn = null;
@@ -1299,6 +1296,8 @@ public class Database {
             return;
         }
     }
+
+
 
     public static boolean addColor(String colorName, String color1, String color2, String color3, String color4, String color5, String textColor1, String textColor2){
         String tableName = "ColorsDB";
@@ -1407,6 +1406,7 @@ public class Database {
             return false;
         }
     }
+
 
     /**
      * Generate a csv file in a given path from the table
@@ -2052,6 +2052,7 @@ public class Database {
             stmt.executeUpdate("DELETE FROM " + tableNameUB + " WHERE username = '" + username + "'");
             stmt.executeUpdate("DELETE FROM " + tableName + " WHERE username = '" + username + "'");
             CreateCSV(stmt, tableName, null);
+            CreateCSV(stmt, tableNameUB, null);
             stmt.close();
             conn.close();
             return true;
@@ -2194,6 +2195,90 @@ public class Database {
             System.out.println("Connection failed. Check output console.");
             e.printStackTrace();
             return;
+        }
+    }
+
+    public static boolean addType(String typeName){
+        String tableName = "TypesSR";
+        Connection conn = null;
+        Statement stmt = null;
+        typeName = typeName.toUpperCase();
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+
+            stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + typeName + "')");
+
+            CreateCSV(stmt, tableName, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Please insert a name with less than 6 letters / make sure value doesn't already exist");
+            return false;
+        }
+    }
+
+    public static boolean delType(String typeName){
+        String tableName = "TypesSR";
+        String loginTable = "LoginDB";
+        String UserBacklogTable = "UserBacklogDB";
+        String ServiceTable = "ServiceRequest";
+        String FinishedTable = "ServiceFinished";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = conn.createStatement();
+            // getting UBDatabase
+            // check to see if username exists in LoginDB:
+            stmt.executeUpdate("DELETE FROM " + loginTable + " WHERE position = '" + typeName + "'");
+            stmt.executeUpdate("DELETE FROM " + UserBacklogTable + " WHERE serviceType = '" + typeName + "'");
+            stmt.executeUpdate("DELETE FROM " + ServiceTable + " WHERE types = '" + typeName + "'");
+            stmt.executeUpdate("DELETE FROM " + FinishedTable + " WHERE reqType = '" + typeName + "'");
+            stmt.executeUpdate("DELETE FROM " + tableName + " WHERE typeName = '" + typeName + "'");
+            CreateCSV(stmt, tableName, null);
+            CreateCSV(stmt, loginTable, null);
+            CreateCSV(stmt, UserBacklogTable, null);
+            CreateCSV(stmt, ServiceTable, null);
+            CreateCSV(stmt, FinishedTable, null);
+            stmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("value not found? Idk how this would have gone wrong otherwise");
+            return false;
+        }
+    }
+
+    public static ArrayList<String> getTypes(){
+        ArrayList<String> typesList = new ArrayList<>();
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "TypesSR";
+        String sql = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            sql = "SELECT  * FROM " + tableName;
+            ResultSet results = stmt.executeQuery(sql);
+
+            while (results.next()) {
+                String typeName = results.getString(1);
+
+                typesList.add(typeName);
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+            return typesList;
+        } catch (SQLException e) {
+            System.out.println("Failed. Check output console. unable to get list of types");
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -2432,4 +2517,6 @@ public class Database {
         }
         return retNumber;
     }
+
+
 }

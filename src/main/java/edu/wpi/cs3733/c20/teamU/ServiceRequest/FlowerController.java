@@ -1,6 +1,7 @@
 package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXChipView;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
@@ -138,6 +139,7 @@ public class FlowerController {
     @FXML
     public void initialize() {
 
+//        flowerChip = new JFXChipView<>();
         //first set what today is, then dont touch it
         LocalDate today = retrieveDate();
         setToday(today);
