@@ -2372,8 +2372,8 @@ public class Database {
             conn.close();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Please insert a name with less than 6 letters / make sure value doesn't already exist");
+            //e.printStackTrace();
+            System.out.println("(add DB) Please insert a name with less than 6 letters / make sure value doesn't already exist");
             return false;
         }
     }
@@ -2395,7 +2395,7 @@ public class Database {
             return true;
         } catch (SQLException e) {
             //e.printStackTrace();
-            System.out.println("Please insert a name with less than 6 letters / make sure value doesn't already exist");
+            System.out.println("(Add Type) Please insert a name with less than 6 letters / make sure value doesn't already exist");
             return false;
         }
     }

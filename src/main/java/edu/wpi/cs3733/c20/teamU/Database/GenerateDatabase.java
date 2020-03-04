@@ -27,8 +27,8 @@ public class GenerateDatabase {
       connection.close();
       return true;
     } catch (SQLException e) {
-      System.out.println("Connection failed. Check output console. Cant Create New DB?");
-      e.printStackTrace();
+      System.out.println("Cant Create New DB? / Already exists");
+      //e.printStackTrace();
       return false;
     }
   }
@@ -57,8 +57,8 @@ public class GenerateDatabase {
 
     return true;
     } catch (SQLException e) {
-      System.out.println("failed to add new db");
-      e.printStackTrace();
+      System.out.println("failed to add new db / db already exists");
+      //e.printStackTrace();
       return false;
     }
   }
