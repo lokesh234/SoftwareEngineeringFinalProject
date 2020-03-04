@@ -876,7 +876,8 @@ public class App<loadedAdminRequests> extends Application {
         login.setOnKeyPressed(loginconfirmKey);
         employeeF.setOnKeyPressed(employeeformconfirmKey);
         scale.setOnKeyPressed(fireKey);
-        custom.setOnKeyPressed(fireKey);
+//        custom.setOnKeyPressed(fireKey);
+        editGen.setOnKeyPressed(fireKey);
 
 
 
