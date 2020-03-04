@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
-import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
@@ -33,7 +32,6 @@ import javafx.scene.layout.Pane;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -89,6 +87,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane credit;
   private static Pane generic;
   private static Pane editGen;
+  private static Pane speechcommands;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -123,6 +122,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Scene colorScene;
   private static Scene informationScene;
   private static Scene creditScene;
+  private static Scene speechcommandsScene;
 
   private static LoginScreenController loginScreenController;
   private static HomeController homeController;
@@ -166,6 +166,7 @@ public class App<loadedAdminRequests> extends Application {
   private static CreditController creditController;
   private static GenericRequest genericController;
   private static ViewCustomRequestController viewCustomController;
+  private static SpeechController speechController;
 
 
   private static boolean didChange = false;
@@ -247,6 +248,7 @@ public class App<loadedAdminRequests> extends Application {
   private static Popup treeViewPop = new Popup();
   private static Popup informationPopUp = new Popup();
   private static Popup creditPop = new Popup();
+  private static Popup speechPop = new Popup();
 
   private static Image floor1;
   private static Image floor2;
@@ -545,6 +547,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getCredit() {return credit;}
   public static Pane getGeneric() { return generic;}
   public static Pane getEditGen() { return editGen;}
+  public static Pane getSpeechcommands() {return speechcommands;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -577,6 +580,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Scene getColorScene() {return colorScene;}
   public static Scene getInformationScene() {return informationScene;}
   public static Scene getCreditScene() {return creditScene;}
+  public static Scene getSpeechcommandsScene() {return speechcommandsScene;}
 
   public static LoginScreenController getLoginScreenController() { return loginScreenController;}
   public static HomeController getHomeController() { return homeController;}
@@ -613,6 +617,7 @@ public class App<loadedAdminRequests> extends Application {
   public static CreditController getCreditController() {return creditController;}
   public static GenericRequest getGenericController() { return genericController;}
   public static ViewCustomRequestController getViewCustomController() { return viewCustomController;}
+  public static SpeechController getSpeechController() {return speechController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -655,6 +660,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Popup getTreeViewPop() { return treeViewPop; }
   public static Popup getInformationPopUp() {return informationPopUp;}
   public static Popup getCreditPop() {return creditPop;}
+  public static Popup getSpeechPop() {return speechPop;}
 
   public static Image getFloor1() { return floor1;}
   public static Image getFloor2() { return floor2;}
@@ -683,6 +689,7 @@ public class App<loadedAdminRequests> extends Application {
     ChoosePathPop.getContent().addAll();
     treeViewPop.getContent().addAll();
     informationPopUp.getContent().addAll();
+    speechPop.getContent().addAll();
 
     loadHome();
 
@@ -744,6 +751,7 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader weatherLoader = new FXMLLoader(App.class.getResource("/light_theme/WeatherWindow.fxml"));
         FXMLLoader informationLoader = new FXMLLoader(App.class.getResource("/light_theme/InformationPage.fxml"));
         FXMLLoader creditLoader = new FXMLLoader(App.class.getResource("/light_theme/Credit.fxml"));
+        FXMLLoader speechPopLoader = new FXMLLoader(App.class.getResource("/light_theme/Speech.fxml"));
 
 
         home = homeLoader.load();
@@ -753,6 +761,7 @@ public class App<loadedAdminRequests> extends Application {
         weather = weatherLoader.load();
         information = informationLoader.load();
         credit = creditLoader.load();
+        speechcommands = speechPopLoader.load();
 
 
         home.addEventHandler(KeyEvent.KEY_RELEASED, fireKey);
@@ -779,6 +788,7 @@ public class App<loadedAdminRequests> extends Application {
         startScene = new Scene(start);
         fireScene = new Scene(fire);
         creditScene = new Scene(credit);
+        speechcommandsScene = new Scene(speechcommands);
 
       }
       catch (IOException e) {

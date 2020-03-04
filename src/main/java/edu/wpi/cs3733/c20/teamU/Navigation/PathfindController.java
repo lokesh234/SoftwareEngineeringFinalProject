@@ -368,6 +368,26 @@ public class PathfindController {
         });
     }
 
+    private int PathHeight(Node start, Node end){
+        return Math.abs(end.getY() - start.getY());
+    }
+
+    private int PathWidth(Node start, Node end){
+        return Math.abs(end.getX() - start.getX());
+    }
+
+    private Point2D centroid(Node start, Node end){
+        int firstp = start.getX() + PathWidth(start, end);
+        int secondp = start.getY() + PathHeight(start, end);
+        Double firtd = Double.valueOf(firstp);
+        Double secondd = Double.valueOf(secondp);
+        Point2D point2D = new Point2D(firtd, secondd);
+        return point2D;
+    }
+
+    private int PathArea(Node start, Node end){
+        return PathHeight(start, end) * PathWidth(start, end);
+    }
 
 
 
@@ -487,31 +507,45 @@ public class PathfindController {
             case 1:
                 MapGes1.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(MapGes1.getCurrentScale() + 1.25 , focus);
+                        .centreOn(focus);
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes1.getCurrentScale() + 0.5, focus);
                 break;
             case 2:
                 MapGes2.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(MapGes2.getCurrentScale() + 1.25 , focus);
+                        .centreOn(focus);
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes2.getCurrentScale()  + 0.5 , focus);
 
                 break;
             case 3:
                 MapGes3.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(MapGes3.getCurrentScale() + 1.25 , focus);
+                        .centreOn(focus);
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes3.getCurrentScale() + 0.5 , focus);
 
                 break;
             case 4:
-                System.out.println(focus);
                 MapGes4.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(MapGes4.getCurrentScale() + 1.25 , focus);
+                        .centreOn(focus);
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes4.getCurrentScale() + 0.5, focus);
 
                 break;
             case 5:
                 MapGes5.animate(Duration.millis(200))
                         .interpolateWith(Interpolator.EASE_BOTH)
-                        .zoomTo(MapGes5.getCurrentScale() + 1.25, focus);
+                        .centreOn(focus);
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes5.getCurrentScale() + 0.5, focus);
 
                 break;
         }
@@ -546,6 +580,52 @@ public class PathfindController {
                 break;
         }
     }
+
+    private void ZoomCentroidMachine(int floor, Point2D point2D) {
+        switch (floor) {
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .centreOn(point2D);
+                MapGes1.animate(Duration.millis(350))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() + .5, point2D);
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .centreOn(point2D);
+                MapGes2.animate(Duration.millis(350))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() + .5, point2D);
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .centreOn(point2D);
+                MapGes3.animate(Duration.millis(350))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() + .5, point2D);
+                break;
+            case 4:
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .centreOn(point2D);
+                MapGes4.animate(Duration.millis(350))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() + .5, point2D);
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .centreOn(point2D);
+                MapGes5.animate(Duration.millis(350))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomBy(MapGes1.getCurrentScale() + .5, point2D);
+                break;
+        }
+    }
+
 
 
     private void ZoomOutMachine(int floor) {
@@ -1317,6 +1397,8 @@ public class PathfindController {
                 LineTo line = new LineTo(n2.getX(), n2.getY());
                 pathe.getElements().add(line);
                 if (!pathChunk.contains(n2)) pathChunk.add(n2);
+                Point2D centerwong = centroid(start, end);
+                ZoomCentroidMachine(n1.getFloor(), centerwong);
                 pathe.setStroke(Color.web("#7851a9"));
                 pathe.setStrokeWidth(10.0);
                 pathe.getStrokeDashArray().addAll(15d, 15d);
