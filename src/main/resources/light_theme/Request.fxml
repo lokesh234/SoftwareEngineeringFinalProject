@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
+<AnchorPane prefHeight="600" prefWidth="900" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController">
    <children>
       <BorderPane styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox alignment="CENTER_RIGHT" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="839.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="View and Edit Requests" textFill="WHITE">
                            <font>
@@ -36,25 +36,21 @@
                   </HBox>
                   <VBox alignment="CENTER" spacing="20.0">
                      <children>
-                        <JFXButton fx:id="backButton" onAction="#backToAdmin" text="Back" textFill="WHITE">
+                        <JFXButton fx:id="backButton" onAction="#backToAdmin" prefHeight="35.0" prefWidth="86.0" text="Back" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="18.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
                         </JFXButton>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="18.0" prefWidth="127.0" style="-fx-background-color: #969696;" styleClass="subtitleBar">
-                           <children>
-                              <Label text="Logged in as: " />
-                              <Label text="Label">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
                      </children>
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </VBox>
                </children>
             </HBox>
