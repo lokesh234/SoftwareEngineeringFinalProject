@@ -1,4 +1,4 @@
-package edu.wpi.cs3733.c20.teamU.ServiceRequest;
+package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
