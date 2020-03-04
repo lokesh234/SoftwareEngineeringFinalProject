@@ -42,7 +42,7 @@
                   </JFXButton>
                   <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="400.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView onMousePressed="#reaction" fitHeight="400.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../png_files/gif/frontFly.gif" />
                            </image></ImageView>

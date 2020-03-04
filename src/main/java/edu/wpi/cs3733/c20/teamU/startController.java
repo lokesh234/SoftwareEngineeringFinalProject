@@ -17,6 +17,8 @@ import javafx.scene.media.MediaView;
 import org.controlsfx.control.Notifications;
 
 import java.awt.*;
+import java.io.File;
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -182,6 +184,13 @@ public class startController<startC> {
       }
     }
     return String.format("%1$02d:%2$02d:%3$02d", hr, m, s);
+  }
+
+  @FXML
+  private void reaction() throws URISyntaxException {
+    Media media = new Media(getClass().getResource("/sound_files/Oof.mp3").toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaPlayer.play();
   }
 
   @FXML
