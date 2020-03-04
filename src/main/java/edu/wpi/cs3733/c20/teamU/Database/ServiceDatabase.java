@@ -850,4 +850,68 @@ public class ServiceDatabase {
 
         return getServiceFinishedAmountRange(serviceRequestType, datePast, dateNow);
     }
+
+    public static int getServiceFinishedAll(String serviceRequestType){
+        int retNumber = 0;
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "ServiceFinished";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            sql = "SELECT * FROM " + tableName + " WHERE reqType = '"+ serviceRequestType + "'";
+
+            ResultSet results = stmt.executeQuery(sql);
+            while (results.next()) {
+                retNumber++;
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return 0;
+        }
+        return retNumber;
+    }
+
+    public static int getServiceRequestAll(String serviceRequestType){
+        int retNumber = 0;
+        Connection connection = null;
+        Statement stmt = null;
+        String tableName = "ServiceRequest";
+        String sql = null;
+
+
+        try {
+            connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
+            stmt = connection.createStatement();
+
+            sql = "SELECT * FROM " + tableName + " WHERE reqType = '"+ serviceRequestType + "'";
+
+            ResultSet results = stmt.executeQuery(sql);
+            while (results.next()) {
+                retNumber++;
+                //System.out.println(_nodeID + "\t\t\t" + _xcoord + "\t\t\t" + _ycoord + "\t\t\t" + _floor + "\t\t\t" + _building + "\t\t\t" + _nodeType + "\t\t\t" + _longName + "\t\t\t" + _shortName );
+            }
+            results.close();
+            stmt.close();
+            connection.close();
+            //System.out.println("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+        } catch (SQLException e) {
+            System.out.println("Connection failed. Check output console.");
+            e.printStackTrace();
+            return 0;
+        }
+        return retNumber;
+    }
 }

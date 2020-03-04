@@ -605,6 +605,15 @@ public class DatabaseWrapper {
       return ServiceDatabase.getCurrentDate();
    }
 
+
+  public static int getServiceFinishedAll(String serviceRequestType){
+      return ServiceDatabase.getServiceFinishedAll(serviceRequestType);
+  }
+
+  public static int getServiceRequestAll(String serviceRequestType){
+      return ServiceDatabase.getServiceRequestAll(serviceRequestType);
+  }
+
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static NodesDatabase getGraph() {
       return graph; //Other nodesDatabase functions should be accessed through DatabaseWrapper.getGraph().x();
