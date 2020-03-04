@@ -308,7 +308,7 @@
             </VBox>
          </right>
       </BorderPane>
-      <VBox layoutX="279.0" layoutY="115.0" prefHeight="506.0" prefWidth="262.0" spacing="15.0">
+      <VBox layoutX="279.0" layoutY="115.0" maxHeight="500.0" maxWidth="200.0" spacing="15.0">
          <children>
             <Label text="Node color key">
                <font>
@@ -322,7 +322,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/restroom15.png" />
+                        <Image url="@../png_files/restroombig.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -346,7 +346,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/elevator15.png" />
+                        <Image url="@../png_files/elevatorbig.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -355,7 +355,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/info15.png" />
+                        <Image url="@../png_files/infobig.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -367,7 +367,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/department15.png" />
+                        <Image url="@../png_files/departmentbig.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -382,7 +382,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/lab15.png" />
+                        <Image url="@../png_files/Labbig.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -391,7 +391,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/retail15.png" />
+                        <Image url="@../png_files/retailbig.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -427,7 +427,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../png_files/exit15.png" />
+                        <Image url="@../png_files/exitbig.png" />
                      </image>
                   </ImageView>
                </graphic>
