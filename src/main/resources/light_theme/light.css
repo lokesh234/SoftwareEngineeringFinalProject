@@ -110,7 +110,7 @@
 .startClock{}
 .startClock .label{
     -fx-text-fill: -body-text;
-    -fx-font-size: 36;
+    -fx-font-size: 72;
     -fx-font-weight: BOLD;
 }
 
