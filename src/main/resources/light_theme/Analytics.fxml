@@ -82,21 +82,21 @@
                                               <children>
                                                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                                       <children>
-                                                          <Label text="400" />
+                                                          <Label text="400" fx:id="finishedSR"/>
                                                           <Label text="Requests" />
                                                           <Label text="Completed" />
                                                       </children>
                                                   </VBox>
                                                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                                       <children>
-                                                          <Label text="300" />
-                                                          <Label text="Destinations" />
-                                                          <Label text="Travelled" />
+                                                          <Label text="300" fx:id="currentSR"/>
+                                                          <Label text="Current" />
+                                                          <Label text="Request" />
                                                       </children>
                                                   </VBox>
                                                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                                       <children>
-                                                          <Label text="95%" />
+                                                          <Label text="95%" fx:id="SRRate"/>
                                                           <Label text="Service Completion" />
                                                           <Label text="Rate" />
                                                       </children>
@@ -105,13 +105,13 @@
                                                       <children>
                                                           <VBox alignment="CENTER">
                                                               <children>
-                                                                  <Label text="42" />
+                                                                  <Label text="42" fx:id="employees"/>
                                                                   <Label text="Employees" />
                                                               </children>
                                                           </VBox>
                                                           <VBox alignment="CENTER">
                                                               <children>
-                                                                  <Label text="12" />
+                                                                  <Label text="12" fx:id="serviceTypes"/>
                                                                   <Label text="Service Types" />
                                                               </children>
                                                           </VBox>
@@ -123,28 +123,22 @@
                                               <children>
                                                   <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                                                       <children>
-                                                          <Label text="TOP REQUESTS" />
-                                                          <BarChart>
+<!--                                                          <Label text="TOP REQUESTS" />-->
+                                                          <BarChart fx:id="dash">
                                                               <xAxis>
-                                                                  <NumberAxis side="BOTTOM" />
+                                                                  <CategoryAxis side="BOTTOM" fx:id="x" />
                                                               </xAxis>
                                                               <yAxis>
-                                                                  <CategoryAxis side="LEFT" />
+                                                                  <NumberAxis fx:id="y" side="LEFT" />
                                                               </yAxis>
                                                           </BarChart>
                                                       </children>
                                                   </VBox>
                                                   <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                                                       <children>
-                                                          <Label text="TOP DESTINATIONS" />
-                                                          <BarChart>
-                                                              <xAxis>
-                                                                  <NumberAxis side="BOTTOM" />
-                                                              </xAxis>
-                                                              <yAxis>
-                                                                  <CategoryAxis side="LEFT" />
-                                                              </yAxis>
-                                                          </BarChart>
+                                                          <Label text="ALL EMPLOYEES" />
+                                                          <PieChart fx:id="dashPie">
+                                                          </PieChart>
                                                       </children>
                                                   </VBox>
                                               </children>
@@ -160,7 +154,6 @@
                            <center>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFEEC9;">
                                              <children>
-                                                <PieChart fx:id="insightPieChart" />
                                     <VBox layoutX="224.0" layoutY="87.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="subtitleBar">

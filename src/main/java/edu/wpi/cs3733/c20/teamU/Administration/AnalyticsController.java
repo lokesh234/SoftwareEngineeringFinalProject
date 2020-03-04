@@ -3,6 +3,7 @@ package edu.wpi.cs3733.c20.teamU.Administration;
 import com.jfoenix.controls.*;
 import com.twilio.rest.api.v2010.account.usage.record.Today;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.Database;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
@@ -18,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 
 import java.awt.*;
 import java.text.DateFormat;
@@ -38,11 +40,11 @@ public class AnalyticsController {
 //    @FXML
 //    JFXComboBox comboBox;
     @FXML
-    PieChart pieChart;
+    PieChart pieChart, dashPie;
     @FXML
     private LineChart lineChart;
     @FXML
-    private BarChart barChart;
+    private BarChart barChart, dash;
     @FXML
     private JFXRadioButton employeeRadio, requestRadio, requestFinishedRadio, yesterday, lastWeek, lastMonth, lastYear, allTime;
     @FXML
@@ -57,12 +59,14 @@ public class AnalyticsController {
     @FXML
     private JFXButton generate;
     @FXML
-    private CategoryAxis xA;
+    private CategoryAxis xA,x;
     @FXML
-    private NumberAxis yA, lineYA, lineXA;
+    private NumberAxis yA, y, lineYA, lineXA;
     private ToggleGroup typesGroup, quickSelection;
     @FXML
     Accordion accordion;
+    @FXML
+    Label finishedSR, currentSR, SRRate, employees, serviceTypes;
 //    String timePeriod = false;
 
 
@@ -186,15 +190,6 @@ public class AnalyticsController {
                         ServiceRequestWrapper.getAllServiceType()
                 );
         typesComboBox.getItems().addAll(serviceTypes);
-
-        ObservableList<String> quick =
-                FXCollections.observableArrayList(
-                        "Last Day",
-                        "Last Week",
-                        "Last Month",
-                        "Last Year"
-                );
-
 
         generate.setDisable(true);
 
@@ -343,7 +338,6 @@ public class AnalyticsController {
             fromDP.setDisable(true);
             toDP.setDisable(true);
             lineTab.setDisable(true);
-            accordion.getExpandedPane().collapsibleProperty().setValue(true);
             accordion.setDisable(true);
         }
         else {
@@ -367,6 +361,52 @@ public class AnalyticsController {
         else {
             generate.setDisable(true);
         }
+    }
+
+    protected void insight(){
+        x = new CategoryAxis();
+        x.setLabel("Services");
+        y = new NumberAxis();
+        y.setLabel("Numbers");
+        int totalFinishedRequest = 0;
+        int totalEmployee = 0;
+        int totalCurrentRequest = 0;
+        int services = 0;
+
+        types = ServiceRequestWrapper.getAllServiceType();
+        dash.setTitle("Total Finished Requests All Time");
+        dash.getData().clear();
+        XYChart.Series dataSeries1 = new XYChart.Series();
+
+        dataSeries1.setName("Requests");
+        String start = LocalDate.of(1900, Month.JANUARY, 1).format(DF);
+        String end = LocalDate.now().format(DF);
+        for (String s : types) {
+            dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getServiceFinishedAmountRange(s,start,end)));
+            totalFinishedRequest += DatabaseWrapper.getServiceFinishedAmountRange(s,start,end);
+            totalCurrentRequest += DatabaseWrapper.getServiceRequestAmountRange(s,start, end);
+            services++;
+        }
+        dash.getData().add(dataSeries1);
+
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        for (int i = 0; i < types.size(); i++) {
+            int number = DatabaseWrapper.getEmployeeCount(types.get(i));
+            if (number > 0) {
+                pieChartData.add(new PieChart.Data(types.get(i) + " (" + number + ")", number));
+                totalEmployee += number;
+            }
+        }
+        dashPie.setData(pieChartData);
+        double rate = (double) totalFinishedRequest / (double)(totalCurrentRequest+totalFinishedRequest);
+        rate = rate*100;
+        currentSR.setText(String.valueOf(totalCurrentRequest));
+        finishedSR.setText(String.valueOf(totalFinishedRequest));
+        employees.setText(String.valueOf(totalEmployee));
+        serviceTypes.setText(String.valueOf(services));
+        SRRate.setText(String.valueOf(rate).substring(0,5) + "%");
     }
 }
 

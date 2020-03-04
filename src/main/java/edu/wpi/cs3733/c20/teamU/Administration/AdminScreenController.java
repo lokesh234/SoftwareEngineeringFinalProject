@@ -146,6 +146,7 @@ public class AdminScreenController {
   @FXML
   public void analytics(ActionEvent event) {
     App.getPopup().getContent().clear();
+    App.getAnalyticsController().insight();
     App.getPopup().getContent().add(App.getAnalytics());
     App.getPopup().show(App.getPrimaryStage());
   }
