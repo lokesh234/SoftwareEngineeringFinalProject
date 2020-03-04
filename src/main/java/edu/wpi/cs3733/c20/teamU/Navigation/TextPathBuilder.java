@@ -97,6 +97,7 @@ public class TextPathBuilder {
 
 
         // go through and get the distances...
+        this.directions += "FLOOR " + startNode.getFloor() + " DIRECTIONS\n";
         this.directions += "Start at " + start + "\n";
         for(int index = 0; index < getChunks().size(); index++){
             TextPathChunk c = this.chunks.get(index);
@@ -344,6 +345,11 @@ public class TextPathBuilder {
         LinkedList<String> dirs = getCleanDirections();
         String directions = "";
         for(String str : dirs){
+            // add leading whitespace to all non header directions
+            if(!str.startsWith("FLOOR")){
+                directions += "    ";
+            }
+            // add the instruction
             directions += str + "\n";
         }
         return directions;

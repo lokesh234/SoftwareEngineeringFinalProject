@@ -35,13 +35,11 @@ dependencies {
             [group: 'org.apache.derby',name: 'derby', version: '10.14.2.0'],
             [group: 'org.controlsfx', name: 'controlsfx', version: '8.40.16'],
             [group: 'com.google.cloud', name: 'google-cloud-speech', version: '0.80.0-beta'],
-            [group: 'com.google.cloud', name: 'google-cloud-storage', version: '1.105.0'],
             [group: 'org.slf4j', name: 'slf4j-api', version:'1.7.5'],
             [group: 'org.slf4j', name: 'slf4j-simple', version:'1.6.4']
     )
 
     compile 'com.jfoenix:jfoenix:8.0.8'
-    compile 'com.google.cloud:google-cloud-storage:1.105.0'
 //    compile group: 'de.jensd', name: 'fontawesomefx', version: '8.2'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
     compile 'com.warrenstrange:googleauth:1.4.0'

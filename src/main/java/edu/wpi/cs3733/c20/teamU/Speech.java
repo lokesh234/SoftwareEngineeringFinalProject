@@ -1,11 +1,10 @@
 package edu.wpi.cs3733.c20.teamU;
 
-import com.google.api.client.util.Lists;
-import com.google.api.gax.paging.Page;
+
 import com.google.api.gax.rpc.ClientStream;
 import com.google.api.gax.rpc.ResponseObserver;
 import com.google.api.gax.rpc.StreamController;
-import com.google.auth.oauth2.GoogleCredentials;
+
 import com.google.cloud.speech.v1.RecognitionConfig;
 import com.google.cloud.speech.v1.SpeechClient;
 import com.google.cloud.speech.v1.SpeechRecognitionAlternative;
@@ -13,14 +12,11 @@ import com.google.cloud.speech.v1.StreamingRecognitionConfig;
 import com.google.cloud.speech.v1.StreamingRecognitionResult;
 import com.google.cloud.speech.v1.StreamingRecognizeRequest;
 import com.google.cloud.speech.v1.StreamingRecognizeResponse;
-import com.google.cloud.storage.Bucket;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+
 import com.google.protobuf.ByteString;
 
 import javax.sound.sampled.*;
-import java.io.FileInputStream;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 
@@ -29,20 +25,7 @@ public class Speech {
     public void initialize() {
     }
 
-    static void authExplicit(String jsonPath) throws IOException {
-        // You can specify a credential file by providing a path to GoogleCredentials.
-        // Otherwise credentials are read from the GOOGLE_APPLICATION_CREDENTIALS environment variable.
-        System.out.println("Yeehaw");
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(jsonPath))
-                .createScoped(Lists.newArrayList());
-        Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
 
-        System.out.println("Buckets:");
-        Page<Bucket> buckets = storage.list();
-        for (Bucket bucket : buckets.iterateAll()) {
-            System.out.println(bucket.toString());
-        }
-    }
 
 
     public void startlistening() {

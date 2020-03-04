@@ -77,10 +77,12 @@ public class TextPathChunk {
         // if node 1 was stairs/elevator and we're not on it, we're exiting them
         if((firstIsStair && secondIsStair) && !thirdIsStair){
             answer += "Exit the stairs at floor " + this.node3.getFloor() + "\n";
+            answer += "FLOOR " + this.node3.getFloor() + " DIRECTIONS\n";
         }
 
         if((firstIsElev && secondIsElev) && !thirdIsElev){
             answer += "Exit the elevator at floor " + this.node3.getFloor() + "\n";
+            answer += "FLOOR " + this.node3.getFloor() + " DIRECTIONS\n";
         }
 
 
@@ -112,10 +114,14 @@ public class TextPathChunk {
 //         if node 2 was stairs/elevator and we're not on it, we're exiting them
         if((this.node2.getNodeType().equals("STAI")) && !this.node3.getNodeType().equals("STAI")){
             answer += "Exit the stairs at floor " + this.node3.getFloor() + "\n";
+            answer += "FLOOR " + this.node3.getFloor() + " DIRECTIONS\n";
+
         }
 
         if((this.node2.getNodeType().equals("ELEV")) && !this.node3.getNodeType().equals("ELEV")){
             answer += "Exit the elevator at floor " + this.node3.getFloor() + "\n";
+            answer += "FLOOR " + this.node3.getFloor() + " DIRECTIONS\n";
+
         }
 
         double dist = tpb.getHumanDistance(tpb.getPixelDistance(this.node2, this.node3));

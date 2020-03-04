@@ -1,24 +1,40 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import com.jfoenix.controls.JFXChipView;
-import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.*;
+import com.twilio.rest.api.v2010.account.usage.record.Today;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.Service;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class AnalyticsController {
+    private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd.MM.yyyy") ;
     String type = "employee";
-    ArrayList<String> types = ServiceRequestWrapper.getAllServiceType();
+    ArrayList<String> types = new ArrayList<String>();
 //    @FXML
 //    JFXComboBox comboBox;
     @FXML
@@ -28,86 +44,275 @@ public class AnalyticsController {
     @FXML
     private BarChart barChart;
     @FXML
-    private JFXComboBox typesComboBox;
+    private JFXRadioButton employeeRadio, requestRadio, requestFinishedRadio;
+    @FXML
+    private JFXComboBox typesComboBox, quickSelection;
     @FXML
     private JFXChipView typesChip;
+    @FXML
+    private Tab lineTab;
+    @FXML
+    private JFXDatePicker fromDP, toDP;
+    private LocalDate startTime, endTime;
+    @FXML
+    private JFXButton generate;
+    @FXML
+    private CategoryAxis xA;
+    @FXML
+    private NumberAxis yA, lineYA, lineXA;
+    private ToggleGroup typesGroup;
 
 
+    @FXML
     private void update(){
+        types = new ArrayList<String>();
+
+        for (Object s: typesChip.getChips().toArray()) {
+            types.add((String) s);
+        }
+
         pieChart.setData(arrayToPie());
         pieChart.setTitle(type);
+        fillBarChart();
+        fillLineChart();
     }
 
 
     private void fillLineChart(){
-        NumberAxis xAxis = new NumberAxis(1960, 2020, 10);
-        xAxis.setLabel("Years");
-        NumberAxis yAxis = new NumberAxis(0, 350, 50);
+        lineChart.getData().clear();
+        int lowB = 0;
+        int highB = 0;
+        String unit = "";
+
+        if((fromDP.getValue().getYear()- toDP.getValue().getYear() >= 5)){
+            lowB = fromDP.getValue().getYear();
+            highB = toDP.getValue().getYear();
+            unit = "year";
+        }
+        else if ((fromDP.getValue().getMonthValue() - toDP.getValue().getMonthValue()) >= 3){
+            lowB = fromDP.getValue().getMonthValue();
+            highB = toDP.getValue().getMonthValue();
+            unit = "month";
+        }
+        else {
+            lowB = fromDP.getValue().getDayOfYear();
+            highB = toDP.getValue().getDayOfYear();
+            unit = "day";
+        }
+
+        NumberAxis xAxis = new NumberAxis(lowB, highB, (highB-lowB)/10);
+        xAxis.setLabel("Time");
+        NumberAxis yAxis = new NumberAxis(0, 50, 10);
         yAxis.setLabel("Number");
+
+
+        for (String s: types) {
+            XYChart.Series series = new XYChart.Series();
+            series.setName(s);
+            for(int i = 0; i < (highB-lowB); i++) {
+                LocalDate start = fromDP.getValue();
+                LocalDate end;
+                int ending;
+                if (unit.equals("year")) {
+                    end = start.plusYears(1);
+                    ending = end.getYear();
+                }
+                else if(unit.equals("month")){
+                    end = start.plusMonths(1);
+                    ending = end.getMonthValue();
+                }
+                else {
+                    end = start.plusDays(1);
+                    ending = end.getDayOfMonth();
+                }
+
+                if(requestRadio.isSelected()){
+                    series.getData().add(new XYChart.Data(ending,
+                        ServiceDatabase.getServiceRequestAmountRange(s, start.format(DF), end.format(DF))));
+                }
+                else {
+                    series.getData().add(new XYChart.Data(ending,
+                            ServiceDatabase.getServiceFinishedAmountRange(s, start.format(DF), end.format(DF))));
+                }
+            }
+            lineChart.getData().add(series);
+        }
+//        XYChart.Series series = new XYChart.Series();
+//        series.setName("No of schools in an year");
+//
+//        series.getData().add(new XYChart.Data(1970, 15));
+//        series.getData().add(new XYChart.Data(1980, 30));
+//        series.getData().add(new XYChart.Data(1990, 60));
+//        series.getData().add(new XYChart.Data(2000, 120));
+//        series.getData().add(new XYChart.Data(2013, 240));
+//        series.getData().add(new XYChart.Data(2014, 300));
+
     }
 
 
-    private void fillBarChart(){
+    private void fillBarChart() {
+        barChart.getData().clear();
         XYChart.Series dataSeries1 = new XYChart.Series();
-        dataSeries1.setName("2014");
 
-        dataSeries1.getData().add(new XYChart.Data("Desktop", 178));
-        dataSeries1.getData().add(new XYChart.Data("Phone"  , 65));
-        dataSeries1.getData().add(new XYChart.Data("Tablet"  , 23));
-
-
+        dataSeries1.setName("Numbers");
+        for (String s : types) {
+            if (employeeRadio.isSelected()) {
+                dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getEmployeeCount(s)));
+                System.out.println("Bar:" + s + ":" + DatabaseWrapper.getEmployeeCount(s));
+            } else if (requestRadio.isSelected()){
+                dataSeries1.getData().add(new XYChart.Data(s,
+                        ServiceDatabase.getServiceRequestAmountRange(s, fromDP.getValue().format(DF),
+                                toDP.getValue().format(DF))));
+            }
+            else {
+                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceFinishedAmountRange(s, fromDP.getValue().format(DF),
+                        toDP.getValue().format(DF))));
+            }
+        }
         barChart.getData().add(dataSeries1);
     }
 
     private ObservableList<PieChart.Data> arrayToPie(){
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        ArrayList<Integer> temp = new ArrayList<Integer>();
-        types = DatabaseWrapper.getDataAnalytics(temp, type);
 
-        if(temp != null) {
-            for(int i =0; i < types.size(); i++) {
-                System.out.println(types.get(i) + " " + temp.get(i));
-            if (temp.get(i) > 0) {
-              pieChartData.add(new PieChart.Data(types.get(i) + " (" + temp.get(i) + ")", temp.get(i)));
-                    }
+        for (int i = 0; i < types.size(); i++) {
+            int number = 0;
+
+            if(employeeRadio.isSelected()){
+                number = DatabaseWrapper.getEmployeeCount(types.get(i));
+            }else if (requestRadio.isSelected()){
+                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i),
+                        fromDP.getValue().format(DF),
+                        toDP.getValue().format(DF));
+            }
+            else {
+                System.out.println(fromDP.getValue().toString());
+                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i),
+                        fromDP.getValue().format(DF),
+                        toDP.getValue().format(DF));
+            }
+
+            if (number > 0) {
+                pieChartData.add(new PieChart.Data(types.get(i) + " (" + number + ")", number));
             }
         }
+
         return pieChartData;
     }
 
 
     @FXML
     private void initialize(){
+        typesGroup = new ToggleGroup();
+        employeeRadio.setToggleGroup(typesGroup);
+        requestRadio.setToggleGroup(typesGroup);
+        requestFinishedRadio.setToggleGroup(typesGroup);
+        typesGroup.selectToggle(null);
+
+
         ObservableList<String> serviceTypes =
                 FXCollections.observableArrayList(
                         ServiceRequestWrapper.getAllServiceType()
                 );
         typesComboBox.getItems().addAll(serviceTypes);
-//        comboBox.valueProperty().addListener(new ChangeListener<String>() {
+
+        ObservableList<String> quick =
+                FXCollections.observableArrayList(
+                        "Last Day",
+                        "Last Week",
+                        "Last Month",
+                        "Last Year"
+                );
+        quickSelection.getItems().addAll(quick);
+
+        quickSelection.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String selection = quickSelection.getSelectionModel().getSelectedItem().toString();
+                LocalDate currentTime = LocalDate.now();
+                if(selection.equals("Last Day")){
+                    currentTime = currentTime.minusDays(1);
+                }
+                else if(selection.equals("Last Week")){
+                    currentTime = currentTime.minusWeeks(1);
+                }
+                else if (selection.equals("Last Month")){
+                    currentTime = currentTime.minusMonths(1);
+                }
+                else if (selection.equals("Last Year")){
+                    currentTime = currentTime.minusYears(1);
+                }
+
+                fromDP.setValue(currentTime);
+                toDP.setValue(LocalDate.now());
+            }
+        });
+
+        generate.setDisable(true);
+        BooleanBinding blockCheckBox =
+                (typesChip.converterProperty().isNull())
+                .or(requestFinishedRadio.selectedProperty().and(requestRadio.selectedProperty()).and(employeeRadio.selectedProperty()))
+                .or(fromDP.getEditor().textProperty().isEmpty())
+                .or(toDP.getEditor().textProperty().isEmpty());
+        generate.disableProperty().bind(blockCheckBox);
+
+        fromDP.setDisable(true);
+        toDP.setDisable(true);
+        lineTab.setDisable(true);
+        quickSelection.setDisable(true);
+
+//        typesGroup.getProperties().addListener(new MapChangeListener<Object, Object>() {
 //            @Override
-//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-//                    type = comboBox.getSelectionModel().getSelectedItem().toString();
-//                    update();
-////                System.out.println("changes");
+//            public void onChanged(Change<?, ?> change) {
+//                if(employeeRadio.isSelected()){
+//                    fromDP.setValue(LocalDate.now());
+//                    toDP.setValue(LocalDate.now());
+//                    fromDP.setDisable(true);
+//                    toDP.setDisable(true);
+//                    lineTab.setDisable(true);
+//                    quickSelection.setDisable(true);
+//                }
+//                else {
+//                    fromDP.setDisable(false);
+//                    toDP.setDisable(false);
+//                    lineTab.setDisable(false);
+//                    quickSelection.setDisable(false);
+//                }
 //            }
 //        });
-//
-//        ObservableList<String> deliveryOptions =
-//                FXCollections.observableArrayList(
-//                        "employee",
-//                        "service",
-//                        "serviceFinished"
-//                );
-//        comboBox.getItems().addAll(deliveryOptions);
+//        typesGroup.getProperties().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+//                    fromDP.setValue(LocalDate.now());
+//                    toDP.setValue(LocalDate.now());
+//                    fromDP.setDisable(true);
+//                    toDP.setDisable(true);
+//                    lineTab.setDisable(true);
+//                    quickSelection.setDisable(true);
+//                }
+//                else {
+//                    fromDP.setDisable(false);
+//                    toDP.setDisable(false);
+//                    lineTab.setDisable(false);
+//                    quickSelection.setDisable(false);
+//                }
+//            }
+//        });
 
 
-        CategoryAxis xAxis    = new CategoryAxis();
-        xAxis.setLabel("Services");
+        xA = new CategoryAxis();
+        xA.setLabel("Services");
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Numbers");
+        yA = new NumberAxis();
+        yA.setLabel("Numbers");
 
-        barChart = new BarChart(xAxis, yAxis);
+        lineXA = new NumberAxis();
+        lineXA.setLabel("Services");
+
+        lineYA = new NumberAxis();
+        lineYA.setLabel("Numbers");
+//        barChart = new BarChart(xAxis, yAxis);
     }
 
 
@@ -126,19 +331,6 @@ public class AnalyticsController {
 //            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
 
             typesChip.getChips().add(typesComboBox.getSelectionModel().getSelectedItem());
-            typesComboBox.getSelectionModel().clearSelection();
-        } else {
-            typesComboBox.setStyle("-fx-border-color: red");
-        }
-    }
-
-    @FXML
-    public void removeSRType(ActionEvent event) {
-        if (!typesComboBox.getSelectionModel().isEmpty() &&
-                !typesChip.getChips().contains(typesComboBox.getSelectionModel().getSelectedItem())) {
-//            flowerCombo.setStyle("-fx-border-color: #FFEEC9");
-
-            typesChip.getChips().remove(typesComboBox.getSelectionModel().getSelectedItem());
             typesComboBox.getSelectionModel().clearSelection();
         } else {
             typesComboBox.setStyle("-fx-border-color: red");

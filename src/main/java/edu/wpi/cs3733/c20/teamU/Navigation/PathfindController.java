@@ -79,6 +79,7 @@ public class PathfindController {
     @FXML private GesturePane MapGes5;
     @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
     @FXML private JFXTextField startBox, endBox;
+    @FXML private JFXButton centerOut;
 
     @FXML private RadioButton fast, elev, stai;
 
@@ -142,7 +143,7 @@ public class PathfindController {
     @FXML
     Label startLabel, endLabel, statusLabel;
     @FXML
-    TextField SearchBox;
+    JFXTextField SearchBox;
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -171,27 +172,55 @@ public class PathfindController {
         }
     };
 
+    EventHandler<MouseEvent> PathZOOOOM = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            if (start == null){
+                System.out.println("++++++++++++++++++++++++++++++++++++++++");
+                return;
+            }
+            else {
+                System.out.println("----------------------------------------------//////////////////");
+                startZoomMachine(floor);
+            }
+        }
+    };
+
     EventHandler<MouseEvent> hitboxClickHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             updateStatus();
-            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
-            else if (state == State.START) { //We're going to select a starting node!
-                //System.out.println("Start Click");
-                start = hitboxes.get(event.getSource());
-                startReady = (start != null) || startReady;
-//                if (startReady) startLabel.setText(start.getLongName());
-                if (startReady) SearchBox.setText(start.getLongName());
+            if (start != null && start.equals(hitboxes.get(event.getSource()))) {
+                start = null;
+                startReady = false;
+                state = State.START;
+                updateStatus();
+            }
+            else if (end != null && end.equals(hitboxes.get(event.getSource()))){
+                end = null;
+                endReady = false;
                 state = State.END;
                 updateStatus();
             }
-            else if (state == State.END) { //We're going to select an ending node!
-                end = hitboxes.get(event.getSource());
-                endReady = (end != null) || endReady;
+            else {
+                if (state == State.NEUTRAL)
+                    return; //We're not selecting a start or end point, so we don't need to do any work
+                else if (state == State.START) { //We're going to select a starting node!
+                    //System.out.println("Start Click");
+                    start = hitboxes.get(event.getSource());
+                    startReady = (start != null) || startReady;
+//                if (startReady) startLabel.setText(start.getLongName());
+                    if (startReady) startBox.setText(start.getLongName());
+                    state = State.END;
+                    updateStatus();
+                } else if (state == State.END) { //We're going to select an ending node!
+                    end = hitboxes.get(event.getSource());
+                    endReady = (end != null) || endReady;
 //                if (endReady) endLabel.setText(end.getLongName());
-                if (endReady) SearchBox.setText(end.getLongName());
-                state = State.START;
-                updateStatus();
+                    if (endReady) endBox.setText(end.getLongName());
+                    state = State.START;
+                    updateStatus();
+                }
             }
         }
     };
@@ -211,6 +240,26 @@ public class PathfindController {
             ImageView source = (ImageView) event.getSource();
             source.setFitWidth(16);
             source.setFitWidth(16);
+        }
+    };
+
+    EventHandler<MouseEvent> startClearSelect = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            start = null;
+            startReady = false;
+            state = State.START;
+            updateStatus();
+        }
+    };
+
+    EventHandler<MouseEvent> endClearSelect = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            end = null;
+            endReady = false;
+            state = State.END;
+            updateStatus();
         }
     };
 
@@ -264,8 +313,8 @@ public class PathfindController {
         checker = 2;
     }
 
-    private void Auto(){
-        TextFields.bindAutoCompletion(SearchBox, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+    private void Auto(JFXTextField autocomplete){
+        TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
             else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
@@ -285,6 +334,36 @@ public class PathfindController {
             }
         });
     }
+
+    private void AutoStart(JFXTextField autocomplete){
+        TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+            updateStatus();
+            if (DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText()) != null) { //We're going to select a starting node!
+                //System.out.println("Start Click");
+                start = DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText());
+                startReady = (start != null) || startReady;
+//                if (startReady) startLabel.setText(start.getLongName());
+                state = State.END;
+                updateStatus();
+            }
+        });
+    }
+
+    private void AutoEnd(JFXTextField autocomplete){
+        TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
+            updateStatus();
+           if (DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText()) != null) { //We're going to select an ending node!
+                end = DatabaseWrapper.getGraph().getNodeByLongName(autocomplete.getText());
+                endReady = (end != null) || endReady;
+//                if (endReady) endLabel.setText(end.getLongName());
+                state = State.START;
+                updateStatus();
+            }
+        });
+    }
+
+
+
 
     @FXML private void stateMachine(int floor){
         switch (floor){
@@ -396,6 +475,42 @@ public class PathfindController {
         }
     }
 
+    private void startZoomMachine(int floor) {
+        Point2D focus = new Point2D(start.getX(), start.getY());
+        switch (floor) {
+            case 1:
+                MapGes1.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes1.getCurrentScale() + 1.25 , focus);
+                break;
+            case 2:
+                MapGes2.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes2.getCurrentScale() + 1.25 , focus);
+
+                break;
+            case 3:
+                MapGes3.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes3.getCurrentScale() + 1.25 , focus);
+
+                break;
+            case 4:
+                System.out.println(focus);
+                MapGes4.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes4.getCurrentScale() + 1.25 , focus);
+
+                break;
+            case 5:
+                MapGes5.animate(Duration.millis(200))
+                        .interpolateWith(Interpolator.EASE_BOTH)
+                        .zoomTo(MapGes5.getCurrentScale() + 1.25, focus);
+
+                break;
+        }
+    }
+
     private void ZoomCenterMachine(int floor) {
         switch (floor) {
             case 1:
@@ -481,6 +596,7 @@ public class PathfindController {
         removeFromAll(endNodeLabel);
         removeFromAll(startView);
         removeFromAll(startSelect);
+        removeFromAll(endSelect);
         removeFromAll(endView);
         removeFromAll(endViewselect);
         if (state == State.NEUTRAL) {
@@ -503,9 +619,11 @@ public class PathfindController {
             startSelect.setStroke(Color.GREEN);
             startSelect.setStrokeWidth(5);
             startSelect.setRadius(20);
+            startSelect.setOnMouseClicked(startClearSelect);
             startView.setImage(startMarker);
             startView.setX(start.getX() - 10);
             startView.setY(start.getY() - 53);
+            startView.setOnMouseClicked(startClearSelect);
             addToPath(startSelect, start.getFloor());
             addToPath(startView, start.getFloor());
 
@@ -535,9 +653,11 @@ public class PathfindController {
             endSelect.setStroke(Color.RED);
             endSelect.setStrokeWidth(5);
             endSelect.setRadius(20);
+            endSelect.setOnMouseClicked(endClearSelect);
             endView.setImage(endMarker);
             endView.setX(end.getX() - 17);
             endView.setY(end.getY() - 53);
+            endView.setOnMouseClicked(endClearSelect);
             addToPath(endSelect, end.getFloor());
             addToPath(endView, end.getFloor());
             addToPath(endViewselect, end.getFloor());
@@ -586,9 +706,10 @@ public class PathfindController {
         for (Node n : nodes) {
             try {
                 ImageView i = new ImageView();
-                i.setImage(new Image("png_files/"+n.getID()+".png"));
-                i.setOnMouseClicked(hitboxClickHandler);
+                i.setImage(App.getHitbox(n.getID()));
+                i.addEventFilter(MOUSE_CLICKED, hitboxClickHandler);
                 addToPath(i, n.getFloor());
+                i.setOpacity(0);
                 hitboxes.put(i, n);
             } catch (Exception e) {
                 //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
@@ -881,6 +1002,7 @@ public class PathfindController {
         rightArrow.addEventHandler(MOUSE_PRESSED, rightClick);
         upArrow.addEventHandler(MOUSE_PRESSED, upClick);
         downArrow.addEventHandler(MOUSE_PRESSED, downClick);
+        centerOut.addEventHandler(MOUSE_PRESSED, PathZOOOOM );
 
 
         fast.setToggleGroup(group);
@@ -962,7 +1084,10 @@ public class PathfindController {
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         Populate();
-        Auto();
+        Auto(SearchBox);
+        AutoStart(startBox);
+        AutoEnd(endBox);
+
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
 
@@ -1060,7 +1185,7 @@ public class PathfindController {
     }
 
     @FXML
-    private void clearSelect() {
+    public void clearSelect() {
         start = null;
         end = null;
         startReady = false;
@@ -1071,8 +1196,8 @@ public class PathfindController {
         removeFromAll(endSelect);
         removeFromAll(endViewselect);
         removeFromAll(endView);
-        startBox.setText("");
-        endBox.setText("");
+        startBox.clear();
+        endBox.clear();
         clearPath();
     }
 
