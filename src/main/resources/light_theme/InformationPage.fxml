@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.InformationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="windowScreen" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.InformationController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -48,7 +48,7 @@
                </children>
             </VBox>
          </top>
-         <center>
+         <right>
             <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="872.0" styleClass="windowScreen">
@@ -93,7 +93,7 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                                        <children>
-                                          <ImageView fitHeight="138.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="118.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../png_files/Ted.png" />
                                              </image>
@@ -108,13 +108,13 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="1">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                          <ImageView fitHeight="114.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/Jon.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox alignment="CENTER" prefHeight="214.0" prefWidth="117.0">
                                              <children>
-                                                <ImageView fitHeight="114.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../png_files/Jon.png" />
-                                                   </image>
-                                                </ImageView>
                                                 <Label text="Jonathan Sanchez" />
                                                 <Label text="(Product Owner)" />
                                              </children>
@@ -123,7 +123,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.rowIndex="1">
                                        <children>
-                                          <ImageView fitHeight="127.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="118.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../png_files/Marcus.png" />
                                              </image>
@@ -138,9 +138,9 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <ImageView fitHeight="113.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="113.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/Byron0.png" />
+                                                <Image url="@../png_files/Byron.png" />
                                              </image>
                                           </ImageView>
                                           <VBox alignment="CENTER" prefHeight="159.0" prefWidth="152.0">
@@ -168,9 +168,9 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
-                                          <ImageView fitHeight="136.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="121.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/Lokesh.jpg" />
+                                                <Image url="@../png_files/Lokesh.png" />
                                              </image>
                                           </ImageView>
                                           <VBox alignment="CENTER" prefHeight="159.0" prefWidth="152.0">
@@ -183,7 +183,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                                        <children>
-                                          <ImageView fitHeight="129.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="129.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../png_files/Alek.png" />
                                              </image>
@@ -198,7 +198,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <ImageView fitHeight="129.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="129.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../png_files/Mielynn.png" />
                                              </image>
@@ -213,7 +213,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <children>
-                                          <ImageView fitHeight="88.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="88.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../png_files/Anir.png" />
                                              </image>
@@ -234,7 +234,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-         </center>
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>

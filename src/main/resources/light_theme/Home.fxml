@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -90,10 +90,17 @@
                            <children>
                               <VBox fx:id="floorNavBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                  <children>
-                                          <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
+                                          <JFXButton fx:id="upButton" contentDisplay="GRAPHIC_ONLY" onAction="#clickUp" text="Λ">
                                               <font>
                                                   <Font name="Segoe UI" size="36.0" />
                                               </font>
+                                       <graphic>
+                                          <ImageView fitHeight="31.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/upArrow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                           </JFXButton>
                                     <JFXButton fx:id="floorFive" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#five" text="5">
                                        <font>
@@ -120,10 +127,17 @@
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                          <JFXButton fx:id="downButton" onAction="#clickDown" prefHeight="30.0" prefWidth="0.0" text="V">
+                                          <JFXButton fx:id="downButton" contentDisplay="GRAPHIC_ONLY" onAction="#clickDown" prefHeight="30.0" prefWidth="0.0" text="V">
                                               <font>
                                                   <Font name="Segoe UI" size="36.0" />
                                               </font>
+                                       <graphic>
+                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/downArrow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
                                           </JFXButton>
                                  </children>
                               </VBox>
@@ -325,30 +339,65 @@
                                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                     <JFXButton fx:id="upArrow" text="Λ" GridPane.columnIndex="1">
+                                     <JFXButton fx:id="upArrow" contentDisplay="GRAPHIC_ONLY" text="Λ" GridPane.columnIndex="1">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="43.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/upArrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
-                                     <JFXButton fx:id="downArrow" text="V" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                     <JFXButton fx:id="downArrow" contentDisplay="GRAPHIC_ONLY" text="V" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="56.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/downArrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
-                                     <JFXButton fx:id="leftArrow" text="&lt;" GridPane.rowIndex="1">
+                                     <JFXButton fx:id="leftArrow" contentDisplay="GRAPHIC_ONLY" text="&lt;" GridPane.rowIndex="1">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="31.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/leftArrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
-                                     <JFXButton fx:id="rightArrow" text="&gt;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                     <JFXButton fx:id="rightArrow" contentDisplay="GRAPHIC_ONLY" text="&gt;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/rightArrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
-                                     <JFXButton fx:id="upArrow1" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                     <JFXButton fx:id="upArrow1" contentDisplay="GRAPHIC_ONLY" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="31.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/reZoom.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
                                  </children>
                              </GridPane>
@@ -369,20 +418,41 @@
                                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                     <JFXButton fx:id="plus" alignment="CENTER" contentDisplay="CENTER" onAction="#zoomIn" text="+" GridPane.columnIndex="1">
+                                     <JFXButton fx:id="plus" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" onAction="#zoomIn" text="+" GridPane.columnIndex="1">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/plus.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
-                                     <JFXButton fx:id="minus" onAction="#zoomOut" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                     <JFXButton fx:id="minus" contentDisplay="GRAPHIC_ONLY" onAction="#zoomOut" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/minus.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
-                                     <JFXButton fx:id="minus1" onAction="#centerOut" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                     <JFXButton fx:id="minus1" contentDisplay="GRAPHIC_ONLY" onAction="#centerOut" text="o" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                          <font>
                                              <Font name="Segoe UI" size="18.0" />
                                          </font>
+                                 <graphic>
+                                    <ImageView fitHeight="150.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/reZoom.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                      </JFXButton>
                                  </children>
                              </GridPane>
