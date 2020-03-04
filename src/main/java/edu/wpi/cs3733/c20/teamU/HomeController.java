@@ -588,13 +588,9 @@ public class HomeController {
       menuOptions.addAnimatedNode(info);
       menuOptions.addAnimatedNode(help);
       menuOptions.setSpacing(20.0);
-//    FloorAnimation floorAnimation = new FloorAnimation();
-//    floorAnimation.setSize(floorNavBox)
+    FloorAnimation floorAnimation = new FloorAnimation(floorNavBox, 4);
+//    floorAnimation.shuffle(4);
 
-//    floorNavBox.getChildren().get(1).maxWidth(5);
-//    floorNavBox.getChildren().get(1).prefWidth(5);
-//    floorNavBox.getChildren().get(1).maxHeight(5);
-//    floorNavBox.getChildren().get(1).prefHeight(5);
 
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
