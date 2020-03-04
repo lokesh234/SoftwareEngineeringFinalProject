@@ -377,10 +377,7 @@ public class HomeController {
 
   @FXML
   private void openLoginSceneSound() {
-    App.getHome().setOpacity(.5);
-    App.getHome().setDisable(true);
-    App.getPopup().getContent().add(App.getLogin());
-    App.getPopup().show(App.getPrimaryStage());
+    openLoginScene();
   }
 
   @FXML
