@@ -143,7 +143,7 @@ public class PathfindController {
     @FXML
     Label startLabel, endLabel, statusLabel;
     @FXML
-    JFXTextField SearchBox;
+//    JFXTextField SearchBox;
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -155,7 +155,7 @@ public class PathfindController {
                 start = IconMap.get(event.getSource());
                 startReady = (start != null) || startReady;
 //                if (startReady) startLabel.setText(start.getLongName());
-                if (startReady) SearchBox.setText(start.getLongName());
+//                if (startReady) SearchBox.setText(start.getLongName());
                 if (startReady) startBox.setText(start.getLongName());
                 state = State.END;
                 updateStatus();
@@ -164,7 +164,7 @@ public class PathfindController {
                 end = IconMap.get(event.getSource());
                 endReady = (end != null) || endReady;
 //                if (endReady) endLabel.setText(end.getLongName());
-                if (endReady) SearchBox.setText(end.getLongName());
+//                if (endReady) SearchBox.setText(end.getLongName());
                 if (endReady) endBox.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
@@ -317,21 +317,21 @@ public class PathfindController {
         TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
-            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
-                //System.out.println("Start Click");
-                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
-                startReady = (start != null) || startReady;
-//                if (startReady) startLabel.setText(start.getLongName());
-                state = State.END;
-                updateStatus();
-            }
-            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
-                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
-                endReady = (end != null) || endReady;
-//                if (endReady) endLabel.setText(end.getLongName());
-                state = State.START;
-                updateStatus();
-            }
+//            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
+//                //System.out.println("Start Click");
+//                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+//                startReady = (start != null) || startReady;
+////                if (startReady) startLabel.setText(start.getLongName());
+//                state = State.END;
+//                updateStatus();
+//            }
+//            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
+//                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+//                endReady = (end != null) || endReady;
+////                if (endReady) endLabel.setText(end.getLongName());
+//                state = State.START;
+//                updateStatus();
+//            }
         });
     }
 
@@ -1084,7 +1084,7 @@ public class PathfindController {
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         Populate();
-        Auto(SearchBox);
+//        Auto(SearchBox);
         AutoStart(startBox);
         AutoEnd(endBox);
 
@@ -1598,7 +1598,7 @@ public class PathfindController {
     }
 
     public void getSelectionFromDir(String longName) {
-        SearchBox.setText(longName);
+//        SearchBox.setText(longName);
     }
 
     @FXML
