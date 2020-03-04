@@ -1598,7 +1598,30 @@ public class PathfindController {
     }
 
     public void getSelectionFromDir(String longName) {
-        SearchBox.setText(longName);
+        System.out.println(longName);
+        System.out.println(DatabaseWrapper.getGraph().getNodeByLongName(longName));
+        if (state == State.START) {
+            start = DatabaseWrapper.getGraph().getNodeByLongName(longName);
+            startReady = start != null;
+            if (startReady) {
+                floor = start.getFloor();
+                stateMachine(floor);
+            }
+            startBox.setText(longName);
+            state = State.END;
+            updateStatus();
+        }
+        else {
+            end = DatabaseWrapper.getGraph().getNodeByLongName(longName);
+            endReady = end != null;
+            if (endReady) {
+                floor = end.getFloor();
+                stateMachine(floor);
+            }
+            endBox.setText(longName);
+            state = State.START;
+            updateStatus();
+        }
     }
 
     @FXML
