@@ -71,6 +71,7 @@ public class ViewCustomRequestController {
             System.gc();
             if (!f.delete()) System.out.println("oh no");
             f2.delete();
+            App.getRequestController().updateButtons();
         }
     }
 
