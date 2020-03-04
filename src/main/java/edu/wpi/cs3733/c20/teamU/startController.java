@@ -116,6 +116,8 @@ public class startController<startC> {
     if(App.getPathfindController() != null) App.getPathfindController().clearSelect();
     mediaView = new MediaView(new MediaPlayer(new Media(path)));
     addToNode(mediaView);
+    mediaView.setFitHeight(1080);
+    mediaView.setFitWidth(1920);
     mediaView.getMediaPlayer().play();
     mediaView.getMediaPlayer().setAutoPlay(true);
     mediaView.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
