@@ -651,7 +651,7 @@ public class App<loadedAdminRequests> extends Application {
   public void start(Stage primaryStage) {
     App.primaryStage = primaryStage;
     DatabaseWrapper.updateGraph();
-    setLocation(DatabaseWrapper.getGraph().getNode("RDEPT00401"));
+    setLocation(DatabaseWrapper.getGraph().getNode("UDEPT00504"));
 //    AppointmentRequest.run(0, 0, 1900, 1000, null, "hello", "hello");
 
     popup.getContent().addAll();
@@ -757,6 +757,7 @@ public class App<loadedAdminRequests> extends Application {
 
         homeController.setWeatherData(weatherController);
         fireController.setAttributes(fire);
+        homeController.setAttributes(home);
 
         homeScene = new Scene(home);
         startScene = new Scene(start);

@@ -2,27 +2,33 @@ package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
+import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import com.jfoenix.controls.JFXNodesList;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Map;
 
 import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import net.kurobako.gesturefx.GesturePane;
 
-import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
+import static javafx.scene.input.MouseEvent.*;
 
 public class HomeController {
 
@@ -79,6 +85,7 @@ public class HomeController {
   private int checker = 0;
   private FloorAnimation floorAnimation;
   @FXML private Label voiceLabel, voiceLabelstart, voiceLabelend;
+  private Parent root;
 
   public void setWeatherData(WeatherController weatherController1) {
     weatherController = weatherController1;
@@ -409,6 +416,89 @@ public class HomeController {
     speech.startlistening();
     openHelpSceneSpeechB();
     // voiceLabel.setText("Listening");
+  }
+
+  public void setAttributes(Parent root) {
+    this.root = root;
+    this.drawNodes();
+  }
+
+  private void removeFromAll(javafx.scene.Node e) {
+    NodesPane1.getChildren().remove(e);
+    NodesPane2.getChildren().remove(e);
+    NodesPane3.getChildren().remove(e);
+    NodesPane4.getChildren().remove(e);
+    NodesPane5.getChildren().remove(e);
+  }
+
+  public void drawNodes() {
+
+//        startLabel.setText("None Selected");
+//        endLabel.setText("None Selected");
+    //ArrayList<Node> nodes = App.getGraph().getNodes();
+    DatabaseWrapper.updateGraph();
+    ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
+    for (Node n : nodes) {
+      if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+      if (isDrawableNode(n)) {
+        ImageView imageView = new ImageView();
+        imageView.setY(n.getY() - 12);
+        imageView.setX(n.getX() - 12);
+        Circle c = new Circle();
+        c.setCenterX(n.getX());
+        c.setCenterY(n.getY());
+        c.setRadius(App.getNodeSize());
+        addToPath(c, n.getFloor());
+        App.setColor(n, c);
+        App.setIcon(n, imageView);
+        addToPath(imageView, n.getFloor());
+
+      }
+    }
+  }
+
+  private void addToPath(javafx.scene.Node e, int floor) {
+    switch (floor) {
+      case 1:
+        if (!NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().add(e);
+        break;
+      case 2:
+        if (!NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().add(e);
+        break;
+      case 3:
+        if (!NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().add(e);
+        break;
+      case 4:
+        if (!NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().add(e);
+        break;
+      case 5:
+        if (!NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().add(e);
+        break;
+    }
+  }
+  private void removeFromPath(javafx.scene.Node e, int floor) {
+    switch (floor) {
+      case 1:
+        if (NodesPane1.getChildren().contains(e)) NodesPane1.getChildren().remove(e);
+        break;
+      case 2:
+        if (NodesPane2.getChildren().contains(e)) NodesPane2.getChildren().remove(e);
+        break;
+      case 3:
+        if (NodesPane3.getChildren().contains(e)) NodesPane3.getChildren().remove(e);
+        break;
+      case 4:
+        if (NodesPane4.getChildren().contains(e)) NodesPane4.getChildren().remove(e);
+        break;
+      case 5:
+        if (NodesPane5.getChildren().contains(e)) NodesPane5.getChildren().remove(e);
+        break;
+    }
+  }
+
+  private boolean isDrawableNode(Node n) { //Which nodes do we want to draw?
+    return !n.getNodeType().equals("HALL"); //no hallway nodes
+    //return true; //Everything!
   }
 
   @FXML

@@ -32,7 +32,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="46.0" prefWidth="600.0" styleClass="titleBar">
                     <children>
-                        <Label text="Information">
+                        <Label text="Credits">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
