@@ -584,7 +584,8 @@ public class HomeController {
                         if (App.getSpokenWords().contains("go to floor one")
                                 || App.getSpokenWords().contains("go to floor 1")
                                 || App.getSpokenWords().contains(" go to floor one")
-                        || App.getSpokenWords().contains("one")){
+                        || App.getSpokenWords().contains("one")
+                                || App.getSpokenWords().contains("go to Floor one")){
 
                           one();
                           App.getSpokenWords().clear();
@@ -593,7 +594,8 @@ public class HomeController {
                         if (App.getSpokenWords().contains("go to floor two")
                                 || App.getSpokenWords().contains("go to floor 2")
                                 || App.getSpokenWords().contains(" go to floor two")
-                        || App.getSpokenWords().contains("two")) {
+                        || App.getSpokenWords().contains("two")
+                        || App.getSpokenWords().contains("go to Floor two")) {
 
                           two();
                           App.getSpokenWords().clear();
@@ -602,7 +604,8 @@ public class HomeController {
                         if (App.getSpokenWords().contains("go to floor three")
                                 || App.getSpokenWords().contains("go to floor 3")
                                 || App.getSpokenWords().contains(" go to floor three")
-                      || App.getSpokenWords().contains("three")){
+                      || App.getSpokenWords().contains("three")
+                                || App.getSpokenWords().contains("go to Floor three")){
 
                           three();
                           App.getSpokenWords().clear();
@@ -611,7 +614,8 @@ public class HomeController {
                         if (App.getSpokenWords().contains("go to floor four")
                                 || App.getSpokenWords().contains("go to floor 4")
                                 || App.getSpokenWords().contains(" go to floor four")
-                        || App.getSpokenWords().contains("four")){
+                        || App.getSpokenWords().contains("four")
+                                || App.getSpokenWords().contains("go to Floor four")){
 
                           four();
                           App.getSpokenWords().clear();
@@ -620,7 +624,8 @@ public class HomeController {
                         if (App.getSpokenWords().contains("go to floor five")
                                 || App.getSpokenWords().contains("go to floor 5")
                                 || App.getSpokenWords().contains(" go to floor five")
-                        || App.getSpokenWords().contains("five")){
+                        || App.getSpokenWords().contains("five")
+                                || App.getSpokenWords().contains("go to Floor five")){
 
                           five();
                           App.getSpokenWords().clear();
