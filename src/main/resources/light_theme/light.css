@@ -37,6 +37,12 @@
     -fx-background: -color-1;
 }
 
+.dashboard{}
+.dashboard .label{
+    -fx-font-size: 24pt;
+    /*-fx-font-weight: BOLD;*/
+}
+
 .titleBar{
     -fx-background-color: -color-2;
     /*-fx-background-color: red;*/
