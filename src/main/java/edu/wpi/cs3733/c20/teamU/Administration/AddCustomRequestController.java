@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXChipView;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -162,7 +163,7 @@ public class AddCustomRequestController {
             for (Component c : components.getItems()) {
                 componentNames.add(c.name);
             }
-
+            DatabaseWrapper.generateNewDatabase(shortName.getText().toUpperCase(), inputTypes, "DEFAULT");
             App.getRequestController().updateButtons();
             back();
         }
