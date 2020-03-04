@@ -655,27 +655,28 @@ public class GraphEditController {
     ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
     for (Node n : nodes) {
       try {
-        ImageView i = new ImageView();
-        i.setImage(new Image("png_files/" + n.getID() + ".png"));
-        i.setOnMouseClicked(hitboxClickHandler);
-        addToPath(i, n.getFloor());
-        hitboxes.put(i, n);
-        i.setOnMouseDragged(event -> dragHitbox(event));
+//        ImageView i = new ImageView();
+//        i.setImage(new Image("png_files/hitboxes/" + n.getID() + ".png"));
+//        i.setOnMouseClicked(hitboxClickHandler);
+//        addToPath(i, n.getFloor());
+//        hitboxes.put(i, n);
+//        i.setOnMouseDragged(event -> dragHitbox(event));
       } catch (Exception e) {
         //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-        if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-        Circle c = new Circle();
-        c.setCenterX(n.getX());
-        c.setCenterY(n.getY());
-        c.setRadius(App.getNodeSize());
-        addToPath(c, n.getFloor());
-        c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
-        c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-        c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
-        c.setOnMouseDragged(event -> drag(event));
-        App.setColor(n, c);
-        circles.put(c, n);
+
       }
+      if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+      Circle c = new Circle();
+      c.setCenterX(n.getX());
+      c.setCenterY(n.getY());
+      c.setRadius(App.getNodeSize());
+      addToPath(c, n.getFloor());
+      c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+      c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
+      c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
+      c.setOnMouseDragged(event -> drag(event));
+      App.setColor(n, c);
+      circles.put(c, n);
     }
   }
 
