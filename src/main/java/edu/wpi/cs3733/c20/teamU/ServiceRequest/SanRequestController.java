@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 
 public class SanRequestController {
 
@@ -24,6 +25,7 @@ public class SanRequestController {
     @FXML private TextField c;
     @FXML private Button back;
     @FXML private Button confirm;
+    private NodeName nodeName = new NodeName();
 
     public void keyConfirm(){
         confirm.fire();
@@ -78,6 +80,8 @@ public class SanRequestController {
                 .or(b.textProperty().isEmpty()).or(c.textProperty().isEmpty())
                 .or(d.textProperty().isEmpty());
         confirm.disableProperty().bind(blockCheckBox);
+        nodeName.Populate();
+        TextFields.bindAutoCompletion(c, nodeName.getAllNodeNames());
 //        @FXML private TextArea d;
 //        @FXML private TextField a;
 //        @FXML private TextField b;
