@@ -486,35 +486,40 @@ public class HomeController {
                         }
                         if (App.getSpokenWords().contains("go to floor one")
                                 || App.getSpokenWords().contains("go to floor 1")
-                                || App.getSpokenWords().contains(" go to floor one")){
+                                || App.getSpokenWords().contains(" go to floor one")
+                        || App.getSpokenWords().contains("one")){
                           one();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
                         if (App.getSpokenWords().contains("go to floor two")
                                 || App.getSpokenWords().contains("go to floor 2")
-                                || App.getSpokenWords().contains(" go to floor two")){
+                                || App.getSpokenWords().contains(" go to floor two")
+                        || App.getSpokenWords().contains("two")) {
                           two();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
                         if (App.getSpokenWords().contains("go to floor three")
                                 || App.getSpokenWords().contains("go to floor 3")
-                                || App.getSpokenWords().contains(" go to floor three")){
+                                || App.getSpokenWords().contains(" go to floor three")
+                      || App.getSpokenWords().contains("three")){
                           three();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
                         if (App.getSpokenWords().contains("go to floor four")
                                 || App.getSpokenWords().contains("go to floor 4")
-                                || App.getSpokenWords().contains(" go to floor four")){
+                                || App.getSpokenWords().contains(" go to floor four")
+                        || App.getSpokenWords().contains("four")){
                           four();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
                         if (App.getSpokenWords().contains("go to floor five")
                                 || App.getSpokenWords().contains("go to floor 5")
-                                || App.getSpokenWords().contains(" go to floor five")){
+                                || App.getSpokenWords().contains(" go to floor five")
+                        || App.getSpokenWords().contains("five")){
                           five();
                           App.getSpokenWords().clear();
                           runThread = false;
