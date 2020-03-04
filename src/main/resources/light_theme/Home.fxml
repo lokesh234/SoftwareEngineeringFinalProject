@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane fx:id="something" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -77,45 +77,45 @@
                                 <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                          <Label fx:id="floorLabel" text="4">
-                                              <font>
-                                                  <Font name="Segoe UI Bold" size="36.0" />
-                                              </font>
-                                          </Label>
+<!--                                          <Label fx:id="floorLabel" >-->
+<!--                                              <font>-->
+<!--                                                  <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                                              </font>-->
+<!--                                          </Label>-->
                                  </children>
                               </VBox>
                                 </children>
                             </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="0.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                              <VBox fx:id="floorNavBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                  <children>
                                           <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
                                               <font>
                                                   <Font name="Segoe UI" size="36.0" />
                                               </font>
                                           </JFXButton>
-                                    <JFXButton fx:id="upButton1" onAction="#five" text="5">
+                                    <JFXButton fx:id="floorFive" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#five" text="5">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton1" onAction="#four" prefHeight="30.0" prefWidth="0.0" text="4">
+                                    <JFXButton fx:id="floorFour" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#four" text="4">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton11" onAction="#three" prefHeight="30.0" prefWidth="0.0" text="3">
+                                    <JFXButton fx:id="floorThree" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#three" text="3">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton12" onAction="#two" prefHeight="30.0" prefWidth="0.0" text="2">
+                                    <JFXButton fx:id="floorTwo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#two" text="2">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
                                     </JFXButton>
-                                    <JFXButton fx:id="downButton13" onAction="#one" prefHeight="30.0" prefWidth="0.0" text="1">
+                                    <JFXButton fx:id="floorOne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#one" text="1">
                                        <font>
                                           <Font name="Segoe UI" size="36.0" />
                                        </font>
@@ -393,7 +393,7 @@
                      <Insets bottom="20.0" right="50.0" />
                  </StackPane.margin>
              </HBox>
-              <VBox fx:id="legendContent" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="CENTER_LEFT">
+              <VBox fx:id="legendContent" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="TOP_LEFT">
                   <children>
                       <Label text="Node color key">
                           <font>
@@ -407,7 +407,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/restroom15.png" />
+                                      <Image url="@../png_files/restroomK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -416,7 +416,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/stairs15.png" />
+                                      <Image url="@../png_files/stairsK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -431,7 +431,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/elevator15.png" />
+                                      <Image url="@../png_files/elevatorK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -440,7 +440,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/info15.png" />
+                                      <Image url="@../png_files/infoK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -452,7 +452,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/department15.png" />
+                                      <Image url="@../png_files/departmentK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -467,7 +467,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/lab15.png" />
+                                      <Image url="@../png_files/labK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -476,7 +476,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/conference.png" />
+                                      <Image url="@../png_files/ConferenceK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -488,7 +488,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/retail15.png" />
+                                      <Image url="@../png_files/retailK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -503,7 +503,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/service15.png" />
+                                      <Image url="@../png_files/serviceK.png" />
                                   </image>
                               </ImageView>
                           </graphic>
@@ -512,7 +512,7 @@
                           <graphic>
                               <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../png_files/exit15.png" />
+                                      <Image url="@../png_files/exitK.png" />
                                   </image>
                               </ImageView>
                           </graphic>

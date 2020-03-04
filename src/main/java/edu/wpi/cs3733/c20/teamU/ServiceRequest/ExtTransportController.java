@@ -9,6 +9,7 @@ import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 
 public class ExtTransportController {
 
@@ -20,6 +21,7 @@ public class ExtTransportController {
   @FXML private JFXDatePicker dp;
   @FXML private JFXButton cancel;
   @FXML private JFXButton confirm;
+
 
   public void keyConfirm() {
     confirm.fire();
@@ -78,12 +80,14 @@ public class ExtTransportController {
 
   @FXML
   public void initialize() {
+
     confirm.setDisable(true);
     BooleanBinding blockCheckBox = (firstNameText.textProperty().isEmpty())
             .or(lastNameText.textProperty().isEmpty()).or(passwordText.textProperty().isEmpty())
             .or(confirmPassText.textProperty().isEmpty()).or(tp.getEditor().textProperty().isEmpty())
             .or(dp.getEditor().textProperty().isEmpty());
     confirm.disableProperty().bind(blockCheckBox);
+
   }
 
 //  @FXML private JFXTextField firstNameText;

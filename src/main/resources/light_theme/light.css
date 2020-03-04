@@ -44,7 +44,7 @@
 .titleBar .label{
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: -color-1;
+    -fx-text-fill: -container-text;
 }
 
 .subtitleBar{
@@ -53,7 +53,7 @@
 .subtitleBar .label{
     -fx-font-size: 10pt;
     -fx-font-weight: bold;
-    -fx-text-fill: -color-2;
+    -fx-text-fill: -container-text;
 }
 
 .sideBar{

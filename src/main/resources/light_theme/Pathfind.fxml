@@ -23,7 +23,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane fx:id="baseAnchor" prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
+<AnchorPane fx:id="baseAnchor" prefHeight="1080" prefWidth="1920" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Navigation.PathfindController">
    <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -82,18 +82,18 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Label fx:id="floorLabel" text="4">
-                                       <font>
-                                          <Font name="Segoe UI Bold" size="36.0" />
-                                       </font>
-                                    </Label>
+<!--                                    <Label fx:id="floorLabel" text="4">-->
+<!--                                       <font>-->
+<!--                                          <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                                       </font>-->
+<!--                                    </Label>-->
                                  </children>
                               </VBox>
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="0.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                              <VBox fx:id="test" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                  <children>
                                     <JFXButton fx:id="upButton" onAction="#clickUp" text="Λ">
                                        <font>
@@ -179,21 +179,21 @@
                                     </VBox>
                                     <Accordion VBox.vgrow="ALWAYS">
                                       <panes>
-                                        <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="SEARCH">
-                                             <content>
-                                                <GridPane>
-                                                  <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
-                                                   <children>
-                                                      <JFXTextField fx:id="SearchBox" />
-                                                   </children>
-                                                </GridPane>
-                                             </content>
-                                        </TitledPane>
+<!--                                        <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="SEARCH">-->
+<!--                                             <content>-->
+<!--                                                <GridPane>-->
+<!--                                                  <columnConstraints>-->
+<!--                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--                                                  </columnConstraints>-->
+<!--                                                  <rowConstraints>-->
+<!--                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                                                  </rowConstraints>-->
+<!--                                                   <children>-->
+<!--                                                      <JFXTextField fx:id="SearchBox" />-->
+<!--                                                   </children>-->
+<!--                                                </GridPane>-->
+<!--                                             </content>-->
+<!--                                        </TitledPane>-->
                                         <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="ROUTE PREFERENCES">
                                              <content>
                                                 <GridPane>
@@ -263,12 +263,12 @@
 <!--                                        </TitledPane>-->
                                           <TitledPane alignment="TOP_CENTER" animated="false" contentDisplay="BOTTOM" text="TEXT DIRECTIONS">
                                              <content>
-                                                <GridPane>
+                                                <GridPane alignment="TOP_CENTER">
                                                   <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                   </columnConstraints>
                                                   <rowConstraints>
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
                                                       <JFXButton fx:id="textDirections" onAction="#textPopUp" text="GET" textFill="WHITE">
@@ -306,7 +306,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/restroom15.png" />
+                                                <Image url="@../png_files/restroomK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -315,7 +315,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../../Downloads/stairs15.png" />
+                                                <Image url="@../png_files/stairsK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -330,7 +330,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/elevator15.png" />
+                                                <Image url="@../png_files/elevatorK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -339,7 +339,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/info15.png" />
+                                                <Image url="@../png_files/infoK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -351,7 +351,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/department15.png" />
+                                                <Image url="@../png_files/departmentK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -366,7 +366,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/lab15.png" />
+                                                <Image url="@../png_files/labK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -375,7 +375,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/conference.png" />
+                                                <Image url="@../png_files/ConferenceK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -387,7 +387,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/retail15.png" />
+                                                <Image url="@../png_files/retailK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -402,7 +402,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/service15.png" />
+                                                <Image url="@../png_files/serviceK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -411,7 +411,7 @@
                                        <graphic>
                                           <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/exit15.png" />
+                                                <Image url="@../png_files/exitK.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -478,7 +478,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <HBox alignment="CENTER" maxHeight="150.0" maxWidth="800.0" spacing="10.0" styleClass="hotbar" StackPane.alignment="BOTTOM_CENTER">
+            <HBox alignment="CENTER" maxHeight="150.0" maxWidth="650.0" prefWidth="650.0" spacing="10.0" styleClass="hotbar" StackPane.alignment="BOTTOM_CENTER">
                <children>
                   <JFXButton fx:id="quickRest" contentDisplay="GRAPHIC_ONLY" maxHeight="100.0" maxWidth="100.0" onAction="#nearestBathroom" text="Restroom" textFill="WHITE">
                      <font>

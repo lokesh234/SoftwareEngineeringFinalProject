@@ -70,7 +70,7 @@ public class PathfindController {
 
     @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
     @FXML VBox oppo;
-    @FXML Label floorLabel;
+//    @FXML Label floorLabel;
 
     @FXML private GesturePane MapGes1;
     @FXML private GesturePane MapGes2;
@@ -143,7 +143,7 @@ public class PathfindController {
     @FXML
     Label startLabel, endLabel, statusLabel;
     @FXML
-    JFXTextField SearchBox;
+//    JFXTextField SearchBox;
 
     EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
         @Override
@@ -155,7 +155,7 @@ public class PathfindController {
                 start = IconMap.get(event.getSource());
                 startReady = (start != null) || startReady;
 //                if (startReady) startLabel.setText(start.getLongName());
-                if (startReady) SearchBox.setText(start.getLongName());
+//                if (startReady) SearchBox.setText(start.getLongName());
                 if (startReady) startBox.setText(start.getLongName());
                 state = State.END;
                 updateStatus();
@@ -164,7 +164,7 @@ public class PathfindController {
                 end = IconMap.get(event.getSource());
                 endReady = (end != null) || endReady;
 //                if (endReady) endLabel.setText(end.getLongName());
-                if (endReady) SearchBox.setText(end.getLongName());
+//                if (endReady) SearchBox.setText(end.getLongName());
                 if (endReady) endBox.setText(end.getLongName());
                 state = State.START;
                 updateStatus();
@@ -317,21 +317,21 @@ public class PathfindController {
         TextFields.bindAutoCompletion(autocomplete, AllNodeNames).setOnAutoCompleted((AutoCompletionBinding.AutoCompletionEvent<String> autoCompletionEvent) -> {
             updateStatus();
             if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
-            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
-                //System.out.println("Start Click");
-                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
-                startReady = (start != null) || startReady;
-//                if (startReady) startLabel.setText(start.getLongName());
-                state = State.END;
-                updateStatus();
-            }
-            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
-                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
-                endReady = (end != null) || endReady;
-//                if (endReady) endLabel.setText(end.getLongName());
-                state = State.START;
-                updateStatus();
-            }
+//            else if (state == State.START && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select a starting node!
+//                //System.out.println("Start Click");
+//                start = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+//                startReady = (start != null) || startReady;
+////                if (startReady) startLabel.setText(start.getLongName());
+//                state = State.END;
+//                updateStatus();
+//            }
+//            else if (state == State.END && DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText()) != null) { //We're going to select an ending node!
+//                end = DatabaseWrapper.getGraph().getNodeByLongName(SearchBox.getText());
+//                endReady = (end != null) || endReady;
+////                if (endReady) endLabel.setText(end.getLongName());
+//                state = State.START;
+//                updateStatus();
+//            }
         });
     }
 
@@ -371,7 +371,7 @@ public class PathfindController {
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N1);
                 floor = 1;
-                floorLabel.setText("1");
+//                floorLabel.setText("1");
                 upButton.setStyle("-fx-text-fill: FFFFFF");
                 downButton.setStyle("-fx-text-fill: A9A9A9");
                 MapGes1.animate(Duration.millis(200))
@@ -383,7 +383,7 @@ public class PathfindController {
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N2);
                 floor = 2;
-                floorLabel.setText("2");
+//                floorLabel.setText("2");
                 upButton.setStyle("-fx-text-fill: FFFFFF");
                 downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes2.animate(Duration.millis(200))
@@ -394,7 +394,7 @@ public class PathfindController {
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N3);
                 floor = 3;
-                floorLabel.setText("3");
+//                floorLabel.setText("3");
                 upButton.setStyle("-fx-text-fill: FFFFFF");
                 downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes3.animate(Duration.millis(200))
@@ -405,7 +405,7 @@ public class PathfindController {
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N4);
                 floor = 4;
-                floorLabel.setText("4");
+//                floorLabel.setText("4");
                 upButton.setStyle("-fx-text-fill: FFFFFF");
                 downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes4.animate(Duration.millis(200))
@@ -416,7 +416,7 @@ public class PathfindController {
                 oppo.getChildren().clear();
                 oppo.getChildren().add(N5);
                 floor = 5;
-                floorLabel.setText("5");
+//                floorLabel.setText("5");
                 upButton.setStyle("-fx-text-fill: A9A9A9");
                 downButton.setStyle("-fx-text-fill: FFFFFF");
                 MapGes5.animate(Duration.millis(200))
@@ -1084,7 +1084,7 @@ public class PathfindController {
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
         Populate();
-        Auto(SearchBox);
+//        Auto(SearchBox);
         AutoStart(startBox);
         AutoEnd(endBox);
 
@@ -1598,7 +1598,7 @@ public class PathfindController {
     }
 
     public void getSelectionFromDir(String longName) {
-        SearchBox.setText(longName);
+//        SearchBox.setText(longName);
     }
 
     @FXML
@@ -1606,7 +1606,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
         floor = 1;
-        floorLabel.setText("1");
+//        floorLabel.setText("1");
         MapGes1.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -1617,7 +1617,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N2);
         floor = 2;
-        floorLabel.setText("2");
+//        floorLabel.setText("2");
         MapGes2.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
@@ -1628,7 +1628,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N3);
         floor = 3;
-        floorLabel.setText("3");
+//        floorLabel.setText("3");
         MapGes3.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
@@ -1639,7 +1639,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
         floor = 4;
-        floorLabel.setText("4");
+//        floorLabel.setText("4");
         MapGes4.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
@@ -1650,7 +1650,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N5);
         floor = 5;
-        floorLabel.setText("5");
+//        floorLabel.setText("5");
         MapGes5.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
                 .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
