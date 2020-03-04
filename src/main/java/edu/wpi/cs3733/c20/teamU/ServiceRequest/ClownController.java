@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 
 public class ClownController {
 
@@ -20,6 +21,8 @@ public class ClownController {
     @FXML private JFXButton backToRequest;
     @FXML private JFXButton submit;
     @FXML private AnchorPane clownParent;
+    private NodeName nodeName = new NodeName();
+
 
     public void keyConfirm(){
         submit.fire();
@@ -112,6 +115,8 @@ public class ClownController {
                 .or(rNameField.textProperty().isEmpty())
                 .or(dateField.getEditor().textProperty().isEmpty());
         submit.disableProperty().bind(blockCheckBox);
+        nodeName.Populate();
+        TextFields.bindAutoCompletion(locationField, nodeName.getAllNodeNames());
         //comboBox.setOnAction(otherHandler);
 ///        otherField.setDisable(true);
     }
