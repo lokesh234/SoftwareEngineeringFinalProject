@@ -136,72 +136,107 @@
                   <Insets top="80.0" />
                </padding>
               </VBox>
-              <VBox alignment="TOP_CENTER" maxWidth="140.0" prefWidth="140.0" spacing="5.5" styleClass="transparentSideBar" StackPane.alignment="CENTER_LEFT">
+              <VBox alignment="TOP_CENTER" maxWidth="140.0" prefWidth="140.0" spacing="5.5" StackPane.alignment="CENTER_LEFT">
                <children>
-                  <JFXNodesList fx:id="menuOptions" spacing="20.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="transparentSideBar" VBox.vgrow="ALWAYS">
                      <children>
-                        <JFXButton fx:id="hamburger" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" ripplerFill="BLACK" text="Hamburger" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="72.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../png_files/hamburger.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Segoe UI" size="24.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="navButton" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openNavScene" text="Navigate" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../png_files/arrow.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Segoe UI" size="24.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="services" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openRequestScene" text="Services" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="67.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../png_files/services.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Segoe UI" size="24.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="info" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openInformationScene" text="Info" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../png_files/info.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Segoe UI" size="24.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="help" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openHelpScene" text="Help" textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../png_files/help.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Segoe UI" size="24.0" />
-                           </font>
-                        </JFXButton>
+                        <JFXNodesList fx:id="menuOptions" spacing="20.0">
+                           <children>
+                              <JFXButton fx:id="hamburger" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" ripplerFill="BLACK" text="Hamburger" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="72.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/hamburger.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="navButton" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openNavScene" text="Navigate" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="services" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openRequestScene" text="Services" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="67.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/services.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="info" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openInformationScene" text="Info" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/info.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                              <JFXButton fx:id="help" contentDisplay="GRAPHIC_ONLY" minHeight="100.0" minWidth="100.0" onAction="#openHelpScene" text="Help" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../png_files/help.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="24.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </JFXNodesList>
                      </children>
-                  </JFXNodesList>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" styleClass="weatherBox" VBox.vgrow="ALWAYS">
+                     <children>
+                              <JFXButton fx:id="voice" contentDisplay="TOP" onAction="#startListening" prefHeight="100.0" prefWidth="100.0" text="Voice" textFill="WHITE" textOverrun="CLIP">
+                                  <graphic>
+                                      <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../png_files/Microphone.png" />
+                                          </image>
+                                      </ImageView>
+                                  </graphic>
+                                  <font>
+                                      <Font name="Segoe UI" size="0.01" />
+                                  </font>
+                              </JFXButton>
+                              <Label fx:id="voiceLabel" text="">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="12.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="voiceLabelstart" text="">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="12.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="voiceLabelend" text="">
+                                  <font>
+                                      <Font name="Segoe UI Bold" size="12.0" />
+                                  </font>
+                              </Label>
+                     </children>
+                  </VBox>
                </children>
                <StackPane.margin>
                   <Insets top="100.0" />
@@ -273,40 +308,6 @@
                   <Insets right="80.0" top="80.0" />
                </StackPane.margin>
                 </VBox>
-            <VBox alignment="CENTER" maxHeight="150.0" maxWidth="100.0" styleClass="weatherBox" StackPane.alignment="BOTTOM_LEFT">
-               <children>
-                        <JFXButton fx:id="voice" contentDisplay="TOP" onAction="#startListening" prefHeight="100.0" prefWidth="100.0" text="Voice" textFill="WHITE" textOverrun="CLIP">
-                            <graphic>
-                                <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../png_files/Microphone.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font name="Segoe UI" size="0.01" />
-                            </font>
-                        </JFXButton>
-                        <Label fx:id="voiceLabel" text="">
-                            <font>
-                                <Font name="Segoe UI Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="voiceLabelstart" text="">
-                            <font>
-                                <Font name="Segoe UI Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="voiceLabelend" text="">
-                            <font>
-                                <Font name="Segoe UI Bold" size="12.0" />
-                            </font>
-                        </Label>
-               </children>
-               <StackPane.margin>
-                  <Insets left="140.0" />
-               </StackPane.margin>
-            </VBox>
              <HBox alignment="CENTER" maxHeight="100.0" maxWidth="250.0" spacing="20.0" style="-fx-background-color: TRANSPARENT;" styleClass="navBar" StackPane.alignment="BOTTOM_RIGHT">
                  <children>
                      <StackPane styleClass="navCircle" HBox.hgrow="ALWAYS">
@@ -392,6 +393,141 @@
                      <Insets bottom="20.0" right="50.0" />
                  </StackPane.margin>
              </HBox>
+              <VBox fx:id="legendContent" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="CENTER_LEFT">
+                  <children>
+                      <Label text="Node color key">
+                          <font>
+                              <Font name="Segoe UI Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label text="Restroom">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/restroomK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Stairs">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/stairsK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Elevator">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/elevatorK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Info desk">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/infoK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Department">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/departmentK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Lab">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/labK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Conference Room">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/ConferenceK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Retail">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/retailK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Services">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/serviceK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Exit">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/exitK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                  </children>
+                  <StackPane.margin>
+                      <Insets left="150.0" top="100.0" />
+                  </StackPane.margin>
+                  <padding>
+                      <Insets left="30.0" />
+                  </padding>
+              </VBox>
          </children>
       </StackPane>
     </children>

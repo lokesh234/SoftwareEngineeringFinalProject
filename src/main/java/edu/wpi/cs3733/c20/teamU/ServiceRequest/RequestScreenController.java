@@ -118,5 +118,7 @@ public class RequestScreenController {
     }
 
     @FXML
-    private void initialize() {}
+    private void initialize() {
+
+    }
 }

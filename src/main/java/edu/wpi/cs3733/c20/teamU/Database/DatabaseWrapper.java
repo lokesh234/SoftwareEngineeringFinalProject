@@ -479,6 +479,26 @@ public class DatabaseWrapper {
     return ServiceDatabase.getSRALastYear(serviceRequestType);
   }
 
+  //USED THE SAME WAY AS ABOVE FUNCTIONS
+  public static int getServiceFinishedAmount(String serviceRequestType, String dateType, String day, String month, String year){
+    return ServiceDatabase.getServiceFinishedAmount(serviceRequestType, dateType, day, month, year);
+  }
+  public static int getServiceFinishedAmountRange(String serviceRequestType, String startDate, String endDate){
+    return ServiceDatabase.getServiceFinishedAmountRange(serviceRequestType, startDate, endDate);
+  }
+  public static int getSFinishedAToday(String serviceRequestType){
+    return ServiceDatabase.getSFinishedAToday(serviceRequestType);
+  }
+  public static int getSFinishedALastWeek(String serviceRequestType){
+    return ServiceDatabase.getSFinishedALastWeek(serviceRequestType);
+  }
+  public static int getSFinishedALastMonth(String serviceRequestType){
+    return ServiceDatabase.getSFinishedALastMonth(serviceRequestType);
+  }
+  public static int getSFinishedALastYear(String serviceRequestType){
+    return ServiceDatabase.getSFinishedALastYear(serviceRequestType);
+  }
+
   /**
    * Add a value to the Servie Finished DatabaseTable
    * @param timeFinished String of DATE

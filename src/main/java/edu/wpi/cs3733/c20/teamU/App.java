@@ -1,10 +1,13 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
@@ -31,6 +34,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import javax.xml.crypto.Data;
 
 public class App<loadedAdminRequests> extends Application {
 
@@ -296,26 +301,26 @@ public class App<loadedAdminRequests> extends Application {
   public static void setIcon(edu.wpi.cs3733.c20.teamU.Database.Node n, ImageView imageView) {
     switch (n.getNodeType()) {
       case "DEPT":
-        imageView.setImage(new Image("/png_files/department15.png"));
+        imageView.setImage(new Image("/png_files/departmentsmall.png"));
         break;
       case "CONF":
-        imageView.setImage(new Image("/png_files/restroom15.png"));        break;
+        imageView.setImage(new Image("/png_files/conferenceSmall.png"));        break;
       case "REST":
-        imageView.setImage(new Image("/png_files/restroom15.png"));        break;
+        imageView.setImage(new Image("/png_files/restroomSmall.png"));        break;
       case "STAI":
-        imageView.setImage(new Image("/png_files/stairs15.png"));        break;
+        imageView.setImage(new Image("/png_files/stairsSmall.png"));        break;
       case "ELEV":
-        imageView.setImage(new Image("/png_files/elevator15.png"));        break;
+        imageView.setImage(new Image("/png_files/elevatorSmall.png"));        break;
       case "LABS":
-        imageView.setImage(new Image("/png_files/Lab15.png"));        break;
+        imageView.setImage(new Image("/png_files/LabSmall.png"));        break;
       case "INFO":
-        imageView.setImage(new Image("/png_files/info15.png"));        break;
+        imageView.setImage(new Image("/png_files/infoSmall.png"));        break;
       case "EXIT":
-        imageView.setImage(new Image("/png_files/exit15.png"));        break;
+        imageView.setImage(new Image("/png_files/exitsmall.png"));        break;
       case "RETL":
-        imageView.setImage(new Image("/png_files/retail15.png"));        break;
+        imageView.setImage(new Image("/png_files/retailSmall.png"));        break;
       case "SERV":
-        imageView.setImage(new Image("/png_files/service15.png"));        break;
+        imageView.setImage(new Image("/png_files/serviceSmall.png"));        break;
     }
   }
 
@@ -677,13 +682,6 @@ public class App<loadedAdminRequests> extends Application {
 
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wongPFP.png")));
-    try {
-      Speech.authExplicit("../../../resources/key.json");
-    }
-    catch (Exception e){
-      System.out.println(e);
-    }
-
     primaryStage.show();
 //    AdministrationWrapper.setFirstTheme();
 //    FoodRequest foodRequest = new FoodRequest();
@@ -706,6 +704,25 @@ public class App<loadedAdminRequests> extends Application {
 
       loadedImages = true;
     }
+  }
+
+  private static HashMap<String, Image> hitboxes = new HashMap<>();
+  private static boolean loadedHitboxes = false;
+
+  private static void loadHitboxes() {
+    if (!loadedHitboxes)
+    for (edu.wpi.cs3733.c20.teamU.Database.Node n : DatabaseWrapper.getGraph().getNodes()) {
+      try {
+        hitboxes.put(n.getID(), new Image("/png_files/hitboxes/"+n.getID()+".png"));
+      } catch (Exception e) {
+        //No hitbox for node!
+      }
+    }
+  }
+
+  public static Image getHitbox(String ID) throws Exception {
+    if (!hitboxes.containsKey(ID)) throw (new Exception("no hitbox :("));
+    return hitboxes.get(ID);
   }
 
   public static void loadHome() {
@@ -1084,6 +1101,7 @@ public class App<loadedAdminRequests> extends Application {
 
   public static void loadPathfinding() {
     if (!loadedPathfinding) {
+      loadHitboxes();
       try {
         FXMLLoader pathfindLoader = new FXMLLoader(App.class.getResource("/light_theme/Pathfind.fxml"));
         FXMLLoader pathfindtextLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindTextDirections.fxml"));
@@ -1133,6 +1151,7 @@ public class App<loadedAdminRequests> extends Application {
 
   public static void loadAdminGraph() {
     if (!loadedAdminGraph) {
+      loadHitboxes();
       try {
         FXMLLoader adminGraphLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminGraph.fxml"));
         FXMLLoader addNodeLoader = new FXMLLoader(App.class.getResource("/light_theme/Add_Node.fxml"));

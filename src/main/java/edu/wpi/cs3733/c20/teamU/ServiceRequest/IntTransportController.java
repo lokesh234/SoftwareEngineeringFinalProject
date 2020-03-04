@@ -9,6 +9,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 
 //import edu.wpi.cs3733.c20.teamU.Database.ServiceDatabase;
 
@@ -22,6 +23,7 @@ public class IntTransportController {
     @FXML private JFXRadioButton wheelchair;
     @FXML private JFXButton cancel;
     @FXML private JFXButton confirm;
+    private NodeName nodeName = new NodeName();
 
     public void keyConfirm(){
         confirm.fire();
@@ -103,6 +105,9 @@ public class IntTransportController {
                 //.or(flowerChip.getTypeSelector().isEmpty())
                 .or(crutches.selectedProperty().and(wheelchair.selectedProperty()));
         confirm.disableProperty().bind(blockCheckBox);
+        nodeName.Populate();
+        TextFields.bindAutoCompletion(start, nodeName.getAllNodeNames());
+        TextFields.bindAutoCompletion(end, nodeName.getAllNodeNames());
     }
 
 

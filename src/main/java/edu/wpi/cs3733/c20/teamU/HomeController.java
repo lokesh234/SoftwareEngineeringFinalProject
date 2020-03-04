@@ -375,13 +375,7 @@ public class HomeController {
     }
   }
 
-  @FXML
-  private void openLoginSceneSound() {
-    App.getHome().setOpacity(.5);
-    App.getHome().setDisable(true);
-    App.getPopup().getContent().add(App.getLogin());
-    App.getPopup().show(App.getPrimaryStage());
-  }
+
 
   @FXML
   private void openStartScene() {
@@ -389,7 +383,7 @@ public class HomeController {
   }
 
   @FXML
-  private void openNavScene(ActionEvent e) {
+  private void openNavScene() {
     App.loadPathfinding();
     // App.getGraph().update();
     DatabaseWrapper.updateGraph();
@@ -399,51 +393,18 @@ public class HomeController {
   }
 
   @FXML
-  private void openHelpSceneSound() {
-    App.getSecurityPop().getContent().add(App.getSecurity());
-    App.getHome().setOpacity(.5);
-    App.getHome().setDisable(true);
-    App.getSecurityController().addRequest();
-    App.getSecurityPop().show(App.getPrimaryStage());
-  }
-
-  @FXML
-  private void openInformationScene(ActionEvent e){
+  private void openInformationScene(){
     App.getInformationPopUp().getContent().add(App.getInformation());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
     App.getInformationPopUp().show(App.getPrimaryStage());
   }
 
-  @FXML
-  private void openInformationSound() {
-    App.getInformationPopUp().getContent().add(App.getInformation());
-    App.getHome().setOpacity(.5);
-    App.getHome().setDisable(true);
-    App.getInformationPopUp().show(App.getPrimaryStage());
-  }
+
+
 
   @FXML
-  private void openRequestSound() {
-    App.loadAdminRequests();
-    App.getRequestPop().getContent().add(App.getRequest());
-    App.getHome().setOpacity(.5);
-    App.getHome().setDisable(true);
-    App.getRequestPop().show(App.getPrimaryStage());
-  }
-
-  @FXML
-  private void openNavSceneSpeech() {
-    System.out.println("List contains nav");
-    App.loadPathfinding();
-    DatabaseWrapper.updateGraph();
-    // App.getPathfindController().drawNodes();
-    ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
-    App.getPrimaryStage().setScene(App.getPathScene());
-  }
-
-  @FXML
-  private void openHelpScene(ActionEvent e) {
+  private void openHelpScene() {
     App.getSecurityPop().getContent().add(App.getSecurity());
     App.getHome().setOpacity(.5);
     App.getHome().setDisable(true);
@@ -491,7 +452,7 @@ public class HomeController {
                             || App.getSpokenWords().contains("help help")
                             || App.getSpokenWords().contains("help help help help")) {
                           System.out.println("List contains help");
-                          openHelpSceneSound();
+                          openHelpScene();
                           App.getSpokenWords().clear();
                           runThread  = false;
                         }
@@ -500,14 +461,14 @@ public class HomeController {
                             || App.getSpokenWords().contains("  requests")
                             || App.getSpokenWords().contains("request")
                             || App.getSpokenWords().contains("  requestt")) {
-                          openRequestSound();
+                          openRequestScene();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
                         if (App.getSpokenWords().contains("nav")
                             || App.getSpokenWords().contains("  nav")
                             || App.getSpokenWords().contains(" nav")) {
-                          openNavSceneSpeech();
+                          openNavScene();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
@@ -516,7 +477,7 @@ public class HomeController {
                             || App.getSpokenWords().contains(" information")
                             || App.getSpokenWords().contains("inforamtion info")
                             || App.getSpokenWords().contains("info")) {
-                          openInformationSound();
+                          openInformationScene();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
@@ -525,7 +486,7 @@ public class HomeController {
                             || App.getSpokenWords().contains(" login")
                             || App.getSpokenWords().contains("login login")
                             || App.getSpokenWords().contains("login login login")) {
-                          openLoginSceneSound();
+                          openLoginScene();
                           App.getSpokenWords().clear();
                           runThread = false;
                           System.out.println(runThread);
@@ -630,7 +591,7 @@ public class HomeController {
   }
 
   @FXML
-  private void openRequestScene(ActionEvent e) {
+  private void openRequestScene() {
     App.loadAdminRequests();
     App.getRequestPop().getContent().add(App.getRequest());
     App.getHome().setOpacity(.5);

@@ -15,6 +15,7 @@ import java.time.ZoneId;
 
 import javafx.scene.layout.Background;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 
 public class FlowerController {
     LocalDate today;
@@ -30,6 +31,7 @@ public class FlowerController {
     @FXML private JFXDatePicker datePick;
     @FXML private JFXChipView flowerChip;
     @FXML private JFXTextField room;
+    private NodeName nodeName = new NodeName();
 
     public void keyConfirm(){
         submit.fire();
@@ -168,6 +170,8 @@ public class FlowerController {
                 .or(occasionCombo.getSelectionModel().selectedItemProperty().isNull())
                 .or(datePick.getEditor().textProperty().isEmpty());
         submit.disableProperty().bind(blockCheckBox);
+        nodeName.Populate();
+        TextFields.bindAutoCompletion(room, nodeName.getAllNodeNames());
     }
 
     private void setSelected(LocalDate date){

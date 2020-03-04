@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.TextFields;
 
 public class GiftDeliveryController {
   @FXML private JFXTextField first;
@@ -18,6 +19,7 @@ public class GiftDeliveryController {
   @FXML private JFXComboBox gift;
   @FXML private JFXButton submit;
   @FXML private JFXButton back;
+  private NodeName nodeName = new NodeName();
 
   public void keyConfirm(){
     submit.fire();
@@ -99,6 +101,8 @@ public class GiftDeliveryController {
             .or(last.textProperty().isEmpty()).or(room.textProperty().isEmpty())
             .or(gift.getSelectionModel().selectedItemProperty().isNull());
     submit.disableProperty().bind(blockCheckBox);
+    nodeName.Populate();
+    TextFields.bindAutoCompletion(room, nodeName.getAllNodeNames());
 
 
 //    @FXML private JFXTextField first;

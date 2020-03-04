@@ -37,8 +37,6 @@ public class AdminColorController {
   @FXML
   JFXButton delete;
   @FXML
-  private Label user;
-  @FXML
   private JFXTextField themeName;
   @FXML
   private JFXComboBox listTheme;
@@ -50,10 +48,6 @@ public class AdminColorController {
   ObservableList<String> themes =
       FXCollections.observableArrayList();
   String theme = "Startup";
-
-  public void setUser(String user) {
-    this.user.setText(user);
-  }
 
   @FXML
   private void confirm() throws IOException, URISyntaxException {
