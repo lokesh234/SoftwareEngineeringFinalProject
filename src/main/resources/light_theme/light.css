@@ -107,6 +107,13 @@
     -fx-text-fill: -body-text;
 }
 
+.startClock{}
+.startClock .label{
+    -fx-text-fill: -body-text;
+    -fx-font-size: 72;
+    -fx-font-weight: BOLD;
+}
+
 
 .weatherBox .label{
     -fx-text-fill: -body-text;

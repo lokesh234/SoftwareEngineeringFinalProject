@@ -88,6 +88,7 @@ public class TextPathBuilder {
         LinkedList<TextPathChunk> cleanedChunks = new LinkedList<TextPathChunk>();
         TextPathChunk lastChunk;
         TextPathChunk thisChunk;
+        if(getChunks().isEmpty()) return;
         Node startNode = getChunks().getFirst().getNode1();
         String start = startNode.getLongName();
         Node destinationNode = getChunks().getLast().getNode3();
