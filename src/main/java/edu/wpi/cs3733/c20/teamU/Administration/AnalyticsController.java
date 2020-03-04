@@ -41,8 +41,7 @@ public class AnalyticsController {
 //    JFXComboBox comboBox;
     @FXML
     PieChart pieChart, dashPie;
-    @FXML
-    private LineChart lineChart;
+//    @FXML private LineChart lineChart;
     @FXML
     private BarChart barChart, dash;
     @FXML
@@ -51,8 +50,8 @@ public class AnalyticsController {
     private JFXComboBox typesComboBox;
     @FXML
     private JFXChipView typesChip;
-    @FXML
-    private Tab lineTab;
+
+//    @FXML private Tab lineTab;
     @FXML
     private JFXDatePicker fromDP, toDP, dateDP;
     private LocalDate startTime, endTime;
@@ -61,7 +60,8 @@ public class AnalyticsController {
     @FXML
     private CategoryAxis xA,x;
     @FXML
-    private NumberAxis yA, y, lineYA, lineXA;
+    private NumberAxis yA, y;
+//    @FXML private NumberAxis lineYA, lineXA;
     private ToggleGroup typesGroup, quickSelection;
     @FXML
     Accordion accordion;
@@ -80,14 +80,14 @@ public class AnalyticsController {
 
         pieChart.setData(arrayToPie());
         fillBarChart();
-        fillLineChart();
+//        fillLineChart();
     }
 
 
     private void fillLineChart(){
         System.out.println("FillLInes");
         getNumber("ADMIN");
-        lineChart.getData().clear();
+//        lineChart.getData().clear();
         int lowB = 0;
         int highB = 0;
         String unit = "";
@@ -130,7 +130,7 @@ public class AnalyticsController {
                         series.getData().add(new XYChart.Data(i, getNumber(type, startTime, startTime.plusDays(i))));
                     }
             }
-            lineChart.getData().add(series);
+//            lineChart.getData().add(series);
         }
 //        XYChart.Series series = new XYChart.Series();
 //        series.setName("No of schools in an year");
@@ -195,7 +195,7 @@ public class AnalyticsController {
 
         fromDP.setDisable(true);
         toDP.setDisable(true);
-        lineTab.setDisable(true);
+//        lineTab.setDisable(true);
         accordion.setDisable(true);
 
         xA = new CategoryAxis();
@@ -204,11 +204,11 @@ public class AnalyticsController {
         yA = new NumberAxis();
         yA.setLabel("Numbers");
 
-        lineXA = new NumberAxis();
-        lineXA.setLabel("Services");
-
-        lineYA = new NumberAxis();
-        lineYA.setLabel("Numbers");
+//        lineXA = new NumberAxis();
+//        lineXA.setLabel("Services");
+//
+//        lineYA = new NumberAxis();
+//        lineYA.setLabel("Numbers");
 //        barChart = new BarChart(xAxis, yAxis);
 
         accordion.expandedPaneProperty().addListener(new ChangeListener<TitledPane>() {
@@ -219,7 +219,7 @@ public class AnalyticsController {
                     quickSelection.selectToggle(null);
                     fromDP.getEditor().clear();
                     toDP.getEditor().clear();
-                    lineTab.setDisable(true);
+//                    lineTab.setDisable(true);
                     checkValid();
                 }
                 else if (newValue.getText().equals("By Recent")){
@@ -227,14 +227,14 @@ public class AnalyticsController {
                     dateDP.getEditor().clear();
                     fromDP.getEditor().clear();
                     toDP.getEditor().clear();
-                    lineTab.setDisable(false);
+//                    lineTab.setDisable(false);
                     checkValid();
                 }
                 else if (newValue.getText().equals("By Range")){
 //                    timePeriod = true;
                     dateDP.getEditor().clear();
                     quickSelection.selectToggle(null);
-                    lineTab.setDisable(false);
+//                    lineTab.setDisable(false);
                     checkValid();
                 }
             }
@@ -284,13 +284,13 @@ public class AnalyticsController {
         if(requestRadio.isSelected()){
             pieChart.setTitle("Services");
             barChart.setTitle("Services");
-            lineChart.setTitle("Services");
+//            lineChart.setTitle("Services");
             return DatabaseWrapper.getServiceRequestAmountRange(type,startTime.format(DF),endTime.format(DF));
         }
         else{
             pieChart.setTitle("Services Finished");
             barChart.setTitle("Services Finished");
-            lineChart.setTitle("Services Finished");
+//            lineChart.setTitle("Services Finished");
             return DatabaseWrapper.getServiceFinishedAmountRange(type,startTime.format(DF),endTime.format(DF));
         }
     }
@@ -337,13 +337,13 @@ public class AnalyticsController {
             toDP.setValue(LocalDate.now());
             fromDP.setDisable(true);
             toDP.setDisable(true);
-            lineTab.setDisable(true);
+//            lineTab.setDisable(true);
             accordion.setDisable(true);
         }
         else {
             fromDP.setDisable(false);
             toDP.setDisable(false);
-            lineTab.setDisable(false);
+//            lineTab.setDisable(false);
             accordion.setDisable(false);
         }
     }
