@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.FloorAnimation;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import com.jfoenix.controls.JFXNodesList;
 
@@ -74,6 +75,8 @@ public class HomeController {
   private GesturePane MapGes5;
   @FXML
   private GesturePane MapGes1;
+  @FXML
+  private VBox floorNavBox;
 
   @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
   @FXML private JFXButton upButton, downButton;
@@ -81,15 +84,14 @@ public class HomeController {
   @FXML private JFXButton hamburger, navButton, services, info, help;
 
   private WeatherController weatherController;
-  private long startTime;
-  private long currentTime;
   int floor = 4;
   private int hr;
   private int m;
   private int s;
-  private int checker;
   private Speech speech = new Speech();
   private volatile boolean runThread = true;
+  private int checker = 0;
+  private FloorAnimation floorAnimation;
   @FXML private Label voiceLabel, voiceLabelstart, voiceLabelend;
 
   public void setWeatherData(WeatherController weatherController1) {
@@ -245,6 +247,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N1);
     floor = 1;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("1");
     MapGes1.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -256,6 +259,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N2);
     floor = 2;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("2");
     MapGes2.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -267,6 +271,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N3);
     floor = 3;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("3");
     MapGes3.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -278,6 +283,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N4);
     floor = 4;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("4");
     MapGes4.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -289,6 +295,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N5);
     floor = 5;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("5");
     MapGes5.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -375,13 +382,6 @@ public class HomeController {
     }
   }
 
-
-
-  @FXML
-  private void openStartScene() {
-    App.getPrimaryStage().setScene(App.getStartScene());
-  }
-
   @FXML
   private void openNavScene() {
     App.loadPathfinding();
@@ -399,9 +399,6 @@ public class HomeController {
     App.getHome().setDisable(true);
     App.getInformationPopUp().show(App.getPrimaryStage());
   }
-
-
-
 
   @FXML
   private void openHelpScene() {
@@ -569,18 +566,6 @@ public class HomeController {
     return String.format("%1$02d:%2$02d:%3$02d", hr, m, s);
   }
 
-  private void setTime() {
-    startTime = System.currentTimeMillis();
-  }
-
-  @FXML
-  private void checkTime(ActionEvent event) {
-//    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-//      startTime = System.currentTimeMillis();
-//      System.out.println(startTime);
-//    });
-  }
-
   @FXML
   private void openWeather() {
     App.loadWeather();
@@ -598,7 +583,7 @@ public class HomeController {
     App.getHome().setDisable(true);
     App.getRequestPop().show(App.getPrimaryStage());
   }
-
+  @FXML JFXButton floorFour;
   @FXML
   private void initialize() {
     // add stuff to the menu items now
@@ -609,6 +594,8 @@ public class HomeController {
       menuOptions.addAnimatedNode(info);
       menuOptions.addAnimatedNode(help);
       menuOptions.setSpacing(20.0);
+    floorAnimation = new FloorAnimation();
+    floorAnimation.shuffleFloorList(4, floorNavBox);
 
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
@@ -715,7 +702,7 @@ public class HomeController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
         floor = 1;
-        floorLabel.setText("1");
+//        floorLabel.setText("1");
         upButton.setStyle("-fx-text-fill: FFFFFF");
         downButton.setStyle("-fx-text-fill: A9A9A9");
         MapGes1.animate(Duration.millis(200))
@@ -727,7 +714,7 @@ public class HomeController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N2);
         floor = 2;
-        floorLabel.setText("2");
+//        floorLabel.setText("2");
         upButton.setStyle("-fx-text-fill: FFFFFF");
         downButton.setStyle("-fx-text-fill: FFFFFF");
         MapGes2.animate(Duration.millis(200))
@@ -738,7 +725,7 @@ public class HomeController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N3);
         floor = 3;
-        floorLabel.setText("3");
+//        floorLabel.setText("3");
         upButton.setStyle("-fx-text-fill: FFFFFF");
         downButton.setStyle("-fx-text-fill: FFFFFF");
         MapGes3.animate(Duration.millis(200))
@@ -749,7 +736,7 @@ public class HomeController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
         floor = 4;
-        floorLabel.setText("4");
+//        floorLabel.setText("4");
         upButton.setStyle("-fx-text-fill: FFFFFF");
         downButton.setStyle("-fx-text-fill: FFFFFF");
         MapGes4.animate(Duration.millis(200))
@@ -760,7 +747,7 @@ public class HomeController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N5);
         floor = 5;
-        floorLabel.setText("5");
+//        floorLabel.setText("5");
         upButton.setStyle("-fx-text-fill: A9A9A9");
         downButton.setStyle("-fx-text-fill: FFFFFF");
         MapGes5.animate(Duration.millis(200))
@@ -771,22 +758,24 @@ public class HomeController {
   }
 
   @FXML
-  private void clickUp(ActionEvent e) {
+  private void clickUp() {
     floor++;
     stateMachine(floor);
     if (floor > 5) {
       floor = 5;
     }
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     checker = 1;
   }
 
   @FXML
-  private void clickDown(ActionEvent e) {
+  private void clickDown() {
     floor--;
     stateMachine(floor);
     if (floor < 1) {
       floor = 1;
     }
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     checker = 2;
   }
 
