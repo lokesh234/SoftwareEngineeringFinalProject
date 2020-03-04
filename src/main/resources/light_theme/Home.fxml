@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import net.kurobako.gesturefx.GesturePane?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.HomeController">
     <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -152,7 +152,7 @@
               </VBox>
               <VBox alignment="TOP_CENTER" maxWidth="140.0" prefWidth="140.0" spacing="5.5" StackPane.alignment="CENTER_LEFT">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="transparentSideBar" VBox.vgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" maxHeight="-Infinity" prefHeight="700.0" prefWidth="100.0" styleClass="transparentSideBar" VBox.vgrow="ALWAYS">
                      <children>
                         <JFXNodesList fx:id="menuOptions" spacing="20.0">
                            <children>
