@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ControllerName">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="View Custom Requests" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Bold" size="24.0" />
+                           </font></Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="133.0" spacing="20.0">
+                     <children>
+                        <JFXButton fx:id="back_button" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="90.0" text="Back" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </HBox>
+         </top>
+         <center>
+            <TableView fx:id="employeeTable" onMouseClicked="#detectClick" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn prefWidth="111.0" text="Name" />
+                  <TableColumn minWidth="6.0" prefWidth="110.0" text="# Requests" />
+                  <TableColumn minWidth="0.0" prefWidth="126.0" text="# Employees" />
+                  <TableColumn minWidth="6.0" prefWidth="302.0" text="Content" />
+               </columns>
+               </TableView>
+         </center>
+         <left>
+            <VBox alignment="CENTER" maxWidth="150.0" spacing="10.0" styleClass="sideBar" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
+                     <children>
+                        <JFXButton fx:id="add_button" buttonType="RAISED" onAction="#add" text="Add" />
+                        <JFXButton fx:id="remove_button" buttonType="RAISED" onAction="#remove" style="-fx-background-color: #db6e6e;" text="Remove" />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <!--                             <Button fx:id="upload" defaultButton="true" mnemonicParsing="false" onAction="#exportScreen" text="Export"/>-->
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
