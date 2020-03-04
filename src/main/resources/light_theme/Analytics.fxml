@@ -193,18 +193,18 @@
                                             <tabs>
                                               <Tab text="Pie">
                                                 <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="windowScreen">
                                                          <children>
-                                                            <PieChart layoutX="-351.0" layoutY="-321.0" />
+                                                            <PieChart layoutX="-351.0" layoutY="-321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                          </children>
                                                       </AnchorPane>
                                                 </content>
                                               </Tab>
                                               <Tab text="Bar">
                                                 <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="770.0">
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="770.0" styleClass="windowScreen">
                                                          <children>
-                                                            <BarChart fx:id="barChart">
+                                                            <BarChart fx:id="barChart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                               <xAxis>
                                                                 <CategoryAxis side="BOTTOM" fx:id="xA" />
                                                               </xAxis>
@@ -218,9 +218,9 @@
                                               </Tab>
                                                 <Tab fx:id="lineTab" text="Line">
                                                     <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="770.0">
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="770.0" styleClass="windowScreen">
                                                             <children>
-                                                                <LineChart fx:id="lineChart">
+                                                                <LineChart fx:id="lineChart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                     <xAxis>
                                                                         <NumberAxis fx:id="lineXA" side="BOTTOM" />
                                                                     </xAxis>
