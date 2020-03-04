@@ -11,7 +11,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.controlsfx.control.Notifications;
 
+import javax.management.Notification;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileWriter;
@@ -141,6 +143,7 @@ public class AddCustomRequestController {
     private void addRequest() {
         if (isValidRequest(shortName.getText(), formName.getText(), components.getItems())) {
             //Do database things!
+            Notifications.create().text("Custom Request Created");
             String output = formName.getText()+"\n";
             ArrayList<String> inputTypes = new ArrayList<>();
             for (Component c : components.getItems()) {

@@ -61,3 +61,22 @@ although it is not a requirement for this class.
 To install the styleguide scheme into IntelliJ, `Preferences -> Editor -> Code Style -> Scheme
  -> ... -> Import Scheme -> IntelliJ IDEA code style XML`, then select `config/intellij-java
  -google-style.xml` from the project's root directory 
+ 
+ ## Path Variable for Voice Activation
+ To use our state of the art Voice Recognition System. Create a path variable to allow Google's API to check credentials , this
+ can be achieved with the following steps:
+ 
+ 
+ Open the Search Icon on the Bottom Left Corner of the Screen and type System Environment Variables.
+ Once that window to pops up please add a new variable named GOOGLE_APPLICATION_CREDENTIALS and give it the path to the key.json file in the resources folder of our directory. Relaunch the jar file and you should be good to do commands like:
+ 
+ open navigation
+ 
+ open login 
+
+open weather
+
+open requests 
+
+open help
+
