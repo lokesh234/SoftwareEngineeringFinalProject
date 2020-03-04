@@ -1397,8 +1397,6 @@ public class PathfindController {
                 LineTo line = new LineTo(n2.getX(), n2.getY());
                 pathe.getElements().add(line);
                 if (!pathChunk.contains(n2)) pathChunk.add(n2);
-                Point2D centerwong = centroid(start, end);
-                ZoomCentroidMachine(n1.getFloor(), centerwong);
                 pathe.setStroke(Color.web("#7851a9"));
                 pathe.setStrokeWidth(10.0);
                 pathe.getStrokeDashArray().addAll(15d, 15d);

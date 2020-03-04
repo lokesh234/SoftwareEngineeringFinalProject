@@ -404,10 +404,6 @@ public class HomeController {
 
   @FXML
   private void startListening() {
-    App.getSpeechPop().getContent().add(App.getSpeechcommands());
-    App.getHome().setOpacity(.5);
-    App.getHome().setDisable(true);
-    App.getSecurityPop().show(App.getPrimaryStage());
     System.out.println("Listening started");
     if (!runThread){
       voiceLabel.setText("Done");
@@ -530,9 +526,7 @@ public class HomeController {
                             || App.getSpokenWords().contains("help help")
                             || App.getSpokenWords().contains("help help help help")) {
                           System.out.println("List contains help");
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           openHelpScene();
                           App.getSpokenWords().clear();
                           runThread  = false;
@@ -542,9 +536,7 @@ public class HomeController {
                             || App.getSpokenWords().contains("  requests")
                             || App.getSpokenWords().contains("request")
                             || App.getSpokenWords().contains("  requestt")) {
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           openRequestScene();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -553,9 +545,7 @@ public class HomeController {
                             || App.getSpokenWords().contains("  nav")
                             || App.getSpokenWords().contains(" nav")
                         || App.getSpokenWords().contains("navigation")){
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           openNavScene();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -565,9 +555,7 @@ public class HomeController {
                             || App.getSpokenWords().contains(" information")
                             || App.getSpokenWords().contains("inforamtion info")
                             || App.getSpokenWords().contains("info")) {
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           openInformationScene();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -577,9 +565,7 @@ public class HomeController {
                             || App.getSpokenWords().contains(" login")
                             || App.getSpokenWords().contains("login login")
                             || App.getSpokenWords().contains("login login login")) {
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           openLoginScene();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -590,9 +576,7 @@ public class HomeController {
                             || App.getSpokenWords().contains(" wea")
                             || App.getSpokenWords().contains("weather weather")
                             || App.getSpokenWords().contains("weather weather weather")) {
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           openWeather();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -601,9 +585,7 @@ public class HomeController {
                                 || App.getSpokenWords().contains("go to floor 1")
                                 || App.getSpokenWords().contains(" go to floor one")
                         || App.getSpokenWords().contains("one")){
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           one();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -612,9 +594,7 @@ public class HomeController {
                                 || App.getSpokenWords().contains("go to floor 2")
                                 || App.getSpokenWords().contains(" go to floor two")
                         || App.getSpokenWords().contains("two")) {
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           two();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -623,9 +603,7 @@ public class HomeController {
                                 || App.getSpokenWords().contains("go to floor 3")
                                 || App.getSpokenWords().contains(" go to floor three")
                       || App.getSpokenWords().contains("three")){
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           three();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -634,9 +612,7 @@ public class HomeController {
                                 || App.getSpokenWords().contains("go to floor 4")
                                 || App.getSpokenWords().contains(" go to floor four")
                         || App.getSpokenWords().contains("four")){
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           four();
                           App.getSpokenWords().clear();
                           runThread = false;
@@ -645,9 +621,7 @@ public class HomeController {
                                 || App.getSpokenWords().contains("go to floor 5")
                                 || App.getSpokenWords().contains(" go to floor five")
                         || App.getSpokenWords().contains("five")){
-                          App.getHome().setOpacity(1);
-                          App.getHome().setDisable(false);
-                          App.getSpeechPop().getContent().remove(0);
+
                           five();
                           App.getSpokenWords().clear();
                           runThread = false;
