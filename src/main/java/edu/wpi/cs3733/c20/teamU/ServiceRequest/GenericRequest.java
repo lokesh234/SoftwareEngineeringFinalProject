@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import com.jfoenix.controls.*;
 import edu.wpi.cs3733.c20.teamU.App;
+import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -18,10 +19,12 @@ import java.util.*;
 public class GenericRequest {
     @FXML private Label titleLabel;
     @FXML private VBox content;
+    private String type = "";
 
     private LinkedHashMap<Object, String> components = new LinkedHashMap<>();
 
     protected void setType(String type) {
+        this.type = type;
         content.getChildren().clear();
         components.clear();
         Scanner f = null;
@@ -184,7 +187,7 @@ public class GenericRequest {
                 }
             }
 
-            System.out.println(output); //Throw at database
+            DatabaseWrapper.populateNewDatabase(this.type, output);
             goBack();
         }
         else {
