@@ -172,7 +172,7 @@ public class AddCustomRequestController {
     private boolean isValidComp(String name, String type, Collection<String> contents) {
         if ((type.equals("Combo Box") || type.equals("Radio Buttons")) && contents.size() == 0) return false;
         if (name.contains(":") || type.contains(":")) return false;
-        if (components.getItems().size() > 5) return false; //Size limit!
+        if (components.getItems().size() >= 5) return false; //Size limit!
         for (String s : contents) {
             if (s.contains(",")) return false;
         }
