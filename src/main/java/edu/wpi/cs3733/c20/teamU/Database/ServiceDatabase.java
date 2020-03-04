@@ -895,7 +895,7 @@ public class ServiceDatabase {
             connection = DriverManager.getConnection("jdbc:derby:UDB;create=true");
             stmt = connection.createStatement();
 
-            sql = "SELECT * FROM " + tableName + " WHERE reqType = '"+ serviceRequestType + "'";
+            sql = "SELECT * FROM " + tableName + " WHERE types = '"+ serviceRequestType + "'";
 
             ResultSet results = stmt.executeQuery(sql);
             while (results.next()) {
