@@ -176,7 +176,7 @@
                                           <VBox alignment="CENTER" prefHeight="159.0" prefWidth="152.0">
                                              <children>
                                                 <Label prefHeight="48.0" prefWidth="152.0" text="Lokesh Gangaramaney" textAlignment="CENTER" wrapText="true" />
-                                                <Label prefHeight="23.0" prefWidth="130.0" text="(Assistant Lead)" />
+                                                <Label prefHeight="23.0" prefWidth="130.0" text="(Lead Soft-Eng)" />
                                              </children>
                                           </VBox>
                                        </children>
