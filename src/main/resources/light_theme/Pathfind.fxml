@@ -304,18 +304,18 @@
                                           <Font name="Segoe UI" size="12.0" />
                                        </font>
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/restroomK.png" />
+                                                <Image url="@../png_files/restroom15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Label>
                                     <Label text="Stairs">
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/stairsK.png" />
+                                                <Image url="@../../../../../../Downloads/stairs15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -328,18 +328,18 @@
                                           <Font name="Segoe UI" size="12.0" />
                                        </font>
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/elevatorK.png" />
+                                                <Image url="@../png_files/elevator15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Label>
                                     <Label text="Info desk">
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/infoK.png" />
+                                                <Image url="@../png_files/info15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -349,9 +349,9 @@
                                     </Label>
                                     <Label text="Department">
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/departmentK.png" />
+                                                <Image url="@../png_files/department15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -364,18 +364,18 @@
                                           <Font name="Segoe UI" size="12.0" />
                                        </font>
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/labK.png" />
+                                                <Image url="@../png_files/lab15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Label>
                                     <Label text="Conference Room">
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/Conference.png" />
+                                                <Image url="@../png_files/conference.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -385,9 +385,9 @@
                                     </Label>
                                     <Label text="Retail">
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/retailK.png" />
+                                                <Image url="@../png_files/retail15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -400,18 +400,18 @@
                                           <Font name="Segoe UI" size="12.0" />
                                        </font>
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/serviceK.png" />
+                                                <Image url="@../png_files/service15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Label>
                                     <Label text="Exit">
                                        <graphic>
-                                          <ImageView fitHeight="150.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../png_files/exitK.png" />
+                                                <Image url="@../png_files/exit15.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
