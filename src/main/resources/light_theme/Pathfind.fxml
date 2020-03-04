@@ -478,7 +478,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <HBox alignment="CENTER" maxHeight="150.0" maxWidth="800.0" spacing="10.0" styleClass="hotbar" StackPane.alignment="BOTTOM_CENTER">
+            <HBox alignment="CENTER" maxHeight="150.0" maxWidth="650.0" prefWidth="650.0" spacing="10.0" styleClass="hotbar" StackPane.alignment="BOTTOM_CENTER">
                <children>
                   <JFXButton fx:id="quickRest" contentDisplay="GRAPHIC_ONLY" maxHeight="100.0" maxWidth="100.0" onAction="#nearestBathroom" text="Restroom" textFill="WHITE">
                      <font>
