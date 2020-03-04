@@ -1,9 +1,6 @@
 package edu.wpi.cs3733.c20.teamU.Administration;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXChipView;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.*;
 import com.twilio.rest.api.v2010.account.usage.record.Today;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
@@ -14,11 +11,15 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -43,7 +44,9 @@ public class AnalyticsController {
     @FXML
     private BarChart barChart;
     @FXML
-    private JFXComboBox typesComboBox, majorTypesComboBox, quickSelection;
+    private JFXRadioButton employeeRadio, requestRadio, requestFinishedRadio;
+    @FXML
+    private JFXComboBox typesComboBox, quickSelection;
     @FXML
     private JFXChipView typesChip;
     @FXML
@@ -57,6 +60,7 @@ public class AnalyticsController {
     private CategoryAxis xA;
     @FXML
     private NumberAxis yA, lineYA, lineXA;
+    private ToggleGroup typesGroup;
 
 
     @FXML
@@ -108,22 +112,26 @@ public class AnalyticsController {
             for(int i = 0; i < (highB-lowB); i++) {
                 LocalDate start = fromDP.getValue();
                 LocalDate end;
+                int ending;
                 if (unit.equals("year")) {
                     end = start.plusYears(1);
+                    ending = end.getYear();
                 }
                 else if(unit.equals("month")){
                     end = start.plusMonths(1);
+                    ending = end.getMonthValue();
                 }
                 else {
                     end = start.plusDays(1);
+                    ending = end.getDayOfMonth();
                 }
 
-                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
-                    series.getData().add(new XYChart.Data(end,
+                if(requestRadio.isSelected()){
+                    series.getData().add(new XYChart.Data(ending,
                         ServiceDatabase.getServiceRequestAmountRange(s, start.format(DF), end.format(DF))));
                 }
                 else {
-                    series.getData().add(new XYChart.Data(end,
+                    series.getData().add(new XYChart.Data(ending,
                             ServiceDatabase.getServiceFinishedAmountRange(s, start.format(DF), end.format(DF))));
                 }
             }
@@ -148,10 +156,10 @@ public class AnalyticsController {
 
         dataSeries1.setName("Numbers");
         for (String s : types) {
-            if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")) {
+            if (employeeRadio.isSelected()) {
                 dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getEmployeeCount(s)));
                 System.out.println("Bar:" + s + ":" + DatabaseWrapper.getEmployeeCount(s));
-            } else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
+            } else if (requestRadio.isSelected()){
                 dataSeries1.getData().add(new XYChart.Data(s,
                         ServiceDatabase.getServiceRequestAmountRange(s, fromDP.getValue().format(DF),
                                 toDP.getValue().format(DF))));
@@ -170,9 +178,9 @@ public class AnalyticsController {
         for (int i = 0; i < types.size(); i++) {
             int number = 0;
 
-            if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+            if(employeeRadio.isSelected()){
                 number = DatabaseWrapper.getEmployeeCount(types.get(i));
-            }else if (majorTypesComboBox.getSelectionModel().getSelectedItem().equals("service")){
+            }else if (requestRadio.isSelected()){
                 number = ServiceDatabase.getServiceRequestAmountRange(types.get(i),
                         fromDP.getValue().format(DF),
                         toDP.getValue().format(DF));
@@ -195,20 +203,18 @@ public class AnalyticsController {
 
     @FXML
     private void initialize(){
+        typesGroup = new ToggleGroup();
+        employeeRadio.setToggleGroup(typesGroup);
+        requestRadio.setToggleGroup(typesGroup);
+        requestFinishedRadio.setToggleGroup(typesGroup);
+        typesGroup.selectToggle(null);
+
+
         ObservableList<String> serviceTypes =
                 FXCollections.observableArrayList(
                         ServiceRequestWrapper.getAllServiceType()
                 );
         typesComboBox.getItems().addAll(serviceTypes);
-
-
-        ObservableList<String> majorTypes =
-                FXCollections.observableArrayList(
-                        "employee",
-                        "service",
-                        "serviceFinished"
-                );
-        majorTypesComboBox.getItems().addAll(majorTypes);
 
         ObservableList<String> quick =
                 FXCollections.observableArrayList(
@@ -241,20 +247,11 @@ public class AnalyticsController {
                 toDP.setValue(LocalDate.now());
             }
         });
-//
-//        ObservableList<String> deliveryOptions =
-//                FXCollections.observableArrayList(
-//                        "employee",
-//                        "service",
-//                        "serviceFinished"
-//                );
-//        comboBox.getItems().addAll(deliveryOptions);
-
 
         generate.setDisable(true);
         BooleanBinding blockCheckBox =
                 (typesChip.converterProperty().isNull())
-                .or(majorTypesComboBox.getSelectionModel().selectedItemProperty().isNull())
+                .or(requestFinishedRadio.selectedProperty().and(requestRadio.selectedProperty()).and(employeeRadio.selectedProperty()))
                 .or(fromDP.getEditor().textProperty().isEmpty())
                 .or(toDP.getEditor().textProperty().isEmpty());
         generate.disableProperty().bind(blockCheckBox);
@@ -263,27 +260,45 @@ public class AnalyticsController {
         toDP.setDisable(true);
         lineTab.setDisable(true);
         quickSelection.setDisable(true);
-        majorTypesComboBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
-                    fromDP.setValue(LocalDate.now());
-                    toDP.setValue(LocalDate.now());
-                    fromDP.setDisable(true);
-                    toDP.setDisable(true);
-                    lineTab.setDisable(true);
-                    quickSelection.setDisable(true);
-                }
-                else {
-                    fromDP.setDisable(false);
-                    toDP.setDisable(false);
-                    lineTab.setDisable(false);
-                    quickSelection.setDisable(false);
-                }
-            }
-        });
 
-
+//        typesGroup.getProperties().addListener(new MapChangeListener<Object, Object>() {
+//            @Override
+//            public void onChanged(Change<?, ?> change) {
+//                if(employeeRadio.isSelected()){
+//                    fromDP.setValue(LocalDate.now());
+//                    toDP.setValue(LocalDate.now());
+//                    fromDP.setDisable(true);
+//                    toDP.setDisable(true);
+//                    lineTab.setDisable(true);
+//                    quickSelection.setDisable(true);
+//                }
+//                else {
+//                    fromDP.setDisable(false);
+//                    toDP.setDisable(false);
+//                    lineTab.setDisable(false);
+//                    quickSelection.setDisable(false);
+//                }
+//            }
+//        });
+//        typesGroup.getProperties().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
+//                    fromDP.setValue(LocalDate.now());
+//                    toDP.setValue(LocalDate.now());
+//                    fromDP.setDisable(true);
+//                    toDP.setDisable(true);
+//                    lineTab.setDisable(true);
+//                    quickSelection.setDisable(true);
+//                }
+//                else {
+//                    fromDP.setDisable(false);
+//                    toDP.setDisable(false);
+//                    lineTab.setDisable(false);
+//                    quickSelection.setDisable(false);
+//                }
+//            }
+//        });
 
 
         xA = new CategoryAxis();
