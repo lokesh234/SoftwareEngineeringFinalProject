@@ -290,9 +290,9 @@
                   </JFXDrawer>
                   <JFXDrawer fx:id="legendDrawer" maxHeight="400.0" style="-fx-background-color: TRANSPARENT;" styleClass="legend">
                      <children>
-                        <StackPane fx:id="legendPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: TRANSPARENT;">
+                        <StackPane fx:id="legendPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" styleClass="windowScreen">
                            <children>
-                              <VBox fx:id="legendContent" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="CENTER_LEFT">
+                              <VBox fx:id="legendContent" spacing="10.0" StackPane.alignment="CENTER_LEFT">
                                  <children>
                                     <Label text="Node color key">
                                        <font>

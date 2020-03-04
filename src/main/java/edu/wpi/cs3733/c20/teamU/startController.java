@@ -7,6 +7,7 @@ import com.sun.webkit.dom.KeyboardEventImpl;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,8 +17,12 @@ import javafx.scene.media.MediaView;
 import org.controlsfx.control.Notifications;
 
 import java.awt.*;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
-public class startController {
+public class startController<startC> {
 
   private volatile long startTime;
   private volatile long currentTime;
@@ -25,11 +30,16 @@ public class startController {
   private double initialLocation = 0;
   private double newLocation = 0;
   @FXML private AnchorPane media;
+  @FXML private Label time;
+  private int hr, s, m;
+  private Thread startC;
+  private boolean startClock = true;
   String path = startController.class.getResource("/SoftEngTutorial1.mp4").toString();
   MediaView mediaView;
 
   @FXML
   private void openHomeScreen() {
+    startClock = false;
     runThread = true;
     Thread startT = new Thread(new Runnable() {
       @Override
@@ -84,10 +94,6 @@ public class startController {
       if (!media.getChildren().isEmpty()) {
         mediaView.getMediaPlayer().stop();
         media.getChildren().remove(mediaView);
-//        for(int i = 0; i < media.getChildren().size(); i++) {
-//          System.out.println(i);
-//          System.out.println(media.getChildren().get(i).getId());
-//        }
       }
     }
   };
@@ -113,6 +119,8 @@ public class startController {
     mediaView.getMediaPlayer().play();
     mediaView.getMediaPlayer().setAutoPlay(true);
     mediaView.addEventHandler(MouseEvent.MOUSE_CLICKED, clickHandler);
+    startClock = true;
+    clock();
   }
 
   private void addToNode(javafx.scene.Node node) {
@@ -123,10 +131,72 @@ public class startController {
     media.getChildren().remove(node);
   }
 
+  public void clock() {
+    startC =
+            new Thread(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        Runnable incrementTime =
+                                new Runnable() {
+                                  @Override
+                                  public void run() {
+                                    //          System.out.println(setTime());
+                                    time.setText(setClock());
+                                  }
+                                };
+                        while (startClock) {
+                          try {
+                            Thread.sleep(1000);
+                          } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                          }
+                          Platform.runLater(incrementTime);
+                        }
+                      }
+                    });
+    startC.setDaemon(true);
+    startC.start();
+  }
+
+  private void setTime() {
+    hr = LocalDateTime.now(ZoneId.of("America/New_York")).getHour();
+    m = LocalDateTime.now(ZoneId.of("America/New_York")).getMinute();
+    s = LocalDateTime.now(ZoneId.of("America/New_York")).getSecond();
+  }
+
+  /**
+   * increments the time by 1 Adjusts for hours, mins, secs
+   *
+   * @return string of time HH : MM :: SS
+   */
+  private String setClock() {
+    s++;
+    if (s >= 60) {
+      s = 0;
+      m++;
+      if (m >= 60) {
+        m = 0;
+        hr++;
+        if (hr >= 24) {
+          hr = 0;
+        }
+      }
+    }
+    return String.format("%1$02d:%2$02d:%3$02d", hr, m, s);
+  }
+
+  @FXML
+  private void reaction() throws URISyntaxException {
+    Media media = new Media(getClass().getResource("/sound_files/Oof.mp3").toString());
+    MediaPlayer mediaPlayer = new MediaPlayer(media);
+    mediaPlayer.play();
+  }
+
   @FXML
   private void initialize() {
-//    startT.setDaemon(true);
-
+    setTime();
+    clock();
   }
 
 }

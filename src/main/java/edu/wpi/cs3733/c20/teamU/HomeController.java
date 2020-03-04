@@ -427,7 +427,7 @@ public class HomeController {
                     new Runnable() {
                       @Override
                       public void run() {
-                        if (App.getSpokenWords().contains("help")
+                        if (App.getSpokenWords().contains("open help")
                             || App.getSpokenWords().contains("help")
                             || App.getSpokenWords().contains("  help")
                             || App.getSpokenWords().contains(" help")
@@ -439,8 +439,8 @@ public class HomeController {
                           App.getSpokenWords().clear();
                           runThread  = false;
                         }
-                        if (App.getSpokenWords().contains(" requests")
-                            || App.getSpokenWords().contains("requests")
+                        if (App.getSpokenWords().contains("open request")
+                            || App.getSpokenWords().contains("request")
                             || App.getSpokenWords().contains("  requests")
                             || App.getSpokenWords().contains("request")
                             || App.getSpokenWords().contains("  requestt")) {
@@ -448,14 +448,15 @@ public class HomeController {
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
-                        if (App.getSpokenWords().contains("nav")
+                        if (App.getSpokenWords().contains("open navigation")
                             || App.getSpokenWords().contains("  nav")
-                            || App.getSpokenWords().contains(" nav")) {
+                            || App.getSpokenWords().contains(" nav")
+                        || App.getSpokenWords().contains("navigation")){
                           openNavScene();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
-                        if (App.getSpokenWords().contains("information")
+                        if (App.getSpokenWords().contains("open information")
                             || App.getSpokenWords().contains("  info")
                             || App.getSpokenWords().contains(" information")
                             || App.getSpokenWords().contains("inforamtion info")
@@ -464,7 +465,7 @@ public class HomeController {
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
-                        if (App.getSpokenWords().contains("login")
+                        if (App.getSpokenWords().contains("open login")
                             || App.getSpokenWords().contains("  login")
                             || App.getSpokenWords().contains(" login")
                             || App.getSpokenWords().contains("login login")
@@ -474,12 +475,52 @@ public class HomeController {
                           runThread = false;
                           System.out.println(runThread);
                         }
-                        if (App.getSpokenWords().contains("weather")
-                            || App.getSpokenWords().contains("  weather")
+                        if (App.getSpokenWords().contains("open weather")
+                            || App.getSpokenWords().contains("weather")
                             || App.getSpokenWords().contains(" wea")
                             || App.getSpokenWords().contains("weather weather")
                             || App.getSpokenWords().contains("weather weather weather")) {
                           openWeather();
+                          App.getSpokenWords().clear();
+                          runThread = false;
+                        }
+                        if (App.getSpokenWords().contains("go to floor one")
+                                || App.getSpokenWords().contains("go to floor 1")
+                                || App.getSpokenWords().contains(" go to floor one")
+                        || App.getSpokenWords().contains("one")){
+                          one();
+                          App.getSpokenWords().clear();
+                          runThread = false;
+                        }
+                        if (App.getSpokenWords().contains("go to floor two")
+                                || App.getSpokenWords().contains("go to floor 2")
+                                || App.getSpokenWords().contains(" go to floor two")
+                        || App.getSpokenWords().contains("two")) {
+                          two();
+                          App.getSpokenWords().clear();
+                          runThread = false;
+                        }
+                        if (App.getSpokenWords().contains("go to floor three")
+                                || App.getSpokenWords().contains("go to floor 3")
+                                || App.getSpokenWords().contains(" go to floor three")
+                      || App.getSpokenWords().contains("three")){
+                          three();
+                          App.getSpokenWords().clear();
+                          runThread = false;
+                        }
+                        if (App.getSpokenWords().contains("go to floor four")
+                                || App.getSpokenWords().contains("go to floor 4")
+                                || App.getSpokenWords().contains(" go to floor four")
+                        || App.getSpokenWords().contains("four")){
+                          four();
+                          App.getSpokenWords().clear();
+                          runThread = false;
+                        }
+                        if (App.getSpokenWords().contains("go to floor five")
+                                || App.getSpokenWords().contains("go to floor 5")
+                                || App.getSpokenWords().contains(" go to floor five")
+                        || App.getSpokenWords().contains("five")){
+                          five();
                           App.getSpokenWords().clear();
                           runThread = false;
                         }

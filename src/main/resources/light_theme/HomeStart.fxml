@@ -25,7 +25,7 @@
                   </ImageView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="startClock">
                      <children>
-                        <Label fx:id="time" text="16:20:00" />
+                        <Label fx:id="time" />
                      </children>
                   </HBox>
                   <JFXButton fx:id="Map" contentDisplay="GRAPHIC_ONLY" onAction="#openHomeScreen" prefHeight="89.0" prefWidth="194.0" text="Begin">
@@ -35,14 +35,17 @@
                      <graphic>
                         <ImageView fitHeight="70.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../png_files/image%20(1).png" />
+                              <Image url="@../png_files/image.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </JFXButton>
                   <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="400.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView onMousePressed="#reaction" fitHeight="400.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../png_files/gif/frontFly.gif" />
+                           </image></ImageView>
                      </children>
                      <padding>
                         <Insets bottom="50.0" />
