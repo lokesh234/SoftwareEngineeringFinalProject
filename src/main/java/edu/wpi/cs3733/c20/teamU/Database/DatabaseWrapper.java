@@ -398,6 +398,33 @@ public class DatabaseWrapper {
     return Database.getEmployeeCount(EmployeeType);
   }
 
+  //add a type (auto converts to CAPS)
+  public static boolean addType(String typeName){
+    return Database.addType(typeName);
+  }
+
+  //remove a type (from every DB)
+  public static boolean delType(String typeName){
+    return Database.delType(typeName);
+  }
+
+  /**
+   * @return returns a list of the Types (Strings)
+   */
+  public static ArrayList<String> getTypes(){
+    return Database.getTypes();
+  }
+
+  /**
+   * add a value to Database
+   * @param name String less than 5 char (will be set to all caps)
+   * @param picture String of path to picture (either added or default)
+   * @return true if added
+   */
+  public static boolean addDatabase(String name, String picture){
+    return Database.addDatabase(name, picture);
+  }
+
   // SERVICE DATABASE
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -578,6 +605,15 @@ public class DatabaseWrapper {
       return ServiceDatabase.getCurrentDate();
    }
 
+
+  public static int getServiceFinishedAll(String serviceRequestType){
+      return ServiceDatabase.getServiceFinishedAll(serviceRequestType);
+  }
+
+  public static int getServiceRequestAll(String serviceRequestType){
+      return ServiceDatabase.getServiceRequestAll(serviceRequestType);
+  }
+
   //NODESDATABSE CLASS  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   public static NodesDatabase getGraph() {
       return graph; //Other nodesDatabase functions should be accessed through DatabaseWrapper.getGraph().x();
@@ -597,4 +633,13 @@ public class DatabaseWrapper {
       return Database.getDataAnalytics(fre, type);
   }
 
+  //GENERATE DATABASE ==============================================================================================================
+
+  public static boolean generateNewDatabase(String dbName, ArrayList<String> dataTypes, String picturePath){
+      return GenerateDatabase.generateNewDatabase(dbName, dataTypes, picturePath);
+  }
+
+  public static boolean populateNewDatabase(String dbName, ArrayList<String> values){
+      return GenerateDatabase.populateNewDatabase(dbName, values);
+  }
 }

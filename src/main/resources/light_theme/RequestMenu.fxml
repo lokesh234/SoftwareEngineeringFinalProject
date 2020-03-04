@@ -1,282 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestController">
+<AnchorPane prefHeight="900.0" prefWidth="900.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.ServiceRequest.RequestController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <VBox BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane styleClass="buttonGrid" VBox.vgrow="ALWAYS">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <JFXButton fx:id="mealService" contentDisplay="TOP" onAction="#openMealService" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/services.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Prof. Wong">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                           <children>
-                              <JFXButton fx:id="clean" contentDisplay="TOP" onAction="#openSanRequest" text="Cleanup" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/broom.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Mielynn">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton fx:id="medicineSign" contentDisplay="TOP" onAction="#openMedicineForm" text="Medicine Delivery" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/pills.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Ted">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton fx:id="religion" contentDisplay="TOP" onAction="#openReligiousRequest" text="Religious Services" textFill="WHITE">
-
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/praying-hands.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Matt">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openGiftDeliveryRequest" text="Delivery" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/delivery.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Ted">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openITRequest" text="IT Support" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/laptop.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Byron">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton fx:id="extTransport" contentDisplay="TOP" onAction="#openExtTransportRequest" text="External Transport" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/transport.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Anir">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openIntTransportRequest" text="Internal Transport" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/wheelchair.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Markus">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openFlowerForm" text="Floral Delivery" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fx:id="flowerButton" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/flower.png" />
-                                       </image></ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Jon">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openClownRequest" text="Clown Event" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/clown.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Alek">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openLangaugeRequest" text="Translator" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/translation.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                              <Label text="by Lokesh">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton contentDisplay="TOP" onAction="#openAppointment" prefHeight="166.0" prefWidth="193.0" text="Make Appointment" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fx:id="makeAppointment" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../png_files/Icons/appointment.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="18.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </VBox>
-                     </children>
-                  </GridPane>
-               </children>
-            </VBox>
-         </center>
          <top>
             <HBox alignment="CENTER" prefHeight="80.0" spacing="10.0" styleClass="titleBar" BorderPane.alignment="CENTER">
                <children>
@@ -299,6 +38,267 @@
                </padding>
             </HBox>
          </top>
+         <center>
+            <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+               <content>
+                  <BorderPane>
+                     <center>
+                        <JFXMasonryPane fx:id="masonry" HSpacing="10.0" VSpacing="10.0" cellHeight="100.0" cellWidth="100.0" limitColumn="8" prefHeight="1800.0" prefWidth="900.0" styleClass="buttonGrid" BorderPane.alignment="TOP_CENTER">
+                           <children>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openFlowerForm" text="Floral Delivery" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fx:id="flowerButton" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/flower.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Jon">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openIntTransportRequest" text="Internal Transport" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/wheelchair.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Markus">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton fx:id="extTransport" contentDisplay="TOP" onAction="#openExtTransportRequest" text="External Transport" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/transport.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Anir">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton fx:id="medicineSign" contentDisplay="TOP" onAction="#openMedicineForm" text="Medicine Delivery" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/pills.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Ted">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton fx:id="mealService" contentDisplay="TOP" onAction="#openMealService" text="Meal Service" textFill="WHITE" VBox.vgrow="ALWAYS">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/services.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Prof. Wong">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton fx:id="clean" contentDisplay="TOP" onAction="#openSanRequest" text="Cleanup" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/broom.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Mielynn">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton fx:id="religion" contentDisplay="TOP" onAction="#openReligiousRequest" text="Religious Services" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/praying-hands.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Matt">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openGiftDeliveryRequest" text="Delivery" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/delivery.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Ted">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openITRequest" text="IT Support" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/laptop.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Byron">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openClownRequest" text="Clown Event" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/clown.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Alek">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openLangaugeRequest" text="Translator" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/translation.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <Label text="by Lokesh">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                    <JFXButton contentDisplay="TOP" onAction="#openAppointment" prefHeight="166.0" prefWidth="193.0" text="Make Appointment" textFill="WHITE">
+                                       <graphic>
+                                          <ImageView fx:id="makeAppointment" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../png_files/Icons/appointment.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Segoe UI Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </JFXMasonryPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </ScrollPane>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

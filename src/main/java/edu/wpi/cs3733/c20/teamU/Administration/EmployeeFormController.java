@@ -181,6 +181,12 @@ public class EmployeeFormController {
   }
 
   public void setAccountEdit() {
+    employeeCombo.getItems().clear();
+    ObservableList<String> employee =
+            FXCollections.observableArrayList(
+                    ServiceRequestWrapper.getAllServiceType()
+            );
+    employeeCombo.getItems().addAll(employee);
     Account account = App.getAccountEdit();
     if (account == null) {
       clearFields();

@@ -51,12 +51,9 @@ public class TreeViewController {
         if (tree.getSelectionModel().getSelectedItem() != null && tree.getSelectionModel().getSelectedItem().getValue() != null){
             master.getSelectionFromDir(tree.getSelectionModel().getSelectedItem().getValue());
         }
-        App.loadPathfinding();
         //App.getGraph().update();
-        DatabaseWrapper.updateGraph();
         //App.getPathfindController().drawNodes();
         App.getTreeViewPop().getContent().clear();
-        ServiceRequestWrapper.pathfindDrawNodes(App.getPathfindController());
         App.getPrimaryStage().setScene(App.getPathScene());
     }
 }

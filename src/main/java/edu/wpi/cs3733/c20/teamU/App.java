@@ -1,14 +1,15 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
@@ -32,6 +33,7 @@ import javafx.scene.layout.Pane;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -81,9 +83,12 @@ public class App<loadedAdminRequests> extends Application {
   private static Pane treeView;
   private static Pane analytics;
   private static Pane scale;
+  private static Pane custom;
   private static Pane color;
   private static Pane information;
   private static Pane credit;
+  private static Pane generic;
+  private static Pane editGen;
 
   private static Scene verificationScene;
   private static Scene homeScene;
@@ -156,8 +161,11 @@ public class App<loadedAdminRequests> extends Application {
   private static AnalyticsController analyticsController;
   private static AdminScaleController scaleController;
   private static AdminColorController colorController;
+  private static AddCustomRequestController customController;
   private static InformationController informationController;
   private static CreditController creditController;
+  private static GenericRequest genericController;
+  private static ViewCustomRequestController viewCustomController;
 
 
   private static boolean didChange = false;
@@ -181,6 +189,7 @@ public class App<loadedAdminRequests> extends Application {
   private static boolean loadedLanguage = false;
   private static boolean loadedGift = false;
   private static boolean loadedIT = false;
+  private static boolean loadedGeneric = false;
   private static boolean loadedTreeView = false;
   public static boolean SpeechComplete = false;
 
@@ -507,6 +516,7 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getAdminRequest() { return adminRequest; }
   public static Pane getAdminEmployee() { return adminEmployee; }
   public static Pane getAdminBacklog() { return adminBacklog; }
+  public static Pane getCustom() { return custom;}
   public static Pane getExport() { return export; }
   public static Pane getEdit() { return edit;}
   public static Pane getAddNode() { return addNode; }
@@ -533,6 +543,8 @@ public class App<loadedAdminRequests> extends Application {
   public static Pane getColor() { return color;}
   public static Pane getInformation() {return information;}
   public static Pane getCredit() {return credit;}
+  public static Pane getGeneric() { return generic;}
+  public static Pane getEditGen() { return editGen;}
 
   public static Scene getVerificationScene() {return verificationScene;}
   public static Scene getHomeScene() { return homeScene; }
@@ -577,6 +589,7 @@ public class App<loadedAdminRequests> extends Application {
   public static AdminRequestController getAdminRequestController() { return adminRequestController;}
   public static AdminEmployeeController getAdminEmployeeController() { return adminEmployeeController;}
   public static AdminBacklogController getAdminBacklogController() { return adminBacklogController;}
+  public static AddCustomRequestController getCustomController() { return customController;}
   public static FireController getFireController(){return fireController;}
   public static GraphEditController getGraphEditController() { return graphEditController;}
   public static WeatherController weatherController() {return weatherController; }
@@ -598,6 +611,8 @@ public class App<loadedAdminRequests> extends Application {
   public static AdminColorController getColorController() {return colorController;}
   public static InformationController getInformationController() {return informationController;}
   public static CreditController getCreditController() {return creditController;}
+  public static GenericRequest getGenericController() { return genericController;}
+  public static ViewCustomRequestController getViewCustomController() { return viewCustomController;}
 
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeEdit() { return nodeEdit; }
   public static edu.wpi.cs3733.c20.teamU.Database.Node getNodeAdd() { return nodeAdd; }
@@ -709,6 +724,7 @@ public class App<loadedAdminRequests> extends Application {
         //No hitbox for node!
       }
     }
+    loadedHitboxes = true;
   }
 
   public static Image getHitbox(String ID) throws Exception {
@@ -772,9 +788,34 @@ public class App<loadedAdminRequests> extends Application {
     }
   }
 
+  private static boolean loadedReqTypes = false;
+
+  private static void loadReqTypes() {
+    if (!loadedReqTypes) {
+      File dir = new File("CustomRequests");
+      if (dir.exists()) {
+        for (File f : dir.listFiles()) {
+          if (!f.getName().contains("InputTypes.txt")) {
+            Scanner s = null;
+            try {
+              s = new Scanner(new File("CustomRequests/"+f.getName().split("\\.")[0]+"InputTypes.txt"));
+            } catch (FileNotFoundException e) {
+              e.printStackTrace();
+            }
+            ArrayList<String> iT = new ArrayList<>(Arrays.asList(s.nextLine().split(",")));
+            DatabaseWrapper.generateNewDatabase(f.getName().split("\\.")[0], iT, "DEFAULT");
+            s.close();
+          }
+        }
+      }
+      loadedReqTypes = true;
+    }
+  }
+
   public static void loadAdminRequests() {
     if (!loadedAdminRequests) {
       try {
+        loadReqTypes();
         FXMLLoader adminLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminMenu.fxml"));
         FXMLLoader adminRequestLoader = new FXMLLoader((App.class.getResource("/light_theme/Request.fxml")));
         FXMLLoader adminEmployeeLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminEmployee.fxml")));
@@ -790,6 +831,8 @@ public class App<loadedAdminRequests> extends Application {
         FXMLLoader timeoutLoader = new FXMLLoader(App.class.getResource("/light_theme/TimeoutForm.fxml"));
         FXMLLoader scaleLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminScaleForm.fxml"));
         FXMLLoader colorLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminColor.fxml"));
+        FXMLLoader customLoader = new FXMLLoader(App.class.getResource("/light_theme/CreateServiceForm.fxml"));
+        FXMLLoader editCustomLoader = new FXMLLoader(App.class.getResource("/light_theme/CustomRequestTable.fxml"));
 
         admin = adminLoader.load();
         adminRequest = adminRequestLoader.load();
@@ -806,6 +849,8 @@ public class App<loadedAdminRequests> extends Application {
         analytics = analyticsLoader.load();
         scale = scaleLoader.load();
         color = colorLoader.load();
+        custom = customLoader.load();
+        editGen = editCustomLoader.load();
 
         admin.setOnKeyPressed(fireKey);
         analytics.setOnKeyPressed(fireKey);
@@ -821,6 +866,7 @@ public class App<loadedAdminRequests> extends Application {
         login.setOnKeyPressed(loginconfirmKey);
         employeeF.setOnKeyPressed(employeeformconfirmKey);
         scale.setOnKeyPressed(fireKey);
+        custom.setOnKeyPressed(fireKey);
 
 
 
@@ -839,11 +885,14 @@ public class App<loadedAdminRequests> extends Application {
         timeoutController = timeoutLoader.getController();
         scaleController = scaleLoader.getController();
         colorController = colorLoader.getController();
+        customController = customLoader.getController();
+        viewCustomController = editCustomLoader.getController();
 
         requestScreenController.setAttributes(adminRequestController);
         adminRequestController.setAttributes(requestScreenController);
         adminEmployeeController.setAttributes(employeeFormController);
         loginScreenController.setAttributes(employeeFormController);
+        requestController.updateButtons();
 
         adminScene = new Scene(admin);
 
@@ -1057,6 +1106,27 @@ public class App<loadedAdminRequests> extends Application {
         loadedIT = true;
 
         IT.setOnKeyPressed(itconfirmKey);
+
+      }
+      catch (IOException e) {
+        return;
+      }
+    }
+  }
+
+  public static void loadGeneric() {
+    if (!loadedGeneric) {
+      try {
+        FXMLLoader genericLoader = new FXMLLoader(App.class.getResource("/light_theme/RequestGeneric.fxml"));
+
+        generic = genericLoader.load();
+
+        generic.setOnKeyPressed(fireKey);
+
+        genericController = genericLoader.getController();
+
+        loadedGeneric = true;
+
 
       }
       catch (IOException e) {
