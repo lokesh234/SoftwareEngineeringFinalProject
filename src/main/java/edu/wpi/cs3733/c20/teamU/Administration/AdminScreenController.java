@@ -114,6 +114,14 @@ public class AdminScreenController {
   }
 
   @FXML
+  private void seeCustom() {
+    App.getPopup().getContent().clear();
+    App.getPopup().getContent().add(App.getEditGen());
+    App.getViewCustomController().update();
+    App.getPopup().show(App.getPrimaryStage());
+  }
+
+  @FXML
   private void openDiffPathfinding() {
     App.getPopup().getContent().clear();
     App.getChoosePathPop().getContent().add(App.getPathChoose());

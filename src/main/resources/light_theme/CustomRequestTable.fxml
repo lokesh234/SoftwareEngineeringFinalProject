@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ControllerName">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.wpi.cs3733.c20.teamU.Administration.ViewCustomRequestController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -31,7 +31,7 @@
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="133.0" spacing="20.0">
                      <children>
-                        <JFXButton fx:id="back_button" buttonType="RAISED" onAction="#backToAdmin" prefHeight="37.0" prefWidth="90.0" text="Back" />
+                        <JFXButton fx:id="back_button" buttonType="RAISED" onAction="#adminScreen" prefHeight="37.0" prefWidth="90.0" text="Back" />
                      </children>
                      <padding>
                         <Insets top="10.0" />
@@ -47,12 +47,11 @@
             </HBox>
          </top>
          <center>
-            <TableView fx:id="employeeTable" onMouseClicked="#detectClick" BorderPane.alignment="CENTER">
+            <TableView fx:id="reqTable" BorderPane.alignment="CENTER">
                <columns>
-                  <TableColumn prefWidth="111.0" text="Name" />
-                  <TableColumn minWidth="6.0" prefWidth="110.0" text="# Requests" />
-                  <TableColumn minWidth="0.0" prefWidth="126.0" text="# Employees" />
-                  <TableColumn minWidth="6.0" prefWidth="302.0" text="Content" />
+                  <TableColumn prefWidth="111.0" text="Name" fx:id="name" />
+                  <TableColumn minWidth="6.0" prefWidth="110.0" text="# Requests" fx:id="reqs"/>
+                  <TableColumn minWidth="0.0" prefWidth="126.0" text="# Employees" fx:id="emps"/>
                </columns>
                </TableView>
          </center>
@@ -61,8 +60,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="23.0">
                      <children>
-                        <JFXButton fx:id="add_button" buttonType="RAISED" onAction="#add" text="Add" />
-                        <JFXButton fx:id="remove_button" buttonType="RAISED" onAction="#remove" style="-fx-background-color: #db6e6e;" text="Remove" />
+                        <JFXButton fx:id="remove_button" buttonType="RAISED" onAction="#delete" style="-fx-background-color: #db6e6e;" text="Remove" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="20.0" spacing="10.0" />
