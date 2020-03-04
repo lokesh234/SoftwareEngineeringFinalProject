@@ -792,7 +792,7 @@ public class App<loadedAdminRequests> extends Application {
           if (!f.getName().contains("InputTypes.txt")) {
             Scanner s = null;
             try {
-              s = new Scanner(new File(f.getName().split("\\.")[0]+"InputTypes.txt"));
+              s = new Scanner(new File("CustomRequests/"+f.getName().split("\\.")[0]+"InputTypes.txt"));
             } catch (FileNotFoundException e) {
               e.printStackTrace();
             }
