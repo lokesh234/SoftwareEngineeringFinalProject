@@ -296,26 +296,26 @@ public class App<loadedAdminRequests> extends Application {
   public static void setIcon(edu.wpi.cs3733.c20.teamU.Database.Node n, ImageView imageView) {
     switch (n.getNodeType()) {
       case "DEPT":
-        imageView.setImage(new Image("/png_files/departmentsmall.png"));
+        imageView.setImage(new Image("/png_files/department24.png"));
         break;
       case "CONF":
-        imageView.setImage(new Image("/png_files/conferenceSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/conference24.png"));        break;
       case "REST":
-        imageView.setImage(new Image("/png_files/restroomSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/restroom24.png"));        break;
       case "STAI":
-        imageView.setImage(new Image("/png_files/stairsSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/stairs24.png"));        break;
       case "ELEV":
-        imageView.setImage(new Image("/png_files/elevatorSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/elevator24.png"));        break;
       case "LABS":
-        imageView.setImage(new Image("/png_files/LabSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/Lab24.png"));        break;
       case "INFO":
-        imageView.setImage(new Image("/png_files/infoSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/info24.png"));        break;
       case "EXIT":
-        imageView.setImage(new Image("/png_files/exitsmall.png"));        break;
+        imageView.setImage(new Image("/png_files/exit24.png"));        break;
       case "RETL":
-        imageView.setImage(new Image("/png_files/retailSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/retail24.png"));        break;
       case "SERV":
-        imageView.setImage(new Image("/png_files/serviceSmall.png"));        break;
+        imageView.setImage(new Image("/png_files/service24.png"));        break;
     }
   }
 

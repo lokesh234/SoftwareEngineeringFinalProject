@@ -231,8 +231,8 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             ImageView source = (ImageView) event.getSource();
-            source.setFitHeight(19);
-            source.setFitWidth(19);
+            source.setFitHeight(24);
+            source.setFitWidth(24);
         }
     };
 
@@ -240,8 +240,8 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             ImageView source = (ImageView) event.getSource();
-            source.setFitWidth(16);
-            source.setFitWidth(16);
+            source.setFitWidth(24);
+            source.setFitWidth(24);
         }
     };
 
@@ -722,8 +722,8 @@ public class PathfindController {
             if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
             if (isDrawableNode(n)) {
                 ImageView imageView = new ImageView();
-                imageView.setY(n.getY() - 8);
-                imageView.setX(n.getX() - 8);
+                imageView.setY(n.getY() - 12);
+                imageView.setX(n.getX() - 12);
                 Circle c = new Circle();
                 c.setCenterX(n.getX());
                 c.setCenterY(n.getY());
