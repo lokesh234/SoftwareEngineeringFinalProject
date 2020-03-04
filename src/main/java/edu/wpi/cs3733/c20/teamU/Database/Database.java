@@ -356,7 +356,8 @@ public class Database {
             }
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
-            e.printStackTrace();
+            //e.printStackTrace();
+            //oops
             return;
 
         }
@@ -473,7 +474,8 @@ public class Database {
 
         } catch (SQLException e) {
             System.out.println("Connection failed. Check output console.");
-            e.printStackTrace();
+            //e.printStackTrace();
+            //oop
             return;
         }
     }

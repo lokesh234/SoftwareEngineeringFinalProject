@@ -373,6 +373,13 @@ public class AnalyticsController {
         int totalCurrentRequest = 0;
         int services = 0;
 
+        typesComboBox.getItems().clear();
+        ObservableList<String> serviceTypesccb =
+                FXCollections.observableArrayList(
+                        ServiceRequestWrapper.getAllServiceType()
+                );
+        typesComboBox.getItems().addAll(serviceTypesccb);
+
         types = ServiceRequestWrapper.getAllServiceType();
         dash.setTitle("Total Finished Requests All Time");
         dash.getData().clear();
