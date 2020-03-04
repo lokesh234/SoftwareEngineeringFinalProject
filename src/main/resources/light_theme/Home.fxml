@@ -77,11 +77,11 @@
                                 <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                          <Label fx:id="floorLabel" >
-                                              <font>
-                                                  <Font name="Segoe UI Bold" size="36.0" />
-                                              </font>
-                                          </Label>
+<!--                                          <Label fx:id="floorLabel" >-->
+<!--                                              <font>-->
+<!--                                                  <Font name="Segoe UI Bold" size="36.0" />-->
+<!--                                              </font>-->
+<!--                                          </Label>-->
                                  </children>
                               </VBox>
                                 </children>

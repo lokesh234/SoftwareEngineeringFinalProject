@@ -49,8 +49,8 @@ public class HomeController {
 //  private Button navButton;
   @FXML
   private VBox oppo;
-  @FXML
-  private Label floorLabel;
+//  @FXML
+//  private Label floorLabel;
   @FXML
   private Label time;
   @FXML
@@ -248,7 +248,7 @@ public class HomeController {
     oppo.getChildren().add(N1);
     floor = 1;
     floorAnimation.shuffleFloorList(floor, floorNavBox);
-    floorLabel.setText("1");
+//    floorLabel.setText("1");
     MapGes1.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes1.getCurrentScale() - 3000, MapGes1.targetPointAtViewportCentre());
@@ -260,7 +260,7 @@ public class HomeController {
     oppo.getChildren().add(N2);
     floor = 2;
     floorAnimation.shuffleFloorList(floor, floorNavBox);
-    floorLabel.setText("2");
+//    floorLabel.setText("2");
     MapGes2.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes2.getCurrentScale() - 3000, MapGes2.targetPointAtViewportCentre());
@@ -272,7 +272,7 @@ public class HomeController {
     oppo.getChildren().add(N3);
     floor = 3;
     floorAnimation.shuffleFloorList(floor, floorNavBox);
-    floorLabel.setText("3");
+//    floorLabel.setText("3");
     MapGes3.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes3.getCurrentScale() - 3000, MapGes3.targetPointAtViewportCentre());
@@ -284,7 +284,7 @@ public class HomeController {
     oppo.getChildren().add(N4);
     floor = 4;
     floorAnimation.shuffleFloorList(floor, floorNavBox);
-    floorLabel.setText("4");
+//    floorLabel.setText("4");
     MapGes4.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes4.getCurrentScale() - 3000, MapGes4.targetPointAtViewportCentre());
@@ -296,7 +296,7 @@ public class HomeController {
     oppo.getChildren().add(N5);
     floor = 5;
     floorAnimation.shuffleFloorList(floor, floorNavBox);
-    floorLabel.setText("5");
+//    floorLabel.setText("5");
     MapGes5.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
         .zoomBy(MapGes5.getCurrentScale() - 3000, MapGes5.targetPointAtViewportCentre());
