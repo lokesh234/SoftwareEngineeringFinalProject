@@ -296,26 +296,26 @@ public class App<loadedAdminRequests> extends Application {
   public static void setIcon(edu.wpi.cs3733.c20.teamU.Database.Node n, ImageView imageView) {
     switch (n.getNodeType()) {
       case "DEPT":
-        imageView.setImage(new Image("/png_files/department15.png"));
+        imageView.setImage(new Image("/png_files/departmentsmall.png"));
         break;
       case "CONF":
-        imageView.setImage(new Image("/png_files/restroom15.png"));        break;
+        imageView.setImage(new Image("/png_files/conferenceSmall.png"));        break;
       case "REST":
-        imageView.setImage(new Image("/png_files/restroom15.png"));        break;
+        imageView.setImage(new Image("/png_files/restroomSmall.png"));        break;
       case "STAI":
-        imageView.setImage(new Image("/png_files/stairs15.png"));        break;
+        imageView.setImage(new Image("/png_files/stairsSmall.png"));        break;
       case "ELEV":
-        imageView.setImage(new Image("/png_files/elevator15.png"));        break;
+        imageView.setImage(new Image("/png_files/elevatorSmall.png"));        break;
       case "LABS":
-        imageView.setImage(new Image("/png_files/Lab15.png"));        break;
+        imageView.setImage(new Image("/png_files/LabSmall.png"));        break;
       case "INFO":
-        imageView.setImage(new Image("/png_files/info15.png"));        break;
+        imageView.setImage(new Image("/png_files/infoSmall.png"));        break;
       case "EXIT":
-        imageView.setImage(new Image("/png_files/exit15.png"));        break;
+        imageView.setImage(new Image("/png_files/exitsmall.png"));        break;
       case "RETL":
-        imageView.setImage(new Image("/png_files/retail15.png"));        break;
+        imageView.setImage(new Image("/png_files/retailSmall.png"));        break;
       case "SERV":
-        imageView.setImage(new Image("/png_files/service15.png"));        break;
+        imageView.setImage(new Image("/png_files/serviceSmall.png"));        break;
     }
   }
 
@@ -673,26 +673,6 @@ public class App<loadedAdminRequests> extends Application {
 
     primaryStage.setScene(startScene);
     primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/png_files/wongPFP.png")));
-    try {
-      ProcessBuilder processBuilder = new ProcessBuilder();
-      processBuilder.redirectErrorStream(true);
-      Map<String, String> env = processBuilder.environment();
-      URL url = getClass().getResource("/key.json");
-      String keyPath = url.getPath();
-      keyPath = keyPath.replaceFirst("/","");
-      keyPath = keyPath.replace("/", "\\");
-      System.out.println("\\");
-      System.out.println(keyPath);
-      env.put("GOOGLE_APPLICATION_CREDENTIALS", keyPath);
-      System.out.println("=====================================================================================================");
-      for (String envName : env.keySet()) {
-        System.out.format("%s=%s%n", envName, env.get(envName));
-      }
-    }
-    catch (Exception e){
-      System.out.println(e);
-    }
-
     primaryStage.show();
 //    AdministrationWrapper.setFirstTheme();
 //    FoodRequest foodRequest = new FoodRequest();

@@ -393,6 +393,141 @@
                      <Insets bottom="20.0" right="50.0" />
                  </StackPane.margin>
              </HBox>
+              <VBox fx:id="legendContent" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="CENTER_LEFT">
+                  <children>
+                      <Label text="Node color key">
+                          <font>
+                              <Font name="Segoe UI Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label text="Restroom">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/restroomK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Stairs">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/stairsK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Elevator">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/elevatorK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Info desk">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/infoK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Department">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/departmentK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Lab">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/labK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Conference Room">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/ConferenceK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Retail">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/retailK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                      <Label text="Services">
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/serviceK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Label>
+                      <Label text="Exit">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../png_files/exitK.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <font>
+                              <Font name="Segoe UI" size="12.0" />
+                          </font>
+                      </Label>
+                  </children>
+                  <StackPane.margin>
+                      <Insets left="150.0" top="100.0" />
+                  </StackPane.margin>
+                  <padding>
+                      <Insets left="30.0" />
+                  </padding>
+              </VBox>
          </children>
       </StackPane>
     </children>
