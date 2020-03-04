@@ -278,6 +278,8 @@ public class PathfindController {
                 floor = path.get(path.indexOf(n1)+1).getFloor();
                 stateMachine(floor);
             }
+            floorAnimation.shuffleFloorList(floor, floorNavBox);
+
         }
     };
 
