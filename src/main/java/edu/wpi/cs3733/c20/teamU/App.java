@@ -805,7 +805,7 @@ public class App<loadedAdminRequests> extends Application {
       File dir = new File("CustomRequests");
       if (dir.exists()) {
         for (File f : dir.listFiles()) {
-          if (!f.getName().contains("InputTypes.txt") && (new File(f.getName().split("\\.")[0]+"InputTypes.txt")).exists()) {
+          if (!f.getName().contains("InputTypes.txt") && (new File("CustomRequests/"+f.getName().split("\\.")[0]+"InputTypes.txt")).exists()) {
             Scanner s = null;
             try {
               s = new Scanner(new File("CustomRequests/"+f.getName().split("\\.")[0]+"InputTypes.txt"));
