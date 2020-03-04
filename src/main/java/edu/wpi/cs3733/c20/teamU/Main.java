@@ -16,14 +16,7 @@ public class Main {
 
   public static void main(String[] args) throws MalformedURLException {
     DatabaseWrapper.Initializer();
-    ArrayList<String> arr = new ArrayList<>();
-    ArrayList<String> arr2 = new ArrayList<>();
-    arr.add("STRING");
-    arr2.add("x");
-    DatabaseWrapper.generateNewDatabase("TESTX", arr, "xx");
-    DatabaseWrapper.populateNewDatabase("TESTX", arr2);
-    DatabaseWrapper.delType("TESTX");
-    //AdministrationWrapper.ColorInitializer();
-    //App.launch(App.class, args);
+    AdministrationWrapper.ColorInitializer();
+    App.launch(App.class, args);
   }
 }
