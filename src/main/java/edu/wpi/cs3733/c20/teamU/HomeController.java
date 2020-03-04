@@ -1,27 +1,18 @@
 package edu.wpi.cs3733.c20.teamU;
 
 import com.jfoenix.controls.JFXButton;
-import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
-import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
-import edu.wpi.cs3733.c20.teamU.ServiceRequest.FloorAnimation;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import com.jfoenix.controls.JFXNodesList;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 import javafx.animation.Interpolator;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -29,14 +20,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import lombok.SneakyThrows;
 import net.kurobako.gesturefx.GesturePane;
 
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
-import static javafx.scene.input.MouseEvent.MOUSE_RELEASED;
 
 public class HomeController {
 

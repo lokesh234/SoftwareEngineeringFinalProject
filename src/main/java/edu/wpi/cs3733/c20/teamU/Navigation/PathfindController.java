@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDrawer.DrawerDirection;
 import edu.wpi.cs3733.c20.teamU.App;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Database.Node;
+import edu.wpi.cs3733.c20.teamU.FloorAnimation;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -80,7 +81,7 @@ public class PathfindController {
     @FXML private JFXButton upArrow, downArrow, leftArrow, rightArrow;
     @FXML private JFXTextField startBox, endBox;
     @FXML private JFXButton centerOut;
-
+    @FXML private VBox floorNavBox;
     @FXML private RadioButton fast, elev, stai;
 
     private Circle startSelect = new Circle();
@@ -91,6 +92,7 @@ public class PathfindController {
     private ImageView endView = new ImageView();
     private Image startMarker = new Image("png_files/start.png");
     private Image endMarker = new Image("png_files/end.png");
+    private FloorAnimation floorAnimation;
 
 
 
@@ -294,6 +296,7 @@ public class PathfindController {
             }
         }
         stateMachine(floor);
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
         checker = 1;
     }
 
@@ -310,6 +313,7 @@ public class PathfindController {
             }
         }
         stateMachine(floor);
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
         checker = 2;
     }
 
@@ -1091,6 +1095,9 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
 
+        floorAnimation = new FloorAnimation();
+        floorAnimation.shuffleFloorList(4, floorNavBox);
+
         // construct the menu drawer
 
         menuDrawer.setSidePane(menuBurgerContainer);
@@ -1606,6 +1613,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N1);
         floor = 1;
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
 //        floorLabel.setText("1");
         MapGes1.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
@@ -1617,6 +1625,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N2);
         floor = 2;
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
 //        floorLabel.setText("2");
         MapGes2.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
@@ -1628,6 +1637,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N3);
         floor = 3;
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
 //        floorLabel.setText("3");
         MapGes3.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
@@ -1639,6 +1649,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N4);
         floor = 4;
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
 //        floorLabel.setText("4");
         MapGes4.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
@@ -1650,6 +1661,7 @@ public class PathfindController {
         oppo.getChildren().clear();
         oppo.getChildren().add(N5);
         floor = 5;
+        floorAnimation.shuffleFloorList(floor, floorNavBox);
 //        floorLabel.setText("5");
         MapGes5.animate(Duration.millis(200))
                 .interpolateWith(Interpolator.EASE_BOTH)
