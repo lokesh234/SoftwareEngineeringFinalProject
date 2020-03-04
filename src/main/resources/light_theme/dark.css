@@ -19,11 +19,11 @@
  */
 /** defining custom colors */
 *{
-    -color-1: #243447; /* white */
-    -color-2: #4e4e4e; /*gray*/
-    -color-3: #b0b0b0; /*cream*/
-    -color-4: #3d4f63; /*light-brown*/
-    -color-5: #141d26; /*dark-gray*/
+    -color-1: #61615F; /*root color*/
+    -color-2: #292928; /*title bar background color*/
+    -color-3: #7D7F8C; /*side bar color*/
+    -color-4: #4B0069; /*button color*/
+    -color-5: #DDDDDD; /*unselected text field*/
     -color-red: #D34336; /*red*/
     -color-green: #0F9D58; /*green*/
     -body-text: WHITE;
@@ -44,7 +44,7 @@
 .titleBar .label{
     -fx-font-size: 20pt;
     -fx-font-weight: bold;
-    -fx-text-fill: -color-1;
+    -fx-text-fill: WHITE;
 }
 
 .subtitleBar{
@@ -53,7 +53,7 @@
 .subtitleBar .label{
     -fx-font-size: 10pt;
     -fx-font-weight: bold;
-    -fx-text-fill: -color-2;
+    -fx-text-fill: WHITE;
 }
 
 .sideBar{
