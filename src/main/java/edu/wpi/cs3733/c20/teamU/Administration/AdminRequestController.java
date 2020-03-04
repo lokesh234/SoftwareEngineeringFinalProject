@@ -88,6 +88,12 @@ public class AdminRequestController {
     pending = false;
     serviceTable2.setItems(arrayToOBList());
     serviceTable1.setVisible(true);
+    comboBox.getItems().clear();
+    ObservableList<String> deliveryOptions =
+            FXCollections.observableArrayList(
+                    ServiceRequestWrapper.getAllServiceType()
+            );
+    comboBox.getItems().addAll(deliveryOptions);
   }
 
   private ObservableList<Service> arrayToOBList() {

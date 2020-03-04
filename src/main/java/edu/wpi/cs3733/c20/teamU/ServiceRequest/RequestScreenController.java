@@ -90,6 +90,10 @@ public class RequestScreenController {
             case "LANGE":
                 DatabaseWrapper.languageSRDel(Integer.parseInt(date), userName, "LANGE");
                 break;
+            default:
+                System.out.println(name);
+                DatabaseWrapper.serviceRequestDel(Integer.parseInt(date), userName, name, name, name);
+                break;
         }
 
         DatabaseWrapper.addUserBacklog(App.getUser().getUserName(), name, "Resolved", " ");
