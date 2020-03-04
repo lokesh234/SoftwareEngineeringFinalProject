@@ -100,7 +100,7 @@
 }
 
 .legend{
-    -fx-background-color: TRANSPARENT;
+    -fx-background-color: -color-1;
 }
 
 .legend .label{
