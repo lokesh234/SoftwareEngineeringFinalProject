@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamU.Administration.CSSFileEditor;
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
+import edu.wpi.cs3733.c20.teamU.ServiceRequest.FloorAnimation;
 import edu.wpi.cs3733.c20.teamU.ServiceRequest.ServiceRequestWrapper;
 import com.jfoenix.controls.JFXNodesList;
 
@@ -74,6 +75,8 @@ public class HomeController {
   private GesturePane MapGes5;
   @FXML
   private GesturePane MapGes1;
+  @FXML
+  private VBox floorNavBox;
 
   @FXML private AnchorPane NodesPane1, NodesPane2, NodesPane3, NodesPane4, NodesPane5;
   @FXML private JFXButton upButton, downButton;
@@ -81,15 +84,13 @@ public class HomeController {
   @FXML private JFXButton hamburger, navButton, services, info, help;
 
   private WeatherController weatherController;
-  private long startTime;
-  private long currentTime;
   int floor = 4;
   private int hr;
   private int m;
   private int s;
-  private int checker;
   private Speech speech = new Speech();
   private volatile boolean runThread = true;
+  private int checker = 0;
   @FXML private Label voiceLabel, voiceLabelstart, voiceLabelend;
 
   public void setWeatherData(WeatherController weatherController1) {
@@ -375,13 +376,6 @@ public class HomeController {
     }
   }
 
-
-
-  @FXML
-  private void openStartScene() {
-    App.getPrimaryStage().setScene(App.getStartScene());
-  }
-
   @FXML
   private void openNavScene() {
     App.loadPathfinding();
@@ -399,9 +393,6 @@ public class HomeController {
     App.getHome().setDisable(true);
     App.getInformationPopUp().show(App.getPrimaryStage());
   }
-
-
-
 
   @FXML
   private void openHelpScene() {
@@ -569,18 +560,6 @@ public class HomeController {
     return String.format("%1$02d:%2$02d:%3$02d", hr, m, s);
   }
 
-  private void setTime() {
-    startTime = System.currentTimeMillis();
-  }
-
-  @FXML
-  private void checkTime(ActionEvent event) {
-//    App.getPrimaryStage().addEventHandler(MOUSE_MOVED, e -> {
-//      startTime = System.currentTimeMillis();
-//      System.out.println(startTime);
-//    });
-  }
-
   @FXML
   private void openWeather() {
     App.loadWeather();
@@ -609,6 +588,13 @@ public class HomeController {
       menuOptions.addAnimatedNode(info);
       menuOptions.addAnimatedNode(help);
       menuOptions.setSpacing(20.0);
+//    FloorAnimation floorAnimation = new FloorAnimation();
+//    floorAnimation.setSize(floorNavBox)
+
+//    floorNavBox.getChildren().get(1).maxWidth(5);
+//    floorNavBox.getChildren().get(1).prefWidth(5);
+//    floorNavBox.getChildren().get(1).maxHeight(5);
+//    floorNavBox.getChildren().get(1).prefHeight(5);
 
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
