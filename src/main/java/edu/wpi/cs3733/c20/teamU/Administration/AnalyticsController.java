@@ -11,19 +11,19 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextFormatter;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 
+import java.awt.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -44,15 +44,15 @@ public class AnalyticsController {
     @FXML
     private BarChart barChart;
     @FXML
-    private JFXRadioButton employeeRadio, requestRadio, requestFinishedRadio;
+    private JFXRadioButton employeeRadio, requestRadio, requestFinishedRadio, yesterday, lastWeek, lastMonth, lastYear, allTime;
     @FXML
-    private JFXComboBox typesComboBox, quickSelection;
+    private JFXComboBox typesComboBox;
     @FXML
     private JFXChipView typesChip;
     @FXML
     private Tab lineTab;
     @FXML
-    private JFXDatePicker fromDP, toDP;
+    private JFXDatePicker fromDP, toDP, dateDP;
     private LocalDate startTime, endTime;
     @FXML
     private JFXButton generate;
@@ -60,7 +60,10 @@ public class AnalyticsController {
     private CategoryAxis xA;
     @FXML
     private NumberAxis yA, lineYA, lineXA;
-    private ToggleGroup typesGroup;
+    private ToggleGroup typesGroup, quickSelection;
+    @FXML
+    Accordion accordion;
+//    String timePeriod = false;
 
 
     @FXML
@@ -72,68 +75,56 @@ public class AnalyticsController {
         }
 
         pieChart.setData(arrayToPie());
-        pieChart.setTitle(type);
         fillBarChart();
         fillLineChart();
     }
 
 
     private void fillLineChart(){
+        System.out.println("FillLInes");
+        getNumber("ADMIN");
         lineChart.getData().clear();
         int lowB = 0;
         int highB = 0;
         String unit = "";
 
-        if((fromDP.getValue().getYear()- toDP.getValue().getYear() >= 5)){
-            lowB = fromDP.getValue().getYear();
-            highB = toDP.getValue().getYear();
+        if((endTime.getYear() - startTime.getYear() >= 5)){
+            lowB = startTime.getYear();
+            highB = endTime.getYear();
             unit = "year";
         }
-        else if ((fromDP.getValue().getMonthValue() - toDP.getValue().getMonthValue()) >= 3){
-            lowB = fromDP.getValue().getMonthValue();
-            highB = toDP.getValue().getMonthValue();
+        else if ((endTime.getMonthValue() - startTime.getMonthValue()) >= 3){
+            lowB = startTime.getMonthValue();
+            highB = endTime.getMonthValue();
             unit = "month";
         }
         else {
-            lowB = fromDP.getValue().getDayOfYear();
-            highB = toDP.getValue().getDayOfYear();
+            lowB = startTime.getDayOfYear();
+            highB = endTime.getDayOfYear();
             unit = "day";
         }
 
         NumberAxis xAxis = new NumberAxis(lowB, highB, (highB-lowB)/10);
         xAxis.setLabel("Time");
-        NumberAxis yAxis = new NumberAxis(0, 50, 10);
+        NumberAxis yAxis = new NumberAxis(0, 10, 2);
         yAxis.setLabel("Number");
 
 
         for (String s: types) {
+            System.out.println(s + "added Line");
+            System.out.println(highB + ":" + lowB);
             XYChart.Series series = new XYChart.Series();
             series.setName(s);
-            for(int i = 0; i < (highB-lowB); i++) {
-                LocalDate start = fromDP.getValue();
-                LocalDate end;
-                int ending;
-                if (unit.equals("year")) {
-                    end = start.plusYears(1);
-                    ending = end.getYear();
-                }
-                else if(unit.equals("month")){
-                    end = start.plusMonths(1);
-                    ending = end.getMonthValue();
-                }
-                else {
-                    end = start.plusDays(1);
-                    ending = end.getDayOfMonth();
-                }
-
-                if(requestRadio.isSelected()){
-                    series.getData().add(new XYChart.Data(ending,
-                        ServiceDatabase.getServiceRequestAmountRange(s, start.format(DF), end.format(DF))));
-                }
-                else {
-                    series.getData().add(new XYChart.Data(ending,
-                            ServiceDatabase.getServiceFinishedAmountRange(s, start.format(DF), end.format(DF))));
-                }
+            for(int i = lowB; i < highB; i++) {
+                    if (unit.equals("year")) {
+                        series.getData().add(new XYChart.Data(i, getNumber(type, startTime, startTime.plusYears(i))));
+                    }
+                    else if (unit.equals("month")){
+                        series.getData().add(new XYChart.Data(i, getNumber(type, startTime, startTime.plusMonths(i))));
+                    }
+                    else {
+                        series.getData().add(new XYChart.Data(i, getNumber(type, startTime, startTime.plusDays(i))));
+                    }
             }
             lineChart.getData().add(series);
         }
@@ -156,59 +147,39 @@ public class AnalyticsController {
 
         dataSeries1.setName("Numbers");
         for (String s : types) {
-            if (employeeRadio.isSelected()) {
-                dataSeries1.getData().add(new XYChart.Data(s, DatabaseWrapper.getEmployeeCount(s)));
-                System.out.println("Bar:" + s + ":" + DatabaseWrapper.getEmployeeCount(s));
-            } else if (requestRadio.isSelected()){
-                dataSeries1.getData().add(new XYChart.Data(s,
-                        ServiceDatabase.getServiceRequestAmountRange(s, fromDP.getValue().format(DF),
-                                toDP.getValue().format(DF))));
-            }
-            else {
-                dataSeries1.getData().add(new XYChart.Data(s, ServiceDatabase.getServiceFinishedAmountRange(s, fromDP.getValue().format(DF),
-                        toDP.getValue().format(DF))));
-            }
+                dataSeries1.getData().add(new XYChart.Data(s, getNumber(s)));
         }
-        barChart.getData().add(dataSeries1);
+       barChart.getData().add(dataSeries1);
     }
 
     private ObservableList<PieChart.Data> arrayToPie(){
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
         for (int i = 0; i < types.size(); i++) {
-            int number = 0;
-
-            if(employeeRadio.isSelected()){
-                number = DatabaseWrapper.getEmployeeCount(types.get(i));
-            }else if (requestRadio.isSelected()){
-                number = ServiceDatabase.getServiceRequestAmountRange(types.get(i),
-                        fromDP.getValue().format(DF),
-                        toDP.getValue().format(DF));
-            }
-            else {
-                System.out.println(fromDP.getValue().toString());
-                number = ServiceDatabase.getServiceFinishedAmountRange(types.get(i),
-                        fromDP.getValue().format(DF),
-                        toDP.getValue().format(DF));
-            }
-
+            int number = getNumber(types.get(i));
             if (number > 0) {
                 pieChartData.add(new PieChart.Data(types.get(i) + " (" + number + ")", number));
             }
         }
-
         return pieChartData;
     }
 
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         typesGroup = new ToggleGroup();
         employeeRadio.setToggleGroup(typesGroup);
         requestRadio.setToggleGroup(typesGroup);
         requestFinishedRadio.setToggleGroup(typesGroup);
         typesGroup.selectToggle(null);
 
+        quickSelection = new ToggleGroup();
+        yesterday.setToggleGroup(quickSelection);
+        lastWeek.setToggleGroup(quickSelection);
+        lastMonth.setToggleGroup(quickSelection);
+        lastYear.setToggleGroup(quickSelection);
+        allTime.setToggleGroup(quickSelection);
+        quickSelection.selectToggle(null);
 
         ObservableList<String> serviceTypes =
                 FXCollections.observableArrayList(
@@ -223,83 +194,14 @@ public class AnalyticsController {
                         "Last Month",
                         "Last Year"
                 );
-        quickSelection.getItems().addAll(quick);
 
-        quickSelection.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String selection = quickSelection.getSelectionModel().getSelectedItem().toString();
-                LocalDate currentTime = LocalDate.now();
-                if(selection.equals("Last Day")){
-                    currentTime = currentTime.minusDays(1);
-                }
-                else if(selection.equals("Last Week")){
-                    currentTime = currentTime.minusWeeks(1);
-                }
-                else if (selection.equals("Last Month")){
-                    currentTime = currentTime.minusMonths(1);
-                }
-                else if (selection.equals("Last Year")){
-                    currentTime = currentTime.minusYears(1);
-                }
-
-                fromDP.setValue(currentTime);
-                toDP.setValue(LocalDate.now());
-            }
-        });
 
         generate.setDisable(true);
-        BooleanBinding blockCheckBox =
-                (typesChip.converterProperty().isNull())
-                .or(requestFinishedRadio.selectedProperty().and(requestRadio.selectedProperty()).and(employeeRadio.selectedProperty()))
-                .or(fromDP.getEditor().textProperty().isEmpty())
-                .or(toDP.getEditor().textProperty().isEmpty());
-        generate.disableProperty().bind(blockCheckBox);
 
         fromDP.setDisable(true);
         toDP.setDisable(true);
         lineTab.setDisable(true);
-        quickSelection.setDisable(true);
-
-//        typesGroup.getProperties().addListener(new MapChangeListener<Object, Object>() {
-//            @Override
-//            public void onChanged(Change<?, ?> change) {
-//                if(employeeRadio.isSelected()){
-//                    fromDP.setValue(LocalDate.now());
-//                    toDP.setValue(LocalDate.now());
-//                    fromDP.setDisable(true);
-//                    toDP.setDisable(true);
-//                    lineTab.setDisable(true);
-//                    quickSelection.setDisable(true);
-//                }
-//                else {
-//                    fromDP.setDisable(false);
-//                    toDP.setDisable(false);
-//                    lineTab.setDisable(false);
-//                    quickSelection.setDisable(false);
-//                }
-//            }
-//        });
-//        typesGroup.getProperties().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-//                if(majorTypesComboBox.getSelectionModel().getSelectedItem().equals("employee")){
-//                    fromDP.setValue(LocalDate.now());
-//                    toDP.setValue(LocalDate.now());
-//                    fromDP.setDisable(true);
-//                    toDP.setDisable(true);
-//                    lineTab.setDisable(true);
-//                    quickSelection.setDisable(true);
-//                }
-//                else {
-//                    fromDP.setDisable(false);
-//                    toDP.setDisable(false);
-//                    lineTab.setDisable(false);
-//                    quickSelection.setDisable(false);
-//                }
-//            }
-//        });
-
+        accordion.setDisable(true);
 
         xA = new CategoryAxis();
         xA.setLabel("Services");
@@ -313,9 +215,90 @@ public class AnalyticsController {
         lineYA = new NumberAxis();
         lineYA.setLabel("Numbers");
 //        barChart = new BarChart(xAxis, yAxis);
+
+        accordion.expandedPaneProperty().addListener(new ChangeListener<TitledPane>() {
+            @Override
+            public void changed(ObservableValue<? extends TitledPane> observable, TitledPane oldValue, TitledPane newValue){
+                if(newValue.getText().equals("By Date")){
+//                    timePeriod = false;
+                    quickSelection.selectToggle(null);
+                    fromDP.getEditor().clear();
+                    toDP.getEditor().clear();
+                    lineTab.setDisable(true);
+                    checkValid();
+                }
+                else if (newValue.getText().equals("By Recent")){
+//                    timePeriod = true;
+                    dateDP.getEditor().clear();
+                    fromDP.getEditor().clear();
+                    toDP.getEditor().clear();
+                    lineTab.setDisable(false);
+                    checkValid();
+                }
+                else if (newValue.getText().equals("By Range")){
+//                    timePeriod = true;
+                    dateDP.getEditor().clear();
+                    quickSelection.selectToggle(null);
+                    lineTab.setDisable(false);
+                    checkValid();
+                }
+            }
+        });
     }
 
+    private int getNumber(String type, LocalDate start, LocalDate end){
+        if(requestRadio.isSelected()){
+            return DatabaseWrapper.getServiceRequestAmountRange(type, start.format(DF), end.format(DF));
+        }
+        else{
+            return DatabaseWrapper.getServiceFinishedAmountRange(type,start.format(DF),end.format(DF));
+        }
+    }
 
+    private int getNumber(String type){
+        startTime = LocalDate.now();
+        endTime = LocalDate.now();
+        if (employeeRadio.isSelected()){
+            pieChart.setTitle("Employee");
+            barChart.setTitle("Employee");
+            return DatabaseWrapper.getEmployeeCount(type);
+        }
+        else {
+            String selection = accordion.getExpandedPane().getText();
+            if (selection.equals("By Range")) {
+                startTime = fromDP.getValue();
+                endTime = toDP.getValue();
+            } else if (selection.equals("By Date")) {
+                startTime = dateDP.getValue();
+                endTime = dateDP.getValue();
+            } else if (selection.equals("By Recent")) {
+                if (allTime.isSelected()) {
+                    startTime = LocalDate.of(1900, Month.JANUARY, 1);
+                } else if (lastYear.isSelected()) {
+                    startTime = startTime.minusYears(1);
+                } else if (lastMonth.isSelected()) {
+                    startTime = startTime.minusMonths(1);
+                } else if (lastWeek.isSelected()) {
+                    startTime = startTime.minusWeeks(1);
+                } else if (yesterday.isSelected()) {
+                    startTime = startTime.minusDays(1);
+                }
+            }
+        }
+
+        if(requestRadio.isSelected()){
+            pieChart.setTitle("Services");
+            barChart.setTitle("Services");
+            lineChart.setTitle("Services");
+            return DatabaseWrapper.getServiceRequestAmountRange(type,startTime.format(DF),endTime.format(DF));
+        }
+        else{
+            pieChart.setTitle("Services Finished");
+            barChart.setTitle("Services Finished");
+            lineChart.setTitle("Services Finished");
+            return DatabaseWrapper.getServiceFinishedAmountRange(type,startTime.format(DF),endTime.format(DF));
+        }
+    }
 
     @FXML
     public void backToAdmin(){
@@ -335,19 +318,56 @@ public class AnalyticsController {
         } else {
             typesComboBox.setStyle("-fx-border-color: red");
         }
+        checkValid();
     }
 
     @FXML
     public void  addAllSRType(ActionEvent event){
         typesChip.getChips().clear();
         typesChip.getChips().addAll(ServiceRequestWrapper.getAllServiceType());
+        checkValid();
     }
 
     @FXML
     public void  removeAllSRType(ActionEvent event){
         typesChip.getChips().clear();
+        checkValid();
     }
 
+    @FXML
+    public void radioButton(ActionEvent event) {
+        checkValid();
+        if(employeeRadio.isSelected()){
+            fromDP.setValue(LocalDate.now());
+            toDP.setValue(LocalDate.now());
+            fromDP.setDisable(true);
+            toDP.setDisable(true);
+            lineTab.setDisable(true);
+            accordion.getExpandedPane().collapsibleProperty().setValue(true);
+            accordion.setDisable(true);
+        }
+        else {
+            fromDP.setDisable(false);
+            toDP.setDisable(false);
+            lineTab.setDisable(false);
+            accordion.setDisable(false);
+        }
+    }
+
+    @FXML
+    private void checkValid(){
+        Boolean result1 = (employeeRadio.isSelected()||requestRadio.isSelected()||requestFinishedRadio.isSelected());
+        Boolean result2 = (fromDP.getValue()!= null && toDP.getValue()!= null) || (dateDP.getValue()!= null)
+                    || (allTime.isSelected() || lastWeek.isSelected() || lastMonth.isSelected() || lastYear.isSelected() || yesterday.isSelected());
+        Boolean result3 = (!typesChip.getChips().isEmpty());
+
+        if (result1 && result2 && result3){
+            generate.setDisable(false);
+        }
+        else {
+            generate.setDisable(true);
+        }
+    }
 }
 
 //    //Defining X axis

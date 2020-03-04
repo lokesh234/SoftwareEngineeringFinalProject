@@ -160,7 +160,7 @@
                            <center>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFEEC9;">
                                              <children>
-                                                <PieChart fx:id="pieChart" />
+                                                <PieChart fx:id="insightPieChart" />
                                     <VBox layoutX="224.0" layoutY="87.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" styleClass="subtitleBar">
@@ -194,7 +194,7 @@
                                                 <content>
                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="windowScreen">
                                                          <children>
-                                                            <PieChart layoutX="-351.0" layoutY="-321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                            <PieChart fx:id="pieChart" layoutX="-351.0" layoutY="-321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                          </children>
                                                       </AnchorPane>
                                                 </content>
@@ -246,9 +246,9 @@
                                           <Label text="DATA TYPE" />
                                           <VBox VBox.vgrow="ALWAYS">
                                              <children>
-                                                <JFXRadioButton fx:id="employeeRadio" text="Employees" />
-                                                <JFXRadioButton fx:id="requestRadio" text="Services" />
-                                                <JFXRadioButton fx:id="requestFinishedRadio" text="Finished Request" />
+                                                <JFXRadioButton fx:id="employeeRadio" onAction="#radioButton" text="Employees" />
+                                                <JFXRadioButton fx:id="requestRadio" onAction="#radioButton" text="Services" />
+                                                <JFXRadioButton fx:id="requestFinishedRadio" onAction="#radioButton"  text="Finished Request" />
                                              </children>
                                              <padding>
                                                 <Insets left="20.0" />
@@ -263,7 +263,7 @@
                                     <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="10.0" styleClass="sideBar" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Label text="DATE FILTERS" />
-                                          <Accordion>
+                                          <Accordion fx:id="accordion">
                                              <panes>
                                                 <TitledPane animated="false" text="By Range">
                                                    <content>
@@ -297,7 +297,7 @@
                                                          </rowConstraints>
                                                          <children>
                                                             <Label text="Day Of" />
-                                                            <JFXDatePicker GridPane.columnIndex="1" />
+                                                            <JFXDatePicker fx:id="dateDP" GridPane.columnIndex="1" />
                                                          </children>
                                                       </GridPane>
                                                    </content>
@@ -306,12 +306,11 @@
                                                    <content>
                                                       <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                                          <children>
-                                                            <JFXRadioButton text="Yesterday" />
-                                                            <JFXRadioButton text="Last week" />
-                                                            <JFXRadioButton text="Last month" />
-                                                            <JFXRadioButton text="Last year" />
-                                                            <JFXRadioButton text="All Time" />
-                                                            <JFXComboBox fx:id="quickSelection" />
+                                                            <JFXRadioButton text="Yesterday" fx:id="yesterday" onAction="#checkValid"/>
+                                                            <JFXRadioButton text="Last week" fx:id="lastWeek" onAction="#checkValid"/>
+                                                            <JFXRadioButton text="Last month" fx:id="lastMonth" onAction="#checkValid"/>
+                                                            <JFXRadioButton text="Last year" fx:id="lastYear" onAction="#checkValid"/>
+                                                            <JFXRadioButton text="All Time" fx:id="allTime" onAction="#checkValid"/>
                                                          </children>
                                                       </VBox>
                                                    </content>
