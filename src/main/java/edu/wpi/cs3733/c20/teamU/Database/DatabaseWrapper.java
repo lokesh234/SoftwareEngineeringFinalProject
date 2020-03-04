@@ -415,6 +415,16 @@ public class DatabaseWrapper {
     return Database.getTypes();
   }
 
+  /**
+   * add a value to Database
+   * @param name String less than 5 char (will be set to all caps)
+   * @param picture String of path to picture (either added or default)
+   * @return true if added
+   */
+  public static boolean addDatabase(String name, String picture){
+    return Database.addDatabase(name, picture);
+  }
+
   // SERVICE DATABASE
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -594,4 +604,13 @@ public class DatabaseWrapper {
       return Database.getDataAnalytics(fre, type);
   }
 
+  //GENERATE DATABASE ==============================================================================================================
+
+  public static boolean generateNewDatabase(String dbName, ArrayList<String> dataTypes, String picturePath){
+      return GenerateDatabase.generateNewDatabase(dbName, dataTypes, picturePath);
+  }
+
+  public static boolean populateNewDatabase(String dbName, ArrayList<String> values){
+      return GenerateDatabase.populateNewDatabase(dbName, values);
+  }
 }
