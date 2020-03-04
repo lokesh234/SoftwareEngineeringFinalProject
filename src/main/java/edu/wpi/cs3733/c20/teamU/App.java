@@ -724,6 +724,7 @@ public class App<loadedAdminRequests> extends Application {
         //No hitbox for node!
       }
     }
+    loadedHitboxes = true;
   }
 
   public static Image getHitbox(String ID) throws Exception {
