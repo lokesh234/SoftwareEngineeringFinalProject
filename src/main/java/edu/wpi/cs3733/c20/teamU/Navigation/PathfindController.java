@@ -190,23 +190,37 @@ public class PathfindController {
         @Override
         public void handle(MouseEvent event) {
             updateStatus();
-            if (state == State.NEUTRAL) return; //We're not selecting a start or end point, so we don't need to do any work
-            else if (state == State.START) { //We're going to select a starting node!
-                //System.out.println("Start Click");
-                start = hitboxes.get(event.getSource());
-                startReady = (start != null) || startReady;
-//                if (startReady) startLabel.setText(start.getLongName());
-                if (startReady) startBox.setText(start.getLongName());
+            if (start != null && start.equals(hitboxes.get(event.getSource()))) {
+                start = null;
+                startReady = false;
+                state = State.START;
+                updateStatus();
+            }
+            else if (end != null && end.equals(hitboxes.get(event.getSource()))){
+                end = null;
+                endReady = false;
                 state = State.END;
                 updateStatus();
             }
-            else if (state == State.END) { //We're going to select an ending node!
-                end = hitboxes.get(event.getSource());
-                endReady = (end != null) || endReady;
+            else {
+                if (state == State.NEUTRAL)
+                    return; //We're not selecting a start or end point, so we don't need to do any work
+                else if (state == State.START) { //We're going to select a starting node!
+                    //System.out.println("Start Click");
+                    start = hitboxes.get(event.getSource());
+                    startReady = (start != null) || startReady;
+//                if (startReady) startLabel.setText(start.getLongName());
+                    if (startReady) startBox.setText(start.getLongName());
+                    state = State.END;
+                    updateStatus();
+                } else if (state == State.END) { //We're going to select an ending node!
+                    end = hitboxes.get(event.getSource());
+                    endReady = (end != null) || endReady;
 //                if (endReady) endLabel.setText(end.getLongName());
-                if (endReady) endBox.setText(end.getLongName());
-                state = State.START;
-                updateStatus();
+                    if (endReady) endBox.setText(end.getLongName());
+                    state = State.START;
+                    updateStatus();
+                }
             }
         }
     };
@@ -692,11 +706,10 @@ public class PathfindController {
         for (Node n : nodes) {
             try {
                 ImageView i = new ImageView();
-                i.setImage(new Image("png_files/"+n.getID()+".png"));
+                i.setImage(App.getHitbox(n.getID()));
                 i.addEventFilter(MOUSE_CLICKED, hitboxClickHandler);
-                i.setX(n.getX());
-                i.setY(n.getY());
                 addToPath(i, n.getFloor());
+                i.setOpacity(0);
                 hitboxes.put(i, n);
             } catch (Exception e) {
                 //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");

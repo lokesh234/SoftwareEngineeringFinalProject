@@ -25,6 +25,8 @@ import net.kurobako.gesturefx.GesturePane;
 import java.io.IOException;
 import java.util.*;
 
+import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+
 public class GraphEditController {
 
   @FXML private Button backButton, nodeModeButton, edgeModeButton, addButton, editButton, removeButton, startButton, endButton;
@@ -656,26 +658,27 @@ public class GraphEditController {
     for (Node n : nodes) {
       try {
         ImageView i = new ImageView();
-        i.setImage(new Image("png_files/" + n.getID() + ".png"));
-        i.setOnMouseClicked(hitboxClickHandler);
+        i.setImage(App.getHitbox(n.getID()));
+        i.addEventFilter(MOUSE_CLICKED, hitboxClickHandler);
         addToPath(i, n.getFloor());
+        i.setOpacity(0.25);
         hitboxes.put(i, n);
-        i.setOnMouseDragged(event -> dragHitbox(event));
       } catch (Exception e) {
         //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-        if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
-        Circle c = new Circle();
-        c.setCenterX(n.getX());
-        c.setCenterY(n.getY());
-        c.setRadius(App.getNodeSize());
-        addToPath(c, n.getFloor());
-        c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
-        c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
-        c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
-        c.setOnMouseDragged(event -> drag(event));
-        App.setColor(n, c);
-        circles.put(c, n);
+
       }
+      if (!DatabaseWrapper.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
+      Circle c = new Circle();
+      c.setCenterX(n.getX());
+      c.setCenterY(n.getY());
+      c.setRadius(App.getNodeSize());
+      addToPath(c, n.getFloor());
+      c.addEventHandler(MouseEvent.MOUSE_PRESSED, circleClickHandler);
+      c.addEventHandler(MouseEvent.MOUSE_RELEASED, circleMouseReleaseHandler);
+      c.addEventFilter(MouseEvent.MOUSE_CLICKED, circleSelectHandler);
+      c.setOnMouseDragged(event -> drag(event));
+      App.setColor(n, c);
+      circles.put(c, n);
     }
   }
 
