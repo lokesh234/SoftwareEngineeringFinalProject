@@ -448,9 +448,10 @@ public class HomeController {
                           App.getSpokenWords().clear();
                           runThread = false;
                         }
-                        if (App.getSpokenWords().contains("nav")
+                        if (App.getSpokenWords().contains("open navigation")
                             || App.getSpokenWords().contains("  nav")
-                            || App.getSpokenWords().contains(" nav")) {
+                            || App.getSpokenWords().contains(" nav")
+                        || App.getSpokenWords().contains("navigation")){
                           openNavScene();
                           App.getSpokenWords().clear();
                           runThread = false;
