@@ -790,6 +790,8 @@ public class App<loadedAdminRequests> extends Application {
         creditScene = new Scene(credit);
         speechcommandsScene = new Scene(speechcommands);
 
+        loadedHome = true;
+
       }
       catch (IOException e) {
         e.printStackTrace();
