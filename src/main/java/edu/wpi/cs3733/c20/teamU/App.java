@@ -1,14 +1,15 @@
 package edu.wpi.cs3733.c20.teamU;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
+import com.jfoenix.controls.JFXButton;
 import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
 import edu.wpi.cs3733.c20.teamU.Administration.*;
 import edu.wpi.cs3733.c20.teamU.Administration.AdminRequestController;
@@ -32,6 +33,7 @@ import javafx.scene.layout.Pane;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -780,9 +782,33 @@ public class App<loadedAdminRequests> extends Application {
     }
   }
 
+  private static boolean loadedReqTypes = false;
+
+  private static void loadReqTypes() {
+    if (!loadedReqTypes) {
+      File dir = new File("CustomRequests");
+      if (dir.exists()) {
+        for (File f : dir.listFiles()) {
+          if (!f.getName().contains("InputTypes.txt")) {
+            Scanner s = null;
+            try {
+              s = new Scanner(new File(f.getName().split("\\.")[0]+"InputTypes.txt"));
+            } catch (FileNotFoundException e) {
+              e.printStackTrace();
+            }
+            ArrayList<String> iT = new ArrayList<>(Arrays.asList(s.nextLine().split(",")));
+            DatabaseWrapper.generateNewDatabase(f.getName().split("\\.")[0], iT, "DEFAULT");
+          }
+        }
+      }
+      loadedReqTypes = true;
+    }
+  }
+
   public static void loadAdminRequests() {
     if (!loadedAdminRequests) {
       try {
+        loadReqTypes();
         FXMLLoader adminLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminMenu.fxml"));
         FXMLLoader adminRequestLoader = new FXMLLoader((App.class.getResource("/light_theme/Request.fxml")));
         FXMLLoader adminEmployeeLoader = new FXMLLoader((App.class.getResource("/light_theme/AdminEmployee.fxml")));
