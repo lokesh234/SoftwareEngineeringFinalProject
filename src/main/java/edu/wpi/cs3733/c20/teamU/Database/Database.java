@@ -2365,7 +2365,7 @@ public class Database {
             stmt = conn.createStatement();
 
             stmt.executeUpdate("INSERT INTO " + tableName + " VALUES ('" + name + "', '" + picture + "')");
-            addType(name);
+            System.out.println("add type? " + name + " " + addType(name));
 
             CreateCSV(stmt, tableName, null);
             stmt.close();

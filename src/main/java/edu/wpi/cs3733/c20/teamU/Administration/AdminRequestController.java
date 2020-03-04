@@ -93,6 +93,7 @@ public class AdminRequestController {
             FXCollections.observableArrayList(
                     ServiceRequestWrapper.getAllServiceType()
             );
+    System.out.println("delivery " + deliveryOptions);
     comboBox.getItems().addAll(deliveryOptions);
   }
 

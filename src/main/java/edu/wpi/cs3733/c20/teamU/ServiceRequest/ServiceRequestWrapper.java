@@ -2,6 +2,7 @@ package edu.wpi.cs3733.c20.teamU.ServiceRequest;
 
 import edu.wpi.cs3733.c20.teamU.Database.DatabaseWrapper;
 import edu.wpi.cs3733.c20.teamU.Navigation.PathfindController;
+import org.apache.derby.iapi.db.Database;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public class ServiceRequestWrapper {
 //                    "INTEC"
 //            ));
     public static ArrayList<String> getAllServiceType(){
+        serviceType = DatabaseWrapper.getTypes();
         return serviceType;
     }
     public static String serviceGetDate(Service service) { return service.getDate();}
