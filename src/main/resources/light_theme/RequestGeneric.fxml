@@ -31,7 +31,7 @@
          <center>
             <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0">
+                <AnchorPane minHeight="800.0">
                      <children>
                         <VBox fx:id="content" alignment="TOP_CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -61,7 +61,7 @@
             <bottom>
                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <JFXButton fx:id="submit" onAction="#getSubmission" text="Submit" />
+                        <JFXButton fx:id="submit" onAction="#getVals" text="Submit" />
                         <JFXButton fx:id="backToRequest" onAction="#goBack" text="Back" />
                     </children>
                 </HBox>
