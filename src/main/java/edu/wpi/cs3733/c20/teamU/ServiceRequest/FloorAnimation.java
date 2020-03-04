@@ -9,38 +9,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class FloorAnimation {
-  @FXML JFXButton floor1;
-  @FXML JFXButton floor2;
-  @FXML JFXButton floor3;
-  @FXML JFXButton floor4;
-  @FXML JFXButton floor5;
-  @FXML VBox floorBox;
-  private ArrayList<String> floorList = new ArrayList<String>();
-  private int floorLevel = 0;
+
+//  private ArrayList<String> floorList = new ArrayList<>();
+//  private ArrayList<JFXButton> floorButtons = new ArrayList<>();
 
 
-  public FloorAnimation(VBox floorBox, int floorLevel) {
-    this.floorLevel = floorLevel;
-    this.floorBox = floorBox;
-    for (int i = 0; i < floorBox.getChildren().size(); i++) {
-      if (i == 0 || i == floorBox.getChildren().size() - 1) continue;
-      floorList.add(((JFXButton) floorBox.getChildren().get(i)).getText());
-    }
+  public FloorAnimation() {
+//    this.floorBox = floorBox;
+//    for (int i = 0; i < floorBox.getChildren().size(); i++) {
+//      if (i == 0 || i == floorBox.getChildren().size() - 1) continue;
+//      floorList.add(((JFXButton) floorBox.getChildren().get(i)).getText());
+//    }
+//    for (int i = 0; i < floorBox.getChildren().size(); i++) {
+//      if (i == 0 || i == floorBox.getChildren().size() - 1) continue;
+//      floorButtons.add((JFXButton) floorBox.getChildren().get(i));
+//    }
   }
 
-//  public void rename(VBox floorBox, int floorLevel) {
-//    shuffleFloorList(floorLevel);
-//    for(int i = 0; i < floorBox.getChildren().size();i ++) {
-//      if(i == 0 || i == floorBox.getChildren().size() - 1) continue;
-//      floorBox.getChildren().set(i, )
-//    }
-//  }
-
-  private void shuffleFloorList(int floorLevel) {
-    while(!floorList.get(2).equals(Integer.toString(floorLevel))) {
-      String first = floorList.get(0);
-      floorList.remove(0);
-      floorList.add(first);
+  public void shuffleFloorList(int floorLevel, VBox floorBox) {
+    while(!((JFXButton)floorBox.getChildren().get(3)).getText().equals(Integer.toString(floorLevel))) {
+      JFXButton first = (JFXButton) floorBox.getChildren().get(1);
+      floorBox.getChildren().remove(1);
+      floorBox.getChildren().add(floorBox.getChildren().size() - 1, first);
     }
+
   }
 }

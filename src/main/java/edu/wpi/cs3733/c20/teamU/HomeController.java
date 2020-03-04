@@ -577,7 +577,7 @@ public class HomeController {
     App.getHome().setDisable(true);
     App.getRequestPop().show(App.getPrimaryStage());
   }
-
+  @FXML JFXButton floorFour;
   @FXML
   private void initialize() {
     // add stuff to the menu items now
@@ -588,9 +588,8 @@ public class HomeController {
       menuOptions.addAnimatedNode(info);
       menuOptions.addAnimatedNode(help);
       menuOptions.setSpacing(20.0);
-    FloorAnimation floorAnimation = new FloorAnimation(floorNavBox, 4);
-//    floorAnimation.shuffle(4);
-
+    FloorAnimation floorAnimation = new FloorAnimation();
+//    floorAnimation.shuffleFloorList(4, floorNavBox);
 
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));
     NodesPane2.getChildren().add(new ImageView(App.getFloor2()));
