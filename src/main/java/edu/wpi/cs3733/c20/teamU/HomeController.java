@@ -91,6 +91,7 @@ public class HomeController {
   private Speech speech = new Speech();
   private volatile boolean runThread = true;
   private int checker = 0;
+  private FloorAnimation floorAnimation;
   @FXML private Label voiceLabel, voiceLabelstart, voiceLabelend;
 
   public void setWeatherData(WeatherController weatherController1) {
@@ -246,6 +247,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N1);
     floor = 1;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("1");
     MapGes1.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -257,6 +259,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N2);
     floor = 2;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("2");
     MapGes2.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -268,6 +271,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N3);
     floor = 3;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("3");
     MapGes3.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -279,6 +283,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N4);
     floor = 4;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("4");
     MapGes4.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -290,6 +295,7 @@ public class HomeController {
     oppo.getChildren().clear();
     oppo.getChildren().add(N5);
     floor = 5;
+    floorAnimation.shuffleFloorList(floor, floorNavBox);
     floorLabel.setText("5");
     MapGes5.animate(Duration.millis(200))
         .interpolateWith(Interpolator.EASE_BOTH)
@@ -588,7 +594,7 @@ public class HomeController {
       menuOptions.addAnimatedNode(info);
       menuOptions.addAnimatedNode(help);
       menuOptions.setSpacing(20.0);
-    FloorAnimation floorAnimation = new FloorAnimation();
+    floorAnimation = new FloorAnimation();
 //    floorAnimation.shuffleFloorList(4, floorNavBox);
 
     NodesPane1.getChildren().add(new ImageView(App.getFloor1()));

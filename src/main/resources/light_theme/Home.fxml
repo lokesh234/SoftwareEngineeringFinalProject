@@ -393,7 +393,7 @@
                      <Insets bottom="20.0" right="50.0" />
                  </StackPane.margin>
              </HBox>
-              <VBox fx:id="legendContent" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="CENTER_LEFT">
+              <VBox fx:id="legendContent" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: TRANSPARENT;" StackPane.alignment="TOP_LEFT">
                   <children>
                       <Label text="Node color key">
                           <font>
