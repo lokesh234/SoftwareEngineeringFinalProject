@@ -159,10 +159,7 @@ public class RequestController {
         File dir = new File("CustomRequests");
         if (dir.exists()) {
             for (File f : dir.listFiles()) {
-                System.out.println(f.getName());
-                System.out.println(f.getName().contains("InputTypes.txt"));
-                System.out.println();
-                if (!f.getName().contains("InputTypes.txt")) {
+                if (!f.getName().contains("InputTypes.txt") && (new File(f.getName().split("\\.")[0]+"InputTypes.txt")).exists()) {
                     String reqType = f.getName().split("\\.")[0];
                     JFXButton bu = new JFXButton();
                     Scanner s = null;
