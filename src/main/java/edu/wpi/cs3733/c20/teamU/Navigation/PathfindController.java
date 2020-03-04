@@ -706,7 +706,7 @@ public class PathfindController {
         for (Node n : nodes) {
             try {
                 ImageView i = new ImageView();
-                i.setImage(new Image("png_files/hitboxes/"+n.getID()+".png"));
+                i.setImage(App.getHitbox(n.getID()));
                 i.addEventFilter(MOUSE_CLICKED, hitboxClickHandler);
                 addToPath(i, n.getFloor());
                 i.setOpacity(0);

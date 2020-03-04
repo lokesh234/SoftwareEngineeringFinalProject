@@ -25,6 +25,8 @@ import net.kurobako.gesturefx.GesturePane;
 import java.io.IOException;
 import java.util.*;
 
+import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
+
 public class GraphEditController {
 
   @FXML private Button backButton, nodeModeButton, edgeModeButton, addButton, editButton, removeButton, startButton, endButton;
@@ -655,12 +657,12 @@ public class GraphEditController {
     ArrayList<Node> nodes = DatabaseWrapper.getGraph().getNodes();
     for (Node n : nodes) {
       try {
-//        ImageView i = new ImageView();
-//        i.setImage(new Image("png_files/hitboxes/" + n.getID() + ".png"));
-//        i.setOnMouseClicked(hitboxClickHandler);
-//        addToPath(i, n.getFloor());
-//        hitboxes.put(i, n);
-//        i.setOnMouseDragged(event -> dragHitbox(event));
+        ImageView i = new ImageView();
+        i.setImage(App.getHitbox(n.getID()));
+        i.addEventFilter(MOUSE_CLICKED, hitboxClickHandler);
+        addToPath(i, n.getFloor());
+        i.setOpacity(0.25);
+        hitboxes.put(i, n);
       } catch (Exception e) {
         //if (!App.getGraph().hasNeighbors(n)) System.out.println(n.getID() + " has no neighbors!");
 

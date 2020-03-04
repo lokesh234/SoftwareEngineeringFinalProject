@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.cs3733.c20.teamR.AppointmentRequest;
@@ -33,6 +34,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import javax.xml.crypto.Data;
 
 public class App<loadedAdminRequests> extends Application {
 
@@ -714,6 +717,25 @@ public class App<loadedAdminRequests> extends Application {
     }
   }
 
+  private static HashMap<String, Image> hitboxes = new HashMap<>();
+  private static boolean loadedHitboxes = false;
+
+  private static void loadHitboxes() {
+    if (!loadedHitboxes)
+    for (edu.wpi.cs3733.c20.teamU.Database.Node n : DatabaseWrapper.getGraph().getNodes()) {
+      try {
+        hitboxes.put(n.getID(), new Image("/png_files/hitboxes/"+n.getID()+".png"));
+      } catch (Exception e) {
+        //No hitbox for node!
+      }
+    }
+  }
+
+  public static Image getHitbox(String ID) throws Exception {
+    if (!hitboxes.containsKey(ID)) throw (new Exception("no hitbox :("));
+    return hitboxes.get(ID);
+  }
+
   public static void loadHome() {
     if (!loadedHome) {
       try {
@@ -1064,6 +1086,7 @@ public class App<loadedAdminRequests> extends Application {
 
   public static void loadPathfinding() {
     if (!loadedPathfinding) {
+      loadHitboxes();
       try {
         FXMLLoader pathfindLoader = new FXMLLoader(App.class.getResource("/light_theme/Pathfind.fxml"));
         FXMLLoader pathfindtextLoader = new FXMLLoader(App.class.getResource("/light_theme/PathfindTextDirections.fxml"));
@@ -1113,6 +1136,7 @@ public class App<loadedAdminRequests> extends Application {
 
   public static void loadAdminGraph() {
     if (!loadedAdminGraph) {
+      loadHitboxes();
       try {
         FXMLLoader adminGraphLoader = new FXMLLoader(App.class.getResource("/light_theme/AdminGraph.fxml"));
         FXMLLoader addNodeLoader = new FXMLLoader(App.class.getResource("/light_theme/Add_Node.fxml"));
