@@ -8,16 +8,16 @@ timeFinished,reqType,completedBy,info
 11/5/2019,RELIG,staff,RELIG | request: Service for : Judaism where: g
 3/4/2019,RELIG,admin,RELIG | request: Service for : Judaism where: g
 3/4/1990,RELIG,staff,RELIG | request: Service for : Judaism where: g
-3/3/2020,SANIT,admin,"SANIT | request: Service: Cleanup needed: Kiosk where: Large spill	"
-5/20/2019,SANIT,staff,"SANIT | request: Service: waste needed: Heart Research where: Small spill	"
-4/5/2015,SANIT,staff,"SANIT | request: Service: janitor needed: Kiosk where: dusty	"
-10/10/2019,SANIT,staff,"SANIT | request: Service: Mop needed: Lung Research where: N/A	"
-7/11/2019,SANIT,admin,"SANIT | request: Service: Mop needed: Lung Research where: N/A	"
-4/14/2019,SANIT,staff,"SANIT | request: Service: Mop needed: Lung Research where: N/A	"
-12/12/2019,SANIT,admin,"SANIT | request: Service: Wipes needed: Conference Room where: N/A	"
-2/2/2020,SANIT,staff,"SANIT | request: Service: Mop needed: Lung Research where: N/A	"
-4/5/1970,SANIT,staff,"SANIT | request: Service: Mop needed: Lung Research where: N/A	"
-2/25/2019,SANIT,staff,"SANIT | request: Service: Mop needed: Lung Research where: N/A	"
+3/3/2020,SANIT,admin,SANIT | request: Service: Cleanup needed: Kiosk where: Large spill
+5/20/2019,SANIT,staff,SANIT | request: Service: waste needed: Heart Research where: Small spill
+4/5/2015,SANIT,staff,SANIT | request: Service: janitor needed: Kiosk where: dusty
+10/10/2019,SANIT,staff,SANIT | request: Service: Mop needed: Lung Research where: N/A
+7/11/2019,SANIT,admin,SANIT | request: Service: Mop needed: Lung Research where: N/A
+4/14/2019,SANIT,staff,SANIT | request: Service: Mop needed: Lung Research where: N/A
+12/12/2019,SANIT,admin,SANIT | request: Service: Wipes needed: Conference Room where: N/A
+2/2/2020,SANIT,staff,SANIT | request: Service: Mop needed: Lung Research where: N/A
+4/5/1970,SANIT,staff,SANIT | request: Service: Mop needed: Lung Research where: N/A
+2/25/2019,SANIT,staff,SANIT | request: Service: Mop needed: Lung Research where: N/A
 3/3/2020,CLOWN,admin,CLOWN | request: Number of clowns: 100 for: Bob on: 2020-10-15
 3/3/2020,DELIV,staff,DELIV | request: Deliver: Chocolate to: 100
 3/3/2020,DELIV,staff,DELIV | request: Deliver: Cookies to: 1

@@ -2406,6 +2406,7 @@ public class Database {
         String UserBacklogTable = "UserBacklogDB";
         String ServiceTable = "ServiceRequest";
         String FinishedTable = "ServiceFinished";
+        String DatabaseTable = "DatabaseList";
         Connection conn = null;
         Statement stmt = null;
         try {
@@ -2413,16 +2414,25 @@ public class Database {
             stmt = conn.createStatement();
             // getting UBDatabase
             // check to see if username exists in LoginDB:
-            stmt.executeUpdate("DELETE FROM " + loginTable + " WHERE position = '" + typeName + "'");
+
+            stmt.executeUpdate("DELETE FROM " + typeName);
+            dropTable(stmt, tableName.toUpperCase());
+            stmt.executeUpdate("DELETE FROM " + DatabaseTable + " WHERE dbName = '" + typeName + "'");
             stmt.executeUpdate("DELETE FROM " + UserBacklogTable + " WHERE serviceType = '" + typeName + "'");
             stmt.executeUpdate("DELETE FROM " + ServiceTable + " WHERE types = '" + typeName + "'");
             stmt.executeUpdate("DELETE FROM " + FinishedTable + " WHERE reqType = '" + typeName + "'");
+            stmt.executeUpdate("DELETE FROM " + loginTable + " WHERE position = '" + typeName + "'");
             stmt.executeUpdate("DELETE FROM " + tableName + " WHERE typeName = '" + typeName + "'");
             CreateCSV(stmt, tableName, null);
+            CreateCSV(stmt, DatabaseTable, null);
             CreateCSV(stmt, loginTable, null);
             CreateCSV(stmt, UserBacklogTable, null);
             CreateCSV(stmt, ServiceTable, null);
             CreateCSV(stmt, FinishedTable, null);
+            String APath = System.getProperty("user.dir");
+            String csvPath = APath + "/DatabaseBackup/" + typeName + ".csv";
+            File csvDel = new File(csvPath);
+            csvDel.delete();
             stmt.close();
             conn.close();
             return true;
