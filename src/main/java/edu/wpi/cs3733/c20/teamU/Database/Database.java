@@ -1332,8 +1332,7 @@ public class Database {
 
     private static void createUserBacklogTable(Statement stmt, String tableName){
         try{
-            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(10), operations VARCHAR(200), addInfo VARCHAR(200), " +
-                    "CONSTRAINT UB_TY CHECK (serviceType in ('ADMIN', 'MEDIC','SECUR', 'LANGE', 'ITRAN', 'ETRAN', 'FLOWR', 'DELIV', 'CLOWN', 'INTEC', 'RELIG', 'SANIT', 'EMPLOYEE', 'NODE', 'EDGE')))";
+            String slqCreate = "CREATE TABLE " + tableName + " (username VARCHAR(10) REFERENCES LoginDB (username), dateCompleted DATE, timeCompleted TIME, serviceType VARCHAR(5) REFERENCES TypesSR (typeName), operations VARCHAR(200), addInfo VARCHAR(200))";
 
             stmt.executeUpdate(slqCreate);
             //String csvFile = "src/main/java/xxxx.csv"; //Hardcoded path
