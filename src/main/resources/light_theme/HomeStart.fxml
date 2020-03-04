@@ -25,7 +25,7 @@
                   </ImageView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="startClock">
                      <children>
-                        <Label fx:id="time" text="16:20:00" />
+                        <Label fx:id="time" />
                      </children>
                   </HBox>
                   <JFXButton fx:id="Map" contentDisplay="GRAPHIC_ONLY" onAction="#openHomeScreen" prefHeight="89.0" prefWidth="194.0" text="Begin">
